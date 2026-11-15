@@ -156,6 +156,7 @@ const SD_RAYONS = [
         { key: 'g:chabbat-minha', he: 'מנחה', group: 'chabbat-minha' },
         { key: 'g:chabbat-seouda-3', he: 'שלישית', group: 'chabbat-seouda-3' },
         { key: 'g:motsei-chabbat', he: 'הבדלה', group: 'motsei-chabbat' },
+        { key: 'g:zemirot-chabbat', he: 'זמירות', group: 'zemirot-chabbat', unit: 'chants : vendredi soir, matin, troisième repas, samedi soir' },
         { key: 'g:michnayot-chabbat', he: 'משניות', group: 'michnayot-chabbat' },
         { key: 'g:pirkei-avot', he: 'אבות', group: 'pirkei-avot' }
     ] },
@@ -163,8 +164,9 @@ const SD_RAYONS = [
         { key: 'g:roch-hodech', he: 'ראש חודש', group: 'roch-hodech' },
         { key: 'g:regalim', he: 'שלוש רגלים', group: 'regalim' },
         { key: 'g:hol-hamoed', he: 'חול המועד', group: 'hol-hamoed' },
-        { key: 'x:hanouka', he: 'חנוכה', title: 'Hanouka', ids: ['hanouka-allumage', 'hanouka-chacharit'] },
-        { key: 'x:pourim', he: 'פורים', title: 'Pourim', ids: ['pourim-zakhor', 'pourim-meguila', 'pourim-jour'] },
+        { key: 'x:hanouka', he: 'חנוכה', title: 'Hanouka', ids: ['hanouka-allumage', 'hanouka-maoz-tsour', 'hanouka-chacharit', 'hanouka-zemer-chabbat'] },
+        { key: 'x:pourim', he: 'פורים', title: 'Pourim', ids: ['pourim-zakhor', 'pourim-meguila', 'pourim-chochanat-yaakov', 'pourim-jour', 'pourim-qerovets'] },
+        { key: 't:esther', he: 'אסתר', tanakh: 'esther', title: 'Méguilat Esther', desc: 'Dans le Tanakh : le texte, la traduction française, les résumés et le défilement automatique' },
         { key: 'x:nissan', he: 'ניסן', title: 'Nissan', ids: ['nissan-ilanot', 'nissan-etude'] },
         { key: 's:omer', he: 'עומר', ids: ['omer'] }
     ] },
@@ -172,7 +174,7 @@ const SD_RAYONS = [
         { key: 'x:selihot', he: 'סליחות', title: 'Sélihot des jeûnes', ids: ['jeune-guedalia', 'jeune-tevet', 'jeune-esther', 'jeune-tamouz'] },
         { key: 's:jeune-tora', he: 'קריאה', ids: ['jeune-tora'] },
         { key: 's:selihot-generales', he: 'סליחות', ids: ['selihot-generales'] },
-        { key: 's:tichabav-eikha', he: 'איכה', ids: ['tichabav-eikha'] },
+        { key: 't:eikha', he: 'איכה', tanakh: 'lamentations', title: 'Méguilat Eikha (Tich\'a beAv)', desc: 'Dans le Tanakh : le texte, la traduction française, les résumés et le défilement automatique' },
         { key: 's:deuil', he: 'אבל', ids: ['deuil'] }
     ] },
     { id: 'benedictions', he: 'ברכות', fr: 'Bénédictions', rows: [
@@ -244,10 +246,12 @@ function sdCleanTitle(fr) { return fr.replace(/ \(jours de semaine\)/, ''); }
 
 // Une ligne de rayon, complétée d'après l'index : { key, he, title, ids, desc }.
 function sdRowInfo(row) {
+    // Une ligne qui renvoie au Tanakh (les méguilot : leur texte n'est pas recopié dans le siddour, il y est complet).
+    if (row.tanakh) return { key: row.key, he: row.he, title: row.title, ids: [], tanakh: row.tanakh, desc: row.desc || '' };
     if (row.group) {
         const g = sdIndex.groups.filter(x => x.id === row.group)[0];
         if (!g) return null;
-        return { key: row.key, he: row.he, title: sdCleanTitle(g.fr), ids: g.sections.map(x => x.id), desc: g.sections.length > 1 ? g.sections.length + ' parties : tout lire d\'un trait, ou partie par partie' : '' , group: g.id };
+        return { key: row.key, he: row.he, title: sdCleanTitle(g.fr), ids: g.sections.map(x => x.id), desc: row.unit ? g.sections.length + ' ' + row.unit : g.sections.length > 1 ? g.sections.length + ' parties : tout lire d\'un trait, ou partie par partie' : '', group: g.id };
     }
     const found = row.ids.map(sdFindSection).filter(Boolean);
     if (!found.length) return null;
@@ -303,11 +307,11 @@ function sdSeasonItems(ctx) {
     if (f.hanukkah) add('x:hanouka', 'Pendant Hanouka : l\'allumage, Al hanissim, Hallel');
     else { const d = daysTo('Kislev', 25); if (d > 0 && d <= 14) add('x:hanouka', d === 1 ? 'Demain soir' : 'Dans ' + d + ' jours'); }
     const purimMonth = HebrewCalendarCore.leap(h.year) ? 'AdarII' : 'Adar';
-    if (f.purim) add('x:pourim', 'C\'est Pourim');
+    if (f.purim) { add('x:pourim', 'C\'est Pourim'); add('t:esther', 'Le texte de la Méguila, dans le Tanakh'); }
     else { const d = daysTo(purimMonth, 14); if (d > 0 && d <= 14) add('x:pourim', d === 1 ? 'Demain' : 'Dans ' + d + ' jours'); }
     if (h.month === 'Nisan') add('x:nissan', 'Birkat haIlanot, le mois de Nissan');
     if (h.month === 'Elul' || (h.month === 'Tishri' && h.day <= 10)) add('s:selihot-generales', 'De Roch \'Hodesh Elloul à Yom Kippour');
-    if (f.tishaBav) add('s:tichabav-eikha', 'Lue le soir de Tich\'a beAv');
+    if (f.tishaBav) add('t:eikha', 'Lue le soir de Tich\'a beAv, dans le Tanakh');
     // Les trois fêtes : pendant la fête, ou dans les quinze jours qui la précèdent
     const next = (month, day, year) => CalendarYearCore.hebrewToFixed(year === undefined ? h.year : year, month, day) - ctx.fixed;
     const toTishri = h.month === 'Elul' ? next('Tishri', 15, h.year + 1) : next('Tishri', 15);
@@ -369,6 +373,7 @@ function sdRowButton(info, onclick, extra) {
 
 function sdOpenRow(info) {
     sdCloseSheet();
+    if (info.tanakh) { toolReturns.tanakh = 'screen-tool-siddur'; tanakhOpenAt(info.tanakh, 0, 'both'); return; }
     sdOpen(info.ids, info.title);
 }
 

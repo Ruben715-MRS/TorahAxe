@@ -50,6 +50,11 @@ test('chaque section du siddour a un fichier, et chaque groupe de l\'index est l
     const temps = index.groups.find(g => g.id === 'temps').sections.map(x => x.id);
     assert.ok(temps.indexOf('pourim-zakhor') !== -1 && temps.indexOf('pourim-zakhor') < temps.indexOf('pourim-meguila'));
     const jeunes = index.groups.find(g => g.id === 'jeunes').sections.map(x => x.id);
-    assert.ok(jeunes.indexOf('selihot-generales') !== -1 && jeunes.indexOf('tichabav-eikha') !== -1);
+    assert.ok(jeunes.indexOf('selihot-generales') !== -1);
+    assert.ok(jeunes.indexOf('tichabav-eikha') === -1, 'l\'Eikha est dans le Tanakh, pas recopiée');
+    ['hanouka-maoz-tsour', 'hanouka-zemer-chabbat', 'pourim-chochanat-yaakov', 'pourim-qerovets'].forEach(id => assert.ok(temps.indexOf(id) !== -1, id));
+    const zem = index.groups.find(g => g.id === 'zemirot-chabbat').sections.map(x => x.id);
+    assert.ok(zem.length >= 30 && zem.every(id => /^zem-/.test(id)));
+    ['chabbat-chirei', 'chabbat-chants-motsei'].forEach(id => assert.ok(!index.groups.some(g => g.sections.some(x => x.id === id)), id + ' est dans le recueil'));
     ['chabbat-accueil', 'chabbat-arvit', 'chabbat-soir', 'chabbat-chacharit', 'chabbat-moussaf', 'chabbat-minha', 'motsei-chabbat', 'michnayot-chabbat', 'pirkei-avot', 'regalim'].forEach(id => assert.ok(seen.has(id), id));
 });
