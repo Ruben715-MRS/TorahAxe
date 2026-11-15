@@ -18164,3 +18164,42 @@ button.zm-study-link:focus-visible { outline: 2px solid var(--primary-blue); out
 .sd-font-option[aria-checked="true"] .sd-font-name::before { content: "✓ "; }
 .sd-font-sample { font-size: 22px; line-height: 1.6; }
 .sd-font-name { font-family: system-ui, sans-serif; font-size: 13px; color: var(--muted-text); white-space: nowrap; }
+
+/* Écran de fin minimal du mode frise (voir js/app/friseShim.js) : mêmes classes .end-title/.end-score
+   qu'HistoriAxe, mise en page propre à TorahAxe pour ne pas dépendre de #screen-end. */
+#screen-frise-end {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
+    padding: 20px 10px;
+    gap: 16px;
+}
+
+/* Encadré de renvoi vers HistoriAxe (frises, récits, jeux : voir js/app/frises.js et la tâche
+   "encadrés promotionnels"). Un seul style partagé par tous ces emplacements. */
+.historiaxe-promo-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 4px;
+    padding: 14px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, var(--primary-blue), #0a2d6e);
+    color: #fff;
+    text-decoration: none;
+    box-shadow: var(--card-shadow);
+}
+.historiaxe-promo-card img {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    flex-shrink: 0;
+}
+.historiaxe-promo-card span {
+    font-size: 14px;
+    line-height: 1.4;
+    font-weight: 600;
+}

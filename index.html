@@ -163,10 +163,57 @@
                     <small class="arcade-best" id="arcade-best-transmission"></small>
                 </span>
             </button>
+            <button type="button" class="arcade-card" onclick="openWheel('screen-main', 'juif')">
+                <span class="arcade-card-icon" aria-hidden="true">🗓️</span>
+                <span class="arcade-card-text">
+                    <strong data-i18n="wheel.title">La roue des fêtes</strong>
+                    <small>Placez les fêtes juives dans le bon mois du calendrier hébraïque.</small>
+                </span>
+            </button>
             </div>
+            <a class="historiaxe-promo-card" href="https://apps.apple.com/fr/app/historiaxe/id6827736918" target="_blank" rel="noopener">
+                <img src="assets/images/historiaxe-icon.jpg" alt="" aria-hidden="true">
+                <span>Vous aimez ce type de jeux ? Découvrez notre Salle de jeux complète avec tous nos autres jeux en téléchargeant HistoriAxe !</span>
+            </a>
         </section>
-            <!-- TODO (tâche #4) : frises « Judaïsme » (3 thèmes) + « Histoire de l'État d'Israël », avec
-                 l'encadré de renvoi vers HistoriAxe en dessous (tâche #5). -->
+<section class="tools-group" data-tools-group="frises" aria-labelledby="tools-group-frises">
+            <h3 class="modes-group-title modes-group-static" id="tools-group-frises">Frises</h3>
+            <div class="arcade-menu">
+            <button type="button" class="arcade-card" onclick="playFriseTheme('thm_histoire_juive_civile')">
+                <span class="arcade-card-icon" aria-hidden="true">🕎</span>
+                <span class="arcade-card-text">
+                    <strong>Histoire du peuple juif (Années civiles)</strong>
+                    <small>Placez les événements du peuple juif sur la frise chronologique, en années civiles.</small>
+                </span>
+            </button>
+            <button type="button" class="arcade-card" onclick="playFriseTheme('thm_histoire_juive_hebraique')">
+                <span class="arcade-card-icon" aria-hidden="true">✡️</span>
+                <span class="arcade-card-text">
+                    <strong>Histoire du peuple juif (Années hébraïques)</strong>
+                    <small>Les mêmes événements, datés selon le calendrier hébraïque.</small>
+                </span>
+            </button>
+            <button type="button" class="arcade-card" onclick="playFriseTheme('thm_histoire_hassidisme')">
+                <span class="arcade-card-icon" aria-hidden="true">🕯️</span>
+                <span class="arcade-card-text">
+                    <strong>Histoire du hassidisme</strong>
+                    <small>Du Baal Chem Tov à nos jours : les maîtres, les dynasties et les grandes dates du mouvement 'hassidique.</small>
+                </span>
+            </button>
+            <button type="button" class="arcade-card" onclick="playFriseTheme('thm_isr')">
+                <span class="arcade-card-icon" aria-hidden="true">🇮🇱</span>
+                <span class="arcade-card-text">
+                    <strong>Histoire de l'État d'Israël</strong>
+                    <small>Des origines antiques à aujourd'hui : fondation, guerres et construction nationale.</small>
+                </span>
+            </button>
+            </div>
+            <a class="historiaxe-promo-card" href="https://apps.apple.com/fr/app/historiaxe/id6827736918" target="_blank" rel="noopener">
+                <img src="assets/images/historiaxe-icon.jpg" alt="" aria-hidden="true">
+                <span>Vous aimez les frises et vous voulez approfondir votre culture générale dans tous les domaines ? Téléchargez HistoriAxe !</span>
+            </a>
+        </section>
+
             <!-- TODO (tâche #4) : les 3 récits (Dreyfus, Bar Kokhba, État d'Israël), avec l'encadré de
                  renvoi vers HistoriAxe en dessous (tâche #5). -->
             <!-- TODO (tâche #4) : la roue des fêtes, restreinte au seul calendrier juif. -->
@@ -740,6 +787,19 @@
     <script src="js/gemaraData.js"></script>
     <script src="js/gemaraCore.js"></script>
     <script src="js/app/gemara.js"></script>
+    <script src="js/escape.js"></script>
+    <script src="js/a11y.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/app/state.js"></script>
+    <script src="js/app/dates.js"></script>
+    <script src="js/app/motion.js"></script>
+    <script src="js/app/friseShim.js"></script>
+    <script src="js/app/axes-rounds.js"></script>
+    <script src="js/app/game-start.js"></script>
+    <script src="js/app/frise.js"></script>
+    <script src="js/app/frises.js"></script>
+    <script src="js/calendarWheel.js"></script>
+    <script src="js/app/wheel.js"></script>
     <script src="js/srs.js"></script>
     <script src="js/arcadeShuffle.js"></script>
     <script src="js/memoryStore.js"></script>
@@ -752,6 +812,60 @@
     <script src="js/app/tools.js"></script>
     <script src="js/app/navigation.js"></script>
     <script src="js/app/home.js"></script>
+
+    <!-- Écran et moteur du mode frise (un seul mode, voir js/app/friseShim.js) -->
+<div id="screen-game" class="hidden">
+        <div class="game-bar">
+            <div class="bar-row">
+                <button class="quit-btn" onclick="quitGame()">‹ <span data-i18n="nav.quit">Quitter</span></button>
+                <span class="bar-fill"></span>
+                <span id="hud-timer-container" class="timer-chip hidden"><span id="hud-timer">0,0</span> s</span>
+                <span class="lives-row" id="hud-lives"></span>
+                <button type="button" class="layout-btn hidden" id="hud-layout-btn" onclick="openLayoutSettings()"
+                    aria-label="Changer la disposition de la frise" data-i18n-attr="aria-label:game.layout_aria"
+                    title="Disposition de la frise"><span aria-hidden="true">📐</span></button>
+                <span class="type-size">
+                    <button type="button" onclick="changeZoom(-0.15)" aria-label="Réduire le texte"
+                        data-i18n-attr="aria-label:game.decrease_text_aria">A−</button>
+                    <button type="button" onclick="changeZoom(0.15)" aria-label="Agrandir le texte"
+                        data-i18n-attr="aria-label:game.increase_text_aria">A+</button>
+                </span>
+            </div>
+            <div class="bar-row">
+                <span class="progress-rail" id="hud-progress-rail"><span class="progress-fill"
+                        id="hud-progress-fill"></span></span>
+                <span class="bar-meta" id="hud-count">1 / 15</span>
+                <span class="bar-meta" id="hud-score-container"><span id="hud-score">0</span> <span data-i18n="game.pts_unit">pts</span><span id="hud-combo"
+                        class="combo-chip hidden"></span></span>
+            </div>
+        </div>
+
+        <div class="board" id="board">
+            <div id="timeline-axes-legend" class="timeline-axes-legend hidden"></div>
+            <div class="chrono playing" id="timeline"></div>
+        </div>
+
+        <div class="hand" id="hand">
+            <div class="hand-card">
+                <!-- Portrait de l'événement en main (champ facultatif `image`) : décoratif, la
+                     légende complète vit dans la fiche (modal-portrait). Masqué sans image. -->
+                <img id="hand-portrait" class="hand-portrait hidden" alt="" width="52" height="65" decoding="async">
+                <span class="hand-year" id="hand-year">?</span>
+                <span class="hand-text">
+                    <span class="hand-kicker" id="hand-kicker" data-i18n="game.hand_kicker_default">À placer</span>
+                    <span class="hand-title" id="hand-title" data-i18n="nav.loading">Chargement…</span>
+                </span>
+            </div>
+        </div>
+    </div>
+
+<div id="screen-frise-end" class="hidden">
+        <h2 class="end-title" id="frise-end-title">Frise terminée !</h2>
+        <p class="end-score"><span id="frise-end-score">0</span> pts</p>
+        <button type="button" class="btn" onclick="friseEndReplay()">Rejouer</button>
+        <button type="button" class="btn btn-secondary" onclick="friseEndHome()">Retour à l'accueil</button>
+    </div>
+
 
     <!-- Écrans des 3 jeux exclusifs migrés depuis HistoriAxe -->
 <div id="screen-lexgame" class="list-screen hidden">
@@ -862,6 +976,42 @@
             <p id="trgame-over-text"></p>
             <button type="button" class="btn" onclick="trgameStart()" data-i18n="arcade.replay">Rejouer</button>
         </div>
+    </div>
+
+    <!-- Écran de la roue des fêtes (un seul calendrier, voir js/calendarWheel.js) -->
+    <div id="screen-wheel" class="list-screen hidden">
+        <button class="back-btn" onclick="wheelBack()" aria-label="Retour">‹</button>
+        <h2 class="header-title">La roue des fêtes</h2>
+        <p class="modes-header-subtitle" id="wheel-subtitle"></p>
+        <!-- Un seul calendrier dans TorahAxe : le sélecteur de famille d'HistoriAxe reste dans le DOM
+             (wheel.js s'y réfère sans vérifier qu'il existe) mais caché, inutile avec un seul choix. -->
+        <div class="wheel-kinds hidden" id="wheel-kinds" role="group" aria-label="Famille de calendriers">
+            <button type="button" class="wheel-kind" id="wheel-kind-religieux" aria-expanded="false" aria-controls="wheel-choices" onclick="wheelToggleKind('religieux')">Religieux</button>
+            <button type="button" class="wheel-kind" id="wheel-kind-civil" aria-expanded="false" aria-controls="wheel-choices" onclick="wheelToggleKind('civil')">Civil</button>
+        </div>
+        <div class="wheel-choices hidden" id="wheel-choices" role="group"></div>
+        <p class="wheel-cal" id="wheel-cal"></p>
+        <p class="wheel-current" id="wheel-current" role="status"></p>
+        <div class="wheel-stage" id="wheel-stage">
+            <svg id="wheel-svg" class="wheel-svg" viewBox="-200 -200 400 400" role="group"></svg>
+        </div>
+        <div class="wheel-controls">
+            <button type="button" class="wheel-spin" onclick="wheelSpin(-30)" aria-label="Tourner la roue vers la gauche">↺</button>
+            <button type="button" class="wheel-spin wheel-spin-reset" onclick="wheelResetRotation()">Remettre droit</button>
+            <button type="button" class="wheel-spin" onclick="wheelSpin(30)" aria-label="Tourner la roue vers la droite">↻</button>
+        </div>
+        <p class="wheel-hint">Glissez la roue pour la tourner et lire les mois à l'endroit.</p>
+        <div class="wheel-feedback hidden" id="wheel-feedback" role="status"></div>
+        <p class="wheel-tray-label" id="wheel-tray-label">Fêtes à placer</p>
+        <div class="wheel-tray" id="wheel-tray"></div>
+        <div class="wheel-done hidden" id="wheel-done">
+            <div class="wheel-done-stars" id="wheel-done-stars" aria-hidden="true"></div>
+            <p id="wheel-done-text"></p>
+            <div class="wheel-done-actions">
+                <button type="button" class="final-link" onclick="wheelRestart()">Rejouer cette roue</button>
+            </div>
+        </div>
+        <p class="wheel-intro" id="wheel-intro"></p>
     </div>
 </body>
 
