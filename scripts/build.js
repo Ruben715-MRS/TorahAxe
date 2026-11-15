@@ -29,6 +29,9 @@ function copyRecursiveSync(src, dest) {
 const itemsToCopy = [
     'index.html',
     'manifest.webmanifest',
+    'apple_icon.jpg',
+    'splash_ipad_landscape.jpg',
+    'splash_iphone_portrait.jpg',
     'css',
     'js',
     'data',
