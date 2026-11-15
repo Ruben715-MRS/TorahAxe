@@ -18307,3 +18307,10 @@ body:has(#screen-tool-tanakh:not(.hidden))::after,
 body:has(#screen-recit:not(.hidden))::after {
     opacity: 0;
 }
+
+/* Talmud de Babylone (js/app/talmud.js) : un segment par paragraphe ; les mots en gras (« Matni », « Guemara », mot d'ouverture) ressortent ; la ligne « Hadran » clôt le chapitre. */
+.talmud-seg { margin: 0 0 12px; }
+.talmud-seg b { font-weight: 700; }
+.talmud-hadran { text-align: center; margin: 18px 0; color: var(--muted-text); }
+.talmud-chapter-heading { margin: 22px 0 8px; font: 700 15px system-ui, sans-serif; text-align: start; direction: ltr; color: var(--muted-text); border-bottom: 1px solid var(--border-soft, #c9ced8); padding-bottom: 4px; }
+.talmud-chapter-reminder { margin: 0 0 10px; direction: ltr; text-align: start; }

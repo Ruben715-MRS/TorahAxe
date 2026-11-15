@@ -566,6 +566,31 @@
         <p class="tool-small" id="tool-michna-source"></p>
     </div>
 
+    <div id="screen-tool-talmud" class="list-screen hidden">
+        <button class="back-btn" onclick="toolBack('talmud')" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title" data-i18n="tools.talmud_title">Talmud de Babylone</h2>
+        <p class="modes-header-subtitle" data-i18n="tools.talmud_intro">La Guémara en araméen vocalisé, page après page (amoud par amoud).</p>
+        <div class="tool-panel" id="tool-talmud-top">
+            <div class="tool-history-chips" id="tool-talmud-sedarim" role="group" aria-label="Ordres du Talmud" data-i18n-attr="aria-label:tools.talmud_sedarim_label"></div>
+            <select id="tool-talmud-tractate" class="tool-input tanakh-book-select" aria-label="Traité" data-i18n-attr="aria-label:tools.michna_tractate_label" onchange="talmudSelectTractate(this.value)"></select>
+            <select id="tool-talmud-chapter" class="tool-input tanakh-book-select" aria-label="Chapitre" data-i18n-attr="aria-label:tools.torah_chapter_label" onchange="talmudSelectChapter(this.value)"></select>
+            <div class="torah-nav">
+                <button type="button" class="tool-history-chip" id="tool-talmud-prev" onclick="talmudGo(-1)" aria-label="Amoud précédent" data-i18n-attr="aria-label:tools.talmud_prev">‹</button>
+                <select id="tool-talmud-daf" class="tool-input torah-chapter" aria-label="Daf" data-i18n-attr="aria-label:tools.talmud_daf_label" onchange="talmudSelectDaf(this.value)"></select>
+                <button type="button" class="tool-history-chip" id="tool-talmud-next" onclick="talmudGo(1)" aria-label="Amoud suivant" data-i18n-attr="aria-label:tools.talmud_next">›</button>
+            </div>
+            <div class="tool-history-chips" id="tool-talmud-vowels" role="group" aria-label="Affichage du texte" data-i18n-attr="aria-label:tools.torah_vowels_label"></div>
+            <p class="tool-msg" id="tool-talmud-msg" role="status"></p>
+        </div>
+        <div class="tanakh-text" id="tool-talmud-text"></div>
+        <div class="torah-nav tanakh-nav-bottom">
+            <button type="button" class="tool-history-chip" id="tool-talmud-prev2" onclick="talmudGo(-1)" aria-label="Amoud précédent" data-i18n-attr="aria-label:tools.talmud_prev">‹</button>
+            <button type="button" class="tool-history-chip tanakh-nav-label" id="tool-talmud-nav-label" onclick="talmudScrollTop()" aria-label="Remonter au début du texte" data-i18n-attr="aria-label:tools.tanakh_top"></button>
+            <button type="button" class="tool-history-chip" id="tool-talmud-next2" onclick="talmudGo(1)" aria-label="Amoud suivant" data-i18n-attr="aria-label:tools.talmud_next">›</button>
+        </div>
+        <p class="tool-small" id="tool-talmud-source"></p>
+    </div>
+
     <div id="screen-tool-tanakh" class="list-screen hidden">
         <button class="back-btn" onclick="toolBack('tanakh')" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
         <h2 class="header-title" data-i18n="tools.tanakh_title">Tanakh : les livres</h2>
@@ -663,6 +688,8 @@
     <script src="js/app/tanakh.js"></script>
     <script src="js/michnaCore.js"></script>
     <script src="js/app/michna.js"></script>
+    <script src="js/talmudCore.js"></script>
+    <script src="js/app/talmud.js"></script>
     <script src="js/lexiconData.js"></script>
     <script src="js/lexiconForms.js"></script>
     <script src="js/lexiconCore.js"></script>
