@@ -83,6 +83,19 @@
         ['shabbat', /^בשבת|ובשבת|, בשבת/]
     ];
 
+    // Les consignes propres à Chabbat : elles ne valent pas pour tous les Chabbats (« בשבת שובה » : le Chabbat des dix jours de pénitence ; « בשבת ר"ח » : un Chabbat
+    // qui est aussi Roch 'Hodesh…). Une condition de cette liste REMPLACE les atomes simples qu'elle contient (« shabbat » + « rc » seraient lus « Chabbat OU Roch 'Hodesh »).
+    var SHABBAT_ATOMS = [
+        ['notShabbatRc', /(כשלא|שלא|לא) חל ראש (חדש|חודש) בשבת/],
+        ['shabbatRc', /חל ראש (חדש|חודש) בשבת/],
+        ['mevarchim', /בשבת שלפני ראש (חדש|חודש)|שבת שלפני ראש (חדש|חודש)/],
+        ['shabbatShuva', /בשבת (שובה|תשובה)|שבת שובה/],
+        ['shabbatSpecial', /בשבת (ר ?ח|ראש חדש|ראש חודש) או|בשבת חנוכה או|בשבת חול המועד או/],
+        ['shabbatRc', /בשבת (ר ח|ראש חדש|ראש חודש)/],
+        ['shabbatHanukkah', /בשבת חנוכה/],
+        ['shabbatCh', /בשבת (חול המועד|חוה מ|חוהמ)/]
+    ];
+
     // Le début d'une consigne (avant le premier « : », ou toute la consigne s'il n'y en a pas), borné pour ne pas prendre une phrase pour une condition.
     function rubricHead(text) {
         var n = norm(text);
@@ -103,6 +116,7 @@
         ATOMS.forEach(function (a) { if (a[1].test(r.head) && atoms.indexOf(a[0]) === -1) atoms.push(a[0]); });
         // « רק בשבת שובה » etc. : « שבת » seul reste « shabbat » ; « חול המועד פסח » ne doit pas aussi compter comme « ch » générique
         if (atoms.indexOf('chPesach') !== -1 || atoms.indexOf('chSukkot') !== -1) atoms = atoms.filter(function (x) { return x !== 'ch'; });
+        for (var si = 0; si < SHABBAT_ATOMS.length; si++) if (SHABBAT_ATOMS[si][1].test(r.head)) { atoms = [SHABBAT_ATOMS[si][0]]; break; }
         if (!atoms.length) return null;
         return { atoms: atoms, endsWithColon: r.endsWithColon, hasBody: r.hasBody, insert: /(אומר|אומרים|מוסיפים|מוסיף) כאן/.test(r.head) };
     }
@@ -211,6 +225,17 @@
         return CY.gregorianToFixed(year, 12, leapNext ? 6 : 5);     // le jour civil qui suit le soir du 4 (ou du 5) décembre
     }
 
+    // Le Chabbat qui précède Roch 'Hodesh : un des six jours suivants est le premier jour du mois (le 30 du mois précédent, ou le 1er), sauf Tichri (Roch Hachana).
+    function mevarchim(fixed) {
+        for (var d = 1; d <= 6; d++) {
+            var h = HC.hebrewFromFixed(fixed + d);
+            var prev = HC.hebrewFromFixed(fixed + d - 1);
+            var first = h.day === 30 || (h.day === 1 && prev.day !== 30);
+            if (first) return !(h.day === 1 && h.month === 'Tishri') && !(h.day === 30 && prev.month === 'Elul');
+        }
+        return false;
+    }
+
     function contextFor(fixed, israel) {
         var h = HC.hebrewFromFixed(fixed);
         var year = h.year;
@@ -248,6 +273,14 @@
             tishaBav: !!fastDay && fastDay.id === 'tichabav', fastPublic: !!fastDay, shabbat: shabbat,
             noTachanun: Z.noTachanun(fixed, israel)
         };
+        // Chabbats particuliers : le Chabbat des dix jours de pénitence, un Chabbat qui est aussi Roch 'Hodesh, 'Hol haMoed ou Hanouka, et le Chabbat qui précède Roch 'Hodesh.
+        flags.shabbatShuva = shabbat && flags.aseret;
+        flags.shabbatRc = shabbat && flags.rc;
+        flags.notShabbatRc = shabbat && !flags.rc;
+        flags.shabbatHanukkah = shabbat && flags.hanukkah;
+        flags.shabbatCh = shabbat && flags.ch;
+        flags.shabbatSpecial = shabbat && (flags.rc || flags.ch || flags.hanukkah);
+        flags.mevarchim = shabbat && mevarchim(fixed);
         return { fixed: fixed, hebrew: h, israel: !!israel, flags: flags, omer: info.omer, weekday: HC.weekdayOf(fixed), fast: fastDay ? fastDay.id : null, feasts: info.feasts.map(function (f) { return f.id; }) };
     }
 
@@ -312,6 +345,6 @@
 
     return {
         fingerprint: fingerprint, parse: parse, plain: plain, stripNiqqud: stripNiqqud, conditionOf: conditionOf, analyseSegment: analyseSegment, groups: groups,
-        contextFor: contextFor, evaluate: evaluate, hebrewDayFixed: hebrewDayFixed, notesFor: notesFor, omerSegment: omerSegment, decemberStart: decemberStart
+        contextFor: contextFor, mevarchim: mevarchim, evaluate: evaluate, hebrewDayFixed: hebrewDayFixed, notesFor: notesFor, omerSegment: omerSegment, decemberStart: decemberStart
     };
 }));

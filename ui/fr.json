@@ -6457,7 +6457,14 @@
     "zm_candles_short": "Bougies",
     "zm_rem_test": "Envoyer un rappel d'essai (dans 5 secondes)",
     "zm_rem_test_sent": "Rappel d'essai programmé : patientez 5 secondes.",
-    "zm_rem_test_body": "Les rappels de TorahAxe fonctionnent."
+    "zm_rem_test_body": "Les rappels de TorahAxe fonctionnent.",
+    "sd_atom_shabbatShuva": "Chabbat Chouva (dix jours de pénitence)",
+    "sd_atom_shabbatRc": "Chabbat Roch 'Hodesh",
+    "sd_atom_notShabbatRc": "Chabbat ordinaire (Roch 'Hodesh un autre jour)",
+    "sd_atom_shabbatHanukkah": "Chabbat Hanouka",
+    "sd_atom_shabbatCh": "Chabbat 'Hol haMoed",
+    "sd_atom_shabbatSpecial": "Chabbat Roch 'Hodesh, 'Hol haMoed ou Hanouka",
+    "sd_atom_mevarchim": "Chabbat qui précède Roch 'Hodesh"
   },
   "geoquiz": {
     "title": "Quiz des pays",

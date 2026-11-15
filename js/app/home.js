@@ -323,9 +323,9 @@ function homeHero(content, day) {
     const hero = hEl('section', 'home-hero');
     hero.setAttribute('aria-label', 'À cette heure');
     const ctx = day.ctx;
-    const current = day.place ? sdCurrentPrayer() : null;
-    const special = ctx.flags.shabbat || ctx.flags.yomTov;
-    if (!day.place) {
+    const service = day.place ? sdCurrentService() : null;
+    const special = ctx.flags.yomTov;
+    if (!service) {
         hero.appendChild(hEl('small', 'home-hero-label', 'La prière du moment'));
         hero.appendChild(hEl('div', 'home-hero-name', 'Indiquez votre lieu'));
         hero.appendChild(hEl('p', 'home-hero-text', 'Le Siddour et les Zmanim s\'adaptent à l\'endroit où vous êtes : prière de l\'heure, horaires du jour, jour hébraïque exact.'));
@@ -335,30 +335,29 @@ function homeHero(content, day) {
         content.appendChild(hero);
         return;
     }
-    const heb = { chacharit: 'שחרית', minha: 'מנחה', arvit: 'ערבית' }[current];
     hero.appendChild(hEl('small', 'home-hero-label', 'À cette heure'));
     const row = hEl('div', 'home-hero-row');
-    row.appendChild(hEl('div', 'home-hero-name', t('tools.sd_p_' + current)));
-    const he = hEl('span', 'home-hero-he', heb);
+    row.appendChild(hEl('div', 'home-hero-name', service.title));
+    const he = hEl('span', 'home-hero-he', service.he);
     he.lang = 'he'; he.dir = 'rtl';
     row.appendChild(he);
     hero.appendChild(row);
     if (special) {
-        hero.appendChild(hEl('p', 'home-hero-text', t(ctx.flags.shabbat && !ctx.flags.yomTov ? 'tools.sd_warn_shabbat' : 'tools.sd_warn_yomtov')));
+        hero.appendChild(hEl('p', 'home-hero-text', t('tools.sd_warn_yomtov')));
     } else {
         const chips = hEl('div', 'home-chips');
+        if (service.shabbat) chips.appendChild(hEl('span', 'home-chip', 'Chabbat'));
         sdDayNoteLabels(ctx).forEach(label => chips.appendChild(hEl('span', 'home-chip', label)));
         hero.appendChild(chips);
     }
-    const b = hButton('home-hero-btn', () => openSiddurPrayer(current));
-    b.textContent = special ? 'Ouvrir le Siddour' : 'Commencer ' + t('tools.sd_p_' + current);
-    if (special) b.onclick = () => openTool('siddur', 'screen-main');
+    const b = hButton('home-hero-btn', special ? () => openTool('siddur', 'screen-main') : () => openSiddurPrayer(service.group));
+    b.textContent = special ? 'Ouvrir le Siddour' : 'Commencer';
     hero.appendChild(b);
     // les trois horaires de cette prière ; la sortie des étoiles / l'aube du lendemain après la nuit
-    const keys = HOME_PRAYER_TIMES[current];
+    const keys = HOME_PRAYER_TIMES[service.base];
     const times = hEl('div', 'home-times');
     const z = homeZmanimOf(day, 0);
-    const zNext = current === 'arvit' ? homeZmanimOf(day, 1) : null;
+    const zNext = service.base === 'arvit' ? homeZmanimOf(day, 1) : null;
     keys.forEach(key => {
         const cell = hEl('div');
         let ms = ZmanimCore.rounded(z, key);
@@ -471,7 +470,8 @@ function homeRenderToday(content) {
     homeHero(content, day);
 
     const next = day.place ? homeNextZman(day) : null;
-    const siddurSub = day.place ? 'À cette heure : ' + t('tools.sd_p_' + sdCurrentPrayer()) : 'Prières de la semaine';
+    const svc = day.place ? sdCurrentService() : null;
+    const siddurSub = svc ? 'À cette heure : ' + svc.title : 'Prières de la semaine et de Chabbat';
     const zmanimSub = next ? HOME_ZMAN_NAMES[next.key] + ' · ' + homeTime(day, next.ms) : 'Choisir un lieu';
     const big = hEl('div', 'home-tiles c2');
     big.appendChild(homeTile(HOME_ENTRIES.siddur, '', siddurSub));

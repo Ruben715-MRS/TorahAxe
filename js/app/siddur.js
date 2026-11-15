@@ -23,7 +23,8 @@ let sdCtx = null;
 let sdPending = null;
 const sdOrigText = new WeakMap();   // le texte d'origine (avec voyelles) de chaque nœud de texte du lecteur
 let sdSheetEl = null;               // la feuille ouverte (sommaire, affichage, rayon…), s'il y en a une
-let sdRestoreTop = null;            // la position de lecture à retrouver après un nouveau rendu
+let sdRestoreTop = null;
+let sdShabbatNote = '';             // « Variantes du Chabbat du … » quand on lit un texte de Chabbat un autre jour            // la position de lecture à retrouver après un nouveau rendu
 const SD_LAST_KEY = 'siddurLast';
 
 const SD_SIZES = [18, 20, 23, 27, 32];
@@ -145,7 +146,19 @@ const SD_RAYONS = [
         { key: 's:chema-coucher', he: 'על המיטה', ids: ['chema-coucher'] },
         { key: 'g:hatsot', he: 'חצות', group: 'hatsot' }
     ] },
-    { id: 'chabbat', he: 'שבת', fr: 'Chabbat', soon: 'Kabbalat Chabbat, Kiddouch, Chaharit et Moussaf, Minha, Arvit et Havdala : le siddour de Chabbat est en préparation.' },
+    { id: 'chabbat', he: 'שבת', fr: 'Chabbat', rows: [
+        { key: 'g:chabbat-accueil', he: 'קבלת שבת', group: 'chabbat-accueil' },
+        { key: 'g:chabbat-arvit', he: 'ערבית', group: 'chabbat-arvit' },
+        { key: 'g:chabbat-soir', he: 'קידוש', group: 'chabbat-soir' },
+        { key: 'g:chabbat-chacharit', he: 'שחרית', group: 'chabbat-chacharit' },
+        { key: 'g:chabbat-moussaf', he: 'מוסף', group: 'chabbat-moussaf' },
+        { key: 'g:chabbat-seouda-2', he: 'סעודה', group: 'chabbat-seouda-2' },
+        { key: 'g:chabbat-minha', he: 'מנחה', group: 'chabbat-minha' },
+        { key: 'g:chabbat-seouda-3', he: 'שלישית', group: 'chabbat-seouda-3' },
+        { key: 'g:motsei-chabbat', he: 'הבדלה', group: 'motsei-chabbat' },
+        { key: 'g:michnayot-chabbat', he: 'משניות', group: 'michnayot-chabbat' },
+        { key: 'g:pirkei-avot', he: 'אבות', group: 'pirkei-avot' }
+    ] },
     { id: 'fetes', he: 'מועדים', fr: 'Fêtes', rows: [
         { key: 'g:roch-hodech', he: 'ראש חודש', group: 'roch-hodech' },
         { key: 'g:hol-hamoed', he: 'חול המועד', group: 'hol-hamoed' },
@@ -185,6 +198,43 @@ const SD_DEFAULT_PINS = ['s:birkat-hamazon', 's:chema-coucher'];
 const SD_PINS_KEY = 'siddurPins';
 const SD_MAX_PINS = 6;
 const SD_HE_PRAYER = { chacharit: 'שחרית', minha: 'מנחה', arvit: 'ערבית' };
+// Les groupes de Chabbat : leurs variantes se calculent pour le Chabbat concerné (celui d'aujourd'hui, ou le prochain), pas pour le jour de la semaine où l'on ouvre le livre.
+const SD_SHABBAT_GROUPS = ['chabbat-accueil', 'chabbat-arvit', 'chabbat-soir', 'chabbat-chacharit', 'chabbat-moussaf', 'chabbat-seouda-2', 'chabbat-minha', 'chabbat-seouda-3', 'motsei-chabbat'];
+
+function sdIsShabbatSection(id) {
+    const f = sdIndex ? sdFindSection(id) : null;
+    return !!f && SD_SHABBAT_GROUPS.indexOf(f.group.id) !== -1;
+}
+
+// Le jour civil de l'appareil ou du lieu (fixe).
+function sdCivilFixed() {
+    const now = Date.now();
+    const d = sdPlace ? ZmanimCore.civilDateOf(sdPlace.tz, now) : { year: new Date(now).getFullYear(), month: new Date(now).getMonth() + 1, day: new Date(now).getDate() };
+    return CalendarYearCore.gregorianToFixed(d.year, d.month, d.day);
+}
+
+// Le contexte du Chabbat concerné : aujourd'hui s'il est Chabbat ; le vendredi, le soir qui vient ; le samedi soir (déjà dimanche pour le calendrier), le Chabbat qui finit ;
+// sinon le prochain Chabbat. Même jour hébraïque que les autres écrans, jamais celui d'un jour de semaine pour un texte de Chabbat.
+function sdShabbatContext(ctx) {
+    const wd = HebrewCalendarCore.weekdayOf(ctx.fixed);
+    let fixed = ctx.fixed;
+    if (wd === 6) return ctx;
+    if (wd === 0 && sdCivilFixed() === ctx.fixed - 1) fixed = ctx.fixed - 1;      // samedi soir, après la sortie des étoiles
+    else fixed = ctx.fixed + (6 - wd);
+    return SiddurCore.contextFor(fixed, ctx.israel);
+}
+
+// L'office à dire maintenant. En semaine : Cha'harit, Min'ha ou Arvit. Le Chabbat (jour hébraïque, du vendredi soir au samedi avant la nuit) : ceux de Chabbat.
+// { base (chacharit | minha | arvit : pour les horaires), group (le groupe du siddour), title, he, shabbat }, ou null sans lieu.
+function sdCurrentService() {
+    const base = sdPlace ? sdCurrentPrayer() : null;
+    if (!base) return null;
+    if (sdCtx.flags.shabbat && !sdCtx.flags.yomTov) {
+        const map = { chacharit: ['chabbat-chacharit', 'Cha\'harit', 'שחרית'], minha: ['chabbat-minha', 'Min\'ha', 'מנחה'], arvit: ['chabbat-arvit', 'Arvit', 'ערבית'] };
+        return { base: base, group: map[base][0], title: map[base][1] + ' de Chabbat', he: map[base][2], shabbat: true };
+    }
+    return { base: base, group: base, title: t('tools.sd_p_' + base), he: SD_HE_PRAYER[base], shabbat: false };
+}
 
 function sdCleanTitle(fr) { return fr.replace(/ \(jours de semaine\)/, ''); }
 
@@ -193,7 +243,7 @@ function sdRowInfo(row) {
     if (row.group) {
         const g = sdIndex.groups.filter(x => x.id === row.group)[0];
         if (!g) return null;
-        return { key: row.key, he: row.he, title: sdCleanTitle(g.fr), ids: g.sections.map(x => x.id), desc: g.sections.length > 1 ? g.sections.length + ' parties : tout lire d\'un trait, ou partie par partie' : '' };
+        return { key: row.key, he: row.he, title: sdCleanTitle(g.fr), ids: g.sections.map(x => x.id), desc: g.sections.length > 1 ? g.sections.length + ' parties : tout lire d\'un trait, ou partie par partie' : '' , group: g.id };
     }
     const found = row.ids.map(sdFindSection).filter(Boolean);
     if (!found.length) return null;
@@ -228,6 +278,19 @@ function sdSeasonItems(ctx) {
         out.push(Object.assign({}, row, { desc: desc }, ids ? { ids: ids } : {}));
     };
     const daysTo = (month, day) => CalendarYearCore.hebrewToFixed(h.year, month, day) - ctx.fixed;
+    // Le vendredi avant l'allumage, puis le samedi soir : l'accueil et la sortie de Chabbat
+    const civil = sdCivilFixed();
+    const civilWeekday = HebrewCalendarCore.weekdayOf(civil);
+    if (!f.yomTov && civilWeekday === 5 && !f.shabbat) {
+        let when = '';
+        if (sdPlace) {
+            const d = ZmanimCore.civilDateOf(sdPlace.tz, Date.now());
+            const s = ZmanimCore.shabbatOf(sdPlace, d.year, d.month, d.day, zmStoredOpts());
+            if (s && s.candles !== null) when = 'Bougies à ' + ZmanimCore.formatTime(s.candles, sdPlace.tz, 'fr') + ' : ';
+        }
+        add('g:chabbat-accueil', when + 'bougies, Kabbalat Chabbat');
+    }
+    if (!f.yomTov && civilWeekday === 6 && ctx.weekday === 0) add('g:motsei-chabbat', 'Havdala et prières du samedi soir');
     if (ctx.omer > 0) add('s:omer', t('tools.sd_note_omer', { n: ctx.omer }));
     if (f.rc) add('g:roch-hodech', 'C\'est Roch \'Hodesh : Hallel, Moussaf, Barkhi nafchi…');
     if (f.ch) add('g:hol-hamoed', 'Hallel et Moussaf');
@@ -416,6 +479,12 @@ function sdRender() {
     const screen = toolEl('screen-tool-siddur');
     toolClear(body);
     sdComputeContext();
+    sdShabbatNote = '';
+    if (sdView.mode === 'reader' && sdView.ids.length && sdIsShabbatSection(sdView.ids[0])) {
+        const c = sdShabbatContext(sdCtx);
+        if (c !== sdCtx) sdShabbatNote = 'Variantes du Chabbat du ' + hcalGregorianText(c.fixed, { weekday: undefined }) + '.';
+        sdCtx = c;
+    }
     if (screen) screen.classList.toggle('is-reading', sdView.mode === 'reader');
     if (sdView.mode === 'reader') sdRenderReader(body);
     else sdRenderHome(body);
@@ -451,30 +520,31 @@ function sdArvitTime() {
 
 function sdRenderHome(body) {
     const ctx = sdCtx;
-    const current = sdPlace ? sdCurrentPrayer() : null;
-    const special = ctx.flags.shabbat || ctx.flags.yomTov;
+    const service = sdCurrentService();
+    const special = ctx.flags.yomTov;
 
-    // La carte du moment : la prière de l'heure et les variantes du jour.
+    // La carte du moment : l'office de l'heure et les variantes du jour.
     const hero = sdEl('section', 'home-hero sd-now');
     hero.id = 'sd-hero';
-    if (current) {
+    if (service) {
         hero.appendChild(sdEl('small', 'home-hero-label', 'À cette heure · ' + hcalHebrewText(ctx.hebrew)));
         const row = sdEl('div', 'home-hero-row');
-        row.appendChild(sdEl('div', 'home-hero-name', t('tools.sd_p_' + current)));
-        const he = sdEl('span', 'home-hero-he', SD_HE_PRAYER[current]);
+        row.appendChild(sdEl('div', 'home-hero-name', service.title));
+        const he = sdEl('span', 'home-hero-he', service.he);
         he.lang = 'he'; he.dir = 'rtl';
         row.appendChild(he);
         hero.appendChild(row);
-        if (special) hero.appendChild(sdEl('p', 'home-hero-text', t(ctx.flags.shabbat && !ctx.flags.yomTov ? 'tools.sd_warn_shabbat' : 'tools.sd_warn_yomtov')));
+        if (special) hero.appendChild(sdEl('p', 'home-hero-text', t('tools.sd_warn_yomtov')));
         else {
             const chips = sdEl('div', 'home-chips');
+            if (service.shabbat) chips.appendChild(sdEl('span', 'home-chip', 'Chabbat'));
             sdDayNoteLabels(ctx).forEach(label => chips.appendChild(sdEl('span', 'home-chip', label)));
             hero.appendChild(chips);
         }
-        const go = sdEl('button', 'home-hero-btn', 'Commencer ' + t('tools.sd_p_' + current));
+        const go = sdEl('button', 'home-hero-btn', 'Commencer');
         go.type = 'button';
-        go.id = 'sd-quick-' + current;
-        go.onclick = () => sdOpenGroup(current);
+        go.id = 'sd-quick-' + service.group;
+        go.onclick = () => sdOpenGroup(service.group);
         hero.appendChild(go);
     } else {
         hero.appendChild(sdEl('small', 'home-hero-label', hcalHebrewText(ctx.hebrew)));
@@ -484,21 +554,24 @@ function sdRenderHome(body) {
         go.type = 'button';
         go.onclick = () => openTool('zmanim', 'screen-tool-siddur');
         hero.appendChild(go);
-        if (special) hero.appendChild(sdEl('p', 'home-hero-text', t(ctx.flags.shabbat && !ctx.flags.yomTov ? 'tools.sd_warn_shabbat' : 'tools.sd_warn_yomtov')));
+        if (special) hero.appendChild(sdEl('p', 'home-hero-text', t('tools.sd_warn_yomtov')));
     }
     body.appendChild(hero);
 
-    // Les autres prières de la journée.
-    const others = SD_PRAYERS.filter(g => g !== current);
-    const prayers = sdEl('div', 'home-tiles c' + (others.length === 3 ? 3 : 2));
-    others.forEach(gid => {
+    // Les autres offices de la journée (de Chabbat ou de semaine).
+    const offices = ctx.flags.shabbat && !special
+        ? [['chabbat-chacharit', 'Cha\'harit', 'שחרית'], ['chabbat-moussaf', 'Moussaf', 'מוסף'], ['chabbat-minha', 'Min\'ha', 'מנחה']]
+        : SD_PRAYERS.map(g => [g, t('tools.sd_p_' + g), SD_HE_PRAYER[g]]);
+    const others = offices.filter(o => !service || o[0] !== service.group);
+    const prayers = sdEl('div', 'home-tiles c' + (others.length >= 3 ? 3 : 2));
+    others.forEach(([gid, label, hebrew]) => {
         const b = sdEl('button', 'home-tile');
         b.type = 'button';
         b.id = 'sd-quick-' + gid;
-        const he = sdEl('span', 'he', SD_HE_PRAYER[gid]);
+        const he = sdEl('span', 'he', hebrew);
         he.lang = 'he'; he.dir = 'rtl';
         b.appendChild(he);
-        b.appendChild(sdEl('span', 'fr', t('tools.sd_p_' + gid)));
+        b.appendChild(sdEl('span', 'fr', label));
         if (gid === 'arvit' && sdPlace) { const when = sdArvitTime(); if (when) b.appendChild(sdEl('span', 'sub', when)); }
         b.onclick = () => sdOpenGroup(gid);
         prayers.appendChild(b);
@@ -797,6 +870,7 @@ function sdRenderReader(body) {
     Promise.all(sdView.ids.map(id => Promise.all([sdLoadSection(id), sdPrefs.fr ? sdLoadFr(id) : null]).then(r => { r[0].fr_t = r[1]; return r[0]; }))).then(sections => {
         if (sdView.mode !== 'reader') return;
         toolClear(content);
+        if (sdShabbatNote) content.appendChild(sdEl('p', 'sd-fr-note', sdShabbatNote));
         if (sdPrefs.fr) content.appendChild(sdEl('p', 'sd-fr-note', t('tools.sd_fr_note')));
         sections.forEach(section => content.appendChild(sdRenderSection(section)));
         sdAddNav(wrap);
