@@ -5,7 +5,8 @@
 // tests/michnaCore.test.js. Les données viennent de data/michna/ (scripts/build_michna.js) :
 //   index.json : { sedarim: [ { id, he, fr, tractates: [ { id, he, fr, chapters, mishnayot } ] } ] }
 //   <traité>.json : { chapters: [ chapitre → [ michna → [texte, [commentaires du Bartenura]] ] ] }
-// Un commentaire est du texte avec <b> (le mot commenté, le dibour hamatkhil) et <i> (une citation) ; tout le reste est du texte.
+// Un commentaire est du texte avec <b> (le mot commenté, le dibour hamatkhil), <i> (une citation) et <small> (une variante) ; tout le reste est du texte.
+//   <commentateur>-<traité>.json : { chapters: [ chapitre → [ michna → [commentaires] ] ] } ; counts-<traité>.json : { order, chapters: [ chapitre → [ masque ] ] }.
 
 (function (root, factory) {
     if (typeof module === 'object' && module.exports) module.exports = factory();
@@ -33,7 +34,7 @@
         var out = [];
         ((index && index.sedarim) || []).forEach(function (s) {
             s.tractates.forEach(function (t) {
-                out.push({ id: t.id, he: t.he, fr: t.fr, chapters: t.chapters, mishnayot: t.mishnayot, seder: s.id, sederHe: s.he, sederFr: s.fr });
+                out.push({ id: t.id, he: t.he, fr: t.fr, chapters: t.chapters, mishnayot: t.mishnayot, comm: t.comm || [], seder: s.id, sederHe: s.he, sederFr: s.fr });
             });
         });
         return out;
@@ -59,12 +60,12 @@
         return { id: list[j].id, chapter: delta > 0 ? 1 : list[j].chapters };
     }
 
-    // Découpe un commentaire en morceaux { s: texte, k: '' | 'b' | 'i' } (b : mot commenté, i : citation). Les balises ne sont jamais interprétées comme du HTML.
+    // Découpe un commentaire en morceaux { s: texte, k: '' | 'b' | 'i' | 'small' } (b : mot commenté, i : citation, small : variante). Les balises ne sont jamais interprétées comme du HTML.
     function parseComment(raw) {
         var out = [];
         var kind = '';
-        String(raw || '').split(/(<\/?(?:b|i)>)/).forEach(function (part) {
-            var tag = /^<(\/?)(b|i)>$/.exec(part);
+        String(raw || '').split(/(<\/?(?:b|i|small)>)/).forEach(function (part) {
+            var tag = /^<(\/?)(b|i|small)>$/.exec(part);
             if (tag) kind = tag[1] ? '' : tag[2];
             else if (part) out.push({ s: part, k: kind });
         });
@@ -88,5 +89,12 @@
         return out;
     }
 
-    return { summaryOf: summaryOf, hebrewNumber: hebrewNumber, tractates: tractates, find: find, step: step, parseComment: parseComment, stripMarks: stripMarks };
+    // Les commentateurs d'une michna d'après son masque (le bit k est celui de order[k]), dans l'ordre de `order`.
+    function maskIds(order, mask) {
+        var out = [];
+        (order || []).forEach(function (id, k) { if ((mask >> k) & 1) out.push(id); });
+        return out;
+    }
+
+    return { maskIds: maskIds, summaryOf: summaryOf, hebrewNumber: hebrewNumber, tractates: tractates, find: find, step: step, parseComment: parseComment, stripMarks: stripMarks };
 }));

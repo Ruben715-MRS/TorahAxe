@@ -538,8 +538,8 @@
 
 <div id="screen-tool-michna" class="list-screen hidden">
         <button class="back-btn" onclick="toolBack('michna')" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
-        <h2 class="header-title" data-i18n="tools.michna_title">Michna et Bartenura</h2>
-        <p class="modes-header-subtitle" data-i18n="tools.michna_intro">Les 63 traités de la Michna en hébreu, avec le commentaire de Bartenura.</p>
+        <h2 class="header-title" data-i18n="tools.michna_title">Michna et commentateurs</h2>
+        <p class="modes-header-subtitle" data-i18n="tools.michna_intro">Les 63 traités de la Michna en hébreu, avec leurs commentateurs : Rambam, Bartenura, Tosafot Yom Tov…</p>
         <div class="tool-panel" id="tool-michna-top">
             <div class="tool-history-chips" id="tool-michna-sedarim" role="group" aria-label="Ordres de la Michna" data-i18n-attr="aria-label:tools.michna_sedarim_label"></div>
             <select id="tool-michna-tractate" class="tool-input tanakh-book-select" aria-label="Traité" data-i18n-attr="aria-label:tools.michna_tractate_label" onchange="michnaSelectTractate(this.value)"></select>
@@ -548,7 +548,10 @@
                 <select id="tool-michna-chapter" class="tool-input torah-chapter" aria-label="Chapitre" data-i18n-attr="aria-label:tools.torah_chapter_label" onchange="michnaSelectChapter(this.value)"></select>
                 <button type="button" class="tool-history-chip" id="tool-michna-next" onclick="michnaGo(1)" aria-label="Chapitre suivant" data-i18n-attr="aria-label:tools.torah_next">›</button>
             </div>
-            <div class="tool-history-chips" id="tool-michna-bart" role="group" aria-label="Commentaire de Bartenura" data-i18n-attr="aria-label:tools.michna_bart_label"></div>
+            <details class="tanakh-comm-panel" id="tool-michna-comm" hidden>
+                <summary id="tool-michna-comm-summary" data-i18n="tools.tanakh_comm_title">Commentateurs</summary>
+                <div class="tanakh-comm-list" id="tool-michna-comm-list" role="group" aria-label="Commentateurs" data-i18n-attr="aria-label:tools.tanakh_comm_title"></div>
+            </details>
             <div class="tool-history-chips" id="tool-michna-vowels" role="group" aria-label="Affichage du texte" data-i18n-attr="aria-label:tools.torah_vowels_label"></div>
             <label class="dict-toggle" data-i18n-attr="title:tools.michna_summary_help" title="Une phrase pour l'ordre, une pour le traité et une pour le chapitre"><input type="checkbox" id="tool-michna-summary-on" checked onchange="michnaToggleSummary(this.checked)"> <span data-i18n="tools.tanakh_summary_toggle">Résumé</span></label>
             <div class="tanakh-cycle" id="tool-michna-summary" hidden></div>

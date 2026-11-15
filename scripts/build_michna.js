@@ -1,10 +1,15 @@
-// Produit data/michna/ : la Michna (63 traités) et le commentaire de Rabbénou Ovadia de Bartenura, en hébreu vocalisé, depuis Sefaria.
-// Michna : version « Torat Emet 357 » (domaine public ; Bikkurim 1 à 3 : édition Romm, Vilna 1913, domaine public). Bartenura : version « Torat-Emet » (CC-BY-NC pour la plupart des traités).
+// Produit data/michna/ : la Michna (63 traités) en hébreu vocalisé et ses commentateurs, depuis Sefaria.
+// Michna : version « Torat Emet 357 » (domaine public ; Bikkurim 1 à 3 : édition Romm, Vilna 1913, domaine public).
+// Commentateurs (COMMENTATORS ci-dessous, dans l'ordre chronologique) : Rambam, Rash de Sens, Bartenura (CC-BY-NC), Melekhet Shelomoh,
+// Tosafot Yom Tov, Gra (Eliyahu Rabba sur Tohorot, commentaire sur Avot) et Tiferet Yisraël (Yachin).
 // Usage : NODE_USE_ENV_PROXY=1 node scripts/build_michna.js   (derrière un proxy ; sinon sans la variable)
-// Un fichier par traité : data/michna/<id>.json = { v, id, chapters: [ chapitre → [ michna → [texte, [commentaires du Bartenura]] ] ] }.
-// data/michna/index.json : la liste des traités (ordre, nom hébreu et français, nombre de chapitres et de michnayot) pour l'écran.
-// Le texte n'est pas retouché : on retire les espaces en trop, les balises autres que <b> (mot commenté) et <i> (citation) du commentaire,
-// et toutes les balises de la Michna. Idempotent : relancer réécrit les mêmes fichiers.
+// Fichiers : data/michna/<traité>.json = { v, id, chapters: [ chapitre → [ texte de chaque michna ] ] } ;
+//   data/michna/<préfixe><traité>.json = { v, id, commentator, chapters: [ chapitre → [ michna → [commentaires] ] ] } ;
+//   data/michna/counts-<traité>.json = { v, order, chapters: [ chapitre → [ masque ] ] } (quels commentateurs ont quelque chose à dire sur la michna :
+//   le bit k du masque est celui de order[k] ; sert aux pastilles « 💬 n ») ;
+//   data/michna/index.json : la liste des traités (ordre, nom hébreu et français, chapitres, michnayot, `comm` : les commentateurs qui le couvrent).
+// Le texte n'est pas retouché : on retire les espaces en trop, les balises autres que <b> (mot commenté), <i> (citation) et <small> (variante)
+// du commentaire, et toutes les balises de la Michna. Idempotent : relancer réécrit les mêmes fichiers.
 
 const fs = require('fs');
 const path = require('path');
@@ -64,64 +69,151 @@ async function fetchText(title, version) {
     return d.versions[0].text;
 }
 
+// Les commentateurs, dans l'ordre chronologique d'affichage. `cat` : leur rubrique dans l'index de Sefaria (« Rishonim on Mishnah > Rambam »…) ;
+// `prefix` : le préfixe de leurs fichiers. Les introductions (« Introduction ») et Ikar Tosafot Yom Tov ne sont pas retenus.
+// Non disponibles sur Sefaria pour la Michna : Kehati, Saadia Gaon, Nathan Av Hayéchiva.
+const COMMENTATORS = [
+    { id: 'rambam', cat: 'Rambam', prefix: 'rambam-' },
+    { id: 'rash', cat: 'Rash MiShantz', prefix: 'rash-' },
+    { id: 'bartenura', cat: 'Bartenura', prefix: 'bartenura-' },
+    { id: 'melekhet', cat: 'Melekhet Shelomoh', prefix: 'melekhet-' },
+    { id: 'tosafot-yom-tov', cat: 'Tosafot Yom Tov', prefix: 'tyt-' },
+    { id: 'gra', cat: 'Gra', prefix: 'gra-' },
+    { id: 'tiferet-yisrael', cat: 'Yachin', prefix: 'tiferet-', flat: true }
+];
+
 // Si la version vocalisée a des chapitres vides (Bikkurim 1 à 3 chez Sefaria), ils viennent de l'édition Romm, Vilna 1913 (domaine public, sans voyelles).
 const FALLBACK_VERSION = 'hebrew|Mishnah, ed. Romm, Vilna 1913';
 
 const clean = (s) => String(s || '').replace(/\s+/g, ' ').trim();
 const cleanMishna = (s) => clean(String(s || '').replace(/<br\s*\/?>/g, ' ').replace(/<[^>]*>/g, ''));
-// Le commentaire : seules <b> et <i> restent (le dibour hamatkhil et les citations) ; tout autre balise est retirée.
-const cleanComment = (s) => clean(String(s || '').replace(/<(?!\/?(?:b|i)>)[^>]*>/g, ''));
+// Le commentaire : seules <b>, <i> et <small> restent ; les sauts de ligne deviennent des espaces, les images et toute autre balise sont retirées.
+const cleanComment = (s) => clean(String(s || '').replace(/<br\s*\/?>/g, ' ').replace(/<(?!\/?(?:b|i|small)>)[^>]*>/g, ''));
 
-async function build(sefariaTitle) {
-    const bartTitle = 'Bartenura on ' + (sefariaTitle === 'Pirkei Avot' ? 'Mishnah Avot' : 'Mishnah ' + sefariaTitle);
-    const mTitle = sefariaTitle === 'Pirkei Avot' ? sefariaTitle : 'Mishnah ' + sefariaTitle;
-    const [m, b] = await Promise.all([fetchText(mTitle, 'hebrew'), fetchText(bartTitle, 'hebrew')]);
+// Une clé qui rapproche « Mishnah Maaser Sheni », « Tosefot Yom Tov on Mishnah Peah » et « Pirkei Avot » : lettres seules, sans « mishnah », Avot unifié.
+function keyOf(name) {
+    const k = name.replace(/^.* on /, '').replace(/^Mishnah\s+/i, '').replace(/[^A-Za-z]/g, '').toLowerCase();
+    return k === 'pirkeiavot' ? 'avot' : k;
+}
+
+// Tous les textes d'une mishna, quelle que soit la profondeur de la source : une liste de chaînes.
+function leaves(x) {
+    if (Array.isArray(x)) return x.reduce((a, y) => a.concat(leaves(y)), []);
+    return typeof x === 'string' ? [x] : [];
+}
+
+async function loadMishnah(tr) {
+    const mTitle = tr.sefaria === 'Pirkei Avot' ? tr.sefaria : 'Mishnah ' + tr.sefaria;
+    const m = await fetchText(mTitle, 'hebrew');
     if (m.some(ch => !ch || !ch.length)) {
         const alt = await fetchText(mTitle, FALLBACK_VERSION).catch(() => []);
         m.forEach((ch, c) => { if ((!ch || !ch.length) && alt[c] && alt[c].length) m[c] = alt[c]; });
         console.log('  chapitres complétés (Romm) :', mTitle);
     }
-    const nbCh = Math.max(m.length, b.length);
-    const chapters = [];
-    for (let c = 0; c < nbCh; c++) {
-        const mc = m[c] || [], bc = b[c] || [];
-        const nb = Math.max(mc.length, bc.length);
-        const list = [];
-        for (let i = 0; i < nb; i++) {
-            const comments = (Array.isArray(bc[i]) ? bc[i] : (bc[i] ? [bc[i]] : [])).map(cleanComment).filter(Boolean);
-            list.push([cleanMishna(mc[i]), comments]);
+    return m.map(ch => (ch || []).map(cleanMishna));
+}
+
+// Pour comparer un mot commenté au texte de la Michna : lettres hébraïques et espaces seulement, sans voyelles ni ponctuation.
+const plain = (s) => String(s || '').replace(/<[^>]*>/g, ' ').replace(/\u05BE/g, ' ').replace(/[\u0591-\u05C7]/g, '').replace(/[^\u05D0-\u05EA\s]/g, ' ').replace(/\s+/g, ' ').trim();
+
+// Une source qui ne range pas ses passages par michna (Tiferet Yisraël : une suite de mots commentés le long du chapitre ; Rash sur Chevi'it 2) :
+// chaque passage va sous la michna où son mot commenté (le premier <b>) se trouve en premier à partir de la michna précédente.
+function spread(texts, entries) {
+    const hay = texts.map(plain);
+    const out = texts.map(() => []);
+    let at = 0;    // la michna courante
+    let pos = 0;   // où le dernier mot commenté a été trouvé dans la michna courante : les suivants viennent après, sinon on passe à la michna suivante
+    entries.forEach(raw => {
+        const m = /<b>(.*?)<\/b>/.exec(raw);
+        const words = m ? plain(m[1]).split(' ').filter(Boolean) : [];
+        for (const n of [3, 2, 1]) {
+            if (words.length < n && n > 1) continue;
+            const key = words.slice(0, n).join(' ');
+            if (key.length < 3) continue;
+            const limit = n === 1 ? Math.min(hay.length, at + 2) : hay.length;
+            let found = false;
+            for (let k = at; k < limit && !found; k++) {
+                const j = hay[k].indexOf(key, k === at ? pos : 0);
+                if (j >= 0) { at = k; pos = j; found = true; }
+            }
+            if (found) break;
         }
-        chapters.push(list);
-    }
+        out[at].push(cleanComment(raw));
+    });
+    return out;
+}
+
+// Les commentaires d'un traité alignés sur la Michna (même nombre de chapitres et de michnayot) ; null si la source n'a pas la forme chapitre → michna → commentaires.
+// `flat` : la source range ses passages en suite le long du chapitre (voir spread) ; sinon, un chapitre qui a plus d'entrées que de michnayot est traité ainsi.
+function align(structure, raw, title, flat) {
+    let depth = 0;
+    for (let x = raw; Array.isArray(x) && x.length; x = x[0]) depth++;
+    if (depth < 2) { console.log('  forme inattendue, ignoré :', title); return null; }
+    let extra = 0;
+    const chapters = structure.map((mishnayot, c) => {
+        const rawCh = raw[c] || [];
+        if (flat || rawCh.length > mishnayot.length) return spread(mishnayot, leaves(rawCh));
+        return mishnayot.map((_, i) => leaves(rawCh[i]).map(cleanComment).filter(Boolean));
+    });
+    raw.forEach((ch, c) => { if (c >= structure.length) extra += leaves(ch).length; });
+    if (extra) console.log('  ', extra, 'passage(s) hors de la Michna ignoré(s) :', title);
     return chapters;
 }
 
 async function main() {
     fs.mkdirSync(DIR, { recursive: true });
+    const index0 = await getJson('https://www.sefaria.org/api/index/');
+    const titles = [];
+    (function walk(n, path) {
+        if (n.contents) n.contents.forEach(c => walk(c, path.concat(n.category || n.title || '?')));
+        else if (n.title) titles.push({ title: n.title, path });
+    }({ contents: index0 }, []));
+    const catalogue = {};   // commentateur -> clé de traité -> titre Sefaria
+    COMMENTATORS.forEach(c => {
+        catalogue[c.id] = {};
+        titles.filter(x => x.path.includes('Mishnah') || x.path.some(p => /on Mishnah/.test(p)))
+            .filter(x => x.path.includes(c.cat) && !/Introduction/.test(x.title) && !/^Ikar /.test(x.title))
+            .forEach(x => { catalogue[c.id][keyOf(x.title)] = x.title; });
+    });
+
     const flat = [];
-    SEDARIM.forEach(s => s.tractates.forEach(t => flat.push({ seder: s.id, t })));
-    const results = {};
+    SEDARIM.forEach(s => s.tractates.forEach(t => flat.push({ seder: s.id, id: t[0], sefaria: t[1], he: t[2], fr: t[3] })));
+    const meta = {};
     let next = 0;
     async function worker() {
         while (next < flat.length) {
-            const { t } = flat[next++];
-            results[t[0]] = await build(t[1]);
-            console.log('✓', t[0]);
+            const tr = flat[next++];
+            const structure = await loadMishnah(tr);
+            fs.writeFileSync(path.join(DIR, tr.id + '.json'), JSON.stringify({ v: 1, id: tr.id, chapters: structure }));
+            const have = [];
+            const aligned = {};
+            for (const c of COMMENTATORS) {
+                const title = catalogue[c.id][keyOf(tr.sefaria)];
+                if (!title) continue;
+                // La version vocalisée de Sefaria n'a pas toujours la bonne forme (Yachin sur Houlin : Wikisource, à plat) : l'édition Romm la remplace alors.
+                let chapters = align(structure, await fetchText(title, 'hebrew'), title, c.flat);
+                if (!chapters) chapters = align(structure, await fetchText(title, FALLBACK_VERSION).catch(() => []), title, c.flat);
+                if (!chapters || !chapters.some(ch => ch.some(l => l.length))) continue;
+                aligned[c.id] = chapters;
+                have.push(c.id);
+                fs.writeFileSync(path.join(DIR, c.prefix + tr.id + '.json'), JSON.stringify({ v: 1, id: tr.id, commentator: c.id, chapters }));
+            }
+            const masks = structure.map((mishnayot, ch) => mishnayot.map((_, i) => have.reduce((m, id, k) => m | (aligned[id][ch][i].length ? 1 << k : 0), 0)));
+            fs.writeFileSync(path.join(DIR, 'counts-' + tr.id + '.json'), JSON.stringify({ v: 1, order: have, chapters: masks }));
+            meta[tr.id] = { chapters: structure.length, mishnayot: structure.reduce((n, ch) => n + ch.length, 0), comm: have };
+            console.log('✓', tr.id, have.join(','));
         }
     }
     await Promise.all(Array.from({ length: 5 }, worker));
 
-    const index = { v: 1, source: 'Sefaria : Mishnah, version « Torat Emet 357 » (domaine public) ; Bartenura on Mishnah, version « Torat-Emet » (CC-BY-NC)', sedarim: [] };
-    SEDARIM.forEach(s => {
-        const entry = { id: s.id, he: s.he, fr: s.fr, tractates: [] };
-        s.tractates.forEach(t => {
-            const chapters = results[t[0]];
-            const nm = chapters.reduce((n, ch) => n + ch.length, 0);
-            fs.writeFileSync(path.join(DIR, t[0] + '.json'), JSON.stringify({ v: 1, id: t[0], chapters }));
-            entry.tractates.push({ id: t[0], he: t[2], fr: t[3], chapters: chapters.length, mishnayot: nm });
-        });
-        index.sedarim.push(entry);
-    });
+    const index = {
+        v: 1,
+        source: 'Sefaria : Mishnah, version « Torat Emet 357 » (domaine public) ; commentateurs : voir js/app/michna.js (MICHNA_COMMENTATORS)',
+        sedarim: SEDARIM.map(s => ({
+            id: s.id, he: s.he, fr: s.fr,
+            tractates: s.tractates.map(t => ({ id: t[0], he: t[2], fr: t[3], chapters: meta[t[0]].chapters, mishnayot: meta[t[0]].mishnayot, comm: meta[t[0]].comm }))
+        }))
+    };
     fs.writeFileSync(path.join(DIR, 'index.json'), JSON.stringify(index));
     console.log('Terminé :', flat.length, 'traités.');
 }

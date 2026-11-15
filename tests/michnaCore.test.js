@@ -27,17 +27,69 @@ test('l\'index : 6 ordres, 63 traités, 525 chapitres', () => {
     assert.strictEqual(M.find(index, 'inconnu'), null);
 });
 
-test('chaque traité : un fichier, le bon nombre de chapitres et de michnayot, aucune michna vide', () => {
+const COMMENTATORS = ['rambam', 'rash', 'bartenura', 'melekhet', 'tosafot-yom-tov', 'gra', 'tiferet-yisrael'];
+const PREFIX = { rambam: 'rambam-', rash: 'rash-', bartenura: 'bartenura-', melekhet: 'melekhet-', 'tosafot-yom-tov': 'tyt-', gra: 'gra-', 'tiferet-yisrael': 'tiferet-' };
+const read = (name) => JSON.parse(fs.readFileSync(path.join(DIR, name + '.json'), 'utf8'));
+
+test('chaque traité : le bon nombre de chapitres et de michnayot, aucune michna vide', () => {
     M.tractates(index).forEach(t => {
-        const book = JSON.parse(fs.readFileSync(path.join(DIR, t.id + '.json'), 'utf8'));
+        const book = read(t.id);
         assert.strictEqual(book.chapters.length, t.chapters, t.id);
         assert.strictEqual(book.chapters.reduce((n, c) => n + c.length, 0), t.mishnayot, t.id);
-        book.chapters.forEach((ch, c) => ch.forEach((m, i) => {
-            assert.ok(typeof m[0] === 'string' && m[0].length > 0, t.id + ' ' + (c + 1) + ':' + (i + 1) + ' sans texte');
-            assert.ok(Array.isArray(m[1]), t.id + ' commentaires');
-            m[1].forEach(x => assert.ok(!/<(?!\/?(?:b|i)>)/.test(x), t.id + ' balise inattendue'));
+        book.chapters.forEach((ch, c) => ch.forEach((text, i) => {
+            assert.ok(typeof text === 'string' && text.length > 0, t.id + ' ' + (c + 1) + ':' + (i + 1) + ' sans texte');
+            assert.ok(!/</.test(text), t.id + ' balise dans la Michna');
         }));
     });
+});
+
+test('commentateurs : fichiers déclarés par l\'index, alignés sur la Michna, balises limitées', () => {
+    const seen = {};
+    M.tractates(index).forEach(t => {
+        const book = read(t.id);
+        assert.ok(Array.isArray(t.comm) && t.comm.length > 0, t.id + ' : aucun commentateur');
+        t.comm.forEach(id => {
+            assert.ok(COMMENTATORS.includes(id), 'commentateur inconnu ' + id);
+            seen[id] = (seen[id] || 0) + 1;
+            const data = read(PREFIX[id] + t.id);
+            assert.strictEqual(data.chapters.length, book.chapters.length, id + ' ' + t.id + ' : chapitres');
+            data.chapters.forEach((ch, c) => {
+                assert.strictEqual(ch.length, book.chapters[c].length, id + ' ' + t.id + ' ' + (c + 1) + ' : michnayot');
+                ch.forEach(list => list.forEach(x => {
+                    assert.ok(typeof x === 'string' && x.length > 0);
+                    assert.ok(!/<(?!\/?(?:b|i|small)>)/.test(x), id + ' ' + t.id + ' balise inattendue');
+                }));
+            });
+        });
+    });
+    assert.strictEqual(seen.rambam, 63);
+    assert.strictEqual(seen.bartenura, 63);
+    assert.strictEqual(seen['tosafot-yom-tov'], 63);
+    assert.strictEqual(seen.melekhet, 63);
+    assert.strictEqual(seen['tiferet-yisrael'], 63);
+    assert.strictEqual(seen.rash, 21);
+    assert.strictEqual(seen.gra, 13);
+});
+
+test('les masques des pastilles disent exactement quelles michnayot ont un commentaire', () => {
+    M.tractates(index).forEach(t => {
+        const counts = read('counts-' + t.id);
+        assert.deepStrictEqual(counts.order, t.comm, t.id);
+        const books = counts.order.map(id => read(PREFIX[id] + t.id));
+        counts.chapters.forEach((ch, c) => ch.forEach((mask, i) => {
+            const ids = M.maskIds(counts.order, mask);
+            counts.order.forEach((id, k) => {
+                const has = books[k].chapters[c][i].length > 0;
+                assert.strictEqual(ids.includes(id), has, t.id + ' ' + (c + 1) + ':' + (i + 1) + ' ' + id);
+            });
+        }));
+    });
+});
+
+test('maskIds : les bits du masque donnent les commentateurs dans l\'ordre', () => {
+    assert.deepStrictEqual(M.maskIds(['a', 'b', 'c'], 5), ['a', 'c']);
+    assert.deepStrictEqual(M.maskIds(['a', 'b'], 0), []);
+    assert.deepStrictEqual(M.maskIds(null, 3), []);
 });
 
 test('chapitre suivant et précédent : dans le traité, puis d\'un traité à l\'autre, null aux extrémités', () => {
@@ -49,10 +101,11 @@ test('chapitre suivant et précédent : dans le traité, puis d\'un traité à l
     assert.strictEqual(M.step(index, { id: 'oktzin', chapter: last.chapters }, 1), null);
 });
 
-test('un commentaire : mot commenté, citation et texte, sans HTML', () => {
+test('un commentaire : mot commenté, citation, variante et texte, sans HTML', () => {
     assert.deepStrictEqual(M.parseComment('<b>מאימתי</b> קורין <i>ושננתם</i>.'), [
         { s: 'מאימתי', k: 'b' }, { s: ' קורין ', k: '' }, { s: 'ושננתם', k: 'i' }, { s: '.', k: '' }
     ]);
+    assert.deepStrictEqual(M.parseComment('א <small>ב</small> ג'), [{ s: 'א ', k: '' }, { s: 'ב', k: 'small' }, { s: ' ג', k: '' }]);
     assert.deepStrictEqual(M.parseComment(''), []);
 });
 
