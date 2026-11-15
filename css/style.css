@@ -18314,3 +18314,16 @@ body:has(#screen-recit:not(.hidden))::after {
 .talmud-hadran { text-align: center; margin: 18px 0; color: var(--muted-text); }
 .talmud-chapter-heading { margin: 22px 0 8px; font: 700 15px system-ui, sans-serif; text-align: start; direction: ltr; color: var(--muted-text); border-bottom: 1px solid var(--border-soft, #c9ced8); padding-bottom: 4px; }
 .talmud-chapter-reminder { margin: 0 0 10px; direction: ltr; text-align: start; }
+
+/* Dictionnaire au toucher (js/app/talmud.js) : la fiche du mot touché, en bas de l'écran ; le mot touché reste surligné. */
+.talmud-lookup { position: fixed; left: 50%; bottom: 0; transform: translateX(-50%); z-index: 70; width: 100%; max-width: 520px; max-height: 46vh; overflow: auto; box-sizing: border-box; padding: 12px 14px calc(env(safe-area-inset-bottom, 0px) + 12px); border-radius: 20px 20px 0 0; background: var(--surface); color: var(--text-dark); border: 1px solid var(--border-soft); box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.25); }
+.talmud-lookup[hidden] { display: none; }
+.talmud-lookup-close { position: absolute; top: 4px; right: 4px; width: 40px; height: 40px; border: 0; border-radius: 50%; background: none; color: var(--muted-text); font-size: 18px; cursor: pointer; }
+.talmud-lookup-word { display: block; margin: 0 40px 4px; font-size: 22px; }
+.talmud-lookup .lex-card { margin: 6px 0; padding: 8px 12px; box-shadow: none; }
+.talmud-lookup .lex-he { font-size: 22px; }
+.talmud-lookup .lex-fr { margin: 2px 0; font-size: 15px; }
+.talmud-lookup .tool-small { margin: 2px 0; font-size: 12px; }
+.talmud-lookup .tool-history-chip { margin-top: 4px; }
+#screen-tool-talmud.talmud-lookup-open #tool-talmud-source { margin-bottom: 48vh; }   /* de la place pour faire défiler le texte au-dessus de la fiche */
+::highlight(talmud-word) { background-color: rgba(212, 160, 23, 0.35); color: inherit; }

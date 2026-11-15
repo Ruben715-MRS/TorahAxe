@@ -8,6 +8,7 @@
 //   counts-<traité>.json : { order, pages: [ amoud → [ masque par segment ] ] } (le bit k du masque est celui de order[k]) ; `start` est l'amoud de pages[0] (« 2a »), `from` compte depuis 0.
 // Un segment est du texte avec <b> (les mots en gras : « Matni », « Guemara », mot d'ouverture, ligne « Hadran »).
 // Dépend de MichnaCore (numérotation hébraïque, voyelles, découpe des <b>) : js/michnaCore.js se charge avant ce fichier.
+// Le toucher d'un mot (dictionnaire) : `wordAt` retrouve le mot sous le doigt, `lookup` interroge le dictionnaire de la Guémara (GemaraCore, passé en argument).
 
 (function (root, factory) {
     if (typeof module === 'object' && module.exports) module.exports = factory(require('./michnaCore.js'));
@@ -114,9 +115,75 @@
         return page < 0 ? null : { id: id, label: label, page: page };
     }
 
+    // --- Le mot touché -------------------------------------------------------------------------------------------------------------------
+    // Le mot hébreu ou araméen autour de la position `offset` d'un texte (la position d'un curseur : entre deux lettres) : { start, end (exclu), word } ou null
+    // si on n'est pas sur un mot. Un mot est fait de lettres et de voyelles ou accents ; le maqaf et les signes de ponctuation le coupent ; les guillemets
+    // et apostrophes au milieu (מ״ט, ר"י) et le geresh à la fin (גמ׳, וכו') en font partie.
+    var SEPARATORS = '־׀׃׆';
+    function isLetter(c) { return c >= 'א' && c <= 'ת'; }
+    function isMark(c) { return c >= '֑' && c <= 'ׇ' && SEPARATORS.indexOf(c) < 0; }
+    function isJoiner(c) { return c === '״' || c === '"' || c === '׳' || c === "'" || c === '’'; }
+    function inWord(text, i) {
+        var c = text.charAt(i);
+        if (!c) return false;
+        if (isLetter(c) || isMark(c)) return true;
+        if (!isJoiner(c) || i === 0) return false;
+        var before = text.charAt(i - 1);
+        if (!(isLetter(before) || isMark(before))) return false;
+        var after = text.charAt(i + 1);
+        if (isLetter(after)) return true;                       // au milieu : מ״ט, ר"י
+        return c === '׳' || c === "'" || c === '’';             // à la fin : גמ׳, וכו'
+    }
+    function wordAt(text, offset) {
+        text = String(text == null ? '' : text);
+        var at = offset;
+        if (!inWord(text, at)) at = offset - 1;
+        if (at < 0 || !inWord(text, at)) return null;
+        var start = at, end = at + 1;
+        while (start > 0 && inWord(text, start - 1)) start--;
+        while (end < text.length && inWord(text, end)) end++;
+        var word = text.slice(start, end);
+        return /[א-ת]/.test(word) ? { start: start, end: end, word: word } : null;
+    }
+
+    // Ce que le dictionnaire sait d'un mot touché : { word, key, abbr, direct, moreDirect, near, guess }.
+    //  - abbr : les abréviations qui s'écrivent ainsi (מ״ט), si le mot porte un guillemet ou un geresh ;
+    //  - direct : les mots du dictionnaire dont c'est l'écriture ou une forme, avec ou sans préfixe collé (דהכא → הכא) ; au plus 4, `moreDirect` en compte le reste ;
+    //  - near : des mots qui commencent comme lui ou qui l'ont dans une expression (au plus 2) : plus loin, à lire avec prudence ;
+    //  - guess : { roots, results } quand rien ne correspond mais qu'une racine est possible (une hypothèse, jamais une certitude).
+    // `G` : GemaraCore ; `norm` : la normalisation de LexiconCore (lettres seules, finales ordinaires).
+    function lookup(G, norm, word) {
+        var key = norm(word);
+        if (!key) return null;
+        var out = { word: word, key: key, abbr: [], direct: [], moreDirect: 0, near: [], guess: null };
+        if (/[״"׳']/.test(word)) out.abbr = G.searchAbbreviations(word).results.filter(function (a) { return a.key === key; }).slice(0, 3);
+        var found = G.search(word);
+        if (found.kind === 'guess') {
+            out.guess = { roots: found.roots, results: found.results.slice(0, 3) };
+            return out;
+        }
+        var variants = [key];
+        if (key.length >= 3 && G.PREFIXES.indexOf(key.charAt(0)) >= 0) variants.push(key.slice(1));
+        if (key.length >= 4 && G.PREFIXES.indexOf(key.charAt(0)) >= 0 && G.PREFIXES.indexOf(key.charAt(1)) >= 0) variants.push(key.slice(2));
+        var isDirect = function (e) {
+            return variants.some(function (v) { return e.key === v || e.forms.some(function (f) { return norm(f) === v; }); });
+        };
+        var family = found.kind === 'root' ? found.family : [];
+        // Le mot écrit exactement ainsi d'abord, puis ses formes et préfixes, puis le reste de la famille (le tri est stable : l'ordre du dictionnaire sinon).
+        var rank = function (e) { return e.key === key ? 0 : (isDirect(e) ? 1 : 2); };
+        var direct = found.results.filter(function (e) { return isDirect(e) || family.indexOf(e) >= 0; })
+            .map(function (e, i) { return { e: e, r: rank(e), i: i }; })
+            .sort(function (a, b) { return a.r - b.r || a.i - b.i; })
+            .map(function (x) { return x.e; });
+        out.direct = direct.slice(0, 4);
+        out.moreDirect = Math.max(0, direct.length - 4);
+        out.near = found.results.filter(function (e) { return direct.indexOf(e) < 0; }).slice(0, 2);
+        return out;
+    }
+
     return {
         tractates: tractates, find: find, rank: rank, amoudLabel: amoudLabel, pageOf: pageOf, hebrewAmoud: hebrewAmoud, dafOf: dafOf,
-        chapterAt: chapterAt, chaptersStartingIn: chaptersStartingIn, step: step, isHadran: isHadran, dafYomiTarget: dafYomiTarget, DAF_YOMI: DAF_YOMI,
+        chapterAt: chapterAt, chaptersStartingIn: chaptersStartingIn, step: step, isHadran: isHadran, dafYomiTarget: dafYomiTarget, DAF_YOMI: DAF_YOMI, wordAt: wordAt, lookup: lookup,
         hebrewNumber: M.hebrewNumber, maskIds: M.maskIds, parseComment: M.parseComment, stripMarks: M.stripMarks
     };
 }));

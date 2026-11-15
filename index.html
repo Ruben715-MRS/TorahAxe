@@ -584,6 +584,7 @@
                 <div class="tanakh-comm-list" id="tool-talmud-comm-list" role="group" aria-label="Commentateurs" data-i18n-attr="aria-label:tools.tanakh_comm_title"></div>
             </details>
             <div class="tool-history-chips" id="tool-talmud-vowels" role="group" aria-label="Affichage du texte" data-i18n-attr="aria-label:tools.torah_vowels_label"></div>
+            <label class="dict-toggle" data-i18n-attr="title:tools.talmud_lookup_help" title="Touchez un mot du texte pour voir sa fiche dans le dictionnaire de la Guémara"><input type="checkbox" id="tool-talmud-lookup-on" checked onchange="talmudToggleLookup(this.checked)"> <span data-i18n="tools.talmud_lookup_toggle">Dictionnaire au toucher</span></label>
             <p class="tool-msg" id="tool-talmud-msg" role="status"></p>
         </div>
         <div class="tanakh-text" id="tool-talmud-text"></div>
@@ -593,6 +594,12 @@
             <button type="button" class="tool-history-chip" id="tool-talmud-next2" onclick="talmudGo(1)" aria-label="Amoud suivant" data-i18n-attr="aria-label:tools.talmud_next">›</button>
         </div>
         <p class="tool-small" id="tool-talmud-source"></p>
+        <div class="talmud-lookup" id="tool-talmud-lookup" role="dialog" aria-labelledby="tool-talmud-lookup-word" hidden>
+            <button type="button" class="talmud-lookup-close" onclick="talmudLookupClose()" aria-label="Fermer" data-i18n-attr="aria-label:tools.talmud_lookup_close">✕</button>
+            <strong class="lex-he talmud-lookup-word" id="tool-talmud-lookup-word" lang="he" dir="rtl"></strong>
+            <div id="tool-talmud-lookup-body" aria-live="polite"></div>
+            <button type="button" class="tool-history-chip" id="tool-talmud-lookup-open" onclick="talmudLookupOpenDictionary()" data-i18n="tools.talmud_lookup_open">Ouvrir dans le dictionnaire</button>
+        </div>
     </div>
 
     <div id="screen-tool-tanakh" class="list-screen hidden">

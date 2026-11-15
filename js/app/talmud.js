@@ -7,7 +7,8 @@
 // « Sans voyelles » retire les voyelles et les accents. Tout le texte passe par des nœuds texte ; la police est celle des Réglages (--torah-font).
 // Les commentateurs (Rachi, Rachbam, Ran, Rabbénou Guerchom, Tossafot) : même panneau repliable que la Michna ; chacun sous le segment de Guémara qu'il commente, avec sa couleur.
 // Une pastille « 💬 n » à côté de chaque segment commenté ouvre ses commentaires, même quand la case n'est pas cochée (data/talmud/counts-<traité>.json).
-// Le choix (traité, amoud, voyelles, commentateurs cochés) est gardé dans localStorage, sans jamais bloquer si le stockage est refusé.
+// Le toucher d'un mot : une fiche du dictionnaire de la Guémara (js/gemaraCore.js) s'ouvre en bas de l'écran ; « Ouvrir dans le dictionnaire » mène à l'écran complet.
+// Le choix (traité, amoud, voyelles, commentateurs cochés, dictionnaire au toucher) est gardé dans localStorage, sans jamais bloquer si le stockage est refusé.
 
 const TALMUD_KEY = 'talmudPrefs';
 // Le registre des commentateurs, dans l'ordre d'affichage. `name` : nom français ; `he` : nom hébreu (étiquette) ; `file` : préfixe des fichiers ;
@@ -25,7 +26,7 @@ const talmudLoaded = {};        // traité -> data/talmud/<traité>.json
 const talmudCommLoaded = {};    // commentateur -> traité -> { pages } : commentaire chargé
 const talmudCommPending = {};   // « commentateur/traité » -> promesse en cours, pour ne charger qu'une fois
 const talmudCounts = {};        // traité -> counts-<traité>.json : { order, pages[amoud][segment] = masque }
-let talmudState = { id: 'berakhot', page: 0, vowels: 'full', comm: { rashi: true }, open: {} };
+let talmudState = { id: 'berakhot', page: 0, vowels: 'full', comm: { rashi: true }, open: {}, lookup: true };
 
 let talmudPrefsLoaded = false;
 function talmudLoadPrefs() {
@@ -38,12 +39,13 @@ function talmudLoadPrefs() {
             if (Number.isInteger(p.page) && p.page >= 0) talmudState.page = p.page;
             if (p.vowels === 'consonants') talmudState.vowels = 'consonants';
             if (p.comm && typeof p.comm === 'object') talmudState.comm = p.comm;
+            if (p.lookup === false) talmudState.lookup = false;
         }
     } catch (e) {}
 }
 
 function talmudSavePrefs() {
-    try { localStorage.setItem(TALMUD_KEY, JSON.stringify({ id: talmudState.id, page: talmudState.page, vowels: talmudState.vowels, comm: talmudState.comm })); } catch (e) {}
+    try { localStorage.setItem(TALMUD_KEY, JSON.stringify({ id: talmudState.id, page: talmudState.page, vowels: talmudState.vowels, comm: talmudState.comm, lookup: talmudState.lookup })); } catch (e) {}
 }
 
 function talmudNode(tag, cls, text) {
@@ -119,6 +121,7 @@ function talmudOpen(id, page) {
     talmudState.id = id;
     talmudState.page = Math.min(Math.max(0, page || 0), tr.amudim - 1);
     talmudState.open = {};
+    talmudLookupClose();
     talmudSavePrefs();
     talmudRender();
     talmudLoadCounts(id);
@@ -345,6 +348,7 @@ function talmudRender() {
     toolEl('tool-talmud-nav-label').textContent = '↑ ' + tr.he + ' ' + TalmudCore.hebrewAmoud(TalmudCore.amoudLabel(tr.start, page));
     talmudChips(toolEl('tool-talmud-vowels'), [['full', t('tools.tanakh_vowels_full')], ['consonants', t('tools.tanakh_vowels_consonants')]], talmudState.vowels,
         key => { talmudState.vowels = key; talmudSavePrefs(); talmudRender(); });
+    toolEl('tool-talmud-lookup-on').checked = !!talmudState.lookup;
     talmudRenderCommPanel();
     talmudRenderText(tr);
     toolEl('tool-talmud-source').textContent = [t('tools.talmud_source')].concat(talmudCommSources().map(c => t(c.source))).join(' ');
@@ -426,3 +430,161 @@ function talmudScrollTop() {
     const top = toolEl('tool-talmud-top');
     if (top && top.scrollIntoView) top.scrollIntoView({ block: 'start', behavior: window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
 }
+
+
+// --- Le dictionnaire au toucher -----------------------------------------------------------------------------
+
+let talmudLookupWord = null;        // le mot touché (tel qu'écrit dans le texte), pour « Ouvrir dans le dictionnaire »
+let talmudLookupAbbr = false;       // le mot touché est une abréviation connue : on ouvre l'onglet des abréviations
+
+function talmudToggleLookup(checked) {
+    talmudState.lookup = checked;
+    talmudSavePrefs();
+    if (!checked) talmudLookupClose();
+}
+
+// La position du curseur sous un point de l'écran : { node, offset } ou null (Firefox : caretPositionFromPoint ; Safari et Chrome : caretRangeFromPoint).
+function talmudCaretAt(x, y) {
+    if (document.caretPositionFromPoint) {
+        const pos = document.caretPositionFromPoint(x, y);
+        return pos && pos.offsetNode ? { node: pos.offsetNode, offset: pos.offset } : null;
+    }
+    if (document.caretRangeFromPoint) {
+        const range = document.caretRangeFromPoint(x, y);
+        return range ? { node: range.startContainer, offset: range.startOffset } : null;
+    }
+    return null;
+}
+
+// Un mot touché dans le texte de la Guémara ou d'un commentaire (pas un bouton, pas un titre) : { word, range } ou null.
+function talmudWordAtPoint(x, y) {
+    const caret = talmudCaretAt(x, y);
+    if (!caret || caret.node.nodeType !== Node.TEXT_NODE) return null;
+    const parent = caret.node.parentElement;
+    if (!parent || parent.closest('button') || !parent.closest('.talmud-seg, .talmud-comm')) return null;
+    const hit = TalmudCore.wordAt(caret.node.data, caret.offset);
+    if (!hit) return null;
+    const range = document.createRange();
+    range.setStart(caret.node, hit.start);
+    range.setEnd(caret.node, hit.end);
+    return { word: hit.word, range };
+}
+
+// Le mot touché reste surligné tant que la fiche est ouverte (là où le navigateur sait surligner une plage sans toucher au texte).
+function talmudLookupHighlight(range) {
+    try {
+        if (window.CSS && CSS.highlights && typeof Highlight !== 'undefined') {
+            if (range) CSS.highlights.set('talmud-word', new Highlight(range));
+            else CSS.highlights.delete('talmud-word');
+        }
+    } catch (e) {}
+}
+
+function talmudTextClick(ev) {
+    if (!talmudState.lookup) return;
+    if (ev.target.closest && ev.target.closest('button, a, summary')) return;
+    const selection = window.getSelection && window.getSelection();
+    if (selection && String(selection).length) return;   // une sélection de texte en cours : on ne l'interrompt pas
+    const hit = talmudWordAtPoint(ev.clientX, ev.clientY);
+    if (hit) talmudLookupOpen(hit.word, hit.range);
+}
+
+function talmudLookupCard(entry) {
+    const card = talmudNode('article', 'tool-result lex-card');
+    const head = talmudNode('div', 'lex-head');
+    const he = talmudNode('strong', 'lex-he', entry.he);
+    he.lang = 'he';
+    he.dir = 'rtl';
+    head.appendChild(he);
+    head.appendChild(talmudNode('span', 'lex-tr', entry.tr));
+    head.appendChild(talmudNode('span', 'tool-small lex-pos', t('tools.gemara_cat_' + entry.cat)));
+    if (typeof gemaraPipBadge === 'function') head.appendChild(gemaraPipBadge(4 - entry.tier, t('tools.gemara_badge_' + entry.tier)));
+    card.appendChild(head);
+    card.appendChild(talmudNode('p', 'lex-fr', entry.fr.join(', ')));
+    if (entry.note) card.appendChild(talmudNode('p', 'tool-small', entry.note));
+    return card;
+}
+
+function talmudLookupAbbrCard(abbr) {
+    const card = talmudNode('article', 'tool-result lex-card');
+    const head = talmudNode('div', 'lex-head');
+    const he = talmudNode('strong', 'lex-he', abbr.sigle);
+    he.lang = 'he';
+    he.dir = 'rtl';
+    head.appendChild(he);
+    const full = talmudNode('span', 'lex-full', abbr.full);
+    full.lang = 'he';
+    full.dir = 'rtl';
+    head.appendChild(full);
+    head.appendChild(talmudNode('span', 'tool-small lex-pos', t('tools.talmud_lookup_abbr') + ' · ' + t('tools.gemara_abbr_cat_' + abbr.cat)));
+    card.appendChild(head);
+    card.appendChild(talmudNode('p', 'lex-fr', abbr.fr.join(', ')));
+    if (abbr.note) card.appendChild(talmudNode('p', 'tool-small', abbr.note));
+    return card;
+}
+
+// Ouvre la fiche du mot touché en bas de l'écran. Tout ce qui s'affiche passe par textContent.
+function talmudLookupOpen(word, range) {
+    if (typeof GemaraCore === 'undefined' || typeof LexiconCore === 'undefined') return;
+    const found = TalmudCore.lookup(GemaraCore, LexiconCore.normalizeHebrew, word);
+    if (!found) return;
+    talmudLookupWord = word;
+    talmudLookupAbbr = found.abbr.length > 0 && found.direct.length === 0;
+    const sheet = toolEl('tool-talmud-lookup');
+    const body = toolEl('tool-talmud-lookup-body');
+    toolClear(body);
+    toolEl('tool-talmud-lookup-word').textContent = word;
+    found.abbr.forEach(a => body.appendChild(talmudLookupAbbrCard(a)));
+    if (found.guess) {
+        body.appendChild(talmudNode('p', 'tool-small', t('tools.talmud_lookup_guess', { roots: found.guess.roots.join(', ') })));
+        found.guess.results.forEach(e => body.appendChild(talmudLookupCard(e)));
+    } else {
+        found.direct.forEach(e => body.appendChild(talmudLookupCard(e)));
+        if (found.moreDirect) body.appendChild(talmudNode('p', 'tool-small', t('tools.talmud_lookup_more', { n: found.moreDirect })));
+        if (found.near.length && !found.direct.length && !found.abbr.length) {
+            body.appendChild(talmudNode('p', 'tool-small', t('tools.talmud_lookup_near')));
+            found.near.forEach(e => body.appendChild(talmudLookupCard(e)));
+        }
+        if (!found.direct.length && !found.abbr.length && !found.near.length) body.appendChild(talmudNode('p', 'tool-small', t('tools.talmud_lookup_none')));
+    }
+    sheet.hidden = false;
+    sheet.scrollTop = 0;
+    const screen = toolEl('screen-tool-talmud');
+    screen.classList.add('talmud-lookup-open');
+    talmudKeepVisible(range, screen, sheet);
+    talmudLookupHighlight(range);
+}
+
+// Le mot touché ne doit pas disparaître derrière la fiche : si elle le recouvre, l'écran défile juste assez pour le remonter au-dessus.
+function talmudKeepVisible(range, screen, sheet) {
+    if (!range) return;
+    const rect = range.getBoundingClientRect();
+    const limit = window.innerHeight - sheet.offsetHeight - 16;
+    if (rect.bottom > limit) screen.scrollTop += rect.bottom - limit + 24;
+}
+
+function talmudLookupClose() {
+    const sheet = toolEl('tool-talmud-lookup');
+    if (sheet) sheet.hidden = true;
+    const screen = toolEl('screen-tool-talmud');
+    if (screen) screen.classList.remove('talmud-lookup-open');
+    talmudLookupWord = null;
+    talmudLookupHighlight(null);
+}
+
+// « Ouvrir dans le dictionnaire » : l'écran complet, déjà sur ce mot (ou son abréviation) ; « Retour » ramène ici.
+function talmudLookupOpenDictionary() {
+    const word = talmudLookupWord;
+    if (!word) return;
+    const tab = talmudLookupAbbr ? 'abbr' : 'words';
+    talmudLookupClose();
+    openTool('gemara', 'screen-tool-talmud');
+    toolGemaraShow(tab, word);
+}
+
+// Installé une fois, quand l'écran existe : le toucher sur le texte et la touche Échap.
+(function () {
+    const box = document.getElementById('tool-talmud-text');
+    if (box) box.addEventListener('click', talmudTextClick);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') talmudLookupClose(); });
+})();

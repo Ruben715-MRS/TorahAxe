@@ -4,6 +4,8 @@ const fs = require('fs');
 const path = require('path');
 const T = require('../js/talmudCore.js');
 const Z = require('../js/zmanimCore.js');
+const G = require('../js/gemaraCore.js');
+const L = require('../js/lexiconCore.js');
 
 const DIR = path.resolve(__dirname, '..', 'data', 'talmud');
 const index = JSON.parse(fs.readFileSync(path.join(DIR, 'index.json'), 'utf8'));
@@ -227,4 +229,70 @@ test('Daf Yomi : chaque jour du cycle (2 711) pointe sur un amoud qui existe, ho
     assert.strictEqual(missing, 21 + 3 + 4);   // Chekalim 2-22, Kinnim 23-25, Midot 34-37
     assert.deepStrictEqual(T.dafYomiTarget(index, Z.dafYomi(first)), { id: 'berakhot', label: '2a', page: 0 });
     assert.deepStrictEqual(T.dafYomiTarget(null, Z.dafYomi(first)), { id: 'berakhot', label: '2a', page: -1 });
+});
+
+test('wordAt : le mot sous le doigt, avec ses voyelles, sans la ponctuation', () => {
+    const text = 'מֵאֵימָתַי קוֹרִין אֶת שְׁמַע בָּעֲרָבִין? מִשָּׁעָה — דִּבְרֵי';
+    const at = (i) => T.wordAt(text, i);
+    assert.strictEqual(at(0).word, 'מֵאֵימָתַי');
+    assert.strictEqual(at(3).word, 'מֵאֵימָתַי');
+    assert.strictEqual(at(text.indexOf('קוֹרִין')).word, 'קוֹרִין');
+    // Entre deux mots (sur l'espace) : le mot qui précède ; en fin de mot : le même mot.
+    assert.strictEqual(at(text.indexOf(' קוֹרִין')).word, 'מֵאֵימָתַי');
+    assert.strictEqual(at(text.indexOf('?')).word, 'בָּעֲרָבִין');
+    // Sur la ponctuation seule ou après un espace précédé de ponctuation : pas de mot.
+    assert.strictEqual(T.wordAt('— ?', 1), null);
+    assert.strictEqual(T.wordAt('', 0), null);
+    assert.strictEqual(T.wordAt('abc', 1), null);
+    // Maqaf : deux mots ; guillemets au milieu et geresh à la fin : un seul.
+    assert.strictEqual(T.wordAt('כָּל־אָדָם', 2).word, 'כָּל');
+    assert.strictEqual(T.wordAt('כָּל־אָדָם', 7).word, 'אָדָם');
+    assert.strictEqual(T.wordAt('אמר מ״ט הוא', 6).word, 'מ״ט');
+    assert.strictEqual(T.wordAt('אמר ר"י הוא', 6).word, 'ר"י');
+    assert.strictEqual(T.wordAt('וכו\' הוא', 2).word, 'וכו\'');
+    assert.strictEqual(T.wordAt('גְּמָ׳ תַּנָּא', 3).word, 'גְּמָ׳');
+    assert.strictEqual(T.wordAt('"שלום"', 2).word, 'שלום');
+});
+
+test('lookup : le dictionnaire de la Guémara pour un mot touché', () => {
+    const find = (w) => T.lookup(G, L.normalizeHebrew, w);
+    // Un mot du dictionnaire, tel quel.
+    const mai = find('מַאי');
+    assert.ok(mai.direct.length >= 1);
+    assert.strictEqual(mai.direct[0].he, 'מַאי');
+    assert.strictEqual(mai.guess, null);
+    // Avec préfixe collé : דהכא → הכא.
+    const heicha = find('דְּהֵיכָא');
+    assert.ok(heicha.direct.some(e => e.key === 'היכא'), 'préfixe ד retiré');
+    // Une forme écrite à la main (אמרינן) : un mot direct, qui n'est pas son écriture.
+    const amrinan = find('אָמְרִינַן');
+    assert.ok(amrinan.direct.length >= 1 || amrinan.guess);
+    // Une racine à trois lettres : toute la famille compte comme directe, le mot écrit exactement ainsi en premier.
+    const root = find('שְׁמַע');
+    assert.ok(root.direct.length >= 2);
+    assert.strictEqual(root.direct[0].key, 'שמע');
+    // Un mot absent, mais dont la racine se devine : une hypothèse, annoncée comme telle.
+    const guess = find('בַּעֲרָבִין');
+    assert.ok(guess.guess && guess.guess.roots.length >= 1 && guess.direct.length === 0);
+    assert.deepStrictEqual(guess.guess.roots, ['ערב']);
+    // Un sigle : l'abréviation d'abord.
+    const mt = find('מ״ט');
+    assert.ok(mt.abbr.length >= 1);
+    assert.strictEqual(mt.abbr[0].key, 'מט');
+    // Une écriture sans voyelles marche comme avec.
+    assert.strictEqual(find('מאי').direct[0].he, 'מַאי');
+    // Pas de lettres : rien à chercher.
+    assert.strictEqual(find('123'), null);
+    assert.strictEqual(find(''), null);
+});
+
+test('lookup sur le vrai texte : la plupart des mots d\'un amoud trouvent une fiche ou une hypothèse (couverture indicative)', () => {
+    // Les 600 premiers mots de Berakhot 2a-3a : on ne vise pas 100 % (le dictionnaire est volontairement petit), on vérifie que la fonction ne casse jamais.
+    const book = read('berakhot');
+    const words = [];
+    book.pages.slice(0, 3).forEach(p => p.forEach(seg => { let i = 0; const txt = T.parseComment(seg).map(x => x.s).join(''); while (i < txt.length) { const w = T.wordAt(txt, i); if (!w || w.end <= i) { i++; continue; } words.push(w.word); i = w.end; } }));
+    assert.ok(words.length > 400);
+    let known = 0;
+    words.forEach(w => { const r = T.lookup(G, L.normalizeHebrew, w); assert.ok(r, w); if (r.direct.length || r.abbr.length) known++; });
+    assert.ok(known / words.length > 0.2, 'au moins un mot sur cinq a une fiche directe');
 });
