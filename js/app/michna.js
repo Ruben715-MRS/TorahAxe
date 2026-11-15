@@ -382,6 +382,8 @@ function michnaRenderText(tr) {
             p.appendChild(document.createTextNode(' ' + michnaVow(text)));
             const inMishna = michnaMishnaComms(c, i);
             if (inMishna.length) p.appendChild(michnaBadge(c, i, inMishna));
+            const toTalmud = michnaTalmudChip(c, i);
+            if (toTalmud) p.appendChild(toTalmud);
             block.appendChild(p);
             michnaCommParagraphs(c, i, inMishna).forEach(x => block.appendChild(x));
             box.appendChild(block);
@@ -390,7 +392,64 @@ function michnaRenderText(tr) {
             const again = box.querySelector('[data-badge="' + focused + '"]');
             if (again) again.focus();
         }
+        // Venu d'un repère du Talmud : la michna citée défile à l'écran et clignote un instant.
+        if (michnaScrollTarget) {
+            const target = box.children[michnaScrollTarget];   // le titre est le premier enfant, puis une michna par bloc
+            michnaScrollTarget = 0;
+            if (target) {
+                target.classList.add('is-flash');
+                setTimeout(() => target.classList.remove('is-flash'), 1600);
+                if (target.scrollIntoView) target.scrollIntoView({ block: 'center', behavior: window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+            }
+        }
+        michnaLoadTalmudRefs();
     }).catch(() => { if (!stale()) msg.textContent = t('tools.torah_error'); });
+}
+
+// Ouvre la Michna à une michna précise (depuis un repère du Talmud) : le traité et le chapitre, puis la michna défile à l'écran et clignote un instant.
+let michnaScrollTarget = 0;    // la michna (depuis 1) à montrer après l'affichage du chapitre ; 0 : aucune
+function michnaOpenAt(id, chapter, mishna, from) {
+    michnaScrollTarget = mishna || 0;
+    if (michnaIndex) {
+        openTool('michna', from);
+        michnaOpen(id, chapter);
+    } else {
+        // L'index n'est pas encore chargé : l'écran lira le choix enregistré à son ouverture.
+        michnaLoadPrefs();
+        michnaState.id = id;
+        michnaState.chapter = chapter;
+        michnaState.open = {};
+        michnaSavePrefs();
+        openTool('michna', from);
+    }
+}
+
+// Les repères vers le Talmud : où chaque michna est citée dans la Guémara (data/talmud/michna-ref.json et l'index du Talmud), chargés une fois.
+let michnaTalmudRefs = null;
+let michnaTalmudIndex = null;
+function michnaLoadTalmudRefs() {
+    if (michnaTalmudRefs || typeof TalmudCore === 'undefined') return;
+    Promise.all([
+        fetch('data/talmud/michna-ref.json').then(res => { if (!res.ok) throw new Error('ref'); return res.json(); }),
+        fetch('data/talmud/index.json').then(res => { if (!res.ok) throw new Error('index'); return res.json(); })
+    ]).then(([refs, index]) => { michnaTalmudRefs = refs; michnaTalmudIndex = index; michnaRender(); }).catch(() => { /* pas de repères vers le Talmud */ });
+}
+
+// Le bouton « Talmud 2a » d'une michna citée dans la Guémara, ou null.
+function michnaTalmudChip(c, i) {
+    if (!michnaTalmudRefs || !michnaTalmudIndex) return null;
+    const tr = TalmudCore.find(michnaTalmudIndex, michnaState.id);
+    const at = tr ? TalmudCore.talmudOfMishna(michnaTalmudRefs, tr, c + 1, i + 1) : null;
+    if (!at) return null;
+    const btn = michnaNode('button', 'tanakh-comm-badge michna-talmud-chip', t('tools.michna_talmud_chip', { label: at.label }));
+    btn.type = 'button';
+    btn.setAttribute('aria-label', t('tools.michna_talmud_chip_aria', { label: at.label }));
+    btn.onclick = () => {
+        if (typeof talmudOpenAt !== 'function') return;
+        openTool('talmud', 'screen-tool-michna');
+        talmudOpenAt(tr.id, at.label);
+    };
+    return btn;
 }
 
 function michnaSelectTractate(id) { michnaOpen(id, 1); }

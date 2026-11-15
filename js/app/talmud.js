@@ -22,6 +22,7 @@ const TALMUD_COMMENTATORS = [
 ];
 
 let talmudIndex = null;
+let talmudMichnaRef = null;     // data/talmud/michna-ref.json (les michnayot citées dans la Guémara) ; null tant qu'il n'est pas chargé ou s'il manque
 let talmudSugyot = null;        // data/talmud/sugyot.json (titres de sugya, là où ils sont écrits) ; null tant qu'il n'est pas chargé ou s'il manque
 let talmudResume = null;        // data/talmud/resume.json (une phrase par ordre, par traité et par chapitre) ; null tant qu'il n'est pas chargé ou s'il manque
 const talmudLoaded = {};        // traité -> data/talmud/<traité>.json
@@ -98,6 +99,7 @@ function toolTalmudInit() {
             talmudRender();
             talmudLoadResume();
             talmudLoadSugyot();
+            talmudLoadMichnaRef();
             talmudLoadCounts(talmudState.id);
             talmudLoadComments(talmudState.id);
         })
@@ -122,6 +124,28 @@ function talmudLoadSugyot() {
         .then(res => { if (!res.ok) throw new Error('sugyot HTTP ' + res.status); return res.json(); })
         .then(data => { talmudSugyot = data; talmudRender(); })
         .catch(() => { /* pas de titres */ });
+}
+
+// Les michnayot citées : une ligne « Michna 1:2 » devant le segment qui ouvre la citation, qui mène à la michna dans l'écran de la Michna. Même case que les titres de sugya.
+function talmudLoadMichnaRef() {
+    if (talmudMichnaRef) return;
+    fetch('data/talmud/michna-ref.json')
+        .then(res => { if (!res.ok) throw new Error('michna-ref HTTP ' + res.status); return res.json(); })
+        .then(data => { talmudMichnaRef = data; talmudRender(); })
+        .catch(() => { /* pas de repères de michna */ });
+}
+
+function talmudMichnaRefNode(tr, ref) {
+    const row = talmudNode('p', 'talmud-michna-ref');
+    const btn = talmudNode('button', 'tool-history-chip', t('tools.talmud_michna_ref', { c: ref.c, m: ref.m }) + ' ›');
+    btn.type = 'button';
+    btn.setAttribute('aria-label', t('tools.talmud_michna_ref_aria', { c: ref.c, m: ref.m }));
+    btn.onclick = () => {
+        if (typeof michnaOpenAt !== 'function') return;
+        michnaOpenAt(tr.id, ref.c, ref.m, 'screen-tool-talmud');
+    };
+    row.appendChild(btn);
+    return row;
 }
 
 function talmudToggleSugyot(checked) {
@@ -479,6 +503,8 @@ function talmudRenderText(tr) {
         const sugyaAt = {};
         sugyot.forEach(s => { if (s.starts >= 0) sugyaAt[s.starts] = s; });
         // Une sugya qui vient de l'amoud précédent : un rappel en haut, tant qu'une autre ne commence pas au premier segment.
+        const michnaRefs = {};
+        if (talmudState.sugyot && talmudMichnaRef) TalmudCore.michnaRefIn(talmudMichnaRef, tr, wanted.page).filter(r => r.start).forEach(r => { (michnaRefs[r.seg] = michnaRefs[r.seg] || []).push(r); });
         const carried = sugyot.find(s => s.continues);
         if (carried && sugyaAt[0] === undefined) box.appendChild(talmudSugyaNode(carried, true));
         (book.pages[wanted.page] || []).forEach((raw, i) => {
@@ -489,6 +515,7 @@ function talmudRenderText(tr) {
                 if (sentence && i > 0) box.appendChild(talmudNode('p', 'tool-small talmud-chapter-reminder', sentence));
             }
             if (sugyaAt[i]) box.appendChild(talmudSugyaNode(sugyaAt[i], false));
+            (michnaRefs[i] || []).forEach(ref => box.appendChild(talmudMichnaRefNode(tr, ref)));
             const block = talmudNode('div', 'tanakh-block talmud-block');
             const p = talmudSegment(raw);
             const inSegment = talmudSegmentComms(wanted.page, i);

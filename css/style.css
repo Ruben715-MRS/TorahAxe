@@ -18348,3 +18348,11 @@ body:has(#screen-recit:not(.hidden))::after {
 .talmud-sugya { margin: 16px 0 6px; padding: 6px 10px; border-inline-start: 3px solid var(--accent, #d4a017); background: color-mix(in srgb, var(--surface) 70%, transparent); direction: ltr; text-align: start; font: 600 14px/1.4 system-ui, sans-serif; color: var(--text-dark); border-radius: 0 8px 8px 0; }
 .talmud-sugya.is-continued { font-weight: 500; opacity: 0.85; margin-top: 4px; }
 .talmud-sugya-range { font-weight: 400; color: var(--muted-text); white-space: nowrap; }
+
+/* Repères de michna (js/app/talmud.js, js/app/michna.js) : « Michna 1:2 » devant la citation dans la Guémara, « Talmud 2a » à côté de la michna ; la michna visée clignote. */
+.talmud-michna-ref { margin: 8px 0 2px; direction: ltr; text-align: start; }
+.talmud-michna-ref .tool-history-chip { min-height: 32px; padding: 2px 12px; font-size: 13px; }
+.michna-talmud-chip { margin-inline-start: 6px; }
+.michna-block.is-flash { animation: michnaFlash 1.5s ease-out; border-radius: 12px; }
+@keyframes michnaFlash { 0% { background-color: rgba(212, 160, 23, 0.35); } 100% { background-color: transparent; } }
+@media (prefers-reduced-motion: reduce) { .michna-block.is-flash { animation: none; background-color: rgba(212, 160, 23, 0.2); } }

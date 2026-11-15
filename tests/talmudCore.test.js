@@ -398,3 +398,50 @@ test('titres de sugya : le Daf Yomi à venir est couvert amoud par amoud (Bekhor
     assert.deepStrictEqual(covered('tamid', '25b', '33b'), []);
     assert.deepStrictEqual(covered('niddah', '2a', '73a'), []);
 });
+
+test('michnayot citées : chaque repère tombe sur un segment qui existe et sur une michna qui existe ; le début de la citation reprend celui de la michna', () => {
+    const refs = read('michna-ref');
+    const MARKS = /[֑-ׇ]/g;
+    const words = (s) => String(s || '').replace(/<[^>]*>/g, ' ').replace(MARKS, '').replace(/־/g, ' ').replace(/[^א-ת\s]/g, ' ').split(/\s+/).filter(Boolean);
+    const skel = (w) => w.replace(/[יואה]/g, '');
+    const same = (a, b) => a === b || (skel(a).length > 0 && skel(a) === skel(b));
+    let total = 0, starts = 0;
+    T.tractates(index).forEach(tr => {
+        const book = read(tr.id);
+        const michna = JSON.parse(fs.readFileSync(path.resolve(__dirname, '..', 'data', 'michna', tr.id + '.json'), 'utf8'));
+        const list = refs.tractates[tr.id];
+        assert.ok(Array.isArray(list), tr.id + ' : pas de liste');
+        let prev = [-1, -1];
+        list.forEach(a => {
+            const [p, s, c, m, start] = a;
+            total++;
+            assert.ok(p >= 0 && p < tr.amudim && s >= 0 && s < book.pages[p].length, tr.id + ' : segment absent ' + JSON.stringify(a));
+            assert.ok(p > prev[0] || (p === prev[0] && s > prev[1]), tr.id + ' : repères dans le désordre');
+            prev = [p, s];
+            assert.ok(michna.chapters[c - 1] && typeof michna.chapters[c - 1][m - 1] === 'string', tr.id + ' : michna absente ' + c + ':' + m);
+            if (start === 1) {
+                starts++;
+                const gw = words(book.pages[p][s]).filter(w => w !== 'וכו');
+                const g = /^מתני(תין)?$/.test(gw[0]) ? gw.slice(1) : gw;
+                const mw = words(michna.chapters[c - 1][m - 1]);
+                let k = 0;
+                while (k < 3 && k < g.length && same(g[k], mw[k])) k++;
+                assert.ok(k >= 3, tr.id + ' ' + T.amoudLabel(tr.start, p) + ':' + (s + 1) + ' → ' + c + ':' + m + ' : le début ne correspond pas');
+            }
+        });
+    });
+    assert.ok(total > 1800 && starts > 1500, 'beaucoup de michnayot retrouvées : ' + total + ' repères, ' + starts + ' débuts');
+});
+
+test('michnaRefIn et talmudOfMishna : la michna d\'un amoud, et où une michna est citée', () => {
+    const refs = read('michna-ref');
+    const tr = T.find(index, 'berakhot');
+    assert.deepStrictEqual(T.michnaRefIn(refs, tr, 0), [{ seg: 0, c: 1, m: 1, start: true }]);
+    assert.deepStrictEqual(T.talmudOfMishna(refs, tr, 1, 2), { page: T.pageOf(tr, '9b'), seg: 8, label: '9b' });
+    assert.strictEqual(T.talmudOfMishna(refs, tr, 1, 3).label, '10b');
+    assert.strictEqual(T.talmudOfMishna(refs, tr, 9, 99), null);
+    assert.deepStrictEqual(T.michnaRefIn(null, tr, 0), []);
+    // Méguila : la Guémara suit un autre ordre de chapitres que la Michna (« Bené haïr » vient après « Hakoré omed »).
+    const meg = T.find(index, 'megillah');
+    assert.ok(T.talmudOfMishna(refs, meg, 4, 1).page < T.talmudOfMishna(refs, meg, 3, 1).page);
+});

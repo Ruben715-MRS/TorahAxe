@@ -149,6 +149,24 @@
         return out;
     }
 
+    // Les michnayot citées dans la Guémara (data/talmud/michna-ref.json, scripts/build_talmud_michna.js) :
+    // { tractates: { <traité>: [ [amoud (indice), segment (depuis 0), chapitre (depuis 1), michna (depuis 1), début (1) ou reprise (0)] ] } }.
+    // Les michnayot dont un segment de l'amoud `page` ouvre la citation : [ { seg, c, m, start } ] dans l'ordre du texte.
+    function michnaRefIn(refs, tr, page) {
+        var list = (refs && refs.tractates && tr && refs.tractates[tr.id]) || [];
+        return list.filter(function (a) { return a[0] === page; }).map(function (a) { return { seg: a[1], c: a[2], m: a[3], start: a[4] === 1 }; });
+    }
+
+    // Où la michna (chapitre `c`, michna `m`, depuis 1) est citée pour la première fois dans la Guémara : { page, seg, label } ou null (elle n'y est pas citée).
+    function talmudOfMishna(refs, tr, c, m) {
+        var list = (refs && refs.tractates && tr && refs.tractates[tr.id]) || [];
+        for (var i = 0; i < list.length; i++) {
+            var a = list[i];
+            if (a[2] === c && a[3] === m && a[4] === 1) return { page: a[0], seg: a[1], label: amoudLabel(tr.start, a[0]) };
+        }
+        return null;
+    }
+
     // --- Le mot touché -------------------------------------------------------------------------------------------------------------------
     // Le mot hébreu ou araméen autour de la position `offset` d'un texte (la position d'un curseur : entre deux lettres) : { start, end (exclu), word } ou null
     // si on n'est pas sur un mot. Un mot est fait de lettres et de voyelles ou accents ; le maqaf et les signes de ponctuation le coupent ; les guillemets
@@ -217,7 +235,7 @@
 
     return {
         tractates: tractates, find: find, rank: rank, amoudLabel: amoudLabel, pageOf: pageOf, hebrewAmoud: hebrewAmoud, dafOf: dafOf,
-        chapterAt: chapterAt, chaptersStartingIn: chaptersStartingIn, step: step, isHadran: isHadran, dafYomiTarget: dafYomiTarget, DAF_YOMI: DAF_YOMI, wordAt: wordAt, lookup: lookup, summaryOf: summaryOf, refOf: refOf, sugyotIn: sugyotIn,
+        chapterAt: chapterAt, chaptersStartingIn: chaptersStartingIn, step: step, isHadran: isHadran, dafYomiTarget: dafYomiTarget, DAF_YOMI: DAF_YOMI, wordAt: wordAt, lookup: lookup, summaryOf: summaryOf, refOf: refOf, sugyotIn: sugyotIn, michnaRefIn: michnaRefIn, talmudOfMishna: talmudOfMishna,
         hebrewNumber: M.hebrewNumber, maskIds: M.maskIds, parseComment: M.parseComment, stripMarks: M.stripMarks
     };
 }));
