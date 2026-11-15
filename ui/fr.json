@@ -3078,9 +3078,9 @@
     "zm_o_chatzotLayla_stars6": "6 heures après les étoiles (Breslev)",
     "zm_rem_title": "Rappels",
     "zm_rem_note": "Des notifications de l'iPhone, calculées sur l'appareil pour les 7 prochains jours (et reprogrammées à chaque ouverture de l'app). Elles suivent votre lieu et vos opinions.",
-    "zm_rem_note_web": "Les rappels fonctionnent dans l'app iPhone d'HistoriAxe, pas dans le navigateur. Vous pouvez déjà les régler ici.",
+    "zm_rem_note_web": "Les rappels fonctionnent dans l'app iPhone TorahAxe, pas dans le navigateur. Vous pouvez déjà les régler ici : ils seront programmés dans l'app.",
     "zm_rem_master": "Activer les rappels",
-    "zm_rem_denied": "Les notifications sont refusées : autorise-les dans les réglages de l'iPhone.",
+    "zm_rem_denied": "Les notifications sont refusées : autorisez-les dans les réglages de l'iPhone.",
     "zm_rem_off": "Non",
     "zm_rem_yes": "Oui",
     "zm_rem_no": "Non",
@@ -3113,7 +3113,7 @@
     "zmr_candles_body": "Allumage à {time}, dans {n} min.",
     "zmr_omer_title": "Omer : jour {n}",
     "zmr_omer_body": "Ce soir : {text}.",
-    "zmr_omer_simple": "N'oublie pas de compter l'Omer ce soir.",
+    "zmr_omer_simple": "N'oubliez pas de compter l'Omer ce soir.",
     "zmr_omer_1": "un jour",
     "zmr_omer_days": "{n} jours",
     "zmr_omer_week_1": "une semaine",
@@ -6454,7 +6454,10 @@
     "hassidout_help_colors_title": "Les couleurs",
     "hassidout_help_fiche_title": "La fiche",
     "zm_now": "Maintenant",
-    "zm_candles_short": "Bougies"
+    "zm_candles_short": "Bougies",
+    "zm_rem_test": "Envoyer un rappel d'essai (dans 5 secondes)",
+    "zm_rem_test_sent": "Rappel d'essai programmé : patientez 5 secondes.",
+    "zm_rem_test_body": "Les rappels de TorahAxe fonctionnent."
   },
   "geoquiz": {
     "title": "Quiz des pays",

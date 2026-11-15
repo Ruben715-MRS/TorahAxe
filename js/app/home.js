@@ -526,4 +526,16 @@ function closeSettings() {
 window.onload = async () => {
     if (typeof i18n !== 'undefined') await i18n.init();
     homeInit();
+    remindersStart();
 };
+
+// Les rappels (notifications locales) sont reprogrammés à l'ouverture de l'app et à chaque retour au premier plan : iOS n'en garde que quelques-uns
+// en attente, on renouvelle donc les prochains jours à chaque fois (voir js/notifications.js).
+function remindersStart() {
+    if (typeof TorahAxeNotifications === 'undefined' || !TorahAxeNotifications.isSupported()) return;
+    TorahAxeNotifications.scheduleZmanim();
+    try {
+        window.Capacitor.Plugins.App.addListener('appStateChange', (state) => { if (state && state.isActive) TorahAxeNotifications.scheduleZmanim(); });
+    } catch (e) { /* sans l'événement de l'app : on se rabat sur la visibilité de la page */ }
+    document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') TorahAxeNotifications.scheduleZmanim(); });
+}

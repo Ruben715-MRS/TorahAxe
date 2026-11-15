@@ -1060,7 +1060,7 @@ function zmRemSave() {
     zmResched();
 }
 function zmResched() {
-    try { if (typeof HistoriAxeNotifications !== 'undefined' && HistoriAxeNotifications.scheduleZmanim) HistoriAxeNotifications.scheduleZmanim(); } catch (e) { /* sans rappels : le reste fonctionne */ }
+    try { if (typeof TorahAxeNotifications !== 'undefined' && TorahAxeNotifications.scheduleZmanim) TorahAxeNotifications.scheduleZmanim(); } catch (e) { /* sans rappels : le reste fonctionne */ }
 }
 function zmRemRerender() {
     zmRender(true);
@@ -1091,7 +1091,7 @@ function zmReminders(body) {
     body.appendChild(zmEl('h3', 'home-section-title', t('tools.zm_rem_title')));
     const details = zmEl('div', 'zm-set-card zm-rem');
     details.id = 'zm-rem';
-    const native = typeof HistoriAxeNotifications !== 'undefined' && HistoriAxeNotifications.isSupported && HistoriAxeNotifications.isSupported();
+    const native = typeof TorahAxeNotifications !== 'undefined' && TorahAxeNotifications.isSupported && TorahAxeNotifications.isSupported();
     details.appendChild(zmEl('p', 'tool-small', t(native ? 'tools.zm_rem_note' : 'tools.zm_rem_note_web')));
 
     const master = zmEl('label', 'zm-rem-master');
@@ -1101,7 +1101,7 @@ function zmReminders(body) {
     box.checked = zmRem.on;
     box.onchange = () => {
         if (box.checked && native) {
-            HistoriAxeNotifications.enableZmanim().then(ok => {
+            TorahAxeNotifications.enableZmanim().then(ok => {
                 zmRem.on = ok;
                 if (!ok) showToast(t('tools.zm_rem_denied'));
                 zmRemSave();
@@ -1116,6 +1116,13 @@ function zmReminders(body) {
     master.appendChild(box);
     master.appendChild(document.createTextNode(' ' + t('tools.zm_rem_master')));
     details.appendChild(master);
+    if (native) {
+        const test = zmEl('button', 'tool-history-chip', t('tools.zm_rem_test'));
+        test.type = 'button';
+        test.id = 'zm-r-test';
+        test.onclick = () => TorahAxeNotifications.sendTest(5).then(ok => showToast(t(ok ? 'tools.zm_rem_test_sent' : 'tools.zm_rem_denied')));
+        details.appendChild(test);
+    }
 
     // Bougies
     zmRemSelect(details, 'zm-r-candles', t('tools.zm_rem_candles'),
