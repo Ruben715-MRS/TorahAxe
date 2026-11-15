@@ -5,7 +5,7 @@
 // et des boutons « précédent / suivant » qui passent d'un traité à l'autre. Les données : data/talmud/ (scripts/build_talmud.js, règles pures dans
 // js/talmudCore.js). Chaque traité est chargé à son ouverture, une seule fois. Même organisation que la Michna (js/app/michna.js).
 // « Sans voyelles » retire les voyelles et les accents. Tout le texte passe par des nœuds texte ; la police est celle des Réglages (--torah-font).
-// Les commentateurs (Rachi, Tossafot) : même panneau repliable que la Michna ; chacun sous le segment de Guémara qu'il commente, avec sa couleur.
+// Les commentateurs (Rachi, Rachbam, Tossafot) : même panneau repliable que la Michna ; chacun sous le segment de Guémara qu'il commente, avec sa couleur.
 // Une pastille « 💬 n » à côté de chaque segment commenté ouvre ses commentaires, même quand la case n'est pas cochée (data/talmud/counts-<traité>.json).
 // Le choix (traité, amoud, voyelles, commentateurs cochés) est gardé dans localStorage, sans jamais bloquer si le stockage est refusé.
 
@@ -14,6 +14,7 @@ const TALMUD_KEY = 'talmudPrefs';
 // `source` : la clé i18n de sa mention de source ; `color` : la couleur de sa bordure.
 const TALMUD_COMMENTATORS = [
     { id: 'rashi', name: 'Rachi', he: 'רש״י', file: 'rashi-', source: 'tools.talmud_src_rashi', color: '#7c8aa5' },
+    { id: 'rashbam', name: 'Rachbam', he: 'רשב״ם', file: 'rashbam-', source: 'tools.talmud_src_rashbam', color: '#b5792a' },
     { id: 'tosafot', name: 'Tossafot', he: 'תוספות', file: 'tosafot-', source: 'tools.talmud_src_tosafot', color: '#8e5aa8' }
 ];
 

@@ -116,8 +116,8 @@ test('navigation entre traités : de la fin de Berakhot au début de Chabbat, et
     assert.ok(sh.amudim > 300);
 });
 
-test('commentaires (Rachi, Tossafot) : alignés sur les amoudim et les segments de la Guémara, masques des pastilles cohérents', () => {
-    const PREFIX = { rashi: 'rashi-', tosafot: 'tosafot-' };
+test('commentaires (Rachi, Rachbam, Tossafot) : alignés sur les amoudim et les segments de la Guémara, masques des pastilles cohérents', () => {
+    const PREFIX = { rashi: 'rashi-', rashbam: 'rashbam-', tosafot: 'tosafot-' };
     let withComm = 0;
     T.tractates(index).forEach(tr => {
         const info = tr;
@@ -162,4 +162,21 @@ test('Berakhot : Rachi (3 138 commentaires) et Tossafot (501), le mot commenté 
     assert.ok(/^<b>מאימתי קורין/.test(tosafot.pages[0][0][0]));
     assert.deepStrictEqual(T.maskIds(['rashi', 'tosafot'], 3), ['rashi', 'tosafot']);
     assert.deepStrictEqual(T.maskIds(['rashi', 'tosafot'], 2), ['tosafot']);
+});
+
+test('Rachbam : seulement Bava Batra (dès 29a) et Pessahim (99b à 121b), là où Rachi ne commente plus', () => {
+    const withRashbam = T.tractates(index).filter(t => t.comm.includes('rashbam')).map(t => t.id);
+    assert.deepStrictEqual(withRashbam, ['pesachim', 'bava-batra']);
+    const range = (id) => {
+        const tr = T.find(index, id);
+        const pages = read('rashbam-' + id).pages.map((p, i) => (p.some(l => l.length) ? T.amoudLabel(tr.start, i) : null)).filter(Boolean);
+        return [pages[0], pages[pages.length - 1]];
+    };
+    assert.deepStrictEqual(range('bava-batra'), ['29a', '176b']);
+    assert.deepStrictEqual(range('pesachim'), ['99b', '121b']);
+    // Bava Batra : Rachi s'arrête à 29a.
+    const bb = T.find(index, 'bava-batra');
+    const rashi = read('rashi-bava-batra');
+    const lastRashi = rashi.pages.map((p, i) => (p.some(l => l.length) ? i : -1)).filter(i => i >= 0).pop();
+    assert.strictEqual(T.amoudLabel(bb.start, lastRashi), '29a');
 });

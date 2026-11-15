@@ -1,12 +1,12 @@
 // Produit data/talmud/ : le Talmud de Babylone (Guémara) en araméen vocalisé, depuis Sefaria.
 // Texte : « William Davidson Edition - Vocalized Aramaic » (Koren Noé ; nikoud : Dicta), licence CC-BY-NC (usage non commercial).
-// Commentaires : Rashi et Tosafot, édition de Vilna (domaine public), alignés sur les segments de la Guémara (voir plus bas).
+// Commentaires : Rashi, Tosafot et Rashbam (Bava Batra, Pessahim), édition de Vilna (domaine public), alignés sur les segments de la Guémara (voir plus bas).
 // Usage : NODE_USE_ENV_PROXY=1 node scripts/build_talmud.js berakhot [shabbat …]   (ou « all » pour les 37 traités ; derrière un proxy, sinon sans la variable)
 //   option --check : ne rien écrire, seulement dire si Rashi et Tosafot s'alignent bien sur la Guémara.
 // Fichiers :
 //   data/talmud/<traité>.json = { v, id, start, pages: [ amoud → [ segment ] ] } : `start` est le premier amoud (« 2a »), `pages[0]` ; les amoudim se suivent
 //     (2a, 2b, 3a…) jusqu'à la fin du traité ; un amoud que la numérotation de Vilna saute reste vide (Nazir 33b). Un segment est du texte avec <b> (les mots en gras : « Matni », « Guemara », mot d'ouverture).
-//   data/talmud/<préfixe><traité>.json (rashi-, tosafot-) = { v, id, commentator, pages: [ amoud → [ segment → [commentaires] ] ] } : mêmes amoudim que <traité>.json ;
+//   data/talmud/<préfixe><traité>.json (rashi-, rashbam-, tosafot-) = { v, id, commentator, pages: [ amoud → [ segment → [commentaires] ] ] } : mêmes amoudim que <traité>.json ;
 //     dans un amoud, le segment k de la Guémara a ses commentaires en k (les derniers segments sans commentaire sont omis). Un commentaire est du texte avec
 //     <b> (le mot commenté, avant le premier « – » ou « - »), <i> (citation) et <small>.
 //   data/talmud/counts-<traité>.json = { v, order, pages: [ amoud → [ masque par segment ] ] } : le bit k du masque est celui de order[k] ; sert aux pastilles « 💬 n ».
@@ -72,8 +72,10 @@ const amoud = (i, start) => { const n = parseInt(start, 10) * 2 + (/b$/.test(sta
 const amoudIndex = (label) => parseInt(label, 10) * 2 + (/b$/.test(label) ? 1 : 0);
 
 // Les commentateurs : `title` : leur titre Sefaria (« Rashi on Berakhot ») ; `prefix` : le préfixe de leurs fichiers.
+// `only` : les traités qu'il couvre (les autres n'ont pas de fichier chez Sefaria : inutile de les demander).
 const COMMENTATORS = [
     { id: 'rashi', title: 'Rashi', prefix: 'rashi-' },
+    { id: 'rashbam', title: 'Rashbam', prefix: 'rashbam-', only: ['bava-batra', 'pesachim'] },   // Bava Batra 29a à 176b ; Pesachim 99b à 121b (Rashi n'y est pas)
     { id: 'tosafot', title: 'Tosafot', prefix: 'tosafot-' }
 ];
 // L'édition de Vilna d'abord ; si elle est quasi vide (Rashi sur Roch Hachana : 8 commentaires), la version Wikisource, dans le domaine public aussi, la remplace.
@@ -154,7 +156,7 @@ async function buildTractate(tr) {
     // Rashi et Tosafot : les fichiers de chaque commentateur et les masques des pastilles.
     const have = [];
     const loaded = {};
-    for (const comm of COMMENTATORS) {
+    for (const comm of COMMENTATORS.filter(c => !c.only || c.only.includes(tr.id))) {
         const got = await loadCommentary(tr, comm, first, pages);
         if (!got) { if (!CHECK) { const f = path.join(DIR, comm.prefix + tr.id + '.json'); if (fs.existsSync(f)) fs.unlinkSync(f); } continue; }
         loaded[comm.id] = got;
