@@ -75,5 +75,18 @@
     var MARKS = /[֑-ׇ]/g;
     function stripMarks(text) { return String(text || '').replace(MARKS, ''); }
 
-    return { hebrewNumber: hebrewNumber, tractates: tractates, find: find, step: step, parseComment: parseComment, stripMarks: stripMarks };
+    // Les résumés de data/michna/resume.json : { sedarim: { <ordre>: phrase }, tractates: { <traité>: { book: phrase, chapters: [phrase par chapitre] } } }.
+    // Les trois phrases d'un chapitre : celle de son ordre, celle de son traité et la sienne ('' si le fichier ne la donne pas).
+    function summaryOf(resume, index, id, chapter) {
+        var tr = find(index, id);
+        var out = { seder: '', book: '', chapter: '' };
+        if (!tr || !resume) return out;
+        var book = (resume.tractates || {})[id];
+        out.seder = (resume.sedarim || {})[tr.seder] || '';
+        out.book = (book && book.book) || '';
+        out.chapter = (book && book.chapters && book.chapters[chapter - 1]) || '';
+        return out;
+    }
+
+    return { summaryOf: summaryOf, hebrewNumber: hebrewNumber, tractates: tractates, find: find, step: step, parseComment: parseComment, stripMarks: stripMarks };
 }));

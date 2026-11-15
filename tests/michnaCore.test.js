@@ -59,3 +59,26 @@ test('un commentaire : mot commenté, citation et texte, sans HTML', () => {
 test('sans voyelles : les points et les accents partent, les lettres restent', () => {
     assert.strictEqual(M.stripMarks('מֵאֵימָתַי'), 'מאימתי');
 });
+
+test('les résumés : un par ordre, par traité et par chapitre, tous écrits', () => {
+    const resume = JSON.parse(fs.readFileSync(path.join(DIR, 'resume.json'), 'utf8'));
+    index.sedarim.forEach(s => assert.ok(resume.sedarim[s.id] && resume.sedarim[s.id].length > 20, 'ordre ' + s.id));
+    M.tractates(index).forEach(t => {
+        const r = resume.tractates[t.id];
+        assert.ok(r && r.book.length > 20, t.id + ' : résumé du traité');
+        assert.strictEqual(r.chapters.length, t.chapters, t.id + ' : un résumé par chapitre');
+        r.chapters.forEach((c, i) => assert.ok(typeof c === 'string' && c.length > 15, t.id + ' ' + (i + 1)));
+    });
+    assert.strictEqual(Object.keys(resume.tractates).length, 63);
+});
+
+test('summaryOf : l\'ordre, le traité et le chapitre ; vide si inconnu', () => {
+    const resume = JSON.parse(fs.readFileSync(path.join(DIR, 'resume.json'), 'utf8'));
+    const s = M.summaryOf(resume, index, 'berakhot', 1);
+    assert.strictEqual(s.seder, resume.sedarim.zeraim);
+    assert.strictEqual(s.book, resume.tractates.berakhot.book);
+    assert.strictEqual(s.chapter, resume.tractates.berakhot.chapters[0]);
+    assert.deepStrictEqual(M.summaryOf(resume, index, 'inconnu', 1), { seder: '', book: '', chapter: '' });
+    assert.strictEqual(M.summaryOf(null, index, 'berakhot', 1).book, '');
+    assert.strictEqual(M.summaryOf(resume, index, 'berakhot', 99).chapter, '');
+});

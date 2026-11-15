@@ -10,7 +10,8 @@
 const MICHNA_KEY = 'michnaPrefs';
 let michnaIndex = null;
 const michnaLoaded = {};
-let michnaState = { id: 'berakhot', chapter: 1, bart: true, vowels: 'full' };
+let michnaState = { id: 'berakhot', chapter: 1, bart: true, vowels: 'full', summary: true };
+let michnaResume = null;   // data/michna/resume.json (une phrase par ordre, par traité et par chapitre) ; null tant qu'il n'est pas chargé ou s'il manque
 
 function michnaLoadPrefs() {
     try {
@@ -20,6 +21,7 @@ function michnaLoadPrefs() {
             if (Number.isInteger(p.chapter) && p.chapter > 0) michnaState.chapter = p.chapter;
             if (typeof p.bart === 'boolean') michnaState.bart = p.bart;
             if (p.vowels === 'consonants') michnaState.vowels = 'consonants';
+            if (typeof p.summary === 'boolean') michnaState.summary = p.summary;
         }
     } catch (e) {}
 }
@@ -40,8 +42,45 @@ function toolMichnaInit() {
             if (!MichnaCore.find(json, michnaState.id)) michnaState = Object.assign(michnaState, { id: 'berakhot', chapter: 1 });
             msg.textContent = '';
             michnaRender();
+            michnaLoadResume();
         })
         .catch(() => { msg.textContent = t('tools.torah_error'); });
+}
+
+// Les résumés (case « Résumé ») : une phrase par ordre, par traité et par chapitre, dans data/michna/resume.json. Texte écrit pour l'application, en
+// français, à relire par une personne compétente. Chargés une fois ; sans le fichier, rien ne s'affiche et le reste de l'écran fonctionne.
+function michnaLoadResume() {
+    if (michnaResume) return;
+    fetch('data/michna/resume.json')
+        .then(res => { if (!res.ok) throw new Error('resume HTTP ' + res.status); return res.json(); })
+        .then(data => { michnaResume = data; michnaRenderSummary(); })
+        .catch(() => { /* pas de résumé */ });
+}
+
+function michnaRenderSummary() {
+    const box = toolEl('tool-michna-summary');
+    toolClear(box);
+    toolEl('tool-michna-summary-on').checked = !!michnaState.summary;
+    const s = michnaState.summary && michnaIndex ? MichnaCore.summaryOf(michnaResume, michnaIndex, michnaState.id, michnaState.chapter) : null;
+    const tr = michnaIndex ? MichnaCore.find(michnaIndex, michnaState.id) : null;
+    const lines = s ? [
+        [t('tools.michna_summary_seder', { name: tr.sederFr }), s.seder],
+        [t('tools.michna_summary_book', { name: tr.fr }), s.book],
+        [t('tools.michna_chapter_n', { n: michnaState.chapter }) + ' :', s.chapter]
+    ].filter(l => l[1]) : [];
+    box.hidden = !lines.length;
+    lines.forEach(([label, text]) => {
+        const row = michnaNode('div', 'tanakh-cycle-row');
+        row.appendChild(michnaNode('strong', '', label + ' '));
+        row.appendChild(michnaNode('span', 'tool-small', text));
+        box.appendChild(row);
+    });
+}
+
+function michnaToggleSummary(checked) {
+    michnaState.summary = checked;
+    michnaSavePrefs();
+    michnaRenderSummary();
 }
 
 // Ouvre un traité (chargé une fois) à un chapitre, puis redessine.
@@ -114,6 +153,7 @@ function michnaRender() {
     michnaChips(toolEl('tool-michna-vowels'), [['full', t('tools.tanakh_vowels_full')], ['consonants', t('tools.tanakh_vowels_consonants')]], michnaState.vowels,
         key => { michnaState.vowels = key; michnaSavePrefs(); michnaRender(); });
     toolEl('tool-michna-source').textContent = t('tools.michna_source');
+    michnaRenderSummary();
     michnaRenderText(tr);
 }
 

@@ -1,0 +1,853 @@
+{
+ "v": 1,
+ "sedarim": {
+  "zeraim": "Les lois de la terre et de l'agriculture : bénédictions, dons aux pauvres, dîmes, mélanges interdits et année sabbatique.",
+  "moed": "Les temps sacrés : Chabbat, fêtes, Yom Kippour, Roch Hachana, jeûnes, Pessah, Souccot et Pourim.",
+  "nashim": "Le mariage et la famille : fiançailles, contrat de mariage, divorce, lévirat, vœux et soupçon d'adultère.",
+  "nezikin": "Le droit civil et pénal : dommages, litiges d'argent, tribunaux, peines, serments, idolâtrie et maximes des Pères.",
+  "kodashim": "Le Temple et ses sacrifices : offrandes, abattage rituel, animaux interdits, premiers-nés et mesures du Temple.",
+  "tohorot": "La pureté et l'impureté : vases, mort, plaies de tsaraat, bains rituels et nidda."
+ },
+ "tractates": {
+  "berakhot": {
+   "book": "Les prières et les bénédictions : le Chéma, la Amida, le Birkat haMazon et les bénédictions de reconnaissance.",
+   "chapters": [
+    "Les heures de lecture du Chéma, le soir et le matin, et la façon de le dire, debout ou couché, selon Beit Chammaï et Beit Hillel.",
+    "L'attention requise pour lire le Chéma, les pauses permises, et la dispense du jeune marié, que Rabban Gamliel n'a pourtant pas appliquée à lui-même.",
+    "Qui est dispensé du Chéma et de la prière : celui dont le mort est devant lui, puis les femmes, les esclaves et les enfants pour certaines mitsvot.",
+    "Les heures de la prière (Chaharit, Minha, Arvit, Moussaf), la prière abrégée et la prière en déplacement.",
+    "Le recueillement avant de prier, la mention de la pluie et de la rosée, et ce qu'on fait quand l'officiant se trompe.",
+    "Les bénédictions avant de manger selon les aliments : fruits de l'arbre, de la terre, pain, vin, légumes.",
+    "Le zimoun : à partir de trois convives on invite à bénir ensemble, et ce qui change avec dix et plus.",
+    "Les controverses de Beit Chammaï et Beit Hillel sur le repas : lavage des mains, coupe de vin, lumière et havdala.",
+    "Les bénédictions devant les miracles, le tonnerre, les bonnes et les mauvaises nouvelles, et le respect du lieu du Temple."
+   ]
+  },
+  "peah": {
+   "book": "Les dons aux pauvres dans les champs : le coin du champ, la glanure, la gerbe oubliée, le raisin tombé et la dîme du pauvre.",
+   "chapters": [
+    "Ce que la Torah ne mesure pas (péa, prémices, visite au Temple, bienfaisance, étude) et les champs qui doivent laisser la péa.",
+    "Ce qui sépare un champ en parcelles distinctes pour la péa : cours d'eau, chemin, autre culture.",
+    "Comment la péa se donne quand un même champ porte plusieurs espèces ou appartient à plusieurs propriétaires.",
+    "La péa reste attachée au sol à la fin du champ ; comment elle est laissée et répartie entre les pauvres.",
+    "La gerbe oubliée : quand une gerbe est considérée comme oubliée, selon Beit Chammaï et Beit Hillel.",
+    "La gerbe oubliée, suite : les cas de gerbes qui comptent ou non comme oubliées, et les cas douteux.",
+    "L'olivier de renom, qui échappe à l'oubli, le raisin et l'olive tombés et le grappillage.",
+    "Qui est pauvre et peut recevoir glanure, péa et dîme du pauvre, et ce qui est dû à celui qui est dans le besoin."
+   ]
+  },
+  "demai": {
+   "book": "Les produits dont on ne sait pas s'ils ont été dîmés : ce qu'il faut séparer, et comment.",
+   "chapters": [
+    "Les fruits peu estimés pour lesquels on est indulgent en matière de dîme douteuse, et ceux qui y sont soumis.",
+    "Les produits dîmés comme douteux en tout lieu, et le statut de celui qui devient un haver fidèle aux dîmes.",
+    "Ce qu'on donne aux pauvres et aux invités de passage sans séparer la dîme douteuse.",
+    "L'achat auprès de quelqu'un qui n'est pas digne de confiance en matière de dîme, et le partage de la marchandise.",
+    "Celui qui achète au boulanger et comment il sépare les dîmes, pour lui comme pour d'autres.",
+    "Le locataire, le métayer et l'associé : qui sépare la dîme du produit d'un champ loué ou partagé.",
+    "Les repas chez quelqu'un qui n'est pas fiable et les accords entre associés."
+   ]
+  },
+  "kilayim": {
+   "book": "Les mélanges interdits : graines, arbres, vignes, animaux et vêtements de laine et de lin.",
+   "chapters": [
+    "Les espèces qui comptent comme différentes ou comme voisines pour le mélange de graines et la greffe.",
+    "Les proportions de semences d'une autre espèce admises dans un champ, et la distance entre les espèces.",
+    "Les parcelles de six palmes sur six et la façon d'y semer plusieurs légumes.",
+    "Le koren du champ à côté d'une vigne et la bande de vide à respecter autour de la vigne.",
+    "La vigne dévastée : à partir de quel nombre de ceps on en parle encore, et ce qu'on peut semer à côté.",
+    "La vigne en treille et les semences qu'on peut cultiver près d'elle.",
+    "Le provin, la greffe de la vigne et la vigne qui s'étend sur un champ de légumes.",
+    "Le mélange de la vigne avec d'autres semences, la greffe d'arbres, et l'interdit de faire travailler ensemble des bêtes d'espèces différentes.",
+    "Le chaatnez : l'interdit de porter ensemble laine et lin, et ce que l'on peut porter ou non."
+   ]
+  },
+  "sheviit": {
+   "book": "La septième année, où la terre se repose : travaux, produits, remise des dettes.",
+   "chapters": [
+    "Jusqu'à quand on travaille un champ planté d'arbres avant la septième année, et les travaux qui y sont permis.",
+    "Jusqu'à quand on travaille un champ de céréales avant la septième année, et les travaux de la terre qui s'y rapportent.",
+    "L'évacuation du fumier, l'épandage et les travaux de la terre permis ou interdits pendant l'année sabbatique.",
+    "Les travaux de nettoyage et d'entretien autorisés en septième année, selon l'ancienne et la nouvelle règle.",
+    "Quand les fruits deviennent soumis à la septième année, ce qu'on peut vendre aux autres et l'aide à ceux qui travaillent la terre.",
+    "Les trois pays de la septième année (Judée, Transjordanie, Galilée) et les produits qui y sont soumis.",
+    "La règle générale : un produit de septième année qui sert à la nourriture humaine, et le statut de ses plantes.",
+    "Les produits qui servent à l'usage des animaux ou des teintures : leur statut en septième année.",
+    "Les plantes sauvages, les plantes de montagne et la règle du biour, le retrait des fruits de la maison.",
+    "L'annulation des dettes à la fin de la septième année, le prosbol de Hillel et les dettes qui y échappent."
+   ]
+  },
+  "terumot": {
+   "book": "La terouma, part prélevée pour le cohen : qui peut la séparer, comment, et les cas d'erreur, de mélange et d'impureté.",
+   "chapters": [
+    "Cinq catégories de personnes ne peuvent pas séparer la terouma (sourd-muet, fou, mineur, non-juif, et celui qui prélève sur autre chose que le sien).",
+    "On ne sépare pas du pur pour l'impur, ni d'une espèce pour une autre ; les cas de séparation faite par erreur.",
+    "Une séparation faite par erreur : un melon amer qu'on trouve ou un fruit gâté, et ce qui compte quand même.",
+    "Comment on sépare la terouma, les prélèvements partiels et l'ordre entre terouma et dîmes.",
+    "Une mesure de terouma impure tombée dans le profane : jusqu'à quelle proportion le mélange est permis.",
+    "Celui qui mange de la terouma par erreur doit rendre le principal et un cinquième en plus.",
+    "Celui qui mange de la terouma volontairement, et les cas où elle est utilisée pour un autre usage.",
+    "Une femme qui mange de la terouma et apprend la mort ou le divorce de son mari, et les cas douteux.",
+    "La terouma semée : ce qui pousse, le sort du produit, et les plantes qui poussent d'elles-mêmes.",
+    "Le mélange de terouma avec d'autres aliments : un oignon dans des lentilles, et le goût de l'interdit.",
+    "Les usages de la terouma : huile, vin, lampe, dattes et figues dans la sauce."
+   ]
+  },
+  "maasrot": {
+   "book": "Les dîmes : quand les produits y deviennent soumis, et ce qu'on peut manger sans les séparer.",
+   "chapters": [
+    "La règle générale : ce qui est comestible, gardé et cultivé est soumis à la dîme, et quand elle devient due.",
+    "Manger en chemin ou au champ sans dîme, et le cas de celui qui offre des fruits à la volée.",
+    "Les fruits qu'on transporte dans la cour : le moment où ils deviennent soumis à la dîme.",
+    "Les aliments conservés, vinaigre, saumure, sauces : la dîme des produits transformés.",
+    "Les arbres déplacés ou plantés, et la dîme des plantes déracinées et replantées."
+   ]
+  },
+  "maaser-sheni": {
+   "book": "La deuxième dîme : on la mange à Jérusalem ou on la rachète, et ce qu'on peut faire de l'argent.",
+   "chapters": [
+    "On ne vend pas, ne gage pas, ne donne pas la deuxième dîme, et l'usage de sa valeur.",
+    "On ne l'utilise que pour manger, boire et s'oindre, et le rachat.",
+    "Ce qu'on achète avec l'argent de la deuxième dîme : seulement de la nourriture, et ce qui est permis.",
+    "Le transport de la deuxième dîme d'un endroit à l'autre, la monnaie et le rachat avec un supplément.",
+    "Les arbres de quatrième année (néta révaï), la marque posée sur leurs fruits, et la déclaration (vidoui) de la dîme."
+   ]
+  },
+  "challah": {
+   "book": "La halla, part de pâte prélevée pour le cohen : les céréales soumises, la quantité et les mélanges.",
+   "chapters": [
+    "Les cinq céréales soumises à la halla et les pâtes qui s'additionnent pour atteindre la mesure.",
+    "Les fruits de l'étranger entrés en Israël, les mélanges de pâtes et celles qui sont exemptées.",
+    "Ce qu'on peut manger de la pâte avant qu'elle soit pétrie, et le cas des pâtes de plusieurs ménages.",
+    "Deux femmes qui préparent deux pâtes qui se touchent, et la halla en Terre d'Israël et à l'étranger."
+   ]
+  },
+  "orlah": {
+   "book": "Les trois premières années d'un arbre, dont les fruits sont interdits (orla), et ce que cet interdit atteint.",
+   "chapters": [
+    "Qui est soumis à l'orla : planter pour clôture ou pour le bois, et la règle hors de la Terre d'Israël.",
+    "Le mélange de terouma ou d'orla avec le profane et la proportion qui l'annule.",
+    "L'orla et le kilayim de la vigne, un vêtement teint avec de l'orla, et les autres interdits d'usage."
+   ]
+  },
+  "bikkurim": {
+   "book": "Les prémices : qui les apporte, comment on les porte au Temple, et le cas particulier de l'androgyne.",
+   "chapters": [
+    "Qui apporte les prémices et qui peut réciter la déclaration, selon sa terre et ses fruits.",
+    "Les prémices et la terouma : ce qu'ils ont en commun et leurs différences.",
+    "Comment on sépare les prémices, la procession jusqu'à Jérusalem et le rite de leur remise.",
+    "L'androgyne : un cas qui tient à la fois de l'homme et de la femme, pour les prémices comme pour d'autres lois."
+   ]
+  },
+  "shabbat": {
+   "book": "Les lois du Chabbat : les trente-neuf travaux interdits, le transport, la lumière, les mesures et les exceptions.",
+   "chapters": [
+    "Les transports d'un domaine à l'autre, puis ce qu'on ne commence pas la veille de Chabbat (coiffeur, bain, repas) et les dix-huit décrets.",
+    "Les mèches et huiles de la lumière de Chabbat, les règles de l'allumage et de l'extinction, et les trois choses de la veille.",
+    "Les plats posés sur un four ou une plaque avant Chabbat, et ce qu'on peut laisser au chaud.",
+    "Ce qui permet de garder un plat au chaud (tmina) avant Chabbat : matières permises et interdites.",
+    "Ce qu'un animal peut porter en sortant le Chabbat : ornements et harnachement.",
+    "Ce qu'une femme peut porter en sortant le Chabbat : bijoux, sandales et parures.",
+    "Les trente-neuf travaux interdits (avot mélakhot), l'oubli et le nombre de fautes.",
+    "Les mesures minimales d'un transport : nourriture, boisson et autres objets.",
+    "L'idolâtrie et son impureté, les pratiques de l'Amori permises ou interdites, et divers cas de travaux.",
+    "Sortir pour semer, comme échantillon ou comme remède, et le transport d'un domaine à l'autre.",
+    "Lancer d'un domaine à l'autre, porter sur quatre coudées, et les cas d'objets lancés ou transportés.",
+    "La construction, le travail de la pierre et l'écriture : à partir de quelle mesure on est fautif.",
+    "Le tissage, la filature, la teinture et les travaux sur les étoffes.",
+    "Les huit reptiles, la chasse, et les remèdes ou soins permis le Chabbat.",
+    "Les nœuds interdits, ceux qui sont permis, et les nœuds qu'on défait.",
+    "Les livres saints qu'on sauve d'un incendie, et l'aide en cas de feu.",
+    "Les ustensiles qu'on peut déplacer le Chabbat, les portes et les objets mis de côté.",
+    "Les objets qu'on sort pour les évacuer, les paniers de paille, et la nourriture des animaux.",
+    "La circoncision qui repousse le Chabbat, et ce qui s'y rattache.",
+    "Le tamis, la passoire et les boissons : filtrer ou verser le jour du Chabbat.",
+    "Porter un enfant ou un objet dans les bras, et ce qu'on peut déplacer.",
+    "Une jarre cassée, la nourriture sauvée, le bain, les huiles et les soins du corps.",
+    "Emprunter à son prochain, tirer au sort le Chabbat, et les soins donnés à un mort.",
+    "Celui que la nuit surprend en route : il remet sa bourse à un non-juif, et les bêtes chargées."
+   ]
+  },
+  "eruvin": {
+   "book": "L'érouv : comment on rend un espace commun pour porter le Chabbat, et les limites de la marche.",
+   "chapters": [
+    "Les dimensions d'une ruelle (mavoï) : hauteur, largeur, poteau, et ce qui permet d'y porter.",
+    "Les clôtures, les enclos de puits et de cours, et leurs mesures.",
+    "Avec quoi on fait un érouv : les aliments et boissons qu'on peut y mettre.",
+    "Celui que des non-juifs ont emmené hors de la limite, et les mesures des limites du Chabbat.",
+    "Comment on étend les limites d'une ville et mesure son espace.",
+    "Celui qui habite la même cour qu'un non-juif ou qu'un Juif non observant, et la cour partagée.",
+    "Les fenêtres entre deux cours, les puits, et le passage d'une cour à l'autre.",
+    "L'association des ruelles (chitoufé mevoot) et le partage de l'érouv commun.",
+    "Les toits de la ville, les cours, les places couvertes et les règles du domaine privé.",
+    "Ce qu'on peut apporter et emporter le Chabbat : tefilin trouvés, objets sauvés, et le transport à travers un domaine."
+   ]
+  },
+  "pesachim": {
+   "book": "Pessah : le hamets, le sacrifice de Pessah, le Seder et les quatre coupes.",
+   "chapters": [
+    "La recherche du hamets la nuit du 14 Nissan, et ce qu'on doit détruire avant la fête.",
+    "À quel moment le hamets devient interdit, ses mélanges et les usages qu'on peut en faire.",
+    "Les produits qui contiennent du hamets (boissons, pâtes) et ce qu'on doit en faire avant Pessah.",
+    "Les travaux de la veille de Pessah et la coutume des lieux.",
+    "Le sacrifice de Pessah : l'heure, l'ordre de l'abattage et le déroulement des offrandes.",
+    "Les cas où le sacrifice de Pessah repousse le Chabbat, et ce qui n'est pas permis.",
+    "La cuisson du sacrifice de Pessah (rôti), sa consommation en un seul lieu et le sort des os.",
+    "L'abattage pour plusieurs personnes, et celui qui se retire d'un groupe.",
+    "Le deuxième Pessah (Pessah Chéni) pour l'impur ou le voyageur éloigné.",
+    "Les quatre coupes du Seder, la Haggada et ce qu'on dit à table."
+   ]
+  },
+  "shekalim": {
+   "book": "Le demi-chekel : l'impôt annuel du Temple, sa collecte, ses responsables et l'usage des fonds.",
+   "chapters": [
+    "L'annonce du demi-chekel au début d'Adar, qui doit le donner et ce qui s'y rattache.",
+    "Le change des monnaies, les cas de perte et la responsabilité du trésorier.",
+    "Les trois prélèvements annuels de la chambre du Temple et l'usage du chekel.",
+    "L'usage des fonds sacrés : les offrandes quotidiennes et les parts de chacun.",
+    "Les responsables du Temple et leurs fonctions.",
+    "Les treize troncs, les treize tables et les portes du Temple.",
+    "Les monnaies trouvées dans le Temple : ce qu'on en fait selon leur destination.",
+    "Les objets trouvés à Jérusalem, leur pureté, et ce qu'on fait des biens sacrés."
+   ]
+  },
+  "yoma": {
+   "book": "Yom Kippour : le service du Cohen Gadol dans le Temple, les deux boucs et les interdits du jour.",
+   "chapters": [
+    "Les sept jours qui précèdent Yom Kippour : le Cohen Gadol est mis à part et se prépare au service.",
+    "Le tirage au sort pour prélever les cendres et pour les tâches du matin.",
+    "Les ablutions du Cohen Gadol, l'offrande du matin et la première confession.",
+    "Le tirage au sort des deux boucs et la confession sur le taureau.",
+    "L'encens dans le Saint des Saints et l'aspersion du sang du taureau et du bouc.",
+    "Les deux boucs : le bouc envoyé à Azazel et celui de l'offrande.",
+    "La lecture de la Torah par le Cohen Gadol, ses bénédictions et la fin du service.",
+    "Les interdits de Yom Kippour (manger, boire, se laver), la techouva et la valeur du pardon."
+   ]
+  },
+  "sukkah": {
+   "book": "La fête de Souccot : la souccah, les quatre espèces et la joie de la fête.",
+   "chapters": [
+    "Les mesures de la souccah : hauteur, largeur, et ce qui la rend valide.",
+    "Dormir dans la souccah, y manger et la dispense des malades et des enfants.",
+    "Les quatre espèces : les conditions de validité du loulav et de l'étrog.",
+    "Le rite du loulav et du saule de la fête, et les jours où l'on agite les espèces.",
+    "La joie de la Simhat Beit HaShoeva : flûte, danses et service du Temple pendant la fête."
+   ]
+  },
+  "beitzah": {
+   "book": "Les lois des jours de fête : ce qui est permis pour préparer la nourriture, et ce qui reste interdit.",
+   "chapters": [
+    "L'œuf pondu un jour de fête, les controverses de Beit Chammaï et Beit Hillel, et ce qu'on peut déplacer.",
+    "Une fête qui tombe la veille de Chabbat : l'érouv tavchilin et les préparatifs.",
+    "La chasse, les animaux et les poissons, et l'abattage un jour de fête.",
+    "Transporter des jarres et des aliments d'un lieu à un autre le jour de fête.",
+    "Ce qu'on peut déplacer et ce qui est interdit : fruits, produits et animaux."
+   ]
+  },
+  "rosh-hashanah": {
+   "book": "Roch Hachana : les quatre nouvelles années, l'annonce de la nouvelle lune et le shofar.",
+   "chapters": [
+    "Les quatre nouvelles années et les mois où l'on guette la nouvelle lune.",
+    "Les témoins de la nouvelle lune et la fixation du mois.",
+    "L'examen des témoins, le shofar et les prières de la fête.",
+    "Roch Hachana qui tombe un Chabbat : le shofar au Temple et à Yavné."
+   ]
+  },
+  "taanit": {
+   "book": "Les jeûnes : prières pour la pluie, jeûnes publics, jeûnes de calamité et jours de deuil.",
+   "chapters": [
+    "Le début des prières pour la pluie et le moment de la mention de la pluie, et les jeûnes qui s'y rattachent.",
+    "Le déroulement des jeûnes publics : l'arche sur la place, les prières et les supplications.",
+    "Les jeûnes décrétés pour les fléaux : famine, maladie, invasion, et les règles de l'alarme.",
+    "La bénédiction des cohanim, les jeûnes du 17 Tamouz et du 9 Av, et les deux fêtes de joie (15 Av et Yom Kippour)."
+   ]
+  },
+  "megillah": {
+   "book": "La Meguila d'Esther et la lecture publique de la Torah, les synagogues et leur sainteté.",
+   "chapters": [
+    "Les jours où l'on lit la Meguila, les villes fortifiées et les règles de la fête.",
+    "Les règles de la lecture, la lecture à l'envers et ce qu'on peut lire ou non.",
+    "Les lieux saints : ce qu'on peut vendre d'une synagogue et ce qu'il faut respecter.",
+    "La lecture de la Torah : le nombre de lecteurs, les jours et la haftara."
+   ]
+  },
+  "moed-katan": {
+   "book": "Hol Hamoëd, les jours intermédiaires des fêtes : travaux permis, deuil et usages.",
+   "chapters": [
+    "Les travaux permis à Hol Hamoëd : irrigation, réparations, récoltes.",
+    "Le deuil à Hol Hamoëd, le sort de ceux qui sont en deuil et les interdits de la fête.",
+    "Qui peut se couper les cheveux à Hol Hamoëd, les règles du deuil et des fiançailles."
+   ]
+  },
+  "chagigah": {
+   "book": "Les offrandes de fête (haguiga) et la pureté, et la limite de l'étude de certains sujets.",
+   "chapters": [
+    "Qui est tenu à la visite au Temple, qui en est exempté, et l'offrande de fête.",
+    "La limite de l'étude de certains sujets (relations interdites, Création, Char) et les règles de Hillel et Chammaï.",
+    "La pureté des objets et des aliments pendant les fêtes, et les degrés de la sainteté."
+   ]
+  },
+  "yevamot": {
+   "book": "Le lévirat et la halitsa : la veuve sans enfant et le frère du défunt, les parentés interdites, les mariages et le témoignage de la mort du mari.",
+   "chapters": [
+    "Les quinze femmes dispensées du lévirat, elles et leurs rivales, à cause d'un lien de parenté interdit.",
+    "Les cas de belle-sœur dont le mari est mort : lévirat, halitsa et frère né après la mort.",
+    "Quatre frères dont deux sont mariés à deux sœurs : les conséquences du décès et les mariages dans la fratrie.",
+    "Celle qui a accompli la halitsa et se découvre enceinte, et la naissance qui change le cas.",
+    "Le divorce après un divorce, le lévirat avec plusieurs femmes et le décès de plusieurs frères.",
+    "L'union avec la belle-sœur par erreur ou volontairement, et ce qu'elle produit.",
+    "Le grand prêtre, la divorcée et la femme qui a fait halitsa : les mariages interdits aux cohanim et le statut de l'enfant.",
+    "Les impurs et les incirconcis ne mangent pas la terouma ; l'eunuque, le mamzer et qui peut épouser qui.",
+    "Les cas où une femme est permise à son mari mais interdite à son beau-frère, et inversement.",
+    "La femme dont le mari est parti outre-mer : le témoignage de sa mort et son remariage.",
+    "Les unions après viol ou séduction, la conversion et les cas de mamzer.",
+    "Le rite de la halitsa : trois juges, la déchaussure et la déclaration.",
+    "Le refus (miun) de l'orpheline mineure : quand elle peut quitter son mari.",
+    "Le mariage d'un sourd-muet et d'une femme saine, et celui des personnes qui n'ont pas pleine capacité.",
+    "Le témoignage de la mort du mari : un témoin unique, et la femme qui part avec son mari outre-mer.",
+    "Le mari et la rivale partis outre-mer, et les témoignages sur les morts à la guerre ou dans les épreuves."
+   ]
+  },
+  "ketubot": {
+   "book": "La ketouba, l'acte de mariage : les droits de l'épouse, les obligations du mari, l'amende pour viol ou séduction et les clauses du contrat.",
+   "chapters": [
+    "Le mariage d'une vierge le mercredi, d'une veuve le jeudi ; la dot de deux cents et la virginité.",
+    "La femme veuve ou divorcée qui dit avoir été vierge : sa parole et les témoins.",
+    "Les jeunes filles qui ont droit à l'amende (kenas) pour viol ou séduction, et les cas de mamzer.",
+    "La jeune fille séduite : honte, atteinte à l'honneur et amende.",
+    "La ketouba d'une vierge (deux cents), d'une veuve (cent) et les obligations du mari envers son épouse.",
+    "Les trouvailles et le travail de l'épouse reviennent au mari, et la dot qu'elle apporte.",
+    "Le vœu d'abstinence du mari envers sa femme et les motifs de demande de divorce.",
+    "Les biens qui reviennent à l'épouse avant ou après ses fiançailles et leur gestion.",
+    "Les clauses de la ketouba : renonciation aux biens, héritage entre époux, dettes.",
+    "Le mari mort laissant deux épouses : l'ordre de paiement des ketoubot et le partage.",
+    "La veuve entretenue par les biens des orphelins et le sort du travail de l'épouse.",
+    "L'engagement de nourrir l'épouse et ses enfants, et les obligations qui en découlent.",
+    "Les deux tribunaux de Jérusalem, les droits de la veuve et la valeur de vivre en Terre d'Israël."
+   ]
+  },
+  "nedarim": {
+   "book": "Les vœux : les formules qui valent engagement, leur annulation, et la part du père et du mari.",
+   "chapters": [
+    "Les désignations (konam et autres termes) qui valent vœu, et la portée des formules.",
+    "Ce qui permet d'annuler certains vœux et ce qui reste permis : les gestes de la parole et leurs interprétations.",
+    "Quatre sortes de vœux que les sages ont permis (par exagération, d'erreur, etc.).",
+    "Le vœu de ne pas profiter de quelqu'un : ce qui est interdit et permis (vendre, aider, donner).",
+    "Les associés qui se sont interdit l'usage mutuel : la cour et les ustensiles.",
+    "Celui qui fait vœu de ne pas manger de ce qui est cuit : rôti, bouilli et conservé.",
+    "Celui qui fait vœu de s'abstenir des légumes ou des fruits, et l'étendue du vœu.",
+    "Le vœu limité dans le temps (aujourd'hui, ce mois) et sa durée.",
+    "L'ouverture d'un vœu par le regret et l'honneur de la personne.",
+    "La jeune fille fiancée : son père et son mari annulent ses vœux ensemble ; la veuve et la divorcée.",
+    "Les vœux que le mari peut annuler : ceux qui touchent la vie conjugale, et les autres."
+   ]
+  },
+  "nazir": {
+   "book": "Le naziréat : le vœu, ses formes, ses interdits (vin, cheveux, impureté) et la fin du naziréat.",
+   "chapters": [
+    "Les désignations qui valent naziréat, la durée et les formules.",
+    "Le naziréat conditionnel ou limité, et les exemples de vœux.",
+    "La durée du naziréat : trente jours, plusieurs fois, et les cas de doute.",
+    "Le naziréat entendu et répété par un tiers, et comment s'y associer.",
+    "L'erreur dans le naziréat : formulation, intention et offrandes.",
+    "Les trois interdits du nazir : l'impureté, le rasage et le produit de la vigne.",
+    "Le Cohen Gadol et le nazir ne se rendent pas impurs pour leurs proches ; les cas d'impureté.",
+    "Deux nazirs qui reçoivent des témoignages contradictoires, et les cas de naziréat discuté.",
+    "Qui peut être nazir : non-juifs, femmes, esclaves, et le naziréat de Samson."
+   ]
+  },
+  "sotah": {
+   "book": "La sota, la femme soupçonnée d'adultère : la mise en garde, l'eau amère et l'offrande, puis les textes dits en toute langue et la génisse décapitée.",
+   "chapters": [
+    "La mise en garde du mari (kinouy), l'isolement avec un homme et le début de la procédure.",
+    "L'offrande d'orge de la femme soupçonnée et le déroulement dans le Temple.",
+    "L'examen de la femme, l'eau amère et ses effets.",
+    "Qui ne boit pas l'eau amère : la fiancée, la veuve en attente du lévirat.",
+    "Comme l'eau éprouve la femme, elle éprouve l'homme ; les mérites qui retardent la peine.",
+    "Le soupçon de la femme isolée : la mise en garde et les cas de témoignage.",
+    "Ce qui se dit en toute langue (parasha de la sota, vidoui, Chéma) et ce qui se dit en hébreu seulement.",
+    "Le prêtre oint pour la guerre, ce qu'il dit à l'armée et qui est dispensé de combattre.",
+    "La génisse décapitée (égla aroufa) et le déclin de la génération qui précède la venue du Messie."
+   ]
+  },
+  "gittin": {
+   "book": "Le divorce : l'acte (guet), sa rédaction, sa remise, les messagers et les décrets pour la paix.",
+   "chapters": [
+    "Le porteur d'un acte de divorce venu de l'étranger : sa déclaration et les cas qui l'exigent.",
+    "Le porteur qui parle devant témoins et les conditions de validité.",
+    "L'acte écrit non pour la femme : il est invalide ; les erreurs de rédaction.",
+    "L'envoi de l'acte à la femme, les cas d'invalidité et les décrets pour la paix.",
+    "Les décrets des sages pour le bien du monde (tikkoun haolam) : réparation des dommages, créances et séparations.",
+    "Celui qui dit « recevez cet acte pour ma femme » : le mandat et ses limites.",
+    "Le divorce de celui qui est malade ou n'est pas lucide, et les cas d'incapacité.",
+    "Lancer l'acte à sa femme : ce qui compte et selon quelle distance.",
+    "Les formules de divorce (« tu es libre ») et les motifs de divorce."
+   ]
+  },
+  "kiddushin": {
+   "book": "Les fiançailles et le statut des personnes : comment une femme est acquise, les mandataires, les conditions et les lignées.",
+   "chapters": [
+    "Les trois manières dont une femme est acquise (argent, acte, union) et les devoirs des parents et des enfants.",
+    "Les fiançailles en personne ou par mandataire, et les fiançailles conditionnelles.",
+    "Les fiançailles par mandataire et les cas d'erreur ou de condition.",
+    "Les dix lignées montées de Babylone, la généalogie et la conduite devant le bien et le mal."
+   ]
+  },
+  "bava-kamma": {
+   "book": "Les dommages : les quatre pères de dommages, les animaux, le vol, les blessures et la restitution.",
+   "chapters": [
+    "Les quatre pères de dommages (le bœuf, la fosse, le destructeur, le feu) et les principes de responsabilité.",
+    "Les dommages causés par le pied et la corne de l'animal, et les dégâts du bétail.",
+    "La jarre laissée sur la voie publique : les dommages et la responsabilité des passants.",
+    "Le bœuf qui encorne : le paiement du dommage selon qu'il est inoffensif ou connu comme dangereux.",
+    "Le bœuf qui encorne une vache et les dommages entre animaux.",
+    "Le troupeau enfermé et le feu : les dommages dont le propriétaire est responsable.",
+    "Le vol : double, quadruple et quintuple paiement, et la différence avec le vol de bétail.",
+    "Les cinq paiements pour les blessures : dommage, douleur, guérison, arrêt de travail et honte.",
+    "Le voleur qui a transformé l'objet volé : bois en ustensile, laine en vêtement, et la restitution.",
+    "Le voleur qui nourrit ses enfants avec le vol, la restitution et le repentir."
+   ]
+  },
+  "bava-metzia": {
+   "book": "Les litiges d'argent : les objets trouvés, les dépôts, l'intérêt, le louage, le travail des ouvriers et la location.",
+   "chapters": [
+    "Deux personnes qui tiennent le même vêtement : le serment et le partage.",
+    "Les objets trouvés qu'on garde et ceux qu'on doit annoncer, et les signes qui permettent de rendre.",
+    "Le dépôt : gardien, vol, perte et responsabilités du dépositaire.",
+    "Les modes d'acquisition de l'argent et de l'or, et la tromperie (ona'a) dans la vente.",
+    "L'intérêt (nechekh et tarbit) et l'emprunt à intérêt.",
+    "Le louage : les artisans, l'erreur du client, les contrats de travail et de location des bêtes.",
+    "Les ouvriers : leur salaire, la nourriture qu'ils mangent en travaillant et l'heure de paie.",
+    "L'emprunteur et le locataire : la responsabilité en cas de dommage ou de perte.",
+    "Le métayage et la location de champ, la coutume du lieu et le loyer.",
+    "La maison et l'étage qui s'écroulent : le partage des responsabilités entre le propriétaire et le locataire."
+   ]
+  },
+  "bava-batra": {
+   "book": "Les lois de la propriété : voisinage, possession, vente, héritage et actes.",
+   "chapters": [
+    "Les associés qui partagent une cour : clôture, mur et voisins.",
+    "La distance à respecter entre fosse, arbre, fumier et le voisin.",
+    "La hazaka (possession) des maisons, puits et grottes, et ses délais.",
+    "Ce qui est vendu avec une maison, ses accessoires, et ce qui n'est pas inclus.",
+    "La vente d'un bateau et de biens meubles : ce qui est vendu avec.",
+    "La vente de fruits, de graines et de produits : les défauts et la garantie de la qualité.",
+    "La vente de terrain, la mesure d'un champ et les erreurs de mesure.",
+    "Les lois de l'héritage : qui hérite de qui, le premier-né, les fils et les filles.",
+    "Les dons du mourant et les règles de succession quand il y a des fils et des filles.",
+    "Les actes (chetarot) : acte simple, acte noué, et les règles de preuve et de dettes."
+   ]
+  },
+  "sanhedrin": {
+   "book": "Les tribunaux et les peines : la composition des tribunaux, la procédure, les quatre peines capitales et le monde futur.",
+   "chapters": [
+    "Les tribunaux : combien de juges pour chaque type d'affaires (argent, peines, calendrier).",
+    "Le grand prêtre et le roi : ils jugent et sont jugés, et la conduite du roi d'Israël.",
+    "La procédure des affaires d'argent : choix des juges, témoins et récusations.",
+    "Ce qui distingue les procès d'argent et les procès capitaux : l'ordre des juges, l'audience et la majorité.",
+    "L'interrogatoire des témoins par sept questions, et le témoignage dans les causes capitales.",
+    "Le condamné qu'on mène à la lapidation, sa confession et le sort des corps.",
+    "Les quatre peines capitales (lapidation, feu, glaive, étranglement) et les fautes qui y conduisent.",
+    "Le fils rebelle (ben sorer oumoré) et le cambrioleur.",
+    "Les fautes punies par le feu ou le glaive, et l'emprisonnement du meurtrier.",
+    "Tout Israël a part au monde futur ; ceux qui n'y ont pas part, et la ville idolâtre.",
+    "Les fautes punies d'étranglement, dont le faux prophète et l'ancien rebelle."
+   ]
+  },
+  "makkot": {
+   "book": "Les peines : les faux témoins, les villes de refuge et les coups (malkout).",
+   "chapters": [
+    "Les faux témoins (edim zomemim) : comment on les confond et leur peine, selon la règle du talion.",
+    "Les villes de refuge : qui y est exilé, le meurtre involontaire et les conditions de l'exil.",
+    "Les fautes punies de coups (malkout), leur nombre et la façon de les administrer."
+   ]
+  },
+  "shevuot": {
+   "book": "Les serments : serment d'impureté, serment d'expression, de témoignage, de dépôt et judiciaire, et les gardiens.",
+   "chapters": [
+    "Les deux formes de l'impureté du Temple et des choses saintes, qui deviennent quatre, et le sacrifice qui s'y attache.",
+    "La connaissance de l'impureté : les cas d'oubli et l'offrande variable.",
+    "Le serment d'expression : jurer qu'on a mangé ou non, et les cas d'erreur.",
+    "Le serment de témoignage : qui le prononce et le témoin qui nie savoir.",
+    "Le serment de dépôt : hommes et femmes, dépôt et vol.",
+    "Le serment judiciaire : la plainte de deux pièces d'argent, l'aveu et le serment imposé.",
+    "Ceux qui jurent sans payer, ceux qui paient sans jurer, et les cas où le serment passe au plaignant.",
+    "Les quatre gardiens (gratuit, emprunteur, payé, locataire), leurs responsabilités et la preuve."
+   ]
+  },
+  "eduyot": {
+   "book": "Les témoignages : des décisions de sages transmises par témoignage, les controverses entre les écoles et les avis minoritaires.",
+   "chapters": [
+    "Chammaï et Hillel : les premiers désaccords et les mesures dont on a témoigné.",
+    "Les témoignages de Rabbi Hanina, chef des cohanim, et d'autres sur la pureté et les cas de mélange.",
+    "Les cas d'impureté sous la tente où les écoles se divisent.",
+    "Les cas où Beit Chammaï est indulgent et Beit Hillel sévère, et les raisons.",
+    "Les cas où Beit Chammaï est indulgent, selon Rabbi Yehouda, et les avis qui ont été écartés.",
+    "Rabbi Yehouda ben Bava témoigne sur cinq cas.",
+    "Rabbi Yehochoua et Rabbi Tsadok témoignent sur le rachat des premiers-nés et d'autres cas.",
+    "Rabbi Yehochoua ben Betera témoigne sur le sang d'une bête morte ; la fin des témoignages et le rôle d'Élie, qui viendra rétablir la paix."
+   ]
+  },
+  "avodah-zarah": {
+   "book": "L'idolâtrie : les fêtes et marchés des idolâtres, les idoles, le vin des libations et les rapports avec les non-juifs.",
+   "chapters": [
+    "Les trois jours qui précèdent les fêtes des idolâtres : ce qu'on ne peut pas vendre ni prêter.",
+    "Les rapports avec les non-juifs : bêtes, hôtelleries, soins et produits interdits.",
+    "Les idoles : ce qui est interdit, leur annulation et les objets du culte.",
+    "Les lieux et produits idolâtres, et l'annulation d'une idole par un non-juif.",
+    "Le vin des libations (yayin nesekh), le louage d'ouvriers et les aliments interdits."
+   ]
+  },
+  "avot": {
+   "book": "Les maximes des Pères : la chaîne de transmission de la Torah et les enseignements des sages sur la conduite, l'étude et la crainte de Dieu.",
+   "chapters": [
+    "La chaîne de transmission de Moïse à la Grande Assemblée, puis les couples de sages jusqu'à Hillel et Chammaï.",
+    "Rabbi dit : le chemin droit ; enseignements de Hillel, Rabban Gamliel, Rabbi Yohanan ben Zakkaï et ses élèves.",
+    "Akavia ben Mahalalel : « regarde trois choses » ; maximes de Rabbi Haninah, Rabbi Akiva et d'autres sur la crainte de Dieu et la Torah.",
+    "Ben Zoma : qui est sage, fort, riche, honoré ; maximes sur l'honneur et la Torah.",
+    "Les dix paroles de la Création, les dix miracles du Temple, et les caractères du sage, du disciple et de la vie.",
+    "Kinyan Torah : les quarante-huit qualités pour acquérir la Torah (un chapitre ajouté à la Michna)."
+   ]
+  },
+  "horayot": {
+   "book": "Les erreurs d'enseignement : celles du tribunal, du prêtre oint et du chef, et l'ordre de préséance.",
+   "chapters": [
+    "L'erreur du tribunal qui enseigne à tort de transgresser, et l'offrande qu'on apporte.",
+    "L'erreur du prêtre oint, du chef et de la communauté, et les sacrifices qui s'y attachent.",
+    "Le prêtre oint qui a péché puis quitté sa fonction, et l'ordre de préséance."
+   ]
+  },
+  "zevachim": {
+   "book": "Les sacrifices d'animaux : l'abattage, le sang, l'intention, le lieu et le moment de la consommation.",
+   "chapters": [
+    "Les sacrifices offerts sans la bonne intention : ceux qui restent valides et ceux qui ne comptent pas pour leur propriétaire.",
+    "L'intention fautive dans les quatre services (abattage, recueil du sang, transport, aspersion) et ses effets.",
+    "Les services accomplis par des personnes ou dans des conditions invalides, et les cas où l'abattage reste valable.",
+    "L'aspersion du sang selon le sacrifice, et ce qui rend invalide l'aspersion.",
+    "Le lieu de chaque sacrifice : les très saints et les saints, et le moment où on les consomme.",
+    "Les sacrifices abattus au sommet de l'autel, et le sort du sang et des chairs.",
+    "L'offrande d'oiseau pour le péché faite en bas, les cas de rituel inversé.",
+    "Les sacrifices mélangés avec d'autres (des bêtes mortes ou invalides) et la façon de les traiter.",
+    "L'autel sanctifie ce qui lui est destiné : ce qui monte ne descend pas, et les offrandes qui doivent être brûlées.",
+    "La règle de priorité : ce qui est plus fréquent passe avant ; l'ordre des offrandes.",
+    "Le sang du sacrifice pour le péché qui touche un vêtement, et le lavage du vêtement et des vases.",
+    "Les cohanim impurs ou qui n'ont pas achevé leur expiation n'ont pas part aux sacrifices.",
+    "Celui qui abat ou offre en dehors du Temple : la faute et la peine.",
+    "Les offrandes brûlées hors de leur place, et l'histoire des hauts lieux (Guilgal, Nov, Gabaon, Silo, Jérusalem)."
+   ]
+  },
+  "menachot": {
+   "book": "Les offrandes de farine et de libations : la poignée, les pains, les mesures, l'omer et les deux pains de Chavouot.",
+   "chapters": [
+    "Les offrandes de farine dont la poignée est prise sans la bonne intention, et leur validité.",
+    "La poignée prise pour manger le reste ou brûler à tort, et les cas de piggoul.",
+    "La poignée prise en vue d'un usage qui n'est pas prévu, et les cas de défaut.",
+    "La techelet et le blanc dans les tsitsit, et les mitsvot qui ne s'empêchent pas l'une l'autre.",
+    "Les offrandes de farine en azyme, la préparation des pains et des galettes, les huiles.",
+    "Les offrandes dont une poignée est brûlée et le reste va aux cohanim, et celles qui sont entièrement brûlées.",
+    "L'offrande de remerciement (toda) : ses pains, ses mesures et la part du cohen.",
+    "Les offrandes publiques et privées viennent des meilleurs produits d'Israël : farine, vin, huile.",
+    "Les mesures sèches et liquides du Temple et leur emploi.",
+    "La gerbe de l'omer : le champ, la moisson et son rôle.",
+    "Les deux pains de Chavouot : leur pétrissage, leur cuisson et leur usage.",
+    "Les offrandes et libations devenues impures avant leur sanctification.",
+    "Les vœux d'offrandes (« un dixième à ma charge ») et leurs cas ; la fin du traité sur l'intention qui compte devant Dieu."
+   ]
+  },
+  "chullin": {
+   "book": "L'abattage rituel (chéhita), les animaux interdits, le sang, le nerf sciatique, le lait et la viande, et les dons aux cohanim.",
+   "chapters": [
+    "Qui peut abattre (tout le monde sauf le sourd-muet, le fou et le mineur) et ce qui peut être abattu.",
+    "Les conditions de l'abattage : les organes à trancher et ce qui l'invalide (arrêt, pression, glissement, déplacement, arrachement).",
+    "Les trefot du bétail : les défauts qui rendent une bête impropre à la consommation.",
+    "Les trefot, suite : la bête qui met bas et le fœtus trouvé dans le ventre de sa mère.",
+    "L'interdit d'abattre une bête et son petit le même jour.",
+    "La couverture du sang (kissouï hadam) : ce qui l'exige, avec quoi et dans quels pays.",
+    "Le nerf sciatique (guid hanacheh) : où il s'applique, ce qu'il interdit et sa portée.",
+    "La viande et le lait : l'interdit de cuire ensemble et de manger, et ce qui est assimilé.",
+    "La peau, la sauce, les os et les autres parties : ce qui compte comme aliment pour l'impureté.",
+    "Les dons au cohen : l'épaule, les mâchoires et l'estomac.",
+    "Les prémices de la tonte et les dons qui s'y rattachent.",
+    "L'envoi de la mère de l'oiseau (chiloua'h hakèn) : le rite et son application."
+   ]
+  },
+  "bekhorot": {
+   "book": "Les premiers-nés des animaux et des hommes : rachat, défauts, parts du cohen et dîme du bétail.",
+   "chapters": [
+    "Le premier-né de l'ânesse : rachat par un agneau, et les cas d'exemption (achat ou vente à un non-juif).",
+    "Le premier-né du bétail pur : l'achat ou la vente à un non-juif, les jumeaux et les exemptions.",
+    "Les cas de doute sur le premier-né : quand on ne sait pas lequel l'est, et comment on s'en sert.",
+    "Jusqu'à quand le propriétaire doit s'occuper de son premier-né, et ce qui revient au cohen.",
+    "Ce qui rend une bête inapte à l'offrande, et le premier-né de l'homme.",
+    "Les défauts qui permettent d'abattre le premier-né pour le manger.",
+    "Les défauts permanents ou passagers : la liste et les cas qui ne comptent pas.",
+    "Le premier-né pour l'héritage et le premier-né pour le cohen : ce qui diffère, et les cas de naissance difficile.",
+    "La dîme du bétail : en Terre d'Israël et à l'étranger, et la manière de compter."
+   ]
+  },
+  "arakhin": {
+   "book": "Les estimations (arakhin) : la valeur fixée par la Torah pour qui s'engage à donner sa valeur, et la consécration des champs.",
+   "chapters": [
+    "Qui peut estimer et être estimé, et les vœux de donner sa valeur.",
+    "Les montants fixés par la Torah, d'un séla au minimum à cinquante au maximum.",
+    "Les valeurs selon l'âge, et les cas où l'on allège ou aggrave.",
+    "Celui qui n'a pas les moyens : le pauvre paie selon ses moyens ; les cas de l'enfant et du vœu.",
+    "Celui qui dit « mon poids est à moi » : la valeur d'un poids d'argent, et les consécrations.",
+    "L'estimation des orphelins, le délai de trente jours et l'évaluation d'un champ consacré.",
+    "Le champ consacré avant le jubilé et les règles de rachat.",
+    "Le champ consacré en année non jubilaire, et le prix selon les années restantes.",
+    "La vente d'un champ au jubilé, le rachat, les maisons des villes fortifiées et les villes des lévites."
+   ]
+  },
+  "temurah": {
+   "book": "La substitution d'un animal consacré (témoura) : qui peut la faire, ses effets, et ce qui s'y applique ou non.",
+   "chapters": [
+    "Qui peut faire une substitution, et l'effet de la substitution.",
+    "Ce qui s'applique aux sacrifices individuels et non aux sacrifices publics, et inversement.",
+    "Les sacrifices dont les petits et les substituts sont offerts, et ceux qui ne le sont pas.",
+    "Le petit et le substitut du sacrifice pour le péché, et les sacrifices qui doivent mourir.",
+    "Comment on contourne le premier-né, et ce qui peut être fait de ce que l'on ne peut offrir.",
+    "Ce qui est interdit sur l'autel et ce qui interdit les substitutions.",
+    "Ce qui diffère entre les saints de l'autel et ceux de la réparation du Temple."
+   ]
+  },
+  "keritot": {
+   "book": "Le retranchement (karet) : les fautes qui l'entraînent, et les offrandes de pardon pour la faute involontaire.",
+   "chapters": [
+    "Les trente-six cas de retranchement dans la Torah.",
+    "Les quatre personnes qui achèvent leur expiation par un sacrifice, et ceux dont l'offrande varie selon leurs moyens.",
+    "Le sacrifice pour la graisse mangée, et les cas d'erreur sur le fait.",
+    "Les cas de doute : a-t-on mangé ou non de la graisse ? Le sacrifice de culpabilité en suspens.",
+    "Le sang de l'abattage des bêtes, des animaux sauvages et des oiseaux, et le sacrifice qui s'y rattache.",
+    "Le sacrifice de culpabilité en suspens (acham talouï) et les cas où l'on découvre qu'on n'a pas fauté."
+   ]
+  },
+  "meilah": {
+   "book": "Le détournement des choses consacrées (meïla) : quand il y a faute, comment on la répare, et le rôle du mandataire.",
+   "chapters": [
+    "Les très saints abattus au sud : le détournement commence dès l'abattage, et ce qui y échappe.",
+    "Les oiseaux consacrés et les offrandes de pain : à partir de quand il y a détournement.",
+    "Le petit et le substitut du sacrifice pour le péché, et les sacrifices dont la matière a changé.",
+    "Les offrandes qui s'additionnent pour atteindre la mesure du détournement.",
+    "Le profit tiré d'une chose consacrée, même d'une pièce, et son évaluation.",
+    "Le mandataire qui accomplit sa mission : la responsabilité du propriétaire et du messager."
+   ]
+  },
+  "tamid": {
+   "book": "Le sacrifice perpétuel du matin et du soir, et le déroulement du service du Temple chaque jour.",
+   "chapters": [
+    "Les trois lieux de garde dans le Temple, la purification et la première tâche du jour.",
+    "L'enlèvement des cendres, l'arrangement du bois et les premières tâches.",
+    "Le tirage au sort des tâches de l'autel, et la préparation du candélabre.",
+    "Le sacrifice du matin : l'agneau n'est pas attaché, son abattage et sa préparation.",
+    "Les bénédictions, la lecture des commandements et le service de l'encens.",
+    "La montée vers le Temple, l'encens, la ménorah et la bénédiction des cohanim.",
+    "La fin du service : le sacrifice, la libation et le chant des lévites avec les psaumes du jour."
+   ]
+  },
+  "middot": {
+   "book": "Les mesures du Temple : le mont du Temple, ses portes, l'autel, le Hékhal et le parvis.",
+   "chapters": [
+    "Les lieux de garde dans le Temple, la garde des cohanim et des lévites, et les portes du mont.",
+    "Le mont du Temple : ses mesures, ses portes et la cour des femmes.",
+    "L'autel : ses dimensions, ses cornes, sa rampe et ses instruments.",
+    "Le Hékhal : sa porte, ses chambres, ses étages et le Saint des Saints.",
+    "Le parvis : ses chambres, ses mesures et ses ustensiles."
+   ]
+  },
+  "kinnim": {
+   "book": "Les offrandes d'oiseaux (kinnim) : le mélange des oiseaux pour le péché et l'holocauste, et les cas d'erreur.",
+   "chapters": [
+    "Les oiseaux du pauvre : la règle de l'offrande pour le péché en bas et de l'holocauste en haut, et les cas de mélange.",
+    "Les oiseaux dont l'un s'envole ou se mélange : le sort des offrandes.",
+    "Les oiseaux qui se mélangent : ce qui est valable et la responsabilité du cohen."
+   ]
+  },
+  "kelim": {
+   "book": "Les vases et leur impureté : les matières, les formes, les mesures, les fours, les lits et les vêtements.",
+   "chapters": [
+    "Les pères d'impureté, les degrés d'impureté et les lieux plus ou moins saints.",
+    "Les vases de bois, de cuir, d'os et de verre : ce qui les rend impurs.",
+    "La mesure du vase de terre pour qu'il soit pur, et les vases qui servent à manger ou à boire.",
+    "Le vase de terre qui ne tient pas debout, l'anse et l'impureté selon les parties.",
+    "Le four (tanour) : sa hauteur, ses parties et ce qui le rend impur.",
+    "Le four, le réchaud et leurs formes : l'impureté de leur extérieur.",
+    "Les plats et ustensiles de ménage cassés ou percés, et leur impureté.",
+    "Le four divisé en planches ou en rideaux, et l'impureté qui passe de l'un à l'autre.",
+    "Une aiguille ou une bague trouvée dans le four, et son effet sur l'impureté.",
+    "Les vases qui protègent de l'impureté avec un couvercle bien serré.",
+    "Les vases de métal, simples ou creux, et leur impureté.",
+    "Les anneaux, les bijoux et leur impureté selon leur usage.",
+    "L'épée, le couteau, la lance et les armes : leur impureté.",
+    "Les mesures des vases de métal selon leur usage.",
+    "Les vases de bois, de cuir, d'os et de verre : leurs mesures et leurs réparations.",
+    "Les vases de bois divisés en deux, et ce qui devient pur ou impur.",
+    "Les mesures des vases domestiques, par la mesure de la grenade.",
+    "La mesure du champ, de la surface et des ustensiles.",
+    "Le lit démonté pour l'immersion, et ce que l'on peut toucher.",
+    "Les coussins, les sacs et les paniers : leur impureté.",
+    "Le contact avec ce qui est lié : le foie, le rein et l'objet attaché.",
+    "La table, la banquette et les ustensiles endommagés.",
+    "La balle, le casque, le talisman et les tefilin découpés.",
+    "Les boucliers (courbés, plats) et leur impureté.",
+    "Les vases ont un dos et un intérieur : leurs côtés dans l'impureté.",
+    "Les sandales, les bourses et les objets d'usage quotidien.",
+    "Le vêtement est impur sous cinq noms : le sac, la toile, la peau, le drap et la corde.",
+    "Les morceaux d'étoffe de trois doigts sur trois : mesures et impureté.",
+    "Les bords, les ourlets, les cordes et leurs mesures d'impureté.",
+    "Les vases de verre, simples ou creux, et la fin du traité."
+   ]
+  },
+  "oholot": {
+   "book": "L'impureté du mort et de la tente (ohel) : ce qui transmet l'impureté, les ouvertures, les séparations et les lieux atteints.",
+   "chapters": [
+    "Les deux impurs de la mort, les membres du corps et les degrés d'impureté.",
+    "Ce qui rend impur par la tente : le mort, la mesure d'une olive et d'autres cas.",
+    "Les cas où l'impureté de la tente fait débat entre les écoles.",
+    "La tour, l'espace couvert et les parties de la maison qui sont impures.",
+    "Le four dans la maison et ce qui transmet l'impureté.",
+    "L'homme et les vases comme tentes de l'impureté.",
+    "L'impureté dans le mur et la mesure d'une palme sur une palme.",
+    "Ce qui apporte l'impureté et ce qui la sépare.",
+    "Les ouvertures de la maison et ce qui en détermine l'impureté.",
+    "La maison, les ouvertures et les cas de séparation.",
+    "La maison fendue et l'impureté extérieure.",
+    "Une planche posée sur un four neuf et ce qui transmet l'impureté.",
+    "La lumière, la fenêtre et la mesure d'une ouverture.",
+    "La saillie, la corniche et ce qui transmet l'impureté.",
+    "Les matériaux épais qui ne transmettent pas l'impureté.",
+    "Les objets mobiles et ce qui transmet l'impureté.",
+    "La charrue sur une tombe, et le terrain où l'impureté est suspectée (beit hapras).",
+    "La purification d'un champ où l'on soupçonne une tombe (beit hapras) et les lieux de passage."
+   ]
+  },
+  "negaim": {
+   "book": "Les plaies de tsaraat : leurs aspects, qui est touché, les vêtements, les maisons et la purification du métsora.",
+   "chapters": [
+    "Les aspects des plaies, deux qui deviennent quatre, et la façon de les distinguer.",
+    "La tache brillante, sa couleur par rapport à la peau, et les degrés de blancheur.",
+    "Qui est atteint par les plaies : tous, sauf le non-juif et le résident ; et qui examine.",
+    "Le poil blanc et la chair vive : ce qui rend impur dans chacun.",
+    "Les cas de doute en matière de plaies : en principe on déclare pur, sauf dans certains cas.",
+    "La mesure de la tache (comme un grain), et la façon de la mesurer.",
+    "Les taches pures : celles qui apparaissent avant le don de la Torah, ou dans certaines circonstances.",
+    "Ce qui change quand la tache disparaît, et les cas d'impureté et de pureté.",
+    "Les furoncles et les brûlures : une semaine d'examen et ses règles.",
+    "Les teignes : deux semaines d'examen et ses règles.",
+    "Les vêtements atteints de plaies : lesquels sont soumis et comment on les examine.",
+    "Les maisons atteintes de plaies : lesquelles sont soumises et comment on les examine.",
+    "Les dix maisons : l'ordre et les cas où une maison est impure.",
+    "La purification du métsora : les oiseaux, le bois de cèdre, l'hysope et le rite."
+   ]
+  },
+  "parah": {
+   "book": "La vache rousse : son âge, sa préparation, sa combustion et l'eau de purification.",
+   "chapters": [
+    "Quel âge pour la vache et pour le taureau, selon Rabbi Eliezer et les sages.",
+    "Les défauts qui invalident la vache rousse et les cas d'invalidation.",
+    "Les sept jours de préparation du prêtre et la sortie vers le mont des Oliviers.",
+    "La vache rousse abattue sans intention, et les services qui l'invalident.",
+    "Les vases d'argile pour la vache, les immersions du prêtre et les ablutions.",
+    "Les cas où la sanctification de l'eau est invalide ou valide.",
+    "Les cinq jarres remplies pour la sanctification, et les risques d'invalidation.",
+    "Deux hommes qui gardent l'eau et l'impureté qui peut l'atteindre.",
+    "Une fiole où il tombe de l'eau, et la validité de l'eau de purification.",
+    "Ce qui est impur par pression (midras) : ce qui rend impur la vache.",
+    "Une fiole laissée découverte, et l'eau qu'on a trouvée impure.",
+    "L'hysope court, les liens et la façon d'asperger."
+   ]
+  },
+  "tahorot": {
+   "book": "La pureté des aliments, des vases et des lieux : le doute en matière d'impureté et les domaines public et privé.",
+   "chapters": [
+    "Les treize règles de la dépouille d'un oiseau pur.",
+    "La femme qui met un légume dans la marmite et le doute sur l'impureté.",
+    "La sauce, la bouillie et le lait : quand ils transmettent l'impureté.",
+    "Celui qui lance l'impureté d'un endroit à l'autre : la mesure et les cas de doute.",
+    "Le reptile et la grenouille dans le domaine public ; le doute en domaine privé et public.",
+    "Un lieu qui était privé et qui devient public, et les doutes qui en découlent.",
+    "Le potier qui laisse ses pots, et les doutes sur l'impureté.",
+    "Celui qui habite avec un am haaretz dans une cour et oublie des vases.",
+    "Les olives : à partir de quand elles reçoivent l'impureté.",
+    "Celui qui ferme le pressoir à olives, et les doutes qui en découlent."
+   ]
+  },
+  "mikvaot": {
+   "book": "Les bains rituels (mikvaot) : les degrés de pureté, la quantité d'eau, la source, les cas qui invalident et ce qui fait obstacle.",
+   "chapters": [
+    "Les six degrés des bains rituels, du moins pur au plus pur.",
+    "L'impur qui a trempé dans le doute, et les cas d'immersion incertaine.",
+    "Deux bains sans la quantité requise, qui se joignent par un tuyau.",
+    "Les vases placés sous un tuyau et ce qui se remplit d'eau.",
+    "Une source dont l'eau est détournée dans un récipient, et les conditions de validité.",
+    "Ce qui est mélangé à un bain et sa validité, ainsi que les trous qui les relient.",
+    "Les cas où l'on augmente un bain sans l'invalider, et les cas où on l'invalide.",
+    "La Terre d'Israël est pure, et ses bains aussi ; les autres lieux.",
+    "Ce qui fait obstacle sur le corps (fil de laine, cheveux, etc.).",
+    "Les manches de vases et les objets entrés autrement que dans l'usage."
+   ]
+  },
+  "niddah": {
+   "book": "La nidda : les règles de l'impureté de la femme, ses examens, les taches, les naissances et la puberté.",
+   "chapters": [
+    "Chammaï dit : chaque femme est jugée selon son moment ; les écoles et les cas d'impureté.",
+    "Les examens (bedikot) et les cas où l'on est strict ou indulgent.",
+    "La fausse couche et ce qu'elle apporte comme impureté, et les cas de naissance.",
+    "Les filles de Samaritains et les cas de statut de nidda dès l'enfance.",
+    "La naissance par césarienne, les jours de pureté et les statuts de l'enfant.",
+    "Les signes de puberté (inférieurs et supérieurs) et l'âge de la majorité.",
+    "Le sang de la nidda et la chair du mort : leur impureté à l'état liquide.",
+    "Les taches (ketamim) sur la chair ou les vêtements et leur impureté.",
+    "Une femme qui voit du sang pendant qu'elle fait ses besoins, et les cas de doute.",
+    "La fillette qui n'a pas atteint l'âge, et les cas de sang vu ou non vu."
+   ]
+  },
+  "makhshirin": {
+   "book": "Les liquides qui rendent les aliments aptes à recevoir l'impureté (makhchirin), et les cas où on les ignore.",
+   "chapters": [
+    "Un liquide mis volontairement : il rend l'aliment apte à l'impureté, selon l'intention.",
+    "L'humidité des maisons, des puits et des grottes, et les liquides qui comptent.",
+    "Un sac de fruits posé dans l'eau ou sous la pluie : à quel moment l'intention joue.",
+    "Celui qui se penche pour boire : l'eau remontant dans sa bouche et les cas d'intention.",
+    "Celui qui s'est immergé dans un fleuve, et l'eau qui reste sur lui.",
+    "Celui qui monte ses fruits au toit à cause des fourmis, et les liquides qu'il laisse."
+   ]
+  },
+  "zavim": {
+   "book": "L'impureté du zav (homme atteint d'un écoulement) et celle des personnes et objets qu'il touche.",
+   "chapters": [
+    "Une seule vision d'écoulement, selon Beit Chammaï et Beit Hillel, et ses effets.",
+    "Tous deviennent impurs par l'écoulement, y compris les convertis, selon les opinions.",
+    "Le zav et le pur qui s'assoient dans un bateau ou sur un radeau.",
+    "La femme niddah assise avec un pur : les effets de l'impureté.",
+    "Le toucher du zav et ce qui transmet l'impureté."
+   ]
+  },
+  "tevul-yom": {
+   "book": "Le tevoul yom : celui qui s'est immergé mais attend le coucher du soleil, et ce qu'il peut rendre impur.",
+   "chapters": [
+    "Celui qui rassemble des pains pour les prélever, et le statut du tevoul yom.",
+    "Le liquide du tevoul yom et sa portée.",
+    "Les manches des aliments qui forment un lien avec l'aliment principal.",
+    "Celui qui mange de la dîme devenue apte à l'impureté, et le contact avec le tevoul yom."
+   ]
+  },
+  "yadayim": {
+   "book": "Les mains : leur impureté, le lavage des mains, et le canon des Écritures qui rendent les mains impures.",
+   "chapters": [
+    "La mesure d'eau (revi'it) pour laver les mains, et la façon de verser.",
+    "Le lavage partiel : une main lavée avec un seul versement, et l'effet sur la pureté.",
+    "Les mains qui entrent dans une maison atteinte de plaie, et les livres saints qui rendent les mains impures (dont le Cantique des Cantiques et l'Ecclésiaste).",
+    "Le jour de la décision sur les Ammonites et les Moabites, et les controverses entre sages sur la loi et les Sadducéens."
+   ]
+  },
+  "oktzin": {
+   "book": "Les queues des fruits (oktsin) : les parties qui transmettent ou protègent l'impureté dans les fruits.",
+   "chapters": [
+    "Ce qui est poignée sans être protection, transmet et reçoit l'impureté.",
+    "Les olives conservées avec leurs feuilles, et ce qui est pur.",
+    "Ce qui a besoin d'être rendu apte à l'impureté, et ce qui n'en a pas besoin."
+   ]
+  }
+ }
+}
