@@ -18219,3 +18219,16 @@ button.zm-study-link:focus-visible { outline: 2px solid var(--primary-blue); out
     line-height: 1.4;
     font-weight: 600;
 }
+
+/* Réglages › Apparence : notes alignées à gauche sous chaque contrôle ; en sombre, la case active prend
+   un bleu plus clair, au texte blanc lisible (le bleu de marque foncé se fond dans le fond sombre). */
+.settings-group .modal-desc {
+    text-align: left;
+    font-size: 14px;
+    margin: 10px 0 0;
+}
+
+:root[data-theme="dark"] .segmented button.active {
+    background: #2F5BC4;
+    color: #fff;
+}

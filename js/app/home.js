@@ -512,6 +512,7 @@ function homeRenderToday(content) {
 
 // --- Réglages --------------------------------------------------------------------------------------------------------------------------------------
 function openSettings() {
+    if (typeof apRender === 'function') apRender();
     openModal('modal-settings');
 }
 

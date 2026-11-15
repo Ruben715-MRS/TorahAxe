@@ -37,6 +37,11 @@
     <link rel="stylesheet" href="css/tailwind.generated.css">
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="manifest" href="manifest.webmanifest">
+    <script src="js/appearanceCore.js"></script>
+    <script>
+        /* Thème, fond et motif posés avant le premier affichage : pas de flash clair en mode sombre. */
+        try { AppearanceCore.apply(document.documentElement, JSON.parse(localStorage.getItem(AppearanceCore.KEY) || "null"), window.matchMedia("(prefers-color-scheme: dark)").matches); } catch (e) { }
+    </script>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/siddur.css">
@@ -56,12 +61,12 @@
 
     <div id="app-toast" class="toast-notification hidden"></div>
 
-    <!-- ÉCRAN/MODALE : RÉGLAGES (minimal pour l'instant) -->
+    <!-- ÉCRAN/MODALE : RÉGLAGES (contenu construit par js/app/settings.js) -->
     <div class="modal-overlay hidden" id="modal-settings" onclick="if (event.target === this) closeSettings()">
         <div class="modal-content">
             <button class="back-btn" onclick="closeSettings()" aria-label="Fermer">‹</button>
             <h2 class="header-title">Réglages</h2>
-            <p class="modal-desc">Les réglages de TorahAxe arriveront avec la migration des outils (tâche #2).</p>
+            <div id="settings-body"></div>
         </div>
     </div>
 
@@ -661,6 +666,7 @@
     <script src="js/app/transmission-game.js"></script>
     <script src="js/app/tools.js"></script>
     <script src="js/app/navigation.js"></script>
+    <script src="js/app/settings.js"></script>
     <script src="js/app/home.js"></script>
 
     <!-- Écrans des récits migrés depuis HistoriAxe -->
