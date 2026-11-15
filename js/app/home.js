@@ -23,7 +23,7 @@ const HOME_ENTRIES = {
     kotel: { he: 'כותל', fr: 'Kotel', desc: 'La boussole : la direction de Jérusalem depuis chez vous', kw: 'boussole jérusalem direction mizrah', run: homeTool('kotel') },
     tanakh: { he: 'תנ״ך', fr: 'Tanakh', desc: 'Les 24 livres, verset par verset, avec Rachi', kw: 'bible torah prophètes écrits haftara psaumes', run: homeTool('tanakh') },
     michna: { he: 'משנה', fr: 'Michna', desc: 'Les 63 traités en hébreu, avec Rambam, Bartenura, Tosafot Yom Tov…', kw: 'mishna mishnah bartenura rambam tosafot yom tov melekhet shelomoh tiferet israel gra rash traités ordres zeraim moed nashim nezikin kodashim tohorot avot', run: homeTool('michna') },
-    talmud: { he: 'תלמוד', fr: 'Talmud', desc: 'Les 37 traités de la Guémara en araméen vocalisé, amoud par amoud', kw: 'guemara gemara talmud bavli babylone berakhot daf amoud araméen', run: homeTool('talmud') },
+    talmud: { he: 'תלמוד', fr: 'Talmud', desc: 'Les 37 traités de la Guémara en araméen vocalisé, avec Rachi et Tossafot', kw: 'guemara gemara talmud bavli babylone berakhot daf amoud araméen', run: homeTool('talmud') },
     torahReader: { he: 'תיקון', fr: 'Tikkoun', desc: 'Le rouleau de la Torah, paracha après paracha', kw: 'torah rouleau paracha tikkun sefer', run: homeTool('torahReader') },
     commandments: { he: 'מצוות', fr: 'Mitsvot', desc: 'La Torah, la Michna et les 613 commandements, avec leurs sources', kw: 'commandements 613 décalogue noah avot', run: homeTool('commandments') },
     library: { he: 'ספרים', fr: 'Bibliothèque', desc: 'Qui a écrit quoi, quand et où : Michna, Talmud, Midrach, Kabbale', kw: 'livres auteurs talmud midrach', run: homeTool('library') },
@@ -495,7 +495,12 @@ function homeRenderToday(content) {
     // L'étude du jour : le Daf Yomi et les Téhilim
     const study = hEl('div', 'home-cards');
     const daf = ZmanimCore.dafYomi(day.fixed);
-    if (daf) study.appendChild(homeInfoCard('Daf Yomi', daf.masechet + ' ' + daf.daf, daf.daysLeft === 0 ? t('tools.zm_daf_siyum_today') : t('tools.zm_daf_siyum', { n: daf.daysLeft })));
+    if (daf) {
+        // La carte ouvre le Talmud à l'amoud du jour (le premier du daf) ; sans Guémara ici (Chekalim, Kinnim, Midot), elle reste une simple information.
+        const dafTarget = TalmudCore.dafYomiTarget(null, daf);
+        study.appendChild(homeInfoCard('Daf Yomi', daf.masechet + ' ' + daf.daf, daf.daysLeft === 0 ? t('tools.zm_daf_siyum_today') : t('tools.zm_daf_siyum', { n: daf.daysLeft }),
+            dafTarget ? () => { openTool('talmud', 'screen-main'); talmudOpenAt(dafTarget.id, dafTarget.label); } : null));
+    }
     const h = day.ctx.hebrew;
     const tehilim = zmTehilimText(h);
     if (tehilim) study.appendChild(homeInfoCard('Téhilim du jour', tehilim, t('tools.zm_tehilim_day', { n: h.day }), () => { toolReturns.tanakh = 'screen-main'; tanakhOpenAt('psaumes', zmTehilimStart(h) - 1, 'he'); }));

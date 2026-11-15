@@ -27,7 +27,10 @@ const talmudCommPending = {};   // « commentateur/traité » -> promesse en cou
 const talmudCounts = {};        // traité -> counts-<traité>.json : { order, pages[amoud][segment] = masque }
 let talmudState = { id: 'berakhot', page: 0, vowels: 'full', comm: { rashi: true }, open: {} };
 
+let talmudPrefsLoaded = false;
 function talmudLoadPrefs() {
+    if (talmudPrefsLoaded) return;
+    talmudPrefsLoaded = true;
     try {
         const p = JSON.parse(localStorage.getItem(TALMUD_KEY) || 'null');
         if (p && typeof p === 'object') {
@@ -61,24 +64,45 @@ function talmudChips(box, items, current, onPick) {
     });
 }
 
-function toolTalmudInit() {
-    const msg = toolEl('tool-talmud-msg');
-    if (talmudIndex) { talmudRender(); return; }
+// Charge l'index une fois (la promesse est gardée : l'écran et « Ouvrir à cet amoud » ne le demandent qu'une fois) et pose le traité et l'amoud enregistrés.
+let talmudIndexPromise = null;
+function talmudLoadIndex() {
+    if (talmudIndexPromise) return talmudIndexPromise;
     talmudLoadPrefs();
-    msg.textContent = t('tools.torah_loading');
-    fetch('data/talmud/index.json')
+    talmudIndexPromise = fetch('data/talmud/index.json')
         .then(res => { if (!res.ok) throw new Error('http ' + res.status); return res.json(); })
         .then(json => {
             talmudIndex = json;
             const tr = TalmudCore.find(json, talmudState.id);
             if (!tr) talmudState = Object.assign(talmudState, { id: TalmudCore.tractates(json)[0].id, page: 0 });
             else talmudState.page = Math.min(talmudState.page, tr.amudim - 1);
+            return json;
+        })
+        .catch(e => { talmudIndexPromise = null; throw e; });
+    return talmudIndexPromise;
+}
+
+function toolTalmudInit() {
+    const msg = toolEl('tool-talmud-msg');
+    if (talmudIndex) { talmudRender(); return; }
+    msg.textContent = t('tools.torah_loading');
+    talmudLoadIndex()
+        .then(() => {
             msg.textContent = '';
             talmudRender();
             talmudLoadCounts(talmudState.id);
             talmudLoadComments(talmudState.id);
         })
         .catch(() => { msg.textContent = t('tools.torah_error'); });
+}
+
+// Ouvre le Talmud à un amoud (« 58a ») d'un traité : sert au Daf Yomi de l'accueil. À appeler après openTool('talmud') : l'écran est déjà affiché.
+function talmudOpenAt(id, label) {
+    talmudLoadIndex().then(() => {
+        const tr = TalmudCore.find(talmudIndex, id);
+        const page = tr ? TalmudCore.pageOf(tr, label) : -1;
+        if (page >= 0) { talmudOpen(id, page); toolEl('tool-talmud-msg').textContent = ''; }
+    }).catch(() => {});
 }
 
 function talmudBook(id) {

@@ -3,6 +3,7 @@ const assert = require('node:assert');
 const fs = require('fs');
 const path = require('path');
 const T = require('../js/talmudCore.js');
+const Z = require('../js/zmanimCore.js');
 
 const DIR = path.resolve(__dirname, '..', 'data', 'talmud');
 const index = JSON.parse(fs.readFileSync(path.join(DIR, 'index.json'), 'utf8'));
@@ -195,4 +196,35 @@ test('Ran sur Nedarim (2a à 91b) et Rabbénou Guerchom sur Makkot (24a-24b) : s
     const count = (f) => read(f).pages.flatMap(p => p.flatMap(l => l)).length;
     assert.strictEqual(count('rabbeinu-gershom-makkot'), 10);
     assert.ok(count('ran-nedarim') > 1900);
+});
+
+test('Daf Yomi : chaque jour du cycle (2 711) pointe sur un amoud qui existe, hors Chekalim, Kinnim et Midot', () => {
+    assert.strictEqual(T.DAF_YOMI.length, Z.MASECHTOT.length);
+    // Chaque traité du Daf Yomi a le même dernier daf que dans l'index (le Daf Yomi compte des dapim, l'index des amoudim).
+    T.DAF_YOMI.forEach((id, i) => {
+        if (!id) return;
+        const tr = T.find(index, id);
+        assert.ok(tr, id);
+        assert.strictEqual(T.dafOf(T.amoudLabel(tr.start, tr.amudim - 1)), Z.MASECHTOT[i][2], id + ' : dernier daf');
+    });
+    const noText = new Set([4, 36, 38]);   // Chekalim (Talmud de Jérusalem), Kinnim, Midot
+    T.DAF_YOMI.forEach((id, i) => assert.strictEqual(id === null, noText.has(i), 'traité n°' + i));
+    assert.strictEqual(Z.dafYomi(1), null);   // avant le cycle de 2020
+    // Le jour 1 du 14e cycle : Berakhot 2a ; puis tous les jours, un par un.
+    const CY = require('../js/calendarYearCore.js');
+    const first = CY.gregorianToFixed(2020, 1, 5);
+    let missing = 0, opened = 0;
+    for (let k = 0; k < Z.DAF_CYCLE_LENGTH; k++) {
+        const d = Z.dafYomi(first + k);
+        assert.ok(d, 'jour ' + k);
+        const target = T.dafYomiTarget(index, d);
+        if (noText.has(d.id)) { assert.strictEqual(target, null); missing++; continue; }
+        assert.ok(target, d.masechet + ' ' + d.daf + ' : pas d\'amoud');
+        assert.strictEqual(target.label, d.daf + 'a');
+        opened++;
+    }
+    assert.strictEqual(opened + missing, 2711);
+    assert.strictEqual(missing, 21 + 3 + 4);   // Chekalim 2-22, Kinnim 23-25, Midot 34-37
+    assert.deepStrictEqual(T.dafYomiTarget(index, Z.dafYomi(first)), { id: 'berakhot', label: '2a', page: 0 });
+    assert.deepStrictEqual(T.dafYomiTarget(null, Z.dafYomi(first)), { id: 'berakhot', label: '2a', page: -1 });
 });

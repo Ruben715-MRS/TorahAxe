@@ -95,9 +95,28 @@
         return /^הדרן עלך/.test(M.stripMarks(M.parseComment(segment).map(function (p) { return p.s; }).join('')));
     }
 
+    // Le Daf Yomi (ZmanimCore.dafYomi) range les traités dans l'ordre de ZmanimCore.MASECHTOT ; voici le traité du Talmud de Babylone de chacun (null : sans Guémara
+    // ici : Chekalim est du Talmud de Jérusalem, Kinnim et Midot n'ont pas de Guémara).
+    var DAF_YOMI = ['berakhot', 'shabbat', 'eruvin', 'pesachim', null, 'yoma', 'sukkah', 'beitzah', 'rosh-hashanah', 'taanit', 'megillah', 'moed-katan', 'chagigah',
+        'yevamot', 'ketubot', 'nedarim', 'nazir', 'sotah', 'gittin', 'kiddushin', 'bava-kamma', 'bava-metzia', 'bava-batra', 'sanhedrin', 'makkot', 'shevuot',
+        'avodah-zarah', 'horayot', 'zevachim', 'menachot', 'chullin', 'bekhorot', 'arakhin', 'temurah', 'keritot', 'meilah', null, 'tamid', null, 'niddah'];
+
+    // Où ouvrir le Daf Yomi du jour : `daf` est le résultat de ZmanimCore.dafYomi ({ id, daf }). Un daf compte deux amoudim ; on ouvre le premier (« 58a »).
+    // null si le traité n'a pas de Guémara ici. Avec l'index, on vérifie aussi que l'amoud existe et on donne son indice (`page`) ; sans l'index
+    // (l'accueil ne le charge pas), `page` vaut -1 et l'écran du Talmud le calcule à l'ouverture.
+    function dafYomiTarget(index, daf) {
+        var id = daf ? DAF_YOMI[daf.id] : null;
+        if (!id) return null;
+        var label = daf.daf + 'a';
+        if (!index) return { id: id, label: label, page: -1 };
+        var tr = find(index, id);
+        var page = tr ? pageOf(tr, label) : -1;
+        return page < 0 ? null : { id: id, label: label, page: page };
+    }
+
     return {
         tractates: tractates, find: find, rank: rank, amoudLabel: amoudLabel, pageOf: pageOf, hebrewAmoud: hebrewAmoud, dafOf: dafOf,
-        chapterAt: chapterAt, chaptersStartingIn: chaptersStartingIn, step: step, isHadran: isHadran,
+        chapterAt: chapterAt, chaptersStartingIn: chaptersStartingIn, step: step, isHadran: isHadran, dafYomiTarget: dafYomiTarget, DAF_YOMI: DAF_YOMI,
         hebrewNumber: M.hebrewNumber, maskIds: M.maskIds, parseComment: M.parseComment, stripMarks: M.stripMarks
     };
 }));
