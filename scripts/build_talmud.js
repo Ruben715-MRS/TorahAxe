@@ -3,7 +3,7 @@
 // Usage : NODE_USE_ENV_PROXY=1 node scripts/build_talmud.js berakhot [shabbat …]   (ou « all » pour les 37 traités ; derrière un proxy, sinon sans la variable)
 // Fichiers :
 //   data/talmud/<traité>.json = { v, id, start, pages: [ amoud → [ segment ] ] } : `start` est le premier amoud (« 2a »), `pages[0]` ; les amoudim se suivent
-//     (2a, 2b, 3a…) jusqu'à la fin du traité. Un segment est du texte avec <b> (les mots en gras : « Matni », « Guemara », mot d'ouverture).
+//     (2a, 2b, 3a…) jusqu'à la fin du traité ; un amoud que la numérotation de Vilna saute reste vide (Nazir 33b). Un segment est du texte avec <b> (les mots en gras : « Matni », « Guemara », mot d'ouverture).
 //   data/talmud/index.json : { sedarim: [ { id, he, fr, tractates: [ { id, he, fr, start, amudim, chapters: [ { he, from: [amoud, segment] } ] } ] } ] }
 //     (un traité n'y figure que si son fichier existe : relancer le script pour n'importe quel traité réécrit l'index entier).
 // Le texte n'est pas retouché : on retire les espaces en trop, les sauts de ligne, et les balises autres que <b> (<big><strong> devient <b>).
@@ -74,8 +74,9 @@ async function buildTractate(tr) {
     let last = raw.length - 1;
     while (last > first && !(raw[last] && raw[last].length)) last--;
     const pages = raw.slice(first, last + 1).map(p => (p || []).map(cleanSegment).filter(Boolean));
-    if (pages.some(p => !p.length)) throw new Error('amoud vide au milieu : ' + tr.sefaria);
     const start = amoud(first, '1a');
+    // Un amoud vide au milieu n'est pas une lacune de la source : l'édition de Vilna saute parfois un amoud dans sa numérotation (Nazir 33b). On le garde vide, signalé.
+    pages.forEach((p, i) => { if (!p.length) console.log('  amoud vide (numérotation de Vilna) :', tr.id, amoud(first, '1a') && amoud(first + i, '1a')); });
     // Les chapitres, d'après la structure « Chapters » de l'index de Sefaria : « Berakhot 2a:1-13a:15 » → commence à 2a, segment 1.
     const idx = await getJson('https://www.sefaria.org/api/v2/index/' + encodeURIComponent(tr.sefaria.replace(/ /g, '_')));
     const nodes = ((idx.alts || {}).Chapters || {}).nodes || [];

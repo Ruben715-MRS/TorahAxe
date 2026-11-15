@@ -170,6 +170,7 @@ function talmudRenderText(tr) {
                 box.appendChild(reminder);
             }
         }
+        if (!(book.pages[wanted.page] || []).length) box.appendChild(talmudNode('p', 'tool-small', t('tools.talmud_empty', { label })));
         (book.pages[wanted.page] || []).forEach((raw, i) => {
             if (starts[i]) {
                 const h = talmudNode('h4', 'talmud-chapter-heading', t('tools.talmud_chapter_n', { n: starts[i].n }) + ' · ' + starts[i].he);

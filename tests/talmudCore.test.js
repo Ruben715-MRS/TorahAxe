@@ -19,7 +19,7 @@ test('amoudim : étiquettes, rang et écriture hébraïque', () => {
     assert.strictEqual(T.dafOf('13b'), 13);
 });
 
-test('chaque traité de l\'index : le fichier a autant d\'amoudim, aucun segment vide, des balises <b> seulement', () => {
+test('chaque traité de l\'index : le fichier a autant d\'amoudim, aucun segment vide (hors Nazir 33b), des balises <b> seulement', () => {
     const list = T.tractates(index);
     assert.ok(list.length >= 1);
     list.forEach(tr => {
@@ -29,7 +29,8 @@ test('chaque traité de l\'index : le fichier a autant d\'amoudim, aucun segment
         assert.strictEqual(book.pages.length, tr.amudim, tr.id);
         assert.strictEqual(book.chapters.length, tr.chapters.length, tr.id);
         book.pages.forEach((page, p) => {
-            assert.ok(page.length > 0, tr.id + ' ' + T.amoudLabel(tr.start, p) + ' vide');
+            // Seul amoud vide : Nazir 33b, que l'édition de Vilna saute dans sa numérotation.
+            if (!page.length) assert.strictEqual(tr.id + ' ' + T.amoudLabel(tr.start, p), 'nazir 33b', tr.id + ' ' + T.amoudLabel(tr.start, p) + ' vide');
             page.forEach(seg => {
                 assert.ok(typeof seg === 'string' && seg.trim() === seg && seg.length > 0, tr.id + ' segment vide ou mal rogné');
                 assert.ok(!/<(?!\/?b>)/.test(seg), tr.id + ' balise inattendue : ' + seg.slice(0, 60));
@@ -93,4 +94,24 @@ test('les segments se découpent en morceaux gras / normaux', () => {
     const parts = T.parseComment('<b>מַתְנִי׳</b> מֵאֵימָתַי');
     assert.deepStrictEqual(parts.map(p => p.k), ['b', '']);
     assert.strictEqual(T.stripMarks('מֵאֵימָתַי'), 'מאימתי');
+});
+
+test('le Talmud complet : 37 traités, 5 350 amoudim, le dernier daf de chacun est celui de l\'édition de Vilna', () => {
+    const last = { berakhot: 64, shabbat: 157, eruvin: 105, pesachim: 121, 'rosh-hashanah': 35, yoma: 88, sukkah: 56, beitzah: 40, taanit: 31, megillah: 32, 'moed-katan': 29, chagigah: 27,
+        yevamot: 122, ketubot: 112, nedarim: 91, nazir: 66, sotah: 49, gittin: 90, kiddushin: 82, 'bava-kamma': 119, 'bava-metzia': 119, 'bava-batra': 176, sanhedrin: 113, makkot: 24,
+        shevuot: 49, 'avodah-zarah': 76, horayot: 14, zevachim: 120, menachot: 110, chullin: 142, bekhorot: 61, arakhin: 34, temurah: 34, keritot: 28, meilah: 22, tamid: 33, niddah: 73 };
+    const list = T.tractates(index);
+    assert.strictEqual(list.length, 37);
+    assert.strictEqual(list.reduce((n, t) => n + t.amudim, 0), 5350);
+    list.forEach(t => assert.strictEqual(T.dafOf(T.amoudLabel(t.start, t.amudim - 1)), last[t.id], t.id));
+    assert.deepStrictEqual(list.map(t => t.seder).filter((s, i, a) => a.indexOf(s) === i), ['zeraim', 'moed', 'nashim', 'nezikin', 'kodashim', 'tohorot']);
+    assert.strictEqual(T.find(index, 'tamid').start, '25b');
+});
+
+test('navigation entre traités : de la fin de Berakhot au début de Chabbat, et retour', () => {
+    const tr = T.find(index, 'berakhot');
+    assert.deepStrictEqual(T.step(index, { id: 'berakhot', page: tr.amudim - 1 }, 1), { id: 'shabbat', page: 0 });
+    const sh = T.find(index, 'shabbat');
+    assert.deepStrictEqual(T.step(index, { id: 'shabbat', page: 0 }, -1), { id: 'berakhot', page: tr.amudim - 1 });
+    assert.ok(sh.amudim > 300);
 });
