@@ -91,8 +91,18 @@ function sdCurrentPrayer() {
     const r = (k) => ZmanimCore.rounded(z, k);
     if (r('alot') !== null && now < r('alot')) return 'arvit';
     if (r('minchaGedola') !== null && now < r('minchaGedola')) return 'chacharit';
-    if (r('tzeit') !== null && now < r('tzeit')) return 'minha';
+    if (r('shkia') !== null && now < r('shkia')) return 'minha';
     return 'arvit';
+}
+
+// Entre la chkia et la sortie des étoiles : c'est déjà l'heure d'Arvit, mais le jour hébraïque (donc le contexte) n'a pas encore changé.
+function sdBetweenShkiaAndTzeit() {
+    if (!sdPlace) return false;
+    const now = Date.now();
+    const d = ZmanimCore.civilDateOf(sdPlace.tz, now);
+    const z = ZmanimCore.zmanim(sdPlace, d.year, d.month, d.day, {});
+    const shkia = ZmanimCore.rounded(z, 'shkia'), tzeit = ZmanimCore.rounded(z, 'tzeit');
+    return shkia !== null && now >= shkia && (tzeit === null || now < tzeit);
 }
 
 // --- Chargement --------------------------------------------------------------------------------------------------------------------------
@@ -235,6 +245,11 @@ function sdShabbatContext(ctx) {
 function sdCurrentService() {
     const base = sdPlace ? sdCurrentPrayer() : null;
     if (!base) return null;
+    if (base === 'arvit' && !sdCtx.flags.yomTov && sdBetweenShkiaAndTzeit()) {
+        // vendredi après la chkia : l'office du soir de Chabbat ; samedi après la chkia : Arvit de semaine (Chabbat finit à la sortie des étoiles)
+        if (HebrewCalendarCore.weekdayOf(sdCtx.fixed) === 5) return { base: base, group: 'chabbat-arvit', title: 'Arvit de Chabbat', he: 'ערבית', shabbat: true };
+        if (sdCtx.flags.shabbat) return { base: base, group: 'arvit', title: t('tools.sd_p_arvit'), he: SD_HE_PRAYER.arvit, shabbat: false };
+    }
     if (sdCtx.flags.shabbat && !sdCtx.flags.yomTov) {
         const map = { chacharit: ['chabbat-chacharit', 'Cha\'harit', 'שחרית'], minha: ['chabbat-minha', 'Min\'ha', 'מנחה'], arvit: ['chabbat-arvit', 'Arvit', 'ערבית'] };
         return { base: base, group: map[base][0], title: map[base][1] + ' de Chabbat', he: map[base][2], shabbat: true };
