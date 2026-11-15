@@ -579,6 +579,10 @@
                 <select id="tool-talmud-daf" class="tool-input torah-chapter" aria-label="Daf" data-i18n-attr="aria-label:tools.talmud_daf_label" onchange="talmudSelectDaf(this.value)"></select>
                 <button type="button" class="tool-history-chip" id="tool-talmud-next" onclick="talmudGo(1)" aria-label="Amoud suivant" data-i18n-attr="aria-label:tools.talmud_next">›</button>
             </div>
+            <details class="tanakh-comm-panel" id="tool-talmud-comm" hidden>
+                <summary id="tool-talmud-comm-summary" data-i18n="tools.tanakh_comm_title">Commentateurs</summary>
+                <div class="tanakh-comm-list" id="tool-talmud-comm-list" role="group" aria-label="Commentateurs" data-i18n-attr="aria-label:tools.tanakh_comm_title"></div>
+            </details>
             <div class="tool-history-chips" id="tool-talmud-vowels" role="group" aria-label="Affichage du texte" data-i18n-attr="aria-label:tools.torah_vowels_label"></div>
             <p class="tool-msg" id="tool-talmud-msg" role="status"></p>
         </div>

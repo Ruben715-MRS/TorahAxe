@@ -5,12 +5,24 @@
 // et des boutons « précédent / suivant » qui passent d'un traité à l'autre. Les données : data/talmud/ (scripts/build_talmud.js, règles pures dans
 // js/talmudCore.js). Chaque traité est chargé à son ouverture, une seule fois. Même organisation que la Michna (js/app/michna.js).
 // « Sans voyelles » retire les voyelles et les accents. Tout le texte passe par des nœuds texte ; la police est celle des Réglages (--torah-font).
-// Le choix (traité, amoud, voyelles) est gardé dans localStorage, sans jamais bloquer si le stockage est refusé.
+// Les commentateurs (Rachi, Tossafot) : même panneau repliable que la Michna ; chacun sous le segment de Guémara qu'il commente, avec sa couleur.
+// Une pastille « 💬 n » à côté de chaque segment commenté ouvre ses commentaires, même quand la case n'est pas cochée (data/talmud/counts-<traité>.json).
+// Le choix (traité, amoud, voyelles, commentateurs cochés) est gardé dans localStorage, sans jamais bloquer si le stockage est refusé.
 
 const TALMUD_KEY = 'talmudPrefs';
+// Le registre des commentateurs, dans l'ordre d'affichage. `name` : nom français ; `he` : nom hébreu (étiquette) ; `file` : préfixe des fichiers ;
+// `source` : la clé i18n de sa mention de source ; `color` : la couleur de sa bordure.
+const TALMUD_COMMENTATORS = [
+    { id: 'rashi', name: 'Rachi', he: 'רש״י', file: 'rashi-', source: 'tools.talmud_src_rashi', color: '#7c8aa5' },
+    { id: 'tosafot', name: 'Tossafot', he: 'תוספות', file: 'tosafot-', source: 'tools.talmud_src_tosafot', color: '#8e5aa8' }
+];
+
 let talmudIndex = null;
-const talmudLoaded = {};    // traité -> data/talmud/<traité>.json
-let talmudState = { id: 'berakhot', page: 0, vowels: 'full' };
+const talmudLoaded = {};        // traité -> data/talmud/<traité>.json
+const talmudCommLoaded = {};    // commentateur -> traité -> { pages } : commentaire chargé
+const talmudCommPending = {};   // « commentateur/traité » -> promesse en cours, pour ne charger qu'une fois
+const talmudCounts = {};        // traité -> counts-<traité>.json : { order, pages[amoud][segment] = masque }
+let talmudState = { id: 'berakhot', page: 0, vowels: 'full', comm: { rashi: true }, open: {} };
 
 function talmudLoadPrefs() {
     try {
@@ -19,12 +31,13 @@ function talmudLoadPrefs() {
             if (typeof p.id === 'string') talmudState.id = p.id;
             if (Number.isInteger(p.page) && p.page >= 0) talmudState.page = p.page;
             if (p.vowels === 'consonants') talmudState.vowels = 'consonants';
+            if (p.comm && typeof p.comm === 'object') talmudState.comm = p.comm;
         }
     } catch (e) {}
 }
 
 function talmudSavePrefs() {
-    try { localStorage.setItem(TALMUD_KEY, JSON.stringify({ id: talmudState.id, page: talmudState.page, vowels: talmudState.vowels })); } catch (e) {}
+    try { localStorage.setItem(TALMUD_KEY, JSON.stringify({ id: talmudState.id, page: talmudState.page, vowels: talmudState.vowels, comm: talmudState.comm })); } catch (e) {}
 }
 
 function talmudNode(tag, cls, text) {
@@ -59,6 +72,8 @@ function toolTalmudInit() {
             else talmudState.page = Math.min(talmudState.page, tr.amudim - 1);
             msg.textContent = '';
             talmudRender();
+            talmudLoadCounts(talmudState.id);
+            talmudLoadComments(talmudState.id);
         })
         .catch(() => { msg.textContent = t('tools.torah_error'); });
 }
@@ -76,13 +91,186 @@ function talmudOpen(id, page) {
     if (!tr) return;
     talmudState.id = id;
     talmudState.page = Math.min(Math.max(0, page || 0), tr.amudim - 1);
+    talmudState.open = {};
     talmudSavePrefs();
     talmudRender();
+    talmudLoadCounts(id);
+    talmudLoadComments(id);
 }
 
 function talmudVow(text) {
     return talmudState.vowels === 'full' ? text : TalmudCore.stripMarks(text);
 }
+
+// --- Les commentateurs --------------------------------------------------------------------------------
+
+// Les commentateurs du registre qui couvrent le traité ouvert : l'index déclare leurs fichiers.
+function talmudCommAvailable() {
+    const tr = talmudIndex ? TalmudCore.find(talmudIndex, talmudState.id) : null;
+    return TALMUD_COMMENTATORS.filter(c => tr && tr.comm.includes(c.id));
+}
+
+// Les commentateurs cochés qui couvrent le traité ouvert : ceux qu'on affiche.
+function talmudCommActive() {
+    return talmudCommAvailable().filter(c => talmudState.comm[c.id]);
+}
+
+// Les exégètes dont un commentaire est à l'écran, donc dont la source se mentionne : les cochés, et ceux qu'une pastille dépliée a fait charger.
+function talmudCommSources() {
+    const opened = Object.keys(talmudState.open).length > 0;
+    return talmudCommAvailable().filter(c => talmudState.comm[c.id] || (opened && (talmudCommLoaded[c.id] || {})[talmudState.id]));
+}
+
+// Charge les commentaires de ces exégètes pour le traité `id` (une fois chacun) ; puis réaffiche si on est toujours sur ce traité.
+function talmudLoadComm(list, id) {
+    if (talmudState.id !== id) return;
+    const msg = toolEl('tool-talmud-msg');
+    list.forEach(comm => {
+        const loaded = talmudCommLoaded[comm.id] || (talmudCommLoaded[comm.id] = {});
+        const key = comm.id + '/' + id;
+        if (loaded[id] || talmudCommPending[key]) return;
+        msg.textContent = t('tools.torah_loading');
+        talmudCommPending[key] = fetch('data/talmud/' + comm.file + id + '.json')
+            .then(res => { if (!res.ok) throw new Error(comm.id + ' HTTP ' + res.status); return res.json(); })
+            .then(data => {
+                loaded[id] = data;
+                msg.textContent = '';
+                if (talmudState.id === id) talmudRender();
+            })
+            .catch(() => { msg.textContent = t('tools.tanakh_comm_error', { name: comm.name }); })
+            .finally(() => { delete talmudCommPending[key]; });
+    });
+}
+
+function talmudLoadComments(id) {
+    talmudLoadComm(talmudCommActive(), id);
+}
+
+// Charge (une fois) les masques de pastilles du traité, s'il a des commentateurs ; puis réaffiche. Sans ce fichier, le traité s'affiche sans pastilles.
+function talmudLoadCounts(id) {
+    if (talmudCounts[id] || !talmudCommAvailable().length) return;
+    fetch('data/talmud/counts-' + id + '.json')
+        .then(res => { if (!res.ok) throw new Error('counts HTTP ' + res.status); return res.json(); })
+        .then(counts => {
+            talmudCounts[id] = counts;
+            if (talmudState.id === id) talmudRender();
+        })
+        .catch(() => { /* pas de pastilles */ });
+}
+
+// Les commentateurs du registre qui commentent le segment `seg` (depuis 0) de l'amoud `page`, selon le masque du traité.
+function talmudSegmentComms(page, seg) {
+    const counts = talmudCounts[talmudState.id];
+    const mask = counts && counts.pages[page] ? counts.pages[page][seg] || 0 : 0;
+    if (!mask) return [];
+    const available = talmudCommAvailable();
+    return TalmudCore.maskIds(counts.order, mask).map(id => available.find(x => x.id === id)).filter(Boolean);
+}
+
+// La pastille « 💬 n » d'un segment : touchée, elle ouvre ou ferme les commentaires de tous ceux qui le commentent, cochés ou non.
+function talmudBadge(page, seg, list) {
+    const key = page + ':' + seg;
+    const names = list.map(x => x.name).join(', ');
+    const btn = talmudNode('button', 'tanakh-comm-badge', '💬 ' + list.length);
+    btn.type = 'button';
+    btn.dataset.badge = key;
+    btn.title = names;
+    btn.setAttribute('aria-label', t(list.length === 1 ? 'tools.talmud_comm_count_one' : 'tools.talmud_comm_count', { n: list.length, names }));
+    btn.setAttribute('aria-expanded', talmudState.open[key] ? 'true' : 'false');
+    btn.onclick = () => talmudToggleSegment(page, seg);
+    return btn;
+}
+
+function talmudToggleSegment(page, seg) {
+    const key = page + ':' + seg;
+    if (talmudState.open[key]) delete talmudState.open[key]; else talmudState.open[key] = true;
+    talmudRender();
+    if (talmudState.open[key]) talmudLoadComm(talmudSegmentComms(page, seg), talmudState.id);
+}
+
+function talmudToggleComm(id, checked) {
+    talmudState.comm[id] = checked;
+    talmudSavePrefs();
+    talmudRender();
+    if (checked) talmudLoadComments(talmudState.id);
+}
+
+// Le panneau « Commentateurs » : une case par exégète du registre, construites une fois (le focus du clavier ne se perd pas à chaque affichage).
+// Un exégète qui ne couvre pas le traité est grisé, sa case gardée.
+function talmudRenderCommPanel() {
+    const panel = toolEl('tool-talmud-comm');
+    const list = toolEl('tool-talmud-comm-list');
+    const available = talmudCommAvailable();
+    panel.hidden = available.length === 0;
+    if (!list.children.length) {
+        TALMUD_COMMENTATORS.forEach(comm => {
+            const label = talmudNode('label', 'dict-toggle tanakh-comm-item');
+            label.dataset.comm = comm.id;
+            label.style.setProperty('--comm-color', comm.color);
+            const box = talmudNode('input');
+            box.type = 'checkbox';
+            box.id = 'tool-talmud-comm-' + comm.id;
+            box.onchange = () => talmudToggleComm(comm.id, box.checked);
+            label.appendChild(box);
+            label.appendChild(talmudNode('span', '', ' ' + comm.name + ' '));
+            const he = talmudNode('span', 'tanakh-comm-he', comm.he);
+            he.lang = 'he';
+            he.dir = 'rtl';
+            label.appendChild(he);
+            list.appendChild(label);
+        });
+    }
+    TALMUD_COMMENTATORS.forEach(comm => {
+        const box = toolEl('tool-talmud-comm-' + comm.id);
+        box.checked = !!talmudState.comm[comm.id];
+        box.disabled = !available.includes(comm);
+    });
+    const active = talmudCommActive();
+    toolEl('tool-talmud-comm-summary').textContent = active.length
+        ? t('tools.tanakh_comm_title') + ' · ' + active.map(c => c.name).join(', ')
+        : t('tools.tanakh_comm_title');
+}
+
+// Un passage de commentaire : <b> le mot commenté, <i> une citation, <small> une variante. Le texte ne passe jamais par du HTML brut.
+function talmudComment(comm, raw) {
+    const p = talmudNode('p', 'tanakh-comm talmud-comm tanakh-comm-' + comm.id);
+    p.style.setProperty('--comm-color', comm.color);
+    p.lang = 'he';
+    p.dir = 'rtl';
+    TalmudCore.parseComment(raw).forEach(part => {
+        const text = talmudVow(part.s);
+        if (part.k) p.appendChild(talmudNode(part.k, '', text));
+        else p.appendChild(document.createTextNode(text));
+    });
+    return p;
+}
+
+// L'étiquette du nom hébreu de l'exégète, en tête de son premier commentaire du segment.
+function talmudCommTag(comm, p) {
+    const tag = talmudNode('span', 'tanakh-comm-tag', comm.he);
+    tag.lang = 'he';
+    p.insertBefore(document.createTextNode(' '), p.firstChild);
+    p.insertBefore(tag, p.firstChild);
+}
+
+// Les commentaires du segment : ceux dont la case est cochée et, si la pastille est ouverte, tous ceux qui le commentent ; seulement ceux dont le traité est
+// chargé et qui ont quelque chose à dire ici. L'étiquette de nom n'est utile qu'à partir de deux exégètes.
+function talmudCommParagraphs(page, seg, inSegment) {
+    const open = !!talmudState.open[page + ':' + seg];
+    const blocks = talmudCommAvailable()
+        .filter(x => talmudState.comm[x.id] || (open && inSegment.includes(x)))
+        .filter(x => (talmudCommLoaded[x.id] || {})[talmudState.id])
+        .map(x => [x, (((talmudCommLoaded[x.id][talmudState.id].pages[page] || [])[seg]) || []).map(raw => talmudComment(x, raw))])
+        .filter(([, list]) => list.length);
+    const out = [];
+    blocks.forEach(([comm, list]) => {
+        if (blocks.length > 1) talmudCommTag(comm, list[0]);
+        list.forEach(p => out.push(p));
+    });
+    return out;
+}
+
+// --- L'écran ------------------------------------------------------------------------------------------
 
 function talmudRender() {
     if (!talmudIndex) return;
@@ -130,8 +318,9 @@ function talmudRender() {
     toolEl('tool-talmud-nav-label').textContent = '↑ ' + tr.he + ' ' + TalmudCore.hebrewAmoud(TalmudCore.amoudLabel(tr.start, page));
     talmudChips(toolEl('tool-talmud-vowels'), [['full', t('tools.tanakh_vowels_full')], ['consonants', t('tools.tanakh_vowels_consonants')]], talmudState.vowels,
         key => { talmudState.vowels = key; talmudSavePrefs(); talmudRender(); });
+    talmudRenderCommPanel();
     talmudRenderText(tr);
-    toolEl('tool-talmud-source').textContent = t('tools.talmud_source');
+    toolEl('tool-talmud-source').textContent = [t('tools.talmud_source')].concat(talmudCommSources().map(c => t(c.source))).join(' ');
 }
 
 // Un segment : les morceaux en gras (<b>) deviennent des <b>, le reste du texte simple. Le texte ne passe jamais par du HTML brut.
@@ -154,7 +343,9 @@ function talmudRenderText(tr) {
     if (!talmudLoaded[tr.id]) { msg.textContent = t('tools.torah_loading'); toolClear(box); }
     talmudBook(tr.id).then(book => {
         if (stale()) return;
-        msg.textContent = '';
+        if (msg.textContent === t('tools.torah_loading') && !Object.keys(talmudCommPending).length) msg.textContent = '';
+        // Le focus du clavier reste sur la pastille touchée quand le texte est reconstruit.
+        const focused = document.activeElement && document.activeElement.dataset ? document.activeElement.dataset.badge : null;
         toolClear(box);
         const label = TalmudCore.amoudLabel(tr.start, wanted.page);
         const title = talmudNode('h3', 'tanakh-chapter-title', tr.he + ' · ' + TalmudCore.hebrewAmoud(label) + ' · ' + tr.fr + ' ' + label);
@@ -176,8 +367,18 @@ function talmudRenderText(tr) {
                 const h = talmudNode('h4', 'talmud-chapter-heading', t('tools.talmud_chapter_n', { n: starts[i].n }) + ' · ' + starts[i].he);
                 box.appendChild(h);
             }
-            box.appendChild(talmudSegment(raw));
+            const block = talmudNode('div', 'tanakh-block talmud-block');
+            const p = talmudSegment(raw);
+            const inSegment = talmudSegmentComms(wanted.page, i);
+            if (inSegment.length) p.appendChild(talmudBadge(wanted.page, i, inSegment));
+            block.appendChild(p);
+            talmudCommParagraphs(wanted.page, i, inSegment).forEach(x => block.appendChild(x));
+            box.appendChild(block);
         });
+        if (focused) {
+            const again = box.querySelector('[data-badge="' + focused + '"]');
+            if (again) again.focus();
+        }
     }).catch(() => { if (!stale()) msg.textContent = t('tools.torah_error'); });
 }
 

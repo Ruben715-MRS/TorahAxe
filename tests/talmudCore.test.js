@@ -115,3 +115,51 @@ test('navigation entre traités : de la fin de Berakhot au début de Chabbat, et
     assert.deepStrictEqual(T.step(index, { id: 'shabbat', page: 0 }, -1), { id: 'berakhot', page: tr.amudim - 1 });
     assert.ok(sh.amudim > 300);
 });
+
+test('commentaires (Rachi, Tossafot) : alignés sur les amoudim et les segments de la Guémara, masques des pastilles cohérents', () => {
+    const PREFIX = { rashi: 'rashi-', tosafot: 'tosafot-' };
+    let withComm = 0;
+    T.tractates(index).forEach(tr => {
+        const info = tr;
+        if (!info.comm || !info.comm.length) return;
+        withComm++;
+        const book = read(tr.id);
+        const counts = read('counts-' + tr.id);
+        assert.deepStrictEqual(counts.order, info.comm, tr.id + ' : ordre des masques = commentateurs de l\'index');
+        assert.strictEqual(counts.pages.length, tr.amudim, tr.id);
+        info.comm.forEach((id, bit) => {
+            const file = read(PREFIX[id] + tr.id);
+            assert.strictEqual(file.id, tr.id);
+            assert.strictEqual(file.commentator, id);
+            assert.strictEqual(file.pages.length, tr.amudim, tr.id + ' ' + id);
+            file.pages.forEach((page, p) => {
+                assert.ok(page.length <= book.pages[p].length, tr.id + ' ' + id + ' ' + T.amoudLabel(tr.start, p) + ' : plus de segments que la Guémara');
+                page.forEach((list, k) => {
+                    assert.ok(Array.isArray(list), tr.id + ' ' + id);
+                    list.forEach(c => {
+                        assert.ok(typeof c === 'string' && c.trim() === c && c.length > 0, tr.id + ' ' + id + ' commentaire vide');
+                        assert.ok(!/<(?!\/?(?:b|i|small)>)/.test(c), tr.id + ' ' + id + ' balise inattendue : ' + c.slice(0, 60));
+                    });
+                    const bitSet = ((counts.pages[p][k] || 0) >> bit) & 1;
+                    assert.strictEqual(bitSet, list.length ? 1 : 0, tr.id + ' ' + id + ' ' + T.amoudLabel(tr.start, p) + ':' + (k + 1) + ' : masque');
+                });
+            });
+        });
+    });
+    assert.ok(withComm >= 1);
+});
+
+test('Berakhot : Rachi (3 138 commentaires) et Tossafot (501), le mot commenté en gras', () => {
+    const rashi = read('rashi-berakhot');
+    const tosafot = read('tosafot-berakhot');
+    const all = (f) => f.pages.flatMap(p => p.flatMap(l => l));
+    assert.strictEqual(all(rashi).length, 3138);
+    assert.strictEqual(all(tosafot).length, 501);
+    assert.ok(all(rashi).filter(c => c.startsWith('<b>')).length > 3000);
+    assert.ok(all(tosafot).filter(c => c.startsWith('<b>')).length > 450);
+    // Le premier commentaire de Rachi porte sur le premier segment de la Guémara : « Meéimatai korin et Chema ».
+    assert.ok(/^<b>מאימתי קורין/.test(rashi.pages[0][0][0]));
+    assert.ok(/^<b>מאימתי קורין/.test(tosafot.pages[0][0][0]));
+    assert.deepStrictEqual(T.maskIds(['rashi', 'tosafot'], 3), ['rashi', 'tosafot']);
+    assert.deepStrictEqual(T.maskIds(['rashi', 'tosafot'], 2), ['tosafot']);
+});

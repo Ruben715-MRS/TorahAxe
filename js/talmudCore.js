@@ -4,7 +4,8 @@
 // La Guémara en araméen vocalisé, amoud par amoud (une « page » = un amoud : 2a, 2b, 3a…). Pur, sans DOM : testé dans tests/talmudCore.test.js.
 // Les données viennent de data/talmud/ (scripts/build_talmud.js) :
 //   index.json : { sedarim: [ { id, he, fr, tractates: [ { id, he, fr, start, amudim, chapters: [ { he, from: [amoud, segment] } ] } ] } ] }
-//   <traité>.json : { start, pages: [ amoud → [ segment ] ], chapters } ; `start` est l'amoud de pages[0] (« 2a »), `from` compte depuis 0.
+//   <traité>.json : { start, pages: [ amoud → [ segment ] ], chapters } ; <commentateur>-<traité>.json : { pages: [ amoud → [ segment → [commentaires] ] ] } ;
+//   counts-<traité>.json : { order, pages: [ amoud → [ masque par segment ] ] } (le bit k du masque est celui de order[k]) ; `start` est l'amoud de pages[0] (« 2a »), `from` compte depuis 0.
 // Un segment est du texte avec <b> (les mots en gras : « Matni », « Guemara », mot d'ouverture, ligne « Hadran »).
 // Dépend de MichnaCore (numérotation hébraïque, voyelles, découpe des <b>) : js/michnaCore.js se charge avant ce fichier.
 
@@ -19,7 +20,7 @@
         var out = [];
         ((index && index.sedarim) || []).forEach(function (s) {
             s.tractates.forEach(function (t) {
-                out.push({ id: t.id, he: t.he, fr: t.fr, start: t.start, amudim: t.amudim, chapters: t.chapters || [], seder: s.id, sederHe: s.he, sederFr: s.fr });
+                out.push({ id: t.id, he: t.he, fr: t.fr, start: t.start, amudim: t.amudim, chapters: t.chapters || [], comm: t.comm || [], seder: s.id, sederHe: s.he, sederFr: s.fr });
             });
         });
         return out;
@@ -97,6 +98,6 @@
     return {
         tractates: tractates, find: find, rank: rank, amoudLabel: amoudLabel, pageOf: pageOf, hebrewAmoud: hebrewAmoud, dafOf: dafOf,
         chapterAt: chapterAt, chaptersStartingIn: chaptersStartingIn, step: step, isHadran: isHadran,
-        hebrewNumber: M.hebrewNumber, parseComment: M.parseComment, stripMarks: M.stripMarks
+        hebrewNumber: M.hebrewNumber, maskIds: M.maskIds, parseComment: M.parseComment, stripMarks: M.stripMarks
     };
 }));
