@@ -1,0 +1,283 @@
+/* =========================================================================
+   ACCUEIL DE TORAHAXE : quatre onglets (Aujourd'hui, Étude, Explorer, Réviser)
+   Construit par js/app/home.js. Reprend les variables de style.css (clair et sombre).
+   ========================================================================= */
+:root {
+    --home-navy: #001a4b;
+    --home-on-navy: #ffffff;
+    --home-gold: #96621a;
+    --home-heb: 'HX Frank', 'HX Torah', 'Times New Roman', serif;
+}
+:root[data-theme="dark"] {
+    --home-navy: #17346b;
+    --home-gold: #dba95a;
+}
+
+body > #screen-main {
+    flex: 1;
+    min-height: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.home-pane {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: calc(var(--sat, 0px) + 12px) 16px 24px;
+}
+
+.home-content {
+    width: 100%;
+    max-width: 560px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* --- En-tête d'onglet --- */
+.home-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.home-header-text { min-width: 0; }
+
+.home-title {
+    margin: 0;
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--primary-blue);
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+}
+
+:root[data-theme="dark"] .home-title { color: var(--text-dark); }
+
+.home-kicker {
+    font-size: 13px;
+    color: var(--muted-text);
+    font-weight: 500;
+}
+.home-kicker::first-letter { text-transform: uppercase; }
+
+.home-header .settings-btn {
+    position: static;
+    flex: none;
+}
+
+/* --- Titres de section --- */
+.home-section-title {
+    margin: 6px 4px -6px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--muted-text);
+}
+
+/* --- Carte « À cette heure » --- */
+.home-hero {
+    background: var(--home-navy);
+    color: var(--home-on-navy);
+    border-radius: 22px;
+    padding: 18px 18px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    box-shadow: var(--card-shadow);
+}
+
+.home-hero small.home-hero-label {
+    font-size: 12px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    font-weight: 600;
+    opacity: 0.75;
+}
+
+.home-hero-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; }
+.home-hero-name { font-size: 30px; font-weight: 800; line-height: 1.1; }
+.home-hero-he { font-family: var(--home-heb); font-size: 30px; font-weight: 700; direction: rtl; line-height: 1.1; }
+.home-hero-text { margin: 0; font-size: 14px; line-height: 1.45; opacity: 0.9; }
+
+.home-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.home-chip {
+    background: rgba(255, 255, 255, 0.16);
+    border-radius: 999px;
+    padding: 4px 11px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.home-hero-btn {
+    border: 0;
+    border-radius: 999px;
+    background: #ffffff;
+    color: #001a4b;
+    font: inherit;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 12px 16px;
+    cursor: pointer;
+}
+.home-hero-btn:active { transform: scale(0.98); }
+
+.home-times {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    padding-top: 11px;
+    font-variant-numeric: tabular-nums;
+}
+.home-times div { font-size: 12px; opacity: 0.85; }
+.home-times b { display: block; font-size: 17px; opacity: 1; }
+
+/* --- Tuiles à mot hébreu --- */
+.home-tiles { display: grid; gap: 10px; }
+.home-tiles.c2 { grid-template-columns: repeat(2, 1fr); }
+.home-tiles.c3 { grid-template-columns: repeat(3, 1fr); }
+
+.home-tile {
+    border: 1px solid var(--border-soft);
+    background: var(--surface);
+    color: var(--text-dark);
+    border-radius: 18px;
+    box-shadow: var(--card-shadow);
+    padding: 14px 6px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    font: inherit;
+    cursor: pointer;
+    min-width: 0;
+    text-align: center;
+}
+.home-tile .he {
+    font-family: var(--home-heb);
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 1.25;
+    direction: rtl;
+}
+.home-tile .fr { font-size: 13px; font-weight: 600; overflow-wrap: anywhere; }
+.home-tile .sub { font-size: 11.5px; color: var(--muted-text); font-weight: 500; }
+.home-tiles.c2 .home-tile { padding: 16px 8px 14px; }
+.home-tiles.c2 .home-tile .he { font-size: 29px; }
+.home-tile:active, .home-row:active, .home-card:active { background: var(--selected-tint); }
+.home-tile:focus-visible, .home-row:focus-visible, .home-card:focus-visible, .home-tab:focus-visible,
+.home-hero-btn:focus-visible, .home-hero:focus-visible { outline: 2px solid var(--home-gold); outline-offset: 2px; }
+
+/* --- Cartes d'information --- */
+.home-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.home-card {
+    border: 1px solid var(--border-soft);
+    background: var(--surface);
+    color: var(--text-dark);
+    border-radius: 16px;
+    box-shadow: var(--card-shadow);
+    padding: 12px 14px;
+    text-align: left;
+    font: inherit;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    min-width: 0;
+}
+div.home-card { cursor: default; }
+div.home-card:active { background: var(--surface); }
+.home-card small { font-size: 11px; color: var(--muted-text); font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
+.home-card strong { font-size: 16px; line-height: 1.25; }
+.home-card em { font-style: normal; font-size: 12.5px; color: var(--muted-text); }
+
+/* --- Listes (une ligne par entrée, avec description) --- */
+.home-rows {
+    background: var(--surface);
+    border: 1px solid var(--border-soft);
+    border-radius: 18px;
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+.home-row {
+    border: 0;
+    background: transparent;
+    color: var(--text-dark);
+    font: inherit;
+    display: grid;
+    grid-template-columns: 66px 1fr 12px;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 14px;
+    text-align: left;
+    cursor: pointer;
+}
+.home-row + .home-row { border-top: 1px solid var(--border-soft); }
+.home-row .he {
+    font-family: var(--home-heb);
+    font-weight: 700;
+    font-size: 19px;
+    direction: rtl;
+    text-align: center;
+    color: var(--primary-blue);
+    overflow-wrap: anywhere;
+}
+:root[data-theme="dark"] .home-row .he { color: var(--text-dark); }
+.home-row .fr { display: block; font-size: 15px; font-weight: 600; }
+.home-row .desc { display: block; font-size: 12.5px; color: var(--muted-text); line-height: 1.35; }
+.home-row .chev { color: var(--muted-text); font-size: 18px; }
+
+/* --- Recherche --- */
+.home-search { margin: 0; max-width: none; }
+#screen-main .search-bar-wrap { margin: 0; }
+.home-empty { text-align: center; color: var(--muted-text); font-size: 14px; padding: 18px 8px; }
+
+/* --- Hilloulot (repris des Zmanim) --- */
+.home-content .zm-hil { margin: 0; }
+
+/* --- Encadrés HistoriAxe --- */
+.home-content .historiaxe-promo-card { margin: 0; }
+
+/* --- Barre d'onglets --- */
+.home-tabs {
+    flex: none;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background: var(--surface);
+    border-top: 1px solid var(--border-soft);
+    padding: 7px 8px calc(var(--sab, 0px) + 6px);
+}
+.home-tab {
+    border: 0;
+    background: transparent;
+    color: var(--muted-text);
+    font: inherit;
+    font-size: 11.5px;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    padding: 5px 0;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.home-tab svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.home-tab[aria-selected="true"] { color: var(--primary-blue); }
+:root[data-theme="dark"] .home-tab[aria-selected="true"] { color: #8fb8e8; }
+.home-tab[aria-selected="true"] svg { stroke-width: 2.2; }
+
+@media (prefers-reduced-motion: no-preference) {
+    .home-content { animation: homeFade 0.18s ease-out; }
+    @keyframes homeFade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+}

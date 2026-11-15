@@ -16,6 +16,7 @@ function showScreen(screenId, direction) {
     });
     const target = document.getElementById(screenId);
     target.classList.remove('hidden');
+    if (screenId === 'screen-main' && typeof homeRefresh === 'function') homeRefresh();
     target.classList.remove('screen-slide-forward', 'screen-slide-back');
     if (direction === 'forward' || direction === 'back') {
         void target.offsetWidth; // force le reflow pour rejouer l'animation

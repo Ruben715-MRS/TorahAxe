@@ -20,6 +20,9 @@ let sdFontsOpen = false;
 let sdView = { mode: 'home', ids: [], title: '' };
 let sdPlace = null;
 let sdCtx = null;
+// Une ouverture demandée par un autre écran (l'accueil) : { group } ou { ids, title }, exécutée dès que l'index du siddour est chargé.
+let sdPending = null;
+const SD_LAST_KEY = 'siddurLast';
 
 const SD_SIZES = [18, 20, 23, 27, 32];
 // Les groupes du parcours rapide (le texte du jour), dans l'ordre de la journée.
@@ -135,10 +138,49 @@ function toolSiddurInit() {
     const body = toolEl('tool-siddur-body');
     toolClear(body);
     body.appendChild(sdEl('p', 'tool-small', t('tools.sd_loading')));
-    sdLoadIndex().then(() => { sdRender(); setTimeout(sdPrecache, 1500); }).catch(() => {
+    sdLoadIndex().then(() => {
+        const target = sdTakePending();
+        if (target) sdView = { mode: 'reader', ids: target.ids, title: target.title };
+        sdRender();
+        setTimeout(sdPrecache, 1500);
+    }).catch(() => {
         toolClear(body);
         body.appendChild(sdEl('p', 'tool-msg', t('tools.sd_load_failed')));
     });
+}
+
+// L'ouverture en attente, résolue en { ids, title } (une prière entière, ou des sections données).
+function sdTakePending() {
+    const p = sdPending;
+    sdPending = null;
+    if (!p) return null;
+    if (p.ids) return { ids: p.ids, title: p.title };
+    const group = sdIndex.groups.filter(g => g.id === p.group)[0];
+    return group ? { ids: group.sections.map(s => s.id), title: group.fr } : null;
+}
+
+// Depuis l'accueil : ouvre le siddour directement sur une prière (chacharit, minha, arvit), ou sur des sections.
+function openSiddurPrayer(groupId) {
+    sdPending = { group: groupId };
+    openTool('siddur', 'screen-main');
+}
+function openSiddurSections(ids, title) {
+    sdPending = { ids: ids, title: title };
+    openTool('siddur', 'screen-main');
+}
+
+// La dernière lecture, gardée sur l'appareil : { ids, title } ou null.
+function sdLastRead() {
+    try {
+        const v = JSON.parse(localStorage.getItem(SD_LAST_KEY) || 'null');
+        return v && Array.isArray(v.ids) && v.ids.length && typeof v.title === 'string' ? v : null;
+    } catch (e) { return null; }
+}
+
+// Les notes du jour affichées en pastilles (Machiv haRouah, Avec Tahanoun…), sans Chabbat ni fête (dits à part).
+function sdDayNoteLabels(ctx) {
+    return SiddurCore.notesFor(ctx).filter(id => id !== 'shabbat' && id !== 'yomTov')
+        .map(id => id === 'omer' ? t('tools.sd_note_omer', { n: ctx.omer }) : t('tools.sd_note_' + id));
 }
 
 function sdRender() {
@@ -274,6 +316,7 @@ function sdRenderHome(body) {
 // --- La lecture ---------------------------------------------------------------------------------------------------------------------------------
 function sdOpen(ids, title) {
     sdView = { mode: 'reader', ids: ids, title: title };
+    try { localStorage.setItem(SD_LAST_KEY, JSON.stringify({ ids: ids, title: title })); } catch (e) { /* stockage indisponible */ }
     sdRender();
     const screen = toolEl('screen-tool-siddur');
     if (screen) screen.scrollTop = 0;

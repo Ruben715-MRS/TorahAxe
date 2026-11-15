@@ -102,7 +102,19 @@ function torahReaderSavePosition(block) {
 }
 
 // À l'ouverture : on reprend là où on était ; sinon le début de la Torah.
+// Une paracha demandée par un autre écran (l'accueil) : son indice dans data/torah/parashot.json, ouverte à la prochaine ouverture du rouleau.
+let torahReaderPending = null;
+function openTikkounAtParasha(index) {
+    torahReaderPending = index;
+    openTool('torahReader', 'screen-main');
+}
+
 function torahReaderOpenFirst() {
+    if (torahReaderRanges && torahReaderPending !== null) {
+        const k = torahReaderPending;
+        torahReaderPending = null;
+        if (torahReaderRanges[k]) { torahReaderGo(k); torahReaderSaveEnabled = false; return; }
+    }
     if (!torahReaderRanges || torahReaderBody().childElementCount !== 0) return;
     const saved = torahReaderSavedBlock();
     torahReaderGoBlock(saved !== null ? saved : torahReaderRanges[0].start);
