@@ -28,10 +28,10 @@
    "chapters": [
     "Ce que la Torah ne mesure pas (péa, prémices, visite au Temple, bienfaisance, étude) et les champs qui doivent laisser la péa.",
     "Ce qui sépare un champ en parcelles distinctes pour la péa : cours d'eau, chemin, autre culture.",
-    "Comment la péa se donne quand un même champ porte plusieurs espèces ou appartient à plusieurs propriétaires.",
-    "La péa reste attachée au sol à la fin du champ ; comment elle est laissée et répartie entre les pauvres.",
-    "La gerbe oubliée : quand une gerbe est considérée comme oubliée, selon Beit Chammaï et Beit Hillel.",
-    "La gerbe oubliée, suite : les cas de gerbes qui comptent ou non comme oubliées, et les cas douteux.",
+    "Les rangées de céréales parmi les oliviers et les parcelles mêlées : la péa se prélève sur chacune ou sur l'ensemble, selon Beit Chammaï et Beit Hillel.",
+    "La péa se donne sur ce qui est encore attaché au sol ; pour le dattier et le noyer, le propriétaire la répartit lui-même, et le partage entre les pauvres.",
+    "La meule dont on n'a pas glané dessous, le vent qui disperse les gerbes, et les épis qui comptent ou non dans la gerbe oubliée.",
+    "L'abandon d'un bien aux pauvres, les petites gerbes oubliées (un kav), et la gerbe près d'un mur ou d'une meule : oubliée ou non.",
     "L'olivier de renom, qui échappe à l'oubli, le raisin et l'olive tombés et le grappillage.",
     "Qui est pauvre et peut recevoir glanure, péa et dîme du pauvre, et ce qui est dû à celui qui est dans le besoin."
    ]
@@ -40,8 +40,8 @@
    "book": "Les produits dont on ne sait pas s'ils ont été dîmés : ce qu'il faut séparer, et comment.",
    "chapters": [
     "Les fruits peu estimés pour lesquels on est indulgent en matière de dîme douteuse, et ceux qui y sont soumis.",
-    "Les produits dîmés comme douteux en tout lieu, et le statut de celui qui devient un haver fidèle aux dîmes.",
-    "Ce qu'on donne aux pauvres et aux invités de passage sans séparer la dîme douteuse.",
+    "Les produits dîmés comme douteux en tout lieu (dattes, caroubes, cumin), et celui qui devient fidèle aux dîmes (nééman).",
+    "Ce qu'on donne aux pauvres et aux invités de passage (Rabban Gamliel nourrissait ses ouvriers de produit douteux), et les collecteurs de la charité.",
     "L'achat auprès de quelqu'un qui n'est pas digne de confiance en matière de dîme, et le partage de la marchandise.",
     "Celui qui achète au boulanger et comment il sépare les dîmes, pour lui comme pour d'autres.",
     "Le locataire, le métayer et l'associé : qui sépare la dîme du produit d'un champ loué ou partagé.",
@@ -54,8 +54,8 @@
     "Les espèces qui comptent comme différentes ou comme voisines pour le mélange de graines et la greffe.",
     "Les proportions de semences d'une autre espèce admises dans un champ, et la distance entre les espèces.",
     "Les parcelles de six palmes sur six et la façon d'y semer plusieurs légumes.",
-    "Le koren du champ à côté d'une vigne et la bande de vide à respecter autour de la vigne.",
-    "La vigne dévastée : à partir de quel nombre de ceps on en parle encore, et ce qu'on peut semer à côté.",
+    "Les distances à laisser autour de la vigne (karahat hakérem et mehol hakérem), selon Beit Chammaï et Beit Hillel.",
+    "La vigne dévastée : à partir de combien de ceps on parle encore de vigne (kérem dal), et la vigne plantée en désordre.",
     "La vigne en treille et les semences qu'on peut cultiver près d'elle.",
     "Le provin, la greffe de la vigne et la vigne qui s'étend sur un champ de légumes.",
     "Le mélange de la vigne avec d'autres semences, la greffe d'arbres, et l'interdit de faire travailler ensemble des bêtes d'espèces différentes.",
@@ -65,14 +65,14 @@
   "sheviit": {
    "book": "La septième année, où la terre se repose : travaux, produits, remise des dettes.",
    "chapters": [
-    "Jusqu'à quand on travaille un champ planté d'arbres avant la septième année, et les travaux qui y sont permis.",
+    "Jusqu'à quand on travaille un champ planté d'arbres avant la septième année (jusqu'à Chavouot selon Hillel), et ce qu'est un champ d'arbres.",
     "Jusqu'à quand on travaille un champ de céréales avant la septième année, et les travaux de la terre qui s'y rapportent.",
     "L'évacuation du fumier, l'épandage et les travaux de la terre permis ou interdits pendant l'année sabbatique.",
     "Les travaux de nettoyage et d'entretien autorisés en septième année, selon l'ancienne et la nouvelle règle.",
     "Quand les fruits deviennent soumis à la septième année, ce qu'on peut vendre aux autres et l'aide à ceux qui travaillent la terre.",
     "Les trois pays de la septième année (Judée, Transjordanie, Galilée) et les produits qui y sont soumis.",
     "La règle générale : un produit de septième année qui sert à la nourriture humaine, et le statut de ses plantes.",
-    "Les produits qui servent à l'usage des animaux ou des teintures : leur statut en septième année.",
+    "Ce qui est destiné à la nourriture humaine ne sert pas de cataplasme ; les usages permis des produits de septième année : manger, boire, s'oindre.",
     "Les plantes sauvages, les plantes de montagne et la règle du biour, le retrait des fruits de la maison.",
     "L'annulation des dettes à la fin de la septième année, le prosbol de Hillel et les dettes qui y échappent."
    ]
@@ -90,7 +90,7 @@
     "Une femme qui mange de la terouma et apprend la mort ou le divorce de son mari, et les cas douteux.",
     "La terouma semée : ce qui pousse, le sort du produit, et les plantes qui poussent d'elles-mêmes.",
     "Le mélange de terouma avec d'autres aliments : un oignon dans des lentilles, et le goût de l'interdit.",
-    "Les usages de la terouma : huile, vin, lampe, dattes et figues dans la sauce."
+    "Ce qu'on peut faire de la terouma : saumure, huile parfumée, vin cuit, miel de dattes, et les mélanges."
    ]
   },
   "maasrot": {
@@ -98,8 +98,8 @@
    "chapters": [
     "La règle générale : ce qui est comestible, gardé et cultivé est soumis à la dîme, et quand elle devient due.",
     "Manger en chemin ou au champ sans dîme, et le cas de celui qui offre des fruits à la volée.",
-    "Les fruits qu'on transporte dans la cour : le moment où ils deviennent soumis à la dîme.",
-    "Les aliments conservés, vinaigre, saumure, sauces : la dîme des produits transformés.",
+    "Les figues transportées dans la cour : ce que la famille et les ouvriers peuvent manger sans dîme, selon qu'ils sont nourris ou non par le patron.",
+    "Les aliments conservés (saumure, vinaigre) qui sont soumis à la dîme, et ce qu'on transforme sans y être soumis.",
     "Les arbres déplacés ou plantés, et la dîme des plantes déracinées et replantées."
    ]
   },
@@ -108,7 +108,7 @@
    "chapters": [
     "On ne vend pas, ne gage pas, ne donne pas la deuxième dîme, et l'usage de sa valeur.",
     "On ne l'utilise que pour manger, boire et s'oindre, et le rachat.",
-    "Ce qu'on achète avec l'argent de la deuxième dîme : seulement de la nourriture, et ce qui est permis.",
+    "On ne fait pas monter les fruits à Jérusalem pour les distribuer mais pour les manger ; ce qu'on peut acheter avec l'argent de la deuxième dîme.",
     "Le transport de la deuxième dîme d'un endroit à l'autre, la monnaie et le rachat avec un supplément.",
     "Les arbres de quatrième année (néta révaï), la marque posée sur leurs fruits, et la déclaration (vidoui) de la dîme."
    ]
@@ -118,7 +118,7 @@
    "chapters": [
     "Les cinq céréales soumises à la halla et les pâtes qui s'additionnent pour atteindre la mesure.",
     "Les fruits de l'étranger entrés en Israël, les mélanges de pâtes et celles qui sont exemptées.",
-    "Ce qu'on peut manger de la pâte avant qu'elle soit pétrie, et le cas des pâtes de plusieurs ménages.",
+    "Ce qu'on peut grignoter de la pâte avant qu'elle soit roulée, le moment de séparer la halla, et la pâte rendue impropre par la terouma.",
     "Deux femmes qui préparent deux pâtes qui se touchent, et la halla en Terre d'Israël et à l'étranger."
    ]
   },
@@ -126,7 +126,7 @@
    "book": "Les trois premières années d'un arbre, dont les fruits sont interdits (orla), et ce que cet interdit atteint.",
    "chapters": [
     "Qui est soumis à l'orla : planter pour clôture ou pour le bois, et la règle hors de la Terre d'Israël.",
-    "Le mélange de terouma ou d'orla avec le profane et la proportion qui l'annule.",
+    "Le mélange de terouma, de halla ou de prémices avec le profane (annulés à un pour cent), d'orla et de kilayim de la vigne (un pour deux cents).",
     "L'orla et le kilayim de la vigne, un vêtement teint avec de l'orla, et les autres interdits d'usage."
    ]
   },
@@ -134,7 +134,7 @@
    "book": "Les prémices : qui les apporte, comment on les porte au Temple, et le cas particulier de l'androgyne.",
    "chapters": [
     "Qui apporte les prémices et qui peut réciter la déclaration, selon sa terre et ses fruits.",
-    "Les prémices et la terouma : ce qu'ils ont en commun et leurs différences.",
+    "Ce que les prémices ont de commun avec la terouma (mort, cinquième, interdits aux non-cohanim, un pour cent) et ce qui les distingue des dîmes.",
     "Comment on sépare les prémices, la procession jusqu'à Jérusalem et le rite de leur remise.",
     "L'androgyne : un cas qui tient à la fois de l'homme et de la femme, pour les prémices comme pour d'autres lois."
    ]
@@ -178,7 +178,7 @@
     "Comment on étend les limites d'une ville et mesure son espace.",
     "Celui qui habite la même cour qu'un non-juif ou qu'un Juif non observant, et la cour partagée.",
     "Les fenêtres entre deux cours, les puits, et le passage d'une cour à l'autre.",
-    "L'association des ruelles (chitoufé mevoot) et le partage de l'érouv commun.",
+    "L'érouv des limites (chitouf tehoumin) : la jarre posée pour tous, ce qu'on peut accepter avant la nuit, et ce qui ne vaut plus après.",
     "Les toits de la ville, les cours, les places couvertes et les règles du domaine privé.",
     "Ce qu'on peut apporter et emporter le Chabbat : tefilin trouvés, objets sauvés, et le transport à travers un domaine."
    ]
@@ -201,14 +201,14 @@
   "shekalim": {
    "book": "Le demi-chekel : l'impôt annuel du Temple, sa collecte, ses responsables et l'usage des fonds.",
    "chapters": [
-    "L'annonce du demi-chekel au début d'Adar, qui doit le donner et ce qui s'y rattache.",
+    "L'annonce du demi-chekel au début d'Adar, la lecture de la Meguila dans les villes et les préparatifs des routes et des bains avant Pourim.",
     "Le change des monnaies, les cas de perte et la responsabilité du trésorier.",
     "Les trois prélèvements annuels de la chambre du Temple et l'usage du chekel.",
     "L'usage des fonds sacrés : les offrandes quotidiennes et les parts de chacun.",
     "Les responsables du Temple et leurs fonctions.",
     "Les treize troncs, les treize tables et les portes du Temple.",
     "Les monnaies trouvées dans le Temple : ce qu'on en fait selon leur destination.",
-    "Les objets trouvés à Jérusalem, leur pureté, et ce qu'on fait des biens sacrés."
+    "Les vases vides trouvés à Jérusalem, leur pureté, les jours de fête, et les statuts de l'argent du Temple."
    ]
   },
   "yoma": {
@@ -216,7 +216,7 @@
    "chapters": [
     "Les sept jours qui précèdent Yom Kippour : le Cohen Gadol est mis à part et se prépare au service.",
     "Le tirage au sort pour prélever les cendres et pour les tâches du matin.",
-    "Les ablutions du Cohen Gadol, l'offrande du matin et la première confession.",
+    "L'annonce du lever du jour, l'abattage du sacrifice du matin, les ablutions et les vêtements du Cohen Gadol, et la première confession.",
     "Le tirage au sort des deux boucs et la confession sur le taureau.",
     "L'encens dans le Saint des Saints et l'aspersion du sang du taureau et du bouc.",
     "Les deux boucs : le bouc envoyé à Azazel et celui de l'offrande.",
@@ -227,10 +227,10 @@
   "sukkah": {
    "book": "La fête de Souccot : la souccah, les quatre espèces et la joie de la fête.",
    "chapters": [
-    "Les mesures de la souccah : hauteur, largeur, et ce qui la rend valide.",
+    "La hauteur maximale de la souccah (vingt coudées), le minimum de dix palmes, les trois parois, l'ombre qui doit dépasser le soleil, et la vieille souccah.",
     "Dormir dans la souccah, y manger et la dispense des malades et des enfants.",
     "Les quatre espèces : les conditions de validité du loulav et de l'étrog.",
-    "Le rite du loulav et du saule de la fête, et les jours où l'on agite les espèces.",
+    "Le nombre de jours de chaque rite de la fête : loulav, saule, Hallel, souccah, libation d'eau et flûte.",
     "La joie de la Simhat Beit HaShoeva : flûte, danses et service du Temple pendant la fête."
    ]
   },
@@ -241,7 +241,7 @@
     "Une fête qui tombe la veille de Chabbat : l'érouv tavchilin et les préparatifs.",
     "La chasse, les animaux et les poissons, et l'abattage un jour de fête.",
     "Transporter des jarres et des aliments d'un lieu à un autre le jour de fête.",
-    "Ce qu'on peut déplacer et ce qui est interdit : fruits, produits et animaux."
+    "Les soins aux provisions un jour de fête (fruits, jarres, fuites), et les actes interdits par les sages à la fête et au Chabbat : monter à un arbre, monter une bête, nager."
    ]
   },
   "rosh-hashanah": {
@@ -267,16 +267,16 @@
    "chapters": [
     "Les jours où l'on lit la Meguila, les villes fortifiées et les règles de la fête.",
     "Les règles de la lecture, la lecture à l'envers et ce qu'on peut lire ou non.",
-    "Les lieux saints : ce qu'on peut vendre d'une synagogue et ce qu'il faut respecter.",
+    "Les lieux saints : ce qu'on peut acheter avec le produit de la vente d'une synagogue, et les lectures de la Torah des fêtes et des mois.",
     "La lecture de la Torah : le nombre de lecteurs, les jours et la haftara."
    ]
   },
   "moed-katan": {
    "book": "Hol Hamoëd, les jours intermédiaires des fêtes : travaux permis, deuil et usages.",
    "chapters": [
-    "Les travaux permis à Hol Hamoëd : irrigation, réparations, récoltes.",
-    "Le deuil à Hol Hamoëd, le sort de ceux qui sont en deuil et les interdits de la fête.",
-    "Qui peut se couper les cheveux à Hol Hamoëd, les règles du deuil et des fiançailles."
+    "Les travaux permis à Hol Hamoëd (irrigation, réparations, récoltes), et ce qui est interdit, dont les mariages.",
+    "Le travail interrompu par un deuil ou un malheur (olives, pressoir), les cas de force majeure et les interdits de Hol Hamoëd.",
+    "Qui peut se couper les cheveux à Hol Hamoëd (voyageur, prisonnier libéré, nazir…) et les usages du deuil."
    ]
   },
   "chagigah": {
@@ -294,7 +294,7 @@
     "Les cas de belle-sœur dont le mari est mort : lévirat, halitsa et frère né après la mort.",
     "Quatre frères dont deux sont mariés à deux sœurs : les conséquences du décès et les mariages dans la fratrie.",
     "Celle qui a accompli la halitsa et se découvre enceinte, et la naissance qui change le cas.",
-    "Le divorce après un divorce, le lévirat avec plusieurs femmes et le décès de plusieurs frères.",
+    "Peut-on répéter un divorce, une déclaration (maamar), une union ou une halitsa sur la même belle-sœur ? Rabban Gamliel et les sages.",
     "L'union avec la belle-sœur par erreur ou volontairement, et ce qu'elle produit.",
     "Le grand prêtre, la divorcée et la femme qui a fait halitsa : les mariages interdits aux cohanim et le statut de l'enfant.",
     "Les impurs et les incirconcis ne mangent pas la terouma ; l'eunuque, le mamzer et qui peut épouser qui.",
@@ -317,12 +317,12 @@
     "La jeune fille séduite : honte, atteinte à l'honneur et amende.",
     "La ketouba d'une vierge (deux cents), d'une veuve (cent) et les obligations du mari envers son épouse.",
     "Les trouvailles et le travail de l'épouse reviennent au mari, et la dot qu'elle apporte.",
-    "Le vœu d'abstinence du mari envers sa femme et les motifs de demande de divorce.",
+    "Le mari qui s'interdit par vœu d'assurer l'entretien de sa femme : les délais (trente jours, un mois), et les défauts qui permettent la séparation.",
     "Les biens qui reviennent à l'épouse avant ou après ses fiançailles et leur gestion.",
     "Les clauses de la ketouba : renonciation aux biens, héritage entre époux, dettes.",
     "Le mari mort laissant deux épouses : l'ordre de paiement des ketoubot et le partage.",
     "La veuve entretenue par les biens des orphelins et le sort du travail de l'épouse.",
-    "L'engagement de nourrir l'épouse et ses enfants, et les obligations qui en découlent.",
+    "L'engagement de nourrir la fille de l'épouse pendant cinq ans, et les cas de remariage ou de vente.",
     "Les deux tribunaux de Jérusalem, les droits de la veuve et la valeur de vivre en Terre d'Israël."
    ]
   },
@@ -331,13 +331,13 @@
    "chapters": [
     "Les désignations (konam et autres termes) qui valent vœu, et la portée des formules.",
     "Ce qui permet d'annuler certains vœux et ce qui reste permis : les gestes de la parole et leurs interprétations.",
-    "Quatre sortes de vœux que les sages ont permis (par exagération, d'erreur, etc.).",
+    "Quatre vœux que les sages ont permis : vœux d'incitation, d'exagération, d'erreur et de contrainte.",
     "Le vœu de ne pas profiter de quelqu'un : ce qui est interdit et permis (vendre, aider, donner).",
     "Les associés qui se sont interdit l'usage mutuel : la cour et les ustensiles.",
     "Celui qui fait vœu de ne pas manger de ce qui est cuit : rôti, bouilli et conservé.",
     "Celui qui fait vœu de s'abstenir des légumes ou des fruits, et l'étendue du vœu.",
     "Le vœu limité dans le temps (aujourd'hui, ce mois) et sa durée.",
-    "L'ouverture d'un vœu par le regret et l'honneur de la personne.",
+    "L'ouverture d'un vœu : par l'honneur des parents (Rabbi Eliezer et les sages), par le regret, et les cas où on ne peut pas l'ouvrir.",
     "La jeune fille fiancée : son père et son mari annulent ses vœux ensemble ; la veuve et la divorcée.",
     "Les vœux que le mari peut annuler : ceux qui touchent la vie conjugale, et les autres."
    ]
@@ -349,7 +349,7 @@
     "Le naziréat conditionnel ou limité, et les exemples de vœux.",
     "La durée du naziréat : trente jours, plusieurs fois, et les cas de doute.",
     "Le naziréat entendu et répété par un tiers, et comment s'y associer.",
-    "L'erreur dans le naziréat : formulation, intention et offrandes.",
+    "Le vœu fait par erreur (« le bœuf noir qui sortira de ma maison ») : valide ou non selon Beit Chammaï et Beit Hillel, et l'intention de celui qui fait vœu.",
     "Les trois interdits du nazir : l'impureté, le rasage et le produit de la vigne.",
     "Le Cohen Gadol et le nazir ne se rendent pas impurs pour leurs proches ; les cas d'impureté.",
     "Deux nazirs qui reçoivent des témoignages contradictoires, et les cas de naziréat discuté.",
@@ -377,7 +377,7 @@
     "Le porteur qui parle devant témoins et les conditions de validité.",
     "L'acte écrit non pour la femme : il est invalide ; les erreurs de rédaction.",
     "L'envoi de l'acte à la femme, les cas d'invalidité et les décrets pour la paix.",
-    "Les décrets des sages pour le bien du monde (tikkoun haolam) : réparation des dommages, créances et séparations.",
+    "L'estimation des dommages (on paie sur le meilleur terrain), les créances sur des biens vendus, et les décrets des sages pour le bien du monde.",
     "Celui qui dit « recevez cet acte pour ma femme » : le mandat et ses limites.",
     "Le divorce de celui qui est malade ou n'est pas lucide, et les cas d'incapacité.",
     "Lancer l'acte à sa femme : ce qui compte et selon quelle distance.",
@@ -399,7 +399,7 @@
     "Les quatre pères de dommages (le bœuf, la fosse, le destructeur, le feu) et les principes de responsabilité.",
     "Les dommages causés par le pied et la corne de l'animal, et les dégâts du bétail.",
     "La jarre laissée sur la voie publique : les dommages et la responsabilité des passants.",
-    "Le bœuf qui encorne : le paiement du dommage selon qu'il est inoffensif ou connu comme dangereux.",
+    "Un bœuf qui encorne plusieurs bœufs de suite : à qui va sa valeur, et les cas où le dommage est partiel (tam) ou total (mouad), entre Israélites et non-juifs.",
     "Le bœuf qui encorne une vache et les dommages entre animaux.",
     "Le troupeau enfermé et le feu : les dommages dont le propriétaire est responsable.",
     "Le vol : double, quadruple et quintuple paiement, et la différence avec le vol de bétail.",
@@ -418,7 +418,7 @@
     "L'intérêt (nechekh et tarbit) et l'emprunt à intérêt.",
     "Le louage : les artisans, l'erreur du client, les contrats de travail et de location des bêtes.",
     "Les ouvriers : leur salaire, la nourriture qu'ils mangent en travaillant et l'heure de paie.",
-    "L'emprunteur et le locataire : la responsabilité en cas de dommage ou de perte.",
+    "L'emprunteur d'une vache et le locataire : « si le propriétaire est avec lui », la responsabilité en cas de perte, et ce qui est permis d'en faire.",
     "Le métayage et la location de champ, la coutume du lieu et le loyer.",
     "La maison et l'étage qui s'écroulent : le partage des responsabilités entre le propriétaire et le locataire."
    ]
@@ -521,9 +521,9 @@
    "book": "Les sacrifices d'animaux : l'abattage, le sang, l'intention, le lieu et le moment de la consommation.",
    "chapters": [
     "Les sacrifices offerts sans la bonne intention : ceux qui restent valides et ceux qui ne comptent pas pour leur propriétaire.",
-    "L'intention fautive dans les quatre services (abattage, recueil du sang, transport, aspersion) et ses effets.",
-    "Les services accomplis par des personnes ou dans des conditions invalides, et les cas où l'abattage reste valable.",
-    "L'aspersion du sang selon le sacrifice, et ce qui rend invalide l'aspersion.",
+    "Les services accomplis par des personnes ou dans une posture invalides (étranger, endeuillé, impur, assis), et l'intention de manger ou brûler hors du temps ou du lieu (piggoul).",
+    "L'abattage reste valable même fait par des personnes inaptes (étrangers, femmes, esclaves, impurs) pourvu qu'ils ne touchent pas la viande ; piggoul et nothar.",
+    "Le nombre d'aspersions du sang sur l'autel extérieur (une ou plusieurs, selon Beit Chammaï et Beit Hillel), et les cas où le sacrifice n'expie pas.",
     "Le lieu de chaque sacrifice : les très saints et les saints, et le moment où on les consomme.",
     "Les sacrifices abattus au sommet de l'autel, et le sort du sang et des chairs.",
     "L'offrande d'oiseau pour le péché faite en bas, les cas de rituel inversé.",
@@ -578,9 +578,9 @@
     "Le premier-né du bétail pur : l'achat ou la vente à un non-juif, les jumeaux et les exemptions.",
     "Les cas de doute sur le premier-né : quand on ne sait pas lequel l'est, et comment on s'en sert.",
     "Jusqu'à quand le propriétaire doit s'occuper de son premier-né, et ce qui revient au cohen.",
-    "Ce qui rend une bête inapte à l'offrande, et le premier-né de l'homme.",
+    "Les bêtes consacrées devenues inaptes se vendent à la boucherie et au poids, sauf le premier-né et la dîme ; et le rachat du premier-né de l'homme.",
     "Les défauts qui permettent d'abattre le premier-né pour le manger.",
-    "Les défauts permanents ou passagers : la liste et les cas qui ne comptent pas.",
+    "Les défauts qui rendent un cohen inapte au service, comme chez la bête, et ceux qui ne comptent pas.",
     "Le premier-né pour l'héritage et le premier-né pour le cohen : ce qui diffère, et les cas de naissance difficile.",
     "La dîme du bétail : en Terre d'Israël et à l'étranger, et la manière de compter."
    ]
@@ -590,7 +590,7 @@
    "chapters": [
     "Qui peut estimer et être estimé, et les vœux de donner sa valeur.",
     "Les montants fixés par la Torah, d'un séla au minimum à cinquante au maximum.",
-    "Les valeurs selon l'âge, et les cas où l'on allège ou aggrave.",
+    "Les cas où l'on allège ou aggrave : l'estimation d'un champ de patrimoine, le bœuf qui a tué un esclave, le viol, la séduction et le calomniateur.",
     "Celui qui n'a pas les moyens : le pauvre paie selon ses moyens ; les cas de l'enfant et du vœu.",
     "Celui qui dit « mon poids est à moi » : la valeur d'un poids d'argent, et les consécrations.",
     "L'estimation des orphelins, le délai de trente jours et l'évaluation d'un champ consacré.",
