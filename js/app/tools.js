@@ -10,7 +10,7 @@ const TOOL_SCREENS = {
     korbanot: 'screen-tool-korbanot', hebrewCalendar: 'screen-tool-hebrew-calendar', zmanim: 'screen-tool-zmanim',
     siddur: 'screen-tool-siddur', kotel: 'screen-tool-kotel', mishkan: 'screen-tool-mishkan',
     statuts: 'screen-tool-statuts', tsaraat: 'screen-tool-tsaraat', gematria: 'screen-tool-gematria',
-    tanakh: 'screen-tool-tanakh', lexicon: 'screen-tool-lexicon', gemara: 'screen-tool-gemara',
+    tanakh: 'screen-tool-tanakh', michna: 'screen-tool-michna', lexicon: 'screen-tool-lexicon', gemara: 'screen-tool-gemara',
     genealogy: 'screen-tool-genealogy', transmission: 'screen-tool-transmission', hassidout: 'screen-tool-hassidout',
     library: 'screen-tool-library', foodlaws: 'screen-tool-foodlaws', torahReader: 'screen-torah-reader'
 };
@@ -77,7 +77,7 @@ function openTool(id, from) {
         biblical: toolBiblicalInit, measures: toolMeasuresInit, commandments: toolCommandmentsInit,
         korbanot: toolKorbanotInit, hebrewCalendar: toolHebrewCalendarInit, zmanim: toolZmanimInit,
         siddur: toolSiddurInit, kotel: toolKotelInit, mishkan: toolMishkanInit, statuts: toolStatutsInit,
-        tsaraat: toolTsaraatInit, gematria: toolGematriaInit, tanakh: toolTanakhInit, lexicon: toolLexiconInit,
+        tsaraat: toolTsaraatInit, gematria: toolGematriaInit, tanakh: toolTanakhInit, michna: toolMichnaInit, lexicon: toolLexiconInit,
         gemara: toolGemaraInit, genealogy: toolGenealogyInit, transmission: toolTransmissionInit,
         hassidout: toolHassidoutInit, library: toolLibraryInit, foodlaws: toolFoodLawsInit,
         torahReader: toolTorahReaderInit

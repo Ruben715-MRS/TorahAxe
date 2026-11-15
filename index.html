@@ -536,7 +536,32 @@
         </div>
     </div>
 
-<div id="screen-tool-tanakh" class="list-screen hidden">
+<div id="screen-tool-michna" class="list-screen hidden">
+        <button class="back-btn" onclick="toolBack('michna')" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title" data-i18n="tools.michna_title">Michna et Bartenura</h2>
+        <p class="modes-header-subtitle" data-i18n="tools.michna_intro">Les 63 traités de la Michna en hébreu, avec le commentaire de Bartenura.</p>
+        <div class="tool-panel" id="tool-michna-top">
+            <div class="tool-history-chips" id="tool-michna-sedarim" role="group" aria-label="Ordres de la Michna" data-i18n-attr="aria-label:tools.michna_sedarim_label"></div>
+            <select id="tool-michna-tractate" class="tool-input tanakh-book-select" aria-label="Traité" data-i18n-attr="aria-label:tools.michna_tractate_label" onchange="michnaSelectTractate(this.value)"></select>
+            <div class="torah-nav">
+                <button type="button" class="tool-history-chip" id="tool-michna-prev" onclick="michnaGo(-1)" aria-label="Chapitre précédent" data-i18n-attr="aria-label:tools.torah_prev">‹</button>
+                <select id="tool-michna-chapter" class="tool-input torah-chapter" aria-label="Chapitre" data-i18n-attr="aria-label:tools.torah_chapter_label" onchange="michnaSelectChapter(this.value)"></select>
+                <button type="button" class="tool-history-chip" id="tool-michna-next" onclick="michnaGo(1)" aria-label="Chapitre suivant" data-i18n-attr="aria-label:tools.torah_next">›</button>
+            </div>
+            <div class="tool-history-chips" id="tool-michna-bart" role="group" aria-label="Commentaire de Bartenura" data-i18n-attr="aria-label:tools.michna_bart_label"></div>
+            <div class="tool-history-chips" id="tool-michna-vowels" role="group" aria-label="Affichage du texte" data-i18n-attr="aria-label:tools.torah_vowels_label"></div>
+            <p class="tool-msg" id="tool-michna-msg" role="status"></p>
+        </div>
+        <div class="tanakh-text" id="tool-michna-text"></div>
+        <div class="torah-nav tanakh-nav-bottom">
+            <button type="button" class="tool-history-chip" id="tool-michna-prev2" onclick="michnaGo(-1)" aria-label="Chapitre précédent" data-i18n-attr="aria-label:tools.torah_prev">‹</button>
+            <button type="button" class="tool-history-chip tanakh-nav-label" id="tool-michna-nav-label" onclick="michnaScrollTop()" aria-label="Remonter au début du texte" data-i18n-attr="aria-label:tools.tanakh_top"></button>
+            <button type="button" class="tool-history-chip" id="tool-michna-next2" onclick="michnaGo(1)" aria-label="Chapitre suivant" data-i18n-attr="aria-label:tools.torah_next">›</button>
+        </div>
+        <p class="tool-small" id="tool-michna-source"></p>
+    </div>
+
+    <div id="screen-tool-tanakh" class="list-screen hidden">
         <button class="back-btn" onclick="toolBack('tanakh')" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
         <h2 class="header-title" data-i18n="tools.tanakh_title">Tanakh : les livres</h2>
         <p class="modes-header-subtitle" data-i18n="tools.tanakh_intro">Les livres de la Bible hébraïque. Un verset par paragraphe, numéroté.</p>
@@ -631,6 +656,8 @@
     <script src="js/app/torah-reader.js"></script>
     <script src="js/haftarotCore.js"></script>
     <script src="js/app/tanakh.js"></script>
+    <script src="js/michnaCore.js"></script>
+    <script src="js/app/michna.js"></script>
     <script src="js/lexiconData.js"></script>
     <script src="js/lexiconForms.js"></script>
     <script src="js/lexiconCore.js"></script>
