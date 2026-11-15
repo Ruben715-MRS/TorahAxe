@@ -154,3 +154,6 @@
 :root[data-theme="dark"] .sd-sw.is-on { background: #2475ab; }
 .sd-sw.is-on::after { left: 21px; }
 @media (prefers-reduced-motion: reduce) { .sd-sw::after { transition: none; } }
+
+/* --- Onglets du recueil des zemirot --- */
+.sd-tabs .zm-seg-btn { font-size: 12.5px; padding: 8px 2px; line-height: 1.2; }

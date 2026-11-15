@@ -55,6 +55,11 @@ test('chaque section du siddour a un fichier, et chaque groupe de l\'index est l
     ['hanouka-maoz-tsour', 'hanouka-zemer-chabbat', 'pourim-chochanat-yaakov', 'pourim-qerovets'].forEach(id => assert.ok(temps.indexOf(id) !== -1, id));
     const zem = index.groups.find(g => g.id === 'zemirot-chabbat').sections.map(x => x.id);
     assert.ok(zem.length >= 30 && zem.every(id => /^zem-/.test(id)));
+    const zemSections = index.groups.find(g => g.id === 'zemirot-chabbat').sections;
+    const moments = ['soir', 'matin', 'apres-midi', 'motsei'];
+    assert.ok(zemSections.every(s => moments.indexOf(s.tab) !== -1), 'chaque chant a son onglet');
+    assert.ok(zemSections.every(s => !/\(/.test(s.fr)), 'le moment n\'est plus dans le titre');
+    moments.forEach(m => assert.ok(zemSections.some(s => s.tab === m), m));
     ['chabbat-chirei', 'chabbat-chants-motsei'].forEach(id => assert.ok(!index.groups.some(g => g.sections.some(x => x.id === id)), id + ' est dans le recueil'));
     ['chabbat-accueil', 'chabbat-arvit', 'chabbat-soir', 'chabbat-chacharit', 'chabbat-moussaf', 'chabbat-minha', 'motsei-chabbat', 'michnayot-chabbat', 'pirkei-avot', 'regalim'].forEach(id => assert.ok(seen.has(id), id));
 });

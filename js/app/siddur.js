@@ -156,7 +156,7 @@ const SD_RAYONS = [
         { key: 'g:chabbat-minha', he: 'מנחה', group: 'chabbat-minha' },
         { key: 'g:chabbat-seouda-3', he: 'שלישית', group: 'chabbat-seouda-3' },
         { key: 'g:motsei-chabbat', he: 'הבדלה', group: 'motsei-chabbat' },
-        { key: 'g:zemirot-chabbat', he: 'זמירות', group: 'zemirot-chabbat', unit: 'chants : vendredi soir, matin, troisième repas, samedi soir' },
+        { key: 'g:zemirot-chabbat', he: 'זמירות', group: 'zemirot-chabbat', recueil: true, unit: 'chants, du vendredi soir au samedi soir : choisissez le moment' },
         { key: 'g:michnayot-chabbat', he: 'משניות', group: 'michnayot-chabbat' },
         { key: 'g:pirkei-avot', he: 'אבות', group: 'pirkei-avot' }
     ] },
@@ -251,7 +251,7 @@ function sdRowInfo(row) {
     if (row.group) {
         const g = sdIndex.groups.filter(x => x.id === row.group)[0];
         if (!g) return null;
-        return { key: row.key, he: row.he, title: sdCleanTitle(g.fr), ids: g.sections.map(x => x.id), desc: row.unit ? g.sections.length + ' ' + row.unit : g.sections.length > 1 ? g.sections.length + ' parties : tout lire d\'un trait, ou partie par partie' : '', group: g.id };
+        return { key: row.key, he: row.he, title: sdCleanTitle(g.fr), ids: g.sections.map(x => x.id), recueil: !!row.recueil, desc: row.unit ? g.sections.length + ' ' + row.unit : g.sections.length > 1 ? g.sections.length + ' parties : tout lire d\'un trait, ou partie par partie' : '', group: g.id };
     }
     const found = row.ids.map(sdFindSection).filter(Boolean);
     if (!found.length) return null;
@@ -373,6 +373,7 @@ function sdRowButton(info, onclick, extra) {
 
 function sdOpenRow(info) {
     sdCloseSheet();
+    if (info.recueil) { sdOpenZemirot(); return; }
     if (info.tanakh) { toolReturns.tanakh = 'screen-tool-siddur'; tanakhOpenAt(info.tanakh, 0, 'both'); return; }
     sdOpen(info.ids, info.title);
 }
@@ -386,6 +387,54 @@ function sdOpenRayon(rayon) {
         const list = sdEl('div', 'home-rows');
         rayon.rows.forEach(row => { const info = sdRowInfo(row); if (info) list.appendChild(sdRowButton(info, () => sdOpenRow(info))); });
         body.appendChild(list);
+    });
+}
+
+// --- Le recueil des zemirot : quatre onglets (vendredi soir, samedi matin, samedi après-midi, samedi soir) ---------------------------------------
+const SD_MOMENTS = [['soir', 'Vendredi soir'], ['matin', 'Samedi matin'], ['apres-midi', 'Samedi après-midi'], ['motsei', 'Samedi soir']];
+
+// L'onglet du moment : le vendredi soir, le samedi matin, l'après-midi, ou le samedi soir ; sinon le vendredi soir.
+function sdDefaultMoment() {
+    if (sdPlace && sdCtx) {
+        if (sdCtx.weekday === 0 && sdCivilFixed() === sdCtx.fixed - 1) return 'motsei';
+        const s = sdCurrentService();
+        if (s && s.shabbat) return s.base === 'chacharit' ? 'matin' : s.base === 'minha' ? 'apres-midi' : 'soir';
+    }
+    return 'soir';
+}
+
+// `current` : l'identifiant du chant en cours de lecture (mis en valeur), s'il y en a un.
+function sdOpenZemirot(tab, current) {
+    const group = sdIndex.groups.filter(g => g.id === 'zemirot-chabbat')[0];
+    if (!group) return;
+    let active = tab || sdDefaultMoment();
+    sdSheet('Recueil des zemirot de Chabbat', (body) => {
+        const draw = () => {
+            toolClear(body);
+            const seg = sdEl('div', 'zm-seg sd-tabs');
+            seg.setAttribute('role', 'tablist');
+            seg.setAttribute('aria-label', 'Moment du chant');
+            SD_MOMENTS.forEach(([id, label]) => {
+                const n = group.sections.filter(s => (s.tab || 'soir') === id).length;
+                const b = sdEl('button', 'zm-seg-btn' + (id === active ? ' is-on' : ''), label);
+                b.type = 'button';
+                b.id = 'sd-moment-' + id;
+                b.setAttribute('role', 'tab');
+                b.setAttribute('aria-selected', id === active ? 'true' : 'false');
+                b.setAttribute('aria-label', label + ' : ' + n + ' chants');
+                b.onclick = () => { active = id; draw(); };
+                seg.appendChild(b);
+            });
+            body.appendChild(seg);
+            const list = sdEl('div', 'home-rows');
+            group.sections.filter(s => (s.tab || 'soir') === active).forEach(s => {
+                const b = sdRowButton({ he: sdShortHe(s.he), title: s.fr, desc: s.id === current ? 'En cours de lecture' : '' }, () => { sdCloseSheet(); sdOpen([s.id], s.fr); });
+                if (s.id === current) b.setAttribute('aria-current', 'true');
+                list.appendChild(b);
+            });
+            body.appendChild(list);
+        };
+        draw();
     });
 }
 
@@ -824,6 +873,7 @@ function sdOpenDisplay() {
 function sdOpenToc() {
     const single = sdView.ids.length === 1;
     const found = sdFindSection(sdView.ids[0]);
+    if (single && found && found.group.id === 'zemirot-chabbat') { sdOpenZemirot(found.section.tab || 'soir', found.section.id); return; }
     const current = toolEl('sd-read-name') ? toolEl('sd-read-name').textContent : '';
     sdSheet(single && found ? sdCleanTitle(found.group.fr) : sdView.title, (body) => {
         const list = sdEl('div', 'home-rows');

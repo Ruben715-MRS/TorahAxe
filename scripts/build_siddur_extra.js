@@ -97,46 +97,45 @@ const GROUPS = [
     // (même éditeur, Torat Emet 357, domaine public). Les bornes (from, to) sont les indices des segments dans la source ; le titre hébreu est le début du chant.
     { id: 'zemirot-chabbat', fr: 'Recueil des zemirot de Chabbat', sections: [
         // vendredi soir
-        { id: 'zem-kol-mekadech', fr: 'Kol Mékadech (vendredi soir)', slice: 'EV', from: 1, to: 3, he: 'כל מקדש שביעי' },
-        { id: 'zem-menoucha-vesimha', fr: 'Menou\'ha vésim\'ha (vendredi soir)', slice: 'EV', from: 4, to: 5, he: 'מנוחה ושמחה' },
-        { id: 'zem-mah-yedidout', fr: 'Mah yédidout (vendredi soir)', slice: 'EHCH', from: 50, to: 62, he: 'מה ידידות' },
-        { id: 'zem-mah-yafit', fr: 'Mah yafit (vendredi soir)', slice: 'EV', from: 13, to: 14, he: 'מה יפית' },
-        { id: 'zem-yom-chabbat-kodech', fr: 'Yom Chabbat Kodech hou (vendredi soir)', slice: 'EV', from: 15, to: 16, he: 'יום שבת קודש הוא' },
-        { id: 'zem-yah-ribon', fr: 'Yah ribon \'olam (vendredi soir)', slice: 'EV', from: 17, to: 26, he: 'יה רבון עלם' },
-        { id: 'zem-yom-ze-leyisrael', fr: 'Yom zé léYisraël (vendredi soir)', slice: 'EV', from: 27, to: 50, he: 'יום זה לישראל' },
-        { id: 'zem-tsama-nafchi', fr: 'Tsama nafchi (vendredi soir)', slice: 'EV', from: 51, to: 77, he: 'צמאה נפשי' },
-        { id: 'zem-yah-ekhsof', fr: 'Yah ekhsof noam Chabbat (vendredi soir)', slice: 'EV', from: 88, to: 121, he: 'יה אכסוף נעם שבת' },
-        { id: 'zem-ode-lael', fr: 'Odé laEl (vendredi soir)', slice: 'EV', from: 122, to: 144, he: 'אודה לאל לבב חוקר' },
+        { id: 'zem-kol-mekadech', fr: 'Kol Mékadech', slice: 'EV', from: 1, to: 3, he: 'כל מקדש שביעי' },
+        { id: 'zem-menoucha-vesimha', fr: 'Menou\'ha vésim\'ha', slice: 'EV', from: 4, to: 5, he: 'מנוחה ושמחה' },
+        { id: 'zem-mah-yedidout', fr: 'Mah yédidout', slice: 'EHCH', from: 50, to: 62, he: 'מה ידידות' },
+        { id: 'zem-mah-yafit', fr: 'Mah yafit', slice: 'EV', from: 13, to: 14, he: 'מה יפית' },
+        { id: 'zem-yom-chabbat-kodech', fr: 'Yom Chabbat Kodech hou', slice: 'EV', from: 15, to: 16, he: 'יום שבת קודש הוא' },
+        { id: 'zem-yah-ribon', fr: 'Yah ribon \'olam', slice: 'EV', from: 17, to: 26, he: 'יה רבון עלם' },
+        { id: 'zem-yom-ze-leyisrael', fr: 'Yom zé léYisraël', slice: 'EV', from: 27, to: 50, he: 'יום זה לישראל' },
+        { id: 'zem-tsama-nafchi', fr: 'Tsama nafchi', slice: 'EV', from: 51, to: 77, he: 'צמאה נפשי' },
+        { id: 'zem-yah-ekhsof', fr: 'Yah ekhsof noam Chabbat', slice: 'EV', from: 88, to: 121, he: 'יה אכסוף נעם שבת' },
+        { id: 'zem-ode-lael', fr: 'Odé laEl', slice: 'EV', from: 122, to: 144, he: 'אודה לאל לבב חוקר' },
         { id: 'zem-bar-yohai', fr: 'Bar Yo\'haï', slice: 'EHCH', from: 1, to: 15, he: 'בר יוחאי' },
         { id: 'zem-yodoukha', fr: 'Yodoukha ra\'ayonaï', slice: 'EHCH', from: 63, to: 69, he: 'יודוך רעיוני' },
         { id: 'zem-al-ahavatekha', fr: '\'Al ahavatékha', slice: 'EHCH', from: 32, to: 42, he: 'על אהבתך' },
         { id: 'zem-yom-hachabbat', fr: 'Yom haChabbat', slice: 'EHCH', from: 79, to: 85, he: 'יום השבת' },
+        { id: 'zem-tsour-michelo', fr: 'Tsour michélo akhalnou', slice: 'EHCH', from: 86, to: 92, he: 'צור משלו אכלנו' },
         // Chabbat matin
-        { id: 'zem-baroukh-adonai-yom-yom', fr: 'Baroukh Adonaï yom yom (matin)', slice: 'DAY', from: 0, to: 13, he: 'ברוך אדני יום יום' },
-        { id: 'zem-baroukh-el-elyon', fr: 'Baroukh El \'Elyon (matin)', slice: 'EHCH', from: 70, to: 78, he: 'ברוך אל עליון' },
-        { id: 'zem-yom-ze-mekhouvad', fr: 'Yom zé mékhouvad (matin)', slice: 'DAY', from: 22, to: 28, he: 'יום זה מכבד' },
-        { id: 'zem-yom-chabbaton', fr: 'Yom chabbaton (matin)', slice: 'EHCH', from: 43, to: 49, he: 'יום שבתון' },
-        { id: 'zem-ki-echmera', fr: 'Ki échmera Chabbat (matin)', slice: 'EHCH', from: 16, to: 23, he: 'כי אשמרה שבת' },
-        { id: 'zem-chamrou-chabbetotai', fr: 'Chamrou chabbetotaï (matin)', slice: 'DAY', from: 42, to: 47, he: 'שמרו שבתותי' },
-        { id: 'zem-dror-yikra', fr: 'Dror yikra (matin)', slice: 'EHCH', from: 24, to: 31, he: 'דרור יקרא' },
-        { id: 'zem-chabbat-hayom', fr: 'Chabbat hayom laAdonaï (matin)', slice: 'DAY', from: 54, to: 59, he: 'שבת היום ליהוה' },
+        { id: 'zem-baroukh-adonai-yom-yom', fr: 'Baroukh Adonaï yom yom', slice: 'DAY', from: 0, to: 13, he: 'ברוך אדני יום יום' },
+        { id: 'zem-baroukh-el-elyon', fr: 'Baroukh El \'Elyon', slice: 'EHCH', from: 70, to: 78, he: 'ברוך אל עליון' },
+        { id: 'zem-yom-ze-mekhouvad', fr: 'Yom zé mékhouvad', slice: 'DAY', from: 22, to: 28, he: 'יום זה מכבד' },
+        { id: 'zem-yom-chabbaton', fr: 'Yom chabbaton', slice: 'EHCH', from: 43, to: 49, he: 'יום שבתון' },
+        { id: 'zem-ki-echmera', fr: 'Ki échmera Chabbat', slice: 'EHCH', from: 16, to: 23, he: 'כי אשמרה שבת' },
+        { id: 'zem-chamrou-chabbetotai', fr: 'Chamrou chabbetotaï', slice: 'DAY', from: 42, to: 47, he: 'שמרו שבתותי' },
+        { id: 'zem-dror-yikra', fr: 'Dror yikra', slice: 'EHCH', from: 24, to: 31, he: 'דרור יקרא' },
+        { id: 'zem-chabbat-hayom', fr: 'Chabbat hayom laAdonaï', slice: 'DAY', from: 54, to: 59, he: 'שבת היום ליהוה' },
         // troisième repas
-        { id: 'zem-yedid-nefech', fr: 'Yédid néfech (troisième repas)', slice: 'THIRD', from: 22, to: 26, he: 'ידיד נפש' },
-        { id: 'zem-el-mistater', fr: 'El mistater bichfir \'havion (troisième repas)', slice: 'THIRD', from: 41, to: 52, he: 'אל מסתתר בשפריר חביון' },
-        // après le repas
-        { id: 'zem-tsour-michelo', fr: 'Tsour michélo akhalnou (après le repas)', slice: 'EHCH', from: 86, to: 92, he: 'צור משלו אכלנו' },
+        { id: 'zem-yedid-nefech', fr: 'Yédid néfech', slice: 'THIRD', from: 22, to: 26, he: 'ידיד נפש' },
+        { id: 'zem-el-mistater', fr: 'El mistater bichfir \'havion', slice: 'THIRD', from: 41, to: 52, he: 'אל מסתתר בשפריר חביון' },
         // samedi soir
-        { id: 'zem-hamavdil', fr: 'Hamavdil bein kodech lé\'hol (samedi soir)', slice: 'EHMO', from: 1, to: 15, he: 'המבדיל בין קדש לחול' },
-        { id: 'zem-amar-adonai-leyaakov', fr: 'Amar Adonaï léYa\'akov (samedi soir)', slice: 'EHMO', from: 16, to: 23, he: 'אמר יהוה ליעקב' },
-        { id: 'zem-el-eliyahou', fr: 'El Eliyahou (samedi soir)', slice: 'EHMO', from: 24, to: 30, he: 'אל אליהו' },
-        { id: 'zem-al-bayit-ze', fr: '\'Al bayit zé (samedi soir)', slice: 'EHMO', from: 31, to: 40, he: 'על בית זה ויושביהו' },
-        { id: 'zem-bamotsaei-yom-menoucha', fr: 'Bamotsaé yom ménou\'ha (samedi soir)', slice: 'EHMO', from: 41, to: 53, he: 'במוצאי יום מנוחה' },
-        { id: 'zem-lener-oulevessamim', fr: 'Lener oulevessamim (samedi soir)', slice: 'EHMO', from: 54, to: 60, he: 'לנר ולבשמים' },
-        { id: 'zem-chadech-sassoni', fr: 'Chadech sasoni (samedi soir)', slice: 'MEL', from: 5, to: 6, he: 'חדש ששוני' },
-        { id: 'zem-aguil-veesmah', fr: 'Aguil véesmah (samedi soir)', slice: 'MEL', from: 7, to: 8, he: 'אגיל ואשמח' },
-        { id: 'zem-elohim-yassadenou', fr: 'Élohim yis\'adénou (samedi soir)', slice: 'MEL', from: 9, to: 10, he: 'אלהים יסעדנו' },
-        { id: 'zem-eli-hich-goali', fr: 'Éli \'hich goali (samedi soir)', slice: 'MEL', from: 11, to: 20, he: 'אלי חיש גואלי' },
-        { id: 'zem-eliyahou-hanavi', fr: 'Eliyahou hanavi (samedi soir)', slice: 'MEL', from: 46, to: 65, he: 'אליהו הנביא' }
+        { id: 'zem-hamavdil', fr: 'Hamavdil bein kodech lé\'hol', slice: 'EHMO', from: 1, to: 15, he: 'המבדיל בין קדש לחול' },
+        { id: 'zem-amar-adonai-leyaakov', fr: 'Amar Adonaï léYa\'akov', slice: 'EHMO', from: 16, to: 23, he: 'אמר יהוה ליעקב' },
+        { id: 'zem-el-eliyahou', fr: 'El Eliyahou', slice: 'EHMO', from: 24, to: 30, he: 'אל אליהו' },
+        { id: 'zem-al-bayit-ze', fr: '\'Al bayit zé', slice: 'EHMO', from: 31, to: 40, he: 'על בית זה ויושביהו' },
+        { id: 'zem-bamotsaei-yom-menoucha', fr: 'Bamotsaé yom ménou\'ha', slice: 'EHMO', from: 41, to: 53, he: 'במוצאי יום מנוחה' },
+        { id: 'zem-lener-oulevessamim', fr: 'Lener oulevessamim', slice: 'EHMO', from: 54, to: 60, he: 'לנר ולבשמים' },
+        { id: 'zem-chadech-sassoni', fr: 'Chadech sasoni', slice: 'MEL', from: 5, to: 6, he: 'חדש ששוני' },
+        { id: 'zem-aguil-veesmah', fr: 'Aguil véesmah', slice: 'MEL', from: 7, to: 8, he: 'אגיל ואשמח' },
+        { id: 'zem-elohim-yassadenou', fr: 'Élohim yis\'adénou', slice: 'MEL', from: 9, to: 10, he: 'אלהים יסעדנו' },
+        { id: 'zem-eli-hich-goali', fr: 'Éli \'hich goali', slice: 'MEL', from: 11, to: 20, he: 'אלי חיש גואלי' },
+        { id: 'zem-eliyahou-hanavi', fr: 'Eliyahou hanavi', slice: 'MEL', from: 46, to: 65, he: 'אליהו הנביא' }
     ] },
     // --- Étape 2 : fêtes, Pourim, jeûnes ---
     { id: 'regalim', fr: 'Les trois fêtes (Pessa\'h, Chavouot, Souccot)', sections: [
@@ -161,6 +160,18 @@ const GROUPS = [
         { id: 'selihot-generales', fr: 'Séli\'hot (Elloul et dix jours de pénitence)', book: 'Selichot Edot HaMizrach', version: 'hebrew|Selichot Edot HaMizrach - Torat Emet', he: 'סליחות נוסח עדות המזרח' }
     ] }
 ];
+
+// Le moment de chaque chant du recueil (onglet de l'écran) : soir = vendredi soir, matin = samedi matin, apres-midi = samedi après-midi (troisième repas), motsei = samedi soir.
+// Les chants que l'édition d'Edot HaMizrach range sous « Chabbat soir » et le chant après le repas (Tsour michélo) sont avec le vendredi soir.
+const ZEM_TABS = {
+    matin: ['zem-baroukh-adonai-yom-yom', 'zem-baroukh-el-elyon', 'zem-yom-ze-mekhouvad', 'zem-yom-chabbaton', 'zem-ki-echmera', 'zem-chamrou-chabbetotai', 'zem-dror-yikra', 'zem-chabbat-hayom'],
+    'apres-midi': ['zem-yedid-nefech', 'zem-el-mistater'],
+    motsei: ['zem-hamavdil', 'zem-amar-adonai-leyaakov', 'zem-el-eliyahou', 'zem-al-bayit-ze', 'zem-bamotsaei-yom-menoucha', 'zem-lener-oulevessamim', 'zem-chadech-sassoni', 'zem-aguil-veesmah', 'zem-elohim-yassadenou', 'zem-eli-hich-goali', 'zem-eliyahou-hanavi']
+};
+function zemTab(id) {
+    if (!/^zem-/.test(id)) return undefined;
+    return Object.keys(ZEM_TABS).filter(k => ZEM_TABS[k].indexOf(id) !== -1)[0] || 'soir';
+}
 
 const REMOVED = ['chabbat-chirei', 'chabbat-chants-motsei', 'tichabav-eikha', 'zem-kol-chomer-chabbat'];
 
@@ -247,7 +258,7 @@ async function fetchSlice(spec) {
     const he = spec.noTitle ? (part[0] || '').replace(/<[^>]+>/g, '').trim() : spec.he;
     fs.writeFileSync(path.join(DIR, spec.id + '.json'), JSON.stringify({ v: 1, id: spec.id, he: he, fr: spec.fr, ref: ref + ' [' + spec.from + '–' + spec.to + ']', segments: segments }) + '\n');
     console.log(spec.id.padEnd(30), String(segments.length).padStart(4), 'segments');
-    return { id: spec.id, he: he, fr: spec.fr, segments: segments.length };
+    return { id: spec.id, he: he, fr: spec.fr, segments: segments.length, tab: zemTab(spec.id) };
 }
 
 async function fetchText(s) {
@@ -257,7 +268,7 @@ async function fetchText(s) {
     const segments = s.transform === 'eikha' ? eikhaSegments(version.text) : flatten(version.text).map(clean).filter(x => x.length);
     fs.writeFileSync(path.join(DIR, s.id + '.json'), JSON.stringify({ v: 1, id: s.id, he: s.he, fr: s.fr, ref: s.ref, segments: segments }) + '\n');
     console.log(s.id.padEnd(28), String(segments.length).padStart(4), 'segments');
-    return { id: s.id, he: s.he, fr: s.fr, segments: segments.length };
+    return { id: s.id, he: s.he, fr: s.fr, segments: segments.length, tab: zemTab(s.id) };
 }
 
 async function main() {
