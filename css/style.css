@@ -18261,3 +18261,28 @@ button.zm-study-link:focus-visible { outline: 2px solid var(--primary-blue); out
     border-color: #2F5BC4;
     color: #fff;
 }
+
+/* Réglages › Données et À propos. */
+.settings-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.settings-danger {
+    color: #B3261E;
+    border-color: #B3261E;
+}
+
+:root[data-theme="dark"] .settings-danger {
+    color: #FF8A80;
+    border-color: #FF8A80;
+}
+
+.settings-credits {
+    margin: 0 0 4px;
+    padding-left: 18px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+}

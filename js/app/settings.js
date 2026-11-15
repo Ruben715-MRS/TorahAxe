@@ -60,6 +60,9 @@ function apRender() {
         body.appendChild(group);
     });
     rdRender(body);
+    fbRender(body);
+    dtRender(body);
+    abRender(body);
 }
 
 // --- Lecture : police hébraïque, voyelles, vitesse du défilement, lieu et rappels ------------------------------------------------------------------
@@ -190,3 +193,170 @@ function apInit() {
     if (apMedia && apMedia.addEventListener) apMedia.addEventListener('change', function () { if (apPrefs.theme === 'auto') apApply(); });
 }
 apInit();
+
+// --- Sons et vibrations ----------------------------------------------------------------------------------------------------------------------------
+// appSettings (js/app/friseShim.js) porte `sound` et `haptics`, lus par js/audio.js ; on le garde sur l'appareil. `settingsSave` est aussi appelé
+// par la frise et par js/location.js : il enregistre tout appSettings.
+const AS_KEY = 'torahaxeAppSettings';
+
+function settingsSave(s) {
+    try { localStorage.setItem(AS_KEY, JSON.stringify(s)); } catch (e) { /* valable pour cette séance */ }
+}
+function asLoad() {
+    if (typeof appSettings === 'undefined') return;
+    try {
+        const v = JSON.parse(localStorage.getItem(AS_KEY) || 'null');
+        if (!v || typeof v !== 'object') return;
+        if (typeof v.sound === 'boolean') appSettings.sound = v.sound;
+        if (typeof v.haptics === 'boolean') appSettings.haptics = v.haptics;
+        if (typeof v.roundLength === 'number' || typeof v.roundLength === 'string') appSettings.roundLength = v.roundLength;
+        ['axesLegendPinned', 'locationPromptShown'].forEach(function (k) { if (typeof v[k] === 'boolean') appSettings[k] = v[k]; });
+    } catch (e) { /* réglages par défaut */ }
+}
+window.addEventListener('load', asLoad);
+
+function fbSet(key, on) {
+    if (typeof appSettings === 'undefined') return;
+    appSettings[key] = on;
+    settingsSave(appSettings);
+    if (on && key === 'haptics' && typeof triggerHaptic === 'function') triggerHaptic('success');
+    apRender();
+}
+function fbRender(body) {
+    if (typeof appSettings === 'undefined') return;
+    const title = document.createElement('h3');
+    title.className = 'settings-section';
+    title.textContent = 'Application';
+    body.appendChild(title);
+    [['sound', 'Sons', 'Les petits sons des jeux (frise, roue…).'], ['haptics', 'Vibrations', 'Le retour tactile des jeux et du Kotel.']].forEach(function (d) {
+        const on = appSettings[d[0]] !== false;
+        const seg = document.createElement('div');
+        seg.className = 'segmented';
+        seg.setAttribute('role', 'group');
+        seg.setAttribute('aria-label', d[1]);
+        seg.append(rdChip('Activés', on, function () { fbSet(d[0], true); }), rdChip('Coupés', !on, function () { fbSet(d[0], false); }));
+        rdGroup(body, d[1], seg, d[2]);
+    });
+}
+
+// --- Données : sauvegarde, restauration, remise à zéro ---------------------------------------------------------------------------------------------
+let dtConfirm = false;   // « Tout effacer » attend une seconde pression
+let dtMsg = '';
+
+function dtEntries() {
+    const out = {};
+    try { for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); out[k] = localStorage.getItem(k); } } catch (e) { /* rien à lire */ }
+    return out;
+}
+function dtMessage(text) { dtMsg = text; dtConfirm = false; apRender(); }
+
+function dtExport() {
+    const json = JSON.stringify(DataCore.buildExport(dtEntries()), null, 1);
+    const name = DataCore.fileName();
+    let file = null;
+    try { file = new File([json], name, { type: 'application/json' }); } catch (e) { file = null; }
+    if (file && navigator.canShare && navigator.canShare({ files: [file] }) && navigator.share) {
+        navigator.share({ files: [file], title: 'Sauvegarde TorahAxe' }).then(function () { dtMessage('Sauvegarde prête.'); }, function () { /* annulé */ });
+        return;
+    }
+    try {
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(new Blob([json], { type: 'application/json' }));
+        a.download = name;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        dtMessage('Sauvegarde téléchargée (' + name + ').');
+    } catch (e) { dtMessage('Impossible de créer la sauvegarde sur cet appareil.'); }
+}
+
+function dtImportFile(file) {
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function () {
+        const r = DataCore.parseImport(String(reader.result || ''));
+        if (!r.ok) { dtMessage(r.error); return; }
+        try {
+            Object.keys(r.data).forEach(function (k) { localStorage.setItem(k, r.data[k]); });
+        } catch (e) { dtMessage('Restauration impossible : le stockage est plein ou indisponible.'); return; }
+        location.reload();
+    };
+    reader.onerror = function () { dtMessage('Lecture du fichier impossible.'); };
+    reader.readAsText(file);
+}
+
+function dtReset() {
+    if (!dtConfirm) { dtConfirm = true; dtMsg = ''; apRender(); return; }
+    try { localStorage.clear(); } catch (e) { /* rien à effacer */ }
+    // Les réglages de rappels reviennent à zéro : on reprogramme (donc on annule) les notifications de l'iPhone.
+    const done = function () { location.reload(); };
+    try {
+        const n = typeof TorahAxeNotifications !== 'undefined' ? TorahAxeNotifications.scheduleZmanim() : null;
+        if (n && n.then) n.then(done, done); else done();
+    } catch (e) { done(); }
+}
+
+function dtRender(body) {
+    const wrap = document.createElement('div');
+    const row = document.createElement('div');
+    row.className = 'settings-actions';
+    const exp = document.createElement('button');
+    exp.type = 'button';
+    exp.className = 'settings-link-btn';
+    exp.textContent = 'Sauvegarder mes données';
+    exp.onclick = dtExport;
+    const imp = document.createElement('button');
+    imp.type = 'button';
+    imp.className = 'settings-link-btn';
+    imp.textContent = 'Restaurer une sauvegarde';
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'application/json,.json';
+    input.hidden = true;
+    input.onchange = function () { dtImportFile(input.files && input.files[0]); };
+    imp.onclick = function () { input.click(); };
+    const rst = document.createElement('button');
+    rst.type = 'button';
+    rst.className = 'settings-link-btn settings-danger';
+    rst.textContent = dtConfirm ? 'Confirmer : tout effacer' : 'Effacer mes données';
+    rst.onclick = dtReset;
+    row.append(exp, imp, input, rst);
+    if (dtConfirm) {
+        const cancel = document.createElement('button');
+        cancel.type = 'button';
+        cancel.className = 'settings-link-btn';
+        cancel.textContent = 'Annuler';
+        cancel.onclick = function () { dtConfirm = false; apRender(); };
+        row.appendChild(cancel);
+    }
+    wrap.appendChild(row);
+    if (dtMsg) {
+        const m = document.createElement('p');
+        m.className = 'modal-desc';
+        m.setAttribute('role', 'status');
+        m.textContent = dtMsg;
+        wrap.appendChild(m);
+    }
+    rdGroup(body, 'Mes données', wrap, 'Réglages, lieu, favoris, positions de lecture et progression des jeux, gardés sur cet appareil. La sauvegarde est un fichier à conserver ; « Effacer » remet l\'application à zéro et ne se défait pas.');
+}
+
+// --- À propos ----------------------------------------------------------------------------------------------------------------------------------
+const AB_VERSION = '1.0.0';
+const AB_CREDITS = [
+    'Siddour, Tanakh, Targoum Onkelos : Sefaria (domaine public).',
+    'Tikkoun : tikkun.io (licence MIT), d\'après l\'API Sefaria.',
+    'Cartes et frontières : Natural Earth (domaine public) ; cartes affichées avec MapLibre.',
+    'Textes français, résumés, titres et outils : TorahAxe.'
+];
+function abRender(body) {
+    const box = document.createElement('div');
+    const v = document.createElement('p');
+    v.className = 'modal-desc';
+    v.textContent = 'TorahAxe, version ' + AB_VERSION;
+    box.appendChild(v);
+    const ul = document.createElement('ul');
+    ul.className = 'settings-credits';
+    AB_CREDITS.forEach(function (c) { const li = document.createElement('li'); li.textContent = c; ul.appendChild(li); });
+    box.appendChild(ul);
+    rdGroup(body, 'À propos', box, 'Les contenus halakhiques sont à faire relire par une personne compétente avant toute décision pratique.');
+}

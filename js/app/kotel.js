@@ -192,7 +192,7 @@ function kotelUpdateNeedle() {
             : t(turn > 0 ? 'tools.kotel_turn_right' : 'tools.kotel_turn_left', { deg: Math.round(Math.abs(turn)) });
     }
     if (facing && !kotelWasFacing) {
-        try { window.Capacitor.Plugins.Haptics.impact({ style: 'LIGHT' }); } catch (e) { /* pas de retour haptique : tant pis */ }
+        try { if (typeof appSettings === 'undefined' || appSettings.haptics !== false) window.Capacitor.Plugins.Haptics.impact({ style: 'LIGHT' }); } catch (e) { /* pas de retour haptique : tant pis */ }
     }
     kotelWasFacing = facing;
 }
