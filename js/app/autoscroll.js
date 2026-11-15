@@ -305,6 +305,7 @@ function autoScrollCreate(host) {
 
     function openBar() {
         build();
+        state = AutoScrollCore.create(autoScrollStoredSpeed());   // reprend la vitesse enregistrée (elle peut avoir été changée dans Réglages)
         open = true;
         shown = '';
         els.bar.hidden = false;
