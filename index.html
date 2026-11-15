@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>TorahAxe - La vie juive au quotidien</title>
+    <meta name="description"
+        content="Siddour, Zmanim, calendrier hébraïque et tout un ensemble d'informations et d'utilitaires sur le judaïsme et la Torah, pour la pratique quotidienne.">
+
+    <!-- Icône pour l'écran d'accueil iPhone / iPad (à remplacer par l'icône définitive de TorahAxe) -->
+    <link rel="apple-touch-icon" href="apple_icon.jpg">
+
+    <!-- Mode application (plein écran) -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="TorahAxe">
+
+    <!-- Tailwind CSS & polices : compilées à l'avance (voir tailwind.config.js + css/tailwind-input.css,
+         régénérées via `npm run build:css`) et auto-hébergées (css/fonts.css), comme HistoriAxe, pour
+         rester utilisable hors-ligne et partager exactement la même identité visuelle. -->
+    <link rel="stylesheet" href="css/tailwind.generated.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- ÉCRAN : ACCUEIL
+         Pas de profil à choisir : TorahAxe n'a qu'une identité. Pas de ligue, de trophées ni de barre de
+         progression (XP/niveau) : TorahAxe ne stocke aucune progression, c'est HistoriAxe qui s'en charge. -->
+    <div id="screen-main" class="list-screen">
+        <div class="categories-topbar">
+            <div class="categories-topbar-actions">
+                <button type="button" class="settings-btn" onclick="openSettings()" aria-label="Réglages">⚙︎</button>
+            </div>
+        </div>
+
+        <div class="search-bar-wrap">
+            <div class="search-bar">
+                <span class="search-bar-icon" aria-hidden="true">🔍</span>
+                <input type="text" id="theme-search-input" class="search-bar-input" placeholder="Rechercher…"
+                    autocomplete="off" aria-label="Rechercher">
+            </div>
+        </div>
+
+        <div class="list-categories" id="home-sections">
+            <!-- TODO (tâche #2) : les outils « Bible et tradition » (Siddour, Zmanim, Guématria, Tsaraat,
+                 Korbanot, lois alimentaires, dictionnaires hébreu/araméen, boussole du Kotel, statuts et
+                 unions, généalogie, Tanakh, mesures, Mishkan, Mitsvot/Tikkoun, calendrier hébraïque…). -->
+            <!-- TODO (tâche #3) : les 3 jeux exclusifs (Mots du Tanakh, Mots de la Guémara, Maîtres et élèves). -->
+            <!-- TODO (tâche #4) : frises « Judaïsme » (3 thèmes) + « Histoire de l'État d'Israël », avec
+                 l'encadré de renvoi vers HistoriAxe en dessous (tâche #5). -->
+            <!-- TODO (tâche #4) : les 3 récits (Dreyfus, Bar Kokhba, État d'Israël), avec l'encadré de
+                 renvoi vers HistoriAxe en dessous (tâche #5). -->
+            <!-- TODO (tâche #4) : la roue des fêtes, restreinte au seul calendrier juif. -->
+            <p class="empty-msg">TorahAxe est en construction : les outils et contenus arrivent par étapes.</p>
+        </div>
+    </div>
+
+    <!-- ÉCRAN/MODALE : RÉGLAGES (minimal pour l'instant) -->
+    <div class="modal-overlay hidden" id="modal-settings" onclick="if (event.target === this) closeSettings()">
+        <div class="modal-content">
+            <button class="back-btn" onclick="closeSettings()" aria-label="Fermer">‹</button>
+            <h2 class="header-title">Réglages</h2>
+            <p class="modal-desc">Les réglages de TorahAxe arriveront avec la migration des outils (tâche #2).</p>
+        </div>
+    </div>
+
+    <!-- Scripts de l'app, dans l'ordre de leurs dépendances -->
+    <script src="js/app/navigation.js"></script>
+    <script src="js/app/home.js"></script>
+</body>
+
+</html>
