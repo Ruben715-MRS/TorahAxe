@@ -6452,7 +6452,9 @@
     "hassidout_help_line_succession": "Tirets et points : succession à la tête d'un courant (le rebbe qui suit un autre), à distinguer de la transmission d'un maître à son disciple.",
     "hassidout_help_line_maitre": "Trait continu : l'élève a reçu la transmission de ce maître (disciple, successeur direct).",
     "hassidout_help_colors_title": "Les couleurs",
-    "hassidout_help_fiche_title": "La fiche"
+    "hassidout_help_fiche_title": "La fiche",
+    "zm_now": "Maintenant",
+    "zm_candles_short": "Bougies"
   },
   "geoquiz": {
     "title": "Quiz des pays",

@@ -40,6 +40,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/siddur.css">
+    <link rel="stylesheet" href="css/zmanim.css">
 </head>
 
 <body>
@@ -329,13 +330,11 @@
     </div>
 
 <div id="screen-tool-zmanim" class="list-screen hidden">
-        <button class="back-btn" onclick="toolBack('zmanim')" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
-        <div class="gen-lang zm-lang-corner" role="group" aria-label="Noms des horaires en transcription ou en hébreu" data-i18n-attr="aria-label:tools.zm_he_toggle_aria">
-            <button type="button" class="gen-lang-btn" id="zm-lang-fr" aria-pressed="true" lang="fr" onclick="zmSetLang(false)">A</button>
-            <button type="button" class="gen-lang-btn" id="zm-lang-he" aria-pressed="false" lang="he" onclick="zmSetLang(true)">א</button>
+        <button class="back-btn" onclick="zmBack()" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <div class="sd-topbtns">
+            <button type="button" class="sd-round" id="zm-gear" aria-label="Réglages des Zmanim" onclick="zmOpenSettings()"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg></button>
         </div>
-        <h2 class="header-title" data-i18n="tools.zm_title">Zmanim : horaires du jour</h2>
-        <p class="modes-header-subtitle" data-i18n="tools.zm_intro">Choisissez un lieu, n'importe où sur Terre : les horaires sont calculés sur ton appareil, même sans réseau. Les opinions (Gra, Magen Avraham, fin de Chabbat…) se règlent en bas de l'écran.</p>
+        <h2 class="header-title" id="zm-title">Zmanim</h2>
         <div class="tool-panel zm-panel">
             <div id="tool-zmanim-body" class="zm-body"></div>
         </div>

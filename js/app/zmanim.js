@@ -24,8 +24,6 @@ try { zmHe = localStorage.getItem('zmanimHebrew') === '1'; } catch (e) { /* stoc
 let zmParasha = null;        // { calendar, parashot } une fois chargés
 let zmParashaLoading = false;
 let zmRem = null;            // les réglages des rappels (voir js/zmanimReminderCore.js)
-let zmHil = null;            // les hilloulot (data/hilloulot/hilloulot.json), une fois chargés
-let zmHilLoading = false;
 
 // Les groupes d'horaires : [clé] pour une ligne simple, [clé Magen Avraham, clé Gra] pour une ligne à deux colonnes.
 const ZM_GROUPS = [
@@ -140,20 +138,31 @@ function zmIn(ms) {
 }
 
 // --- Entrée de l'écran ----------------------------------------------------------------------------------------------------------------
+// Trois vues (Jour, Chabbat, Semaine) et, derrière la roue crantée, les réglages (affichage, opinions, rappels).
+let zmView = 'day';          // 'day' | 'shabbat' | 'week' | 'settings'
+let zmPrevView = 'day';      // la vue à retrouver en quittant les réglages
+let zmExplain = false;       // vrai : l'explication de chaque horaire est toujours affichée (sinon, au toucher)
+let zmHaftarot = null;       // data/torah/haftarot.json, une fois chargé
+let zmHaftarotLoading = false;
+try { zmExplain = localStorage.getItem('zmanimExplain') === '1'; } catch (e) { /* stockage indisponible : explications au toucher */ }
+
 function toolZmanimInit() {
     zmLoad();
     zmRemLoad();
     zmFound = null;
     zmEditing = !zmPlace;
     zmDate = zmPlace ? zmToday() : null;
+    zmView = 'day';
+    zmPrevView = 'day';
+    zmCalOpen = false;
     zmLoadParasha();
-    zmLoadHilloulot();
+    zmLoadHaftarot();
     zmRender();
     clearInterval(zmTimer);
     zmTimer = setInterval(() => {
         const screen = toolEl('screen-tool-zmanim');
         if (!screen || screen.classList.contains('hidden')) { clearInterval(zmTimer); zmTimer = null; return; }
-        if (zmPlace && zmDate && !zmEditing) zmRender(true);
+        if (zmPlace && zmDate && !zmEditing && zmView !== 'settings') zmRender(true);
     }, 30000);
 }
 
@@ -168,46 +177,89 @@ function zmLoadParasha() {
     }).catch(() => { /* sans paracha : le reste fonctionne */ }).then(() => { zmParashaLoading = false; });
 }
 
-function zmLoadHilloulot() {
-    if (zmHil || zmHilLoading) return;
-    zmHilLoading = true;
-    fetch('data/hilloulot/hilloulot.json').then(r => (r.ok ? r.json() : null)).then(json => {
-        if (json && Array.isArray(json.entries)) { zmHil = json.entries; zmRender(true); }
-    }).catch(() => { /* sans les hilloulot : le reste fonctionne */ }).then(() => { zmHilLoading = false; });
+function zmLoadHaftarot() {
+    if (zmHaftarot || zmHaftarotLoading) return;
+    zmHaftarotLoading = true;
+    fetch('data/torah/haftarot.json').then(r => (r.ok ? r.json() : null)).then(json => {
+        if (json) { zmHaftarot = json; if (zmView === 'shabbat') zmRender(true); }
+    }).catch(() => { /* sans haftara : le reste fonctionne */ }).then(() => { zmHaftarotLoading = false; });
 }
 
 function zmRender(keepScroll) {
-    zmSyncLang();
     const body = toolEl('tool-zmanim-body');
     if (!body) return;
     const scroller = body.closest('.list-screen') || document.scrollingElement;
     const top = keepScroll && scroller ? scroller.scrollTop : 0;
     toolClear(body);
-    zmPlaceBar(body);
-    if (zmEditing) zmPlaceEditor(body);
-    if (zmPlace && zmDate) {
-        zmDateNav(body);
-        if (!zmSupported(zmDate)) body.appendChild(zmEl('p', 'tool-msg', t('tools.zm_out_of_range', { min: HebrewCalendarCore.GREGORIAN_MIN, max: HebrewCalendarCore.GREGORIAN_MAX })));
-        else zmDay(body);
-        zmOptions(body);
-        zmReminders(body);
+    const title = toolEl('zm-title');
+    if (title) title.textContent = zmView === 'settings' ? 'Réglages' : 'Zmanim';
+    const gear = toolEl('zm-gear');
+    if (gear) gear.classList.toggle('hidden', zmView === 'settings');
+    if (zmView === 'settings') {
+        zmSettings(body);
+    } else {
+        zmPlaceBar(body);
+        if (zmEditing) zmPlaceEditor(body);
+        if (zmPlace && zmDate) {
+            zmDateNav(body);
+            zmViewTabs(body);
+            if (!zmSupported(zmDate)) body.appendChild(zmEl('p', 'tool-msg', t('tools.zm_out_of_range', { min: HebrewCalendarCore.GREGORIAN_MIN, max: HebrewCalendarCore.GREGORIAN_MAX })));
+            else if (zmView === 'shabbat') zmShabbatView(body);
+            else if (zmView === 'week') zmWeekView(body);
+            else zmDay(body);
+        }
     }
     body.appendChild(zmEl('p', 'tool-small zm-disclaimer', t('tools.zm_disclaimer')));
     if (keepScroll && scroller) scroller.scrollTop = top;
 }
 
+// Hébreu ou transcription pour les noms des horaires (réglage « Noms des horaires en hébreu »).
 function zmSetLang(he) {
     zmHe = he;
     try { localStorage.setItem('zmanimHebrew', he ? '1' : '0'); } catch (e) { /* stockage indisponible */ }
     zmRender(true);
 }
 
-// Le bouton « A / א » est dans l'en-tête de l'écran (index.html), au niveau du bouton « Retour », et défile avec la page : il n'est visible qu'à l'ouverture.
-function zmSyncLang() {
-    [['fr', false], ['he', true]].forEach(([lang, he]) => {
-        const b = toolEl('zm-lang-' + lang);
-        if (b) b.setAttribute('aria-pressed', zmHe === he ? 'true' : 'false');
+function zmSetExplain(on) {
+    zmExplain = on;
+    try { localStorage.setItem('zmanimExplain', on ? '1' : '0'); } catch (e) { /* stockage indisponible */ }
+}
+
+function zmOpenSettings() {
+    zmPrevView = zmView === 'settings' ? zmPrevView : zmView;
+    zmView = 'settings';
+    zmRender();
+    const screen = toolEl('screen-tool-zmanim');
+    if (screen) screen.scrollTop = 0;
+}
+
+// Retour : des réglages à la vue précédente, sinon à l'écran d'où l'on vient.
+function zmBack() {
+    if (zmView === 'settings') {
+        zmView = zmPrevView;
+        zmRender();
+        return;
+    }
+    toolBack('zmanim');
+}
+
+// Le sélecteur des trois vues.
+function zmViewTabs(body) {
+    const seg = zmEl('div', 'zm-seg');
+    seg.setAttribute('role', 'tablist');
+    seg.setAttribute('aria-label', 'Vue des horaires');
+    const views = [['day', 'Jour', 'יום'], ['shabbat', 'Chabbat', 'שבת'], ['week', 'Semaine', 'שבוע']];
+    views.forEach(([id, fr, he]) => {
+        const b = zmEl('button', 'zm-seg-btn' + (zmView === id ? ' is-on' : ''), zmHe ? he : fr);
+        b.type = 'button';
+        b.id = 'zm-view-' + id;
+        b.setAttribute('role', 'tab');
+        b.setAttribute('aria-selected', zmView === id ? 'true' : 'false');
+        if (zmHe) b.lang = 'he';
+        b.onclick = () => { zmView = id; zmRender(); };
+        seg.appendChild(b);
     });
+    body.appendChild(seg);
 }
 
 // --- Le lieu --------------------------------------------------------------------------------------------------------------------------
@@ -593,6 +645,7 @@ function zmZmanName(key, short) {
     return name;
 }
 
+// --- Le jour ----------------------------------------------------------------------------------------------------------------------------
 function zmDay(body) {
     const C = HebrewCalendarCore, Z = ZmanimCore;
     const israel = Z.inIsrael(zmPlace);
@@ -635,147 +688,210 @@ function zmDay(body) {
     }
     body.appendChild(hero);
 
-    // — Étude du jour —
-    const study = zmEl('section', 'zm-study');
-    if (zmHe) study.dir = 'rtl';
-    const daf = Z.dafYomi(fixed);
-    if (daf) {
-        const card = zmEl('div', 'zm-study-card');
-        card.appendChild(zmEl('small', '', zmL('daf')));
-        const dafHe = zmEl('span', 'zm-study-he', daf.he + ' ' + C.hebrewNumeral(daf.daf));
-        dafHe.lang = 'he'; dafHe.dir = 'rtl';
-        if (zmHe) {
-            const big = zmEl('strong', 'zm-study-he-big', daf.he + ' ' + C.hebrewNumeral(daf.daf));
-            big.lang = 'he';
-            card.appendChild(big);
-            card.appendChild(zmEl('span', 'zm-study-sub', daf.daysLeft === 0 ? 'היום סיום המסכת' : 'ימים לסיום המסכת: ' + daf.daysLeft));
-        } else {
-            card.appendChild(zmEl('strong', '', daf.masechet + ' ' + daf.daf));
-            card.appendChild(dafHe);
-            card.appendChild(zmEl('span', 'zm-study-sub', daf.daysLeft === 0 ? t('tools.zm_daf_siyum_today') : t('tools.zm_daf_siyum', { n: daf.daysLeft })));
-        }
-        study.appendChild(card);
-    }
-    const tehilim = zmTehilimText(h);
-    if (tehilim) {
-        // Même carte que le Daf Yomi, mais un bouton : il ouvre le premier psaume du jour dans Tanakh (Psaumes).
-        const card = zmEl('button', 'zm-study-card zm-study-link');
-        card.type = 'button';
-        card.id = 'zm-tehilim';
-        card.setAttribute('aria-label', t('tools.zm_tehilim_open', { range: tehilim }));
-        card.onclick = () => { toolReturns.tanakh = 'screen-tool-zmanim'; tanakhOpenAt('psaumes', zmTehilimStart(h) - 1, 'he'); };
-        card.appendChild(zmEl('small', '', zmL('tehilim')));
-        const range = zmEl('strong', '', tehilim);
-        range.dir = 'ltr';
-        if (zmHe) range.style.textAlign = 'right';
-        card.appendChild(range);
-        card.appendChild(zmEl('span', 'zm-study-sub', zmHe ? 'יום ' + C.hebrewNumeral(h.day) + ' בחודש' : t('tools.zm_tehilim_day', { n: h.day })));
-        study.appendChild(card);
-    }
-    body.appendChild(study);
-    zmHilloulotCard(body, fixed, isToday);
-
-    // — Les horaires —
-    ZM_GROUPS.forEach(group => {
-        // la veille de Pessa'h : l'encadré du 'hamets s'insère entre le matin et la journée, là où ses horaires comptent
-        if (group.id === 'day') zmHametsCard(body, fixed, h, israel);
-        const card = zmEl('section', 'zm-group' + (zmHe ? ' is-he' : ''));
-        if (zmHe) card.dir = 'rtl';
-        card.appendChild(zmEl('h3', 'zm-group-title', group.icon + ' ' + zmL(group.id, 'zm_g_' + group.id)));
-        group.rows.forEach(row => {
-            const r = zmEl('div', 'zm-row' + (row.length === 2 ? ' is-pair' : ''));
-            const isNext = !!next && row.indexOf(next.key) !== -1;
-            if (isNext) r.classList.add('is-next');
-            const label = zmEl('div', 'zm-row-label');
-            const name = zmEl('strong', '', zmL(ZM_LABEL[row[0]], 'zm_n_' + ZM_LABEL[row[0]]));
-            if (zmHe) name.lang = 'he';
-            label.appendChild(name);
-            if (!zmHe) label.appendChild(zmEl('small', '', t('tools.zm_d_' + ZM_LABEL[row[0]])));
-            r.appendChild(label);
-            const times = zmEl('div', 'zm-times');
-            row.forEach(key => {
-                const cell = zmEl('div', 'zm-time');
-                if (isToday && next && key === next.key) cell.classList.add('is-next');
-                if (isToday && zmPassed(z, key, now)) cell.classList.add('is-past');
-                if (row.length === 2) cell.appendChild(zmEl('small', '', zmZmanName(key, true)));
-                const value = zmEl('span', 'zm-time-value', zmTime(ZmanimCore.rounded(z, key)));
-                value.dir = 'ltr';
-                if (ZmanimCore.rounded(z, key) === null) value.title = t('tools.zm_none_title');
-                cell.appendChild(value);
-                times.appendChild(cell);
-            });
-            r.appendChild(times);
-            card.appendChild(r);
-        });
-        body.appendChild(card);
-    });
+    // Le vendredi et le samedi, un raccourci vers la vue Chabbat
+    if (isToday && (C.weekdayOf(fixed) === 5 || C.weekdayOf(fixed) === 6)) zmShabbatBanner(body);
+    // la veille de Pessa'h : l'encadré du 'hamets, là où ses horaires comptent
+    zmHametsCard(body, fixed, h, israel);
+    zmTimesList(body, z, { isToday: isToday, now: now, next: next });
     const hours = zmEl('p', 'tool-small zm-hours');
     hours.textContent = zmHe
         ? ZM_HE.hours + ' : ' + Z.formatDuration(z.shaaGra) + ' (' + ZM_HE.gra + ') · ' + Z.formatDuration(z.shaaMa) + ' (' + ZM_HE.ma + ')'
         : t('tools.zm_hours', { gra: Z.formatDuration(z.shaaGra), ma: Z.formatDuration(z.shaaMa) });
     if (zmHe) { hours.dir = 'rtl'; hours.lang = 'he'; }
     body.appendChild(hours);
-
-    zmShabbatCard(body, israel);
     zmLevanaCard(body, h);
 }
 
-// --- Les hilloulot ---------------------------------------------------------------------------------------------------------------------------
-// Un maître : son nom, l'année de son décès (hébraïque et grégorienne), une ligne de présentation ; une date « de tradition » (Moïse, le Rachbi…) est dite telle.
-function zmHilItem(e) {
-    const C = HebrewCalendarCore;
-    const item = zmEl('div', 'zm-hil-item');
-    const name = zmEl('strong', '', zmHe ? e.he : e.fr);
-    if (zmHe) { name.lang = 'he'; name.dir = 'rtl'; }
-    item.appendChild(name);
-    let meta;
-    if (e.kind === 'tradition') meta = zmHe ? 'מסורת' : t('tools.zm_hil_tradition');
-    else meta = zmHe ? 'נפטר ' + C.hebrewNumeral(e.year) : t('tools.zm_hil_year', { heb: e.year, greg: e.gregYear });
-    const sub = zmEl('small', e.kind === 'tradition' ? 'zm-hil-tradition' : '', meta);
-    if (zmHe) { sub.lang = 'he'; sub.dir = 'rtl'; }
-    item.appendChild(sub);
-    if (!zmHe) item.appendChild(zmEl('span', 'zm-hil-bio', e.bio));
-    return item;
+// Les horaires du jour en une seule liste : le passé estompé, le prochain mis en valeur, un repère « maintenant ».
+// L'explication de chaque horaire s'ouvre au toucher (ou reste affichée si le réglage le demande).
+function zmTimesList(body, z, state) {
+    const card = zmEl('section', 'zm-list' + (zmHe ? ' is-he' : ''));
+    card.id = 'zm-list';
+    if (zmHe) card.dir = 'rtl';
+    let markerPlaced = !state.isToday;
+    ZM_GROUPS.forEach(group => {
+        card.appendChild(zmEl('h3', 'zm-list-title', zmL(group.id, 'zm_g_' + group.id)));
+        group.rows.forEach(row => {
+            const allPassed = state.isToday && row.every(key => zmPassed(z, key, state.now));
+            if (!markerPlaced && !allPassed) {
+                markerPlaced = true;
+                card.appendChild(zmEl('div', 'zm-nowmark', (zmHe ? 'עכשיו' : t('tools.zm_now')) + ' · ' + zmTime(state.now)));
+            }
+            const isNext = !!state.next && row.indexOf(state.next.key) !== -1;
+            const r = zmEl('button', 'zm-r' + (isNext ? ' is-next' : '') + (allPassed ? ' is-past' : '') + (zmExplain ? ' is-open' : ''));
+            r.type = 'button';
+            const name = zmEl('strong', 'zm-r-name', zmL(ZM_LABEL[row[0]], 'zm_n_' + ZM_LABEL[row[0]]));
+            if (zmHe) name.lang = 'he';
+            r.appendChild(name);
+            const times = zmEl('div', 'zm-r-times');
+            row.forEach(key => {
+                const cell = zmEl('span', 'zm-r-time');
+                if (row.length === 2) cell.appendChild(zmEl('small', '', zmZmanName(key, true)));
+                const value = zmEl('b', '', zmTime(ZmanimCore.rounded(z, key)));
+                value.dir = 'ltr';
+                if (ZmanimCore.rounded(z, key) === null) value.title = t('tools.zm_none_title');
+                cell.appendChild(value);
+                times.appendChild(cell);
+            });
+            r.appendChild(times);
+            if (!zmHe) {
+                r.appendChild(zmEl('em', 'zm-r-desc', t('tools.zm_d_' + ZM_LABEL[row[0]])));
+                r.setAttribute('aria-expanded', zmExplain ? 'true' : 'false');
+                r.onclick = () => { const open = r.classList.toggle('is-open'); r.setAttribute('aria-expanded', open ? 'true' : 'false'); };
+            }
+            card.appendChild(r);
+        });
+    });
+    if (!markerPlaced) card.appendChild(zmEl('div', 'zm-nowmark', (zmHe ? 'עכשיו' : t('tools.zm_now')) + ' · ' + zmTime(state.now)));
+    body.appendChild(card);
 }
 
-function zmHilloulotCard(body, fixed, isToday) {
-    if (!zmHil) return;
+// --- Chabbat ---------------------------------------------------------------------------------------------------------------------------------
+// La paracha d'une date : { index, name } ou null (calendrier non chargé).
+function zmParashaOf(date) {
+    if (!zmParasha) return null;
+    const indices = TorahCore.parashaForDate(zmParasha.calendar, new Date(date.year, date.month - 1, date.day));
+    if (!indices || !indices.length) return null;
+    return { index: indices[0], name: indices.map(k => zmParasha.parashot.parashot[k][zmHe ? 'he' : 'fr']).join(' – ') };
+}
+
+// Le raccourci du vendredi et du samedi, au-dessus des horaires.
+function zmShabbatBanner(body) {
+    const Z = ZmanimCore;
+    const s = Z.shabbatOf(zmPlace, zmDate.year, zmDate.month, zmDate.day, zmOpts);
+    if (s.candles === null || s.havdalah === null) return;
+    const b = zmEl('button', 'zm-banner');
+    b.type = 'button';
+    b.id = 'zm-banner';
+    const par = zmParashaOf(s.saturday);
+    const left = zmEl('span');
+    left.appendChild(zmEl('small', '', zmL('shabbat')));
+    left.appendChild(zmEl('strong', '', par ? par.name : zmL('shabbat')));
+    b.appendChild(left);
+    [[zmHe ? ZM_HE.candles : t('tools.zm_candles_short'), s.candles], [zmL('havdalah'), s.havdalah]].forEach(([label, ms]) => {
+        const cell = zmEl('span', 'zm-banner-cell');
+        cell.appendChild(zmEl('small', '', label));
+        const v = zmEl('b', '', zmTime(ms));
+        v.dir = 'ltr';
+        cell.appendChild(v);
+        b.appendChild(cell);
+    });
+    b.onclick = () => { zmView = 'shabbat'; zmRender(); };
+    body.appendChild(b);
+}
+
+function zmShabbatView(body) {
     const C = HebrewCalendarCore, Z = ZmanimCore;
-    const h = C.hebrewFromFixed(fixed);
-    const today = Z.hilloulotFor(zmHil, h);
-    const tonight = isToday && zmSupported(zmShift(zmDate, 1)) ? Z.hilloulotFor(zmHil, C.hebrewFromFixed(fixed + 1)) : [];
-    const month = [];
-    for (let d = 1; d <= 30; d++) Z.hilloulotFor(zmHil, { year: h.year, month: h.month, day: d }).forEach(e => month.push(e));
-    if (!today.length && !tonight.length && !month.length) return;
-    // Un seul volet « Hilloulot », replié par défaut (une information moins importante que les horaires) : les maîtres du jour, puis ceux du mois.
-    const card = zmEl('details', 'zm-hil');
-    card.id = 'zm-hil';
-    if (zmHe) card.dir = 'rtl';
-    card.appendChild(zmEl('summary', 'zm-hil-title', '🕯️ ' + (zmHe ? 'הילולות' : t('tools.zm_hil_summary'))));
-    if (today.length || tonight.length) {
-        const day = zmEl('div', 'zm-hil-part');
-        day.id = 'zm-hil-today';
-        day.appendChild(zmEl('h4', 'zm-hil-sub', zmHe ? 'היום' : t('tools.zm_hil_title')));
-        today.forEach(e => day.appendChild(zmHilItem(e)));
-        if (tonight.length) {
-            day.appendChild(zmEl('p', 'zm-hil-tonight', zmHe ? 'הערב מתחילה הילולת:' : t('tools.zm_hil_tonight')));
-            tonight.forEach(e => day.appendChild(zmHilItem(e)));
+    const israel = Z.inIsrael(zmPlace);
+    const s = Z.shabbatOf(zmPlace, zmDate.year, zmDate.month, zmDate.day, zmOpts);
+    if (s.candles === null || s.havdalah === null) {
+        body.appendChild(zmEl('p', 'tool-msg', t('tools.zm_none_title')));
+        return;
+    }
+    zmShabbatCard(body, israel);
+    const par = zmParashaOf(s.saturday);
+    const rows = zmEl('div', 'home-rows zm-shabbat-rows');
+    if (par) {
+        const b = zmEl('button', 'home-row');
+        b.type = 'button';
+        b.id = 'zm-read-parasha';
+        const he = zmEl('span', 'he', 'פרשה');
+        he.lang = 'he'; he.dir = 'rtl';
+        const text = zmEl('span');
+        text.appendChild(zmEl('span', 'fr', 'Lire la paracha'));
+        text.appendChild(zmEl('span', 'desc', par.name + ' · dans le Tikkoun'));
+        b.appendChild(he); b.appendChild(text); b.appendChild(zmEl('span', 'chev', '›'));
+        b.onclick = () => openTikkounAtParasha(par.index, 'screen-tool-zmanim');
+        rows.appendChild(b);
+    }
+    // la haftara du chabbat, selon le rite séfarade quand il diffère
+    if (zmParasha && zmHaftarot) {
+        const sab = HaftarotCore.sabbathInfo(zmParasha.calendar, zmHaftarot, new Date(s.saturday.year, s.saturday.month - 1, s.saturday.day));
+        const refs = sab && sab.haftara ? (sab.haftara.s || sab.haftara.a) : null;
+        if (refs && refs.length) {
+            const row = zmEl('div', 'home-row zm-haftara');
+            row.id = 'zm-haftara';
+            const he = zmEl('span', 'he', 'הפטרה');
+            he.lang = 'he'; he.dir = 'rtl';
+            const text = zmEl('span');
+            text.appendChild(zmEl('span', 'fr', 'Haftara : ' + HaftarotCore.refsLabel(refs)));
+            text.appendChild(zmEl('span', 'desc', (sab.haftara.s ? 'Rite séfarade' : 'Même lecture dans tous les rites') + (sab.why ? ' · ' + sab.why : '')));
+            row.appendChild(he); row.appendChild(text); row.appendChild(zmEl('span'));
+            rows.appendChild(row);
         }
-        card.appendChild(day);
     }
-    if (month.length) {
-        const list = zmEl('div', 'zm-hil-part');
-        list.id = 'zm-hil-month';
-        list.appendChild(zmEl('h4', 'zm-hil-sub', zmHe ? 'כל ההילולות בחודש ' + C.monthHebrew(h.year, h.month) : t('tools.zm_hil_month', { month: hcalMonthName(h.year, h.month) })));
-        month.forEach(e => {
-            const row = zmHilItem(e);
-            row.insertBefore(zmEl('span', 'zm-hil-day', zmHe ? C.hebrewNumeral(e.day) : String(e.day)), row.firstChild);
-            list.appendChild(row);
+    if (rows.childElementCount) body.appendChild(rows);
+    zmLevanaCard(body, zmHebrewOfCivil(zmDate));
+}
+
+// --- La semaine ------------------------------------------------------------------------------------------------------------------------------
+// Sept jours, du dimanche au samedi : lever, fin du Chéma (Gra), coucher et sortie des étoiles. Un toucher ouvre le jour.
+function zmWeekView(body) {
+    const C = HebrewCalendarCore, Z = ZmanimCore;
+    const fixed = zmFixed(zmDate);
+    const start = fixed - C.weekdayOf(fixed);
+    const todayFixed = zmFixed(zmToday());
+    const cols = [['netz', 'Lever', 'הנץ'], ['shemaGra', 'Chéma', 'ק״ש'], ['shkia', 'Coucher', 'שקיעה'], ['tzeit', 'Étoiles', 'צאת']];
+    const range = zmEl('p', 'zm-week-range');
+    range.textContent = hcalGregorianText(start, { weekday: undefined, year: undefined }) + ' – ' + hcalGregorianText(start + 6, { weekday: undefined });
+    body.appendChild(range);
+    const wrap = zmEl('div', 'zm-week-wrap');
+    const table = zmEl('table', 'zm-week');
+    table.id = 'zm-week';
+    const head = zmEl('tr');
+    head.appendChild(zmEl('th', '', zmHe ? 'יום' : 'Jour'));
+    cols.forEach(c => head.appendChild(zmEl('th', '', zmHe ? c[2] : c[1])));
+    const thead = zmEl('thead');
+    thead.appendChild(head);
+    table.appendChild(thead);
+    const tbody = zmEl('tbody');
+    for (let i = 0; i < 7; i++) {
+        const f = start + i;
+        const d = CalendarYearCore.fixedToGregorian(f);
+        const tr = zmEl('tr', (f === todayFixed ? 'is-today ' : '') + (C.weekdayOf(f) === 6 ? 'is-shabbat' : ''));
+        const first = zmEl('td');
+        const dayBtn = zmEl('button', 'zm-week-day');
+        dayBtn.type = 'button';
+        dayBtn.appendChild(zmEl('strong', '', hcalGregorianText(f, { weekday: 'short', day: 'numeric', month: undefined, year: undefined })));
+        if (zmSupported(d)) {
+            const hd = C.hebrewFromFixed(f);
+            dayBtn.appendChild(zmEl('small', '', zmHe ? C.hebrewNumeral(hd.day) + ' ' + C.monthHebrew(hd.year, hd.month) : hd.day + ' ' + hcalMonthName(hd.year, hd.month)));
+        }
+        const open = () => { zmDate = { year: d.year, month: d.month, day: d.day }; zmView = 'day'; zmRender(); };
+        dayBtn.onclick = open;
+        first.appendChild(dayBtn);
+        tr.appendChild(first);
+        const z = zmSupported(d) ? Z.zmanim(zmPlace, d.year, d.month, d.day, zmOpts) : null;
+        cols.forEach(c => {
+            const td = zmEl('td', '', z ? zmTime(Z.rounded(z, c[0])) : '—');
+            td.dir = 'ltr';
+            tr.appendChild(td);
         });
-        card.appendChild(list);
+        tbody.appendChild(tr);
     }
-    if (!zmHe) card.appendChild(zmEl('p', 'tool-small', t('tools.zm_hil_note')));
-    body.appendChild(card);
+    table.appendChild(tbody);
+    wrap.appendChild(table);
+    body.appendChild(wrap);
+    const nav = zmEl('div', 'zm-week-nav');
+    [['‹ Semaine précédente', -7], ['Semaine suivante ›', 7]].forEach(([label, delta]) => {
+        const b = zmEl('button', 'tool-history-chip', label);
+        b.type = 'button';
+        b.onclick = () => { const next = zmShift(zmDate, delta); if (zmSupported(next)) { zmDate = next; zmRender(); } };
+        nav.appendChild(b);
+    });
+    body.appendChild(nav);
+    body.appendChild(zmEl('p', 'tool-small', 'Fin du Chéma selon le Gra. Touchez un jour pour voir tous ses horaires.'));
+}
+
+// --- Les réglages ----------------------------------------------------------------------------------------------------------------------------
+function zmSettings(body) {
+    body.appendChild(zmEl('h3', 'home-section-title', 'Affichage'));
+    const display = zmEl('div', 'zm-set-card zm-set-rows');
+    display.appendChild(sdSwitch('Noms des horaires en hébreu', zmHe, on => zmSetLang(on)));
+    display.appendChild(sdSwitch('Toujours afficher les explications', zmExplain, on => zmSetExplain(on)));
+    body.appendChild(display);
+    zmOptions(body);
+    zmReminders(body);
 }
 
 // --- Le 'hamets, la veille de Pessa'h -----------------------------------------------------------------------------------------------------------
@@ -948,8 +1064,6 @@ function zmResched() {
 }
 function zmRemRerender() {
     zmRender(true);
-    const d = toolEl('zm-rem');
-    if (d) d.open = true;
 }
 
 function zmRemSelect(parent, id, labelText, options, current, onChange) {
@@ -974,9 +1088,9 @@ function zmRemSelect(parent, id, labelText, options, current, onChange) {
 function zmReminders(body) {
     if (!zmRem) zmRemLoad();
     const R = ZmanimReminderCore;
-    const details = zmEl('details', 'zm-options zm-rem');
+    body.appendChild(zmEl('h3', 'home-section-title', t('tools.zm_rem_title')));
+    const details = zmEl('div', 'zm-set-card zm-rem');
     details.id = 'zm-rem';
-    details.appendChild(zmEl('summary', '', '🔔 ' + t('tools.zm_rem_title')));
     const native = typeof HistoriAxeNotifications !== 'undefined' && HistoriAxeNotifications.isSupported && HistoriAxeNotifications.isSupported();
     details.appendChild(zmEl('p', 'tool-small', t(native ? 'tools.zm_rem_note' : 'tools.zm_rem_note_web')));
 
@@ -1057,9 +1171,9 @@ function zmReminders(body) {
 }
 
 function zmOptions(body) {
-    const details = zmEl('details', 'zm-options');
+    body.appendChild(zmEl('h3', 'home-section-title', t('tools.zm_opts_title')));
+    const details = zmEl('div', 'zm-set-card');
     details.id = 'zm-options';
-    details.appendChild(zmEl('summary', '', '⚙️ ' + t('tools.zm_opts_title')));
     details.appendChild(zmEl('p', 'tool-small', t('tools.zm_opts_note')));
     ZM_SETTINGS.forEach(([key, values]) => {
         const wrap = zmEl('div', 'tool-field');
@@ -1081,8 +1195,6 @@ function zmOptions(body) {
             zmWrite(ZM_KEYS.opts, zmOpts);
             zmResched();
             zmRender(true);
-            const reopened = toolEl('zm-options');
-            if (reopened) reopened.open = true;
         };
         wrap.appendChild(label);
         wrap.appendChild(select);

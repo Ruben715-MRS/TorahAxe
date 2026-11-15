@@ -1,0 +1,136 @@
+/* =========================================================================
+   ZMANIM : trois vues (Jour, Chabbat, Semaine) et réglages (js/app/zmanim.js)
+   La carte du jour (.zm-hero), l'arc du soleil, le lieu, le calendrier et la carte
+   Chabbat (.zm-shabbat) restent dans style.css. Les lignes viennent de home.css.
+   ========================================================================= */
+
+/* --- Sélecteur de vue --- */
+.zm-seg {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    gap: 4px;
+    padding: 4px;
+    border-radius: 14px;
+    background: var(--selected-tint);
+}
+.zm-seg-btn {
+    border: 0;
+    border-radius: 11px;
+    background: transparent;
+    color: var(--muted-text);
+    font: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 9px 4px;
+    cursor: pointer;
+}
+.zm-seg-btn.is-on { background: var(--surface); color: var(--primary-blue); box-shadow: 0 1px 4px rgba(0, 0, 0, 0.14); }
+:root[data-theme="dark"] .zm-seg-btn.is-on { color: var(--text-dark); }
+.zm-seg-btn:focus-visible, .zm-r:focus-visible, .zm-banner:focus-visible, .zm-week-day:focus-visible { outline: 2px solid var(--home-gold, #96621a); outline-offset: 2px; }
+
+/* --- Liste des horaires --- */
+.zm-list {
+    background: var(--surface);
+    border: 1px solid var(--border-soft);
+    border-radius: 18px;
+    box-shadow: var(--card-shadow);
+    padding: 4px 0 6px;
+    display: flex;
+    flex-direction: column;
+}
+.zm-list-title { margin: 12px 16px 2px; font-size: 12px; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted-text); }
+.zm-r {
+    border: 0;
+    border-top: 1px solid var(--border-soft);
+    background: transparent;
+    color: var(--text-dark);
+    font: inherit;
+    text-align: start;
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    gap: 2px 12px;
+    padding: 10px 16px;
+}
+.zm-list-title + .zm-r { border-top: 0; }
+.zm-r-name { font-size: 15px; font-weight: 600; }
+.zm-r-times { display: flex; gap: 14px; justify-content: flex-end; }
+.zm-r-time { display: flex; align-items: baseline; gap: 4px; }
+.zm-r-time small { font-size: 10px; font-weight: 600; color: var(--muted-text); }
+.zm-r-time b { font-size: 18px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.zm-r-desc { grid-column: 1 / -1; display: none; font-style: normal; font-size: 12.5px; line-height: 1.4; color: var(--muted-text); }
+.zm-r.is-open .zm-r-desc { display: block; }
+.zm-r.is-past .zm-r-name, .zm-r.is-past .zm-r-time b { color: var(--muted-text); font-weight: 500; }
+.zm-r.is-next { background: var(--selected-tint); }
+.zm-r.is-next .zm-r-time b { color: var(--primary-blue); }
+:root[data-theme="dark"] .zm-r.is-next .zm-r-time b { color: #8fb8e8; }
+.zm-nowmark {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 4px 16px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--home-gold, #96621a);
+    font-variant-numeric: tabular-nums;
+}
+.zm-nowmark::after { content: ""; flex: 1; height: 1px; background: currentColor; opacity: 0.6; }
+@media (max-width: 380px) { .zm-r-times { gap: 8px; } .zm-r-time b { font-size: 16px; } }
+
+/* --- Raccourci Chabbat (vendredi et samedi) --- */
+.zm-banner {
+    border: 1px solid color-mix(in srgb, #d4a017 55%, transparent);
+    background: color-mix(in srgb, #fed65b 28%, var(--surface));
+    color: var(--text-dark);
+    border-radius: 16px;
+    padding: 10px 14px;
+    font: inherit;
+    text-align: start;
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 14px;
+    align-items: center;
+}
+.zm-banner small { display: block; font-size: 10.5px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted-text); }
+.zm-banner strong { font-size: 17px; }
+.zm-banner b { font-size: 16px; font-variant-numeric: tabular-nums; }
+
+/* --- Vue Chabbat --- */
+.zm-shabbat-rows { margin-top: 0; }
+.zm-haftara { cursor: default; }
+.zm-haftara .chev { visibility: hidden; }
+
+/* --- Vue Semaine --- */
+.zm-week-range { margin: 2px 4px -4px; font-size: 14px; font-weight: 700; color: var(--text-dark); }
+.zm-week-wrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--border-soft); border-radius: 18px; box-shadow: var(--card-shadow); }
+.zm-week { width: 100%; border-collapse: collapse; font-size: 14px; font-variant-numeric: tabular-nums; }
+.zm-week th { padding: 10px 6px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted-text); text-align: center; }
+.zm-week td { padding: 6px; text-align: center; border-top: 1px solid var(--border-soft); }
+.zm-week th:first-child, .zm-week td:first-child { text-align: start; padding-inline-start: 10px; }
+.zm-week-day { border: 0; background: transparent; color: var(--text-dark); font: inherit; text-align: start; cursor: pointer; padding: 4px 0; display: flex; flex-direction: column; gap: 0; }
+.zm-week-day strong { font-size: 14px; }
+.zm-week-day small { font-size: 10.5px; color: var(--muted-text); }
+.zm-week tr.is-today td { background: var(--selected-tint); font-weight: 700; }
+.zm-week tr.is-shabbat td { color: var(--home-gold, #96621a); font-weight: 700; }
+.zm-week tr.is-shabbat .zm-week-day { color: var(--home-gold, #96621a); }
+.zm-week-nav { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+
+/* --- Réglages --- */
+.zm-set-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 14px;
+    border: 1px solid var(--border-soft);
+    border-radius: 16px;
+    background: var(--surface);
+    box-shadow: var(--card-shadow);
+}
+.zm-set-rows { padding: 8px; }
+.zm-set-rows .sd-opt { border: 0; border-radius: 10px; box-shadow: none; padding: 6px 8px; background: transparent; }
+.zm-body > .home-section-title { margin-top: 10px; margin-bottom: -4px; }

@@ -104,9 +104,9 @@ function torahReaderSavePosition(block) {
 // À l'ouverture : on reprend là où on était ; sinon le début de la Torah.
 // Une paracha demandée par un autre écran (l'accueil) : son indice dans data/torah/parashot.json, ouverte à la prochaine ouverture du rouleau.
 let torahReaderPending = null;
-function openTikkounAtParasha(index) {
+function openTikkounAtParasha(index, from) {
     torahReaderPending = index;
-    openTool('torahReader', 'screen-main');
+    openTool('torahReader', from || 'screen-main');
 }
 
 function torahReaderOpenFirst() {
