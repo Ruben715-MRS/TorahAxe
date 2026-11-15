@@ -118,11 +118,12 @@
     background: var(--bg-color);
     border-radius: 22px 22px 0 0;
     box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
 }
-.sd-sheet-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 16px 8px 20px; }
+.sd-sheet-head { flex: none; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 16px 8px 20px; }
 .sd-sheet-title { margin: 0; font-size: 19px; font-weight: 800; color: var(--text-dark); }
 .sd-sheet-close { width: 36px; height: 36px; border-radius: 50%; border: 0; background: var(--surface); color: var(--text-dark); font-size: 15px; cursor: pointer; box-shadow: var(--card-shadow); }
-.sd-sheet-body { overflow-y: auto; padding: 4px 16px calc(env(safe-area-inset-bottom, 0px) + 20px); display: flex; flex-direction: column; gap: 12px; }
+.sd-sheet-body { flex: 1 1 auto; min-height: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; touch-action: pan-y; padding: 4px 16px calc(env(safe-area-inset-bottom, 0px) + 20px); display: flex; flex-direction: column; gap: 12px; }
 .sd-sheet-sub { margin: 6px 4px -4px; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted-text); }
 .sd-sheet-note, .sd-info, .sd-soon { margin: 0; font-size: 14px; line-height: 1.5; color: var(--text-dark); }
 .sd-soon { padding: 8px 4px 12px; }
@@ -170,3 +171,6 @@
 
 /* Groupe applicable aujourd'hui mais repliable (Harahaman de Chabbat, de Roch Hodesh…) */
 .sd-group.is-on > summary.sd-group-badge { cursor: pointer; }
+
+/* Les blocs de la feuille gardent leur hauteur : c'est le corps de la feuille qui défile (sinon une liste à overflow:hidden se compresse au lieu de déborder). */
+.sd-sheet-body > * { flex-shrink: 0; }
