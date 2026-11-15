@@ -264,6 +264,106 @@
     "Les fiançailles sous condition (« à condition que je te donne… »), l'envoyé qui épouse pour lui-même, et les conditions doubles.",
     "Les dix lignées montées de Babylone (cohen, lévite, israélite…), les mariages permis entre elles et la vérification pour l'épouse d'un cohen."
    ]
+  },
+  "bava-kamma": {
+   "book": "Les dommages : les quatre pères de dommages, les dommages du bœuf et du feu, le vol et ses paiements, les blessures et la réparation du vol.",
+   "chapters": [
+    "Les quatre pères de dommages (bœuf, fosse, destructeur, feu), la responsabilité de la garde et l'évaluation du dommage.",
+    "Les dommages causés par le pied et la dent, ce qui est un dommage prévisible, et les animaux qui sautent d'un toit.",
+    "Les objets laissés dans le domaine public (la cruche, l'eau versée, la glissade) et la responsabilité de celui qui les y met.",
+    "Le bœuf qui cogne : le bœuf prévenu ou non, l'ordre des paiements quand il en cogne plusieurs, et le bœuf consacré.",
+    "Le bœuf qui cogne une vache pleine, le potier qui entre dans une cour sans permission et la femme enceinte frappée.",
+    "Le troupeau mal enfermé, la meule dans le champ d'autrui, le feu envoyé par un sourd-muet ou un enfant.",
+    "Le vol : le double, le quadruple et le quintuple, les faux témoins et le voleur qui abat ou vend l'animal.",
+    "Les blessures : les cinq paiements (dommage, douleur, guérison, arrêt de travail, honte), la honte et « œil pour œil ».",
+    "Le vol : ce que doit rendre celui qui transforme l'objet volé, l'animal ou l'esclave qui vieillit, et l'artisan qui abîme.",
+    "Le voleur qui nourrit ses enfants, les biens des percepteurs et des brigands, et la restitution de ce qu'on a pris."
+   ]
+  },
+  "bava-metzia": {
+   "book": "Les litiges d'argent : les objets trouvés, le dépôt, la tromperie, l'intérêt, le louage, le salaire des ouvriers et les prêts.",
+   "chapters": [
+    "Deux qui tiennent un même manteau : le partage et le serment, et qui acquiert l'objet trouvé qu'il a vu en premier.",
+    "Les objets trouvés qu'on garde et ceux qu'on doit proclamer, les signes qui permettent de les restituer et le devoir de rendre.",
+    "Le dépôt : la responsabilité du dépositaire, du locataire et de l'emprunteur, le serment et la restitution à plusieurs.",
+    "Les achats et ventes : l'or et l'argent, la tromperie (ona'a, un sixième de la valeur) et les marchandises.",
+    "L'intérêt (nechekh et tarbit), l'interdit de prêter à intérêt, les locations de maison et l'intérêt déguisé.",
+    "Le louage des artisans et des bêtes : celui qui se trompe, change de chemin ou casse ce qu'on lui a confié.",
+    "Les ouvriers : le salaire, le droit de manger sur le champ, la coutume du lieu et la rupture du contrat.",
+    "Le prêt d'une vache : prêt et location, la responsabilité en cas de mort et la perte par force majeure.",
+    "Les fermiers et métayers (coutume du lieu, champ en friche) et les gages pris pour une dette, notamment à la veuve et au pauvre.",
+    "La maison et l'étage de deux propriétaires qui s'effondrent : le partage des matériaux et la réparation."
+   ]
+  },
+  "bava-batra": {
+   "book": "Le droit de la propriété : les associés et les voisins, la possession (hazaka), la vente, l'héritage et les actes.",
+   "chapters": [
+    "Les associés dans une cour : mur mitoyen, clôture, dépenses communes de la ville et tsedaka.",
+    "Les distances à respecter (fosse, four, arbre), les nuisances d'un voisin et les droits du propriétaire.",
+    "La hazaka : la possession de trois ans qui établit la propriété d'une maison, d'un champ ou d'un puits, et ce qui la contredit.",
+    "La vente d'une maison : ce qui est inclus et exclu (étage, citerne, porte), et les mesures sans précision.",
+    "La vente d'un bateau, d'un char et d'un âne : ce que comprend la vente, et les récits de Rabba bar bar 'Hana en mer.",
+    "La vente de fruits et de vin : les graines qui ne poussent pas, la poussière tolérée et la garantie du vendeur.",
+    "La vente d'un champ à la mesure (beit kor) : le défaut, la corde, le terrain en plus ou en moins.",
+    "L'héritage : qui hérite et transmet, l'ordre (fils, filles, frères), les filles de Tselofhad et le premier-né.",
+    "L'héritage des fils, des filles et du sexe indéterminé, le partage entre grands et petits, et la donation du malade.",
+    "Les actes : le gett plié et le gett noué, les actes avec ou sans témoins, la quittance et le montant écrit."
+   ]
+  },
+  "sanhedrin": {
+   "book": "Les tribunaux et les peines : l'organisation du Sanhédrin, les témoins, les quatre peines capitales, le fils rebelle et le monde à venir.",
+   "chapters": [
+    "Les tribunaux : trois juges pour l'argent, vingt-trois pour les peines capitales, soixante et onze pour le grand Sanhédrin.",
+    "Le Cohen Gadol et le roi : ce qui leur est permis ou interdit devant le tribunal, le deuil, la guerre facultative et les lois du roi.",
+    "Le choix des juges par chaque partie, les arbitres, et les juges et témoins invalides (joueur de dés, prêteur à intérêt).",
+    "L'enquête (dérisha et 'hakira), la disposition du Sanhédrin en demi-cercle et l'intimidation des témoins.",
+    "L'interrogatoire des témoins : les sept questions sur le jour, la semaine, l'année, l'heure et le lieu.",
+    "L'exécution de la lapidation : le lieu, l'annonce, la confession, et le devoir de chercher un mérite pour l'accusé.",
+    "Les quatre peines capitales (lapidation, feu, glaive, étranglement), leurs modalités, le blasphème, l'idolâtrie et les fils de Noé.",
+    "Le fils rebelle (âge, quantité de viande et de vin, vol chez son père) et le cambrioleur qu'on peut tuer.",
+    "Les condamnés au feu et au glaive (la mère et sa fille, le meurtrier, la ville idolâtre), le coup mortel et le poursuivant.",
+    "Les condamnés à l'étranglement : qui frappe son père ou sa mère, le kidnappeur, le vieux rebelle et le faux prophète.",
+    "Le monde à venir : tout Israël y a part sauf certains, la génération du déluge, les dix tribus, et la venue du Machia'h."
+   ]
+  },
+  "makkot": {
+   "book": "Les faux témoins, les villes de refuge pour le meurtre involontaire, et les coups de lanière (malkout).",
+   "chapters": [
+    "Les témoins qui deviennent faux (zomemim) : comment on les confond, ce qu'on leur fait subir, et la peine qu'ils reçoivent.",
+    "Le meurtre involontaire et les villes de refuge : qui y est exilé, les cas qui l'excluent, et le retour après la mort du grand prêtre.",
+    "Les coups de lanière : les interdits qui les entraînent, les quarante moins un coups, et les 613 commandements ramenés à quelques principes."
+   ]
+  },
+  "shevuot": {
+   "book": "Les serments : les serments d'engagement, du témoin, du dépôt et des juges, et les quatre gardiens.",
+   "chapters": [
+    "Les deux serments qui en font quatre, et les cas où l'on est tenu d'apporter une offrande pour l'impureté du Temple.",
+    "Les impuretés connues ou oubliées : l'impureté du Temple et des choses saintes, et l'offrande variable (oleh veyored).",
+    "Les serments d'engagement (« je mangerai », « je ne mangerai pas »), les serments en vain et ce qui oblige à une offrande.",
+    "Le serment du témoin : qui y est tenu, comment on l'adresse aux témoins et ce qui l'oblige.",
+    "Le serment de dépôt : qui y est tenu, hommes et femmes, proches ou éloignés, et ce qui l'oblige.",
+    "Le serment des juges : la demande de deux pièces d'argent et la reconnaissance d'une prutah, et ce sur quoi on ne jure pas.",
+    "Les serments de la Torah : celui qui jure sans payer, et ceux qui jurent et reçoivent (le salarié, la victime).",
+    "Les quatre gardiens : le gardien gratuit, l'emprunteur, le gardien payé et le locataire."
+   ]
+  },
+  "avodah-zarah": {
+   "book": "L'idolâtrie : les fêtes des païens, ce qu'on peut leur vendre, les idoles, leurs objets et le vin de libation.",
+   "chapters": [
+    "Les fêtes des non-juifs : ce qu'on ne peut leur vendre ou acheter avant et après, la liste de leurs fêtes et les échanges permis.",
+    "Les non-juifs : les animaux qu'on ne leur confie pas, la sage-femme, les soins, et les produits (pain, fromage, huile).",
+    "Les idoles : celles qui sont interdites, les débris, les images du soleil, de la lune et du dragon, et les objets qui les portent.",
+    "Ce qu'on peut tirer d'une idole (jardin, bain, ornements), les trois pierres près du Mercure et l'annulation d'une idole.",
+    "Le vin de libation : le salaire de l'ouvrier, le vin tombé sur des raisins et le vin transporté par un non-juif."
+   ]
+  },
+  "horayot": {
+   "book": "L'erreur d'enseignement : le tribunal qui se trompe, le Cohen oint, le prince, et l'ordre de priorité.",
+   "chapters": [
+    "L'erreur du tribunal : quand il ordonne de transgresser, l'offrande qui en résulte, et le juge qui sait qu'ils se trompent.",
+    "Le Cohen oint qui se trompe : son offrande, l'oubli de la loi et de l'acte, et celui qui enseigne pour lui-même.",
+    "Le Cohen oint et le prince qui ont fauté, l'ordre de priorité (cohen, lévite, israélite) et le sage qui précède le grand prêtre ignorant."
+   ]
   }
  }
 }
