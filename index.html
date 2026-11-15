@@ -46,16 +46,101 @@
         </div>
 
         <div class="list-categories" id="home-sections">
-            <!-- TODO (tâche #2) : les outils « Bible et tradition » (Siddour, Zmanim, Guématria, Tsaraat,
-                 Korbanot, lois alimentaires, dictionnaires hébreu/araméen, boussole du Kotel, statuts et
-                 unions, généalogie, Tanakh, mesures, Mishkan, Mitsvot/Tikkoun, calendrier hébraïque…). -->
+<section class="tools-group" data-tools-group="bible" aria-labelledby="tools-group-bible">
+            <h3 class="modes-group-title modes-group-static" id="tools-group-bible" data-i18n="tools.group_bible">Bible et tradition</h3>
+            <div class="arcade-menu">
+            <button type="button" class="arcade-card" onclick="openTool('genealogy', 'screen-main')">
+                <span class="arcade-card-icon" aria-hidden="true">🌳</span>
+                <span class="arcade-card-text"><strong data-i18n="tools.genealogy_title">Généalogie biblique</strong><small data-i18n="tools.genealogy_desc">Un seul arbre, d'Adam à Jésus : les soixante-dix nations, Abraham, Ésaü, Moïse et Aaron, les juges, les rois et les prophètes.</small></span>
+            </button>
+            <button type="button" class="arcade-card" onclick="openTool('transmission', 'screen-main')">
+                <span class="arcade-card-icon" aria-hidden="true">🔗</span>
+                <span class="arcade-card-text"><strong data-i18n="tools.transmission_title">Chaîne de transmission</strong><small data-i18n="tools.transmission_desc">De Moïse à nos jours, par la Michna, le Talmud, les Guéonim, les Richonim et les 'Aharonim : qui a reçu la Torah de qui.</small></span>
+            </button>
+            <button type="button" class="arcade-card" onclick="openTool('library', 'screen-main')">
+                <span class="arcade-card-icon" aria-hidden="true">📚</span>
+                <span class="arcade-card-text"><strong data-i18n="tools.library_title">Bibliothèque juive</strong><small data-i18n="tools.library_desc">Qui a écrit quoi, quand et où : Michna, Talmud, Midrach, codes, commentaires, Kabbale.</small></span>
+            </button>
+            <button type="button" class="arcade-card" onclick="openTool('hassidout', 'screen-main')">
+                <span class="arcade-card-icon" aria-hidden="true">🎶</span>
+                <span class="arcade-card-text"><strong data-i18n="tools.hassidout_title">Hassidout</strong><small data-i18n="tools.hassidout_desc">Du Baal Chem Tov à nos jours : les maîtres, les dynasties et leurs successions.</small></span>
+            </button>
+            <button type="button" class="arcade-card" onclick="openTool('foodlaws', 'screen-main')">
+                <span class="arcade-card-icon" aria-hidden="true">🥩</span>
+                <span class="arcade-card-text"><strong data-i18n="tools.food_title">Pur et impur : animaux et aliments</strong><small data-i18n="tools.food_desc">Les signes des animaux purs, les oiseaux interdits, les quatre sauterelles, les mélanges interdits.</small></span>
+            </button>
+            <button type="button" class="arcade-card" onclick="openTool('statuts', 'screen-main')">
+                <span class="arcade-card-icon" aria-hidden="true">💍</span>
+                <span class="arcade-card-text"><strong data-i18n="tools.statuts_title">Statuts et unions</strong><small data-i18n="tools.statuts_desc">Cohen, lévi, 'halal, mamzer, guer… : les statuts d'après le Rambam, et un triangle père · mère · enfant qui dit si l'union est permise et quel statut reçoit l'enfant.</small></span>
+            </button>
+            <button type="button" class="arcade-card" onclick="openTool('biblical', 'screen-main')">
+                <span class="arcade-card-icon" aria-hidden="true">🗺️</span>
+                <span class="arcade-card-text"><strong data-i18n="tools.biblical_title">Cartes bibliques</strong><small data-i18n="tools.biblical_desc">Six cartes du Levant : Abraham, la guerre des rois, Jacob, les quarante-deux étapes du désert, Guerizim et Ebal, le partage par tribu.</small></span>
+            </button>
+            <button type="button" class="arcade-card" onclick="openTool('measures', 'screen-main')">
+                <span class="arcade-card-icon" aria-hidden="true">⚖️</span>
+                <span class="arcade-card-text"><strong data-i18n="tools.measures_title">Poids et mesures bibliques</strong><small data-i18n="tools.measures_desc">Distances, volumes et monnaies de la Bible : un convertisseur vers nos mètres, litres et kilos, et une leçon.</small></span>
+            </button>
+            <button type="button" class="arcade-card" onclick="openTool('korbanot', 'screen-main')">
+                <span class="arcade-card-icon" aria-hidden="true">🐑</span>
+                <span class="arcade-card-text"><strong data-i18n="tools.korbanot_title">Offrandes et sacrifices</strong><small data-i18n="tools.korbanot_desc">Les korbanot : qui offre quoi, quand et combien. Des tableaux à filtrer et à calculer.</small></span>
+            </button>
+            <button type="button" class="arcade-card" onclick="openTool('tsaraat', 'screen-main')">
+                <span class="arcade-card-icon" aria-hidden="true">🩹</span>
+                <span class="arcade-card-text"><strong data-i18n="tools.tsaraat_title">Tsaraat : la plaie biblique</strong><small data-i18n="tools.tsaraat_desc">La « lèpre » de la Torah, pas à pas : peau, nétek, vêtements, maisons, la purification, et un mode « cohen ».</small></span>
+            </button>
+            <button type="button" class="arcade-card" onclick="openTool('commandments', 'screen-main')">
+                <span class="arcade-card-icon" aria-hidden="true">🕎</span>
+                <span class="arcade-card-text"><strong data-i18n="tools.commandments_title">Textes essentiels : synthèses</strong><small data-i18n="tools.commandments_desc">La Torah, la Michna et les commandements, avec leurs sources.</small></span>
+            </button>
+            <button type="button" class="arcade-card" onclick="openTool('hebrewCalendar', 'screen-main')">
+                <span class="arcade-card-icon" aria-hidden="true">🗓️</span>
+                <span class="arcade-card-text"><strong data-i18n="tools.hcal_title">Calendrier hébraïque et fêtes</strong><small data-i18n="tools.hcal_desc">Convertis une date, trouve les fêtes de l'année (Israël ou diaspora), les mois et la règle du calendrier lunisolaire.</small></span>
+            </button>
+            <button type="button" class="arcade-card" id="tool-card-zmanim" onclick="openTool('zmanim', 'screen-main')">
+                <span class="arcade-card-icon" aria-hidden="true">🌅</span>
+                <span class="arcade-card-text"><strong data-i18n="tools.zm_title">Zmanim : horaires du jour</strong><small data-i18n="tools.zm_desc">Les horaires juifs du jour pour n'importe quel lieu de la Terre : aube, Chéma, midi, Minha, coucher, bougies, fin de Chabbat, Daf Yomi.</small></span>
+            </button>
+            <button type="button" class="arcade-card" id="tool-card-kotel" onclick="openTool('kotel', 'screen-main')">
+                <span class="arcade-card-icon" aria-hidden="true">🧭</span>
+                <span class="arcade-card-text"><strong data-i18n="tools.kotel_title">Boussole du Kotel</strong><small data-i18n="tools.kotel_desc">La direction du Kotel (Jérusalem) depuis chez toi, avec la boussole de l'iPhone corrigée de la déclinaison magnétique.</small></span>
+            </button>
+            <button type="button" class="arcade-card" id="tool-card-siddur" onclick="openTool('siddur', 'screen-main')">
+                <span class="arcade-card-icon" aria-hidden="true">🙏</span>
+                <span class="arcade-card-text"><strong data-i18n="tools.sd_title">Siddour séfarade</strong><small data-i18n="tools.sd_desc">Le siddour des jours de semaine, nusach Edot haMizrah, en hébreu vocalisé : Chaharit, Minha, Arvit, Birkat haMazon, Omer… avec la variante du jour mise en valeur.</small></span>
+            </button>
+            <button type="button" class="arcade-card" onclick="openTool('mishkan', 'screen-main')">
+                <span class="arcade-card-icon" aria-hidden="true">⛺</span>
+                <span class="arcade-card-text"><strong data-i18n="tools.mkn_title">Michkan et Mikdash</strong><small data-i18n="tools.mkn_desc">Le Tabernacle, sa cour, ses ustensiles, les vêtements des prêtres et les Temples : des schémas à toucher, avec leurs sources.</small></span>
+            </button>
+            <button type="button" class="arcade-card" onclick="openTool('lexicon', 'screen-main')">
+                <span class="arcade-card-icon" aria-hidden="true">🔤</span>
+                <span class="arcade-card-text"><strong data-i18n="tools.lexicon_title">Dictionnaire français – hébreu</strong><small data-i18n="tools.lexicon_desc">2 000 mots de la Bible, les plus fréquents, dans les deux sens, avec leur racine.</small></span>
+            </button>
+            <button type="button" class="arcade-card" onclick="openTool('gemara', 'screen-main')">
+                <span class="arcade-card-icon" aria-hidden="true">🗣️</span>
+                <span class="arcade-card-text"><strong data-i18n="tools.gemara_title">Dictionnaire français – araméen (Guémara)</strong><small data-i18n="tools.gemara_desc">Le vocabulaire de la Guémara, ses abréviations et ses sages : questions, sources, raisonnement.</small></span>
+            </button>
+            <button type="button" class="arcade-card" onclick="openTool('gematria', 'screen-main')">
+                <span class="arcade-card-icon" aria-hidden="true">🔢</span>
+                <span class="arcade-card-text"><strong data-i18n="tools.gematria_title">Guématria</strong><small data-i18n="tools.gematria_desc">La valeur des lettres hébraïques d'un mot, en quatre modes de calcul.</small></span>
+            </button>
+            <button type="button" class="arcade-card" onclick="openTool('torahReader', 'screen-main')">
+                <span class="arcade-card-icon" aria-hidden="true">📜</span>
+                <span class="arcade-card-text"><strong data-i18n="tools.torah_reader_title">Torah : le rouleau</strong><small data-i18n="tools.torah_reader_desc">Le texte intégral, paracha après paracha, comme sur un rouleau.</small></span>
+            </button>
+            <button type="button" class="arcade-card" onclick="openTool('tanakh', 'screen-main')">
+                <span class="arcade-card-icon" aria-hidden="true">📘</span>
+                <span class="arcade-card-text"><strong data-i18n="tools.tanakh_title">Tanakh : les livres</strong><small data-i18n="tools.tanakh_desc">Les 24 livres du Tanakh, verset par verset, avec voyelles et accents. Rachi sur la Torah.</small></span>
+            </button>
+            </div>
+        </section>
             <!-- TODO (tâche #3) : les 3 jeux exclusifs (Mots du Tanakh, Mots de la Guémara, Maîtres et élèves). -->
             <!-- TODO (tâche #4) : frises « Judaïsme » (3 thèmes) + « Histoire de l'État d'Israël », avec
                  l'encadré de renvoi vers HistoriAxe en dessous (tâche #5). -->
             <!-- TODO (tâche #4) : les 3 récits (Dreyfus, Bar Kokhba, État d'Israël), avec l'encadré de
                  renvoi vers HistoriAxe en dessous (tâche #5). -->
             <!-- TODO (tâche #4) : la roue des fêtes, restreinte au seul calendrier juif. -->
-            <p class="empty-msg">TorahAxe est en construction : les outils et contenus arrivent par étapes.</p>
         </div>
     </div>
 
@@ -68,7 +153,565 @@
         </div>
     </div>
 
+    <!-- Écrans des 21 outils "Bible et tradition" migrés depuis HistoriAxe -->
+<div id="screen-tool-genealogy" class="list-screen gen-screen hidden">
+        <button class="back-btn" onclick="toolBack('genealogy')" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <div class="gen-tools">
+            <button type="button" class="gen-dir-btn" id="gen-dir" onclick="genToggleDir()" aria-label="Changer le sens de l'arbre" data-i18n-attr="aria-label:tools.genealogy_dir_to_h">🔄</button>
+            <div class="gen-lang" role="group" aria-label="Langue des noms" data-i18n-attr="aria-label:tools.genealogy_lang_aria">
+                <button type="button" class="gen-lang-btn" id="gen-lang-fr" aria-pressed="true" lang="fr" onclick="genSetLang('fr')">A</button>
+                <button type="button" class="gen-lang-btn" id="gen-lang-he" aria-pressed="false" lang="he" onclick="genSetLang('he')">א</button>
+            </div>
+        </div>
+        <!-- Titre et consigne ne s'affichent plus (la place revient à l'arbre) ; ils restent lus par les lecteurs d'écran. -->
+        <h2 class="header-title sr-only" data-i18n="tools.genealogy_title">Généalogie biblique</h2>
+        <p class="modes-header-subtitle sr-only" data-i18n="tools.genealogy_intro">Touchez « A » pour les noms en français, « א » pour l'hébreu. Faites glisser l'arbre ; repliez ou dépliez une branche avec son bouton.</p>
+        <div class="gen-bar">
+            <input type="search" id="gen-search" class="tool-input" autocomplete="off" placeholder="Chercher un nom" aria-label="Chercher un nom" data-i18n-attr="placeholder:tools.genealogy_search;aria-label:tools.genealogy_search">
+            <ul class="gen-results" id="gen-results"></ul>
+            <div class="gen-actions">
+                <button type="button" class="btn" onclick="genZoom(-1)" aria-label="Rétrécir" data-i18n-attr="aria-label:tools.genealogy_zoom_out">−</button>
+                <button type="button" class="btn" onclick="genZoom(1)" aria-label="Agrandir" data-i18n-attr="aria-label:tools.genealogy_zoom_in">+</button>
+                <button type="button" class="btn" onclick="genCollapseAll()" data-i18n="tools.genealogy_collapse_all">Tout replier</button>
+                <button type="button" class="btn" onclick="genExpandAll()" data-i18n="tools.genealogy_expand_all">Tout déplier</button>
+            </div>
+            <p class="gen-legend"><span class="gen-key is-man" data-i18n="tools.genealogy_men">Hommes</span> <span class="gen-key is-woman" data-i18n="tools.genealogy_women">Femmes</span><button type="button" class="gen-cat-toggle" id="gen-cat-toggle" aria-expanded="false" aria-controls="gen-cat-menu" onclick="genCatToggleMenu()"><span id="gen-cat-dot" class="gen-cat-dot hidden"></span><span id="gen-cat-toggle-label" data-i18n="tools.genealogy_cat_button">Catégories</span> ▾</button></p>
+            <div class="gen-cat-menu hidden" id="gen-cat-menu" role="group" aria-label="Catégories" data-i18n-attr="aria-label:tools.genealogy_cat_button"></div>
+            <section class="gen-cat-panel hidden" id="gen-cat-panel" aria-live="polite"></section>
+        </div>
+        <div class="gen-view" id="gen-view" tabindex="0" role="region" aria-label="Arbre généalogique" data-i18n-attr="aria-label:tools.genealogy_view_aria">
+            <div class="gen-sizer" id="gen-sizer"><div class="gen-stage" id="gen-stage"></div></div>
+        </div>
+    </div>
+
+<div id="screen-tool-transmission" class="list-screen gen-screen tr-screen hidden">
+        <button class="back-btn" onclick="toolBack('transmission')" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <div class="gen-tools">
+            <button type="button" class="gen-dir-btn tr-eye-btn" id="tr-eye-btn" aria-pressed="true" aria-label="Masquer les noms des groupes" title="Masquer les noms des groupes" onclick="trToggleLegend()"></button>
+            <button type="button" class="gen-dir-btn tr-help-btn" id="tr-help-btn" aria-expanded="false" aria-controls="tr-help" aria-label="Comment lire la carte" data-i18n-attr="aria-label:tools.transmission_help_aria" onclick="trToggleHelp()">?</button>
+            <div class="gen-lang" role="group" aria-label="Langue des noms" data-i18n-attr="aria-label:tools.genealogy_lang_aria">
+                <button type="button" class="gen-lang-btn" id="tr-lang-fr" aria-pressed="true" lang="fr" onclick="trSetLang('fr')">A</button>
+                <button type="button" class="gen-lang-btn" id="tr-lang-he" aria-pressed="false" lang="he" onclick="trSetLang('he')">א</button>
+            </div>
+        </div>
+        <h2 class="header-title sr-only" data-i18n="tools.transmission_title">La chaîne de transmission</h2>
+        <p class="modes-header-subtitle sr-only" data-i18n="tools.transmission_intro">Les maîtres sont rangés de Moïse (en haut) vers le bas. Touchez une carte pour voir la chaîne qui la relie à Moïse, ses maîtres et ses élèves ; « A » donne les noms en français, « א » en hébreu.</p>
+        <div class="gen-bar tr-bar">
+            <div class="tr-row">
+                <input type="search" id="tr-search" class="tool-input" autocomplete="off" placeholder="Chercher un maître" aria-label="Chercher un maître" data-i18n-attr="placeholder:tools.transmission_search;aria-label:tools.transmission_search">
+                <button type="button" class="btn tr-mini-btn" onclick="trZoom(-1)" aria-label="Rétrécir" data-i18n-attr="aria-label:tools.genealogy_zoom_out">−</button>
+                <button type="button" class="btn tr-mini-btn" onclick="trZoom(1)" aria-label="Agrandir" data-i18n-attr="aria-label:tools.genealogy_zoom_in">+</button>
+                <button type="button" class="btn tr-mini-btn" id="tr-play-btn" onclick="openTransmissionGame('screen-tool-transmission')" aria-label="S'entraîner : Maîtres et élèves" title="S'entraîner : Maîtres et élèves" data-i18n-attr="aria-label:trgame.train;title:trgame.train">🎮</button>
+            </div>
+            <ul class="gen-results" id="tr-results"></ul>
+            <div class="gen-lang tr-scope" role="group" aria-label="Maîtres affichés" data-i18n-attr="aria-label:tools.transmission_scope_aria">
+                <button type="button" class="gen-lang-btn" id="tr-scope-avot" aria-pressed="false" onclick="trSetScope('avot')" data-i18n-ignore="rempli par js/app/transmission.js (avec le compte {n})">Pirké Avot</button>
+                <button type="button" class="gen-lang-btn" id="tr-scope-tannaim" aria-pressed="false" onclick="trSetScope('tannaim')" data-i18n-ignore="rempli par js/app/transmission.js (avec le compte {n})">Tannaïm</button>
+                <button type="button" class="gen-lang-btn" id="tr-scope-amoraim" aria-pressed="false" onclick="trSetScope('amoraim')" data-i18n-ignore="rempli par js/app/transmission.js (avec le compte {n})">Amoraïm</button>
+                <button type="button" class="gen-lang-btn" id="tr-scope-moyenage" aria-pressed="false" onclick="trSetScope('moyenage')" data-i18n-ignore="rempli par js/app/transmission.js (avec le compte {n})">Moyen Âge</button>
+                <button type="button" class="gen-lang-btn" id="tr-scope-all" aria-pressed="true" onclick="trSetScope('all')" data-i18n-ignore="rempli par js/app/transmission.js (avec le compte {n})">Jusqu'à nos jours</button>
+            </div>
+            <p class="gen-legend tr-legend" id="tr-legend"><span class="gen-key tr-key is-sinai" data-i18n="tools.transmission_grp_sinai">Du Sinaï</span> <span class="gen-key tr-key is-zougot" data-i18n="tools.transmission_grp_zougot">Zougot</span> <span class="gen-key tr-key is-tannaim" data-i18n="tools.transmission_grp_tannaim">Tannaïm</span> <span class="gen-key tr-key is-amoraim_israel" data-i18n="tools.transmission_grp_amoraim_israel">Amoraïm d'Israël</span> <span class="gen-key tr-key is-amoraim_babylonie" data-i18n="tools.transmission_grp_amoraim_babylonie">Amoraïm de Babylonie</span> <span class="gen-key tr-key is-gueonim" data-i18n="tools.transmission_grp_gueonim">Guéonim</span> <span class="gen-key tr-key is-richonim" data-i18n="tools.transmission_grp_richonim">Richonim</span> <span class="gen-key tr-key is-aharonim" data-i18n="tools.transmission_grp_aharonim">'Aharonim</span></p>
+        </div>
+        <section class="tr-help hidden" id="tr-help" role="region" aria-label="Comment lire la carte" data-i18n-attr="aria-label:tools.transmission_help_aria">
+            <button type="button" class="tr-help-close" onclick="trToggleHelp(false)" aria-label="Fermer" data-i18n-attr="aria-label:tools.transmission_help_close">×</button>
+            <h3 data-i18n="tools.transmission_help_title">Comment lire la carte</h3>
+            <p class="tool-small" data-i18n="tools.transmission_help_position">Plus une carte est basse, plus elle est loin de Moïse dans la transmission. La hauteur montre l'influence du maître sur l'élève, pas l'âge ni le nombre d'années entre eux.</p>
+            <h4 data-i18n="tools.transmission_help_marks_title">Les petits signes sur les cartes</h4>
+            <ul class="tr-help-list">
+                <li><span class="tr-help-sample"><span class="tr-role is-nassi" aria-hidden="true">♛</span></span><span data-i18n="tools.transmission_help_nassi">La couronne ♛ en haut à droite : le Nassi, chef de la génération et président du Sanhédrin. Dans chaque paire de Zougot, c'est le premier nommé (Michna Haguiga 2:2). Dans la famille de Hillel, la fonction passe de père en fils.</span></li>
+                <li><span class="tr-help-sample"><span class="tr-role is-avbeitdin" aria-hidden="true">⚖︎</span></span><span data-i18n="tools.transmission_help_avbeitdin">La balance ⚖︎ : l'Av Beth Din, juge suprême du Sanhédrin, le second de chaque paire (Michna Haguiga 2:2).</span></li>
+                <li><span class="tr-help-sample"><span class="tr-help-card is-sinai is-group" aria-hidden="true"></span></span><span data-i18n="tools.transmission_help_group">Un cadre double : un ensemble de maîtres (les Anciens, les Prophètes, la Grande Assemblée), pas une seule personne.</span></li>
+            </ul>
+            <h4 data-i18n="tools.transmission_help_lines_title">Les lignes</h4>
+            <ul class="tr-help-list">
+                <li><svg class="tr-help-line" width="56" height="14" viewBox="0 0 56 14" aria-hidden="true"><path class="gen-line tr-line " d="M2 7 H54"/></svg><span data-i18n="tools.transmission_help_line_maitre">Trait continu : l'élève a reçu la Torah de ce maître. L'élève est toujours plus bas que son maître.</span></li>
+                <li><svg class="tr-help-line" width="56" height="14" viewBox="0 0 56 14" aria-hidden="true"><path class="gen-line tr-line is-pere" d="M2 7 H54"/></svg><span data-i18n="tools.transmission_help_line_pere">Trait continu épais : le maître est aussi le père de l'élève (ou son beau-père).</span></li>
+                <li><svg class="tr-help-line" width="56" height="14" viewBox="0 0 56 14" aria-hidden="true"><path class="gen-line tr-line is-second" d="M2 7 H54"/></svg><span data-i18n="tools.transmission_help_line_second">Petits points serrés : un second maître, en plus de son maître principal.</span></li>
+                <li><svg class="tr-help-line" width="56" height="14" viewBox="0 0 56 14" aria-hidden="true"><path class="gen-line tr-line is-famille" d="M2 7 H54"/></svg><span data-i18n="tools.transmission_help_line_famille">Points espacés : un lien de famille. L'élève est un descendant et l'héritier de la fonction.</span></li>
+                <li><svg class="tr-help-line" width="56" height="14" viewBox="0 0 56 14" aria-hidden="true"><path class="gen-line tr-line is-far" d="M2 7 H54"/></svg><span data-i18n="tools.transmission_help_line_doubt">Trait discontinu (tirets), avec un « ? » dans la fiche : un lien discuté, que seule la tradition tardive rapporte.</span></li>
+                <li><svg class="tr-help-line" width="56" height="14" viewBox="0 0 56 14" aria-hidden="true"><path class="gen-line tr-line is-chain" d="M2 7 H54"/></svg><span data-i18n="tools.transmission_help_line_chain">Trait orange épais : la chaîne qui relie la carte touchée à Moïse.</span></li>
+            </ul>
+            <p class="tool-small" data-i18n="tools.transmission_help_select">Touchez une carte : sa chaîne jusqu'à Moïse s'allume en orange, ses élèves directs en vert, et le reste s'estompe. Sa fiche donne la source de chaque lien.</p>
+            <h4 data-i18n="tools.transmission_help_groups_title">Les groupes de maîtres</h4>
+            <ul class="tr-help-list">
+                <li><span class="tr-help-sample"><span class="tr-help-card is-sinai" aria-hidden="true"></span></span><span data-i18n="tools.transmission_help_grp_sinai">Du Sinaï à la Grande Assemblée (jaune) : Moïse, Josué, les Anciens, les Prophètes et les hommes de la Grande Assemblée, qui se transmettent la Torah (Avot 1:1).</span></li>
+                <li><span class="tr-help-sample"><span class="tr-help-card is-zougot" aria-hidden="true"></span></span><span data-i18n="tools.transmission_help_grp_zougot">Zougot, « les paires » (violet) : de Yossi ben Yoezer à Hillel et Chammaï, cinq paires de maîtres, à l'époque du Second Temple. Dans chaque paire, un Nassi et un Av Beth Din.</span></li>
+                <li><span class="tr-help-sample"><span class="tr-help-card is-tannaim" aria-hidden="true"></span></span><span data-i18n="tools.transmission_help_grp_tannaim">Tannaïm (bleu) : les sages de la Michna, dont les enseignements ont été mis par écrit par Rabbi Yehouda HaNasi, vers l'an 200. Le mot vient de « tana », enseigner et répéter.</span></li>
+                <li><span class="tr-help-sample"><span class="tr-help-card is-amoraim_israel" aria-hidden="true"></span></span><span data-i18n="tools.transmission_help_grp_amoraim_israel">Amoraïm d'Israël (vert) : les maîtres de la Guémara qui enseignent en Terre d'Israël, après Rabbi Yehouda HaNasi (Rabbi Yohanan, Rech Lakich…). « Amora » vient de « dire » : ils expliquent la Michna.</span></li>
+                <li><span class="tr-help-sample"><span class="tr-help-card is-amoraim_babylonie" aria-hidden="true"></span></span><span data-i18n="tools.transmission_help_grp_amoraim_babylonie">Amoraïm de Babylonie (orange) : les maîtres de la Guémara qui enseignent en Babylonie, de Rav et Chmouel à Rav Achi et Ravina. Seuls les amoraïm principaux sont sur la carte.</span></li>
+                <li><span class="tr-help-sample"><span class="tr-help-card is-gueonim" aria-hidden="true"></span></span><span data-i18n="tools.transmission_help_grp_gueonim">Savoraïm et Guéonim (rose) : de la fin de la Guémara (vers 500) à 1038, les chefs des académies de Babylonie, Soura et Poumbedita. Ils répondent aux questions de toutes les communautés.</span></li>
+                <li><span class="tr-help-sample"><span class="tr-help-card is-richonim" aria-hidden="true"></span></span><span data-i18n="tools.transmission_help_grp_richonim">Richonim, « les premiers » (ocre) : de 1038 à 1500 environ, Rachi, les Tossafistes, le Rif, le Rambam, le Ramban… On les cite sur chaque page du Talmud.</span></li>
+                <li><span class="tr-help-sample"><span class="tr-help-card is-aharonim" aria-hidden="true"></span></span><span data-i18n="tools.transmission_help_grp_aharonim">'Aharonim, « les derniers » (indigo) : depuis 1500 environ, le Choulhan Aroukh, le Rema, le Ari, le Gaon de Vilna… jusqu'à nos jours (la Hassidout a sa carte à part).</span></li>
+            </ul>
+        </section>
+        <div class="gen-view" id="tr-view" tabindex="0" role="region" aria-label="Chaîne de transmission" data-i18n-attr="aria-label:tools.transmission_view_aria">
+            <div class="gen-sizer" id="tr-sizer"><div class="gen-stage" id="tr-stage"></div></div>
+        </div>
+        <div class="tr-info hidden" id="tr-info" aria-live="polite"></div>
+    </div>
+
+<div id="screen-tool-hassidout" class="list-screen gen-screen tr-screen hidden">
+        <button class="back-btn" onclick="toolBack('hassidout')" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <div class="gen-tools">
+            <button type="button" class="gen-dir-btn tr-eye-btn" id="hd-eye-btn" aria-pressed="true" aria-label="Masquer les noms des groupes" title="Masquer les noms des groupes" onclick="trToggleLegend()"></button>
+            <button type="button" class="gen-dir-btn tr-help-btn" id="hd-help-btn" aria-expanded="false" aria-controls="hd-help" aria-label="Comment lire la carte" data-i18n-attr="aria-label:tools.transmission_help_aria" onclick="trToggleHelp()">?</button>
+            <div class="gen-lang" role="group" aria-label="Langue des noms" data-i18n-attr="aria-label:tools.genealogy_lang_aria">
+                <button type="button" class="gen-lang-btn" id="hd-lang-fr" aria-pressed="true" lang="fr" onclick="trSetLang('fr')">A</button>
+                <button type="button" class="gen-lang-btn" id="hd-lang-he" aria-pressed="false" lang="he" onclick="trSetLang('he')">א</button>
+            </div>
+        </div>
+        <div class="gen-bar tr-bar">
+            <div class="tr-row">
+                <input type="search" id="hd-search" class="tool-input" autocomplete="off" placeholder="Chercher un maître" aria-label="Chercher un maître" data-i18n-attr="placeholder:tools.transmission_search;aria-label:tools.transmission_search">
+                <button type="button" class="btn tr-mini-btn" onclick="trZoom(-1)" aria-label="Rétrécir" data-i18n-attr="aria-label:tools.genealogy_zoom_out">−</button>
+                <button type="button" class="btn tr-mini-btn" onclick="trZoom(1)" aria-label="Agrandir" data-i18n-attr="aria-label:tools.genealogy_zoom_in">+</button>
+            </div>
+            <ul class="gen-results" id="hd-results"></ul>
+            <p class="gen-legend tr-legend" id="hd-legend"></p>
+        </div>
+        <section class="tr-help hidden" id="hd-help" role="region" aria-label="Comment lire la carte" data-i18n-attr="aria-label:tools.transmission_help_aria">
+            <button type="button" class="tr-help-close" onclick="trToggleHelp(false)" aria-label="Fermer" data-i18n-attr="aria-label:tools.transmission_help_close">×</button>
+            <h3 data-i18n="tools.transmission_help_title">Comment lire la carte</h3>
+            <p class="tool-small" data-i18n="tools.hassidout_help_intro">Chaque carte est une personne de la Hassidout. Les plus hautes sont les plus anciennes de la lignée (le Baal Chem Tov, puis ses premiers disciples) ; plus une carte est basse, plus elle vient tard dans la transmission. La hauteur montre la filiation, pas l'âge ni le nombre d'années entre les personnes.</p>
+            <h4 data-i18n="tools.transmission_help_lines_title">Les lignes</h4>
+            <ul class="tr-help-list">
+                <li><svg class="tr-help-line" width="56" height="14" viewBox="0 0 56 14" aria-hidden="true"><path class="gen-line tr-line is-maitre" d="M2 7 H54"/></svg><span data-i18n="tools.hassidout_help_line_maitre">Trait continu : l'élève a reçu la transmission de ce maître (disciple, successeur direct).</span></li>
+                <li><svg class="tr-help-line" width="56" height="14" viewBox="0 0 56 14" aria-hidden="true"><path class="gen-line tr-line is-succession" d="M2 7 H54"/></svg><span data-i18n="tools.hassidout_help_line_succession">Tirets et points : succession à la tête d'un courant (le rebbe qui suit un autre), à distinguer de la transmission d'un maître à son disciple.</span></li>
+                <li><svg class="tr-help-line" width="56" height="14" viewBox="0 0 56 14" aria-hidden="true"><path class="gen-line tr-line is-maitre is-far" d="M2 7 H54"/></svg><span data-i18n="tools.hassidout_help_line_doubt">Trait discontinu, avec un « ? » dans la fiche : un lien à vérifier, que les sources consultées ne confirment pas encore.</span></li>
+                <li><svg class="tr-help-line" width="56" height="14" viewBox="0 0 56 14" aria-hidden="true"><path class="gen-line tr-line is-chain" d="M2 7 H54"/></svg><span data-i18n="tools.hassidout_help_line_chain">Trait orange épais : la chaîne qui relie la carte touchée à son point de départ, le Baal Chem Tov.</span></li>
+            </ul>
+            <h4 data-i18n="tools.hassidout_help_colors_title">Les couleurs</h4>
+            <p class="tool-small" data-i18n="tools.hassidout_help_colors">Une couleur par courant (Habad, Breslev, Ger, Karlin…), à lire dans la légende en haut de l'écran. Les personnes d'un même courant ont la même couleur, même quand elles ne sont pas de la même génération.</p>
+            <h4 data-i18n="tools.hassidout_help_fiche_title">La fiche</h4>
+            <p class="tool-small" data-i18n="tools.hassidout_help_fiche">Elle indique le courant, le conjoint, le statut des sources : « sûr » lorsque les dates, les liens et l'épouse sont confirmés, sinon la liste de ce qui reste à vérifier (une date, un lien avec un maître, une épouse). Et la source de chaque lien.</p>
+            <p class="tool-small" data-i18n="tools.hassidout_help_select">Touchez une carte : sa chaîne jusqu'au Baal Chem Tov s'allume en orange, ses élèves directs en vert, et le reste s'estompe.</p>
+        </section>
+        <div class="gen-view" id="hd-view" tabindex="0" role="region" aria-label="Hassidout" data-i18n-attr="aria-label:tools.hassidout_title">
+            <div class="gen-sizer" id="hd-sizer"><div class="gen-stage" id="hd-stage"></div></div>
+        </div>
+        <div class="tr-info hidden" id="hd-info" aria-live="polite"></div>
+    </div>
+
+<div id="screen-tool-library" class="list-screen hidden">
+        <button class="back-btn" onclick="toolBack('library')" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title" data-i18n="tools.library_title">Bibliothèque juive</h2>
+        <p class="modes-header-subtitle" data-i18n="tools.library_intro">Les grandes œuvres de la tradition juive après la Bible, de la Michna à nos jours : l'auteur, la date, le lieu, ce que c'est. Touche une œuvre pour sa fiche. Dates approximatives (« vers ») et attributions traditionnelles sont signalées.</p>
+        <div class="tool-panel">
+            <input type="search" id="tool-lib-search" class="tool-input" autocomplete="off" placeholder="Chercher une œuvre ou un auteur" aria-label="Chercher une œuvre ou un auteur" data-i18n-attr="placeholder:tools.library_search;aria-label:tools.library_search">
+            <div class="tool-history-chips" id="tool-lib-modes" role="group" aria-label="Classer par" data-i18n-attr="aria-label:tools.library_modes_aria"></div>
+            <div class="tool-history-chips is-scroll" id="tool-lib-filters" role="group" aria-label="Filtrer" data-i18n-attr="aria-label:tools.library_filters_aria"></div>
+            <div class="tool-history-chips hidden" id="tool-lib-author"></div>
+            <p class="tool-small" id="tool-lib-count" aria-live="polite"></p>
+            <div id="tool-lib-list" class="lib-list"></div>
+        </div>
+    </div>
+
+<div id="screen-tool-foodlaws" class="list-screen hidden">
+        <button class="back-btn" onclick="toolBack('foodlaws')" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title" data-i18n="tools.food_title">Pur et impur : animaux et aliments</h2>
+        <p class="modes-header-subtitle" data-i18n="tools.food_intro">Lévitique 11 et Deutéronome 14 : ce que la Torah permet et interdit de manger, et ce que la tradition en précise. Les noms français sont ceux de la Bible du Rabbinat ; pour beaucoup d'espèces, l'identification est discutée. Outil d'étude, pas une décision de halakha.</p>
+        <div class="tool-panel kor-panel">
+            <div class="tool-history-chips" id="tool-food-tabs" role="group" aria-label="Choisir une partie" data-i18n-attr="aria-label:tools.food_tabs_aria"></div>
+            <div class="food-today-row hidden" id="tool-food-today" role="group" aria-label="Liste contemporaine" data-i18n-attr="aria-label:tools.food_tab_today"></div>
+            <div id="tool-food-body" class="kor-body"></div>
+        </div>
+    </div>
+
+<div id="screen-tool-statuts" class="list-screen hidden">
+        <button class="back-btn" onclick="toolBack('statuts')" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title" data-i18n="tools.statuts_title">Statuts et unions</h2>
+        <p class="modes-header-subtitle" data-i18n="tools.statuts_intro">D'après les Hilkhot Issouré Biah du Rambam (Séfer Kédoucha). Deux parties : le catalogue des statuts, et le triangle père · mère · enfant.</p>
+        <div class="tool-panel kor-panel">
+            <div class="tool-history-chips" id="tool-statuts-tabs" role="group" aria-label="Choisir une partie" data-i18n-attr="aria-label:tools.statuts_tabs_aria"></div>
+            <div id="tool-statuts-body" class="kor-body"></div>
+        </div>
+    </div>
+
+<div id="screen-tool-biblical" class="list-screen hidden">
+        <button class="back-btn" onclick="toolBack('biblical')" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title" data-i18n="tools.biblical_title">Cartes bibliques</h2>
+        <p class="modes-header-subtitle" data-i18n="tools.biblical_intro">Une carte, une vue, et chaque lieu relié à son verset ; touchez un lieu pour lire sa note.</p>
+        <div class="tool-panel">
+            <div class="tool-field">
+                <label for="tool-biblical-select" data-i18n="tools.biblical_select_label">Carte</label>
+                <select id="tool-biblical-select" class="tool-input" onchange="toolBiblicalPick(this.value)"></select>
+            </div>
+            <div class="tool-history-chips" id="tool-biblical-views" role="group" aria-label="Choisir une vue" data-i18n-attr="aria-label:tools.biblical_views_label"></div>
+            <div class="tool-field hidden" id="tool-biblical-variant-block">
+                <span class="tool-small" id="tool-biblical-variant-label"></span>
+                <div class="tool-history-chips" id="tool-biblical-variants" role="group" aria-labelledby="tool-biblical-variant-label"></div>
+            </div>
+            <p class="tool-msg" id="tool-biblical-status" role="status"></p>
+            <div id="tool-biblical-map" class="tool-countries-map bib-map" role="application" aria-label="Carte biblique" data-i18n-attr="aria-label:tools.biblical_map_label"></div>
+            <p class="tool-small tool-countries-credit" data-i18n="tools.biblical_credit">Cartes dessinées à la main d'après un ouvrage de référence en culture biblique : les positions sont des repères approximatifs, et (?) signale un emplacement discuté. Fond : Natural Earth (domaine public).</p>
+            <div class="tool-result tool-countries-fiche" id="tool-biblical-fiche" role="region" aria-live="polite" aria-label="Fiche de la carte" data-i18n-attr="aria-label:tools.biblical_fiche_label"></div>
+        </div>
+    </div>
+
+<div id="screen-tool-measures" class="list-screen hidden">
+        <button class="back-btn" onclick="toolBack('measures')" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title" data-i18n="tools.measures_title">Poids et mesures bibliques</h2>
+        <p class="modes-header-subtitle" data-i18n="tools.measures_intro">Coudées, éphas, chékels : retrouvez leur valeur d'aujourd'hui, et comprenez comment les unités s'enchaînent.</p>
+        <div class="tool-panel">
+            <div class="measures-toolbar">
+                <div class="gen-lang" role="group" aria-label="Noms en transcription ou en hébreu" data-i18n-attr="aria-label:tools.measures_he_toggle_aria">
+                    <button type="button" class="gen-lang-btn" id="measures-lang-fr" aria-pressed="true" lang="fr" onclick="measuresSetLang('fr')">A</button>
+                    <button type="button" class="gen-lang-btn" id="measures-lang-he" aria-pressed="false" lang="he" onclick="measuresSetLang('he')">א</button>
+                </div>
+            </div>
+            <div class="tool-history-chips" id="tool-measures-tabs" role="group" aria-label="Distances, volumes ou monnaies" data-i18n-attr="aria-label:tools.measures_tabs_aria"></div>
+            <div id="tool-measures-body" class="measures-body"></div>
+        </div>
+    </div>
+
+<div id="screen-tool-korbanot" class="list-screen hidden">
+        <button class="back-btn" onclick="toolBack('korbanot')" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title" data-i18n="tools.korbanot_title">Offrandes et sacrifices</h2>
+        <p class="modes-header-subtitle" data-i18n="tools.korbanot_intro">Les korbanot (au singulier : korban) sont les offrandes faites au Temple ; le mot vient de « s'approcher » (קרב). Huit parties à filtrer, à calculer et à parcourir ; chaque ligne cite sa source.</p>
+        <div class="tool-panel kor-panel">
+            <div class="tool-history-chips" id="tool-korbanot-tabs" role="group" aria-label="Choisir une partie" data-i18n-attr="aria-label:tools.korbanot_tabs_aria"></div>
+            <div id="tool-korbanot-body" class="kor-body"></div>
+        </div>
+    </div>
+
+<div id="screen-tool-tsaraat" class="list-screen hidden">
+        <button class="back-btn" onclick="toolBack('tsaraat')" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title" data-i18n="tools.tsaraat_title">Tsaraat : la plaie biblique</h2>
+        <p class="modes-header-subtitle" data-i18n="tools.tsaraat_intro">D'après le Lévitique 13 et 14. Un parcours en étapes : le cohen examine, on dit ce qu'il voit, et l'écran mène à la suite jusqu'au verdict.</p>
+        <div class="tool-panel kor-panel">
+            <div class="tool-history-chips" id="tool-tsaraat-tabs" role="group" aria-label="Choisir une partie" data-i18n-attr="aria-label:tools.tsaraat_tabs_aria"></div>
+            <div id="tool-tsaraat-body" class="kor-body"></div>
+        </div>
+    </div>
+
+<div id="screen-tool-commandments" class="list-screen hidden">
+        <button class="back-btn" onclick="toolBack('commandments')" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title" data-i18n="tools.commandments_title">Textes essentiels : synthèses</h2>
+        <p class="modes-header-subtitle" data-i18n="tools.commandments_intro">Selon la tradition juive et rabbinique : chaque liste avec sa source (verset ou traité du Talmud) et ce qu'il faut en savoir.</p>
+        <div class="tool-panel cmd-panel">
+            <div class="cmd-toolbar">
+                <div class="gen-lang" id="tool-commandments-lang" role="group" aria-label="Noms hébreux : en transcription (A) ou en lettres hébraïques (א)" data-i18n-attr="aria-label:tools.commandments_lang_aria">
+                    <button type="button" class="gen-lang-btn" id="tool-commandments-lang-fr" aria-pressed="true" lang="fr" onclick="commandmentsSetLang('fr')">A</button>
+                    <button type="button" class="gen-lang-btn" id="tool-commandments-lang-he" aria-pressed="false" lang="he" onclick="commandmentsSetLang('he')">א</button>
+                </div>
+            </div>
+            <div class="tool-history-chips" id="tool-commandments-tabs" role="group" aria-label="Choisir une liste de commandements" data-i18n-attr="aria-label:tools.commandments_tabs_aria"></div>
+            <div id="tool-commandments-body" class="cmd-body"></div>
+        </div>
+    </div>
+
+<div id="screen-tool-hebrew-calendar" class="list-screen hidden">
+        <button class="back-btn" onclick="toolBack('hebrewCalendar')" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title" data-i18n="tools.hcal_title">Calendrier hébraïque et fêtes</h2>
+        <p class="modes-header-subtitle" data-i18n="tools.hcal_intro">Les mois suivent la Lune, les fêtes restent dans leur saison grâce au Soleil. Convertis une date, vois les fêtes d'une année avec leurs sources, les mois, puis la règle qui relie le tout.</p>
+        <div class="tool-panel">
+            <div class="tool-history-chips" id="tool-hcal-tabs" role="group" aria-label="Convertir, fêtes, mois ou règle du calendrier" data-i18n-attr="aria-label:tools.hcal_tabs_aria"></div>
+            <div id="tool-hcal-body" class="hcal-body"></div>
+        </div>
+        <div class="arcade-menu hcal-game">
+            <button type="button" class="arcade-card" id="tool-hcal-wheel" onclick="openWheel('screen-tool-hebrew-calendar', 'juif')">
+                <span class="arcade-card-icon" aria-hidden="true">🎡</span>
+                <span class="arcade-card-text"><strong data-i18n="tools.hcal_wheel_title">Jouer à la roue des fêtes</strong><small data-i18n="tools.hcal_wheel_desc">Pose les fêtes juives sur le bon mois de la roue, pour vérifier ce que tu viens de lire.</small></span>
+            </button>
+        </div>
+    </div>
+
+<div id="screen-tool-zmanim" class="list-screen hidden">
+        <button class="back-btn" onclick="toolBack('zmanim')" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <div class="gen-lang zm-lang-corner" role="group" aria-label="Noms des horaires en transcription ou en hébreu" data-i18n-attr="aria-label:tools.zm_he_toggle_aria">
+            <button type="button" class="gen-lang-btn" id="zm-lang-fr" aria-pressed="true" lang="fr" onclick="zmSetLang(false)">A</button>
+            <button type="button" class="gen-lang-btn" id="zm-lang-he" aria-pressed="false" lang="he" onclick="zmSetLang(true)">א</button>
+        </div>
+        <h2 class="header-title" data-i18n="tools.zm_title">Zmanim : horaires du jour</h2>
+        <p class="modes-header-subtitle" data-i18n="tools.zm_intro">Choisis un lieu, n'importe où sur Terre : les horaires sont calculés sur ton appareil, même sans réseau. Les opinions (Gra, Magen Avraham, fin de Chabbat…) se règlent en bas de l'écran.</p>
+        <div class="tool-panel zm-panel">
+            <div id="tool-zmanim-body" class="zm-body"></div>
+        </div>
+    </div>
+
+<div id="screen-tool-kotel" class="list-screen hidden">
+        <button class="back-btn" onclick="kotelBack()" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title" data-i18n="tools.kotel_title">Boussole du Kotel</h2>
+        <p class="modes-header-subtitle" data-i18n="tools.kotel_intro">Tourne-toi jusqu'à ce que la flèche pointe vers le haut : tu fais face au Kotel. Le cap est calculé sur l'appareil, d'après ton lieu.</p>
+        <div class="tool-panel kt-panel">
+            <div id="tool-kotel-body" class="kt-body"></div>
+        </div>
+    </div>
+
+<div id="screen-tool-siddur" class="list-screen hidden">
+        <button class="back-btn" onclick="sdBack()" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title" data-i18n="tools.sd_title">Siddour séfarade</h2>
+        <p class="modes-header-subtitle" data-i18n="tools.sd_intro">Le texte est celui d'un siddour imprimé, sans retouche. L'application lit ses consignes (été, hiver, Roch 'Hodesh, dix jours de pénitence…) et met en valeur ce qui s'applique aujourd'hui ; le reste est estompé ou replié, jamais supprimé.</p>
+        <div class="tool-panel sd-panel">
+            <div id="tool-siddur-body" class="sd-body"></div>
+        </div>
+    </div>
+
+<div id="screen-tool-mishkan" class="list-screen hidden">
+        <button class="back-btn" onclick="toolBack('mishkan')" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title" data-i18n="tools.mkn_title">Michkan et Mikdash</h2>
+        <p class="modes-header-subtitle" data-i18n="tools.mkn_intro">Le Tabernacle est construit sur l'ordre donné à Moïse (Exode 25-31 ; 35-40), avec des mesures en coudées. Touche un élément pour lire sa fiche, et choisis l'avis sur la longueur de la coudée pour voir les mètres.</p>
+        <div class="tool-panel">
+            <div class="tool-history-chips" id="tool-mkn-tabs" role="group" aria-label="Plan, ustensiles, structure, vêtements ou Temples" data-i18n-attr="aria-label:tools.mkn_tabs_aria"></div>
+            <div id="tool-mkn-body" class="mkn-body"></div>
+        </div>
+        <div class="arcade-menu hcal-game">
+            <button type="button" class="arcade-card" id="tool-mkn-link-korbanot" onclick="mknOpen('korbanot')">
+                <span class="arcade-card-icon" aria-hidden="true">🐑</span>
+                <span class="arcade-card-text"><strong data-i18n="tools.korbanot_title">Offrandes et sacrifices</strong><small data-i18n="tools.korbanot_desc">Les korbanot : qui offre quoi, quand et combien. Des tableaux à filtrer et à calculer.</small></span>
+            </button>
+            <button type="button" class="arcade-card" id="tool-mkn-link-calendar" onclick="mknOpen('hebrewCalendar')">
+                <span class="arcade-card-icon" aria-hidden="true">🕯️</span>
+                <span class="arcade-card-text"><strong data-i18n="tools.hcal_title">Calendrier hébraïque et fêtes</strong><small data-i18n="tools.hcal_desc">Convertis une date, trouve les fêtes de l'année (Israël ou diaspora), les mois et la règle du calendrier lunisolaire.</small></span>
+            </button>
+            <button type="button" class="arcade-card" id="tool-mkn-link-measures" onclick="mknOpen('measures')">
+                <span class="arcade-card-icon" aria-hidden="true">⚖️</span>
+                <span class="arcade-card-text"><strong data-i18n="tools.measures_title">Poids et mesures bibliques</strong><small data-i18n="tools.measures_desc">Distances, volumes et monnaies de la Bible : un convertisseur vers nos mètres, litres et kilos, et une leçon.</small></span>
+            </button>
+        </div>
+    </div>
+
+<div id="screen-tool-lexicon" class="list-screen hidden">
+        <button class="back-btn" onclick="toolBack('lexicon')" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title" data-i18n="tools.lexicon_title">Dictionnaire français – hébreu</h2>
+        <p class="modes-header-subtitle" data-i18n="tools.lexicon_intro">Tapez un mot français (roi) ou hébreu (מלך, avec ou sans voyelles), éventuellement tel qu’il est écrit dans un verset (ויאמר). Une racine de trois lettres donne toute sa famille de mots.</p>
+        <div class="tool-panel">
+            <div class="tool-field">
+                <label for="tool-lexicon-input" data-i18n="tools.lexicon_label">Un mot français ou hébreu</label>
+                <input type="text" id="tool-lexicon-input" class="tool-input" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="roi, מלך…" data-i18n-attr="placeholder:tools.lexicon_placeholder" oninput="toolLexiconUpdate()">
+            </div>
+            <button type="button" class="btn lex-train-btn" onclick="openLexiconGame('screen-tool-lexicon')"><span data-i18n="tools.lexicon_train">S'entraîner : Mots hébreux essentiels</span><small id="tool-lexicon-train-progress"></small></button>
+            <div class="lex-levels">
+                <div class="lex-levels-head">
+                    <span class="tool-small" id="tool-lexicon-levels-label" data-i18n="tools.lexicon_level_label">Fréquence dans la Torah</span>
+                    <button type="button" class="lex-help-btn" id="tool-lexicon-level-help-btn" aria-expanded="false" aria-controls="tool-lexicon-level-help" aria-label="Expliquer les niveaux de fréquence" data-i18n-attr="aria-label:tools.lexicon_level_help_btn" onclick="toolLexiconLevelHelp()">?</button>
+                </div>
+                <div class="tool-history-chips" id="tool-lexicon-levels" role="group" aria-labelledby="tool-lexicon-levels-label"></div>
+                <p class="tool-small hidden" id="tool-lexicon-level-help" data-i18n="tools.lexicon_level_help">Dans la Torah (de la Genèse au Deutéronome) : très fréquent = 100 occurrences ou plus ; courant = 20 à 99 ; rare = 1 à 19. Les mots absents de la Torah se trouvent dans les Prophètes et les Écrits.</p>
+            </div>
+            <button type="button" class="tool-history-chip lex-index-btn" id="tool-lexicon-index-btn" aria-expanded="false" aria-controls="tool-lexicon-index" onclick="toolLexiconIndexToggle()"><span id="tool-lexicon-index-btn-label" data-i18n="tools.lexicon_index_btn">Index des lettres</span><span class="lex-chevron" aria-hidden="true">▾</span></button>
+            <div class="lex-index hidden" id="tool-lexicon-index" role="group" aria-label="Index des lettres : choisir une initiale" data-i18n-attr="aria-label:tools.lexicon_index_aria" dir="rtl"></div>
+            <div class="tool-history-chips hidden" id="tool-lexicon-view" role="group" aria-label="Feuilleter les mots ou les racines" data-i18n-attr="aria-label:tools.lexicon_view_aria">
+                <button type="button" class="tool-history-chip" id="tool-lexicon-view-words" aria-pressed="true" onclick="toolLexiconView('words')" data-i18n="tools.lexicon_view_words">Mots</button>
+                <button type="button" class="tool-history-chip" id="tool-lexicon-view-roots" aria-pressed="false" onclick="toolLexiconView('roots')" data-i18n="tools.lexicon_view_roots">Racines</button>
+            </div>
+            <p class="tool-msg" id="tool-lexicon-msg" role="status"></p>
+            <div class="lex-list" id="tool-lexicon-list"></div>
+            <button type="button" class="btn hidden" id="tool-lexicon-more" onclick="toolLexiconMore()"></button>
+            <p class="tool-small" data-i18n="tools.lexicon_caveat">Mots, fréquences et références : Open Scriptures Hebrew Bible (licence CC BY 4.0) et lexique de Strong. La transcription est simplifiée, et les racines suivent les lexiques classiques, dont le rattachement est parfois discuté.</p>
+        </div>
+    </div>
+
+<div id="screen-tool-gemara" class="list-screen hidden">
+        <button class="back-btn" onclick="toolBack('gemara')" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title" data-i18n="tools.gemara_title">Dictionnaire français – araméen (Guémara)</h2>
+        <p class="modes-header-subtitle" data-i18n="tools.gemara_intro">Tapez un mot français (pourquoi) ou araméen (מאי, avec ou sans voyelles), éventuellement tel qu’il est écrit dans le texte (אמרינן, דהכא). Une racine de trois lettres donne toute sa famille. L’onglet « Sages » présente les maîtres cités, leur époque, leurs maîtres et leurs disciples. L’onglet « Abréviations » explique les sigles (⁨מ״ט⁩, ⁨ת״ר⁩, ⁨ק״ו⁩…).</p>
+        <div class="tool-panel">
+            <button type="button" class="btn lex-train-btn" onclick="openGemaraGame('screen-tool-gemara')"><span data-i18n="gemgame.train">S'entraîner : Mots de la Guémara</span><small id="tool-gemara-train-progress"></small></button>
+            <div class="tool-history-chips" id="tool-gemara-tabs" role="group" aria-label="Mots ou abréviations" data-i18n-attr="aria-label:tools.gemara_tabs_aria">
+                <button type="button" class="tool-history-chip" id="tool-gemara-tab-words" aria-pressed="true" onclick="toolGemaraTab('words')" data-i18n="tools.gemara_tab_words">Mots</button>
+                <button type="button" class="tool-history-chip" id="tool-gemara-tab-abbr" aria-pressed="false" onclick="toolGemaraTab('abbr')" data-i18n="tools.gemara_tab_abbr">Abréviations</button>
+                <button type="button" class="tool-history-chip" id="tool-gemara-tab-sages" aria-pressed="false" onclick="toolGemaraTab('sages')" data-i18n="tools.gemara_tab_sages">Sages</button>
+            </div>
+            <div class="tool-field">
+                <label for="tool-gemara-input" id="tool-gemara-label"></label>
+                <input type="text" id="tool-gemara-input" class="tool-input" autocomplete="off" autocapitalize="off" spellcheck="false" oninput="toolGemaraUpdate()">
+            </div>
+            <div class="lex-levels" id="tool-gemara-tier-block">
+                <div class="lex-levels-head">
+                    <span class="tool-small" id="tool-gemara-tiers-label" data-i18n="tools.gemara_tier_label">Palier</span>
+                    <button type="button" class="lex-help-btn" id="tool-gemara-tier-help-btn" aria-expanded="false" aria-controls="tool-gemara-tier-help" aria-label="Expliquer les paliers" data-i18n-attr="aria-label:tools.gemara_tier_help_btn" onclick="toolGemaraTierHelp()">?</button>
+                </div>
+                <div class="tool-history-chips" id="tool-gemara-tiers" role="group" aria-labelledby="tool-gemara-tiers-label"></div>
+                <p class="tool-small hidden" id="tool-gemara-tier-help" data-i18n="tools.gemara_tier_help">Les paliers sont un classement éditorial, pas un décompte : essentiel = les mots sans lesquels on ne suit pas une discussion de la Guémara ; courant = le vocabulaire qu’on rencontre dans la plupart des pages ; spécialisé = les termes propres à un traité (Bava Kama pour les dommages, Berakhot pour la prière, Chabbat pour les travaux interdits, Pessahim pour le levain et le Séder, Bava Metsia pour les prêts, les salaires et les objets trouvés, Sanhédrin pour les tribunaux et les peines, Bava Batra pour la propriété et l’héritage, Guittin pour le divorce…).</p>
+            </div>
+            <div class="lex-levels">
+                <label class="tool-small" id="tool-gemara-cats-label" for="tool-gemara-cats"></label>
+                <select id="tool-gemara-cats" class="tool-input gemara-cats" onchange="toolGemaraCatPick(this.value)"></select>
+            </div>
+            <p class="tool-msg" id="tool-gemara-msg" role="status"></p>
+            <div class="lex-list" id="tool-gemara-list"></div>
+            <p class="tool-small" data-i18n="tools.gemara_caveat">Dictionnaire en cours de construction. Les traductions, les vocalisations (qui varient selon les éditions) et les transcriptions simplifiées restent à relire par une personne compétente en araméen talmudique.</p>
+        </div>
+    </div>
+
+<div id="screen-tool-gematria" class="list-screen hidden">
+        <button class="back-btn" onclick="toolBack('gematria')" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title" data-i18n="tools.gematria_title">Guématria</h2>
+        <p class="modes-header-subtitle" data-i18n="tools.gematria_intro">Tapez un mot en hébreu : chaque lettre s'affiche avec sa valeur, puis l'addition. Les voyelles sont ignorées.</p>
+        <div class="tool-panel">
+            <div class="tool-field">
+                <label for="tool-gematria-input" data-i18n="tools.gematria_label">Un mot ou une phrase en hébreu</label>
+                <input type="text" id="tool-gematria-input" class="tool-input gem-input" lang="he" dir="rtl" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="שלום" oninput="toolGematriaUpdate()">
+            </div>
+            <div class="tool-history-chips" id="tool-gematria-modes" role="group" aria-label="Mode de calcul" data-i18n-attr="aria-label:tools.gematria_modes_aria"></div>
+            <p class="tool-small" id="tool-gematria-help"></p>
+            <label class="gem-reduce"><input type="checkbox" id="tool-gematria-gadol" onchange="toolGematriaUpdate()"> <span data-i18n="tools.gematria_gadol">Lettres finales de 500 à 900 (mispar gadol)</span></label>
+            <p class="tool-small" id="tool-gematria-gadol-note"></p>
+            <label class="gem-reduce"><input type="checkbox" id="tool-gematria-reduce" onchange="toolGematriaUpdate()"> <span data-i18n="tools.gematria_reduce">Réduire à un seul chiffre</span></label>
+            <p class="tool-msg" id="tool-gematria-msg" role="status"></p>
+            <div class="tool-result hidden" id="tool-gematria-result">
+                <p class="tool-big" id="tool-gematria-big"></p>
+                <div class="tool-chips gem-chips" id="tool-gematria-parts" role="list" dir="rtl"></div>
+                <p class="tool-small" id="tool-gematria-sum"></p>
+                <p class="tool-small" id="tool-gematria-reduced"></p>
+            </div>
+        </div>
+    </div>
+
+<div id="screen-torah-reader" class="torah-reader hidden">
+        <header class="torah-reader-bar">
+            <button class="back-btn" onclick="toolBack('torahReader')" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+            <button type="button" class="torah-reader-title" id="torah-reader-title" aria-haspopup="dialog" aria-expanded="false" aria-controls="torah-reader-picker" onclick="torahReaderTogglePicker()"><span lang="he" id="torah-reader-he">בראשית</span></button>
+            <button type="button" class="torah-reader-help-btn" id="torah-reader-help-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="torah-reader-help" aria-label="Aide sur le Tikkoun Korim" data-i18n-attr="aria-label:tools.torah_reader_help_btn" onclick="torahReaderToggleHelp(true)">?</button>
+        </header>
+        <p class="tool-msg torah-reader-msg" id="torah-reader-msg" role="status"></p>
+        <button type="button" class="btn hidden torah-reader-retry" id="torah-reader-retry" onclick="toolTorahReaderInit()" data-i18n="tools.torah_retry">Réessayer</button>
+        <div class="tk-book" id="torah-reader-body" aria-label="Texte de la Torah"></div>
+        <div class="tk-toggle">
+            <button type="button" class="tk-annotations-toggle" id="torah-reader-vowels" aria-pressed="true" onclick="torahReaderToggleVowels()"><span class="tk-toggle-off" lang="he" aria-hidden="true">א</span><span class="tk-toggle-on" lang="he" aria-hidden="true">אֶ֨</span></button>
+        </div>
+        <div class="torah-picker hidden" id="torah-reader-help" role="dialog" aria-modal="true" aria-labelledby="torah-help-title">
+            <div class="torah-picker-head">
+                <button type="button" class="torah-picker-close torah-picker-back" onclick="torahReaderToggleHelp(false)" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+                <h2 id="torah-help-title" data-i18n="tools.torah_reader_help_title">Le Tikkoun Korim</h2>
+                <button type="button" class="torah-picker-close" onclick="torahReaderToggleHelp(false)" aria-label="Fermer" data-i18n-attr="aria-label:tools.torah_reader_close">×</button>
+            </div>
+            <div class="torah-help-body">
+                <h3 data-i18n="tools.torah_help_what_title">Ce que c'est</h3>
+                <p data-i18n="tools.torah_help_what">Le Tikkoun Korim est le livre que le lecteur de la Torah consulte pour préparer la lecture. Il reproduit le texte du rouleau (Sefer Torah) tel qu'il est écrit : page par page, avec les voyelles et les accents, et les marques qui permettent de lire sans erreur.</p>
+                <ul>
+                    <li data-i18n="tools.torah_help_what_1">Chaque ligne est une ligne du rouleau, avec les mots à leur place.</li>
+                    <li data-i18n="tools.torah_help_what_2">À droite de la ligne, le chiffre indique le verset qui commence sur cette ligne (א:א est le chapitre 1, verset 1).</li>
+                    <li data-i18n="tools.torah_help_what_3">En bleu, les aliyot : le nom de la paracha pour la première, ראשון à שביעי pour les suivantes, et מפטיר pour la dernière. « סוף » indique la fin d'une aliyah.</li>
+                    <li data-i18n="tools.torah_help_what_4">Le qere (surligné) est la lecture ; le ketiv est la forme écrite dans le rouleau. Ils ne diffèrent que pour quelques mots.</li>
+                </ul>
+                <h3 data-i18n="tools.torah_help_how_title">Comment l'utiliser ici</h3>
+                <ol>
+                    <li data-i18n="tools.torah_help_how_1">Le nom de la paracha, en haut, ouvre le menu : choisissez une paracha, ou cherchez-la par son nom.</li>
+                    <li data-i18n="tools.torah_help_how_2">Faites défiler pour lire. Les pages précédentes et suivantes se chargent en silence, dans les deux sens.</li>
+                    <li data-i18n="tools.torah_help_how_3">Glissez vers la gauche pour faire apparaître les aliyot en bleu. La page revient à sa place quand vous relâchez.</li>
+                    <li data-i18n="tools.torah_help_how_4">Le bouton en bas à droite affiche ou masque les voyelles. Sans voyelles, seules les consonnes du ketiv restent, sans accents ni versets.</li>
+                    <li data-i18n="tools.torah_help_how_5">Sur ordinateur, la touche Maj. fait la même chose.</li>
+                    <li data-i18n="tools.torah_help_how_6">Le lecteur retrouve la dernière ligne lue, sur cet appareil. Le bouton de la paracha de la semaine, dans le menu, ouvre la paracha en cours.</li>
+                </ol>
+                <h3 id="torah-help-fonts-title" data-i18n="tools.torah_help_fonts_title">Police du texte</h3>
+                <p data-i18n="tools.torah_help_fonts_what">Choisissez la police du texte. Shlomo semiStam est celle de tikkun.io, la plus proche de l'écriture d'un Sefer Torah. Les autres polices sont des choix de substitution : les accents qu'elles ne contiennent pas sont pris dans Noto Serif Hebrew. Votre choix est mémorisé sur cet appareil.</p>
+                <div class="torah-font-list" id="torah-reader-fonts" role="radiogroup" aria-labelledby="torah-help-fonts-title"></div>
+                <p class="tool-small" data-i18n="tools.torah_help_caution">Cette application ne remplace pas un rouleau : pour une lecture publique, vérifiez toujours sur un Sefer Torah. Le texte suit la source tikkun.io.</p>
+            </div>
+        </div>
+        <div class="torah-picker hidden" id="torah-reader-picker" role="dialog" aria-modal="true" aria-labelledby="torah-picker-title">
+            <div class="torah-picker-head">
+                <button type="button" class="torah-picker-close torah-picker-back" onclick="torahReaderTogglePicker(false)" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+                <h2 id="torah-picker-title" data-i18n="tools.torah_reader_pick">Choisir une paracha</h2>
+                <button type="button" class="torah-picker-close" onclick="torahReaderTogglePicker(false)" aria-label="Fermer" data-i18n-attr="aria-label:tools.torah_reader_close">×</button>
+            </div>
+            <div class="torah-picker-body">
+                <div class="torah-picker-searchrow">
+                    <input type="search" id="torah-reader-search" class="tool-input torah-picker-search" placeholder="Rechercher une paracha" aria-label="Rechercher une paracha" data-i18n-attr="placeholder:tools.torah_reader_search;aria-label:tools.torah_reader_search" autocomplete="off" autocapitalize="off" spellcheck="false" oninput="torahReaderSearch(this.value)">
+                    <button type="button" class="torah-week-btn hidden" id="torah-reader-week"></button>
+                </div>
+                <div id="torah-reader-list"></div>
+            </div>
+        </div>
+    </div>
+
+<div id="screen-tool-tanakh" class="list-screen hidden">
+        <button class="back-btn" onclick="toolBack('tanakh')" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title" data-i18n="tools.tanakh_title">Tanakh : les livres</h2>
+        <p class="modes-header-subtitle" data-i18n="tools.tanakh_intro">Les livres de la Bible hébraïque. Un verset par paragraphe, numéroté.</p>
+        <div class="tool-panel">
+            <div id="tool-tanakh-books" aria-label="Livres" data-i18n-attr="aria-label:tools.torah_book_label"></div>
+            <div class="tool-history-chips" id="tool-tanakh-mode" role="group" aria-label="Choix par chapitre ou par paracha" data-i18n-attr="aria-label:tools.tanakh_mode_label" hidden></div>
+            <div class="torah-nav">
+                <button type="button" class="tool-history-chip" id="tool-tanakh-prev" onclick="tanakhGoChapter(-1)" aria-label="Chapitre précédent" data-i18n-attr="aria-label:tools.torah_prev">‹</button>
+                <select id="tool-tanakh-chapter" class="tool-input torah-chapter" aria-label="Chapitre" data-i18n-attr="aria-label:tools.torah_chapter_label" onchange="tanakhSelectChapter(this.value)"></select>
+                <button type="button" class="tool-history-chip" id="tool-tanakh-next" onclick="tanakhGoChapter(1)" aria-label="Chapitre suivant" data-i18n-attr="aria-label:tools.torah_next">›</button>
+            </div>
+            <div class="tool-history-chips" id="tool-tanakh-aliyah" role="group" aria-label="Aliyot" data-i18n-attr="aria-label:tools.tanakh_aliyah_label" hidden></div>
+            <div class="tanakh-cycle" id="tool-tanakh-cycle" hidden></div>
+            <div class="tanakh-cycle" id="tool-tanakh-summary" hidden></div>
+            <div class="tool-history-chips" id="tool-tanakh-show" role="group" aria-label="Langues affichées" data-i18n-attr="aria-label:tools.tanakh_show_label"></div>
+            <hr class="tanakh-chips-sep" aria-hidden="true">
+            <div class="tool-history-chips" id="tool-tanakh-vowels" role="group" aria-label="Affichage du texte" data-i18n-attr="aria-label:tools.torah_vowels_label"></div>
+            <details class="tanakh-comm-panel" id="tool-tanakh-comm" hidden>
+                <summary id="tool-tanakh-comm-summary" data-i18n="tools.tanakh_comm_title">Commentateurs</summary>
+                <div class="tanakh-comm-list" id="tool-tanakh-comm-list" role="group" aria-label="Commentateurs" data-i18n-attr="aria-label:tools.tanakh_comm_title"></div>
+            </details>
+            <label class="dict-toggle" id="tool-tanakh-chne-label" hidden data-i18n-attr="title:tools.tanakh_chne_help" title="Chaque verset deux fois, puis sa traduction araméenne (Targoum Onkelos)"><input type="checkbox" id="tool-tanakh-chne" onchange="tanakhToggleChne(this.checked)"> <span data-i18n="tools.tanakh_chne">Chné Mikra</span></label>
+            <p class="tool-msg" id="tool-tanakh-msg" role="status"></p>
+        </div>
+        <div class="tanakh-text" id="tool-tanakh-text"></div>
+        <div class="torah-nav tanakh-nav-bottom" id="tool-tanakh-nav-bottom">
+            <button type="button" class="tool-history-chip" id="tool-tanakh-prev2" onclick="tanakhGoBottom(-1)" aria-label="Chapitre précédent" data-i18n-attr="aria-label:tools.torah_prev">‹</button>
+            <button type="button" class="tool-history-chip tanakh-nav-label" id="tool-tanakh-nav-label" onclick="tanakhScrollTop()" aria-label="Remonter au début du texte" data-i18n-attr="aria-label:tools.tanakh_top"></button>
+            <button type="button" class="tool-history-chip" id="tool-tanakh-next2" onclick="tanakhGoBottom(1)" aria-label="Chapitre suivant" data-i18n-attr="aria-label:tools.torah_next">›</button>
+        </div>
+        <p class="tool-small" id="tool-tanakh-source"></p>
+    </div>
+
     <!-- Scripts de l'app, dans l'ordre de leurs dépendances -->
+    <script src="js/torahCore.js"></script>
+    <script src="js/i18n.js"></script>
+    <script src="js/location.js"></script>
+    <script src="js/calendarYearCore.js"></script>
+    <script src="js/hebrewCalendarCore.js"></script>
+    <script src="js/zmanimCore.js"></script>
+    <script src="js/siddurCore.js"></script>
+    <script src="js/zmanimReminderCore.js"></script>
+    <script src="js/compassCore.js"></script>
+    <script src="js/geomagCore.js"></script>
+    <script src="js/genealogyCore.js"></script>
+    <script src="js/genealogyChronology.js"></script>
+    <script src="js/app/genealogy.js"></script>
+    <script src="js/hassidoutData.js"></script>
+    <script src="js/transmissionMedievalData.js"></script>
+    <script src="js/transmissionCore.js"></script>
+    <script src="js/libraryCore.js"></script>
+    <script src="js/app/transmission.js"></script>
+    <script src="js/app/library.js"></script>
+    <script src="js/measuresCore.js"></script>
+    <script src="js/app/biblical-measures.js"></script>
+    <script src="js/app/hebrew-calendar.js"></script>
+    <script src="js/app/zmanim.js"></script>
+    <script src="js/app/siddur.js"></script>
+    <script src="js/app/kotel.js"></script>
+    <script src="js/mishkanCore.js"></script>
+    <script src="js/app/mishkan.js"></script>
+    <script src="js/biblicalMapsCore.js"></script>
+    <script src="js/app/biblical-maps.js"></script>
+    <script src="js/commandments613Data.js"></script>
+    <script src="js/commandmentsCore.js"></script>
+    <script src="js/app/commandments.js"></script>
+    <script src="js/korbanotData.js"></script>
+    <script src="js/korbanotCore.js"></script>
+    <script src="js/app/korbanot.js"></script>
+    <script src="js/korbanotRitualData.js"></script>
+    <script src="js/app/korbanot-ritual.js"></script>
+    <script src="js/foodLawsData.js"></script>
+    <script src="js/foodLawsCore.js"></script>
+    <script src="js/app/foodlaws.js"></script>
+    <script src="js/statutsData.js"></script>
+    <script src="js/statutsCore.js"></script>
+    <script src="js/app/statuts.js"></script>
+    <script src="js/tsaraatData.js"></script>
+    <script src="js/tsaraatCore.js"></script>
+    <script src="js/app/tsaraat.js"></script>
+    <script src="js/gematriaCore.js"></script>
+    <script src="js/app/gematria.js"></script>
+    <script src="js/app/torah-reader.js"></script>
+    <script src="js/haftarotCore.js"></script>
+    <script src="js/app/tanakh.js"></script>
+    <script src="js/lexiconData.js"></script>
+    <script src="js/lexiconForms.js"></script>
+    <script src="js/lexiconCore.js"></script>
+    <script src="js/app/lexicon.js"></script>
+    <script src="js/gemaraData.js"></script>
+    <script src="js/gemaraCore.js"></script>
+    <script src="js/app/gemara.js"></script>
+    <script src="js/app/tools.js"></script>
     <script src="js/app/navigation.js"></script>
     <script src="js/app/home.js"></script>
 </body>

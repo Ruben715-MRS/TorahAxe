@@ -31,6 +31,8 @@ const itemsToCopy = [
     'manifest.webmanifest',
     'css',
     'js',
+    'data',
+    'ui',
     'assets'
 ];
 

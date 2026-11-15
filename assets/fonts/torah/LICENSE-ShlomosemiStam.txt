@@ -1,0 +1,14 @@
+Shlomo semiStam (ShlomosemiStam.woff2) — conversion WOFF2 du fichier fourni par le dépôt tikkun.io (MIT).
+Mentions de licence telles qu'elles figurent dans la police :
+
+[nameID 0] Hebrew layout intelligence copyright (c) 2003 & 2007 Ralph Hancock (http://www.hancock.dircon.co.uk/) and John Hudson (http://www.tiro.com), and licensed under the MIT/X11 License. 
+
+All other font software is copyright (c) 1997-2007, SIL International (http://www.sil.org/), and is licensed under the SIL Open Font License, version 1.1 (http://scripts.sil.org/OFL), with Reserved Font Names "SIL" and "Ezra". 
+
+This Font Software is licensed under the SIL Open Font License, Version 1.0. See the license informaation in the font. The text of the license is also available at: http://scripts.sil.org/OFL .
+
+[nameID 13] You may not use this font for commercial purposes.
+
+[nameID 14] http://www.high-logic.com/fontcreator/fontlicense.html
+
+Licence du site de l'éditeur : http://www.high-logic.com/fontcreator/fontlicense.html
