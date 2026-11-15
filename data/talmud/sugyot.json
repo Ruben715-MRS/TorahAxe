@@ -1,0 +1,400 @@
+{
+ "_note": "Titres de sugya écrits pour l'application, en français, d'après le texte de la Guémara (début de chaque développement, michna ou baraïta citée, avis nommés) : à relire par une personne compétente (note interne, non affichée). Les références sont « amoud:segment », segments numérotés depuis 1, bornes comprises ; un traité n'est couvert que là où sa liste le dit.",
+ "v": 1,
+ "tractates": {
+  "bekhorot": [
+   {
+    "from": "58a:1",
+    "to": "58a:16",
+    "title": "Les dates de la dîme du bétail (29 Adar, 29 Av, 29 Elloul) et le début de son année : Ben Azaï, Rabbi Eléazar, Rabbi Chimon et Rabbi Méïr."
+   },
+   {
+    "from": "58a:17",
+    "to": "58b:3",
+    "title": "Ben Azaï : peut-on réunir pour une même dîme des bêtes nées en Av, en Elloul et en Tichri ?"
+   },
+   {
+    "from": "58b:4",
+    "to": "59a:1",
+    "title": "Comment prélève-t-on la dîme : l'enclos à petite ouverture, le compte une à une, et Abba Eléazar ben Gomla."
+   },
+   {
+    "from": "59a:2",
+    "to": "59b:5",
+    "title": "Le dixième animal est-il sanctifié de lui-même, sans qu'on le nomme « dixième » ? Rava et ses preuves tirées des baraïtot."
+   },
+   {
+    "from": "59b:6",
+    "to": "59b:16",
+    "title": "« Le nombre qui convient exempte » : la source de Rava et ses cas."
+   },
+   {
+    "from": "59b:17",
+    "to": "60a:6",
+    "title": "Quinze ou dix-neuf agneaux : peut-on en mettre dix à part pour les dîmer ? Rav Houna bar Sehora."
+   },
+   {
+    "from": "60a:7",
+    "to": "60a:16",
+    "title": "Compter les bêtes par paires ou à l'envers : le dixième est-il sacré selon son rang ou selon le compte ?"
+   },
+   {
+    "from": "60b:1",
+    "to": "60b:6",
+    "title": "Le neuvième appelé « dixième » : d'où l'on sait que l'erreur de nom sanctifie, et le voisin seulement."
+   },
+   {
+    "from": "60b:7",
+    "to": "60b:10",
+    "title": "Deux animaux sortent ensemble au rang voulu : le mélange de saint et de profane selon le nom prononcé."
+   },
+   {
+    "from": "60b:11",
+    "to": "60b:19",
+    "title": "Le nom « dixième » est-il retiré ? Rav Kahana et Rav Achi, l'ordre de sortie et l'avis de Rabbi."
+   },
+   {
+    "from": "60b:20",
+    "to": "61a:7",
+    "title": "Deux sortis au dixième rang : paître, être offerts ou mourir ? Trois baraïtot, trois avis, et l'échange du dixième."
+   },
+   {
+    "from": "61a:8",
+    "to": "61a:9",
+    "title": "La dîme du bétail à notre époque, sans Temple : Rabbi Chimon bar Abba devant Rabbi Yohanan."
+   },
+   {
+    "from": "61a:10",
+    "to": "61a:13",
+    "title": "L'envoyé à qui l'on dit « va dîmer pour moi » : comment il dîme, et la comparaison avec la teroumah."
+   }
+  ],
+  "arakhin": [
+   {
+    "from": "2a:1",
+    "to": "2a:10",
+    "title": "Qui est inclus dans « tous évaluent, sont évalués, vouent, sont voués » : le mufla samoukh léich, le repoussant, le lépreux, le tumtum et l'androgyne."
+   },
+   {
+    "from": "2a:11",
+    "to": "2b:3",
+    "title": "« Tous imposent les mains, tous échangent » : l'héritier est-il inclus ? Rabbi Yehouda (« son offrande », pas celle de son père) et les sages."
+   },
+   {
+    "from": "2b:4",
+    "to": "3b:3",
+    "title": "La série des « tous » (souccah, loulav, tsitsit, tefilin, présentation au Temple, shofar, Méguila, zimoun, impuretés, plaies) : qui chacun inclut, enfants, demi-esclave, borgne."
+   },
+   {
+    "from": "3b:4",
+    "to": "4a:15",
+    "title": "« Cohanim, lévites et israélites » : pourquoi la Mishna le précise-t-elle pour la souccah, les tsitsit, les tefilin, le shofar, la Méguila, le zimoun et l'évaluation ?"
+   },
+   {
+    "from": "4a:16",
+    "to": "5a:15",
+    "title": "D'où savons-nous que le repoussant et le lépreux sont évalués ? « En ton évaluation », « les personnes », le tumtum, l'évaluation imprécise et « la tête de la vache »."
+   },
+   {
+    "from": "5a:16",
+    "to": "5b:6",
+    "title": "Moins d'un mois : voué mais non évalué ; Rabbi Méïr (il donne sa valeur) et la formule « sur moi »."
+   },
+   {
+    "from": "5b:7",
+    "to": "6a:9",
+    "title": "Le non-juif : évalue-t-il, est-il évalué ? Rabbi Méïr, Rabbi Yehouda, Rava, et ses dons au Temple (teroumah, poutre)."
+   },
+   {
+    "from": "6a:10",
+    "to": "6b:7",
+    "title": "« Ce sicle est pour la tsedaka » : peut-on en changer l'usage ? Vœu de tsedaka et consécration (Rav Nahman, Rav Zeira, Rav Kahana)."
+   },
+   {
+    "from": "6b:8",
+    "to": "7a:10",
+    "title": "Le mourant et celui qu'on mène à l'exécution : pourquoi ne sont-ils ni voués ni évalués ? Dettes, dommages et avis des sages."
+   },
+   {
+    "from": "7a:11",
+    "to": "7b:14",
+    "title": "La femme condamnée à mort ou en travail : on n'attend pas qu'elle accouche, et ce qu'il advient de son corps le Chabbat (perruque, cheveux)."
+   },
+   {
+    "from": "7b:15",
+    "to": "8a:4",
+    "title": "Pourquoi ni moins d'un sicle ni plus de cinquante ? Les versets et celui qui, ayant cinq sicles, dit « mon évaluation sur moi »."
+   },
+   {
+    "from": "8a:5",
+    "to": "8b:8",
+    "title": "La femme qui se trompe sur ses jours d'impureté : « l'ouverture » entre sept et dix-sept jours, et le tableau de ses cas."
+   },
+   {
+    "from": "8b:9",
+    "to": "8b:14",
+    "title": "Les plaies de la peau : pas moins d'une semaine, pas plus de trois (plaies de l'homme et des maisons)."
+   },
+   {
+    "from": "8b:15",
+    "to": "10a:1",
+    "title": "Combien de mois pleins ou creux de suite dans l'année : pas moins de quatre ni plus de huit, les fêtes qui en dépendent et le nazir « comme les jours du soleil »."
+   },
+   {
+    "from": "10a:2",
+    "to": "10b:10",
+    "title": "Les sonneries et les instruments du Temple : de vingt et une à quarante-huit sonneries, deux à six harpes, deux à douze flûtes (Rabbi Yehouda)."
+   },
+   {
+    "from": "10b:11",
+    "to": "11a:5",
+    "title": "Les instruments du Temple : la flûte (avouv) en roseau, une ou deux, et la magrefa."
+   },
+   {
+    "from": "11a:6",
+    "to": "11b:23",
+    "title": "Le chant du Temple : est-il essentiel à l'offrande ? D'où vient-il dans la Torah, et le chantre qui prend la place d'un autre."
+   },
+   {
+    "from": "12a:1",
+    "to": "12a:5",
+    "title": "Les libations offertes seules requièrent-elles le chant des Lévites ? La baraïta de Rabbi Yossi (« on fait tomber le mérite un jour mérité »)."
+   },
+   {
+    "from": "12a:6",
+    "to": "13a:8",
+    "title": "Quand le Temple fut-il détruit ? Le compte des années d'exil, les dix-sept jubilés depuis l'entrée en Terre (sept de conquête, sept de partage) et les gardes sacerdotales."
+   },
+   {
+    "from": "13a:9",
+    "to": "13b:5",
+    "title": "Six agneaux contrôlés dans la chambre des agneaux : pourquoi quatre jours avant l'abattage (« vous veillerez à Me les offrir ») ?"
+   },
+   {
+    "from": "13b:6",
+    "to": "13b:16",
+    "title": "Douze Lévites sur l'estrade : leurs instruments (neuf lyres, deux harpes, cymbales), l'âge des enfants chanteurs, le chant à bouche et les instruments des temps futurs."
+   },
+   {
+    "from": "13b:17",
+    "to": "14a:4",
+    "title": "Le plus indulgent et le plus sévère dans les évaluations : évaluer un objet ou un homme, et Rabbi Méïr à propos du non-juif."
+   },
+   {
+    "from": "14a:5",
+    "to": "14b:18",
+    "title": "Le champ de possession consacré : racheter un champ planté d'arbres ou rocailleux, et le cinquième supplémentaire (Rav Houna, Rav Papa, Rabbi Yehouda, Rabbi Chimon)."
+   },
+   {
+    "from": "14b:19",
+    "to": "14b:21",
+    "title": "Le bœuf prévenu qui tue un esclave : trente sicles, plus indulgent et plus sévère."
+   },
+   {
+    "from": "14b:22",
+    "to": "15a:4",
+    "title": "Le violeur et le séducteur : cinquante sicles, que la fille soit d'un roi ou d'un homme du peuple."
+   },
+   {
+    "from": "15a:5",
+    "to": "15a:9",
+    "title": "Celui qui diffame sa femme (motsi chem ra) : cent sicles, et pourquoi la peine est plus lourde."
+   },
+   {
+    "from": "15a:10",
+    "to": "16a:4",
+    "title": "La médisance (lachon hara) : « ils M'ont éprouvé dix fois », la force de la langue, ses conséquences et le sort du médisant."
+   },
+   {
+    "from": "16a:5",
+    "to": "16b:3",
+    "title": "Les sept péchés pour lesquels viennent les plaies de tsaraat, et le lépreux qui apporte deux oiseaux."
+   },
+   {
+    "from": "16b:4",
+    "to": "16b:16",
+    "title": "La réprimande (tokha'ha) : « tu ne haïras pas ton frère » : jusqu'où reprendre son prochain ? Rabbi Tarfon, Rabbi Yehouda, et Saül et Yonatan."
+   },
+   {
+    "from": "16b:17",
+    "to": "17a:8",
+    "title": "Ne pas changer de lieu ni de métier (l'auberge, le métier des pères), les patriarches devant le tribunal (Rabbi Eliézer le Grand), la génération et son guide, et Yehoyakim."
+   },
+   {
+    "from": "17a:9",
+    "to": "17b:5",
+    "title": "« L'état de ses moyens » : l'évaluation du pauvre selon ce que sa main atteint, et le cas du débiteur."
+   },
+   {
+    "from": "17b:6",
+    "to": "18a:8",
+    "title": "Le pauvre qui s'enrichit ou le riche qui s'appauvrit : donne-t-il l'évaluation du riche ou du pauvre ? Rabbi Yehouda."
+   },
+   {
+    "from": "18a:9",
+    "to": "19a:3",
+    "title": "L'âge de l'évaluation : le jeune qui évalue un vieux, les tranches d'âge (un mois, cinq ans, vingt, soixante) et la règle « année » « année »."
+   },
+   {
+    "from": "19a:4",
+    "to": "19b:12",
+    "title": "« Mon poids sur moi » : argent ou or, « ma hauteur », « ma largeur » et les questions laissées sans réponse (teiku)."
+   },
+   {
+    "from": "19b:13",
+    "to": "20a:6",
+    "title": "« La valeur de mes mains » : comment évaluer l'homme avec ou sans la main (Rava, Abbayé)."
+   },
+   {
+    "from": "20a:7",
+    "to": "20b:1",
+    "title": "« Mon évaluation sur moi », « l'évaluation de mon pied » : ce qui vaut pour la personne entière (tête, cœur) ou la moitié, et ce qui distingue le vœu d'évaluation."
+   },
+   {
+    "from": "20b:2",
+    "to": "21a:4",
+    "title": "« Ce bœuf est un holocauste », « cette maison est une offrande » : la maison tombe et le bœuf meurt, valeur ou objet ?"
+   },
+   {
+    "from": "21a:5",
+    "to": "21b:12",
+    "title": "Les débiteurs d'évaluation qu'on peut saisir et ceux de 'hatat ou d'asham qu'on ne peut saisir : l'offrande exige-t-elle l'intention ?"
+   },
+   {
+    "from": "21b:13",
+    "to": "22a:5",
+    "title": "Pourquoi proclamer matin et soir : l'estimation des biens des orphelins (trente jours) et du Temple (soixante jours)."
+   },
+   {
+    "from": "22a:6",
+    "to": "22b:13",
+    "title": "Peut-on saisir les biens des orphelins pour une dette ? Rav Yehouda au nom de Rav Assi, Rav Nahman, et la décision de Rava."
+   },
+   {
+    "from": "23a:1",
+    "to": "23b:7",
+    "title": "Celui qui consacre tous ses biens alors qu'il doit le contrat de mariage de sa femme : Rabbi Eliézer et les sages."
+   },
+   {
+    "from": "23b:8",
+    "to": "23b:11",
+    "title": "Le consacré à la fois dû à la femme et à un créancier : « celui qui rachète rachète » (Rabbi Abbahou, Rabban Chimon ben Gamliel)."
+   },
+   {
+    "from": "23b:12",
+    "to": "24a:7",
+    "title": "Les débiteurs d'évaluation qu'on saisit, mais on leur laisse de quoi vivre : « s'il est trop pauvre pour ton évaluation »."
+   },
+   {
+    "from": "24a:8",
+    "to": "24a:11",
+    "title": "Ce que l'évalué garde : les vêtements de sa femme, et l'évaluation à payer « ce jour-là »."
+   },
+   {
+    "from": "24a:12",
+    "to": "25a:5",
+    "title": "Consacrer un champ avant le jubilé : pas moins de deux ans ; le champ consacré en année jubilaire elle-même (Rav et Chemouel)."
+   },
+   {
+    "from": "25a:6",
+    "to": "25a:15",
+    "title": "« Un 'homer d'orge » : la semence qui fixe le prix (cinquante sicles), « semence » et non « récolte », et la déduction pour l'année de jouissance."
+   },
+   {
+    "from": "25a:16",
+    "to": "25b:16",
+    "title": "Celui qui consacre puis rachète son champ : il ne sort pas de sa main au jubilé ; « à un autre » et non au fils."
+   },
+   {
+    "from": "25b:17",
+    "to": "26b:13",
+    "title": "Le jubilé arrive sans que le champ ait été racheté : les cohanim y entrent (Rabbi Yehouda, Rabbi Eliézer) et leur raisonnement."
+   },
+   {
+    "from": "26b:14",
+    "to": "27a:6",
+    "title": "Celui qui achète un champ à son père, puis le consacre, puis le père meurt : à qui revient-il ? Rabbi Chimon, Rabbi Yehouda, Rav Nahman bar Yitshak."
+   },
+   {
+    "from": "27a:7",
+    "to": "27a:14",
+    "title": "Le champ consacré hors du jubilé : « ouvre l'enchère » ; dit-on au propriétaire ou le force-t-on ?"
+   },
+   {
+    "from": "27a:15",
+    "to": "28a:1",
+    "title": "« Il est à moi pour dix sicles » : enchères entre le propriétaire et un autre, ajout d'un cinquième, et Beit Chammaï et Beit Hillel."
+   },
+   {
+    "from": "28a:2",
+    "to": "28a:11",
+    "title": "Le 'hérem : que peut-on vouer d'entre ses biens ? « Tout ce qui est à lui » et non la totalité ; ni son fils ni sa fille (Rabbi Eliézer ben Azarya)."
+   },
+   {
+    "from": "28a:12",
+    "to": "28b:9",
+    "title": "Le 'hérem des biens enfermés : le champ d'héritage, l'esclave hébreu, Rabbi Yehouda et Rabbi, et le 'hérem de meubles donné aux cohanim."
+   },
+   {
+    "from": "28b:10",
+    "to": "29a:19",
+    "title": "Le 'hérem des cohanim : pas de rachat, on le donne aux cohanim comme la teroumah ; Rabbi Yehouda ben Bétéra ; l'esclave hébreu et le jubilé."
+   },
+   {
+    "from": "29a:20",
+    "to": "29a:24",
+    "title": "« Tu consacreras » et « ne consacre pas » : Rabbi Ichmaël et les sages."
+   },
+   {
+    "from": "29b:1",
+    "to": "30a:6",
+    "title": "Vendre son champ au jubilé : pas de rachat avant deux ans ; la vente en année jubilaire elle-même (Rav et Chemouel) ; la vente d'un esclave hors de la Terre."
+   },
+   {
+    "from": "30a:7",
+    "to": "31a:1",
+    "title": "Le champ revendu : à quel prix le propriétaire peut-il le racheter ? Premier acheteur à un mina, second à deux cents ; « s'il y a encore beaucoup d'années » ; celui qui vend loin et rachète près."
+   },
+   {
+    "from": "31a:2",
+    "to": "31b:17",
+    "title": "La maison d'une ville fortifiée : rachat immédiat pendant douze mois, et la durée des « jours » (Rabbi, Rabbi Yehouda, Rabbi Yohanan)."
+   },
+   {
+    "from": "31b:18",
+    "to": "32a:4",
+    "title": "La précaution de Hillel pour le rachat de la maison : l'acheteur se cachait le dernier jour ; Hillel et le gett conditionnel."
+   },
+   {
+    "from": "32a:5",
+    "to": "32b:4",
+    "title": "Quelles villes sont fortifiées : ce qui est à l'intérieur du mur, la ville aux maisons adossées au mur, les villes de Josué (Gamla, Guedoud, Tibériade) et Jérusalem."
+   },
+   {
+    "from": "32b:5",
+    "to": "33a:7",
+    "title": "Pourquoi les sages ont-ils dénombré les villes fortifiées de l'époque de Josué ? Compter les jubilés pour sanctifier les années sabbatiques (Rabbi Ichmaël fils de Rabbi Yossi, Rav Nahman bar Yitshak)."
+   },
+   {
+    "from": "33a:8",
+    "to": "33b:3",
+    "title": "Les maisons des cours (villages) ont la force des meilleurs cas des maisons des villes et des champs : « ils seront comptés avec le champ de la terre »."
+   },
+   {
+    "from": "33b:4",
+    "to": "33b:11",
+    "title": "Les villes des Lévites : l'israélite qui hérite de son grand-père maternel lévi, le fils de lévi mamzer ou nétin, et « ceux qu'on rachète des Lévites »."
+   },
+   {
+    "from": "33b:12",
+    "to": "34a:1",
+    "title": "Les terrains autour des villes (migrach) : on ne transforme pas un champ en migrach ni l'inverse ; Rabbi Eléazar (seulement les villes des Lévites) ; entourée puis habitée."
+   },
+   {
+    "from": "34a:2",
+    "to": "34a:8",
+    "title": "Le champ de 'hérem : « comme le champ de 'hérem, la propriété sera au cohen »."
+   }
+  ]
+ }
+}

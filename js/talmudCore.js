@@ -129,6 +129,26 @@
         return out;
     }
 
+    // Les titres de sugya de data/talmud/sugyot.json : { tractates: { <traité>: [ { from: "58a:1", to: "59b:5", title } ] } }. Une référence est « amoud:segment »
+    // (segments comptés depuis 1) ; `from` et `to` sont inclus. Un traité n'y figure que là où des titres ont été écrits.
+    function refOf(tr, ref) {
+        var m = /^(\d+[ab]):(\d+)$/.exec(String(ref || ''));
+        if (!m || !tr) return null;
+        var page = pageOf(tr, m[1]);
+        return page < 0 ? null : { page: page, seg: parseInt(m[2], 10) - 1, label: m[1] };
+    }
+
+    // Les sugyot qui touchent l'amoud d'indice `page`, dans l'ordre : [ { title, from, to, starts (segment où elle commence ici, depuis 0, ou -1 si elle vient d'avant), continues } ].
+    function sugyotIn(data, tr, page) {
+        var out = [];
+        ((data && data.tractates && tr && data.tractates[tr.id]) || []).forEach(function (s) {
+            var a = refOf(tr, s.from), z = refOf(tr, s.to);
+            if (!a || !z || page < a.page || page > z.page) return;
+            out.push({ title: s.title, from: a, to: z, starts: a.page === page ? a.seg : -1, continues: a.page < page });
+        });
+        return out;
+    }
+
     // --- Le mot touché -------------------------------------------------------------------------------------------------------------------
     // Le mot hébreu ou araméen autour de la position `offset` d'un texte (la position d'un curseur : entre deux lettres) : { start, end (exclu), word } ou null
     // si on n'est pas sur un mot. Un mot est fait de lettres et de voyelles ou accents ; le maqaf et les signes de ponctuation le coupent ; les guillemets
@@ -197,7 +217,7 @@
 
     return {
         tractates: tractates, find: find, rank: rank, amoudLabel: amoudLabel, pageOf: pageOf, hebrewAmoud: hebrewAmoud, dafOf: dafOf,
-        chapterAt: chapterAt, chaptersStartingIn: chaptersStartingIn, step: step, isHadran: isHadran, dafYomiTarget: dafYomiTarget, DAF_YOMI: DAF_YOMI, wordAt: wordAt, lookup: lookup, summaryOf: summaryOf,
+        chapterAt: chapterAt, chaptersStartingIn: chaptersStartingIn, step: step, isHadran: isHadran, dafYomiTarget: dafYomiTarget, DAF_YOMI: DAF_YOMI, wordAt: wordAt, lookup: lookup, summaryOf: summaryOf, refOf: refOf, sugyotIn: sugyotIn,
         hebrewNumber: M.hebrewNumber, maskIds: M.maskIds, parseComment: M.parseComment, stripMarks: M.stripMarks
     };
 }));

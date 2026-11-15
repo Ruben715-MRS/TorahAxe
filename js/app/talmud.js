@@ -22,12 +22,13 @@ const TALMUD_COMMENTATORS = [
 ];
 
 let talmudIndex = null;
+let talmudSugyot = null;        // data/talmud/sugyot.json (titres de sugya, là où ils sont écrits) ; null tant qu'il n'est pas chargé ou s'il manque
 let talmudResume = null;        // data/talmud/resume.json (une phrase par ordre, par traité et par chapitre) ; null tant qu'il n'est pas chargé ou s'il manque
 const talmudLoaded = {};        // traité -> data/talmud/<traité>.json
 const talmudCommLoaded = {};    // commentateur -> traité -> { pages } : commentaire chargé
 const talmudCommPending = {};   // « commentateur/traité » -> promesse en cours, pour ne charger qu'une fois
 const talmudCounts = {};        // traité -> counts-<traité>.json : { order, pages[amoud][segment] = masque }
-let talmudState = { id: 'berakhot', page: 0, vowels: 'full', comm: { rashi: true }, open: {}, lookup: true, summary: true };
+let talmudState = { id: 'berakhot', page: 0, vowels: 'full', comm: { rashi: true }, open: {}, lookup: true, summary: true, sugyot: true };
 
 let talmudPrefsLoaded = false;
 function talmudLoadPrefs() {
@@ -42,12 +43,13 @@ function talmudLoadPrefs() {
             if (p.comm && typeof p.comm === 'object') talmudState.comm = p.comm;
             if (p.lookup === false) talmudState.lookup = false;
             if (typeof p.summary === 'boolean') talmudState.summary = p.summary;
+            if (p.sugyot === false) talmudState.sugyot = false;
         }
     } catch (e) {}
 }
 
 function talmudSavePrefs() {
-    try { localStorage.setItem(TALMUD_KEY, JSON.stringify({ id: talmudState.id, page: talmudState.page, vowels: talmudState.vowels, comm: talmudState.comm, lookup: talmudState.lookup, summary: talmudState.summary })); } catch (e) {}
+    try { localStorage.setItem(TALMUD_KEY, JSON.stringify({ id: talmudState.id, page: talmudState.page, vowels: talmudState.vowels, comm: talmudState.comm, lookup: talmudState.lookup, summary: talmudState.summary, sugyot: talmudState.sugyot })); } catch (e) {}
 }
 
 function talmudNode(tag, cls, text) {
@@ -95,6 +97,7 @@ function toolTalmudInit() {
             msg.textContent = '';
             talmudRender();
             talmudLoadResume();
+            talmudLoadSugyot();
             talmudLoadCounts(talmudState.id);
             talmudLoadComments(talmudState.id);
         })
@@ -109,6 +112,34 @@ function talmudLoadResume() {
         .then(res => { if (!res.ok) throw new Error('resume HTTP ' + res.status); return res.json(); })
         .then(data => { talmudResume = data; talmudRender(); })
         .catch(() => { /* pas de résumé */ });
+}
+
+// Les titres de sugya : un titre devant le segment où chaque développement commence, et un rappel en haut quand il vient de l'amoud précédent.
+// Sans le fichier ou hors des amoudim couverts, rien ne s'affiche.
+function talmudLoadSugyot() {
+    if (talmudSugyot) return;
+    fetch('data/talmud/sugyot.json')
+        .then(res => { if (!res.ok) throw new Error('sugyot HTTP ' + res.status); return res.json(); })
+        .then(data => { talmudSugyot = data; talmudRender(); })
+        .catch(() => { /* pas de titres */ });
+}
+
+function talmudToggleSugyot(checked) {
+    talmudState.sugyot = checked;
+    talmudSavePrefs();
+    talmudRender();
+}
+
+// « 58a–59b » : l'étendue d'une sugya, en amoudim.
+function talmudSugyaRange(s) {
+    return s.from.label === s.to.label ? s.from.label : s.from.label + '–' + s.to.label;
+}
+
+function talmudSugyaNode(s, continued) {
+    const el = talmudNode('p', 'talmud-sugya' + (continued ? ' is-continued' : ''));
+    el.appendChild(talmudNode('strong', '', (continued ? t('tools.talmud_sugya_continued') + ' ' : '') + s.title));
+    el.appendChild(talmudNode('span', 'talmud-sugya-range', ' ' + talmudSugyaRange(s)));
+    return el;
 }
 
 function talmudToggleSummary(checked) {
@@ -398,6 +429,7 @@ function talmudRender() {
     talmudChips(toolEl('tool-talmud-vowels'), [['full', t('tools.tanakh_vowels_full')], ['consonants', t('tools.tanakh_vowels_consonants')]], talmudState.vowels,
         key => { talmudState.vowels = key; talmudSavePrefs(); talmudRender(); });
     toolEl('tool-talmud-lookup-on').checked = !!talmudState.lookup;
+    toolEl('tool-talmud-sugyot-on').checked = !!talmudState.sugyot;
     talmudRenderCommPanel();
     talmudRenderSummary(tr);
     talmudRenderText(tr);
@@ -443,6 +475,12 @@ function talmudRenderText(tr) {
             }
         }
         if (!(book.pages[wanted.page] || []).length) box.appendChild(talmudNode('p', 'tool-small', t('tools.talmud_empty', { label })));
+        const sugyot = talmudState.sugyot && talmudSugyot ? TalmudCore.sugyotIn(talmudSugyot, tr, wanted.page) : [];
+        const sugyaAt = {};
+        sugyot.forEach(s => { if (s.starts >= 0) sugyaAt[s.starts] = s; });
+        // Une sugya qui vient de l'amoud précédent : un rappel en haut, tant qu'une autre ne commence pas au premier segment.
+        const carried = sugyot.find(s => s.continues);
+        if (carried && sugyaAt[0] === undefined) box.appendChild(talmudSugyaNode(carried, true));
         (book.pages[wanted.page] || []).forEach((raw, i) => {
             if (starts[i]) {
                 const h = talmudNode('h4', 'talmud-chapter-heading', t('tools.talmud_chapter_n', { n: starts[i].n }) + ' · ' + starts[i].he);
@@ -450,6 +488,7 @@ function talmudRenderText(tr) {
                 const sentence = talmudState.summary && talmudResume ? TalmudCore.summaryOf(talmudResume, talmudIndex, tr.id, starts[i].n).chapter : '';
                 if (sentence && i > 0) box.appendChild(talmudNode('p', 'tool-small talmud-chapter-reminder', sentence));
             }
+            if (sugyaAt[i]) box.appendChild(talmudSugyaNode(sugyaAt[i], false));
             const block = talmudNode('div', 'tanakh-block talmud-block');
             const p = talmudSegment(raw);
             const inSegment = talmudSegmentComms(wanted.page, i);

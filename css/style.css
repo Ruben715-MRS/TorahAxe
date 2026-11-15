@@ -18343,3 +18343,8 @@ body:has(#screen-recit:not(.hidden))::after {
 .talmud-panel { gap: 6px; }
 .talmud-panel .tool-msg:empty { display: none; }
 .talmud-panel + .tanakh-text { margin-top: 8px; }
+
+/* Titres de sugya (js/app/talmud.js) : une ligne devant chaque développement, discrète, dans le sens de lecture du français. */
+.talmud-sugya { margin: 16px 0 6px; padding: 6px 10px; border-inline-start: 3px solid var(--accent, #d4a017); background: color-mix(in srgb, var(--surface) 70%, transparent); direction: ltr; text-align: start; font: 600 14px/1.4 system-ui, sans-serif; color: var(--text-dark); border-radius: 0 8px 8px 0; }
+.talmud-sugya.is-continued { font-weight: 500; opacity: 0.85; margin-top: 4px; }
+.talmud-sugya-range { font-weight: 400; color: var(--muted-text); white-space: nowrap; }

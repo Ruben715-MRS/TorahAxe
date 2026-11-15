@@ -345,3 +345,51 @@ test('résumés : les 37 traités ont leur résumé, un par chapitre', () => {
     assert.strictEqual(Object.keys(resume.tractates).length, 37);
     assert.strictEqual(Object.values(resume.tractates).reduce((n, r) => n + r.chapters.length, 0), T.tractates(index).reduce((n, tr) => n + tr.chapters.length, 0));
 });
+
+test('titres de sugya : références valides, sans chevauchement, dans l\'ordre du texte, titres courts', () => {
+    const data = read('sugyot');
+    assert.ok(data.tractates && Object.keys(data.tractates).length >= 1);
+    Object.keys(data.tractates).forEach(id => {
+        const tr = T.find(index, id);
+        assert.ok(tr, id + ' : pas dans l\'index');
+        const book = read(id);
+        let prevEnd = [-1, -1];
+        data.tractates[id].forEach((s, k) => {
+            const where = id + ' sugya ' + (k + 1) + ' (' + s.from + '–' + s.to + ')';
+            const a = T.refOf(tr, s.from), z = T.refOf(tr, s.to);
+            assert.ok(a && z, where + ' : référence illisible');
+            assert.ok(a.seg >= 0 && a.seg < book.pages[a.page].length, where + ' : segment de début absent');
+            assert.ok(z.seg >= 0 && z.seg < book.pages[z.page].length, where + ' : segment de fin absent');
+            assert.ok(a.page < z.page || (a.page === z.page && a.seg <= z.seg), where + ' : fin avant le début');
+            assert.ok(a.page > prevEnd[0] || (a.page === prevEnd[0] && a.seg > prevEnd[1]), where + ' : chevauche la précédente ou hors d\'ordre');
+            prevEnd = [z.page, z.seg];
+            assert.ok(typeof s.title === 'string' && s.title.length >= 30 && s.title.length <= 220, where + ' : longueur du titre ' + (s.title || '').length);
+            assert.ok(s.title.trim() === s.title && !/\\s{2,}/.test(s.title), where + ' : espaces');
+            assert.ok(/[.?)»]$/.test(s.title), where + ' : doit finir par une ponctuation');
+        });
+    });
+});
+
+test('sugyotIn : les sugyot d\'un amoud, celle qui vient d\'avant et celles qui commencent ici', () => {
+    const data = read('sugyot');
+    const tr = T.find(index, 'bekhorot');
+    const p58b = T.pageOf(tr, '58b');
+    const here = T.sugyotIn(data, tr, p58b);
+    assert.deepStrictEqual(here.map(s => [s.starts, s.continues]), [[-1, true], [3, false]]);   // la 2e finit en 58b:3 ; la 3e commence en 58b:4
+    assert.strictEqual(T.sugyotIn(data, tr, T.pageOf(tr, '57b')).length, 0);
+    assert.strictEqual(T.sugyotIn(data, T.find(index, 'berakhot'), 0).length, 0);
+    assert.strictEqual(T.sugyotIn(null, tr, p58b).length, 0);
+    assert.strictEqual(T.refOf(tr, '99z:1'), null);
+});
+
+test('titres de sugya : le Daf Yomi à venir est couvert amoud par amoud (Bekhorot 58a-61a, Arakhin 2a-34a)', () => {
+    const data = read('sugyot');
+    const covered = (id, from, to) => {
+        const tr = T.find(index, id);
+        const out = [];
+        for (let p = T.pageOf(tr, from); p <= T.pageOf(tr, to); p++) if (!T.sugyotIn(data, tr, p).length) out.push(T.amoudLabel(tr.start, p));
+        return out;
+    };
+    assert.deepStrictEqual(covered('bekhorot', '58a', '61a'), []);
+    assert.deepStrictEqual(covered('arakhin', '2a', '34a'), []);
+});
