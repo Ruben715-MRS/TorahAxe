@@ -155,6 +155,21 @@ function createPortraitThumb(evt, className) {
     return img;
 }
 
+// Repris de js/app/session-end.js (utilisé par les récits pour signaler un lien ou un quiz de fin
+// indisponible : TorahAxe n'a pas la base d'événements d'HistoriAxe à laquelle ces liens renvoient).
+let toastTimeout = null;
+function showToast(message, duration = 2800) {
+    const toast = document.getElementById('app-toast');
+    if (!toast) return;
+    toast.textContent = message;
+    toast.classList.remove('hidden', 'toast-hide');
+    if (toastTimeout) clearTimeout(toastTimeout);
+    toastTimeout = setTimeout(() => {
+        toast.classList.add('toast-hide');
+        setTimeout(() => toast.classList.add('hidden'), 300);
+    }, duration);
+}
+
 // Mémorisation des « points faibles » (js/storage.js: srsRecord) : TorahAxe n'a pas l'écran de
 // révision qui l'exploite (js/app/selection-revision.js), donc rien à enregistrer.
 function srsRecord() { }

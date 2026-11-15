@@ -1,0 +1,578 @@
+{
+  "id": "israel-1948",
+  "titre": "La création de l’État d’Israël",
+  "sousTitre": "Deux peuples, une terre, une guerre (1881-1949)",
+  "auteur": "Rédaction HistoriAxe",
+  "niveau": "moyen",
+  "themes": [
+    "thm_isr",
+    "thm_histoire_juive_civile",
+    "thm_jo",
+    "thm_20s"
+  ],
+  "evenements": [
+    "hjc_59",
+    "pan_il_bengourion",
+    "hjc_60",
+    "isr12",
+    "isr13",
+    "hjc_61",
+    "isr15",
+    "jo7",
+    "isr16",
+    "isr18",
+    "hjc_62",
+    "hjc_63",
+    "isr23",
+    "isr24",
+    "jo10"
+  ],
+  "chapitres": [
+    {
+      "titre": "Introduction",
+      "blocs": [
+        {
+          "type": "p",
+          "texte": "Tel-Aviv, vendredi 14 mai 1948, peu avant seize heures. Sur le boulevard Rothschild, une foule se presse devant un bâtiment blanc de deux étages, l’ancienne maison du premier maire de la ville devenue [[musée d’art|fiche:musee]]. Les invités, environ deux cent cinquante, ont reçu la veille une convocation portée par des coursiers, avec la consigne de garder le secret. On craint un bombardement. À l’intérieur, sous un grand portrait de Theodor Herzl, le fondateur du sionisme, les membres du conseil provisoire prennent place derrière une longue table."
+        },
+        {
+          "type": "p",
+          "texte": "À seize heures précises, un homme petit et trapu, aux cheveux blancs en bataille, se lève. C’est [[David Ben Gourion|evt:pan_il_bengourion]], le chef de la communauté juive de Palestine. Il lit un texte d’un peu plus de mille mots. Puis vient la phrase que tous attendent."
+        },
+        {
+          "type": "citation",
+          "texte": "En vertu du droit naturel et historique du peuple juif et de la résolution de l’Assemblée générale des Nations unies, nous proclamons la création d’un État juif en Terre d’Israël, qui portera le nom d’État d’Israël.",
+          "source": "Déclaration d’indépendance de l’État d’Israël, Tel-Aviv, 14 mai 1948 (traduction)."
+        },
+        {
+          "type": "p",
+          "texte": "La salle se lève et chante la *Hatikva*, l’hymne du mouvement sioniste. La cérémonie a duré une trentaine de minutes. À minuit, le mandat britannique sur la Palestine prendra fin. Dans les rues de Tel-Aviv, on danse. Le soir même, Ben Gourion note dans son journal : « Dans le pays, la joie est profonde. Et de nouveau, je suis comme un homme en deuil parmi ceux qui se réjouissent, comme le 29 novembre. » Il sait que, le lendemain, les armées de plusieurs pays arabes vont entrer en Palestine."
+        },
+        {
+          "type": "p",
+          "texte": "À deux pas de là, la ville arabe de Jaffa, collée à Tel-Aviv, s’est rendue la veille. La plupart de ses habitants ont fui. Dans tout le pays, des centaines de milliers d’Arabes palestiniens ont déjà quitté leurs maisons, et bien d’autres vont suivre. Pour eux, ces mois de 1948 resteront la [[Nakba|fiche:nakba]], « la catastrophe »."
+        },
+        {
+          "type": "p",
+          "texte": "Le même événement est donc, pour les uns, une naissance, et pour les autres, une catastrophe. Comment est-on arrivé là ? Comment un mouvement né en Europe à la fin du XIXe siècle a-t-il pu fonder un État au Proche-Orient cinquante ans plus tard ? Pourquoi la Grande-Bretagne a-t-elle abandonné la Palestine ? Pourquoi le partage voté par l’ONU a-t-il débouché sur la guerre ? Et pourquoi les historiens se disputent-ils encore sur ce qui s’est passé ? Pour le comprendre, il faut remonter à 1881."
+        }
+      ]
+    },
+    {
+      "titre": "I – Un foyer national",
+      "blocs": [
+        {
+          "type": "h",
+          "texte": "Une province ottomane"
+        },
+        {
+          "type": "p",
+          "texte": "À la fin du XIXe siècle, la Palestine n’existe pas comme pays. C’est une région de l’Empire ottoman, découpée en plusieurs districts. Elle compte environ un demi-million d’habitants. La grande majorité sont des Arabes musulmans, avec une importante minorité chrétienne. Environ 25 000 Juifs y vivent, surtout dans les quatre villes saintes du judaïsme : Jérusalem, Hébron, Safed et Tibériade. Ils sont très pieux, souvent pauvres, et vivent en partie des dons des communautés juives d’Europe."
+        },
+        {
+          "type": "p",
+          "texte": "En 1881, l’assassinat du tsar Alexandre II déclenche une vague de pogroms, des violences contre les Juifs, dans l’Empire russe. Des centaines de milliers de Juifs émigrent, la plupart vers l’Amérique. Une petite minorité choisit la terre de leurs ancêtres. C’est la [[première aliyah|evt:hjc_59]], la première « montée » vers la terre d’Israël. Ces pionniers fondent des villages agricoles, comme Rishon LeZion en 1882, souvent sauvés de la faillite par l’argent du baron Edmond de Rothschild."
+        },
+        {
+          "type": "h",
+          "texte": "Le rêve de Herzl"
+        },
+        {
+          "type": "p",
+          "texte": "Le projet devient politique avec un journaliste viennois, Theodor Herzl. Correspondant à Paris, il suit les débuts de l’affaire Dreyfus ; il racontera plus tard avoir entendu la foule crier « Mort aux Juifs ! », un souvenir que certains historiens jugent en partie reconstruit. Il en conclut que l’assimilation a échoué et que les Juifs ne seront en sécurité que dans un État à eux. En 1896, il publie *L’État des Juifs*. En août 1897, il réunit à Bâle, en Suisse, le [[premier Congrès sioniste|evt:hjc_60]]. Le sionisme, du nom de Sion, l’une des collines de Jérusalem, se donne pour but de créer un foyer pour le peuple juif en Palestine."
+        },
+        {
+          "type": "citation",
+          "texte": "À Bâle, j’ai fondé l’État juif. Si je disais cela aujourd’hui publiquement, un rire universel me répondrait. Dans cinq ans peut-être, dans cinquante ans sûrement, chacun le reconnaîtra.",
+          "source": "Theodor Herzl, Journal, 3 septembre 1897."
+        },
+        {
+          "type": "p",
+          "texte": "Herzl cherche un appui du côté des grandes puissances : il rencontre le sultan ottoman, l’empereur d’Allemagne, des ministres britanniques. En 1903, Londres lui propose un territoire en Afrique orientale, dans l’actuel Kenya. Herzl est tenté, pour sauver au plus vite les Juifs persécutés de Russie. Mais une grande partie du mouvement refuse : pour eux, seule la terre d’Israël peut mobiliser le peuple juif. Le projet est abandonné en 1905."
+        },
+        {
+          "type": "p",
+          "texte": "Herzl meurt en 1904. Entre-temps, une deuxième vague d’immigrants arrive de Russie. Ce sont souvent des jeunes gens socialistes, qui veulent devenir paysans et ouvriers. Parmi eux, un jeune homme de vingt ans venu de Pologne, David Grün, qui prendra le nom de Ben Gourion. Ils fondent en 1909 un nouveau quartier sur les dunes au nord de Jaffa, qui deviendra [[Tel-Aviv|evt:isr12]], et en 1910 [[Degania|evt:isr13]], le premier [[kibboutz|fiche:kibboutz]], un village collectif. Ils font de l’hébreu, langue de la prière, une langue de tous les jours."
+        },
+        {
+          "type": "p",
+          "texte": "Le renouveau de l’hébreu est l’une des réussites les plus étonnantes de ce mouvement. Depuis près de deux mille ans, il n’était plus la langue maternelle de personne. Un linguiste venu de Lituanie, Eliezer Ben Yehouda, installé à Jérusalem en 1881, invente des centaines de mots modernes et élève son fils uniquement en hébreu. En une génération, l’hébreu redevient une langue vivante, parlée dans la rue, à l’école et dans les journaux."
+        },
+        {
+          "type": "p",
+          "texte": "Les Arabes de Palestine voient ces arrivées avec inquiétude. Les achats de terres par les organisations sionistes entraînent parfois l’expulsion de paysans arabes qui cultivaient ces terres pour de grands propriétaires vivant à Beyrouth ou à Damas. Dès 1911, un journal de Jaffa, *Filastin*, met en garde contre le sionisme. Un nationalisme arabe est en train de naître, au moment même où naît le nationalisme juif."
+        },
+        {
+          "type": "h",
+          "texte": "Une promesse britannique"
+        },
+        {
+          "type": "p",
+          "texte": "La Première Guerre mondiale change tout. L’Empire ottoman est l’allié de l’Allemagne. Pour l’abattre, les Britanniques multiplient les promesses contradictoires. Au chérif Hussein de La Mecque, ils promettent en 1915 un grand royaume arabe, s’il se soulève contre les Ottomans. Avec la France, ils se partagent secrètement le Proche-Orient en 1916 : ce sont les accords Sykes-Picot. Et le 2 novembre 1917, le ministre des Affaires étrangères, lord Balfour, adresse une lettre au baron Rothschild, chef de la communauté juive britannique."
+        },
+        {
+          "type": "citation",
+          "texte": "Le gouvernement de Sa Majesté envisage favorablement l’établissement en Palestine d’un foyer national pour le peuple juif, et emploiera tous ses efforts pour faciliter la réalisation de cet objectif, étant clairement entendu que rien ne sera fait qui puisse porter atteinte aux droits civils et religieux des collectivités non juives existant en Palestine.",
+          "source": "Déclaration Balfour, 2 novembre 1917 (extrait, traduction)."
+        },
+        {
+          "type": "p",
+          "texte": "La [[déclaration Balfour|evt:hjc_61]] est une victoire pour le sionisme, obtenue en grande partie grâce au chimiste Chaim Weizmann. Mais elle désigne les Arabes, qui forment alors près de neuf habitants sur dix, comme des « collectivités non juives », et ne parle que de leurs droits civils et religieux, pas de leurs droits politiques. Un mois plus tard, en décembre 1917, les troupes du général Allenby entrent dans Jérusalem."
+        },
+        {
+          "type": "p",
+          "texte": "La guerre a frappé durement la petite communauté juive. Beaucoup de Juifs, sujets du tsar, sont expulsés par les autorités ottomanes comme ressortissants d’un pays ennemi ; d’autres meurent de faim ou d’épidémies, comme une grande partie de la population arabe. Ben Gourion lui-même est expulsé et part pour l’Amérique. La population juive, qui avait atteint environ 85 000 personnes en 1914, tombe à moins de 60 000 à la fin de la guerre."
+        },
+        {
+          "type": "p",
+          "texte": "Au lendemain de la guerre, une entente semble encore possible. En janvier 1919, l’émir Fayçal, fils du chérif Hussein et chef de la révolte arabe, signe avec Weizmann un accord qui accepte l’immigration juive en Palestine. Mais Fayçal ajoute de sa main une condition : l’accord ne vaudra que si les Arabes obtiennent l’indépendance promise. Quand la France le chasse de Damas en 1920, l’accord devient lettre morte."
+        },
+        {
+          "type": "p",
+          "texte": "En 1922, la Société des Nations confie à la Grande-Bretagne un [[mandat|evt:isr16]] sur la Palestine, avec la mission d’y établir le foyer national juif. Un an plus tôt, les Britanniques ont détaché la partie située à l’est du Jourdain pour en faire l’[[émirat de Transjordanie|evt:jo7]], confié à Abdallah, un fils du chérif Hussein. Le recensement de 1922 compte en Palestine environ 750 000 habitants, dont 84 000 Juifs. Deux peuples vont désormais revendiquer la même terre, sous l’arbitrage d’une puissance qui leur a fait des promesses à tous deux."
+        }
+      ]
+    },
+    {
+      "titre": "II – Deux peuples, une terre",
+      "blocs": [
+        {
+          "type": "h",
+          "texte": "Les premières violences"
+        },
+        {
+          "type": "p",
+          "texte": "Les affrontements commencent dès 1920. À Jérusalem, pendant la fête musulmane de Nabi Moussa, des émeutes contre les Juifs font neuf morts. En 1921, à Jaffa, près de cent personnes, juives et arabes, sont tuées. La communauté juive, qu’on appelle le [[Yichouv|fiche:yichouv]], en tire une leçon : les Britanniques ne la protégeront pas toujours. Elle crée une organisation de défense clandestine, la [[Haganah|evt:isr15]]."
+        },
+        {
+          "type": "p",
+          "texte": "En août 1929, une querelle sur l’accès au mur des Lamentations, à Jérusalem, met le feu au pays. À Hébron, 67 Juifs sont massacrés par des émeutiers arabes ; des centaines d’autres sont sauvés par des voisins arabes qui les cachent. À Safed, une vingtaine de Juifs sont tués. En une semaine, 133 Juifs et 116 Arabes meurent, ces derniers surtout sous les balles de la police britannique. La vieille communauté juive d’Hébron, présente depuis des siècles, quitte la ville."
+        },
+        {
+          "type": "p",
+          "texte": "La société juive se construit en parallèle de la société arabe, presque sans contact. Elle a ses écoles en hébreu, ses syndicats, ses partis, son université, inaugurée en 1925 sur le mont Scopus, et un gouvernement en attente, l’[[Agence juive|fiche:agence-juive]]. Les Arabes de Palestine, eux, sont divisés entre grandes familles rivales. La plus puissante est celle des Husseini, dont l’un des membres, [[Hadj Amin al-Husseini|evt:pan_machrek_husseini]], est nommé grand mufti de Jérusalem par les Britanniques en 1921."
+        },
+        {
+          "type": "p",
+          "texte": "Les achats de terres sont une autre source de conflit. Dans les années 1920, les organisations sionistes achètent notamment de vastes terres dans la vallée de Jezreel, au nord du pays, à une riche famille de Beyrouth, les Sursock. Les paysans arabes qui les cultivaient depuis des générations comme métayers doivent partir, avec une indemnité. Pour les sionistes, c’est un achat légal ; pour les paysans, c’est une dépossession."
+        },
+        {
+          "type": "h",
+          "texte": "La grande révolte"
+        },
+        {
+          "type": "p",
+          "texte": "Dans les années 1930, l’arrivée au pouvoir de Hitler fait fuir les Juifs d’Allemagne et d’Europe centrale. Les portes de l’Amérique sont presque fermées. Beaucoup viennent en Palestine. En 1935, plus de 60 000 immigrants juifs arrivent en une seule année. Les Juifs, qui formaient 17 % de la population en 1931, en représentent bientôt près d’un tiers. Pour les Arabes, la menace devient concrète : ils risquent de devenir minoritaires dans leur propre pays."
+        },
+        {
+          "type": "p",
+          "texte": "En novembre 1935, un prédicateur musulman de Haïfa, [[Izz al-Din al-Qassam|evt:pan_machrek_qassam]], qui avait pris le maquis avec quelques fidèles pour combattre les Britanniques et les sionistes, est tué par la police britannique. Sa mort en fait un martyr. Quelques mois plus tard, le pays s’embrase."
+        },
+        {
+          "type": "p",
+          "texte": "En avril 1936 éclate la [[grande révolte arabe|evt:isr18]]. Elle commence par une grève générale de six mois, puis devient une insurrection armée contre les Britanniques et contre les Juifs. Elle dure trois ans. Les Britanniques l’écrasent avec une grande dureté : destructions de maisons, exécutions, déportations. Environ 5 000 Arabes sont tués, selon l’estimation la plus courante, ainsi que plusieurs centaines de Juifs et de Britanniques. Les chefs arabes sont tués, emprisonnés ou exilés, et le mufti s’enfuit au Liban. La société arabe de Palestine sort de la révolte épuisée et sans direction, ce qui pèsera lourd dix ans plus tard."
+        },
+        {
+          "type": "p",
+          "texte": "La révolte a aussi des conséquences pour le Yichouv. Les Britanniques arment et entraînent des policiers juifs pour protéger les colonies et l’oléoduc qui traverse le pays. Un officier britannique passionné par la Bible, Orde Wingate, forme des unités nocturnes mixtes, où de jeunes membres de la Haganah apprennent les techniques du raid. Plusieurs futurs généraux israéliens, comme Moshe Dayan ou Yigal Allon, y font leurs premières armes."
+        },
+        {
+          "type": "p",
+          "texte": "En 1937, une commission britannique dirigée par lord Peel conclut que les deux peuples ne peuvent plus vivre ensemble. Elle propose, pour la première fois, de partager le pays. L’État juif recevrait environ un cinquième du territoire. Les Arabes refusent tout partage. Les sionistes sont divisés ; Ben Gourion accepte le principe, en pensant que les frontières pourront évoluer. Le plan est abandonné."
+        },
+        {
+          "type": "p",
+          "texte": "La commission propose aussi un échange de populations : plus de 200 000 Arabes vivant dans la zone de l’État juif seraient transférés, si nécessaire de force, vers l’État arabe. Cette idée d’un « transfert », alors présentée comme une solution parmi d’autres, a laissé une trace durable dans les esprits."
+        },
+        {
+          "type": "h",
+          "texte": "Le Livre blanc et la Shoah"
+        },
+        {
+          "type": "p",
+          "texte": "En mai 1939, à la veille d’une nouvelle guerre mondiale, Londres change de politique pour gagner l’appui du monde arabe. Le Livre blanc limite l’immigration juive à 75 000 personnes en cinq ans ; au-delà, elle dépendra de l’accord des Arabes. Il restreint aussi les achats de terres et annonce un État palestinien indépendant dans dix ans. Pour les sionistes, c’est une trahison, au moment où les Juifs d’Europe cherchent désespérément un refuge."
+        },
+        {
+          "type": "p",
+          "texte": "Quand la guerre éclate, Ben Gourion résume le dilemme par une formule restée célèbre : « Nous ferons la guerre aux côtés de la Grande-Bretagne comme s’il n’y avait pas de Livre blanc, et nous combattrons le Livre blanc comme s’il n’y avait pas de guerre. » Des dizaines de milliers de Juifs de Palestine s’engagent dans l’armée britannique. Des Arabes de Palestine aussi, mais en moins grand nombre. Le mufti, lui, s’est réfugié à Berlin, où il rencontre Hitler en novembre 1941 et appelle à soutenir l’Allemagne."
+        },
+        {
+          "type": "p",
+          "texte": "Pendant ce temps, en Europe, les nazis assassinent six millions de Juifs. Les bateaux de réfugiés qui tentent de gagner la Palestine sont refoulés. En février 1942, le *Struma*, un vieux navire chargé de près de 800 Juifs roumains, refoulé de Turquie, est coulé en mer Noire par un sous-marin soviétique : il n’y a qu’un survivant. Après la guerre, la Shoah transforme la question juive. Pour le mouvement sioniste et pour une grande partie de l’opinion mondiale, un État juif apparaît désormais comme une nécessité vitale."
+        },
+        {
+          "type": "encadre",
+          "titre": "Combien étaient-ils ?",
+          "texte": "Les chiffres comptent beaucoup dans cette histoire, car chaque camp s’en sert.\n\nEn 1922, le recensement britannique compte environ 750 000 habitants en Palestine, dont 11 % de Juifs. En 1931, un peu plus d’un million, dont 17 % de Juifs. À la fin de 1946, les estimations britanniques donnent environ 1,85 million d’habitants : 1,2 million d’Arabes, musulmans et chrétiens, et un peu plus de 600 000 Juifs, soit un tiers.\n\nLes terres racontent une autre histoire. En 1947, les Juifs ne possèdent qu’environ 7 % du territoire de la Palestine. Mais ce sont souvent les meilleures terres de la plaine côtière et des vallées, et la plus grande partie du pays est formée de collines rocheuses et du désert du Néguev, peu peuplé."
+        }
+      ]
+    },
+    {
+      "titre": "III – Le mandat impossible",
+      "blocs": [
+        {
+          "type": "h",
+          "texte": "Les survivants"
+        },
+        {
+          "type": "p",
+          "texte": "En 1945, en Allemagne, en Autriche et en Italie, environ 250 000 Juifs rescapés des camps et des persécutions vivent dans des camps de personnes déplacées. Beaucoup ne peuvent ni ne veulent rentrer dans des pays où leurs familles ont été exterminées, et où les violences antisémites continuent : en juillet 1946, un pogrom fait plus de quarante morts à Kielce, en Pologne. Le président américain Harry Truman demande à Londres d’accorder 100 000 visas pour la Palestine. Le ministre britannique Ernest Bevin refuse."
+        },
+        {
+          "type": "p",
+          "texte": "En avril 1946, une commission anglo-américaine recommande à son tour l’entrée immédiate de 100 000 réfugiés. Le Premier ministre britannique, Clement Attlee, refuse tant que les organisations armées juives ne seront pas désarmées. Les Arabes, eux, s’inquiètent : en mars 1945, sept États arabes ont fondé au Caire la Ligue arabe, qui fait de la Palestine sa cause commune et refuse toute nouvelle immigration."
+        },
+        {
+          "type": "p",
+          "texte": "Le mouvement sioniste organise alors une immigration clandestine, l’[[Aliyah Bet|fiche:aliyah-bet]]. De vieux bateaux, achetés en Europe, embarquent des milliers de réfugiés vers les côtes de Palestine. La plupart sont interceptés par la Royal Navy. Les passagers sont internés dans des camps à Chypre. Le plus célèbre de ces navires, l’*Exodus 1947*, transporte plus de 4 500 personnes. Arraisonné au large de Haïfa en juillet 1947, il est renvoyé vers la France, puis à Hambourg, en Allemagne. Le spectacle de survivants de la Shoah ramenés de force en Allemagne indigne le monde entier."
+        },
+        {
+          "type": "p",
+          "texte": "Devant Port-de-Bouc, près de Marseille, les passagers de l’*Exodus*, entassés sur trois navires-prisons britanniques, refusent de débarquer pendant plus de trois semaines, sous une chaleur écrasante. Le gouvernement français leur propose l’asile, mais ne veut pas les obliger à descendre. Seuls quelques dizaines acceptent. Les journalistes du monde entier suivent l’affaire jour après jour. Pour les Britanniques, c’est un désastre d’image."
+        },
+        {
+          "type": "h",
+          "texte": "La guerre contre les Anglais"
+        },
+        {
+          "type": "p",
+          "texte": "En Palestine même, les organisations armées juives se retournent contre les Britanniques. Deux groupes clandestins, issus de la droite sioniste, l’[[Irgoun|fiche:irgoun]] de Menahem Begin et le [[Lehi|fiche:lehi]], plus radical encore, multiplient les attentats. Pendant quelques mois, la Haganah s’associe à eux. Le 22 juillet 1946, l’Irgoun fait sauter une aile de l’hôtel King David à Jérusalem, siège de l’administration britannique : 91 personnes sont tuées, Britanniques, Arabes et Juifs. L’Irgoun affirme avoir prévenu par téléphone ; les Britanniques le contestent."
+        },
+        {
+          "type": "p",
+          "texte": "Les Britanniques répliquent. Le 29 juin 1946, un samedi que les Juifs appelleront le « samedi noir », ils arrêtent près de 2 700 personnes, dont plusieurs dirigeants de l’Agence juive, et fouillent des dizaines de kibboutz à la recherche d’armes. Les pendaisons de combattants juifs répondent aux attentats, et les attentats aux pendaisons."
+        },
+        {
+          "type": "p",
+          "texte": "La Grande-Bretagne est ruinée par la guerre. Elle entretient en Palestine près de 100 000 soldats pour un pays plus petit que la Bretagne, sans parvenir à y rétablir l’ordre. En juillet 1947, l’Irgoun pend deux sergents britanniques en représailles à l’exécution de trois de ses membres. L’opinion anglaise est écœurée. En février 1947, Londres a déjà décidé de remettre la question aux Nations unies."
+        },
+        {
+          "type": "h",
+          "texte": "Le vote du 29 novembre"
+        },
+        {
+          "type": "p",
+          "texte": "L’ONU envoie sur place une commission spéciale, l’[[UNSCOP|fiche:unscop]], formée de représentants de onze pays. Les dirigeants arabes de Palestine la boycottent. Ses membres assistent par hasard au retour de l’*Exodus* dans le port de Haïfa. La majorité de la commission propose de partager le pays en deux États, avec une union économique, et de placer Jérusalem sous un régime international. Une minorité propose un seul État fédéral."
+        },
+        {
+          "type": "figure",
+          "src": "assets/recits/israel-1948/partage.svg",
+          "legende": "Le plan de partage voté par l’ONU le 29 novembre 1947 : un État juif, un État arabe, chacun en trois morceaux, et Jérusalem sous régime international.",
+          "credit": "Schéma HistoriAxe, d’après les cartes de l’ONU"
+        },
+        {
+          "type": "p",
+          "texte": "Le plan donne à l’État juif environ 56 % du territoire, dont le désert du Néguev, pour une population d’environ 500 000 Juifs et plus de 400 000 Arabes. L’État arabe reçoit 43 % du territoire, avec environ 700 000 Arabes et quelques milliers de Juifs. Pour les sionistes, c’est beaucoup moins que la terre d’Israël dont ils rêvaient, mais c’est un État. Pour les Arabes, qui forment les deux tiers de la population et possèdent la plus grande partie des terres, c’est une injustice : on donne plus de la moitié de leur pays à une minorité arrivée en grande partie depuis trente ans."
+        },
+        {
+          "type": "p",
+          "texte": "Le 29 novembre 1947, à Lake Success, près de New York, l’Assemblée générale des Nations unies vote la [[résolution 181|evt:hjc_62]]. Elle est adoptée par 33 voix contre 13, avec 10 abstentions. Les États-Unis et l’Union soviétique, pour une fois d’accord, votent pour, comme la France. Les pays arabes et musulmans votent contre. La Grande-Bretagne s’abstient et annonce qu’elle quittera la Palestine le 15 mai 1948."
+        },
+        {
+          "type": "p",
+          "texte": "Le vote a été obtenu de justesse : il fallait une majorité des deux tiers. Prévu pour le 26 novembre, il est repoussé de quelques jours, le temps pour les partisans du partage de convaincre plusieurs pays hésitants, comme les Philippines, Haïti ou le Liberia, qui finissent par voter pour. Les pays arabes dénoncent des pressions américaines."
+        },
+        {
+          "type": "p",
+          "texte": "Le rôle des États-Unis est décisif, mais l’administration américaine est divisée. Le département d’État et le secrétaire d’État George Marshall craignent de perdre l’amitié des pays arabes et l’accès à leur pétrole. Le président Truman, sensible au sort des survivants de la Shoah et au poids de l’électorat juif américain, penche pour le partage. Il reçoit plusieurs fois Chaim Weizmann, introduit à la Maison-Blanche par un vieil ami de Truman, son ancien associé dans une chemiserie du Missouri."
+        },
+        {
+          "type": "p",
+          "texte": "Dans les villes juives, on danse toute la nuit. Ben Gourion, lui, ne danse pas. Il dira plus tard qu’il regardait les danseurs en pensant qu’ils allaient tous à la guerre. Dès le lendemain matin, il a raison."
+        }
+      ]
+    },
+    {
+      "titre": "IV – La guerre civile",
+      "blocs": [
+        {
+          "type": "h",
+          "texte": "Les routes de la mort"
+        },
+        {
+          "type": "p",
+          "texte": "Le 30 novembre 1947, des Arabes attaquent deux autobus juifs près de la ville de Lod : sept passagers sont tués. Le Haut Comité arabe, dirigé depuis l’exil par le mufti, proclame une grève générale. Le 2 décembre, à Jérusalem, des émeutiers incendient le centre commercial juif. Puis les attentats et les représailles s’enchaînent. Le 30 décembre, à Haïfa, l’Irgoun jette une bombe dans une foule d’ouvriers arabes devant la raffinerie ; en riposte, des ouvriers arabes tuent 39 de leurs collègues juifs à l’intérieur. C’est une guerre civile entre deux communautés, sous les yeux d’une armée britannique qui ne pense plus qu’à partir."
+        },
+        {
+          "type": "p",
+          "texte": "Les combattants arabes sont des milices locales, rejointes à partir de janvier 1948 par l’[[Armée de libération arabe|fiche:ala]], formée de volontaires venus des pays voisins. Leur stratégie vise les routes. Les villes et les villages juifs sont dispersés au milieu de régions arabes ; pour les ravitailler, il faut des convois de camions blindés, qui tombent dans des embuscades. Le plus menacé est Jérusalem, où vivent environ 100 000 Juifs. La route qui la relie à Tel-Aviv traverse des collines tenues par les hommes d’[[Abdel Kader al-Husseini|evt:pan_machrek_kaderhusseini]], un cousin du mufti. En mars 1948, la ville juive est presque assiégée. L’eau et la nourriture sont rationnées."
+        },
+        {
+          "type": "p",
+          "texte": "Les attentats frappent les civils des deux côtés. Le 5 janvier 1948, la Haganah fait sauter l’hôtel Semiramis, dans un quartier arabe de Jérusalem, en le croyant utilisé par des combattants : plus de vingt personnes sont tuées, presque toutes des civils. Le 22 février, des camions piégés explosent rue Ben Yehouda, au cœur de la Jérusalem juive : plus de cinquante morts. Les auteurs sont des combattants arabes, aidés de déserteurs britanniques."
+        },
+        {
+          "type": "p",
+          "texte": "C’est le pire moment pour le Yichouv. À Washington, le gouvernement américain se demande s’il ne faudrait pas renoncer au partage et placer la Palestine sous la tutelle de l’ONU. Les dirigeants juifs comprennent qu’ils doivent passer à l’offensive avant le départ des Britanniques."
+        },
+        {
+          "type": "h",
+          "texte": "Le plan Daleth"
+        },
+        {
+          "type": "p",
+          "texte": "Le 10 mars 1948, la Haganah adopte le [[plan Daleth|fiche:plan-daleth]], le « plan D ». Son but est de prendre le contrôle du territoire attribué à l’État juif et des colonies juives situées au-delà, ainsi que des routes qui y mènent, en prévision de l’invasion arabe attendue. Il prévoit d’occuper les villages arabes de ces zones et, s’ils résistent, de les détruire et d’en expulser les habitants. Ce document est au cœur des débats entre historiens : simple plan militaire pour les uns, plan d’expulsion pour les autres."
+        },
+        {
+          "type": "p",
+          "texte": "En avril, la Haganah lance l’opération Nahshon pour ouvrir la route de Jérusalem. Le 8 avril, Abdel Kader al-Husseini est tué au combat au village d’Al-Qastal, sur une colline qui domine la route. Sa mort démoralise les combattants palestiniens. Le lendemain, un drame va bouleverser la guerre."
+        },
+        {
+          "type": "p",
+          "texte": "L’opération réussit pour un temps : plusieurs grands convois atteignent Jérusalem avec des vivres. Mais la route sera de nouveau coupée quelques semaines plus tard. Pendant ce temps, la Haganah s’empare de dizaines de villages arabes le long de la route ; la plupart sont détruits, et leurs habitants fuient ou sont chassés."
+        },
+        {
+          "type": "h",
+          "texte": "Deir Yassin"
+        },
+        {
+          "type": "p",
+          "texte": "Le 9 avril 1948, des combattants de l’Irgoun et du Lehi attaquent [[Deir Yassin|fiche:deir-yassin]], un village arabe à l’ouest de Jérusalem. Le village résiste. Quand les assaillants s’en rendent maîtres, une centaine d’habitants, dont des femmes, des enfants et des vieillards, sont tués, certains pendant les combats, d’autres après. Sur le moment, le chiffre de 254 morts est annoncé, par les assaillants comme par les dirigeants arabes ; les études ultérieures ont établi un bilan d’environ cent dix morts."
+        },
+        {
+          "type": "p",
+          "texte": "La Haganah et l’Agence juive condamnent le massacre. Mais la nouvelle, amplifiée par les radios arabes qui veulent susciter l’indignation, répand la terreur dans les villages palestiniens. Quatre jours plus tard, le 13 avril, un convoi juif qui monte vers l’hôpital Hadassah, sur le mont Scopus, est attaqué : 78 personnes, en majorité des médecins, des infirmières et des patients, sont tuées. La guerre ne fait plus de quartier."
+        },
+        {
+          "type": "h",
+          "texte": "L’effondrement"
+        },
+        {
+          "type": "p",
+          "texte": "En avril et mai, les forces juives s’emparent des villes mixtes. À Haïfa, le 21 et le 22 avril, la Haganah prend les quartiers arabes après de violents combats. Le maire juif de la ville appelle les Arabes à rester ; leurs dirigeants choisissent de partir et organisent l’évacuation. Sur environ 70 000 habitants arabes, il n’en reste que quelques milliers. Tibériade, Safed et Jaffa tombent à leur tour. À Jaffa, assiégée par l’Irgoun, la population arabe passe de plus de 60 000 habitants à environ 4 000."
+        },
+        {
+          "type": "p",
+          "texte": "La société palestinienne s’effondre. Les notables et les familles aisées partent les premiers, pour Beyrouth, Le Caire ou Amman, en pensant revenir après la guerre. Puis les classes populaires suivent, par peur, à cause des combats, des rumeurs de massacres, ou chassées par les forces juives. Quand le mandat prend fin, entre 250 000 et 300 000 Arabes palestiniens ont déjà quitté leurs foyers."
+        },
+        {
+          "type": "p",
+          "texte": "Les dirigeants arabes ont-ils appelé les Palestiniens à partir ? La question a longtemps divisé. Dans certains endroits, comme à Haïfa, des chefs locaux ont organisé l’évacuation ; ailleurs, le Haut Comité arabe a au contraire tenté de freiner les départs, qui affaiblissaient la résistance. Aucun appel général au départ, lancé par les radios arabes, n’a été retrouvé dans les archives ni dans les enregistrements des émissions de l’époque."
+        },
+        {
+          "type": "p",
+          "texte": "Le 13 mai, la veille de la proclamation, les colonies juives du Goush Etzion, au sud de Jérusalem, tombent sous les coups de la [[Légion arabe|fiche:legion-arabe]] de Transjordanie et de combattants locaux. À [[Kfar Etzion|fiche:kfar-etzion]], plus de cent vingt défenseurs sont tués, beaucoup après s’être rendus. La veille, les dirigeants juifs ont débattu : fallait-il proclamer l’État, au risque d’une invasion, ou accepter une trêve proposée par les Américains ? Par six voix contre quatre, ils ont choisi de proclamer. Golda Meir, déguisée en femme arabe, a rencontré secrètement le roi Abdallah de Transjordanie pour tenter d’éviter la guerre. En vain."
+        },
+        {
+          "type": "p",
+          "texte": "Restait à choisir un nom. On hésite entre Judée, Sion et Israël ; c’est Israël qui l’emporte. Le texte de la déclaration provoque aussi un débat : les religieux veulent mentionner Dieu, les socialistes laïques refusent. On trouve un compromis avec une expression biblique, le « Rocher d’Israël », que chacun peut comprendre à sa façon. Trente-sept membres du conseil signent le texte, certains plus tard, car ils sont bloqués à Jérusalem assiégée."
+        }
+      ]
+    },
+    {
+      "titre": "V – La guerre des États",
+      "blocs": [
+        {
+          "type": "h",
+          "texte": "L’invasion"
+        },
+        {
+          "type": "p",
+          "texte": "La [[déclaration d’indépendance|evt:hjc_63]] du 14 mai ne fixe pas de frontières. Elle promet « l’égalité complète des droits sociaux et politiques à tous ses citoyens, sans distinction de religion, de race ou de sexe », et appelle les Arabes du pays à « préserver la paix ». Onze minutes après minuit, heure de Palestine, les États-Unis du président Truman reconnaissent le nouvel État. L’Union soviétique le fait trois jours plus tard."
+        },
+        {
+          "type": "p",
+          "texte": "Le 15 mai, les armées de l’Égypte, de la Transjordanie, de la Syrie et de l’Irak, avec des contingents du Liban et d’autres pays, entrent en Palestine. La Ligue arabe déclare vouloir rétablir l’ordre et protéger les Arabes du pays. Mais ces États ont chacun leurs propres buts. Le roi Abdallah, surtout, veut agrandir son royaume en annexant la partie arabe de la Palestine, et se méfie autant du mufti que des Égyptiens. Les armées arabes n’ont pas de commandement commun."
+        },
+        {
+          "type": "encadre",
+          "titre": "David contre Goliath ?",
+          "texte": "La mémoire israélienne a longtemps présenté la guerre comme le combat d’un petit peuple contre des millions d’Arabes. Sur la carte et sur le papier, c’est vrai : six cent mille Juifs face à plusieurs États arabes.\n\nSur le terrain, les historiens ont nuancé ce tableau. En mai 1948, les forces engagées des deux côtés sont à peu près équivalentes, autour de 30 000 hommes chacune. Ensuite, le Yichouv mobilise beaucoup plus vite : à la fin de l’année, l’armée israélienne compte près de 100 000 soldats, plus que toutes les armées arabes engagées en Palestine. Les Arabes ont l’avantage des blindés et de l’artillerie au début ; Israël celui de l’organisation, d’un commandement unique et d’une détermination nourrie par la Shoah : ses combattants savent qu’ils n’ont nulle part où aller.\n\nLes premières semaines restent toutefois très dangereuses pour le nouvel État, et l’issue n’était pas jouée d’avance."
+        },
+        {
+          "type": "p",
+          "texte": "Les premières semaines sont terribles. Au sud, l’armée égyptienne remonte la côte jusqu’à une trentaine de kilomètres de Tel-Aviv. Au nord, les Syriens attaquent les kibboutz du Jourdain. À Jérusalem, la Légion arabe s’empare de la vieille ville : le 28 mai, le quartier juif capitule et ses habitants sont évacués. Les forces juives tentent à plusieurs reprises de prendre la forteresse de Latrun, qui commande la route de Jérusalem. Elles échouent avec de lourdes pertes, notamment parmi de jeunes immigrants à peine débarqués. Pour ravitailler la ville, les Israéliens tracent à travers les collines une piste de contournement, la « route de Birmanie »."
+        },
+        {
+          "type": "p",
+          "texte": "Plusieurs batailles deviennent des symboles. Le 20 mai, au bord du lac de Tibériade, les habitants du kibboutz Degania arrêtent les chars syriens avec des cocktails Molotov et quelques canons. Au sud, les kibboutz de Yad Mordechaï et de Negba résistent pendant des jours à l’armée égyptienne, qui s’arrête finalement près d’Isdoud, l’actuelle Ashdod. Les Irakiens, eux, s’installent dans le nord de la Samarie, autour de Jénine."
+        },
+        {
+          "type": "h",
+          "texte": "Les trêves"
+        },
+        {
+          "type": "p",
+          "texte": "Le 26 mai, Ben Gourion crée l’armée israélienne, Tsahal, qui réunit la Haganah et, bientôt, les groupes armés de droite. Le 11 juin, une première trêve de quatre semaines est imposée par l’ONU. Israël en profite pour se réarmer, notamment avec des armes achetées en Tchécoslovaquie avec l’accord de Staline. Pendant cette trêve, un bateau de l’Irgoun, l’*Altalena*, arrive chargé d’armes. Ben Gourion refuse qu’une organisation garde ses propres armes et fait tirer sur le navire, devant Tel-Aviv. Seize membres de l’Irgoun et trois soldats sont tués. L’État n’aura qu’une seule armée."
+        },
+        {
+          "type": "p",
+          "texte": "Les combats reprennent en juillet pendant dix jours. Les Israéliens prennent les villes arabes de [[Lydda et Ramle|fiche:lydda]], sur la route de Jérusalem. Après une révolte et des combats qui font plusieurs centaines de morts parmi les habitants, environ 50 000 à 70 000 Arabes sont expulsés et doivent marcher vers les lignes de la Légion arabe, en plein été. Beaucoup meurent en route. L’ordre d’expulsion est signé par un jeune officier, Yitzhak Rabin, futur Premier ministre."
+        },
+        {
+          "type": "p",
+          "texte": "Pendant la seconde trêve, le médiateur de l’ONU, le comte suédois [[Folke Bernadotte|evt:pan_scandinavie_bernadotte2]], propose un nouveau plan, qui donnerait le Néguev aux Arabes. Le 17 septembre 1948, il est assassiné à Jérusalem par des membres du Lehi. Le gouvernement israélien dissout le groupe, mais les assassins ne seront jamais jugés."
+        },
+        {
+          "type": "h",
+          "texte": "Les armistices"
+        },
+        {
+          "type": "p",
+          "texte": "À l’automne, Israël passe à l’offensive. En octobre, l’armée prend Beer-Sheva, dans le Néguev, et la Haute-Galilée. Ces opérations s’accompagnent de nouvelles expulsions et de plusieurs massacres de civils arabes, dans des villages de Galilée. Une brigade égyptienne reste encerclée pendant des mois à Faloudja ; parmi ses officiers se trouve un jeune major, Gamal Abdel Nasser. En mars 1949, des soldats israéliens atteignent le golfe d’Aqaba et hissent un drapeau dessiné à l’encre, à l’emplacement de la future Eilat."
+        },
+        {
+          "type": "p",
+          "texte": "Tout le monde ne part pas. Nazareth, la ville de l’enfance de Jésus, se rend en juillet 1948 ; Ben Gourion ordonne de ne pas toucher à ses habitants, en partie pour ne pas heurter les chrétiens du monde entier. Elle reste aujourd’hui la plus grande ville arabe d’Israël. Dans plusieurs villages de Galilée, les habitants, souvent chrétiens ou druzes, restent également."
+        },
+        {
+          "type": "p",
+          "texte": "Sous l’égide du médiateur de l’ONU, l’Américain Ralph Bunche, Israël signe des [[conventions d’armistice|evt:isr23]] avec l’Égypte en février 1949, puis avec le Liban, la Transjordanie et la Syrie. Les lignes de cessez-le-feu, tracées au crayon vert sur les cartes, deviennent la [[Ligne verte|fiche:ligne-verte]]. Israël contrôle désormais 78 % de la Palestine mandataire. La Cisjordanie et la partie est de Jérusalem, avec la vieille ville, restent aux mains de la Transjordanie, qui les annexe en 1950. La bande de Gaza passe sous administration égyptienne. L’État arabe prévu par le plan de partage n’a pas vu le jour."
+        },
+        {
+          "type": "p",
+          "texte": "Les négociations ont lieu dans un hôtel de l’île grecque de Rhodes. Bunche y fait preuve d’une patience légendaire : il passe des nuits entières à faire la navette entre les délégations, qui refusent souvent de se parler directement. Ce travail lui vaut en 1950 le [[prix Nobel de la paix|evt:nobpa_07]], le premier décerné à un Afro-Américain."
+        },
+        {
+          "type": "figure",
+          "src": "assets/recits/israel-1948/armistice.svg",
+          "legende": "Les lignes d’armistice de 1949 et quelques lieux de la guerre de 1947-1949.",
+          "credit": "Carte HistoriAxe"
+        },
+        {
+          "type": "p",
+          "texte": "La guerre a coûté la vie à environ 6 000 Israéliens, près de 1 % de la population juive du pays, soldats et civils. Du côté arabe, il n’existe pas de bilan précis : plusieurs milliers de soldats des armées arabes et, selon les estimations, une dizaine de milliers de Palestiniens ou davantage."
+        }
+      ]
+    },
+    {
+      "titre": "Épilogue – Deux mémoires",
+      "blocs": [
+        {
+          "type": "h",
+          "texte": "Les réfugiés"
+        },
+        {
+          "type": "p",
+          "texte": "À la fin de la guerre, entre 700 000 et 750 000 Arabes palestiniens, plus de la moitié de la population arabe du pays, sont devenus des réfugiés. Ils vivent dans des camps en Cisjordanie, à Gaza, au Liban, en Syrie et en Jordanie. Plus de quatre cents villages arabes ont été vidés de leurs habitants, puis le plus souvent détruits ou repeuplés par des immigrants juifs. En décembre 1948, la résolution 194 de l’ONU affirme que les réfugiés qui le souhaitent devraient pouvoir rentrer chez eux et vivre en paix avec leurs voisins. Israël refuse leur retour, qu’il juge dangereux pour sa sécurité et pour son caractère juif. En 1949 est créée l’[[UNRWA|fiche:unrwa]], l’agence de l’ONU chargée de les secourir."
+        },
+        {
+          "type": "p",
+          "texte": "Environ 160 000 Arabes sont restés dans les frontières d’Israël. Ils deviennent citoyens israéliens, votent et sont élus au parlement, mais vivent jusqu’en 1966 sous un régime d’administration militaire qui limite leurs déplacements. Dès l’été 1948, un intellectuel syrien, Constantin Zureiq, publie un livre intitulé *Le sens de la catastrophe* : le mot de Nakba désigne d’abord la défaite des États arabes, puis l’exil des Palestiniens."
+        },
+        {
+          "type": "h",
+          "texte": "Les immigrants"
+        },
+        {
+          "type": "p",
+          "texte": "Pour Israël, l’urgence est d’accueillir. En janvier 1949, les premières élections désignent un parlement, la Knesset ; Chaim Weizmann devient le premier président de l’État. En mai 1949, Israël est admis à l’ONU. En 1950, la [[loi du retour|evt:isr24]] accorde à tout Juif le droit d’immigrer en Israël et d’en devenir citoyen. Entre 1948 et 1951, près de 700 000 immigrants arrivent : des survivants de la Shoah, et des Juifs des pays arabes et musulmans, d’Irak, du Yémen, puis du Maroc, poussés au départ par les persécutions qui suivent la guerre. La population juive double en trois ans. Beaucoup vivent d’abord dans des camps de tentes et de baraques."
+        },
+        {
+          "type": "p",
+          "texte": "Les communautés juives du monde arabe, souvent présentes depuis plus de deux mille ans, sont prises dans la tourmente. En Irak, après des années de discriminations, une loi de 1950 permet aux Juifs de partir à condition de renoncer à leur nationalité ; plus de 120 000 sont transportés par avion en Israël en deux ans, et leurs biens sont confisqués. Au Yémen, près de 50 000 Juifs sont évacués par un pont aérien, l’opération [[Tapis volant|evt:isr25]]. En une vingtaine d’années, la plupart des Juifs des pays arabes et musulmans quittent leur pays, vers Israël, la France ou l’Amérique."
+        },
+        {
+          "type": "p",
+          "texte": "Jérusalem, elle, reste coupée en deux pendant dix-neuf ans. La partie ouest est israélienne, la vieille ville et la partie est jordaniennes. Entre les deux, des barbelés, des murs et un seul point de passage, la porte Mandelbaum, réservée aux diplomates et aux pèlerins. Les Juifs n’ont plus accès au mur des Lamentations. En 1949, la dépouille de Herzl est transférée de Vienne à Jérusalem et inhumée sur une colline qui porte désormais son nom."
+        },
+        {
+          "type": "p",
+          "texte": "L’ONU voulait toujours faire de Jérusalem une ville internationale. Israël passe outre : en décembre 1949, Ben Gourion déclare que Jérusalem est la capitale du pays, et la Knesset s’y installe. La plupart des pays du monde refuseront longtemps de reconnaître ce choix et garderont leur ambassade à Tel-Aviv."
+        },
+        {
+          "type": "p",
+          "texte": "Le conflit, lui, n’est pas réglé. Aucun pays arabe ne reconnaît Israël. Le 20 juillet 1951, le [[roi Abdallah est assassiné|evt:jo10]] à Jérusalem par un Palestinien, qui lui reproche ses contacts avec les Israéliens. Les armistices de 1949 devaient conduire à la paix ; ils ouvrent en réalité une longue série de guerres."
+        },
+        {
+          "type": "h",
+          "texte": "La bataille des historiens"
+        },
+        {
+          "type": "p",
+          "texte": "Pendant des décennies, deux récits se sont opposés. Selon le récit israélien officiel, les Arabes ont rejeté le partage, attaqué le nouvel État, et les réfugiés sont partis d’eux-mêmes, souvent à l’appel de leurs propres dirigeants, en attendant la victoire des armées arabes. Selon le récit palestinien, les Palestiniens ont été chassés de leur terre en application d’un plan sioniste d’expulsion préparé de longue date."
+        },
+        {
+          "type": "encadre",
+          "titre": "Les « nouveaux historiens »",
+          "texte": "À la fin des années 1980, l’ouverture des archives israéliennes, trente ans après les faits, change le débat. De jeunes historiens israéliens, appelés les « nouveaux historiens », les étudient. Le plus connu, Benny Morris, publie en 1988 une étude sur la naissance du problème des réfugiés palestiniens.\n\nSa conclusion surprend les deux camps. Il ne trouve ni appels généraux des dirigeants arabes à partir, ni plan d’expulsion décidé à l’avance. Les départs ont des causes multiples : la peur, les combats, l’effondrement de la société palestinienne, mais aussi, dans de nombreux endroits, des expulsions décidées par les commandants israéliens, et parfois des évacuations ordonnées par des chefs arabes. Le problème, écrit-il, est « né de la guerre, et non d’un plan, juif ou arabe ».\n\nD’autres historiens, comme Ilan Pappé, vont plus loin et parlent de « nettoyage ethnique » planifié. D’autres, à l’inverse, défendent la thèse d’une fuite largement spontanée. Le débat reste vif, mais les faits établis par les archives, de Deir Yassin à Lydda, ne sont plus guère contestés."
+        },
+        {
+          "type": "p",
+          "texte": "Aujourd’hui encore, chaque année, deux commémorations se suivent presque. Les Israéliens fêtent leur indépendance le 5 du mois hébraïque d’Iyar, date du 14 mai 1948 dans le calendrier juif. Les Palestiniens commémorent la Nakba le 15 mai, le jour où la guerre est devenue une guerre entre États."
+        },
+        {
+          "type": "p",
+          "texte": "En 1897, Herzl avait écrit que dans cinquante ans, chacun reconnaîtrait l’État juif. Il ne s’était trompé que de quelques mois. Mais il n’avait pas imaginé, ou pas voulu voir, qu’un autre peuple vivait sur cette terre. C’est tout le drame de 1948 : la réalisation d’un rêve pour les uns a été vécue comme une catastrophe par les autres, et les deux mémoires, aussi légitimes l’une que l’autre aux yeux de ceux qui les portent, continuent de s’affronter."
+        }
+      ]
+    }
+  ],
+  "fiches": {
+    "musee": {
+      "titre": "Le musée de Tel-Aviv",
+      "texte": "La maison de Meïr Dizengoff, premier maire de Tel-Aviv, construite en 1910 sur le boulevard Rothschild. Dizengoff la lègue à la ville après la mort de sa femme pour en faire un musée d’art, inauguré en 1932. C’est dans sa grande salle que l’indépendance est proclamée le 14 mai 1948. Le bâtiment, appelé aujourd’hui « salle de l’Indépendance », est devenu un musée consacré à cette journée."
+    },
+    "nakba": {
+      "titre": "La Nakba",
+      "texte": "Un mot arabe qui signifie « catastrophe ». Il est employé dès 1948 par l’intellectuel syrien Constantin Zureiq pour désigner la défaite des Arabes en Palestine. Il désigne aujourd’hui l’exode de 700 000 à 750 000 Palestiniens pendant la guerre de 1947-1949 et la perte de leurs terres. Les Palestiniens la commémorent chaque année le 15 mai."
+    },
+    "kibboutz": {
+      "titre": "Le kibboutz",
+      "texte": "Un village collectif fondé par des pionniers juifs, le plus souvent socialistes. Les terres, les outils et longtemps même les vêtements appartiennent à tous ; les repas sont pris en commun, et les enfants sont élevés ensemble. Le premier, Degania, est fondé en 1910 au bord du lac de Tibériade. Les kibboutz jouent un grand rôle dans la colonisation agricole et la défense du Yichouv."
+    },
+    "yichouv": {
+      "titre": "Le Yichouv",
+      "texte": "Un mot hébreu qui signifie « peuplement ». Il désigne la communauté juive de Palestine avant la création de l’État d’Israël. On distingue le « vieux Yichouv », les Juifs pieux installés depuis longtemps dans les villes saintes, et le « nouveau Yichouv », formé par les immigrants sionistes arrivés à partir de 1881."
+    },
+    "agence-juive": {
+      "titre": "L’Agence juive",
+      "texte": "L’organisme prévu par le mandat britannique pour représenter les Juifs auprès de l’administration et coopérer à la création du foyer national. Elle organise l’immigration, achète des terres, gère les écoles et les colonies. Dirigée à partir de 1935 par David Ben Gourion, elle fonctionne comme un véritable gouvernement en attente de l’État."
+    },
+    "aliyah-bet": {
+      "titre": "L’Aliyah Bet",
+      "texte": "L’immigration juive clandestine en Palestine, organisée malgré les restrictions britanniques, surtout entre 1939 et 1948. Après la guerre, plus de soixante navires partent des ports d’Italie, de France ou de Roumanie avec environ 70 000 réfugiés. La plupart sont interceptés ; plus de 50 000 passagers sont internés dans des camps britanniques à Chypre, où certains restent jusqu’en 1949."
+    },
+    "irgoun": {
+      "titre": "L’Irgoun",
+      "texte": "L’Organisation militaire nationale, un groupe armé juif clandestin issu de la droite sioniste, proche de Zeev Jabotinsky. Fondée dans les années 1930, elle répond par des attentats aux violences arabes, puis combat les Britanniques à partir de 1944 sous la direction de Menahem Begin. Elle est responsable de l’attentat de l’hôtel King David et de l’attaque de Deir Yassin. Ses membres rejoignent l’armée israélienne en 1948."
+    },
+    "lehi": {
+      "titre": "Le Lehi",
+      "texte": "Les « Combattants pour la liberté d’Israël », un petit groupe armé juif né en 1940 d’une scission de l’Irgoun, autour d’Avraham Stern. Les Britanniques l’appellent le « groupe Stern ». Il assassine le ministre britannique lord Moyne au Caire en 1944, et le médiateur de l’ONU Folke Bernadotte en 1948. Parmi ses chefs figure Yitzhak Shamir, futur Premier ministre."
+    },
+    "unscop": {
+      "titre": "L’UNSCOP",
+      "texte": "La Commission spéciale des Nations unies sur la Palestine, créée en mai 1947. Elle réunit des représentants de onze pays : Australie, Canada, Guatemala, Inde, Iran, Pays-Bas, Pérou, Suède, Tchécoslovaquie, Uruguay et Yougoslavie. Après un séjour en Palestine pendant l’été 1947, elle remet son rapport fin août : sept pays proposent le partage, trois un État fédéral, et l’Australie s’abstient."
+    },
+    "ala": {
+      "titre": "L’Armée de libération arabe",
+      "texte": "Une force de volontaires venus de Syrie, d’Irak, du Liban et d’autres pays arabes, organisée par la Ligue arabe et commandée par Fawzi al-Qawuqji, un officier qui avait combattu pendant la révolte de 1936. Elle entre en Palestine à partir de janvier 1948 et compte quelques milliers d’hommes. Mal équipée et en rivalité avec les milices du mufti, elle combat surtout en Galilée et dans le centre du pays."
+    },
+    "plan-daleth": {
+      "titre": "Le plan Daleth",
+      "texte": "Le quatrième plan de la Haganah (daleth est la quatrième lettre de l’alphabet hébreu), adopté le 10 mars 1948. Il fixe les objectifs militaires avant l’invasion attendue des armées arabes : contrôler le territoire de l’État juif, les colonies isolées et les routes. Il autorise la destruction des villages arabes qui résistent et l’expulsion de leurs habitants. Son interprétation reste l’un des grands débats de l’histoire de 1948."
+    },
+    "deir-yassin": {
+      "titre": "Deir Yassin",
+      "texte": "Un village arabe d’environ six cents habitants, à l’ouest de Jérusalem, qui avait conclu un accord de non-agression avec les quartiers juifs voisins. Il est attaqué le 9 avril 1948 par l’Irgoun et le Lehi. Une étude palestinienne de l’université de Birzeit, publiée en 1987, a dénombré 107 morts parmi les villageois. Le massacre, condamné par les dirigeants juifs, a accéléré la fuite de nombreux Palestiniens."
+    },
+    "legion-arabe": {
+      "titre": "La Légion arabe",
+      "texte": "L’armée de la Transjordanie, la mieux entraînée des armées arabes de 1948. Elle est financée par la Grande-Bretagne et commandée par un officier britannique, John Bagot Glubb, que les Arabes appellent Glubb Pacha. Forte d’environ 6 000 à 10 000 hommes, elle s’empare de la vieille ville de Jérusalem et tient Latrun pendant toute la guerre."
+    },
+    "kfar-etzion": {
+      "titre": "Kfar Etzion",
+      "texte": "Un kibboutz religieux situé entre Jérusalem et Hébron, au centre d’un groupe de quatre colonies juives, le Goush Etzion. Isolé en territoire arabe, il est assiégé pendant des mois. Il tombe le 13 mai 1948 ; la plupart de ses défenseurs sont tués, beaucoup après leur reddition. Les survivants des colonies voisines sont emmenés en captivité en Transjordanie."
+    },
+    "lydda": {
+      "titre": "Lydda et Ramle",
+      "texte": "Deux villes arabes voisines de la plaine côtière, sur la route de Tel-Aviv à Jérusalem, attribuées à l’État arabe par le plan de partage. Elles sont prises par l’armée israélienne les 11 et 12 juillet 1948. La quasi-totalité de leurs habitants et des réfugiés qui s’y trouvaient, entre 50 000 et 70 000 personnes, sont alors expulsés. Lydda est aujourd’hui la ville israélienne de Lod."
+    },
+    "ligne-verte": {
+      "titre": "La Ligne verte",
+      "texte": "Les lignes de cessez-le-feu fixées par les conventions d’armistice de 1949 entre Israël et ses voisins, ainsi appelées parce qu’elles avaient été tracées au crayon vert sur les cartes. Elles ne sont pas des frontières internationales, mais elles servent de limites de fait jusqu’à la guerre des Six Jours en 1967. Elles restent aujourd’hui une référence dans les négociations."
+    },
+    "unrwa": {
+      "titre": "L’UNRWA",
+      "texte": "L’Office de secours et de travaux des Nations unies pour les réfugiés de Palestine, créé en décembre 1949 et en activité depuis mai 1950. Il gère des écoles, des centres de santé et une aide sociale pour les réfugiés palestiniens et leurs descendants, au Liban, en Syrie, en Jordanie, en Cisjordanie et à Gaza. Il devait être provisoire ; il existe toujours."
+    }
+  },
+  "sources": [
+    "Henry Laurens, La Question de Palestine, tome 2 (1922-1947) et tome 3 (1947-1967), Fayard, 2002 et 2007.",
+    "Benny Morris, 1948. A History of the First Arab-Israeli War, Yale University Press, 2008.",
+    "Tom Segev, C’était la Palestine au temps des Anglais, Liana Levi, 2000.",
+    "Alain Gresh et Dominique Vidal, Les 100 clés du Proche-Orient, Fayard, 2011.",
+    "Déclaration d’indépendance de l’État d’Israël (14 mai 1948) et résolution 181 de l’Assemblée générale des Nations unies (29 novembre 1947), textes en ligne sur les sites de la Knesset et de l’ONU."
+  ]
+}

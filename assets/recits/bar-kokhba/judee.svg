@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 844" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Carte : la Judée et la Galilée au IIe siècle">
+<rect width="640" height="844" fill="#D9E6EC"/>
+<path d="M51.2 673.8 L51.9 672.9 L85.3 628.7 L85.5 628.5 L85.8 628.4 L86.5 628.1 L87.1 627.7 L87.8 627.2 L88.3 626.7 L88.9 626.1 L89.4 625.4 L89.8 624.7 L161.5 489.4 L161.8 488.6 L162.2 487.7 L312.8 0.0 L640.0 0.0 L640.0 843.9 L0.0 843.9 L0.0 725.2 L51.2 673.8Z" fill="#F2EADB" stroke="#B9AD98" stroke-width="0.8"/>
+<path d="M225.9 510.8 L338.8 488.6 L414.1 510.8 L440.5 644.0 L425.4 755.1 L282.4 755.1 L207.1 644.0Z" fill="#9DB7DA" fill-opacity="0.45" stroke="#2F5D9A"/>
+<path d="M496.9 128.8 L493.2 177.7 L500.7 244.3 L489.4 310.9 L496.9 377.5 L481.9 444.2 L489.4 488.6 L485.6 546.3" fill="none" stroke="#B7CFDB" stroke-width="3"/>
+<path d="M489.4 48.9 L515.8 53.3 L527.1 88.8 L515.8 128.8 L496.9 133.3 L478.1 88.8Z" fill="#B7CFDB" fill-opacity="1" stroke="none"/>
+<path d="M459.3 546.3 L493.2 555.2 L504.5 666.3 L493.2 755.1 L470.6 835.0 L440.5 843.9 L429.2 777.3 L431.1 688.5 L448.0 599.6Z" fill="#B7CFDB" fill-opacity="1" stroke="none"/>
+<text x="470.6" y="701.8" font-size="13" fill="#3F6475" text-anchor="middle" font-weight="normal" font-style="italic">mer</text>
+<text x="470.6" y="716.8" font-size="13" fill="#3F6475" text-anchor="middle" font-weight="normal" font-style="italic">Morte</text>
+<text x="514.2" y="390.9" font-size="13" fill="#3F6475" text-anchor="start" font-weight="normal" font-style="italic" stroke="#F2EADB" stroke-width="4" paint-order="stroke" stroke-linejoin="round">Jourdain</text>
+<circle cx="368.9" cy="541.9" r="7" fill="#8E2A2A" stroke="#fff" stroke-width="1.5"/>
+<text x="378.9" y="533.9" font-size="15" fill="#2B2420" text-anchor="start" font-weight="bold" font-style="normal" stroke="#F2EADB" stroke-width="4" paint-order="stroke" stroke-linejoin="round">Jérusalem</text>
+<text x="378.9" y="549.9" font-size="12" fill="#6B5F55" text-anchor="start" font-weight="normal" font-style="italic" stroke="#F2EADB" stroke-width="4" paint-order="stroke" stroke-linejoin="round">Aelia Capitolina</text>
+<circle cx="333.6" cy="564.1" r="7" fill="#2F5D9A" stroke="#fff" stroke-width="1.5"/>
+<text x="323.6" y="568.1" font-size="15" fill="#2B2420" text-anchor="end" font-weight="bold" font-style="normal" stroke="#F2EADB" stroke-width="4" paint-order="stroke" stroke-linejoin="round">Betar</text>
+<text x="323.6" y="584.1" font-size="12" fill="#6B5F55" text-anchor="end" font-weight="normal" font-style="italic" stroke="#F2EADB" stroke-width="4" paint-order="stroke" stroke-linejoin="round">dernier bastion, 135</text>
+<circle cx="372.7" cy="592.5" r="5" fill="#2F5D9A" stroke="#fff" stroke-width="1.5"/>
+<text x="362.7" y="600.5" font-size="15" fill="#2B2420" text-anchor="end" font-weight="bold" font-style="normal" stroke="#F2EADB" stroke-width="4" paint-order="stroke" stroke-linejoin="round">Hérodion</text>
+<circle cx="410.4" cy="608.5" r="5" fill="#2F5D9A" stroke="#fff" stroke-width="1.5"/>
+<text x="420.4" y="606.5" font-size="15" fill="#2B2420" text-anchor="start" font-weight="bold" font-style="normal" stroke="#F2EADB" stroke-width="4" paint-order="stroke" stroke-linejoin="round">Wadi Murabba’at</text>
+<circle cx="427.3" cy="684.0" r="5" fill="#2F5D9A" stroke="#fff" stroke-width="1.5"/>
+<text x="437.3" y="686.0" font-size="15" fill="#2B2420" text-anchor="start" font-weight="bold" font-style="normal" stroke="#F2EADB" stroke-width="4" paint-order="stroke" stroke-linejoin="round">Ein Gedi</text>
+<circle cx="417.9" cy="710.7" r="6" fill="#2F5D9A" stroke="#fff" stroke-width="1.5"/>
+<text x="407.9" y="716.7" font-size="15" fill="#2B2420" text-anchor="end" font-weight="bold" font-style="normal" stroke="#F2EADB" stroke-width="4" paint-order="stroke" stroke-linejoin="round">Nahal Hever</text>
+<text x="407.9" y="732.7" font-size="12" fill="#6B5F55" text-anchor="end" font-weight="normal" font-style="italic" stroke="#F2EADB" stroke-width="4" paint-order="stroke" stroke-linejoin="round">grotte des Lettres</text>
+<circle cx="415.6" cy="748.0" r="5" fill="#6B5F55" stroke="#fff" stroke-width="1.5"/>
+<text x="405.6" y="754.0" font-size="15" fill="#2B2420" text-anchor="end" font-weight="bold" font-style="normal" stroke="#F2EADB" stroke-width="4" paint-order="stroke" stroke-linejoin="round">Massada</text>
+<text x="405.6" y="770.0" font-size="12" fill="#6B5F55" text-anchor="end" font-weight="normal" font-style="italic" stroke="#F2EADB" stroke-width="4" paint-order="stroke" stroke-linejoin="round">73 ou 74</text>
+<circle cx="240.9" cy="222.1" r="6" fill="#8E2A2A" stroke="#fff" stroke-width="1.5"/>
+<text x="230.9" y="226.1" font-size="15" fill="#2B2420" text-anchor="end" font-weight="bold" font-style="normal" stroke="#F2EADB" stroke-width="4" paint-order="stroke" stroke-linejoin="round">Césarée</text>
+<text x="230.9" y="242.1" font-size="12" fill="#6B5F55" text-anchor="end" font-weight="normal" font-style="italic" stroke="#F2EADB" stroke-width="4" paint-order="stroke" stroke-linejoin="round">capitale romaine</text>
+<circle cx="184.5" cy="497.5" r="5" fill="#2B2420" stroke="#fff" stroke-width="1.5"/>
+<text x="174.5" y="501.5" font-size="15" fill="#2B2420" text-anchor="end" font-weight="bold" font-style="normal" stroke="#F2EADB" stroke-width="4" paint-order="stroke" stroke-linejoin="round">Yavné</text>
+<circle cx="240.9" cy="466.4" r="5" fill="#2B2420" stroke="#fff" stroke-width="1.5"/>
+<text x="250.9" y="470.4" font-size="15" fill="#2B2420" text-anchor="start" font-weight="bold" font-style="normal" stroke="#F2EADB" stroke-width="4" paint-order="stroke" stroke-linejoin="round">Lod</text>
+<circle cx="218.4" cy="408.6" r="5" fill="#2B2420" stroke="#fff" stroke-width="1.5"/>
+<text x="208.4" y="404.6" font-size="15" fill="#2B2420" text-anchor="end" font-weight="bold" font-style="normal" stroke="#F2EADB" stroke-width="4" paint-order="stroke" stroke-linejoin="round">Bnei Brak</text>
+<text x="208.4" y="420.6" font-size="12" fill="#6B5F55" text-anchor="end" font-weight="normal" font-style="italic" stroke="#F2EADB" stroke-width="4" paint-order="stroke" stroke-linejoin="round">école de Rabbi Akiva</text>
+<circle cx="350.1" cy="186.6" r="5" fill="#8E2A2A" stroke="#fff" stroke-width="1.5"/>
+<text x="340.1" y="190.6" font-size="15" fill="#2B2420" text-anchor="end" font-weight="bold" font-style="normal" stroke="#F2EADB" stroke-width="4" paint-order="stroke" stroke-linejoin="round">Legio</text>
+<text x="340.1" y="206.6" font-size="12" fill="#6B5F55" text-anchor="end" font-weight="normal" font-style="italic" stroke="#F2EADB" stroke-width="4" paint-order="stroke" stroke-linejoin="round">camp de la VIe légion</text>
+<circle cx="470.6" cy="257.6" r="5" fill="#8E2A2A" stroke="#fff" stroke-width="1.5"/>
+<text x="480.6" y="261.6" font-size="15" fill="#2B2420" text-anchor="start" font-weight="bold" font-style="normal" stroke="#F2EADB" stroke-width="4" paint-order="stroke" stroke-linejoin="round">Tel Shalem</text>
+<text x="480.6" y="277.6" font-size="12" fill="#6B5F55" text-anchor="start" font-weight="normal" font-style="italic" stroke="#F2EADB" stroke-width="4" paint-order="stroke" stroke-linejoin="round">statue d’Hadrien</text>
+<circle cx="323.8" cy="93.3" r="5" fill="#2B2420" stroke="#fff" stroke-width="1.5"/>
+<text x="313.8" y="97.3" font-size="15" fill="#2B2420" text-anchor="end" font-weight="bold" font-style="normal" stroke="#F2EADB" stroke-width="4" paint-order="stroke" stroke-linejoin="round">Usha</text>
+<circle cx="387.8" cy="111.0" r="5" fill="#2B2420" stroke="#fff" stroke-width="1.5"/>
+<text x="387.8" y="135.0" font-size="15" fill="#2B2420" text-anchor="middle" font-weight="bold" font-style="normal" stroke="#F2EADB" stroke-width="4" paint-order="stroke" stroke-linejoin="round">Tsippori</text>
+<text x="387.8" y="151.0" font-size="12" fill="#6B5F55" text-anchor="middle" font-weight="normal" font-style="italic" stroke="#F2EADB" stroke-width="4" paint-order="stroke" stroke-linejoin="round">la Mishna, vers 200</text>
+<circle cx="483.8" cy="93.3" r="5" fill="#2B2420" stroke="#fff" stroke-width="1.5"/>
+<text x="473.8" y="83.3" font-size="15" fill="#2B2420" text-anchor="end" font-weight="bold" font-style="normal" stroke="#F2EADB" stroke-width="4" paint-order="stroke" stroke-linejoin="round">Tibériade</text>
+<text x="414.1" y="22.2" font-size="16" fill="#6B5F55" text-anchor="middle" font-weight="bold" font-style="normal" stroke="#F2EADB" stroke-width="4" paint-order="stroke" stroke-linejoin="round">GALILÉE</text>
+<text x="320.0" y="333.1" font-size="16" fill="#6B5F55" text-anchor="middle" font-weight="bold" font-style="normal" stroke="#F2EADB" stroke-width="4" paint-order="stroke" stroke-linejoin="round">SAMARIE</text>
+<text x="301.2" y="701.8" font-size="16" fill="#2F5D9A" text-anchor="middle" font-weight="bold" font-style="normal" stroke="#F2EADB" stroke-width="4" paint-order="stroke" stroke-linejoin="round">JUDÉE</text>
+<text x="75.3" y="310.9" font-size="15" fill="#4F7385" text-anchor="middle" font-weight="normal" font-style="italic">Méditerranée</text>
+<rect x="14" y="751.9198875424796" width="248" height="80" rx="6" fill="#FBF7EF" stroke="#B9AD98"/>
+<rect x="26" y="763.9198875424796" width="26" height="14" fill="#9DB7DA" fill-opacity="0.45" stroke="#2F5D9A"/>
+<text x="62.0" y="775.9" font-size="14" fill="#2B2420" text-anchor="start" font-weight="normal" font-style="normal">cœur de la révolte</text>
+<circle cx="39.0" cy="795.9" r="6" fill="#8E2A2A" stroke="#fff" stroke-width="1.5"/>
+<text x="62.0" y="800.9" font-size="14" fill="#2B2420" text-anchor="start" font-weight="normal" font-style="normal">lieux romains</text>
+<circle cx="39.0" cy="817.9" r="5" fill="#2B2420" stroke="#fff" stroke-width="1.5"/>
+<text x="62.0" y="822.9" font-size="14" fill="#2B2420" text-anchor="start" font-weight="normal" font-style="normal">centres rabbiniques</text>
+</svg>

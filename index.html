@@ -214,11 +214,40 @@
             </a>
         </section>
 
-            <!-- TODO (tâche #4) : les 3 récits (Dreyfus, Bar Kokhba, État d'Israël), avec l'encadré de
-                 renvoi vers HistoriAxe en dessous (tâche #5). -->
-            <!-- TODO (tâche #4) : la roue des fêtes, restreinte au seul calendrier juif. -->
+<section class="tools-group" data-tools-group="recits" aria-labelledby="tools-group-recits">
+            <h3 class="modes-group-title modes-group-static" id="tools-group-recits">Récits</h3>
+            <div class="arcade-menu">
+            <button type="button" class="arcade-card" onclick="openRecit('affaire-dreyfus', 'screen-main')">
+                <span class="arcade-card-icon" aria-hidden="true">📜</span>
+                <span class="arcade-card-text">
+                    <strong>L'affaire Dreyfus</strong>
+                    <small>Douze ans pour la vérité (1894-1906).</small>
+                </span>
+            </button>
+            <button type="button" class="arcade-card" onclick="openRecit('israel-1948', 'screen-main')">
+                <span class="arcade-card-icon" aria-hidden="true">🇮🇱</span>
+                <span class="arcade-card-text">
+                    <strong>La création de l'État d'Israël</strong>
+                    <small>Deux peuples, une terre, une guerre (1881-1949).</small>
+                </span>
+            </button>
+            <button type="button" class="arcade-card" onclick="openRecit('bar-kokhba', 'screen-main')">
+                <span class="arcade-card-icon" aria-hidden="true">🏺</span>
+                <span class="arcade-card-text">
+                    <strong>La révolte de Bar Kokhba</strong>
+                    <small>La dernière guerre des Juifs contre Rome (132-135).</small>
+                </span>
+            </button>
+            </div>
+            <a class="historiaxe-promo-card" href="https://apps.apple.com/fr/app/historiaxe/id6827736918" target="_blank" rel="noopener">
+                <img src="assets/images/historiaxe-icon.jpg" alt="" aria-hidden="true">
+                <span>Vous aimez (ou vous avez aimé) les récits ? Découvrez-en bien d'autres dans tous les domaines et de toutes les époques en téléchargeant HistoriAxe !</span>
+            </a>
+        </section>
         </div>
     </div>
+
+    <div id="app-toast" class="toast-notification hidden"></div>
 
     <!-- ÉCRAN/MODALE : RÉGLAGES (minimal pour l'instant) -->
     <div class="modal-overlay hidden" id="modal-settings" onclick="if (event.target === this) closeSettings()">
@@ -793,6 +822,10 @@
     <script src="js/app/state.js"></script>
     <script src="js/app/dates.js"></script>
     <script src="js/app/motion.js"></script>
+    <script src="js/recitsCore.js"></script>
+    <script src="js/autoScrollCore.js"></script>
+    <script src="js/app/autoscroll.js"></script>
+    <script src="js/app/recits.js"></script>
     <script src="js/app/friseShim.js"></script>
     <script src="js/app/axes-rounds.js"></script>
     <script src="js/app/game-start.js"></script>
@@ -812,6 +845,27 @@
     <script src="js/app/tools.js"></script>
     <script src="js/app/navigation.js"></script>
     <script src="js/app/home.js"></script>
+
+    <!-- Écrans des récits migrés depuis HistoriAxe -->
+<div id="screen-recits" class="list-screen hidden">
+        <button class="back-btn" onclick="recitsListBack()" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title" data-i18n="recits.title">Récits</h2>
+        <p class="modes-header-subtitle" data-i18n="recits.subtitle">De longs récits d’histoire, à lire comme un livre, puis à tester.</p>
+        <div id="recits-list" class="recits-list"></div>
+    </div>
+
+<div id="screen-recit" class="list-screen recit-screen hidden" onscroll="recitOnScroll()">
+        <div class="recit-bar">
+            <button type="button" class="recit-bar-btn" onclick="recitBack()" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+            <div class="recit-bar-center">
+                <div id="recit-dots" class="recit-dots"></div>
+                <div id="recit-bar-title" class="recit-bar-title"></div>
+            </div>
+            <button type="button" id="recit-auto-btn" class="recit-bar-btn" aria-pressed="false" onclick="autoScrollToggle('recit')" aria-label="Défilement automatique" data-i18n-attr="aria-label:autoscroll.title;title:autoscroll.help" title="Le texte défile tout seul ; vous réglez la vitesse" data-i18n-ignore="symbole typographique">▶︎</button>
+            <button type="button" class="recit-bar-btn recit-size-btn" onclick="recitCycleSize()" aria-label="Taille du texte" data-i18n-attr="aria-label:recits.text_size" title="Taille du texte" data-i18n-ignore="symbole typographique">Aa</button>
+        </div>
+        <article id="recit-article" class="recit-article" lang="fr"></article>
+    </div>
 
     <!-- Écran et moteur du mode frise (un seul mode, voir js/app/friseShim.js) -->
 <div id="screen-game" class="hidden">
