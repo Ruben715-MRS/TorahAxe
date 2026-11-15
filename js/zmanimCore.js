@@ -383,6 +383,13 @@
         return false;
     }
 
+    // Tahanoun du jour : 'no' (jamais), 'morning' (le matin seulement : la veille d'un jour sans Tahanoun, c'est-à-dire le vendredi, la veille de
+    // fête, de Roch 'Hodesh, de Pourim, Hanouka, Tou Bichvat, Lag baOmer… on ne le dit pas à Minha) ou 'yes'.
+    function tachanunStatus(fixed, israel) {
+        if (noTachanun(fixed, israel)) return 'no';
+        return noTachanun(fixed + 1, israel) ? 'morning' : 'yes';
+    }
+
     // --- Le molad et Birkat haLevana -----------------------------------------------------------------------------------------------------
     // Le molad (la « nouvelle lune » moyenne) d'un mois hébraïque, en temps moyen de Jérusalem, converti en instant UTC.
     // Constantes de la tradition : mois moyen de 29 j 12 h 793 'helakim ; première molad de l'ère à −876/25920 jour de minuit (Reingold et Dershowitz).
@@ -481,7 +488,7 @@
         isValidTimeZone: isValidTimeZone, tzOffsetMs: tzOffsetMs, localToUtc: localToUtc, civilDateOf: civilDateOf,
         solarEvent: solarEvent, solarNoon: solarNoon, inIsrael: inIsrael, candleMinutes: candleMinutes,
         zmanim: zmanim, hametsTimes: hametsTimes, roundMinute: roundMinute, rounded: rounded, formatTime: formatTime, formatDuration: formatDuration,
-        shabbatOf: shabbatOf, dafYomi: dafYomi, tehilimOfDay: tehilimOfDay, noTachanun: noTachanun,
+        shabbatOf: shabbatOf, dafYomi: dafYomi, tehilimOfDay: tehilimOfDay, noTachanun: noTachanun, tachanunStatus: tachanunStatus,
         moladOf: moladOf, levanaWindow: levanaWindow, levanaEvenings: levanaEvenings,
         hilloulotFor: hilloulotFor, normalizePlace: normalizePlace, parseGeocoding: parseGeocoding, sameSpot: sameSpot
     };

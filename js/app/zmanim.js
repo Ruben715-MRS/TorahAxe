@@ -41,7 +41,7 @@ const ZM_HE = {
     alot: 'עלות השחר', misheyakir: 'משיכיר (זמן טלית ותפילין)', netz: 'הנץ החמה', shema: 'סוף זמן קריאת שמע', tefila: 'סוף זמן תפילה', chatzot: 'חצות היום',
     guedola: 'מנחה גדולה', ketana: 'מנחה קטנה', plag: 'פלג המנחה', shkia: 'שקיעת החמה', tzeit: 'צאת הכוכבים', tam: 'צאת רבנו תם', chatzot_layla: 'חצות הלילה',
     morning: 'בוקר', day: 'יום', night: 'ערב ולילה', gra: 'גר״א', ma: 'מג״א', hours: 'שעה זמנית', shabbat: 'שבת', candles: 'הדלקת נרות', havdalah: 'צאת השבת',
-    daf: 'דף יומי', tehilim: 'תהילים', tachanun: 'אומרים תחנון', rosh_chodesh: 'ראש חודש', no_tachanun: 'אין אומרים תחנון', next: 'הזמן הבא', levana: 'ברכת הלבנה', today: 'היום'
+    daf: 'דף יומי', tehilim: 'תהילים', tachanun: 'אומרים תחנון', tachanun_morning: 'תחנון בבוקר', rosh_chodesh: 'ראש חודש', no_tachanun: 'אין אומרים תחנון', next: 'הזמן הבא', levana: 'ברכת הלבנה', today: 'היום'
 };
 // Le libellé d'un identifiant, en hébreu si le bouton « א » est actif, sinon la clé i18n `tools.zm_<fr>` (ou `fr` donné).
 function zmL(id, frKey, params) {
@@ -668,11 +668,12 @@ function zmDay(body) {
     he.lang = 'he'; he.dir = 'rtl';
     hero.appendChild(he);
     const badges = zmEl('div', 'zm-badges');
-    info.feasts.forEach(f => badges.appendChild(zmEl('span', 'zm-badge is-feast', '🕯️ ' + t('tools.hcal_f_' + f.id + '_name'))));
+    info.feasts.forEach(f => badges.appendChild(zmEl('span', 'zm-badge is-feast', '🕯️ ' + t('tools.hcal_f_' + C.feastNameId(f.id, fixed, israel) + '_name'))));
     if (info.roshChodesh) badges.appendChild(zmEl('span', 'zm-badge is-feast', '🌙 ' + (zmHe ? ZM_HE.rosh_chodesh : t('tools.hcal_roch_hodesh'))));
     if (info.omer) badges.appendChild(zmEl('span', 'zm-badge', '🔢 ' + (info.omer === 1 ? t('tools.hcal_omer_day_1') : t('tools.hcal_omer_day', { n: info.omer }))));
     if (C.weekdayOf(fixed) === 6) badges.appendChild(zmEl('span', 'zm-badge is-feast', '✡️ ' + zmL('shabbat')));
-    badges.appendChild(zmEl('span', 'zm-badge', Z.noTachanun(fixed, israel) ? zmL('no_tachanun') : zmL('tachanun')));
+    const tachanun = Z.tachanunStatus(fixed, israel);
+    badges.appendChild(zmEl('span', 'zm-badge', tachanun === 'no' ? zmL('no_tachanun') : tachanun === 'morning' ? zmL('tachanun_morning') : zmL('tachanun')));
     hero.appendChild(badges);
     if (isToday && z.tzeit !== null && now >= Z.rounded(z, 'tzeit') && zmSupported(zmShift(zmDate, 1))) {
         const tomorrow = C.dayInfo(fixed + 1, israel).hebrew;

@@ -205,7 +205,7 @@ function hcalDescribeDay(out, fixed) {
     hcalHebrewLine(out, hcalHebrewLetters(h));
     hcalPara(out, hcalGregorianText(fixed) + ' · ' + t('tools.hcal_wd_' + h.weekday));
     const lines = [];
-    info.feasts.forEach(f => lines.push('🕯️ ' + t('tools.hcal_f_' + f.id + '_name')));
+    info.feasts.forEach(f => lines.push('🕯️ ' + t('tools.hcal_f_' + C.feastNameId(f.id, fixed, hcalIsrael) + '_name')));
     if (info.omer) lines.push('🔢 ' + (info.omer === 1 ? t('tools.hcal_omer_day_1') : t('tools.hcal_omer_day', { n: info.omer })));
     if (info.roshChodesh) lines.push('🌙 ' + t('tools.hcal_roch_hodesh'));
     if (lines.length) {
