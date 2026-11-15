@@ -37,10 +37,6 @@ function toolBiblicalInit() {
     status.textContent = t('tools.biblical_loading');
     bibRenderMenu();
     bibShow({ fit: false });
-    // TorahAxe n'embarque pas l'Atlas des pays d'HistoriAxe (countriesLoad) : les cartes bibliques,
-    // dessinées à la main, s'affichent directement, sans le fond de carte moderne optionnel qu'il
-    // fournirait ; pas de message d'erreur réseau dans ce cas, qui serait trompeur.
-    if (typeof countriesLoad !== 'function') { status.textContent = ''; return; }
     countriesLoad().then(ok => {
         if (!ok) { status.textContent = t('tools.countries_error'); return; }
         status.textContent = '';
