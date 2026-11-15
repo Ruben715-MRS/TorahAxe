@@ -88,6 +88,7 @@
     var SHABBAT_ATOMS = [
         ['notShabbatRc', /(כשלא|שלא|לא) חל ראש (חדש|חודש) בשבת/],
         ['shabbatRc', /חל ראש (חדש|חודש) בשבת/],
+        ['shabbatZachor', /בשבת זכור|שבת זכור/],
         ['mevarchim', /בשבת שלפני ראש (חדש|חודש)|שבת שלפני ראש (חדש|חודש)/],
         ['shabbatShuva', /בשבת (שובה|תשובה)|שבת שובה/],
         ['shabbatSpecial', /בשבת (ר ?ח|ראש חדש|ראש חודש) או|בשבת חנוכה או|בשבת חול המועד או/],
@@ -281,6 +282,9 @@
         flags.shabbatCh = shabbat && flags.ch;
         flags.shabbatSpecial = shabbat && (flags.rc || flags.ch || flags.hanukkah);
         flags.mevarchim = shabbat && mevarchim(fixed);
+        // Chabbat Zakhor : le Chabbat qui précède Pourim (Pourim tombe dans les six jours suivants).
+        var purimDay = CY.hebrewToFixed(year, HC.leap(year) ? 'AdarII' : 'Adar', 14) - fixed;
+        flags.shabbatZachor = shabbat && purimDay >= 1 && purimDay <= 6;
         return { fixed: fixed, hebrew: h, israel: !!israel, flags: flags, omer: info.omer, weekday: HC.weekdayOf(fixed), fast: fastDay ? fastDay.id : null, feasts: info.feasts.map(function (f) { return f.id; }) };
     }
 

@@ -2982,7 +2982,7 @@
     "sd_load_failed": "Le siddour n'a pas pu être chargé. Vérifiez votre connexion (ou téléchargez-le une fois pour le lire sans réseau).",
     "sd_hero_title": "Aujourd'hui",
     "sd_warn_shabbat": "C'est Chabbat (ou ça le devient ce soir) : ce siddour est celui des jours de semaine. Le siddour de Chabbat n'est pas encore dans l'application.",
-    "sd_warn_yomtov": "C'est un jour de fête : ce siddour est celui des jours de semaine. Le siddour des fêtes n'est pas encore dans l'application.",
+    "sd_warn_yomtov": "C'est un jour de fête : l'office complet des fêtes n'est pas encore dans l'application. Les prières propres aux trois fêtes (Amida, Moussaf, mizmorim) sont dans le rayon « Fêtes ».",
     "sd_warn_place": "Choisissez votre lieu pour que le jour hébraïque (qui change à la sortie des étoiles) et les variantes soient exacts.",
     "sd_warn_place_go": "Choisir mon lieu",
     "sd_quick": "Prier maintenant",
@@ -6464,7 +6464,8 @@
     "sd_atom_shabbatHanukkah": "Chabbat Hanouka",
     "sd_atom_shabbatCh": "Chabbat 'Hol haMoed",
     "sd_atom_shabbatSpecial": "Chabbat Roch 'Hodesh, 'Hol haMoed ou Hanouka",
-    "sd_atom_mevarchim": "Chabbat qui précède Roch 'Hodesh"
+    "sd_atom_mevarchim": "Chabbat qui précède Roch 'Hodesh",
+    "sd_atom_shabbatZachor": "Chabbat Zakhor (avant Pourim)"
   },
   "geoquiz": {
     "title": "Quiz des pays",

@@ -350,8 +350,9 @@ function homeHero(content, day) {
         sdDayNoteLabels(ctx).forEach(label => chips.appendChild(hEl('span', 'home-chip', label)));
         hero.appendChild(chips);
     }
-    const b = hButton('home-hero-btn', special ? () => openTool('siddur', 'screen-main') : () => openSiddurPrayer(service.group));
-    b.textContent = special ? 'Ouvrir le Siddour' : 'Commencer';
+    const regel = special && (ctx.flags.pesach || ctx.flags.sukkot || ctx.flags.shemini || ctx.flags.shavuot);
+    const b = hButton('home-hero-btn', regel ? () => openSiddurPrayer('regalim') : special ? () => openTool('siddur', 'screen-main') : () => openSiddurPrayer(service.group));
+    b.textContent = regel ? 'Prières des trois fêtes' : special ? 'Ouvrir le Siddour' : 'Commencer';
     hero.appendChild(b);
     // les trois horaires de cette prière ; la sortie des étoiles / l'aube du lendemain après la nuit
     const keys = HOME_PRAYER_TIMES[service.base];

@@ -80,6 +80,24 @@ const GROUPS = [
     ] },
     { id: 'pirkei-avot', fr: 'Pirké Avot (Maximes des pères)', sections: [
         ['pirkei-avot', 'Pirké Avot', ['Mishna Study for Shabbat', 'Pirkei Avot']]
+    ] },
+    // --- Étape 2 : fêtes, Pourim, jeûnes ---
+    { id: 'regalim', fr: 'Les trois fêtes (Pessa\'h, Chavouot, Souccot)', sections: [
+        ['regalim-priere', 'Prière des trois fêtes', ['Prayers for Three Festivals', 'Prayers for Three Festivals']],
+        ['regalim-mizmor-pessah', 'Mizmor de Pessa\'h', ['Prayers for Three Festivals', 'Song for Passover']],
+        ['regalim-mizmor-chavouot', 'Mizmor de Chavouot', ['Prayers for Three Festivals', 'Song for Shavuot']],
+        ['regalim-mizmor-souccot', 'Mizmor de Souccot', ['Prayers for Three Festivals', 'Song for Sukkot']],
+        ['regalim-mizmor-chemini', 'Mizmor de Chémini Atséret', ['Prayers for Three Festivals', 'Song for Shemini Atzeret']],
+        ['regalim-amida', 'Amida des trois fêtes', ['Prayers for Three Festivals', 'Amidah']],
+        ['regalim-moussaf', 'Moussaf des trois fêtes', ['Prayers for Three Festivals', 'Mussaf']]
+    ] },
+    // `extend` : on ajoute à un groupe existant (avant `before` si précisé) au lieu de le remplacer.
+    { id: 'temps', extend: true, sections: [
+        { id: 'pourim-zakhor', fr: 'Chabbat Zakhor', names: ['Purim', 'Shabbat Zachor'], before: 'pourim-meguila' }
+    ] },
+    { id: 'jeunes', extend: true, sections: [
+        { id: 'selihot-generales', fr: 'Séli\'hot (Elloul et dix jours de pénitence)', book: 'Selichot Edot HaMizrach', version: 'hebrew|Selichot Edot HaMizrach - Torat Emet', he: 'סליחות נוסח עדות המזרח' },
+        { id: 'tichabav-eikha', fr: 'Méguilat Eikha (Tich\'a beAv)', book: 'Lamentations', version: 'hebrew|Tanach with Nikkud', he: 'מגילת איכה', transform: 'eikha' }
     ] }
 ];
 
@@ -114,31 +132,72 @@ function hebrewTitles(schema) {
 function flatten(x) { return Array.isArray(x) ? x.reduce((a, y) => a.concat(flatten(y)), []) : [x]; }
 function clean(s) { return String(s).replace(/ {2,}/g, ' ').trim(); }
 
+// Les numéros de versets en lettres hébraïques (1 → א, 15 → טו, 66 → סו).
+function hebrewNumeral(n) {
+    const U = ['', 'א', 'ב', 'ג', 'ד', 'ה', 'ו', 'ז', 'ח', 'ט'], T = ['', 'י', 'כ', 'ל', 'מ', 'נ', 'ס', 'ע', 'פ', 'צ'];
+    if (n === 15) return 'טו';
+    if (n === 16) return 'טז';
+    return T[Math.floor(n / 10)] + U[n % 10];
+}
+
+// Méguilat Eikha : un chapitre = un titre, puis un segment par verset précédé de son numéro. Texte : Tanach with Nikkud (Sefaria, domaine public).
+function eikhaSegments(chapters) {
+    const out = ['<big><b>מגילת איכה</b></big>'];
+    chapters.forEach((verses, c) => {
+        out.push('<b>פרק ' + hebrewNumeral(c + 1) + '</b>');
+        verses.forEach((v, i) => out.push('<small>' + hebrewNumeral(i + 1) + '</small> ' + clean(String(v).replace(/<[^>]+>/g, '').replace(/&[a-z]+;/g, ' '))));
+    });
+    return out;
+}
+
+async function fetchSection(spec, hebrew) {
+    // [id, fr, chemin Sefaria dans le siddour d'Edot HaMizrach]  ou  { id, fr, book, version, he, transform } pour un autre livre
+    if (Array.isArray(spec)) {
+        const [id, fr, names] = spec;
+        const hes = hebrew[names.join('|')];
+        if (!hes) throw new Error('chemin inconnu sur Sefaria : ' + names.join('|'));
+        return fetchText({ id: id, fr: fr, ref: BOOK + ', ' + names.join(', '), version: VERSION, he: hes.length > 1 ? hes[0] + ' › ' + hes[hes.length - 1] : hes[0] });
+    }
+    if (spec.names) {
+        const hes = hebrew[spec.names.join('|')];
+        if (!hes) throw new Error('chemin inconnu sur Sefaria : ' + spec.names.join('|'));
+        return fetchText({ id: spec.id, fr: spec.fr, ref: BOOK + ', ' + spec.names.join(', '), version: VERSION, he: hes.length > 1 ? hes[0] + ' › ' + hes[hes.length - 1] : hes[0] });
+    }
+    return fetchText({ id: spec.id, fr: spec.fr, ref: spec.book, version: spec.version, he: spec.he, transform: spec.transform });
+}
+
+async function fetchText(s) {
+    const data = await getJson('https://www.sefaria.org/api/v3/texts/' + encodeURIComponent(s.ref) + '?version=' + encodeURIComponent(s.version) + '&return_format=default');
+    const version = (data.versions || [])[0];
+    if (!version || !version.text) throw new Error('texte absent : ' + s.ref);
+    const segments = s.transform === 'eikha' ? eikhaSegments(version.text) : flatten(version.text).map(clean).filter(x => x.length);
+    fs.writeFileSync(path.join(DIR, s.id + '.json'), JSON.stringify({ v: 1, id: s.id, he: s.he, fr: s.fr, ref: s.ref, segments: segments }) + '\n');
+    console.log(s.id.padEnd(28), String(segments.length).padStart(4), 'segments');
+    return { id: s.id, he: s.he, fr: s.fr, segments: segments.length };
+}
+
 async function main() {
     const index = await getJson('https://www.sefaria.org/api/v2/raw/index/' + encodeURIComponent(BOOK.replace(/ /g, '_')));
     const hebrew = hebrewTitles(index.schema);
     const siddur = JSON.parse(fs.readFileSync(path.join(DIR, 'index.json'), 'utf8'));
     let written = 0;
     for (const group of GROUPS) {
-        const entry = { id: group.id, fr: group.fr, sections: [] };
-        for (const [id, fr, names] of group.sections) {
-            const key = names.join('|');
-            const hes = hebrew[key];
-            if (!hes) throw new Error('chemin inconnu sur Sefaria : ' + key);
-            const ref = BOOK + ', ' + names.join(', ');
-            const data = await getJson('https://www.sefaria.org/api/v3/texts/' + encodeURIComponent(ref) + '?version=' + encodeURIComponent(VERSION) + '&return_format=default');
-            const version = (data.versions || [])[0];
-            if (!version || !version.text) throw new Error('texte absent : ' + ref);
-            const segments = flatten(version.text).map(clean).filter(s => s.length);
-            // le titre hébreu : « groupe › section » pour une section rangée dans un groupe de Sefaria, le titre seul sinon
-            const he = hes.length > 1 ? hes[0] + ' › ' + hes[hes.length - 1] : hes[0];
-            fs.writeFileSync(path.join(DIR, id + '.json'), JSON.stringify({ v: 1, id: id, he: he, fr: fr, ref: ref, segments: segments }) + '\n');
-            entry.sections.push({ id: id, he: he, fr: fr, segments: segments.length });
-            written++;
-            console.log(id.padEnd(28), String(segments.length).padStart(4), 'segments');
-        }
+        const fetched = [];
+        for (const spec of group.sections) { fetched.push({ spec: spec, entry: await fetchSection(spec, hebrew) }); written++; }
         const at = siddur.groups.findIndex(g => g.id === group.id);
-        if (at === -1) siddur.groups.push(entry); else siddur.groups[at] = entry;
+        if (group.extend) {
+            if (at === -1) throw new Error('groupe à étendre introuvable : ' + group.id);
+            const sections = siddur.groups[at].sections;
+            fetched.forEach(({ spec, entry }) => {
+                const same = sections.findIndex(x => x.id === entry.id);
+                if (same !== -1) { sections[same] = entry; return; }
+                const before = !Array.isArray(spec) && spec.before ? sections.findIndex(x => x.id === spec.before) : -1;
+                if (before !== -1) sections.splice(before, 0, entry); else sections.push(entry);
+            });
+        } else {
+            const entry = { id: group.id, fr: group.fr, sections: fetched.map(f => f.entry) };
+            if (at === -1) siddur.groups.push(entry); else siddur.groups[at] = entry;
+        }
     }
     fs.writeFileSync(path.join(DIR, 'index.json'), JSON.stringify(siddur));
     console.log(written + ' sections écrites.');

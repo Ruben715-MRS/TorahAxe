@@ -20,6 +20,13 @@ test('Chabbat Hanouka, Chabbat Roch \'Hodesh, Chabbat qui précède Roch \'Hodes
     assert.ok(flags(2026, 11, 21).notShabbatRc);
 });
 
+test('Chabbat Zakhor : le Chabbat qui précède Pourim', () => {
+    assert.strictEqual(flags(2027, 3, 20).shabbatZachor, true);     // Pourim : mardi 23 mars 2027
+    assert.strictEqual(flags(2027, 3, 13).shabbatZachor, false);
+    assert.strictEqual(flags(2026, 11, 21).shabbatZachor, false);
+    assert.deepStrictEqual(S.conditionOf('בשבת זכור, קודם הוצאת ספר תורה').atoms, ['shabbatZachor']);
+});
+
 test('une consigne propre à Chabbat remplace les atomes simples (pas « Chabbat OU Roch \'Hodesh »)', () => {
     assert.deepStrictEqual(S.conditionOf('בשבת שובה מוסיפים:').atoms, ['shabbatShuva']);
     assert.deepStrictEqual(S.conditionOf('בשבת ר"ח או חול המועד או חנוכה אומרים כאן הלל').atoms, ['shabbatSpecial']);
@@ -40,5 +47,9 @@ test('chaque section du siddour a un fichier, et chaque groupe de l\'index est l
             assert.strictEqual(data.segments.length, s.segments, s.id);
         });
     });
-    ['chabbat-accueil', 'chabbat-arvit', 'chabbat-soir', 'chabbat-chacharit', 'chabbat-moussaf', 'chabbat-minha', 'motsei-chabbat', 'michnayot-chabbat', 'pirkei-avot'].forEach(id => assert.ok(seen.has(id), id));
+    const temps = index.groups.find(g => g.id === 'temps').sections.map(x => x.id);
+    assert.ok(temps.indexOf('pourim-zakhor') !== -1 && temps.indexOf('pourim-zakhor') < temps.indexOf('pourim-meguila'));
+    const jeunes = index.groups.find(g => g.id === 'jeunes').sections.map(x => x.id);
+    assert.ok(jeunes.indexOf('selihot-generales') !== -1 && jeunes.indexOf('tichabav-eikha') !== -1);
+    ['chabbat-accueil', 'chabbat-arvit', 'chabbat-soir', 'chabbat-chacharit', 'chabbat-moussaf', 'chabbat-minha', 'motsei-chabbat', 'michnayot-chabbat', 'pirkei-avot', 'regalim'].forEach(id => assert.ok(seen.has(id), id));
 });

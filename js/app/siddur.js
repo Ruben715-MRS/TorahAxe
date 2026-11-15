@@ -161,15 +161,18 @@ const SD_RAYONS = [
     ] },
     { id: 'fetes', he: 'מועדים', fr: 'Fêtes', rows: [
         { key: 'g:roch-hodech', he: 'ראש חודש', group: 'roch-hodech' },
+        { key: 'g:regalim', he: 'שלוש רגלים', group: 'regalim' },
         { key: 'g:hol-hamoed', he: 'חול המועד', group: 'hol-hamoed' },
         { key: 'x:hanouka', he: 'חנוכה', title: 'Hanouka', ids: ['hanouka-allumage', 'hanouka-chacharit'] },
-        { key: 'x:pourim', he: 'פורים', title: 'Pourim', ids: ['pourim-meguila', 'pourim-jour'] },
+        { key: 'x:pourim', he: 'פורים', title: 'Pourim', ids: ['pourim-zakhor', 'pourim-meguila', 'pourim-jour'] },
         { key: 'x:nissan', he: 'ניסן', title: 'Nissan', ids: ['nissan-ilanot', 'nissan-etude'] },
         { key: 's:omer', he: 'עומר', ids: ['omer'] }
     ] },
     { id: 'jeunes', he: 'תעניות', fr: 'Jeûnes', rows: [
         { key: 'x:selihot', he: 'סליחות', title: 'Sélihot des jeûnes', ids: ['jeune-guedalia', 'jeune-tevet', 'jeune-esther', 'jeune-tamouz'] },
         { key: 's:jeune-tora', he: 'קריאה', ids: ['jeune-tora'] },
+        { key: 's:selihot-generales', he: 'סליחות', ids: ['selihot-generales'] },
+        { key: 's:tichabav-eikha', he: 'איכה', ids: ['tichabav-eikha'] },
         { key: 's:deuil', he: 'אבל', ids: ['deuil'] }
     ] },
     { id: 'benedictions', he: 'ברכות', fr: 'Bénédictions', rows: [
@@ -201,9 +204,10 @@ const SD_HE_PRAYER = { chacharit: 'שחרית', minha: 'מנחה', arvit: 'ער�
 // Les groupes de Chabbat : leurs variantes se calculent pour le Chabbat concerné (celui d'aujourd'hui, ou le prochain), pas pour le jour de la semaine où l'on ouvre le livre.
 const SD_SHABBAT_GROUPS = ['chabbat-accueil', 'chabbat-arvit', 'chabbat-soir', 'chabbat-chacharit', 'chabbat-moussaf', 'chabbat-seouda-2', 'chabbat-minha', 'chabbat-seouda-3', 'motsei-chabbat'];
 
+const SD_SHABBAT_SECTIONS = ['pourim-zakhor'];    // un texte de Chabbat rangé dans un autre groupe
 function sdIsShabbatSection(id) {
     const f = sdIndex ? sdFindSection(id) : null;
-    return !!f && SD_SHABBAT_GROUPS.indexOf(f.group.id) !== -1;
+    return !!f && (SD_SHABBAT_GROUPS.indexOf(f.group.id) !== -1 || SD_SHABBAT_SECTIONS.indexOf(id) !== -1);
 }
 
 // Le jour civil de l'appareil ou du lieu (fixe).
@@ -302,6 +306,15 @@ function sdSeasonItems(ctx) {
     if (f.purim) add('x:pourim', 'C\'est Pourim');
     else { const d = daysTo(purimMonth, 14); if (d > 0 && d <= 14) add('x:pourim', d === 1 ? 'Demain' : 'Dans ' + d + ' jours'); }
     if (h.month === 'Nisan') add('x:nissan', 'Birkat haIlanot, le mois de Nissan');
+    if (h.month === 'Elul' || (h.month === 'Tishri' && h.day <= 10)) add('s:selihot-generales', 'De Roch \'Hodesh Elloul à Yom Kippour');
+    if (f.tishaBav) add('s:tichabav-eikha', 'Lue le soir de Tich\'a beAv');
+    // Les trois fêtes : pendant la fête, ou dans les quinze jours qui la précèdent
+    const next = (month, day, year) => CalendarYearCore.hebrewToFixed(year === undefined ? h.year : year, month, day) - ctx.fixed;
+    const toTishri = h.month === 'Elul' ? next('Tishri', 15, h.year + 1) : next('Tishri', 15);
+    const festival = f.pesach ? 'Pessa\'h' : f.sukkot || f.shemini ? 'Souccot' : f.shavuot ? 'Chavouot' : '';
+    const upcoming = [['Pessa\'h', next('Nisan', 15)], ['Chavouot', next('Sivan', 6)], ['Souccot', toTishri]].filter(x => x[1] > 0 && x[1] <= 15)[0];
+    if (festival) add('g:regalim', 'Amida, Moussaf et mizmorim : ' + festival);
+    else if (upcoming) add('g:regalim', upcoming[0] + (upcoming[1] === 1 ? ' : demain' : ' : dans ' + upcoming[1] + ' jours'));
     const lev = sdPlace ? zmLevanaInfo(sdPlace, ZmanimCore.civilDateOf(sdPlace.tz, Date.now()), h, zmStoredOpts()) : null;
     if (lev) add('s:birkat-halevana', lev);
     return out;
@@ -541,10 +554,11 @@ function sdRenderHome(body) {
             sdDayNoteLabels(ctx).forEach(label => chips.appendChild(sdEl('span', 'home-chip', label)));
             hero.appendChild(chips);
         }
-        const go = sdEl('button', 'home-hero-btn', 'Commencer');
+        const regel = special && (ctx.flags.pesach || ctx.flags.sukkot || ctx.flags.shemini || ctx.flags.shavuot);
+        const go = sdEl('button', 'home-hero-btn', regel ? 'Prières des trois fêtes' : 'Commencer');
         go.type = 'button';
         go.id = 'sd-quick-' + service.group;
-        go.onclick = () => sdOpenGroup(service.group);
+        go.onclick = () => sdOpenGroup(regel ? 'regalim' : service.group);
         hero.appendChild(go);
     } else {
         hero.appendChild(sdEl('small', 'home-hero-label', hcalHebrewText(ctx.hebrew)));
