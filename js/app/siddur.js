@@ -1026,6 +1026,27 @@ function sdRenderSegment(tree, index) {
     return el;
 }
 
+// Le paratexte d'un chant : qui l'a écrit, dans quel contexte, ce qu'il veut dire ; et le bouton de la traduction française.
+function sdAboutCard(about) {
+    const card = sdEl('details', 'sd-about');
+    card.open = true;
+    card.appendChild(sdEl('summary', '', 'À propos de ce chant'));
+    [['Auteur', about.auteur], ['Contexte', about.contexte], ['Sens', about.sens]].forEach(([label, text]) => {
+        if (!text) return;
+        const row = sdEl('p', 'sd-about-row');
+        row.appendChild(sdEl('strong', '', label + ' : '));
+        row.appendChild(document.createTextNode(text));
+        card.appendChild(row);
+    });
+    const btn = sdEl('button', 'tool-history-chip sd-about-fr', sdPrefs.fr ? 'Masquer la traduction française' : 'Afficher la traduction française');
+    btn.type = 'button';
+    btn.setAttribute('aria-pressed', sdPrefs.fr ? 'true' : 'false');
+    btn.onclick = () => { sdPrefs.fr = !sdPrefs.fr; sdSavePrefs(); sdRerender(); };
+    card.appendChild(btn);
+    card.appendChild(sdEl('p', 'sd-about-note', 'Titres, traductions et notes sont de l\'application et n\'ont pas été relus par un spécialiste : à vérifier auprès de votre rabbin.'));
+    return card;
+}
+
 function sdRenderSection(section) {
     const box = sdEl('section', 'sd-section-box');
     box.id = 'sd-sec-' + section.id;
@@ -1037,6 +1058,7 @@ function sdRenderSection(section) {
         head.appendChild(he);
         box.appendChild(head);
     }
+    if (section.about) box.appendChild(sdAboutCard(section.about));
     const counter = { n: 1 };
     const trees = section.segments.map(html => SiddurCore.analyseSegment(html, counter));
     const groups = SiddurCore.groups(section.segments);

@@ -63,3 +63,17 @@ test('chaque section du siddour a un fichier, et chaque groupe de l\'index est l
     ['chabbat-chirei', 'chabbat-chants-motsei'].forEach(id => assert.ok(!index.groups.some(g => g.sections.some(x => x.id === id)), id + ' est dans le recueil'));
     ['chabbat-accueil', 'chabbat-arvit', 'chabbat-soir', 'chabbat-chacharit', 'chabbat-moussaf', 'chabbat-minha', 'motsei-chabbat', 'michnayot-chabbat', 'pirkei-avot', 'regalim'].forEach(id => assert.ok(seen.has(id), id));
 });
+
+test('chaque chant du recueil a son paratexte et sa traduction, rattachée au bon segment', () => {
+    const index = JSON.parse(fs.readFileSync(__dirname + '/../data/siddur/index.json', 'utf8'));
+    const frIndex = JSON.parse(fs.readFileSync(__dirname + '/../data/siddur/fr/index.json', 'utf8'));
+    index.groups.find(g => g.id === 'zemirot-chabbat').sections.forEach(s => {
+        const sec = JSON.parse(fs.readFileSync(__dirname + '/../data/siddur/' + s.id + '.json', 'utf8'));
+        assert.ok(sec.about && sec.about.auteur && sec.about.contexte && sec.about.sens, s.id + ' : paratexte incomplet');
+        const fr = JSON.parse(fs.readFileSync(__dirname + '/../data/siddur/fr/' + s.id + '.json', 'utf8'));
+        const keys = Object.keys(fr.t);
+        assert.ok(keys.length >= 1, s.id + ' : aucune traduction');
+        keys.forEach(k => assert.strictEqual(fr.t[k][0], S.fingerprint(sec.segments[k]), s.id + ' segment ' + k));
+        assert.strictEqual(frIndex.sections[s.id], keys.length, s.id + ' : index des traductions');
+    });
+});

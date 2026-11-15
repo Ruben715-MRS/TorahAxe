@@ -157,3 +157,13 @@
 
 /* --- Onglets du recueil des zemirot --- */
 .sd-tabs .zm-seg-btn { font-size: 12.5px; padding: 8px 2px; line-height: 1.2; }
+
+/* --- Paratexte d'un chant --- */
+.sd-about { margin: 4px 0 14px; padding: 4px 14px 12px; border: 1px solid var(--border-soft); border-radius: 16px; background: var(--surface); box-shadow: var(--card-shadow); font-size: 14px; line-height: 1.5; color: var(--text-dark); }
+.sd-about > summary { min-height: 44px; display: flex; align-items: center; font-weight: 700; cursor: pointer; }
+.sd-about-row { margin: 0 0 8px; }
+.sd-about-row strong { color: var(--primary-blue); }
+:root[data-theme="dark"] .sd-about-row strong { color: #8fb8e8; }
+.sd-about-fr { margin: 4px 0 8px; }
+.sd-about-note { margin: 0; font-size: 12px; color: var(--muted-text); }
+.sd-fr-seg { white-space: pre-line; }

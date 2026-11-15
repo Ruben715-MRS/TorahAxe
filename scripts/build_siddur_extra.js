@@ -97,12 +97,12 @@ const GROUPS = [
     // (même éditeur, Torat Emet 357, domaine public). Les bornes (from, to) sont les indices des segments dans la source ; le titre hébreu est le début du chant.
     { id: 'zemirot-chabbat', fr: 'Recueil des zemirot de Chabbat', sections: [
         // vendredi soir
-        { id: 'zem-kol-mekadech', fr: 'Kol Mékadech', slice: 'EV', from: 1, to: 3, he: 'כל מקדש שביעי' },
-        { id: 'zem-menoucha-vesimha', fr: 'Menou\'ha vésim\'ha', slice: 'EV', from: 4, to: 5, he: 'מנוחה ושמחה' },
+        { id: 'zem-kol-mekadech', fr: 'Kol Mékadech', slice: 'EV', from: 1, to: 2, he: 'כל מקדש שביעי' },
+        { id: 'zem-menoucha-vesimha', fr: 'Menou\'ha vésim\'ha', slice: 'EV', from: 3, to: 4, he: 'מנוחה ושמחה' },
         { id: 'zem-mah-yedidout', fr: 'Mah yédidout', slice: 'EHCH', from: 50, to: 62, he: 'מה ידידות' },
-        { id: 'zem-mah-yafit', fr: 'Mah yafit', slice: 'EV', from: 13, to: 14, he: 'מה יפית' },
-        { id: 'zem-yom-chabbat-kodech', fr: 'Yom Chabbat Kodech hou', slice: 'EV', from: 15, to: 16, he: 'יום שבת קודש הוא' },
-        { id: 'zem-yah-ribon', fr: 'Yah ribon \'olam', slice: 'EV', from: 17, to: 26, he: 'יה רבון עלם' },
+        { id: 'zem-mah-yafit', fr: 'Mah yafit', slice: 'EV', from: 12, to: 13, he: 'מה יפית' },
+        { id: 'zem-yom-chabbat-kodech', fr: 'Yom Chabbat Kodech hou', slice: 'EV', from: 14, to: 15, he: 'יום שבת קודש הוא' },
+        { id: 'zem-yah-ribon', fr: 'Yah ribon \'olam', slice: 'EV', from: 16, to: 26, he: 'יה רבון עלם' },
         { id: 'zem-yom-ze-leyisrael', fr: 'Yom zé léYisraël', slice: 'EV', from: 27, to: 50, he: 'יום זה לישראל' },
         { id: 'zem-tsama-nafchi', fr: 'Tsama nafchi', slice: 'EV', from: 51, to: 77, he: 'צמאה נפשי' },
         { id: 'zem-yah-ekhsof', fr: 'Yah ekhsof noam Chabbat', slice: 'EV', from: 88, to: 121, he: 'יה אכסוף נעם שבת' },
@@ -171,6 +171,27 @@ const ZEM_TABS = {
 function zemTab(id) {
     if (!/^zem-/.test(id)) return undefined;
     return Object.keys(ZEM_TABS).filter(k => ZEM_TABS[k].indexOf(id) !== -1)[0] || 'soir';
+}
+
+// Traductions françaises et paratextes des zemirot (scripts/zemirot-fr.json : { id: { about: {auteur, contexte, sens}, tr: { indice du segment: texte } } }).
+// `about` entre dans le fichier de la section ; `tr` devient data/siddur/fr/<id>.json, rattaché à chaque segment par son empreinte (SiddurCore.fingerprint).
+const SiddurCore = require('../js/siddurCore.js');
+let ZEM_FR = {};
+try { ZEM_FR = JSON.parse(fs.readFileSync(path.join(__dirname, 'zemirot-fr.json'), 'utf8')); } catch (e) { /* pas de traductions */ }
+const frCounts = {};
+
+function writeFr(id, segments) {
+    const entry = ZEM_FR[id];
+    if (!entry || !entry.tr) return;
+    const t = {};
+    Object.keys(entry.tr).forEach(k => {
+        const i = Number(k);
+        if (!(i >= 1 && i < segments.length)) throw new Error(id + ' : traduction pour un segment qui n\'existe pas (' + k + ' / ' + segments.length + ')');
+        t[k] = [SiddurCore.fingerprint(segments[i]), entry.tr[k]];
+    });
+    fs.mkdirSync(path.join(DIR, 'fr'), { recursive: true });
+    fs.writeFileSync(path.join(DIR, 'fr', id + '.json'), JSON.stringify({ v: 1, id: id, t: t }) + '\n');
+    frCounts[id] = Object.keys(t).length;
 }
 
 const REMOVED = ['chabbat-chirei', 'chabbat-chants-motsei', 'tichabav-eikha', 'zem-kol-chomer-chabbat'];
@@ -256,7 +277,11 @@ async function fetchSlice(spec) {
     const part = all.slice(spec.from, spec.to + 1).filter(x => x.length);
     const segments = spec.noTitle ? part : ['<big><b>' + spec.he + '</b></big>'].concat(part);
     const he = spec.noTitle ? (part[0] || '').replace(/<[^>]+>/g, '').trim() : spec.he;
-    fs.writeFileSync(path.join(DIR, spec.id + '.json'), JSON.stringify({ v: 1, id: spec.id, he: he, fr: spec.fr, ref: ref + ' [' + spec.from + '–' + spec.to + ']', segments: segments }) + '\n');
+    const about = ZEM_FR[spec.id] && ZEM_FR[spec.id].about;
+    const doc = { v: 1, id: spec.id, he: he, fr: spec.fr, ref: ref + ' [' + spec.from + '–' + spec.to + ']', segments: segments };
+    if (about) doc.about = about;
+    fs.writeFileSync(path.join(DIR, spec.id + '.json'), JSON.stringify(doc) + '\n');
+    writeFr(spec.id, segments);
     console.log(spec.id.padEnd(30), String(segments.length).padStart(4), 'segments');
     return { id: spec.id, he: he, fr: spec.fr, segments: segments.length, tab: zemTab(spec.id) };
 }
@@ -303,6 +328,11 @@ async function main() {
         try { fs.unlinkSync(path.join(DIR, id + '.json')); } catch (e) { /* déjà retirée */ }
     });
     fs.writeFileSync(path.join(DIR, 'index.json'), JSON.stringify(siddur));
+    // l'index des traductions (le téléchargement pour la lecture hors réseau en dépend)
+    const frIndexPath = path.join(DIR, 'fr', 'index.json');
+    const frIndex = JSON.parse(fs.readFileSync(frIndexPath, 'utf8'));
+    Object.keys(frCounts).forEach(id => { frIndex.sections[id] = frCounts[id]; });
+    fs.writeFileSync(frIndexPath, JSON.stringify(frIndex));
     console.log(written + ' sections écrites.');
 }
 
