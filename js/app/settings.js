@@ -193,6 +193,8 @@ function apInit() {
     if (apMedia && apMedia.addEventListener) apMedia.addEventListener('change', function () { if (apPrefs.theme === 'auto') apApply(); });
 }
 apInit();
+// Page restaurée depuis le cache arrière/avant (iOS) ou rechargée : on repose les attributs depuis le stockage.
+window.addEventListener('pageshow', function () { apLoad(); apApply(); });
 
 // --- Sons et vibrations ----------------------------------------------------------------------------------------------------------------------------
 // appSettings (js/app/friseShim.js) porte `sound` et `haptics`, lus par js/audio.js ; on le garde sur l'appareil. `settingsSave` est aussi appelé

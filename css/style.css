@@ -6959,8 +6959,20 @@ html[data-wallpaper="slate"] { --wp-from: #F0F2F5; --wp-to: #DFE4EA; }
 :root[data-theme="dark"][data-wallpaper="sage"] { --wp-from: #1C2719; --wp-to: #131B11; }
 :root[data-theme="dark"][data-wallpaper="slate"] { --wp-from: #1F242C; --wp-to: #15181E; }
 
+/* Le dégradé est posé sur <html> lui-même, et non seulement sur <body> : Safari/iOS ne le propage pas
+   toujours au fond de la page au chargement (body en 100dvh, flex, overflow caché), d'où un fond qui
+   disparaissait à chaque rechargement alors que le réglage restait coché. */
+html[data-wallpaper]:not([data-wallpaper="none"]) {
+    background-color: var(--wp-to);
+    background-image: linear-gradient(165deg, var(--wp-from), var(--wp-to));
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    min-height: 100%;
+}
+
 html[data-wallpaper]:not([data-wallpaper="none"]) body {
-    background: linear-gradient(165deg, var(--wp-from), var(--wp-to));
+    background: transparent;
 }
 
 /* Les surfaces qui posent leur propre fond uni laissent voir le dégradé. */
