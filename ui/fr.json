@@ -6810,9 +6810,10 @@
     "back_list": "Tous les récits",
     "sources": "Pour aller plus loin",
     "offline": "Ce récit n’est pas encore disponible hors ligne : ouvrez-le une première fois avec une connexion.",
-    "unavailable": "Cette fiche n’est pas disponible pour l’instant.",
+    "unavailable": "Découvrez cette fiche, ainsi que plus de 4 000 autres, en téléchargeant HistoriAxe !",
     "zoom": "Agrandir la carte",
-    "zoom_hint": "Touchez la carte pour l’agrandir."
+    "zoom_hint": "Touchez la carte pour l’agrandir.",
+    "quiz_unavailable": "Ce quiz n’est pas disponible dans TorahAxe : découvrez-le, ainsi que des milliers d’autres, en téléchargeant HistoriAxe !"
   },
   "viewprofile": {
     "group_play": "Jeux et exploration",

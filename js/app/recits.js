@@ -510,7 +510,7 @@ function startRecitQuiz() {
     if (!recitCurrent) return;
     recitMarkFinished();
     const events = (recitCurrent.evenements || []).map(id => recitFindEvent(id)).filter(Boolean).map(item => item.event);
-    if (events.length < 3) { showToast(t('recits.unavailable')); return; }
+    if (events.length < 3) { showToast(t('recits.quiz_unavailable')); return; }
     const screen = document.getElementById('screen-recit');
     recitSavePosition(recitScrollRatio(screen));
     recitQuizEvents = events;
