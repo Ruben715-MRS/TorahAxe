@@ -18327,3 +18327,19 @@ body:has(#screen-recit:not(.hidden))::after {
 .talmud-lookup .tool-history-chip { margin-top: 4px; }
 #screen-tool-talmud.talmud-lookup-open #tool-talmud-source { margin-bottom: 48vh; }   /* de la place pour faire défiler le texte au-dessus de la fiche */
 ::highlight(talmud-word) { background-color: rgba(212, 160, 23, 0.35); color: inherit; }
+
+/* Écran du Talmud, réglages resserrés : le traité en un menu, le daf et le chapitre sur une même ligne, les options repliées, le résumé replié. */
+.talmud-panel .tanakh-book-select { margin: 4px 0; }
+.talmud-nav { flex-wrap: nowrap; gap: 6px; margin: 6px 0; }
+.talmud-nav .tool-history-chip { flex: 0 0 auto; }
+.talmud-nav .torah-chapter { min-width: 0; flex: 1 1 0; width: auto; margin: 0; text-overflow: ellipsis; }
+.talmud-options { margin: 4px 0; }
+.talmud-options > summary { cursor: pointer; font-weight: 700; padding: 6px 0; }
+.talmud-options[open] > summary { margin-bottom: 4px; }
+.talmud-options-title { margin: 4px 0 2px; }
+.talmud-summary { margin: 4px 0; }
+.talmud-summary > summary { cursor: pointer; list-style-position: outside; }
+.talmud-summary > .tanakh-cycle-row { margin-top: 6px; }
+.talmud-panel { gap: 6px; }
+.talmud-panel .tool-msg:empty { display: none; }
+.talmud-panel + .tanakh-text { margin-top: 8px; }

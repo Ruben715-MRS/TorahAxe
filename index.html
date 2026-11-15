@@ -568,25 +568,26 @@
 
     <div id="screen-tool-talmud" class="list-screen hidden">
         <button class="back-btn" onclick="toolBack('talmud')" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
-        <h2 class="header-title" data-i18n="tools.talmud_title">Talmud de Babylone</h2>
-        <p class="modes-header-subtitle" data-i18n="tools.talmud_intro">Les 37 traités de la Guémara en araméen vocalisé, page après page (amoud par amoud), avec Rachi et Tossafot.</p>
-        <div class="tool-panel" id="tool-talmud-top">
-            <div class="tool-history-chips" id="tool-talmud-sedarim" role="group" aria-label="Ordres du Talmud" data-i18n-attr="aria-label:tools.talmud_sedarim_label"></div>
+        <h2 class="header-title" data-i18n="tools.talmud_title">Talmud</h2>
+        <div class="tool-panel talmud-panel" id="tool-talmud-top">
             <select id="tool-talmud-tractate" class="tool-input tanakh-book-select" aria-label="Traité" data-i18n-attr="aria-label:tools.michna_tractate_label" onchange="talmudSelectTractate(this.value)"></select>
-            <select id="tool-talmud-chapter" class="tool-input tanakh-book-select" aria-label="Chapitre" data-i18n-attr="aria-label:tools.torah_chapter_label" onchange="talmudSelectChapter(this.value)"></select>
-            <div class="torah-nav">
+            <div class="torah-nav talmud-nav">
                 <button type="button" class="tool-history-chip" id="tool-talmud-prev" onclick="talmudGo(-1)" aria-label="Amoud précédent" data-i18n-attr="aria-label:tools.talmud_prev">‹</button>
                 <select id="tool-talmud-daf" class="tool-input torah-chapter" aria-label="Daf" data-i18n-attr="aria-label:tools.talmud_daf_label" onchange="talmudSelectDaf(this.value)"></select>
                 <button type="button" class="tool-history-chip" id="tool-talmud-next" onclick="talmudGo(1)" aria-label="Amoud suivant" data-i18n-attr="aria-label:tools.talmud_next">›</button>
+                <select id="tool-talmud-chapter" class="tool-input torah-chapter" aria-label="Chapitre" data-i18n-attr="aria-label:tools.torah_chapter_label" onchange="talmudSelectChapter(this.value)"></select>
             </div>
-            <details class="tanakh-comm-panel" id="tool-talmud-comm" hidden>
-                <summary id="tool-talmud-comm-summary" data-i18n="tools.tanakh_comm_title">Commentateurs</summary>
-                <div class="tanakh-comm-list" id="tool-talmud-comm-list" role="group" aria-label="Commentateurs" data-i18n-attr="aria-label:tools.tanakh_comm_title"></div>
+            <details class="tanakh-comm-panel talmud-options" id="tool-talmud-options">
+                <summary id="tool-talmud-options-summary" data-i18n="tools.talmud_options">Affichage</summary>
+                <div id="tool-talmud-comm" hidden>
+                    <p class="tool-small talmud-options-title" data-i18n="tools.tanakh_comm_title">Commentateurs</p>
+                    <div class="tanakh-comm-list" id="tool-talmud-comm-list" role="group" aria-label="Commentateurs" data-i18n-attr="aria-label:tools.tanakh_comm_title"></div>
+                </div>
+                <div class="tool-history-chips" id="tool-talmud-vowels" role="group" aria-label="Affichage du texte" data-i18n-attr="aria-label:tools.torah_vowels_label"></div>
+                <label class="dict-toggle" data-i18n-attr="title:tools.talmud_lookup_help" title="Touchez un mot du texte pour voir sa fiche dans le dictionnaire de la Guémara"><input type="checkbox" id="tool-talmud-lookup-on" checked onchange="talmudToggleLookup(this.checked)"> <span data-i18n="tools.talmud_lookup_toggle">Dictionnaire au toucher</span></label>
+                <label class="dict-toggle" data-i18n-attr="title:tools.talmud_summary_help" title="Une phrase pour l'ordre, une pour le traité et une pour le chapitre"><input type="checkbox" id="tool-talmud-summary-on" checked onchange="talmudToggleSummary(this.checked)"> <span data-i18n="tools.tanakh_summary_toggle">Résumé</span></label>
             </details>
-            <div class="tool-history-chips" id="tool-talmud-vowels" role="group" aria-label="Affichage du texte" data-i18n-attr="aria-label:tools.torah_vowels_label"></div>
-            <label class="dict-toggle" data-i18n-attr="title:tools.talmud_lookup_help" title="Touchez un mot du texte pour voir sa fiche dans le dictionnaire de la Guémara"><input type="checkbox" id="tool-talmud-lookup-on" checked onchange="talmudToggleLookup(this.checked)"> <span data-i18n="tools.talmud_lookup_toggle">Dictionnaire au toucher</span></label>
-            <label class="dict-toggle" data-i18n-attr="title:tools.talmud_summary_help" title="Une phrase pour l'ordre, une pour le traité et une pour le chapitre"><input type="checkbox" id="tool-talmud-summary-on" checked onchange="talmudToggleSummary(this.checked)"> <span data-i18n="tools.tanakh_summary_toggle">Résumé</span></label>
-            <div class="tanakh-cycle" id="tool-talmud-summary" hidden></div>
+            <details class="tanakh-cycle talmud-summary" id="tool-talmud-summary" hidden></details>
             <p class="tool-msg" id="tool-talmud-msg" role="status"></p>
         </div>
         <div class="tanakh-text" id="tool-talmud-text"></div>

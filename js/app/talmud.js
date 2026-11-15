@@ -117,26 +117,31 @@ function talmudToggleSummary(checked) {
     talmudRender();
 }
 
-// Le résumé de l'amoud : l'ordre, le traité et le chapitre où l'amoud commence. Seulement s'il y a au moins une phrase propre au traité (pas de bloc pour un
-// traité sans résumé : la phrase de l'ordre seule n'apprend rien sur l'amoud).
+// Le résumé de l'amoud, replié : la phrase du chapitre où l'amoud commence, et dessous (en touchant) celles du traité et de l'ordre. Seulement s'il y a au moins une
+// phrase propre au traité (la phrase de l'ordre seule n'apprend rien sur l'amoud).
+let talmudSummaryOpen = false;
 function talmudRenderSummary(tr) {
     const box = toolEl('tool-talmud-summary');
     toolClear(box);
     toolEl('tool-talmud-summary-on').checked = !!talmudState.summary;
     const chapter = TalmudCore.chapterAt(tr, talmudState.page, 0) + 1;
     const s = talmudState.summary && talmudResume ? TalmudCore.summaryOf(talmudResume, talmudIndex, tr.id, chapter) : null;
-    const lines = s && s.book ? [
-        [t('tools.michna_summary_seder', { name: tr.sederFr }), s.seder],
-        [t('tools.michna_summary_book', { name: tr.fr }), s.book],
-        [t('tools.talmud_chapter_n', { n: chapter }) + ' :', s.chapter]
-    ].filter(l => l[1]) : [];
-    box.hidden = !lines.length;
-    lines.forEach(([label, text]) => {
-        const row = talmudNode('div', 'tanakh-cycle-row');
-        row.appendChild(talmudNode('strong', '', label + ' '));
-        row.appendChild(talmudNode('span', 'tool-small', text));
-        box.appendChild(row);
-    });
+    const row = (label, text) => {
+        const line = talmudNode('span');
+        line.appendChild(talmudNode('strong', '', label + ' '));
+        line.appendChild(talmudNode('span', 'tool-small', text));
+        return line;
+    };
+    const show = !!(s && s.book);
+    box.hidden = !show;
+    if (!show) return;
+    const head = talmudNode('summary');
+    head.appendChild(s.chapter ? row(t('tools.talmud_chapter_n', { n: chapter }) + ' :', s.chapter) : row(t('tools.michna_summary_book', { name: tr.fr }), s.book));
+    box.appendChild(head);
+    if (s.chapter) box.appendChild(talmudNode('div', 'tanakh-cycle-row')).appendChild(row(t('tools.michna_summary_book', { name: tr.fr }), s.book));
+    if (s.seder) box.appendChild(talmudNode('div', 'tanakh-cycle-row')).appendChild(row(t('tools.michna_summary_seder', { name: tr.sederFr }), s.seder));
+    box.open = talmudSummaryOpen;
+    box.ontoggle = () => { talmudSummaryOpen = box.open; };
 }
 
 // Ouvre le Talmud à un amoud (« 58a ») d'un traité : sert au Daf Yomi de l'accueil. À appeler après openTool('talmud') : l'écran est déjà affiché.
@@ -266,8 +271,8 @@ function talmudToggleComm(id, checked) {
     if (checked) talmudLoadComments(talmudState.id);
 }
 
-// Le panneau « Commentateurs » : une case par exégète du registre, construites une fois (le focus du clavier ne se perd pas à chaque affichage).
-// Un exégète qui ne couvre pas le traité est grisé, sa case gardée.
+// Le panneau « Affichage » (replié) : une case par exégète du registre, construites une fois (le focus du clavier ne se perd pas à chaque affichage), puis les voyelles,
+// le dictionnaire et le résumé. Un exégète qui ne couvre pas le traité n'est pas proposé. Le titre replié dit ce qui est actif : « Affichage · Rachi ».
 function talmudRenderCommPanel() {
     const panel = toolEl('tool-talmud-comm');
     const list = toolEl('tool-talmud-comm-list');
@@ -295,11 +300,13 @@ function talmudRenderCommPanel() {
         const box = toolEl('tool-talmud-comm-' + comm.id);
         box.checked = !!talmudState.comm[comm.id];
         box.disabled = !available.includes(comm);
+        box.parentElement.hidden = !available.includes(comm);   // un exégète qui ne couvre pas le traité n'est pas proposé : la liste reste courte
     });
     const active = talmudCommActive();
-    toolEl('tool-talmud-comm-summary').textContent = active.length
-        ? t('tools.tanakh_comm_title') + ' · ' + active.map(c => c.name).join(', ')
-        : t('tools.tanakh_comm_title');
+    const parts = [t('tools.talmud_options')];
+    if (active.length) parts.push(active.map(c => c.name).join(', '));
+    if (talmudState.vowels === 'consonants') parts.push(t('tools.tanakh_vowels_consonants'));
+    toolEl('tool-talmud-options-summary').textContent = parts.join(' · ');
 }
 
 // Un passage de commentaire : <b> le mot commenté, <i> une citation, <small> une variante. Le texte ne passe jamais par du HTML brut.
@@ -347,31 +354,32 @@ function talmudRender() {
     if (!talmudIndex) return;
     const tr = TalmudCore.find(talmudIndex, talmudState.id);
     const page = talmudState.page;
-    // Les ordres : un bouton chacun, qui ouvre son premier traité (inutile tant qu'il n'y en a qu'un).
-    const chips = toolEl('tool-talmud-sedarim');
-    chips.hidden = talmudIndex.sedarim.length < 2;
-    talmudChips(chips, talmudIndex.sedarim.map(s => [s.id, s.fr]), tr.seder,
-        id => { const s = talmudIndex.sedarim.find(x => x.id === id); talmudOpen(s.tractates[0].id, 0); });
-    // Les traités de l'ordre choisi.
+    // Tous les traités dans un seul menu, rangés par ordre (un <optgroup> chacun) : moins de place qu'une rangée de boutons.
     const sel = toolEl('tool-talmud-tractate');
     toolClear(sel);
-    talmudIndex.sedarim.find(s => s.id === tr.seder).tractates.forEach(x => {
-        const o = talmudNode('option', '', x.he + ' · ' + x.fr);
-        o.value = x.id;
-        o.selected = x.id === tr.id;
-        sel.appendChild(o);
+    talmudIndex.sedarim.forEach(seder => {
+        const group = talmudNode('optgroup');
+        group.label = seder.he + ' · ' + seder.fr;
+        seder.tractates.forEach(x => {
+            const o = talmudNode('option', '', x.he + ' · ' + x.fr);
+            o.value = x.id;
+            o.selected = x.id === tr.id;
+            group.appendChild(o);
+        });
+        sel.appendChild(group);
     });
     // Les chapitres du traité : un saut vers l'amoud où chacun commence ; le chapitre en cours est celui d'où l'on lit.
     const chap = toolEl('tool-talmud-chapter');
     toolClear(chap);
     const current = TalmudCore.chapterAt(tr, page, 0);
     tr.chapters.forEach((c, k) => {
-        const o = talmudNode('option', '', t('tools.talmud_chapter_n', { n: k + 1 }) + ' · ' + TalmudCore.amoudLabel(tr.start, c.from[0]) + ' · ' + c.he);
+        const o = talmudNode('option', '', t('tools.talmud_chapter_short', { n: k + 1 }) + ' · ' + TalmudCore.amoudLabel(tr.start, c.from[0]));
         o.value = String(k);
         o.selected = k === current;
         chap.appendChild(o);
     });
     chap.hidden = !tr.chapters.length;
+    chap.title = tr.chapters.map((c, k) => t('tools.talmud_chapter_n', { n: k + 1 }) + ' · ' + c.he).join('\n');
     // Les amoudim du traité.
     const daf = toolEl('tool-talmud-daf');
     toolClear(daf);
@@ -427,7 +435,7 @@ function talmudRenderText(tr) {
         // Un chapitre qui commence dans l'amoud : son titre se pose avant son premier segment. Sinon, un rappel du chapitre en cours en haut.
         const starts = {};
         TalmudCore.chaptersStartingIn(tr, wanted.page).forEach(c => { starts[c.seg] = c; });
-        if (!starts[0]) {
+        if (!starts[0] && toolEl('tool-talmud-summary').hidden) {
             const c = tr.chapters[TalmudCore.chapterAt(tr, wanted.page, 0)];
             if (c) {
                 const reminder = talmudNode('p', 'tool-small talmud-chapter-reminder', t('tools.talmud_chapter_n', { n: TalmudCore.chapterAt(tr, wanted.page, 0) + 1 }) + ' · ' + c.he);
