@@ -22,11 +22,12 @@ const TALMUD_COMMENTATORS = [
 ];
 
 let talmudIndex = null;
+let talmudResume = null;        // data/talmud/resume.json (une phrase par ordre, par traité et par chapitre) ; null tant qu'il n'est pas chargé ou s'il manque
 const talmudLoaded = {};        // traité -> data/talmud/<traité>.json
 const talmudCommLoaded = {};    // commentateur -> traité -> { pages } : commentaire chargé
 const talmudCommPending = {};   // « commentateur/traité » -> promesse en cours, pour ne charger qu'une fois
 const talmudCounts = {};        // traité -> counts-<traité>.json : { order, pages[amoud][segment] = masque }
-let talmudState = { id: 'berakhot', page: 0, vowels: 'full', comm: { rashi: true }, open: {}, lookup: true };
+let talmudState = { id: 'berakhot', page: 0, vowels: 'full', comm: { rashi: true }, open: {}, lookup: true, summary: true };
 
 let talmudPrefsLoaded = false;
 function talmudLoadPrefs() {
@@ -40,12 +41,13 @@ function talmudLoadPrefs() {
             if (p.vowels === 'consonants') talmudState.vowels = 'consonants';
             if (p.comm && typeof p.comm === 'object') talmudState.comm = p.comm;
             if (p.lookup === false) talmudState.lookup = false;
+            if (typeof p.summary === 'boolean') talmudState.summary = p.summary;
         }
     } catch (e) {}
 }
 
 function talmudSavePrefs() {
-    try { localStorage.setItem(TALMUD_KEY, JSON.stringify({ id: talmudState.id, page: talmudState.page, vowels: talmudState.vowels, comm: talmudState.comm, lookup: talmudState.lookup })); } catch (e) {}
+    try { localStorage.setItem(TALMUD_KEY, JSON.stringify({ id: talmudState.id, page: talmudState.page, vowels: talmudState.vowels, comm: talmudState.comm, lookup: talmudState.lookup, summary: talmudState.summary })); } catch (e) {}
 }
 
 function talmudNode(tag, cls, text) {
@@ -92,10 +94,49 @@ function toolTalmudInit() {
         .then(() => {
             msg.textContent = '';
             talmudRender();
+            talmudLoadResume();
             talmudLoadCounts(talmudState.id);
             talmudLoadComments(talmudState.id);
         })
         .catch(() => { msg.textContent = t('tools.torah_error'); });
+}
+
+// Les résumés (case « Résumé ») : une phrase par ordre, par traité et par chapitre, dans data/talmud/resume.json. Chargés une fois ; sans le fichier,
+// rien ne s'affiche et le reste de l'écran fonctionne.
+function talmudLoadResume() {
+    if (talmudResume) return;
+    fetch('data/talmud/resume.json')
+        .then(res => { if (!res.ok) throw new Error('resume HTTP ' + res.status); return res.json(); })
+        .then(data => { talmudResume = data; talmudRender(); })
+        .catch(() => { /* pas de résumé */ });
+}
+
+function talmudToggleSummary(checked) {
+    talmudState.summary = checked;
+    talmudSavePrefs();
+    talmudRender();
+}
+
+// Le résumé de l'amoud : l'ordre, le traité et le chapitre où l'amoud commence. Seulement s'il y a au moins une phrase propre au traité (pas de bloc pour un
+// traité sans résumé : la phrase de l'ordre seule n'apprend rien sur l'amoud).
+function talmudRenderSummary(tr) {
+    const box = toolEl('tool-talmud-summary');
+    toolClear(box);
+    toolEl('tool-talmud-summary-on').checked = !!talmudState.summary;
+    const chapter = TalmudCore.chapterAt(tr, talmudState.page, 0) + 1;
+    const s = talmudState.summary && talmudResume ? TalmudCore.summaryOf(talmudResume, talmudIndex, tr.id, chapter) : null;
+    const lines = s && s.book ? [
+        [t('tools.michna_summary_seder', { name: tr.sederFr }), s.seder],
+        [t('tools.michna_summary_book', { name: tr.fr }), s.book],
+        [t('tools.talmud_chapter_n', { n: chapter }) + ' :', s.chapter]
+    ].filter(l => l[1]) : [];
+    box.hidden = !lines.length;
+    lines.forEach(([label, text]) => {
+        const row = talmudNode('div', 'tanakh-cycle-row');
+        row.appendChild(talmudNode('strong', '', label + ' '));
+        row.appendChild(talmudNode('span', 'tool-small', text));
+        box.appendChild(row);
+    });
 }
 
 // Ouvre le Talmud à un amoud (« 58a ») d'un traité : sert au Daf Yomi de l'accueil. À appeler après openTool('talmud') : l'écran est déjà affiché.
@@ -350,6 +391,7 @@ function talmudRender() {
         key => { talmudState.vowels = key; talmudSavePrefs(); talmudRender(); });
     toolEl('tool-talmud-lookup-on').checked = !!talmudState.lookup;
     talmudRenderCommPanel();
+    talmudRenderSummary(tr);
     talmudRenderText(tr);
     toolEl('tool-talmud-source').textContent = [t('tools.talmud_source')].concat(talmudCommSources().map(c => t(c.source))).join(' ');
 }
@@ -397,6 +439,8 @@ function talmudRenderText(tr) {
             if (starts[i]) {
                 const h = talmudNode('h4', 'talmud-chapter-heading', t('tools.talmud_chapter_n', { n: starts[i].n }) + ' · ' + starts[i].he);
                 box.appendChild(h);
+                const sentence = talmudState.summary && talmudResume ? TalmudCore.summaryOf(talmudResume, talmudIndex, tr.id, starts[i].n).chapter : '';
+                if (sentence && i > 0) box.appendChild(talmudNode('p', 'tool-small talmud-chapter-reminder', sentence));
             }
             const block = talmudNode('div', 'tanakh-block talmud-block');
             const p = talmudSegment(raw);

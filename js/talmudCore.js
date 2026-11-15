@@ -115,6 +115,20 @@
         return page < 0 ? null : { id: id, label: label, page: page };
     }
 
+    // Les résumés de data/talmud/resume.json : { sedarim: { <ordre>: phrase }, tractates: { <traité>: { book: phrase, chapters: [phrase par chapitre] } } }.
+    // Les trois phrases d'un amoud : celle de l'ordre, celle du traité et celle du chapitre où l'amoud commence ('' si le fichier ne la donne pas).
+    // `chapter` (depuis 1) : un chapitre précis ; sinon, celui du segment 0 de l'amoud `page`.
+    function summaryOf(resume, index, id, chapter) {
+        var tr = find(index, id);
+        var out = { seder: '', book: '', chapter: '' };
+        if (!tr || !resume) return out;
+        var book = (resume.tractates || {})[id];
+        out.seder = (resume.sedarim || {})[tr.seder] || '';
+        out.book = (book && book.book) || '';
+        out.chapter = (book && book.chapters && book.chapters[chapter - 1]) || '';
+        return out;
+    }
+
     // --- Le mot touché -------------------------------------------------------------------------------------------------------------------
     // Le mot hébreu ou araméen autour de la position `offset` d'un texte (la position d'un curseur : entre deux lettres) : { start, end (exclu), word } ou null
     // si on n'est pas sur un mot. Un mot est fait de lettres et de voyelles ou accents ; le maqaf et les signes de ponctuation le coupent ; les guillemets
@@ -183,7 +197,7 @@
 
     return {
         tractates: tractates, find: find, rank: rank, amoudLabel: amoudLabel, pageOf: pageOf, hebrewAmoud: hebrewAmoud, dafOf: dafOf,
-        chapterAt: chapterAt, chaptersStartingIn: chaptersStartingIn, step: step, isHadran: isHadran, dafYomiTarget: dafYomiTarget, DAF_YOMI: DAF_YOMI, wordAt: wordAt, lookup: lookup,
+        chapterAt: chapterAt, chaptersStartingIn: chaptersStartingIn, step: step, isHadran: isHadran, dafYomiTarget: dafYomiTarget, DAF_YOMI: DAF_YOMI, wordAt: wordAt, lookup: lookup, summaryOf: summaryOf,
         hebrewNumber: M.hebrewNumber, maskIds: M.maskIds, parseComment: M.parseComment, stripMarks: M.stripMarks
     };
 }));

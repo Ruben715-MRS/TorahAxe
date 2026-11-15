@@ -1,0 +1,28 @@
+{
+ "_note": "Résumés écrits pour l'application, en français, d'après le texte de la Guémara (début des michnayot et sujets de chaque chapitre, vérifiés sur le texte) : à relire par une personne compétente (note interne, non affichée).",
+ "v": 1,
+ "sedarim": {
+  "zeraim": "Les lois agricoles et les bénédictions ; la Guémara de Babylone n'en commente que Berakhot, sur la prière et les bénédictions.",
+  "moed": "Les temps sacrés : Chabbat, fêtes, jeûnes, Roch Hachana, Yom Kippour et Pourim, en onze traités.",
+  "nashim": "Le mariage et la famille : lévirat, contrat de mariage, vœux, nazir, femme soupçonnée, divorce et fiançailles, en sept traités.",
+  "nezikin": "Le droit civil et pénal : dommages, biens, tribunaux, peines, serments, idolâtrie et enseignement des sages, en huit traités.",
+  "kodashim": "Le Temple et ses sacrifices, avec Houlin sur l'abattage profane, en neuf traités.",
+  "tohorot": "La pureté et l'impureté ; la Guémara de Babylone n'en commente que Nidda."
+ },
+ "tractates": {
+  "berakhot": {
+   "book": "La prière et les bénédictions : le Chéma, la Amida, les bénédictions des repas et celles qu'on dit devant les événements de la vie.",
+   "chapters": [
+    "Les heures du Chéma le soir et le matin, comment le lire, ses bénédictions et la mention de la sortie d'Égypte la nuit.",
+    "L'intention requise pour le Chéma, les pauses permises, la dispense du jeune marié et les prières de sages qui closent le chapitre.",
+    "Qui est dispensé du Chéma et de la prière (celui dont le mort est devant lui, les femmes, les esclaves), et la pureté du corps et du lieu.",
+    "Les heures des prières, leur origine (les patriarches ou les sacrifices), la prière abrégée et la prière dans un lieu dangereux.",
+    "Le recueillement avant de prier, la pluie et la havdala dans la Amida, l'officiant qui se trompe et la prière de Hanina ben Dossa.",
+    "Les bénédictions avant de manger selon l'aliment (fruits, pain, vin, légumes), l'aliment principal et l'accessoire, et la bénédiction finale.",
+    "Le zimoun : qui compte pour inviter à bénir après le repas, la formule à trois et à dix, et quand un groupe ne peut plus se diviser.",
+    "Les controverses de Beit Chammaï et Beit Hillel sur le repas : kiddouch et vin, lavage des mains, lumière et havdala.",
+    "Les bénédictions devant les miracles, le tonnerre et les nouvelles, les quatre qui doivent remercier, les rêves et le respect du Mont du Temple."
+   ]
+  }
+ }
+}

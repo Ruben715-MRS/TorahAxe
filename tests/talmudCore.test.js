@@ -296,3 +296,40 @@ test('lookup sur le vrai texte : la plupart des mots d\'un amoud trouvent une fi
     words.forEach(w => { const r = T.lookup(G, L.normalizeHebrew, w); assert.ok(r, w); if (r.direct.length || r.abbr.length) known++; });
     assert.ok(known / words.length > 0.2, 'au moins un mot sur cinq a une fiche directe');
 });
+
+test('résumés : un par ordre, un par traité et par chapitre, courts, sans espace en trop', () => {
+    const resume = read('resume');
+    const sedarim = index.sedarim.map(s => s.id);
+    assert.deepStrictEqual(Object.keys(resume.sedarim).sort(), sedarim.slice().sort());
+    const sentence = (s, where) => {
+        assert.ok(typeof s === 'string' && s.length >= 40 && s.length <= 200, where + ' : longueur ' + (s || '').length);
+        assert.ok(s.trim() === s && !/\s{2,}/.test(s), where + ' : espaces');
+        assert.ok(/[.)]$/.test(s), where + ' : finit par un point');
+    };
+    Object.keys(resume.sedarim).forEach(id => sentence(resume.sedarim[id], 'ordre ' + id));
+    Object.keys(resume.tractates).forEach(id => {
+        const tr = T.find(index, id);
+        assert.ok(tr, id + ' : pas dans l\'index');
+        const r = resume.tractates[id];
+        sentence(r.book, id);
+        assert.strictEqual(r.chapters.length, tr.chapters.length, id + ' : un résumé par chapitre');
+        r.chapters.forEach((c, k) => sentence(c, id + ' chapitre ' + (k + 1)));
+    });
+    assert.ok(resume.tractates.berakhot);
+});
+
+test('summaryOf : l\'ordre, le traité et le chapitre ; vide si inconnu', () => {
+    const resume = read('resume');
+    const s = T.summaryOf(resume, index, 'berakhot', 1);
+    assert.ok(s.seder && s.book && s.chapter);
+    assert.strictEqual(s.seder, resume.sedarim.zeraim);
+    assert.strictEqual(T.summaryOf(resume, index, 'berakhot', 9).chapter, resume.tractates.berakhot.chapters[8]);
+    assert.deepStrictEqual(T.summaryOf(resume, index, 'inconnu', 1), { seder: '', book: '', chapter: '' });
+    assert.strictEqual(T.summaryOf(null, index, 'berakhot', 1).book, '');
+    assert.strictEqual(T.summaryOf(resume, index, 'berakhot', 99).chapter, '');
+    // Un traité sans résumé (Chabbat) : la phrase de son ordre seulement.
+    const shabbat = T.summaryOf(resume, index, 'shabbat', 1);
+    assert.strictEqual(shabbat.book, '');
+    assert.strictEqual(shabbat.chapter, '');
+    assert.strictEqual(shabbat.seder, resume.sedarim.moed);
+});

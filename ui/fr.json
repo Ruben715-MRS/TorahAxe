@@ -4101,6 +4101,7 @@
     "talmud_src_ran": "Ran (Nedarim) : Sefaria, édition de Vilna (domaine public).",
     "talmud_src_gershom": "Rabbénou Guerchom (Makkot 24a-24b) : Sefaria, édition de Vilna (domaine public).",
     "talmud_src_tosafot": "Tossafot : Sefaria, édition de Vilna (domaine public).",
+    "talmud_summary_help": "Une phrase pour l'ordre, une pour le traité et une pour le chapitre où commence l'amoud",
     "talmud_lookup_toggle": "Dictionnaire au toucher",
     "talmud_lookup_help": "Touchez un mot du texte pour voir sa fiche dans le dictionnaire de la Guémara",
     "talmud_lookup_close": "Fermer",
