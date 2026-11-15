@@ -116,8 +116,8 @@ test('navigation entre traités : de la fin de Berakhot au début de Chabbat, et
     assert.ok(sh.amudim > 300);
 });
 
-test('commentaires (Rachi, Rachbam, Tossafot) : alignés sur les amoudim et les segments de la Guémara, masques des pastilles cohérents', () => {
-    const PREFIX = { rashi: 'rashi-', rashbam: 'rashbam-', tosafot: 'tosafot-' };
+test('commentaires (Rachi, Rachbam, Ran, Rabbénou Guerchom, Tossafot) : alignés sur les amoudim et les segments de la Guémara, masques des pastilles cohérents', () => {
+    const PREFIX = { rashi: 'rashi-', rashbam: 'rashbam-', ran: 'ran-', 'rabbeinu-gershom': 'rabbeinu-gershom-', tosafot: 'tosafot-' };
     let withComm = 0;
     T.tractates(index).forEach(tr => {
         const info = tr;
@@ -179,4 +179,20 @@ test('Rachbam : seulement Bava Batra (dès 29a) et Pessahim (99b à 121b), là o
     const rashi = read('rashi-bava-batra');
     const lastRashi = rashi.pages.map((p, i) => (p.some(l => l.length) ? i : -1)).filter(i => i >= 0).pop();
     assert.strictEqual(T.amoudLabel(bb.start, lastRashi), '29a');
+});
+
+test('Ran sur Nedarim (2a à 91b) et Rabbénou Guerchom sur Makkot (24a-24b) : seulement là', () => {
+    assert.deepStrictEqual(T.tractates(index).filter(t => t.comm.includes('ran')).map(t => t.id), ['nedarim']);
+    assert.deepStrictEqual(T.tractates(index).filter(t => t.comm.includes('rabbeinu-gershom')).map(t => t.id), ['makkot']);
+    const labels = (id, file) => {
+        const tr = T.find(index, id);
+        return read(file).pages.map((p, i) => (p.some(l => l.length) ? T.amoudLabel(tr.start, i) : null)).filter(Boolean);
+    };
+    const ran = labels('nedarim', 'ran-nedarim');
+    assert.strictEqual(ran[0], '2a');
+    assert.strictEqual(ran[ran.length - 1], '91b');
+    assert.deepStrictEqual(labels('makkot', 'rabbeinu-gershom-makkot'), ['24a', '24b']);
+    const count = (f) => read(f).pages.flatMap(p => p.flatMap(l => l)).length;
+    assert.strictEqual(count('rabbeinu-gershom-makkot'), 10);
+    assert.ok(count('ran-nedarim') > 1900);
 });

@@ -1,12 +1,12 @@
 // Produit data/talmud/ : le Talmud de Babylone (Guémara) en araméen vocalisé, depuis Sefaria.
 // Texte : « William Davidson Edition - Vocalized Aramaic » (Koren Noé ; nikoud : Dicta), licence CC-BY-NC (usage non commercial).
-// Commentaires : Rashi, Tosafot et Rashbam (Bava Batra, Pessahim), édition de Vilna (domaine public), alignés sur les segments de la Guémara (voir plus bas).
+// Commentaires : Rashi, Tosafot, Rashbam (Bava Batra, Pessahim), Ran (Nedarim) et Rabbénou Guerchom (Makkot), édition de Vilna (domaine public), alignés sur les segments de la Guémara (voir plus bas).
 // Usage : NODE_USE_ENV_PROXY=1 node scripts/build_talmud.js berakhot [shabbat …]   (ou « all » pour les 37 traités ; derrière un proxy, sinon sans la variable)
 //   option --check : ne rien écrire, seulement dire si Rashi et Tosafot s'alignent bien sur la Guémara.
 // Fichiers :
 //   data/talmud/<traité>.json = { v, id, start, pages: [ amoud → [ segment ] ] } : `start` est le premier amoud (« 2a »), `pages[0]` ; les amoudim se suivent
 //     (2a, 2b, 3a…) jusqu'à la fin du traité ; un amoud que la numérotation de Vilna saute reste vide (Nazir 33b). Un segment est du texte avec <b> (les mots en gras : « Matni », « Guemara », mot d'ouverture).
-//   data/talmud/<préfixe><traité>.json (rashi-, rashbam-, tosafot-) = { v, id, commentator, pages: [ amoud → [ segment → [commentaires] ] ] } : mêmes amoudim que <traité>.json ;
+//   data/talmud/<préfixe><traité>.json (rashi-, rashbam-, ran-, rabbeinu-gershom-, tosafot-) = { v, id, commentator, pages: [ amoud → [ segment → [commentaires] ] ] } : mêmes amoudim que <traité>.json ;
 //     dans un amoud, le segment k de la Guémara a ses commentaires en k (les derniers segments sans commentaire sont omis). Un commentaire est du texte avec
 //     <b> (le mot commenté, avant le premier « – » ou « - »), <i> (citation) et <small>.
 //   data/talmud/counts-<traité>.json = { v, order, pages: [ amoud → [ masque par segment ] ] } : le bit k du masque est celui de order[k] ; sert aux pastilles « 💬 n ».
@@ -76,6 +76,8 @@ const amoudIndex = (label) => parseInt(label, 10) * 2 + (/b$/.test(label) ? 1 : 
 const COMMENTATORS = [
     { id: 'rashi', title: 'Rashi', prefix: 'rashi-' },
     { id: 'rashbam', title: 'Rashbam', prefix: 'rashbam-', only: ['bava-batra', 'pesachim'] },   // Bava Batra 29a à 176b ; Pesachim 99b à 121b (Rashi n'y est pas)
+    { id: 'ran', title: 'Ran', prefix: 'ran-', only: ['nedarim'] },   // le Ran (Rabbénou Nissim) sur Nedarim, 2a à 91b
+    { id: 'rabbeinu-gershom', title: 'Rabbeinu Gershom', prefix: 'rabbeinu-gershom-', only: ['makkot'] },   // Makkot 24a-24b seulement (10 commentaires) : Sefaria range le reste sous Rashi
     { id: 'tosafot', title: 'Tosafot', prefix: 'tosafot-' }
 ];
 // L'édition de Vilna d'abord ; si elle est quasi vide (Rashi sur Roch Hachana : 8 commentaires), la version Wikisource, dans le domaine public aussi, la remplace.

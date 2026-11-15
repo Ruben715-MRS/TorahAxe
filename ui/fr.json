@@ -4098,6 +4098,8 @@
     "talmud_comm_count": "{n} commentateurs sur ce passage : {names}. Afficher ou masquer leurs commentaires.",
     "talmud_src_rashi": "Rachi : Sefaria, édition de Vilna (domaine public) ; Roch Hachana : Wikisource (domaine public).",
     "talmud_src_rashbam": "Rachbam (Bava Batra à partir de 29a, Pessahim 99b à 121b) : Sefaria, édition de Vilna (domaine public).",
+    "talmud_src_ran": "Ran (Nedarim) : Sefaria, édition de Vilna (domaine public).",
+    "talmud_src_gershom": "Rabbénou Guerchom (Makkot 24a-24b) : Sefaria, édition de Vilna (domaine public).",
     "talmud_src_tosafot": "Tossafot : Sefaria, édition de Vilna (domaine public).",
     "talmud_source": "Talmud de Babylone : Sefaria, édition William Davidson (Koren Noé), araméen vocalisé par Dicta (CC-BY-NC : usage non commercial).",
     "tanakh_mode_label": "Choix par chapitre ou par paracha",
