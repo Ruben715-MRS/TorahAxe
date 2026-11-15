@@ -22,3 +22,10 @@ function showScreen(screenId, direction) {
         target.classList.add(direction === 'forward' ? 'screen-slide-forward' : 'screen-slide-back');
     }
 }
+
+// Retour d'un des 3 jeux vers l'écran d'où on l'a ouvert (l'accueil, ou l'outil dictionnaire dont il
+// est issu). Version réduite de js/app/arcade.js d'HistoriAxe : pas de Salle de jeux ni de Chemin à
+// raffraîchir au retour dans TorahAxe.
+function gamesBackTo(screenId) {
+    showScreen(screenId, 'back');
+}

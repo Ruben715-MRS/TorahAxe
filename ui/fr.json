@@ -2370,7 +2370,7 @@
     "today": "À réviser aujourd'hui : {due} · Mots nouveaux dans la prochaine partie : {fresh}",
     "today_none": "Rien à réviser aujourd'hui. Mots nouveaux dans la prochaine partie : {fresh}.",
     "today_done": "Vous avez vu tous les mots de ce niveau : revenez à mesure qu'ils arrivent à échéance.",
-    "how": "Un mot raté revient le lendemain ; un mot réussi revient 3, 7, 14, puis 30 jours plus tard. Il est « maîtrisé » après trois révisions réussies, espacées. Votre progression est enregistrée avec votre compte.",
+    "how": "Un mot raté revient le lendemain ; un mot réussi revient 3, 7, 14, puis 30 jours plus tard. Il est « maîtrisé » après trois révisions réussies, espacées. Votre progression est enregistrée sur cet appareil.",
     "gain": "(+{n} cette fois)",
     "title": "Mots du Tanakh",
     "desc": "Le vocabulaire hébreu de la Bible, du plus fréquent au plus rare, et les mots absents de la Torah, en hébreu vocalisé.",

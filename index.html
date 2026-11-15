@@ -135,7 +135,36 @@
             </button>
             </div>
         </section>
-            <!-- TODO (tâche #3) : les 3 jeux exclusifs (Mots du Tanakh, Mots de la Guémara, Maîtres et élèves). -->
+<section class="games-section" aria-labelledby="games-h-religious">
+            <h3 id="games-h-religious" data-i18n="games.religious_title">Jeux religieux</h3>
+            <p class="games-section-desc" data-i18n="games.religious_desc">Le vocabulaire hébreu et araméen, et la chaîne des maîtres de la tradition.</p>
+            <div class="arcade-menu">
+            <button type="button" class="arcade-card" onclick="openLexiconGame('screen-main')">
+                <span class="arcade-card-icon" aria-hidden="true">🧠</span>
+                <span class="arcade-card-text">
+                    <strong data-i18n="lexgame.title">Mots du Tanakh</strong>
+                    <small data-i18n="lexgame.desc">Le vocabulaire hébreu de la Bible, du plus fréquent au plus rare, et les mots absents de la Torah, en hébreu vocalisé.</small>
+                    <small class="arcade-best" id="arcade-best-lexicon"></small>
+                </span>
+            </button>
+            <button type="button" class="arcade-card" onclick="openGemaraGame('screen-main')">
+                <span class="arcade-card-icon" aria-hidden="true">📚</span>
+                <span class="arcade-card-text">
+                    <strong data-i18n="gemgame.title">Mots de la Guémara</strong>
+                    <small data-i18n="gemgame.desc">Entraînez-vous sur les mots, les abréviations et les sages de la Guémara.</small>
+                    <small class="arcade-best" id="arcade-best-gemara"></small>
+                </span>
+            </button>
+            <button type="button" class="arcade-card" onclick="openTransmissionGame('screen-main')">
+                <span class="arcade-card-icon" aria-hidden="true">🔗</span>
+                <span class="arcade-card-text">
+                    <strong data-i18n="trgame.title">Maîtres et élèves</strong>
+                    <small data-i18n="trgame.desc">Qui a reçu la Torah de qui ? Retrouvez le maître d'un sage, ou l'intrus parmi ses élèves.</small>
+                    <small class="arcade-best" id="arcade-best-transmission"></small>
+                </span>
+            </button>
+            </div>
+        </section>
             <!-- TODO (tâche #4) : frises « Judaïsme » (3 thèmes) + « Histoire de l'État d'Israël », avec
                  l'encadré de renvoi vers HistoriAxe en dessous (tâche #5). -->
             <!-- TODO (tâche #4) : les 3 récits (Dreyfus, Bar Kokhba, État d'Israël), avec l'encadré de
@@ -711,9 +740,129 @@
     <script src="js/gemaraData.js"></script>
     <script src="js/gemaraCore.js"></script>
     <script src="js/app/gemara.js"></script>
+    <script src="js/srs.js"></script>
+    <script src="js/arcadeShuffle.js"></script>
+    <script src="js/memoryStore.js"></script>
+    <script src="js/lexiconGameCore.js"></script>
+    <script src="js/gemaraGameCore.js"></script>
+    <script src="js/transmissionGameCore.js"></script>
+    <script src="js/app/lexicon-game.js"></script>
+    <script src="js/app/gemara-game.js"></script>
+    <script src="js/app/transmission-game.js"></script>
     <script src="js/app/tools.js"></script>
     <script src="js/app/navigation.js"></script>
     <script src="js/app/home.js"></script>
+
+    <!-- Écrans des 3 jeux exclusifs migrés depuis HistoriAxe -->
+<div id="screen-lexgame" class="list-screen hidden">
+        <button class="back-btn" onclick="lexgameBack()" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title" data-i18n="lexgame.title">Mots du Tanakh</h2>
+        <p class="modes-header-subtitle" id="lexgame-status" role="status"></p>
+        <div id="lexgame-setup" class="lexgame-setup">
+            <p class="lexgame-progress-text" id="lexgame-progress-text"></p>
+            <div class="lexgame-bar" id="lexgame-bar" role="progressbar" aria-valuemin="0" aria-valuemax="1" aria-valuenow="0" aria-labelledby="lexgame-progress-text"><i id="lexgame-bar-fill"></i></div>
+            <div class="lexgame-levels" role="group" aria-label="Niveau de fréquence des mots" data-i18n-attr="aria-label:lexgame.level_aria">
+                <button type="button" class="tool-history-chip" id="lexgame-level-3" aria-pressed="true" onclick="lexgameSetLevel(3)"></button>
+                <button type="button" class="tool-history-chip" id="lexgame-level-2" aria-pressed="false" onclick="lexgameSetLevel(2)"></button>
+                <button type="button" class="tool-history-chip" id="lexgame-level-1" aria-pressed="false" onclick="lexgameSetLevel(1)"></button>
+                <button type="button" class="tool-history-chip" id="lexgame-level-0" aria-pressed="false" onclick="lexgameSetLevel(0)"></button>
+            </div>
+            <p class="tool-small" id="lexgame-level-note"></p>
+            <label class="gem-reduce"><input type="checkbox" id="lexgame-scroll" onchange="lexgameToggleScroll()"> <span data-i18n="lexgame.scroll">Tout en lettres de rouleau (sans voyelles)</span></label>
+            <p class="tool-small" id="lexgame-today"></p>
+            <button type="button" class="btn" onclick="lexgameStart()" data-i18n="arcade.play">Jouer</button>
+            <p class="tool-small" data-i18n="lexgame.how">Un mot raté revient le lendemain ; un mot réussi revient 3, 7, 14, puis 30 jours plus tard. Il est « maîtrisé » après trois révisions réussies, espacées. Votre progression est enregistrée avec votre compte.</p>
+            <p class="tool-small" data-i18n="lexgame.how_types">Les questions se corsent à mesure qu'un mot est su : le mot sans voyelles, « comment dit-on… ? », la racine, la valeur en guématria.</p>
+        </div>
+        <div id="lexgame-play" class="hidden">
+            <p class="cause-question" id="lexgame-question"></p>
+            <p class="lexgame-word" id="lexgame-word" lang="he" dir="rtl"></p>
+            <div class="cause-cards" id="lexgame-options"></div>
+            <div class="wheel-feedback hidden" id="lexgame-feedback" role="status">
+                <strong id="lexgame-feedback-title"></strong>
+                <p id="lexgame-feedback-text"></p>
+                <p class="tool-small hidden" id="lexgame-feedback-extra"></p>
+                <p class="tool-small hidden" id="lexgame-feedback-note"></p>
+                <div class="lexgame-actions">
+                    <button type="button" class="btn" id="lexgame-next" onclick="lexgameContinue()"></button>
+                    <button type="button" class="btn lexgame-dict-btn" onclick="lexgameOpenDictionary()" data-i18n="lexgame.dictionary">Voir dans le dictionnaire</button>
+                </div>
+            </div>
+        </div>
+        <div class="arcade-over hidden" id="lexgame-over">
+            <h3 data-i18n="arcade.over">Partie terminée</h3>
+            <p id="lexgame-over-text"></p>
+            <p id="lexgame-over-progress"></p>
+            <button type="button" class="btn" onclick="lexgameStart()" data-i18n="arcade.replay">Rejouer</button>
+        </div>
+    </div>
+
+<div id="screen-gemgame" class="list-screen hidden">
+        <button class="back-btn" onclick="gemgameBack()" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title" data-i18n="gemgame.title">Mots de la Guémara</h2>
+        <p class="modes-header-subtitle" id="gemgame-status" role="status"></p>
+        <div id="gemgame-setup" class="lexgame-setup">
+            <p class="lexgame-progress-text" id="gemgame-progress-text"></p>
+            <div class="lexgame-bar" id="gemgame-bar" role="progressbar" aria-valuemin="0" aria-valuemax="1" aria-valuenow="0" aria-labelledby="gemgame-progress-text"><i id="gemgame-bar-fill"></i></div>
+            <div class="lexgame-levels" id="gemgame-sections" role="group" aria-label="Ce qu'on révise" data-i18n-attr="aria-label:gemgame.section_aria"></div>
+            <p class="tool-small" id="gemgame-today"></p>
+            <button type="button" class="btn" onclick="gemgameStart()" data-i18n="arcade.play">Jouer</button>
+            <p class="tool-small" data-i18n="gemgame.how">Une carte (un mot, une abréviation ou un sage) ratée revient le lendemain ; une carte réussie revient 3, 7, 14, puis 30 jours plus tard. Elle est « maîtrisée » après trois révisions réussies, espacées.</p>
+            <p class="tool-small" data-i18n="gemgame.how_types">Les questions se corsent à mesure qu'une carte est sue : on passe de « que veut dire ce mot ? » à « comment dit-on… ? », et, pour un sage, de « qui est-ce ? » à son époque.</p>
+        </div>
+        <div id="gemgame-play" class="hidden">
+            <p class="cause-question" id="gemgame-question"></p>
+            <p class="lexgame-word" id="gemgame-word" lang="he" dir="rtl"></p>
+            <div class="cause-cards" id="gemgame-options"></div>
+            <div class="wheel-feedback hidden" id="gemgame-feedback" role="status">
+                <strong id="gemgame-feedback-title"></strong>
+                <p id="gemgame-feedback-text"></p>
+                <p class="tool-small hidden" id="gemgame-feedback-note"></p>
+                <div class="lexgame-actions">
+                    <button type="button" class="btn" id="gemgame-next" onclick="gemgameContinue()"></button>
+                    <button type="button" class="btn lexgame-dict-btn" onclick="gemgameOpenDictionary()" data-i18n="gemgame.dictionary">Voir dans le dictionnaire</button>
+                </div>
+            </div>
+        </div>
+        <div class="arcade-over hidden" id="gemgame-over">
+            <h3 data-i18n="arcade.over">Partie terminée</h3>
+            <p id="gemgame-over-text"></p>
+            <p id="gemgame-over-progress"></p>
+            <button type="button" class="btn" onclick="gemgameStart()" data-i18n="arcade.replay">Rejouer</button>
+        </div>
+    </div>
+
+<div id="screen-trgame" class="list-screen hidden">
+        <button class="back-btn" onclick="trgameBack()" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title" data-i18n="trgame.title">Maîtres et élèves</h2>
+        <p class="modes-header-subtitle" id="trgame-status" role="status"></p>
+        <div id="trgame-setup" class="lexgame-setup">
+            <div class="lexgame-levels" id="trgame-sections" role="group" aria-label="Maîtres joués" data-i18n-attr="aria-label:trgame.section_aria"></div>
+            <button type="button" class="btn" onclick="trgameStart()" data-i18n="arcade.play">Jouer</button>
+            <p class="tool-small" data-i18n="trgame.how">Dix questions, 100 points chacune. « Qui est un maître de… ? » : un seul des quatre noms a vraiment enseigné ce sage. « L'intrus » : trois des quatre sont des élèves du maître indiqué, un seul ne l'est pas.</p>
+            <p class="tool-small" data-i18n="trgame.how_sure">Seules les questions à réponse certaine sont posées : les liens discutés (« ? » sur la carte) ne sont jamais la bonne réponse, et les fausses pistes sont des sages qui ne peuvent pas être le maître (venus après) ou l'élève (venus avant ou en même temps).</p>
+        </div>
+        <div id="trgame-play" class="hidden">
+            <p class="cause-question" id="trgame-question"></p>
+            <p class="lexgame-word is-french" id="trgame-word"></p>
+            <p class="tool-small trgame-he" id="trgame-he" lang="he" dir="rtl"></p>
+            <div class="cause-cards" id="trgame-options"></div>
+            <div class="wheel-feedback hidden" id="trgame-feedback" role="status">
+                <strong id="trgame-feedback-title"></strong>
+                <p id="trgame-feedback-text"></p>
+                <p class="tool-small hidden" id="trgame-feedback-note"></p>
+                <div class="lexgame-actions">
+                    <button type="button" class="btn" id="trgame-next" onclick="trgameContinue()"></button>
+                    <button type="button" class="btn lexgame-dict-btn" onclick="trgameOpenChain()" data-i18n="trgame.see_chain">Voir la chaîne</button>
+                </div>
+            </div>
+        </div>
+        <div class="arcade-over hidden" id="trgame-over">
+            <h3 data-i18n="arcade.over">Partie terminée</h3>
+            <p id="trgame-over-text"></p>
+            <button type="button" class="btn" onclick="trgameStart()" data-i18n="arcade.replay">Rejouer</button>
+        </div>
+    </div>
 </body>
 
 </html>
