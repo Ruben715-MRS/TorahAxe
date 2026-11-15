@@ -167,3 +167,6 @@
 .sd-about-fr { margin: 4px 0 8px; }
 .sd-about-note { margin: 0; font-size: 12px; color: var(--muted-text); }
 .sd-fr-seg { white-space: pre-line; }
+
+/* Groupe applicable aujourd'hui mais repliable (Harahaman de Chabbat, de Roch Hodesh…) */
+.sd-group.is-on > summary.sd-group-badge { cursor: pointer; }

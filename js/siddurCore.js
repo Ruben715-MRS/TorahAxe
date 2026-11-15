@@ -62,8 +62,9 @@
     // vaut pour l'une OU l'autre (« בראש חודש ובחול המועד » : Roch 'Hodesh ou 'Hol haMoed). L'ordre compte : le plus précis d'abord.
     var ATOMS = [
         ['aseret', /עשרת ימי תשובה/],
-        ['roshHashana', /בראש השנה/],
-        ['rc', /בראש (חדש|חודש)|בר ?ח\b/],
+        ['roshHashana', /בראש השנה|^ברה ש$/],
+        ['moadim', /^במועדים/],
+        ['rc', /בראש (חדש|חודש)|(^|\s)בר ?ח(\s|$)/],
         ['chPesach', /(חוה מ|חול המועד) פסח/],
         ['chSukkot', /(חוה מ|חול המועד) סוכות/],
         ['ch', /חול המועד|חוה מ\b|חוהמ/],
@@ -268,7 +269,7 @@
             dewWinter: dewWinter, dewSummer: !dewWinter, barechWinter: barechWinter, barechSummer: !barechWinter,
             aseret: h.month === 'Tishri' && h.day <= 10,
             rc: h.day === 1 || h.day === 30,
-            roshHashana: roshHashana, chPesach: chPesach, chSukkot: chSukkot, ch: chPesach || chSukkot,
+            roshHashana: roshHashana, moadim: pesach || sukkot || shavuot || shemini, chPesach: chPesach, chSukkot: chSukkot, ch: chPesach || chSukkot,
             shemini: shemini, pesach: pesach, shavuot: shavuot, sukkot: sukkot, yomTov: yomTov,
             hanukkah: inFeast('hanouka'), purim: h.month === purimId && h.day === 14,
             tishaBav: !!fastDay && fastDay.id === 'tichabav', fastPublic: !!fastDay, shabbat: shabbat,

@@ -1094,8 +1094,8 @@ function sdRenderSection(section) {
             host = sdEl('details', 'sd-group is-off');
             host.appendChild(sdEl('summary', '', t('tools.sd_group_off', { what: label })));
         } else {
-            host = sdEl('div', 'sd-group ' + (state === 'on' ? 'is-on' : 'is-unknown'));
-            if (state === 'on') host.appendChild(sdEl('p', 'sd-group-badge', t('tools.sd_group_on', { what: label })));
+            host = sdEl(state === 'on' ? 'details' : 'div', 'sd-group ' + (state === 'on' ? 'is-on' : 'is-unknown'));
+            if (state === 'on') { host.open = true; host.appendChild(sdEl('summary', 'sd-group-badge', t('tools.sd_group_on', { what: label }))); }
             else if (state === 'unknown') host.appendChild(sdEl('p', 'sd-group-badge', t('tools.sd_group_unknown', { what: label })));
         }
         for (let k = g.header; k <= g.to; k++) host.appendChild(seg(k));
