@@ -84,6 +84,38 @@ function zmLoad() {
     });
 }
 
+// Les opinions enregistrées, lues sans toucher au lieu courant ni aux réglages chargés (pour l'accueil et le Siddour).
+function zmStoredOpts() {
+    const stored = zmRead(ZM_KEYS.opts, {});
+    const out = {};
+    ZM_SETTINGS.forEach(([key, values]) => {
+        const v = stored && stored[key];
+        if (values.includes(v)) out[key] = v;
+    });
+    return out;
+}
+
+// La fenêtre de Birkat haLévana du mois en cours (ou du suivant si elle est passée), en une ligne ; null s'il n'y en a pas.
+function zmLevanaInfo(place, civil, h, opts) {
+    const Z = ZmanimCore;
+    const months = HebrewCalendarCore.monthsOf(h.year);
+    const index = months.findIndex(m => m.id === h.month);
+    if (index < 0) return null;
+    const candidates = [[h.year, months[index].id]];
+    candidates.push(index + 1 < months.length ? [h.year, months[index + 1].id] : [h.year + 1, 'Tishri']);
+    const dayStart = Z.localToUtc(place.tz, civil.year, civil.month, civil.day, 0);
+    for (const [year, month] of candidates) {
+        const win = Z.levanaWindow(year, month, opts.levanaWait || 7);
+        const evenings = Z.levanaEvenings(place, win, opts);
+        if (!evenings) continue;
+        const last = Z.localToUtc(place.tz, evenings.last.year, evenings.last.month, evenings.last.day, 23);
+        if (last < dayStart) continue;
+        const fmt = (d) => hcalGregorianText(CalendarYearCore.gregorianToFixed(d.year, d.month, d.day), { weekday: undefined, year: undefined, month: 'long', day: 'numeric' });
+        return t('tools.zm_levana_window', { from: fmt(evenings.first), to: fmt(evenings.last) });
+    }
+    return null;
+}
+
 // --- Dates ----------------------------------------------------------------------------------------------------------------------------
 function zmToday() {
     return ZmanimCore.civilDateOf(zmPlace ? zmPlace.tz : 'UTC', Date.now());

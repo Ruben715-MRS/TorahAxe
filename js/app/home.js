@@ -292,9 +292,7 @@ function homeShiftCivil(civil, days) {
     return { year: d.getUTCFullYear(), month: d.getUTCMonth() + 1, day: d.getUTCDate() };
 }
 
-function homeZmanOpts() {
-    try { return JSON.parse(localStorage.getItem('zmanimOpts') || '{}') || {}; } catch (e) { return {}; }
-}
+function homeZmanOpts() { return zmStoredOpts(); }
 
 const HOME_ZMAN_NAMES = {
     alot: 'Aube', netz: 'Lever', shemaGra: 'Fin du Chéma', tefilaGra: 'Fin de la Téfila', chatzot: 'Midi solaire', minchaGedola: 'Minha Guédola',

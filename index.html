@@ -39,6 +39,7 @@
     <link rel="manifest" href="manifest.webmanifest">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/siddur.css">
 </head>
 
 <body>
@@ -351,8 +352,11 @@
 
 <div id="screen-tool-siddur" class="list-screen hidden">
         <button class="back-btn" onclick="sdBack()" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <div class="sd-topbtns">
+            <button type="button" class="sd-round" id="sd-kotel-link" aria-label="Direction du Kotel" onclick="openTool('kotel', 'screen-tool-siddur')"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg></button>
+            <button type="button" class="sd-round" id="sd-info" aria-label="À propos de ce siddour" onclick="sdOpenInfo()"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.6v.4"/></svg></button>
+        </div>
         <h2 class="header-title" data-i18n="tools.sd_title">Siddour séfarade</h2>
-        <p class="modes-header-subtitle" data-i18n="tools.sd_intro">Le texte est celui d'un siddour imprimé, sans retouche. L'application lit ses consignes (été, hiver, Roch 'Hodesh, dix jours de pénitence…) et met en valeur ce qui s'applique aujourd'hui ; le reste est estompé ou replié, jamais supprimé.</p>
         <div class="tool-panel sd-panel">
             <div id="tool-siddur-body" class="sd-body"></div>
         </div>

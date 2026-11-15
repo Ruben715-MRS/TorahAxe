@@ -1,5 +1,5 @@
 // =========================================================================
-// === SIDDOUR SÉFARADE (écran de l'Atelier, groupe « Bible et tradition ») ===
+// === SIDDOUR SÉFARADE : accueil par moments et rayons, puis lecteur ===
 // =========================================================================
 // Le siddour des jours de semaine, nusach Edot haMizrah, en hébreu vocalisé (data/siddur/, domaine public, généré par scripts/build_siddur.js).
 // Le texte n'est jamais retouché : js/siddurCore.js lit les consignes du livre (« בקיץ », « בעשרת ימי תשובה », « בראש חדש »…) et dit quelle variante
@@ -16,12 +16,14 @@ const SD_DATA = 'data/siddur/';
 let sdIndex = null;
 const sdCache = {};
 let sdPrefs = { size: 2, niqqud: true, all: false, fr: false, font: 'noto-serif' };
-let sdFontsOpen = false;
 let sdView = { mode: 'home', ids: [], title: '' };
 let sdPlace = null;
 let sdCtx = null;
 // Une ouverture demandée par un autre écran (l'accueil) : { group } ou { ids, title }, exécutée dès que l'index du siddour est chargé.
 let sdPending = null;
+const sdOrigText = new WeakMap();   // le texte d'origine (avec voyelles) de chaque nœud de texte du lecteur
+let sdSheetEl = null;               // la feuille ouverte (sommaire, affichage, rayon…), s'il y en a une
+let sdRestoreTop = null;            // la position de lecture à retrouver après un nouveau rendu
 const SD_LAST_KEY = 'siddurLast';
 
 const SD_SIZES = [18, 20, 23, 27, 32];
@@ -131,13 +133,239 @@ function sdPrecache() {
     }).catch(() => { /* hors réseau ou interrompu : à la prochaine ouverture */ });
 }
 
+// --- Les rayons ----------------------------------------------------------------------------------------------------------------------------------
+// Le livre est rangé en six rayons. Chaque ligne ouvre une prière entière (`group`), une section ou une suite de sections (`ids`).
+// `key` identifie la ligne (raccourcis épinglés, saison) ; `he` est le mot de la ligne. Le rayon Chabbat attend son contenu : `soon` dit ce qui viendra.
+const SD_RAYONS = [
+    { id: 'semaine', he: 'יום חול', fr: 'Semaine', rows: [
+        { key: 'g:reveil', he: 'השכמה', group: 'reveil' },
+        { key: 'g:chacharit', he: 'שחרית', group: 'chacharit' },
+        { key: 'g:minha', he: 'מנחה', group: 'minha' },
+        { key: 'g:arvit', he: 'ערבית', group: 'arvit' },
+        { key: 's:chema-coucher', he: 'על המיטה', ids: ['chema-coucher'] },
+        { key: 'g:hatsot', he: 'חצות', group: 'hatsot' }
+    ] },
+    { id: 'chabbat', he: 'שבת', fr: 'Chabbat', soon: 'Kabbalat Chabbat, Kiddouch, Chaharit et Moussaf, Minha, Arvit et Havdala : le siddour de Chabbat est en préparation.' },
+    { id: 'fetes', he: 'מועדים', fr: 'Fêtes', rows: [
+        { key: 'g:roch-hodech', he: 'ראש חודש', group: 'roch-hodech' },
+        { key: 'g:hol-hamoed', he: 'חול המועד', group: 'hol-hamoed' },
+        { key: 'x:hanouka', he: 'חנוכה', title: 'Hanouka', ids: ['hanouka-allumage', 'hanouka-chacharit'] },
+        { key: 'x:pourim', he: 'פורים', title: 'Pourim', ids: ['pourim-meguila', 'pourim-jour'] },
+        { key: 'x:nissan', he: 'ניסן', title: 'Nissan', ids: ['nissan-ilanot', 'nissan-etude'] },
+        { key: 's:omer', he: 'עומר', ids: ['omer'] }
+    ] },
+    { id: 'jeunes', he: 'תעניות', fr: 'Jeûnes', rows: [
+        { key: 'x:selihot', he: 'סליחות', title: 'Sélihot des jeûnes', ids: ['jeune-guedalia', 'jeune-tevet', 'jeune-esther', 'jeune-tamouz'] },
+        { key: 's:jeune-tora', he: 'קריאה', ids: ['jeune-tora'] },
+        { key: 's:deuil', he: 'אבל', ids: ['deuil'] }
+    ] },
+    { id: 'benedictions', he: 'ברכות', fr: 'Bénédictions', rows: [
+        { key: 's:birkat-hamazon', he: 'ברכת המזון', ids: ['birkat-hamazon'] },
+        { key: 's:al-hamihya', he: 'מעין שלוש', ids: ['al-hamihya'] },
+        { key: 's:birkhot-hanehenin', he: 'ברכות הנהנין', ids: ['birkhot-hanehenin'] },
+        { key: 's:birkat-halevana', he: 'קידוש לבנה', ids: ['birkat-halevana'] },
+        { key: 's:tefilat-haderekh', he: 'תפילת הדרך', ids: ['tefilat-haderekh'] },
+        { key: 's:mezouza', he: 'מזוזה', ids: ['mezouza'] },
+        { key: 's:maake', he: 'מעקה', ids: ['maake'] },
+        { key: 's:hala', he: 'חלה', ids: ['hala'] },
+        { key: 's:tevilat-kelim', he: 'טבילת כלים', ids: ['tevilat-kelim'] },
+        { key: 's:terouma-maasser', he: 'תרומות', ids: ['terouma-maasser'] },
+        { key: 's:arc-en-ciel', he: 'קשת', ids: ['arc-en-ciel'] },
+        { key: 's:eclairs-tonnerre', he: 'ברקים', ids: ['eclairs-tonnerre'] },
+        { key: 's:remede', he: 'רפואה', ids: ['remede'] }
+    ] },
+    { id: 'vie', he: 'שמחות', fr: 'Vie', rows: [
+        { key: 's:fiancailles', he: 'אירוסין', ids: ['fiancailles'] },
+        { key: 's:cheva-berakhot', he: 'שבע ברכות', ids: ['cheva-berakhot'] },
+        { key: 's:brit-mila', he: 'ברית מילה', ids: ['brit-mila'] },
+        { key: 's:pidyon-haben', he: 'פדיון הבן', ids: ['pidyon-haben'] }
+    ] }
+];
+const SD_DEFAULT_PINS = ['s:birkat-hamazon', 's:chema-coucher'];
+const SD_PINS_KEY = 'siddurPins';
+const SD_MAX_PINS = 6;
+const SD_HE_PRAYER = { chacharit: 'שחרית', minha: 'מנחה', arvit: 'ערבית' };
+
+function sdCleanTitle(fr) { return fr.replace(/ \(jours de semaine\)/, ''); }
+
+// Une ligne de rayon, complétée d'après l'index : { key, he, title, ids, desc }.
+function sdRowInfo(row) {
+    if (row.group) {
+        const g = sdIndex.groups.filter(x => x.id === row.group)[0];
+        if (!g) return null;
+        return { key: row.key, he: row.he, title: sdCleanTitle(g.fr), ids: g.sections.map(x => x.id), desc: g.sections.length > 1 ? g.sections.length + ' parties : tout lire d\'un trait, ou partie par partie' : '' };
+    }
+    const found = row.ids.map(sdFindSection).filter(Boolean);
+    if (!found.length) return null;
+    const title = row.title || found[0].section.fr;
+    return { key: row.key, he: row.he, title: title, ids: row.ids.slice(), desc: row.ids.length > 1 ? row.ids.length + ' textes' : '' };
+}
+function sdAllRows() {
+    const out = [];
+    SD_RAYONS.forEach(r => (r.rows || []).forEach(row => { const info = sdRowInfo(row); if (info) out.push(Object.assign(info, { rayon: r.fr })); }));
+    return out;
+}
+function sdRowByKey(key) { return sdAllRows().filter(r => r.key === key)[0] || null; }
+
+function sdLoadPins() {
+    try {
+        const v = JSON.parse(localStorage.getItem(SD_PINS_KEY) || 'null');
+        if (Array.isArray(v)) return v.filter(k => typeof k === 'string').slice(0, SD_MAX_PINS);
+    } catch (e) { /* stockage indisponible : raccourcis par défaut */ }
+    return SD_DEFAULT_PINS.slice();
+}
+function sdSavePins(pins) {
+    try { localStorage.setItem(SD_PINS_KEY, JSON.stringify(pins)); } catch (e) { /* valable pour cette séance */ }
+}
+
+// Ce qui est de saison aujourd'hui, ou le sera bientôt : [{ ...ligne, desc }]. Le jour hébraïque vient du lieu de l'écran Zmanim.
+function sdSeasonItems(ctx) {
+    const out = [];
+    const f = ctx.flags, h = ctx.hebrew;
+    const add = (key, desc, ids) => {
+        const row = sdRowByKey(key);
+        if (!row) return;
+        out.push(Object.assign({}, row, { desc: desc }, ids ? { ids: ids } : {}));
+    };
+    const daysTo = (month, day) => CalendarYearCore.hebrewToFixed(h.year, month, day) - ctx.fixed;
+    if (ctx.omer > 0) add('s:omer', t('tools.sd_note_omer', { n: ctx.omer }));
+    if (f.rc) add('g:roch-hodech', 'C\'est Roch \'Hodesh : Hallel, Moussaf, Barkhi nafchi…');
+    if (f.ch) add('g:hol-hamoed', 'Hallel et Moussaf');
+    const fastIds = { guedalia: 'jeune-guedalia', tevet10: 'jeune-tevet', esther: 'jeune-esther', tamouz17: 'jeune-tamouz' };
+    if (ctx.fast && fastIds[ctx.fast]) add('x:selihot', 'Sélihot du jeûne d\'aujourd\'hui', [fastIds[ctx.fast]]);
+    if (f.hanukkah) add('x:hanouka', 'Pendant Hanouka : l\'allumage, Al hanissim, Hallel');
+    else { const d = daysTo('Kislev', 25); if (d > 0 && d <= 14) add('x:hanouka', d === 1 ? 'Demain soir' : 'Dans ' + d + ' jours'); }
+    const purimMonth = HebrewCalendarCore.leap(h.year) ? 'AdarII' : 'Adar';
+    if (f.purim) add('x:pourim', 'C\'est Pourim');
+    else { const d = daysTo(purimMonth, 14); if (d > 0 && d <= 14) add('x:pourim', d === 1 ? 'Demain' : 'Dans ' + d + ' jours'); }
+    if (h.month === 'Nisan') add('x:nissan', 'Birkat haIlanot, le mois de Nissan');
+    const lev = sdPlace ? zmLevanaInfo(sdPlace, ZmanimCore.civilDateOf(sdPlace.tz, Date.now()), h, zmStoredOpts()) : null;
+    if (lev) add('s:birkat-halevana', lev);
+    return out;
+}
+
+// --- Les feuilles (sommaire, affichage, rayons, raccourcis) ----------------------------------------------------------------------------------
+function sdCloseSheet() {
+    if (sdSheetEl) { sdSheetEl.remove(); sdSheetEl = null; }
+}
+
+function sdSheet(title, build) {
+    sdCloseSheet();
+    const scrim = sdEl('div', 'sd-scrim');
+    scrim.onclick = (e) => { if (e.target === scrim) sdCloseSheet(); };
+    const sheet = sdEl('div', 'sd-sheet');
+    sheet.setAttribute('role', 'dialog');
+    sheet.setAttribute('aria-modal', 'true');
+    sheet.setAttribute('aria-label', title);
+    const head = sdEl('div', 'sd-sheet-head');
+    head.appendChild(sdEl('h3', 'sd-sheet-title', title));
+    const close = sdEl('button', 'sd-sheet-close', '✕');
+    close.type = 'button';
+    close.setAttribute('aria-label', 'Fermer');
+    close.onclick = sdCloseSheet;
+    head.appendChild(close);
+    sheet.appendChild(head);
+    const content = sdEl('div', 'sd-sheet-body');
+    build(content);
+    sheet.appendChild(content);
+    scrim.appendChild(sheet);
+    toolEl('screen-tool-siddur').appendChild(scrim);
+    sdSheetEl = scrim;
+    close.focus();
+}
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && sdSheetEl) sdCloseSheet(); });
+
+// Une ligne de liste (mot hébreu, titre, explication) ; `onclick` ouvre.
+function sdRowButton(info, onclick, extra) {
+    const b = sdEl('button', 'home-row');
+    b.type = 'button';
+    const he = sdEl('span', 'he', info.he);
+    he.lang = 'he'; he.dir = 'rtl';
+    const text = sdEl('span');
+    text.appendChild(sdEl('span', 'fr', info.title));
+    if (info.desc) text.appendChild(sdEl('span', 'desc', info.desc));
+    b.appendChild(he);
+    b.appendChild(text);
+    b.appendChild(sdEl('span', 'chev', extra || '›'));
+    b.onclick = onclick;
+    return b;
+}
+
+function sdOpenRow(info) {
+    sdCloseSheet();
+    sdOpen(info.ids, info.title);
+}
+
+function sdOpenRayon(rayon) {
+    if (rayon.soon) {
+        sdSheet(rayon.fr, (body) => { body.appendChild(sdEl('p', 'sd-soon', rayon.soon)); });
+        return;
+    }
+    sdSheet(rayon.fr, (body) => {
+        const list = sdEl('div', 'home-rows');
+        rayon.rows.forEach(row => { const info = sdRowInfo(row); if (info) list.appendChild(sdRowButton(info, () => sdOpenRow(info))); });
+        body.appendChild(list);
+    });
+}
+
+function sdOpenPins() {
+    const draw = (body) => {
+        toolClear(body);
+        body.appendChild(sdEl('p', 'sd-sheet-note', 'Choisissez jusqu\'à ' + SD_MAX_PINS + ' textes à retrouver en un toucher sur l\'accueil.'));
+        const pins = sdLoadPins();
+        SD_RAYONS.filter(r => r.rows).forEach(r => {
+            body.appendChild(sdEl('h4', 'sd-sheet-sub', r.fr));
+            const list = sdEl('div', 'home-rows');
+            r.rows.forEach(row => {
+                const info = sdRowInfo(row);
+                if (!info) return;
+                const on = pins.indexOf(info.key) !== -1;
+                const b = sdRowButton(info, () => {
+                    const now = sdLoadPins();
+                    const i = now.indexOf(info.key);
+                    if (i !== -1) now.splice(i, 1);
+                    else if (now.length < SD_MAX_PINS) now.push(info.key);
+                    else { showToast('Vous pouvez épingler ' + SD_MAX_PINS + ' textes au plus.'); return; }
+                    sdSavePins(now);
+                    draw(body);
+                    sdRefreshPinsOnHome();
+                }, on ? '✓' : '');
+                b.setAttribute('aria-pressed', on ? 'true' : 'false');
+                list.appendChild(b);
+            });
+            body.appendChild(list);
+        });
+    };
+    sdSheet('Mes raccourcis', draw);
+}
+
+// L'accueil derrière la feuille se met à jour (sans toucher à la position).
+function sdRefreshPinsOnHome() {
+    if (sdView.mode !== 'home') return;
+    const top = toolEl('screen-tool-siddur').scrollTop;
+    const sheet = sdSheetEl;
+    sdRender();
+    if (sheet) toolEl('screen-tool-siddur').appendChild(sheet);
+    toolEl('screen-tool-siddur').scrollTop = top;
+}
+
+function sdOpenInfo() {
+    sdSheet('À propos de ce siddour', (body) => {
+        body.appendChild(sdEl('p', 'sd-info', t('tools.sd_intro')));
+        body.appendChild(sdEl('p', 'sd-info', t('tools.sd_source', { edition: sdIndex ? sdIndex.edition : '' })));
+        body.appendChild(sdEl('p', 'sd-info', t('tools.sd_disclaimer')));
+    });
+}
+
 // --- Entrée de l'écran ---------------------------------------------------------------------------------------------------------------------
 function toolSiddurInit() {
     sdLoadPrefs();
+    sdCloseSheet();
     sdView = { mode: 'home', ids: [], title: '' };
     const body = toolEl('tool-siddur-body');
     toolClear(body);
     body.appendChild(sdEl('p', 'tool-small', t('tools.sd_loading')));
+    sdBindScroll();
     sdLoadIndex().then(() => {
         const target = sdTakePending();
         if (target) sdView = { mode: 'reader', ids: target.ids, title: target.title };
@@ -185,16 +413,20 @@ function sdDayNoteLabels(ctx) {
 
 function sdRender() {
     const body = toolEl('tool-siddur-body');
+    const screen = toolEl('screen-tool-siddur');
     toolClear(body);
     sdComputeContext();
+    if (screen) screen.classList.toggle('is-reading', sdView.mode === 'reader');
     if (sdView.mode === 'reader') sdRenderReader(body);
     else sdRenderHome(body);
 }
 
-// Retour : de la lecture à l'accueil du siddour, puis à l'Atelier.
+// Retour : de la lecture à l'accueil du siddour, puis à l'accueil de l'application.
 function sdBack() {
+    sdCloseSheet();
     if (sdView.mode === 'reader') {
         sdView = { mode: 'home', ids: [], title: '' };
+        sdRestoreTop = null;
         sdRender();
         window.scrollTo && window.scrollTo(0, 0);
         const screen = toolEl('screen-tool-siddur');
@@ -204,107 +436,122 @@ function sdBack() {
     toolBack('siddur');
 }
 
-// --- L'accueil ----------------------------------------------------------------------------------------------------------------------------------
+// --- L'accueil du siddour ------------------------------------------------------------------------------------------------------------------------
+function sdOpenGroup(groupId) {
+    const g = sdIndex.groups.filter(x => x.id === groupId)[0];
+    if (g) sdOpen(g.sections.map(s => s.id), sdCleanTitle(g.fr));
+}
+
+function sdArvitTime() {
+    if (!sdPlace) return '';
+    const d = ZmanimCore.civilDateOf(sdPlace.tz, Date.now());
+    const ms = ZmanimCore.rounded(ZmanimCore.zmanim(sdPlace, d.year, d.month, d.day, zmStoredOpts()), 'tzeit');
+    return ms === null ? '' : 'dès ' + ZmanimCore.formatTime(ms, sdPlace.tz, 'fr');
+}
+
 function sdRenderHome(body) {
     const ctx = sdCtx;
-    const hero = sdEl('section', 'sd-hero');
+    const current = sdPlace ? sdCurrentPrayer() : null;
+    const special = ctx.flags.shabbat || ctx.flags.yomTov;
+
+    // La carte du moment : la prière de l'heure et les variantes du jour.
+    const hero = sdEl('section', 'home-hero sd-now');
     hero.id = 'sd-hero';
-    const heTitle = sdEl('p', 'sd-hero-he', 'סידור עדות המזרח');
-    heTitle.lang = 'he'; heTitle.dir = 'rtl';
-    hero.appendChild(heTitle);
-    hero.appendChild(sdEl('h3', 'sd-hero-title', t('tools.sd_hero_title')));
-    hero.appendChild(sdEl('p', 'sd-hero-date', hcalHebrewText(ctx.hebrew) + ' · ' + hcalHebrewLetters(ctx.hebrew)));
-    const chips = sdEl('div', 'sd-notes');
-    SiddurCore.notesFor(ctx).forEach(id => {
-        if (id === 'shabbat' || id === 'yomTov') return;
-        chips.appendChild(sdEl('span', 'sd-note', id === 'omer' ? t('tools.sd_note_omer', { n: ctx.omer }) : t('tools.sd_note_' + id)));
-    });
-    hero.appendChild(chips);
-    if (ctx.flags.shabbat || ctx.flags.yomTov) {
-        hero.appendChild(sdEl('p', 'sd-warning', t(ctx.flags.shabbat && !ctx.flags.yomTov ? 'tools.sd_warn_shabbat' : 'tools.sd_warn_yomtov')));
-    }
-    if (!sdPlace) {
-        const warn = sdEl('p', 'sd-warning');
-        warn.appendChild(document.createTextNode(t('tools.sd_warn_place') + ' '));
-        const link = sdEl('button', 'sd-link', t('tools.sd_warn_place_go'));
-        link.type = 'button';
-        link.onclick = () => openTool('zmanim', 'screen-tool-siddur');
-        warn.appendChild(link);
-        hero.appendChild(warn);
+    if (current) {
+        hero.appendChild(sdEl('small', 'home-hero-label', 'À cette heure · ' + hcalHebrewText(ctx.hebrew)));
+        const row = sdEl('div', 'home-hero-row');
+        row.appendChild(sdEl('div', 'home-hero-name', t('tools.sd_p_' + current)));
+        const he = sdEl('span', 'home-hero-he', SD_HE_PRAYER[current]);
+        he.lang = 'he'; he.dir = 'rtl';
+        row.appendChild(he);
+        hero.appendChild(row);
+        if (special) hero.appendChild(sdEl('p', 'home-hero-text', t(ctx.flags.shabbat && !ctx.flags.yomTov ? 'tools.sd_warn_shabbat' : 'tools.sd_warn_yomtov')));
+        else {
+            const chips = sdEl('div', 'home-chips');
+            sdDayNoteLabels(ctx).forEach(label => chips.appendChild(sdEl('span', 'home-chip', label)));
+            hero.appendChild(chips);
+        }
+        const go = sdEl('button', 'home-hero-btn', 'Commencer ' + t('tools.sd_p_' + current));
+        go.type = 'button';
+        go.id = 'sd-quick-' + current;
+        go.onclick = () => sdOpenGroup(current);
+        hero.appendChild(go);
+    } else {
+        hero.appendChild(sdEl('small', 'home-hero-label', hcalHebrewText(ctx.hebrew)));
+        hero.appendChild(sdEl('div', 'home-hero-name', 'Votre lieu'));
+        hero.appendChild(sdEl('p', 'home-hero-text', t('tools.sd_warn_place')));
+        const go = sdEl('button', 'home-hero-btn', 'Choisir mon lieu');
+        go.type = 'button';
+        go.onclick = () => openTool('zmanim', 'screen-tool-siddur');
+        hero.appendChild(go);
+        if (special) hero.appendChild(sdEl('p', 'home-hero-text', t(ctx.flags.shabbat && !ctx.flags.yomTov ? 'tools.sd_warn_shabbat' : 'tools.sd_warn_yomtov')));
     }
     body.appendChild(hero);
 
-    // Le parcours du jour : les trois prières, celle de l'heure en tête
-    const current = sdCurrentPrayer();
-    const quick = sdEl('section', 'sd-quick');
-    const quickHead = sdEl('div', 'sd-quick-head');
-    quickHead.appendChild(sdEl('h3', 'sd-h', t('tools.sd_quick')));
-    // La direction du Kotel : un petit bouton discret à droite du titre (c'est un outil, pas une prière : pas de grande carte)
-    const kotel = sdEl('button', 'tool-history-chip sd-kotel-link', '🧭 ' + t('tools.kotel_link'));
-    kotel.type = 'button';
-    kotel.id = 'sd-kotel-link';
-    kotel.onclick = () => openTool('kotel', 'screen-tool-siddur');
-    quickHead.appendChild(kotel);
-    quick.appendChild(quickHead);
-    const row = sdEl('div', 'sd-quick-row');
-    SD_PRAYERS.forEach(gid => {
-        const group = sdIndex.groups.filter(g => g.id === gid)[0];
-        if (!group) return;
-        const b = sdEl('button', 'sd-quick-btn' + (gid === current ? ' is-now' : ''));
+    // Les autres prières de la journée.
+    const others = SD_PRAYERS.filter(g => g !== current);
+    const prayers = sdEl('div', 'home-tiles c' + (others.length === 3 ? 3 : 2));
+    others.forEach(gid => {
+        const b = sdEl('button', 'home-tile');
         b.type = 'button';
         b.id = 'sd-quick-' + gid;
-        const he = sdEl('strong', '', ({ chacharit: 'שחרית', minha: 'מנחה', arvit: 'ערבית' })[gid]);
-        he.lang = 'he';
+        const he = sdEl('span', 'he', SD_HE_PRAYER[gid]);
+        he.lang = 'he'; he.dir = 'rtl';
         b.appendChild(he);
-        b.appendChild(sdEl('span', '', t('tools.sd_p_' + gid)));
-        if (gid === current) b.appendChild(sdEl('small', '', t('tools.sd_now')));
-        b.onclick = () => sdOpen(group.sections.map(s => s.id), group.fr);
-        row.appendChild(b);
+        b.appendChild(sdEl('span', 'fr', t('tools.sd_p_' + gid)));
+        if (gid === 'arvit' && sdPlace) { const when = sdArvitTime(); if (when) b.appendChild(sdEl('span', 'sub', when)); }
+        b.onclick = () => sdOpenGroup(gid);
+        prayers.appendChild(b);
     });
-    if (ctx.flags.ch) {
-        const hm = sdIndex.groups.filter(g => g.id === 'hol-hamoed')[0];
-        if (hm) {
-            const b = sdEl('button', 'sd-quick-btn');
-            b.type = 'button';
-            b.id = 'sd-quick-hol-hamoed';
-            const he = sdEl('strong', '', 'חול המועד');
-            he.lang = 'he';
-            b.appendChild(he);
-            b.appendChild(sdEl('span', '', t('tools.sd_p_hol_hamoed')));
-            b.onclick = () => sdOpen(hm.sections.slice(0, 2).map(s => s.id), hm.fr);
-            row.appendChild(b);
-        }
-    }
-    quick.appendChild(row);
-    body.appendChild(quick);
+    body.appendChild(prayers);
 
-    // Tout le livre, par groupes repliables
-    body.appendChild(sdEl('h3', 'sd-h', t('tools.sd_all')));
-    sdIndex.groups.forEach(group => {
-        const d = sdEl('details', 'sd-group-card');
-        d.id = 'sd-card-' + group.id;
-        const sum = sdEl('summary', '', group.fr);
-        d.appendChild(sum);
-        if (group.sections.length > 1) {
-            const all = sdEl('button', 'sd-section sd-section-all');
-            all.type = 'button';
-            all.appendChild(sdEl('span', 'sd-section-fr', t('tools.sd_read_all')));
-            all.onclick = () => sdOpen(group.sections.map(s => s.id), group.fr);
-            d.appendChild(all);
-        }
-        group.sections.forEach(s => {
-            const b = sdEl('button', 'sd-section');
-            b.type = 'button';
-            b.dataset.section = s.id;
-            b.appendChild(sdEl('span', 'sd-section-fr', s.fr));
-            const he = sdEl('span', 'sd-section-he', s.he);
-            he.lang = 'he'; he.dir = 'rtl';
-            b.appendChild(he);
-            b.onclick = () => sdOpen([s.id], s.fr);
-            d.appendChild(b);
-        });
-        body.appendChild(d);
+    // Les raccourcis épinglés.
+    body.appendChild(sdEl('h3', 'home-section-title', 'Mes raccourcis'));
+    const pins = sdEl('div', 'home-tiles c3');
+    sdLoadPins().map(sdRowByKey).filter(Boolean).forEach(info => {
+        const b = sdEl('button', 'home-tile');
+        b.type = 'button';
+        const he = sdEl('span', 'he sm', info.he);
+        he.lang = 'he'; he.dir = 'rtl';
+        b.appendChild(he);
+        b.appendChild(sdEl('span', 'fr', info.title.replace(/ \(.*\)$/, '')));
+        b.onclick = () => sdOpenRow(info);
+        pins.appendChild(b);
     });
+    const add = sdEl('button', 'home-tile sd-pin-add');
+    add.type = 'button';
+    add.id = 'sd-pin-add';
+    add.appendChild(sdEl('span', 'he sm', '+'));
+    add.appendChild(sdEl('span', 'fr', 'Épingler'));
+    add.onclick = sdOpenPins;
+    pins.appendChild(add);
+    body.appendChild(pins);
+
+    // Ce qui est de saison.
+    const season = sdSeasonItems(ctx);
+    if (season.length) {
+        body.appendChild(sdEl('h3', 'home-section-title', 'En ce moment'));
+        const list = sdEl('div', 'home-rows');
+        season.forEach(info => list.appendChild(sdRowButton(info, () => sdOpenRow(info))));
+        body.appendChild(list);
+    }
+
+    // Tout le livre, par rayons.
+    body.appendChild(sdEl('h3', 'home-section-title', 'Tout le Siddour'));
+    const shelves = sdEl('div', 'home-tiles c3');
+    SD_RAYONS.forEach(r => {
+        const b = sdEl('button', 'home-tile');
+        b.type = 'button';
+        b.dataset.rayon = r.id;
+        const he = sdEl('span', 'he', r.he);
+        he.lang = 'he'; he.dir = 'rtl';
+        b.appendChild(he);
+        b.appendChild(sdEl('span', 'fr', r.fr));
+        if (r.soon) b.appendChild(sdEl('span', 'sub sd-soon-tag', 'à venir'));
+        b.onclick = () => sdOpenRayon(r);
+        shelves.appendChild(b);
+    });
+    body.appendChild(shelves);
 
     // Source
     const foot = sdEl('section', 'sd-foot');
@@ -313,9 +560,10 @@ function sdRenderHome(body) {
     body.appendChild(foot);
 }
 
-// --- La lecture ---------------------------------------------------------------------------------------------------------------------------------
+// --- La lecture ----------------------------------------------------------------------------------------------------------------------------------
 function sdOpen(ids, title) {
     sdView = { mode: 'reader', ids: ids, title: title };
+    sdRestoreTop = null;
     try { localStorage.setItem(SD_LAST_KEY, JSON.stringify({ ids: ids, title: title })); } catch (e) { /* stockage indisponible */ }
     sdRender();
     const screen = toolEl('screen-tool-siddur');
@@ -323,81 +571,223 @@ function sdOpen(ids, title) {
     window.scrollTo && window.scrollTo(0, 0);
 }
 
-function sdControls(parent) {
-    const bar = sdEl('div', 'sd-controls');
-    bar.setAttribute('role', 'group');
-    bar.setAttribute('aria-label', t('tools.sd_controls'));
-    const mk = (id, label, aria, onclick, pressed) => {
-        const b = sdEl('button', 'tool-history-chip sd-ctl', label);
-        b.type = 'button';
-        b.id = id;
-        b.setAttribute('aria-label', aria);
-        if (pressed !== undefined) b.setAttribute('aria-pressed', pressed ? 'true' : 'false');
-        b.onclick = onclick;
-        bar.appendChild(b);
-        return b;
+// Redessine la lecture (« tout afficher », traduction) en retrouvant la place.
+function sdRerender() {
+    const screen = toolEl('screen-tool-siddur');
+    sdRestoreTop = screen ? screen.scrollTop : 0;
+    sdRender();
+}
+
+let sdScrollBound = false;
+let sdScrollQueued = false;
+function sdBindScroll() {
+    if (sdScrollBound) return;
+    const screen = toolEl('screen-tool-siddur');
+    if (!screen) return;
+    screen.addEventListener('scroll', () => {
+        if (sdScrollQueued) return;
+        sdScrollQueued = true;
+        requestAnimationFrame(() => { sdScrollQueued = false; sdUpdateReadBar(); });
+    }, { passive: true });
+    sdScrollBound = true;
+}
+
+function sdShortHe(he) { return String(he).split('›').pop().trim(); }
+
+// La barre du lecteur : le texte en cours (titre et rang dans la prière) et le filet de progression.
+function sdUpdateReadBar() {
+    if (sdView.mode !== 'reader') return;
+    const screen = toolEl('screen-tool-siddur');
+    const bar = toolEl('sd-readbar');
+    if (!screen || !bar) return;
+    const max = screen.scrollHeight - screen.clientHeight;
+    const fill = bar.querySelector('.sd-read-prog i');
+    if (fill) fill.style.width = (max > 0 ? Math.min(100, Math.max(0, screen.scrollTop / max * 100)) : 0) + '%';
+    const boxes = Array.prototype.slice.call(screen.querySelectorAll('.sd-section-box'));
+    if (!boxes.length) return;
+    const limit = bar.getBoundingClientRect().bottom + 8;
+    let cur = boxes[0];
+    boxes.forEach(b => { if (b.getBoundingClientRect().top <= limit) cur = b; });
+    const id = cur.id.replace('sd-sec-', '');
+    const found = sdFindSection(id);
+    const name = toolEl('sd-read-name'), sub = toolEl('sd-read-sub');
+    if (!found || !name || !sub) return;
+    name.textContent = found.section.fr;
+    if (sdView.ids.length > 1) sub.textContent = sdView.title + ' · ' + (sdView.ids.indexOf(id) + 1) + ' sur ' + sdView.ids.length;
+    else {
+        const list = found.group.sections;
+        sub.textContent = sdCleanTitle(found.group.fr) + (list.length > 1 ? ' · ' + (list.findIndex(s => s.id === id) + 1) + ' sur ' + list.length : '');
+    }
+}
+
+function sdSwitch(label, on, onToggle) {
+    const row = sdEl('div', 'sd-opt');
+    row.appendChild(sdEl('span', '', label));
+    const sw = sdEl('button', 'sd-sw' + (on ? ' is-on' : ''));
+    sw.type = 'button';
+    sw.setAttribute('role', 'switch');
+    sw.setAttribute('aria-checked', on ? 'true' : 'false');
+    sw.setAttribute('aria-label', label);
+    sw.onclick = () => {
+        const next = !sw.classList.contains('is-on');
+        sw.classList.toggle('is-on', next);
+        sw.setAttribute('aria-checked', next ? 'true' : 'false');
+        onToggle(next);
     };
-    mk('sd-smaller', 'A−', t('tools.sd_smaller'), () => { sdPrefs.size = Math.max(0, sdPrefs.size - 1); sdSavePrefs(); sdRerender(); });
-    mk('sd-bigger', 'A+', t('tools.sd_bigger'), () => { sdPrefs.size = Math.min(SD_SIZES.length - 1, sdPrefs.size + 1); sdSavePrefs(); sdRerender(); });
-    const nq = mk('sd-niqqud', 'ניקוד', t('tools.sd_niqqud'), () => { sdPrefs.niqqud = !sdPrefs.niqqud; sdSavePrefs(); sdRerender(); }, sdPrefs.niqqud);
-    nq.lang = 'he';
-    mk('sd-fr', 'FR', t('tools.sd_fr_aria'), () => { sdPrefs.fr = !sdPrefs.fr; sdSavePrefs(); sdRerender(); }, sdPrefs.fr);
-    const fb = mk('sd-font', 'Aא', t('tools.sd_font_aria'), () => { sdFontsOpen = !sdFontsOpen; sdRerender(); }, sdFontsOpen);
-    fb.lang = 'he';
-    mk('sd-all', t('tools.sd_show_all'), t('tools.sd_show_all_aria'), () => { sdPrefs.all = !sdPrefs.all; sdSavePrefs(); sdRerender(); }, sdPrefs.all);
-    parent.appendChild(bar);
-    if (sdFontsOpen) {
-        const list = sdEl('div', 'sd-font-list');
-        list.id = 'sd-fonts';
-        list.setAttribute('role', 'radiogroup');
-        list.setAttribute('aria-label', t('tools.sd_font_aria'));
+    row.appendChild(sw);
+    return row;
+}
+
+function sdContentEl() { return toolEl('screen-tool-siddur').querySelector('.sd-content'); }
+
+// Voyelles : on change le texte en place (le texte d'origine est gardé), la lecture ne bouge pas.
+function sdApplyNiqqud() {
+    const content = sdContentEl();
+    if (!content) return;
+    const walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT);
+    let n;
+    while ((n = walker.nextNode())) {
+        const original = sdOrigText.get(n);
+        if (original !== undefined) n.nodeValue = sdText(original);
+    }
+}
+
+function sdApplySizeAndFont() {
+    const content = sdContentEl();
+    if (!content) return;
+    content.style.setProperty('--sd-size', SD_SIZES[sdPrefs.size] + 'px');
+    content.style.setProperty('--sd-font', sdFontStack());
+}
+
+function sdOpenDisplay() {
+    sdSheet('Affichage du texte', (body) => {
+        const size = sdEl('div', 'sd-opt');
+        size.appendChild(sdEl('span', '', 'Taille du texte'));
+        const seg = sdEl('div', 'sd-seg-btns');
+        const mk = (label, aria, delta) => {
+            const b = sdEl('button', '', label);
+            b.type = 'button';
+            b.setAttribute('aria-label', aria);
+            b.onclick = () => {
+                sdPrefs.size = Math.max(0, Math.min(SD_SIZES.length - 1, sdPrefs.size + delta));
+                sdSavePrefs();
+                sdApplySizeAndFont();
+            };
+            return b;
+        };
+        const smaller = mk('A−', t('tools.sd_smaller'), -1);
+        smaller.id = 'sd-smaller';
+        const bigger = mk('A+', t('tools.sd_bigger'), 1);
+        bigger.id = 'sd-bigger';
+        seg.appendChild(smaller);
+        seg.appendChild(bigger);
+        size.appendChild(seg);
+        body.appendChild(size);
+
+        const vowels = sdSwitch('Voyelles (nikoud)', sdPrefs.niqqud, (on) => { sdPrefs.niqqud = on; sdSavePrefs(); sdApplyNiqqud(); });
+        vowels.querySelector('button').id = 'sd-niqqud';
+        body.appendChild(vowels);
+        const fr = sdSwitch('Traduction française', sdPrefs.fr, (on) => { sdPrefs.fr = on; sdSavePrefs(); sdRerender(); });
+        fr.querySelector('button').id = 'sd-fr';
+        body.appendChild(fr);
+        const all = sdSwitch('Tout afficher, sans estomper', sdPrefs.all, (on) => { sdPrefs.all = on; sdSavePrefs(); sdRerender(); });
+        all.querySelector('button').id = 'sd-all';
+        body.appendChild(all);
+
+        body.appendChild(sdEl('h4', 'sd-sheet-sub', 'Police'));
+        const fonts = sdEl('div', 'home-rows');
+        fonts.setAttribute('role', 'radiogroup');
+        fonts.setAttribute('aria-label', t('tools.sd_font_aria'));
         TORAH_READER_FONTS.forEach(font => {
-            const b = sdEl('button', 'sd-font-option');
+            const b = sdEl('button', 'home-row sd-font-opt');
             b.type = 'button';
             b.dataset.font = font.id;
             b.setAttribute('role', 'radio');
             b.setAttribute('aria-checked', font.id === sdPrefs.font ? 'true' : 'false');
-            b.style.fontFamily = font.stack;
-            const sample = sdEl('span', 'sd-font-sample', 'שְׁמַע יִשְׂרָאֵל');
+            const sample = sdEl('span', 'he', 'שְׁמַע');
             sample.lang = 'he'; sample.dir = 'rtl';
+            sample.style.fontFamily = font.stack;
+            const label = sdEl('span');
+            label.appendChild(sdEl('span', 'fr', font.label));
             b.appendChild(sample);
-            b.appendChild(sdEl('small', 'sd-font-name', font.label));
-            b.onclick = () => { sdPrefs.font = font.id; sdSavePrefs(); sdRerender(); };
-            list.appendChild(b);
+            b.appendChild(label);
+            b.appendChild(sdEl('span', 'chev', font.id === sdPrefs.font ? '✓' : ''));
+            b.onclick = () => {
+                sdPrefs.font = font.id;
+                sdSavePrefs();
+                sdApplySizeAndFont();
+                fonts.querySelectorAll('.sd-font-opt').forEach(o => {
+                    const on = o.dataset.font === font.id;
+                    o.setAttribute('aria-checked', on ? 'true' : 'false');
+                    o.lastChild.textContent = on ? '✓' : '';
+                });
+            };
+            fonts.appendChild(b);
         });
-        parent.appendChild(list);
-    }
+        body.appendChild(fonts);
+    });
 }
 
-// Redessine la lecture sans perdre la place.
-function sdRerender() {
-    const screen = toolEl('screen-tool-siddur');
-    const top = screen ? screen.scrollTop : 0;
-    const win = window.scrollY || 0;
-    sdRender();
-    if (screen) screen.scrollTop = top;
-    window.scrollTo && window.scrollTo(0, win);
+// Le sommaire : les parties de la prière en cours, pour sauter de l'une à l'autre.
+function sdOpenToc() {
+    const single = sdView.ids.length === 1;
+    const found = sdFindSection(sdView.ids[0]);
+    const current = toolEl('sd-read-name') ? toolEl('sd-read-name').textContent : '';
+    sdSheet(single && found ? sdCleanTitle(found.group.fr) : sdView.title, (body) => {
+        const list = sdEl('div', 'home-rows');
+        let items;
+        if (single && found) {
+            items = found.group.sections.map(s => ({ id: s.id, fr: s.fr, he: sdShortHe(s.he) }));
+            if (found.group.sections.length > 1) {
+                list.appendChild(sdRowButton({ he: 'הכל', title: 'Tout lire d\'un trait', desc: found.group.sections.length + ' parties à la suite' },
+                    () => { sdCloseSheet(); sdOpen(found.group.sections.map(s => s.id), sdCleanTitle(found.group.fr)); }));
+            }
+        } else {
+            items = sdView.ids.map(id => { const f = sdFindSection(id); return { id: id, fr: f ? f.section.fr : id, he: f ? sdShortHe(f.section.he) : '' }; });
+        }
+        items.forEach(it => {
+            const isCurrent = it.fr === current;
+            const b = sdRowButton({ he: it.he, title: it.fr, desc: isCurrent ? 'En cours de lecture' : '' }, () => {
+                sdCloseSheet();
+                if (single) sdOpen([it.id], it.fr);
+                else { const target = document.getElementById('sd-sec-' + it.id); if (target) target.scrollIntoView({ block: 'start' }); }
+            });
+            if (isCurrent) b.setAttribute('aria-current', 'true');
+            list.appendChild(b);
+        });
+        body.appendChild(list);
+    });
 }
 
 function sdRenderReader(body) {
     const wrap = sdEl('div', 'sd-reader');
     wrap.id = 'sd-reader';
-    wrap.appendChild(sdEl('h3', 'sd-reader-title', sdView.title));
-    sdControls(wrap);
-    if (sdView.ids.length > 1) {
-        const jump = sdEl('select', 'tool-input sd-jump');
-        jump.id = 'sd-jump';
-        jump.setAttribute('aria-label', t('tools.sd_jump'));
-        sdView.ids.forEach(id => {
-            const f = sdFindSection(id);
-            const o = document.createElement('option');
-            o.value = id;
-            o.textContent = f ? f.section.fr : id;
-            jump.appendChild(o);
-        });
-        jump.onchange = () => { const target = document.getElementById('sd-sec-' + jump.value); if (target) target.scrollIntoView({ block: 'start' }); };
-        wrap.appendChild(jump);
-    }
+    const bar = sdEl('div', 'sd-readbar');
+    bar.id = 'sd-readbar';
+    const titleBtn = sdEl('button', 'sd-read-title');
+    titleBtn.type = 'button';
+    titleBtn.id = 'sd-read-title';
+    titleBtn.setAttribute('aria-haspopup', 'dialog');
+    titleBtn.setAttribute('aria-label', 'Sommaire');
+    const name = sdEl('strong', '', sdView.title);
+    name.id = 'sd-read-name';
+    const sub = sdEl('small', '', '');
+    sub.id = 'sd-read-sub';
+    titleBtn.appendChild(name);
+    titleBtn.appendChild(sub);
+    titleBtn.onclick = sdOpenToc;
+    const aa = sdEl('button', 'sd-read-aa', 'Aa');
+    aa.type = 'button';
+    aa.id = 'sd-display';
+    aa.setAttribute('aria-label', 'Affichage du texte');
+    aa.setAttribute('aria-haspopup', 'dialog');
+    aa.onclick = sdOpenDisplay;
+    bar.appendChild(titleBtn);
+    bar.appendChild(aa);
+    const prog = sdEl('div', 'sd-read-prog');
+    prog.appendChild(sdEl('i'));
+    bar.appendChild(prog);
+    wrap.appendChild(bar);
     const content = sdEl('div', 'sd-content');
     content.style.setProperty('--sd-size', SD_SIZES[sdPrefs.size] + 'px');
     content.style.setProperty('--sd-font', sdFontStack());
@@ -409,9 +799,11 @@ function sdRenderReader(body) {
         toolClear(content);
         if (sdPrefs.fr) content.appendChild(sdEl('p', 'sd-fr-note', t('tools.sd_fr_note')));
         sections.forEach(section => content.appendChild(sdRenderSection(section)));
-        const mark = content.querySelector('.sd-omer-today');
-        if (mark) mark.scrollIntoView({ block: 'center' });
         sdAddNav(wrap);
+        const screen = toolEl('screen-tool-siddur');
+        if (sdRestoreTop !== null) { screen.scrollTop = sdRestoreTop; sdRestoreTop = null; }
+        else { const mark = content.querySelector('.sd-omer-today'); if (mark) mark.scrollIntoView({ block: 'center' }); }
+        sdUpdateReadBar();
     }).catch(() => {
         toolClear(content);
         content.appendChild(sdEl('p', 'tool-msg', t('tools.sd_load_failed')));
@@ -459,6 +851,7 @@ function sdRenderNodes(nodes, parent) {
         let el;
         if (node.t === 'text') {
             const text = document.createTextNode(sdText(node.v));
+            sdOrigText.set(text, node.v);
             if (node.m) { el = sdEl('span', sdVariantClass(node.m)); el.appendChild(text); } else { parent.appendChild(text); return; }
         } else if (node.n === 'br') {
             parent.appendChild(document.createElement('br'));
