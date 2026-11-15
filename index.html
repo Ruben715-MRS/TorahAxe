@@ -868,7 +868,12 @@
 <div id="screen-recits" class="list-screen hidden">
         <button class="back-btn" onclick="recitsListBack()" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
         <h2 class="header-title" data-i18n="recits.title">Récits</h2>
-        <p class="modes-header-subtitle" data-i18n="recits.subtitle">De longs récits d’histoire, à lire comme un livre, puis à tester.</p>
+        <p class="modes-header-subtitle" data-i18n="recits.subtitle">De longs récits d’histoire (25 à 35 minutes), à lire comme un livre, puis à tester.</p>
+        <div class="recits-filters" id="recits-filters" role="group" aria-label="Filtrer les récits" data-i18n-attr="aria-label:recits.filters_aria">
+            <button type="button" class="recits-filter-btn" id="recits-filter-btn-categorie" aria-expanded="false" aria-controls="recits-filter-choices" onclick="recitsToggleFilter('categorie')" data-i18n="recits.filter_categorie">Catégories</button>
+            <button type="button" class="recits-filter-btn" id="recits-filter-btn-periode" aria-expanded="false" aria-controls="recits-filter-choices" onclick="recitsToggleFilter('periode')" data-i18n="recits.filter_periode">Périodes</button>
+        </div>
+        <div class="recits-filter-choices hidden" id="recits-filter-choices" role="group"></div>
         <div id="recits-list" class="recits-list"></div>
     </div>
 

@@ -18203,3 +18203,83 @@ button.zm-study-link:focus-visible { outline: 2px solid var(--primary-blue); out
     line-height: 1.4;
     font-weight: 600;
 }
+
+.recits-filters {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    margin: 10px 0 8px;
+}
+
+.recits-filter-btn {
+    flex: 1;
+    min-height: 44px;
+    padding: 8px 14px;
+    border: 1px solid var(--border-soft);
+    border-radius: 14px;
+    background: var(--surface);
+    color: var(--text-dark);
+    font: inherit;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.recits-filter-btn::after {
+    content: ' ▾';
+}
+
+.recits-filter-btn.is-open::after {
+    content: ' ▴';
+}
+
+.recits-filter-btn.is-active {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 1px var(--primary-blue);
+}
+
+.recits-filter-btn.is-open {
+    background: var(--primary-blue);
+    border-color: var(--primary-blue);
+    color: var(--text-light);
+}
+
+.recits-filter-choices {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 8px;
+    padding: 8px;
+    border: 1px solid var(--border-soft);
+    border-radius: 14px;
+    background: var(--surface);
+}
+
+.recits-filter-choices.hidden {
+    display: none;
+}
+
+.recits-filter-choice {
+    min-height: 44px;
+    padding: 6px 10px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    background: none;
+    color: var(--text-dark);
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+}
+
+.recits-filter-choice:hover {
+    background: var(--selected-tint);
+}
+
+.recits-filter-choice.is-active {
+    border-color: var(--primary-blue);
+    background: var(--selected-tint);
+}

@@ -11,6 +11,11 @@
 
 let recitsCatalog = null;
 const recitsFiles = {};
+// Filtres de la liste des récits : valeur choisie (categorie/periode), ou null = toutes. Un seul des deux menus
+// déroulants ouvert à la fois (voir recitsToggleFilter), comme les familles de calendriers de la roue des fêtes.
+let recitsOpenFilter = null;
+let recitsFilterCategorie = null;
+let recitsFilterPeriode = null;
 let recitCurrent = null;       // le récit ouvert (objet complet)
 let recitCurrentEntry = null;  // son entrée du catalogue
 let recitChapter = 0;
@@ -98,11 +103,6 @@ function recitEl(tag, cls, text) {
     return el;
 }
 
-function recitMinutesLabel(entry) {
-    const m = Array.isArray(entry.minutes) ? entry.minutes : [25, 35];
-    return t('recits.minutes', { min: m[0], max: m[1] });
-}
-
 function recitStatusLabel(state) {
     if (state.fini) return t('recits.status_done');
     if (state.at) return t('recits.status_progress', { pct: Math.max(1, Math.round((state.p || 0) * 100)) });
@@ -148,15 +148,74 @@ function renderRecitsList() {
     const box = document.getElementById('recits-list');
     if (!box) return;
     recitsLoadCatalog().then(list => {
+        renderRecitsFilters(list);
         box.replaceChildren();
         if (!list.length) {
             box.appendChild(recitEl('p', 'tool-small', t('recits.empty')));
             return;
         }
+        const filtered = recitsFilteredCatalog(list);
+        if (!filtered.length) {
+            box.appendChild(recitEl('p', 'tool-small', t('recits.empty_filtered')));
+            return;
+        }
         const states = recitsAllStates();
-        RecitsCore.byNewest(list).forEach(entry => {
+        RecitsCore.byNewest(filtered).forEach(entry => {
             box.appendChild(recitCard(entry, states[entry.id] || {}));
         });
+    });
+}
+
+function recitsFilteredCatalog(list) {
+    return list.filter(r =>
+        (!recitsFilterCategorie || r.categorie === recitsFilterCategorie) &&
+        (!recitsFilterPeriode || r.periode === recitsFilterPeriode));
+}
+
+// --- Filtres : catégorie et période (menus déroulants, comme les familles de calendriers de la roue des fêtes) -
+function recitsToggleFilter(kind) {
+    recitsOpenFilter = recitsOpenFilter === kind ? null : kind;
+    renderRecitsFilters(recitsCatalog || []);
+}
+
+function recitsSetFilter(kind, value) {
+    if (kind === 'categorie') recitsFilterCategorie = value; else recitsFilterPeriode = value;
+    recitsOpenFilter = null;
+    renderRecitsList();
+}
+
+function recitsFilterOptions(kind, list) {
+    return kind === 'categorie' ? RecitsCore.categoriesPresent(list) : RecitsCore.periodesPresent(list);
+}
+
+function renderRecitsFilters(list) {
+    ['categorie', 'periode'].forEach(kind => {
+        const btn = document.getElementById('recits-filter-btn-' + kind);
+        if (!btn) return;
+        const value = kind === 'categorie' ? recitsFilterCategorie : recitsFilterPeriode;
+        btn.textContent = value || t('recits.filter_' + kind);
+        btn.classList.toggle('is-active', !!value);
+        btn.classList.toggle('is-open', recitsOpenFilter === kind);
+        btn.setAttribute('aria-expanded', recitsOpenFilter === kind ? 'true' : 'false');
+    });
+    const box = document.getElementById('recits-filter-choices');
+    if (!box) return;
+    box.replaceChildren();
+    box.classList.toggle('hidden', !recitsOpenFilter);
+    if (!recitsOpenFilter) return;
+    const kind = recitsOpenFilter;
+    const current = kind === 'categorie' ? recitsFilterCategorie : recitsFilterPeriode;
+    const allBtn = recitEl('button', 'recits-filter-choice' + (current ? '' : ' is-active'), t('recits.filter_all_' + kind));
+    allBtn.type = 'button';
+    allBtn.setAttribute('aria-pressed', current ? 'false' : 'true');
+    allBtn.onclick = () => recitsSetFilter(kind, null);
+    box.appendChild(allBtn);
+    recitsFilterOptions(kind, list).forEach(opt => {
+        const b = recitEl('button', 'recits-filter-choice' + (current === opt ? ' is-active' : ''), opt);
+        b.type = 'button';
+        b.setAttribute('aria-pressed', current === opt ? 'true' : 'false');
+        b.onclick = () => recitsSetFilter(kind, opt);
+        box.appendChild(b);
     });
 }
 
@@ -177,9 +236,9 @@ function recitCard(entry, state) {
     body.appendChild(recitEl('span', 'recit-card-sub', entry.sousTitre));
     body.appendChild(recitEl('span', 'recit-card-resume', entry.resume));
     const meta = recitEl('span', 'recit-card-meta');
-    // La période puis la durée. Le niveau n'est pas affiché : tous les récits s'adressent au même lecteur.
+    // La période. Ni la durée (tous les récits font 25 à 35 min, annoncé une fois dans recits.subtitle) ni le
+    // niveau (tous les récits s'adressent au même lecteur) ne sont répétés sur chaque carte.
     if (entry.periode) meta.appendChild(recitEl('span', null, entry.periode));
-    meta.appendChild(recitEl('span', null, recitMinutesLabel(entry)));
     const status = recitStatusLabel(state);
     if (status) meta.appendChild(recitEl('span', 'recit-card-status' + (state.fini ? ' is-done' : ''), status));
     body.appendChild(meta);
@@ -214,7 +273,7 @@ function renderRecitsHomeCard(container) {
         text.appendChild(recitEl('span', 'recits-home-title', pick.status === 'relire' ? t('recits.home_all') : entry.titre));
         text.appendChild(recitEl('span', 'recits-home-meta', pick.status === 'relire'
             ? t('recits.home_all_sub', { count: list.length })
-            : entry.sousTitre + ' · ' + recitMinutesLabel(entry)));
+            : entry.sousTitre));
         if (pick.status === 'reprendre') {
             const bar = recitEl('span', 'recits-home-bar');
             const fill = recitEl('span', 'recits-home-bar-fill');

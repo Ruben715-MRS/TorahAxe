@@ -26,6 +26,12 @@
     var BLOCK_TYPES = ['p', 'h', 'figure', 'encadre', 'citation', 'frise'];
     var LINK_KINDS = ['fiche', 'evt'];
     var NIVEAUX = ['decouverte', 'moyen', 'avance'];
+    // Les quatre grandes périodes, dans l'ordre chronologique (champ `periode` du catalogue).
+    var PERIODES = ['Antiquité', 'Moyen Âge', 'Temps modernes', 'Époque contemporaine'];
+    // Les catégories de récits (champ `categorie` du catalogue) : une liste volontairement courte, à
+    // étendre ici au fil des récits à venir plutôt qu'en texte libre, pour que le filtre de l'accueil
+    // des récits reste cohérent (pas de doublons proches comme « Guerre » et « Guerres »).
+    var CATEGORIES = ['Guerres et conflits', 'Pouvoir et politique', 'Société et vie quotidienne', 'Sciences, techniques et économie'];
 
     var LINK_RE = /\[\[([^\]|]+)\|([a-z]+):([A-Za-z0-9_\-]+)\]\]/g;
 
@@ -187,6 +193,19 @@
         return Math.min(1, done / total);
     }
 
+    // Les catégories (puis les périodes) réellement présentes dans le catalogue, dans l'ordre de CATEGORIES/PERIODES :
+    // pour remplir les menus déroulants de l'accueil des récits sans option vide.
+    function categoriesPresent(catalog) {
+        var set = {};
+        (catalog || []).forEach(function (r) { if (r.categorie) set[r.categorie] = true; });
+        return CATEGORIES.filter(function (c) { return set[c]; });
+    }
+    function periodesPresent(catalog) {
+        var set = {};
+        (catalog || []).forEach(function (r) { if (r.periode) set[r.periode] = true; });
+        return PERIODES.filter(function (p) { return set[p]; });
+    }
+
     // Le catalogue du plus récent au plus ancien : par date de publication, puis, le même jour, le dernier ajouté au
     // catalogue en premier.
     function byNewest(catalog) {
@@ -210,9 +229,10 @@
     }
 
     return {
-        WORDS_PER_MINUTE: WORDS_PER_MINUTE, NIVEAUX: NIVEAUX,
+        WORDS_PER_MINUTE: WORDS_PER_MINUTE, NIVEAUX: NIVEAUX, PERIODES: PERIODES, CATEGORIES: CATEGORIES,
         parseInline: parseInline, plainText: plainText, countWords: countWords,
         wordCount: wordCount, chapterWords: chapterWords, chapterPxEstimate: chapterPxEstimate, readingMinutes: readingMinutes, readingRange: readingRange,
-        links: links, validate: validate, progress: progress, featured: featured, byNewest: byNewest
+        links: links, validate: validate, progress: progress, featured: featured, byNewest: byNewest,
+        categoriesPresent: categoriesPresent, periodesPresent: periodesPresent
     };
 }));
