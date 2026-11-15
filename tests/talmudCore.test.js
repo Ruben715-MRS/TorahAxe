@@ -382,7 +382,7 @@ test('sugyotIn : les sugyot d\'un amoud, celle qui vient d\'avant et celles qui 
     assert.strictEqual(T.refOf(tr, '99z:1'), null);
 });
 
-test('titres de sugya : le Daf Yomi à venir est couvert amoud par amoud (Bekhorot 58a-61a, Arakhin et Temoura 2a-34a, Keritot 2a-28b, Meïla 2a-22a, Tamid 25b-33b)', () => {
+test('titres de sugya : le Daf Yomi à venir est couvert amoud par amoud (Bekhorot 58a-61a, Arakhin et Temoura 2a-34a, Keritot 2a-28b, Meïla 2a-22a, Tamid 25b-33b, Nidda 2a-73a)', () => {
     const data = read('sugyot');
     const covered = (id, from, to) => {
         const tr = T.find(index, id);
@@ -396,4 +396,5 @@ test('titres de sugya : le Daf Yomi à venir est couvert amoud par amoud (Bekhor
     assert.deepStrictEqual(covered('keritot', '2a', '28b'), []);
     assert.deepStrictEqual(covered('meilah', '2a', '22a'), []);
     assert.deepStrictEqual(covered('tamid', '25b', '33b'), []);
+    assert.deepStrictEqual(covered('niddah', '2a', '73a'), []);
 });
