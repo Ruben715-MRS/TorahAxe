@@ -158,6 +158,112 @@
     "Les limites de l'étude (relations interdites, Création, Char), les quatre entrés au Pardès, les couples de maîtres et l'imposition des mains.",
     "Les degrés de pureté et de sainteté, la confiance accordée au peuple pour la pureté, et les règles de pureté de la fête."
    ]
+  },
+  "yevamot": {
+   "book": "Le lévirat et la 'halitsa : qui doit épouser la femme de son frère mort, les unions interdites et le témoignage sur la mort d'un mari absent.",
+   "chapters": [
+    "Les quinze femmes dispensées du lévirat et de la 'halitsa, elles et leurs rivales, à cause d'un lien de parenté interdit.",
+    "Les belles-sœurs selon le degré d'interdit (érva, interdit de mitsva ou de sainteté) et le frère né après la mort.",
+    "Les frères mariés à deux sœurs, ou à une mère et sa fille : lévirat, 'halitsa et mariages dans la fratrie.",
+    "La 'halitsa : celle qui se découvre enceinte, l'héritage, et l'ordre des frères, la mitsva revenant à l'aîné.",
+    "Rabban Gamliel : pas de gett après un gett, ni de maamar après maamar, ni de relation après une relation.",
+    "Celui qui s'unit à sa belle-sœur, volontairement ou non, les unions interdites au Cohen et le devoir d'avoir des enfants.",
+    "Qui mange de la teroumah : l'épouse du Cohen, ses esclaves, et les cas (fœtus, belle-sœur, fiancée) où elle n'en mange pas.",
+    "L'incirconcis et les impurs, le blessé et le mamzer : qui peut épouser qui, et l'interdit éternel d'Ammon et de Moab.",
+    "Les femmes permises à leur mari mais interdites au beau-frère, et inversement, et celles qui mangent la teroumah.",
+    "Le mari parti outre-mer : le témoignage de sa mort, le remariage de la femme et le crédit accordé à un seul témoin.",
+    "Épouser une femme violée ou séduite, la convertie dont les enfants se convertissent aussi, et les enfants mêlés.",
+    "La 'halitsa : trois juges, la sandale, les paroles prononcées et le crachat, et ce qui la rend valide ou non.",
+    "Le refus du mariage (mé'oun) de la jeune orpheline : qui peut le prononcer, ses effets et ses limites.",
+    "Le sourd-muet ou la personne démente qui se marie, et le divorce ou le lévirat dans ces cas.",
+    "Le couple parti outre-mer : si la femme est crue sur la mort de son mari, et les controverses de Beit Chammaï et Beit Hillel.",
+    "Le témoignage sur la mort du mari, les deux belles-sœurs qui se contredisent et l'identification du mort par le visage."
+   ]
+  },
+  "ketubot": {
+   "book": "Le contrat de mariage (ketouba) : ce que le mari doit à sa femme, l'amende de la séduite, le recouvrement du contrat et les droits de la veuve.",
+   "chapters": [
+    "Le mariage de la vierge le mercredi et de la veuve le jeudi, le montant du contrat (deux cents et cent) et la présomption de virginité.",
+    "Les contestations sur la virginité de la femme, la fiabilité des signatures et le témoignage sur le contrat.",
+    "L'amende (kenas) pour la jeune fille violée ou séduite : qui y a droit, et qui n'y a pas droit.",
+    "La jeune fille séduite et ce que touche son père, la fille fiancée ou divorcée, et le droit des fils au contrat de leur mère.",
+    "Ce que le mari doit à sa femme : nourriture, délai de douze mois pour se préparer, et les travaux qu'elle fait pour lui.",
+    "Les trouvailles et le travail de la femme, qui reviennent au mari, la dot promise et ce qui se passe à la mort de l'un.",
+    "Le mari qui interdit à sa femme de profiter de ses biens ou d'aller chez son père, et les femmes qui divorcent sans contrat.",
+    "Les biens tombés à la femme : qui les vend, qui en mange les fruits, et les esclaves âgés ou les fruits cueillis.",
+    "La femme qui renonce à des droits, la veuve face aux créanciers et aux héritiers, et l'épouse commerçante ou gérante.",
+    "Plusieurs épouses d'un même homme : l'ordre de préséance des contrats et le partage des biens, dont le cas des trois femmes.",
+    "La veuve nourrie sur les biens des orphelins, la vente ou le gage du contrat, et les cas où elle peut le réclamer.",
+    "L'obligation d'entretenir la fille de sa femme, la veuve qui reste dans la maison de son mari et le délai pour réclamer le contrat.",
+    "Les deux juges de Jérusalem Admon et Hanan, les biens de la femme et du mari absent, et la valeur de vivre en Terre d'Israël."
+   ]
+  },
+  "nedarim": {
+   "book": "Les vœux : les formules qui les créent, ce qu'ils interdisent, la façon de les annuler et le droit du père et du mari de les annuler.",
+   "chapters": [
+    "Les expressions substitutives des vœux (« konam », « konas », « konah ») et ce qui vaut vœu, serment ou interdit.",
+    "Les formules qui ne créent pas de vœu, les vœux sur le sommeil, la parole et la marche, et la différence entre vœu et serment.",
+    "Les quatre vœux que les sages tiennent pour nuls : vœux d'incitation, d'exagération, d'erreur et de contrainte.",
+    "Celui qui s'interdit un bénéfice ou une nourriture : ce qui reste permis, l'enseignement gratuit de la Torah et ce qu'on peut payer ou prêter.",
+    "Les associés qui se sont interdit mutuellement, la formule « 'hérem » et ce qu'on peut donner à qui n'a rien à manger.",
+    "Ce que vise un vœu selon le mot employé : cuit, bouilli, rôti, mariné, plat de marmite.",
+    "Les vœux sur les légumes, les céréales, les vêtements et d'autres produits : ce qu'ils incluent ou excluent.",
+    "La durée des vœux (« jusqu'à la moisson », « aux vendanges », « à la cueillette des olives ») et le moment où ils prennent fin.",
+    "L'ouverture qui permet d'annuler un vœu : l'honneur du père et de la mère, le fait nouveau et l'ouverture tirée de la Torah.",
+    "La jeune fille fiancée : son père et son mari annulent ses vœux, et les cas de mort, de divorce ou de remariage.",
+    "Les vœux que le mari peut annuler (privation de soi), ceux qu'il ne peut pas annuler, et le vœu de ne pas bénéficier des autres."
+   ]
+  },
+  "nazir": {
+   "book": "Le nazir : les formules qui créent le nazirat, ses interdits (vin, impureté, rasage), sa durée et qui peut en être.",
+   "chapters": [
+    "Les expressions qui valent engagement de nazir (« comme Samson », les grains et les pépins de raisin) et ce qui s'y rattache.",
+    "Les engagements de nazir énoncés par des mots détournés ou conditionnels (figues, vache, coupe de vin), selon Beit Chammaï et Beit Hillel.",
+    "La durée du nazirat (trente jours), celui qui s'est engagé dans un cimetière et le nazir qui part à l'étranger.",
+    "Celui qui s'engage après un autre (« moi aussi »), la femme nazir et le mari qui annule son vœu.",
+    "Les engagements pris par erreur ou sous condition, le nazir qui demande l'annulation à un sage et les animaux perdus ou volés.",
+    "Les trois interdits du nazir (impureté, rasage, produits de la vigne), le nazirat sans précision de durée et ce qui lui est permis.",
+    "Le Cohen Gadol et le nazir : on ne se rend pas impur pour des parents, les impuretés qui obligent le nazir à se raser, et le doute.",
+    "Deux nazirs dont l'un s'est rendu impur : le doute sur lequel, et le nazir de doute qui sort de l'impureté.",
+    "Qui peut être nazir (les femmes et les esclaves, pas les non-Juifs) et ce que le mari peut annuler."
+   ]
+  },
+  "sotah": {
+   "book": "La femme soupçonnée d'adultère (sotah) : le rituel de l'eau amère, ce qui se dit en toute langue, la guerre facultative et la génisse à la nuque brisée.",
+   "chapters": [
+    "La femme soupçonnée d'adultère : l'avertissement du mari, l'isolement, ce qui l'interdit à son mari et le tribunal.",
+    "Le rituel de la femme soupçonnée : l'offrande d'orge, l'eau amère, le rouleau écrit et le serment.",
+    "La suite du rituel : l'offrande, le rouleau effacé dans l'eau, la femme qui refuse de boire et l'effet de l'eau sur l'accusée.",
+    "Les femmes qui ne boivent pas l'eau amère (la fiancée, la belle-sœur en attente) et ne touchent pas de contrat.",
+    "Comme l'eau éprouve la femme, elle éprouve aussi l'homme coupable : les deux sont soumis à l'épreuve.",
+    "Le mari qui a averti sa femme puis la soupçonne sur un simple bruit : il la renvoie et lui paie son contrat.",
+    "Ce qui se dit en toute langue (sotah, Chéma, prière, Birkat haMazon) et ce qui se dit en hébreu, la bénédiction des cohanim et celle du Cohen Gadol.",
+    "Le prêtre oint pour la guerre : son discours en hébreu, ceux qui sont dispensés (maison neuve, vigne, fiancée, craintif) et la guerre facultative.",
+    "La génisse à la nuque brisée : l'endroit, les anciens qui viennent, la mesure entre deux villes, et la fin des rites avec la mort des sages."
+   ]
+  },
+  "gittin": {
+   "book": "Le divorce : la rédaction et la remise du gett, le messager, les conditions, les formules et les décrets pour le bon ordre du monde.",
+   "chapters": [
+    "Le gett apporté de l'étranger : la formule « en ma présence il a été écrit et signé », les témoins non-juifs et les gets valides.",
+    "Le gett apporté de l'étranger (suite) : le messager qui ne peut dire qu'une partie, la date, l'écriture et les matières permises.",
+    "Le gett doit être écrit pour cette femme : ce qui l'invalide, les formulaires pré-rédigés et le gett perdu puis retrouvé.",
+    "L'envoi du gett par messager, l'annulation, et les décrets des sages pour le bon ordre du monde (noms, serment de la veuve).",
+    "Le recouvrement des dommages, des dettes et du contrat de la femme sur les biens, la tutelle des orphelins et les dommages commis par erreur.",
+    "Le messager qui reçoit le gett : celui qui l'apporte, celui qui le reçoit pour elle, la jeune fiancée et qui peut le recevoir.",
+    "Le gett dit ou écrit sous condition (« si je meurs »), par un homme malade ou frappé de démence, et les gets conditionnels.",
+    "Jeter le gett : où il doit tomber, sa remise dans la cour ou le domaine public, et la distance qui compte.",
+    "Le gett qui dit « tu es permise à tout homme sauf à… », la formule du gett, et les raisons qui permettent de divorcer."
+   ]
+  },
+  "kiddushin": {
+   "book": "Les fiançailles et l'acquisition : les trois façons d'acquérir une épouse, le serviteur, les conditions du mariage et les lignées permises ou interdites.",
+   "chapters": [
+    "Les trois façons d'acquérir une épouse (argent, acte, relation), le serviteur hébreu et cananéen, et les devoirs des parents et des enfants.",
+    "Le mariage par messager, la formule des fiançailles (« avec cette datte ») et les cas d'erreur sur la valeur donnée.",
+    "Les fiançailles sous condition (« à condition que je te donne… »), l'envoyé qui épouse pour lui-même, et les conditions doubles.",
+    "Les dix lignées montées de Babylone (cohen, lévite, israélite…), les mariages permis entre elles et la vérification pour l'épouse d'un cohen."
+   ]
   }
  }
 }
