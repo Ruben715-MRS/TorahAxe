@@ -478,14 +478,14 @@
   "eduyot": {
    "book": "Les témoignages : des décisions de sages transmises par témoignage, les controverses entre les écoles et les avis minoritaires.",
    "chapters": [
-    "Chammaï et Hillel : les premiers désaccords et les mesures dont on a témoigné.",
-    "Les témoignages de Rabbi Hanina, chef des cohanim, et d'autres sur la pureté et les cas de mélange.",
-    "Les cas d'impureté sous la tente où les écoles se divisent.",
-    "Les cas où Beit Chammaï est indulgent et Beit Hillel sévère, et les raisons.",
-    "Les cas où Beit Chammaï est indulgent, selon Rabbi Yehouda, et les avis qui ont été écartés.",
-    "Rabbi Yehouda ben Bava témoigne sur cinq cas.",
-    "Rabbi Yehochoua et Rabbi Tsadok témoignent sur le rachat des premiers-nés et d'autres cas.",
-    "Rabbi Yehochoua ben Betera témoigne sur le sang d'une bête morte ; la fin des témoignages et le rôle d'Élie, qui viendra rétablir la paix."
+    "Les controverses de Chammaï, Hillel et des sages : les femmes impures, la mesure de la pâte pour la halla, l'eau puisée qui invalide un bain, etc.",
+    "Les témoignages de Rabbi Hanina, chef des cohanim, sur quatre cas : la combustion de la viande impure, les peaux, un village près de Jérusalem.",
+    "Les témoignages de Rabbi Dosa ben Harkinas et d'autres sur l'impureté de la tente, les restes de chair et les parts de fruits.",
+    "Les cas où Beit Chammaï est indulgent et Beit Hillel sévère : l'œuf né un jour de fête, le levain, l'animal né un jour de fête, etc.",
+    "Les cas indulgents de Beit Chammaï selon Rabbi Yehouda, Rabbi Yossi et Rabbi Ichmaël : le sang des bêtes mortes, les œufs, et d'autres désaccords.",
+    "Rabbi Yehouda ben Bava témoigne sur cinq cas (refus des mineures, remariage sur un seul témoin, le coq lapidé, le vin de quarante jours…).",
+    "Rabbi Yehochoua et Rabbi Tsadok témoignent sur le rachat de l'ânon mort, la saumure de sauterelles, les reptiles et d'autres cas.",
+    "Rabbi Yehochoua ben Betera témoigne sur le sang des bêtes mortes, Rabbi Chimon ben Betera sur la cendre de purification ; Élie viendra rétablir la paix."
    ]
   },
   "avodah-zarah": {
@@ -539,19 +539,19 @@
   "menachot": {
    "book": "Les offrandes de farine et de libations : la poignée, les pains, les mesures, l'omer et les deux pains de Chavouot.",
    "chapters": [
-    "Les offrandes de farine dont la poignée est prise sans la bonne intention, et leur validité.",
-    "La poignée prise pour manger le reste ou brûler à tort, et les cas de piggoul.",
-    "La poignée prise en vue d'un usage qui n'est pas prévu, et les cas de défaut.",
-    "La techelet et le blanc dans les tsitsit, et les mitsvot qui ne s'empêchent pas l'une l'autre.",
-    "Les offrandes de farine en azyme, la préparation des pains et des galettes, les huiles.",
-    "Les offrandes dont une poignée est brûlée et le reste va aux cohanim, et celles qui sont entièrement brûlées.",
-    "L'offrande de remerciement (toda) : ses pains, ses mesures et la part du cohen.",
-    "Les offrandes publiques et privées viennent des meilleurs produits d'Israël : farine, vin, huile.",
-    "Les mesures sèches et liquides du Temple et leur emploi.",
-    "La gerbe de l'omer : le champ, la moisson et son rôle.",
-    "Les deux pains de Chavouot : leur pétrissage, leur cuisson et leur usage.",
-    "Les offrandes et libations devenues impures avant leur sanctification.",
-    "Les vœux d'offrandes (« un dixième à ma charge ») et leurs cas ; la fin du traité sur l'intention qui compte devant Dieu."
+    "Les offrandes dont la poignée est prise avec une autre intention : valides mais sans effet pour le propriétaire, sauf celles du pécheur et de la femme soupçonnée.",
+    "La poignée prise pour manger le reste ou brûler le lendemain : le piggoul et le retranchement, et l'offrande de remerciement avec ses pains.",
+    "La poignée prise pour manger ce qu'on ne mange pas ou brûler ce qu'on ne brûle pas, ce qui manque au rite (verser, mélanger, rompre, saler), et deux offrandes mêlées.",
+    "Ce qui n'empêche pas l'accomplissement du reste : le bleu et le blanc des tsitsit, les tefilin de la main et de la tête, les farines, huiles et vins.",
+    "Les offrandes se font en azyme, sauf le pain levé de la toda et des deux pains ; le pétrissage à l'eau tiède et ce qui exige huile et encens.",
+    "Les offrandes dont la poignée est brûlée et le reste va aux cohanim, celles des cohanim entièrement brûlées, et les trois dons d'huile.",
+    "L'offrande de remerciement (toda) : ses mesures, dix pains levés et dix azymes, les pains de l'ordination et l'abattage.",
+    "Les offrandes viennent du pays ou de l'étranger, sauf l'omer et les deux pains, et on choisit les meilleurs produits : vins, huiles, farines.",
+    "Les mesures sèches du Temple (dixième et demi-dixième) et les sept mesures liquides (hin, demi-hin, etc.).",
+    "La gerbe de l'omer : moissonnée même à Chabbat, d'un champ proche de Jérusalem, avec sa cérémonie et sa mesure de trois séa.",
+    "Les deux pains et le pain de proposition : pétrissage, cuisson, forme, et ce qui repousse le Chabbat ; les gâteaux du grand prêtre.",
+    "Les offrandes et libations rendues impures avant leur sanctification (rachat possible) ou après, et les vœux d'offrandes dans un récipient.",
+    "Les vœux d'offrandes : « un dixième » en donne un, « je ne sais ce que j'ai prélevé » soixante, bois et encens ; la fin : peu ou beaucoup, pourvu que le cœur soit tourné vers Dieu."
    ]
   },
   "chullin": {
@@ -602,251 +602,251 @@
   "temurah": {
    "book": "La substitution d'un animal consacré (témoura) : qui peut la faire, ses effets, et ce qui s'y applique ou non.",
    "chapters": [
-    "Qui peut faire une substitution, et l'effet de la substitution.",
-    "Ce qui s'applique aux sacrifices individuels et non aux sacrifices publics, et inversement.",
-    "Les sacrifices dont les petits et les substituts sont offerts, et ceux qui ne le sont pas.",
-    "Le petit et le substitut du sacrifice pour le péché, et les sacrifices qui doivent mourir.",
-    "Comment on contourne le premier-né, et ce qui peut être fait de ce que l'on ne peut offrir.",
-    "Ce qui est interdit sur l'autel et ce qui interdit les substitutions.",
-    "Ce qui diffère entre les saints de l'autel et ceux de la réparation du Temple."
+    "Tout le monde peut faire une substitution et reçoit quarante coups, ce que les cohanim et les Israélites substituent, et les substitutions entre bœuf et mouton.",
+    "Les différences entre sacrifices individuels et publics : seuls les sacrifices individuels font une substitution ; le péché dont le propriétaire est mort.",
+    "Les sacrifices dont les petits et les substituts sont semblables (paix, remerciement), et la bête consacrée qui met bas.",
+    "Le petit et le substitut du sacrifice pour le péché et celui dont le propriétaire est mort : ils meurent ; la bête perdue et retrouvée.",
+    "Comment on contourne le premier-né : annoncer d'une bête pleine « mâle, holocauste ; femelle, paix », et le cas de deux mâles.",
+    "Tout ce qui est interdit sur l'autel l'interdit à n'importe quelle dose : accouplement, bête adorée, salaire de prostituée, prix d'un chien, mélanges.",
+    "Ce qui diffère entre les saints de l'autel et ceux de l'entretien du Temple (bedek habayit) : substitution, piggoul, nothar et impureté."
    ]
   },
   "keritot": {
    "book": "Le retranchement (karet) : les fautes qui l'entraînent, et les offrandes de pardon pour la faute involontaire.",
    "chapters": [
-    "Les trente-six cas de retranchement dans la Torah.",
-    "Les quatre personnes qui achèvent leur expiation par un sacrifice, et ceux dont l'offrande varie selon leurs moyens.",
-    "Le sacrifice pour la graisse mangée, et les cas d'erreur sur le fait.",
-    "Les cas de doute : a-t-on mangé ou non de la graisse ? Le sacrifice de culpabilité en suspens.",
-    "Le sang de l'abattage des bêtes, des animaux sauvages et des oiseaux, et le sacrifice qui s'y rattache.",
-    "Le sacrifice de culpabilité en suspens (acham talouï) et les cas où l'on découvre qu'on n'a pas fauté."
+    "Les trente-six retranchements de la Torah (unions interdites, etc.), et les fautes qui entraînent un sacrifice, selon qu'il est mangé ou non.",
+    "Quatre personnes qui n'ont pas achevé leur expiation (zav, zava, accouchée, métsora), quatre fautes volontaires qui s'expient comme involontaires, et un seul sacrifice pour plusieurs fautes.",
+    "La graisse mangée par erreur : le sacrifice pour le péché, le témoignage contradictoire qui donne un sacrifice suspendu, et les cas où l'on mange plusieurs fois.",
+    "Les cas de doute : a-t-on mangé de la graisse ? Graisse et huile devant soi, son épouse et sa sœur, plusieurs fautes en un seul oubli.",
+    "Le sang interdit (de l'abattage, de l'écoulement) et celui qui ne l'est pas (rate, cœur, poissons), et le désaccord de Rabbi Akiva sur le doute de détournement.",
+    "Le sacrifice de culpabilité en suspens quand on découvre qu'on n'a pas fauté, le sort de l'animal, et la différence avec le sacrifice de culpabilité certaine."
    ]
   },
   "meilah": {
    "book": "Le détournement des choses consacrées (meïla) : quand il y a faute, comment on la répare, et le rôle du mandataire.",
    "chapters": [
-    "Les très saints abattus au sud : le détournement commence dès l'abattage, et ce qui y échappe.",
-    "Les oiseaux consacrés et les offrandes de pain : à partir de quand il y a détournement.",
-    "Le petit et le substitut du sacrifice pour le péché, et les sacrifices dont la matière a changé.",
-    "Les offrandes qui s'additionnent pour atteindre la mesure du détournement.",
-    "Le profit tiré d'une chose consacrée, même d'une pièce, et son évaluation.",
-    "Le mandataire qui accomplit sa mission : la responsabilité du propriétaire et du messager."
+    "Les très saints abattus au sud : le détournement dès l'abattage, et la viande sortie avant l'aspersion du sang.",
+    "L'oiseau pour le péché ou l'holocauste : le détournement dès la consécration, après le pincement, et les taureaux et boucs brûlés.",
+    "Le petit et le substitut du sacrifice pour le péché, la bête perdue, l'argent d'un nazir et l'avis de Rabbi Ichmaël sur le sang et les libations.",
+    "Les saints de l'autel s'additionnent pour le détournement et le piggoul ; les cinq éléments de l'holocauste qui s'additionnent.",
+    "Profiter d'une chose consacrée d'une valeur de prouta, même sans la détériorer (Rabbi Akiva), et le détournement après un détournement.",
+    "Le mandataire qui accomplit sa mission : la responsabilité du propriétaire ou du messager, et l'envoi par un sourd-muet, un fou ou un mineur."
    ]
   },
   "tamid": {
    "book": "Le sacrifice perpétuel du matin et du soir, et le déroulement du service du Temple chaque jour.",
    "chapters": [
-    "Les trois lieux de garde dans le Temple, la purification et la première tâche du jour.",
-    "L'enlèvement des cendres, l'arrangement du bois et les premières tâches.",
-    "Le tirage au sort des tâches de l'autel, et la préparation du candélabre.",
-    "Le sacrifice du matin : l'agneau n'est pas attaché, son abattage et sa préparation.",
-    "Les bénédictions, la lecture des commandements et le service de l'encens.",
-    "La montée vers le Temple, l'encens, la ménorah et la bénédiction des cohanim.",
-    "La fin du service : le sacrifice, la libation et le chant des lévites avec les psaumes du jour."
+    "Les trois lieux de garde du Temple, celui qui veut enlever les cendres se lève tôt et s'immerge, et le feu.",
+    "L'enlèvement des cendres, le lavage des mains et des pieds, les pelles, et l'arrangement du bois sur l'autel.",
+    "Le tirage au sort des tâches (abattre, asperger, cendres, candélabre, monter les membres) et la préparation de l'agneau.",
+    "L'agneau n'est pas ligoté mais attaché (akéda), la façon de le dépecer, et la préparation des membres.",
+    "Les bénédictions, le Chéma et les dix commandements, les trois bénédictions au peuple, et le tirage au sort pour l'encens.",
+    "La montée aux marches du portique, le nettoyage de l'autel d'or et de la ménorah, l'encens et les charbons.",
+    "Le grand prêtre qui entre se prosterner, la bénédiction des cohanim, les chants des lévites et le psaume du jour."
    ]
   },
   "middot": {
    "book": "Les mesures du Temple : le mont du Temple, ses portes, l'autel, le Hékhal et le parvis.",
    "chapters": [
-    "Les lieux de garde dans le Temple, la garde des cohanim et des lévites, et les portes du mont.",
-    "Le mont du Temple : ses mesures, ses portes et la cour des femmes.",
-    "L'autel : ses dimensions, ses cornes, sa rampe et ses instruments.",
-    "Le Hékhal : sa porte, ses chambres, ses étages et le Saint des Saints.",
-    "Le parvis : ses chambres, ses mesures et ses ustensiles."
+    "Les lieux de garde des cohanim et des lévites, les cinq portes du mont du Temple et la ronde de l'homme du mont.",
+    "Le mont du Temple : cinq cents coudées sur cinq cents, la balustrade (soreg) et ses treize brèches, la cour des femmes.",
+    "L'autel : ses dimensions, ses cornes, sa rampe, ses orifices du bas, et l'interdiction d'y employer du fer.",
+    "Le Hékhal : sa porte de vingt coudées, ses battants, les trente-huit cellules et le Saint des Saints.",
+    "Le parvis : cent quatre-vingt-sept coudées sur cent trente-cinq, la place des Israélites et celle des cohanim, les six chambres."
    ]
   },
   "kinnim": {
-   "book": "Les offrandes d'oiseaux (kinnim) : le mélange des oiseaux pour le péché et l'holocauste, et les cas d'erreur.",
+   "book": "Les offrandes d'oiseaux (kinnim) : les paires de pigeons ou de tourterelles, leur mélange et les cas d'erreur.",
    "chapters": [
-    "Les oiseaux du pauvre : la règle de l'offrande pour le péché en bas et de l'holocauste en haut, et les cas de mélange.",
-    "Les oiseaux dont l'un s'envole ou se mélange : le sort des offrandes.",
-    "Les oiseaux qui se mélangent : ce qui est valable et la responsabilité du cohen."
+    "L'oiseau pour le péché se sacrifie en bas de l'autel, celui du bétail en haut (et inversement pour l'holocauste), l'ordre des paires et le mélange des offrandes.",
+    "Les oiseaux qui s'échappent d'un nid mêlé (dans l'air, parmi les morts ou parmi les offerts), le remplacement, et les paires de deux femmes qui se mêlent.",
+    "Les oiseaux de deux ou plusieurs personnes mêlés : selon que le cohen a consulté ou non, quelle part est valide et laquelle est invalide."
    ]
   },
   "kelim": {
    "book": "Les vases et leur impureté : les matières, les formes, les mesures, les fours, les lits et les vêtements.",
    "chapters": [
-    "Les pères d'impureté, les degrés d'impureté et les lieux plus ou moins saints.",
-    "Les vases de bois, de cuir, d'os et de verre : ce qui les rend impurs.",
-    "La mesure du vase de terre pour qu'il soit pur, et les vases qui servent à manger ou à boire.",
-    "Le vase de terre qui ne tient pas debout, l'anse et l'impureté selon les parties.",
-    "Le four (tanour) : sa hauteur, ses parties et ce qui le rend impur.",
-    "Le four, le réchaud et leurs formes : l'impureté de leur extérieur.",
-    "Les plats et ustensiles de ménage cassés ou percés, et leur impureté.",
-    "Le four divisé en planches ou en rideaux, et l'impureté qui passe de l'un à l'autre.",
-    "Une aiguille ou une bague trouvée dans le four, et son effet sur l'impureté.",
-    "Les vases qui protègent de l'impureté avec un couvercle bien serré.",
-    "Les vases de métal, simples ou creux, et leur impureté.",
-    "Les anneaux, les bijoux et leur impureté selon leur usage.",
-    "L'épée, le couteau, la lance et les armes : leur impureté.",
-    "Les mesures des vases de métal selon leur usage.",
-    "Les vases de bois, de cuir, d'os et de verre : leurs mesures et leurs réparations.",
-    "Les vases de bois divisés en deux, et ce qui devient pur ou impur.",
-    "Les mesures des vases domestiques, par la mesure de la grenade.",
-    "La mesure du champ, de la surface et des ustensiles.",
-    "Le lit démonté pour l'immersion, et ce que l'on peut toucher.",
-    "Les coussins, les sacs et les paniers : leur impureté.",
-    "Le contact avec ce qui est lié : le foie, le rein et l'objet attaché.",
-    "La table, la banquette et les ustensiles endommagés.",
-    "La balle, le casque, le talisman et les tefilin découpés.",
-    "Les boucliers (courbés, plats) et leur impureté.",
-    "Les vases ont un dos et un intérieur : leurs côtés dans l'impureté.",
-    "Les sandales, les bourses et les objets d'usage quotidien.",
-    "Le vêtement est impur sous cinq noms : le sac, la toile, la peau, le drap et la corde.",
-    "Les morceaux d'étoffe de trois doigts sur trois : mesures et impureté.",
-    "Les bords, les ourlets, les cordes et leurs mesures d'impureté.",
-    "Les vases de verre, simples ou creux, et la fin du traité."
+    "Les pères d'impureté et ce que chacun transmet (contact, transport, air), leurs degrés d'aggravation, puis les dix degrés de sainteté de la Terre d'Israël jusqu'au Temple.",
+    "Les vases de bois, de cuir, d'os et de verre : les objets plats sont purs, ceux qui contiennent sont impurs ; puis les vases de terre et leurs parties.",
+    "La mesure en dessous de laquelle un vase de terre est pur : en olives pour les aliments, en liquides pour les boissons, et les jarres.",
+    "Le vase de terre qui ne tient pas debout à cause de son anse ou d'une pointe, la jarre fendue ou percée et ses parties.",
+    "Le four (tanour) : le début et la fin de sa fabrication, ses mesures, puis le réchaud (kira) et ses parties.",
+    "Les trois supports fixés au sol qui font un réchaud, les pierres sur lesquelles on pose la marmite.",
+    "Le petit fourneau des particuliers, le dékhon et le réchaud fendu sur sa longueur ou sa largeur.",
+    "Le four divisé par des planches ou des rideaux : où se transmet l'impureté, et ce qu'on y trouve (reptile, vases).",
+    "Une aiguille ou une bague trouvée dans la paroi du four, la jarre scellée (tsamid patil) et le reptile sous le four.",
+    "Ce qui protège de l'impureté grâce à un couvercle bien scellé (tsamid patil), et les matières qui servent à sceller.",
+    "Les vases de métal : plats et creux sont impurs ; une fois brisés, ils sont purs ; ceux qui ont un nom propre.",
+    "L'anneau d'un homme, le collier, les chaînes, la balance et d'autres objets de métal : lesquels sont impurs.",
+    "Les armes et outils tranchants (épée, couteau, poignard, lance, faucille, ciseaux) et quand une brèche les rend purs.",
+    "Les mesures des vases de métal (seau, bouilloire, mesures de vin) et les outils comme le bâton à clou ou les piquets de tente.",
+    "Les vases de bois, de cuir, d'os et de verre : plats purs, creux impurs ; le coffre, la tour, les armoires et les paniers de boulanger.",
+    "Les vases de bois divisés en deux, qui sont purs sauf quelques-uns, et le moment où un panier devient apte à l'impureté.",
+    "Les mesures des vases domestiques (en grenades, en bottes de légumes, en pains) pour savoir quand ils sont assez grands.",
+    "La mesure de l'armoire, du coffre et de la tour : de l'intérieur ou de l'extérieur, selon Beit Chammaï et Beit Hillel.",
+    "Le lit démonté pour l'immersion : les cordes, le nœud et ce qui est lié au lit ; la natte et la corde.",
+    "Les coussins, matelas et sacs : impurs par pression (midras), la mesure en kav, et les manches qui font partie d'un outil quand on travaille.",
+    "Ce qui est lié à un autre objet (parties d'un métier à tisser, outils) : quand le contact avec l'un touche l'autre.",
+    "La table et le comptoir endommagés, le banc : quand ils restent impurs et quand ils deviennent purs.",
+    "Le ballon, la forme de cordonnier, l'amulette et les tefilin déchirés, la selle ; ce qui distingue le siège (merkav) du lit (moshav).",
+    "Trois sortes de boucliers, de chariots et de paniers : lesquels sont impurs par pression, par la mort ou purs.",
+    "Les vases ont un extérieur et un intérieur selon Rabbi Yehouda et Rabbi Meir ; l'aiguillon, les mesures de vin et d'huile.",
+    "Les sandales, les bourses et d'autres objets qui deviennent impurs ou purs par un autre usage que le leur.",
+    "Le vêtement est impur sous cinq noms, le sac sous quatre, la peau sous trois, le bois sous deux, la terre sous un seul.",
+    "Les morceaux de tissu de trois doigts sur trois (balle, linge de bain, etc.) : quand ils sont purs ou impurs.",
+    "Les mesures des bords, des ourlets et des fils (nimin), et le fil à plomb du maçon.",
+    "Les vases de verre : plats purs, creux impurs ; les vases brisés, le miroir, la coupe ébréchée."
    ]
   },
   "oholot": {
    "book": "L'impureté du mort et de la tente (ohel) : ce qui transmet l'impureté, les ouvertures, les séparations et les lieux atteints.",
    "chapters": [
-    "Les deux impurs de la mort, les membres du corps et les degrés d'impureté.",
-    "Ce qui rend impur par la tente : le mort, la mesure d'une olive et d'autres cas.",
-    "Les cas où l'impureté de la tente fait débat entre les écoles.",
-    "La tour, l'espace couvert et les parties de la maison qui sont impures.",
-    "Le four dans la maison et ce qui transmet l'impureté.",
-    "L'homme et les vases comme tentes de l'impureté.",
-    "L'impureté dans le mur et la mesure d'une palme sur une palme.",
-    "Ce qui apporte l'impureté et ce qui la sépare.",
-    "Les ouvertures de la maison et ce qui en détermine l'impureté.",
-    "La maison, les ouvertures et les cas de séparation.",
-    "La maison fendue et l'impureté extérieure.",
-    "Une planche posée sur un four neuf et ce qui transmet l'impureté.",
-    "La lumière, la fenêtre et la mesure d'une ouverture.",
-    "La saillie, la corniche et ce qui transmet l'impureté.",
-    "Les matériaux épais qui ne transmettent pas l'impureté.",
-    "Les objets mobiles et ce qui transmet l'impureté.",
-    "La charrue sur une tombe, et le terrain où l'impureté est suspectée (beit hapras).",
-    "La purification d'un champ où l'on soupçonne une tombe (beit hapras) et les lieux de passage."
+    "Combien d'impurs en chaîne après le contact avec un mort (deux, trois, quatre, cinq), l'impureté de sept jours ou jusqu'au soir, et le nombre des membres du corps.",
+    "Ce qui transmet l'impureté dans la tente (le mort, une olive de chair, la colonne, le crâne), et ce qui la transmet par contact seulement.",
+    "Les cas de la tente où les sages divergent (Rabbi Dosa ben Harkinas), et les morceaux de mort mélangés dans la maison.",
+    "La tour, l'armoire et la grande boîte, dans la maison ou à la porte : l'impureté à l'intérieur ou dans l'épaisseur.",
+    "Le four ou le vase ouvert vers l'extérieur dans une maison : jusqu'où l'impureté se propage selon Beit Chammaï et Beit Hillel.",
+    "L'homme et les ustensiles comme tentes qui transmettent l'impureté mais ne protègent pas ; les porteurs de mort et les murs partagés.",
+    "L'impureté dans un mur (une palme sur une palme), les étages au-dessus, et la tente en pente.",
+    "Ce qui fait écran et ce qui apporte l'impureté : champ, boîte, tour, saillies, galeries, rochers.",
+    "La cheminée et les ouvertures de la maison : l'impureté à travers un trou d'une palme, et les maisons à plusieurs ouvertures.",
+    "L'ouverture dans la maison (arbah) d'une palme : l'impureté dans la maison ou en face d'elle, et celui qui y met le pied.",
+    "La maison fendue : l'impureté dehors ou dedans selon la largeur de la fente (quatre palmes selon Chammaï, un peu selon Hillel).",
+    "Une planche sur un four neuf ou ancien, un panier scellé sur un four : l'impureté dessous ou dessus.",
+    "Le trou de lumière (maor) : sa mesure, les restes d'une fenêtre à demi bouchée, les ouvertures des portes et fenêtres.",
+    "La saillie (ziz) et la corniche qui apportent l'impureté, ce qui compte comme saillie, la canne au-dessus d'une porte.",
+    "Les matériaux épais qui n'apportent l'impureté qu'à partir d'une palme du sol, objets empilés, tonneaux, planches.",
+    "Les objets mobiles qui apportent l'impureté s'ils ont l'épaisseur du manche de l'aiguillon ; le mort trouvé dans le mur.",
+    "Le champ labouré sur une tombe (beit hapras) : étendue de la zone d'impureté, et les cas de labour partiel.",
+    "La purification d'un beit hapras, la vendange des terrains soupçonnés, et les trois sortes de beit hapras."
    ]
   },
   "negaim": {
    "book": "Les plaies de tsaraat : leurs aspects, qui est touché, les vêtements, les maisons et la purification du métsora.",
    "chapters": [
-    "Les aspects des plaies, deux qui deviennent quatre, et la façon de les distinguer.",
-    "La tache brillante, sa couleur par rapport à la peau, et les degrés de blancheur.",
-    "Qui est atteint par les plaies : tous, sauf le non-juif et le résident ; et qui examine.",
-    "Le poil blanc et la chair vive : ce qui rend impur dans chacun.",
-    "Les cas de doute en matière de plaies : en principe on déclare pur, sauf dans certains cas.",
-    "La mesure de la tache (comme un grain), et la façon de la mesurer.",
-    "Les taches pures : celles qui apparaissent avant le don de la Torah, ou dans certaines circonstances.",
-    "Ce qui change quand la tache disparaît, et les cas d'impureté et de pureté.",
-    "Les furoncles et les brûlures : une semaine d'examen et ses règles.",
-    "Les teignes : deux semaines d'examen et ses règles.",
-    "Les vêtements atteints de plaies : lesquels sont soumis et comment on les examine.",
-    "Les maisons atteintes de plaies : lesquelles sont soumises et comment on les examine.",
-    "Les dix maisons : l'ordre et les cas où une maison est impure.",
-    "La purification du métsora : les oiseaux, le bois de cèdre, l'hysope et le rite."
+    "Les quatre aspects de la plaie de peau (bahérèt et séète et leurs seconds) : blancheur de neige, de chaux, de peau d'œuf, de laine.",
+    "La couleur de la bahérèt selon les peaux, les moments où l'on n'examine pas, et le cohen qui examine.",
+    "Qui est atteint (tous sauf les non-juifs et le résident étranger), le marié qui reçoit sept jours, et la peau de la chair.",
+    "Les signes de la plaie (poil blanc, extension, chair vive) : ce qui rend impur ou pur, et leur comparaison.",
+    "Les cas de doute en matière de plaies : en principe on déclare pur, sauf dans quelques exceptions.",
+    "La mesure de la bahérèt (un grain de Kalki), le lieu d'une chair vive (une lentille), et les cas où la tache grandit ou diminue.",
+    "Les taches pures (antérieures au don de la Torah, converti, enfant né…) et les changements d'aspect, plus indulgents ou plus sévères.",
+    "La plaie qui se répand sur tout le corps (« tout blanc est pur ») et les cas d'impureté ou de pureté selon les extrémités.",
+    "Les furoncles et les brûlures : une semaine d'examen, deux signes (poil blanc et extension) ; leur définition.",
+    "Les teignes (netek) : deux semaines d'examen, deux signes (poil jaune fin et extension), et ce qui les sauve.",
+    "Les vêtements atteints de plaies : tous sauf ceux des non-juifs, laine et lin, mélanges, teintures.",
+    "Les maisons atteintes : toutes sauf celles des non-juifs, les maisons qui n'en sont pas atteintes et la mesure de la plaie.",
+    "Les dix maisons : les degrés d'examen (sept jours, puis sept autres), l'arrachage des pierres et la pierre d'angle.",
+    "La purification du métsora : le vase d'argile avec de l'eau vive, les deux oiseaux, le cèdre, l'hysope, le rasage, l'immersion et les offrandes."
    ]
   },
   "parah": {
    "book": "La vache rousse : son âge, sa préparation, sa combustion et l'eau de purification.",
    "chapters": [
-    "Quel âge pour la vache et pour le taureau, selon Rabbi Eliezer et les sages.",
-    "Les défauts qui invalident la vache rousse et les cas d'invalidation.",
-    "Les sept jours de préparation du prêtre et la sortie vers le mont des Oliviers.",
-    "La vache rousse abattue sans intention, et les services qui l'invalident.",
-    "Les vases d'argile pour la vache, les immersions du prêtre et les ablutions.",
-    "Les cas où la sanctification de l'eau est invalide ou valide.",
-    "Les cinq jarres remplies pour la sanctification, et les risques d'invalidation.",
-    "Deux hommes qui gardent l'eau et l'impureté qui peut l'atteindre.",
-    "Une fiole où il tombe de l'eau, et la validité de l'eau de purification.",
-    "Ce qui est impur par pression (midras) : ce qui rend impur la vache.",
-    "Une fiole laissée découverte, et l'eau qu'on a trouvée impure.",
-    "L'hysope court, les liens et la façon d'asperger."
+    "L'âge de la vache rousse selon Rabbi Eliezer et les sages, puis l'âge des taureaux, béliers et agneaux pour les offrandes.",
+    "Les défauts qui invalident la vache (portée, jougs, poils noirs), et ce qu'on peut ou non offrir en sacrifice.",
+    "Les sept jours avant la combustion : le prêtre est mis à part et aspergé, la sortie vers le mont des Oliviers, les cours bâties sur des cavités.",
+    "Les services invalidés par une mauvaise intention ou un changement : abattage, aspersion, ablutions, combustion hors du fourneau, bois.",
+    "Les vases pour l'eau de purification : leur immersion, les eaux inaptes à la sanctification et ce qu'on peut utiliser pour puiser.",
+    "Le puisage de l'eau de purification : l'eau qui tombe à côté, dans l'auge ou le tuyau, et ce qui invalide ou non.",
+    "Cinq jarres remplies pour la sanctification, une ou plusieurs personnes, et la façon de puiser en travaillant.",
+    "Les deux gardiens de l'auge, le prêtre qui sanctifie ne chausse pas de sandale, et l'impureté de ceux qui brûlent la vache.",
+    "Une fiole où il tombe de l'eau ou de la rosée, les animaux ou les vermines qui y tombent, et ce qui invalide l'eau de purification.",
+    "Ce qui est impur par pression ou par la mort et transmet l'impureté à l'eau de purification, et les cas de contact avec un reptile.",
+    "La fiole laissée découverte ou fermée, le doute (qui est pur pour la terouma l'est aussi pour la purification), et la datte de terouma tombée dedans.",
+    "L'aspersion avec l'hysope : le court fil, l'immersion, les intentions et les cas de doute dans l'aspersion."
    ]
   },
   "tahorot": {
-   "book": "La pureté des aliments, des vases et des lieux : le doute en matière d'impureté et les domaines public et privé.",
+   "book": "La pureté des aliments, des vases et des lieux : les degrés d'impureté, le doute en matière d'impureté et les domaines public et privé.",
    "chapters": [
-    "Les treize règles de la dépouille d'un oiseau pur.",
-    "La femme qui met un légume dans la marmite et le doute sur l'impureté.",
-    "La sauce, la bouillie et le lait : quand ils transmettent l'impureté.",
-    "Celui qui lance l'impureté d'un endroit à l'autre : la mesure et les cas de doute.",
-    "Le reptile et la grenouille dans le domaine public ; le doute en domaine privé et public.",
-    "Un lieu qui était privé et qui devient public, et les doutes qui en découlent.",
-    "Le potier qui laisse ses pots, et les doutes sur l'impureté.",
-    "Celui qui habite avec un am haaretz dans une cour et oublie des vases.",
-    "Les olives : à partir de quand elles reçoivent l'impureté.",
-    "Celui qui ferme le pressoir à olives, et les doutes qui en découlent."
+    "Les treize règles de la dépouille d'un oiseau pur (intention, impureté d'aliment, mesure d'un œuf), et celles de l'oiseau impur.",
+    "La femme qui conserve des légumes dans une marmite et que son mari touche : parties sèches ou humides ; les degrés d'impureté des aliments.",
+    "La sauce, les gruaux et le lait : humides ils sont de premier degré, figés de deuxième ; l'huile, le miel, et l'impur qui presse olives et raisins.",
+    "Celui qui lance l'impureté d'un endroit à l'autre (pain et clés), la belette qui passe sur des pains de terouma avec un reptile, et les doutes.",
+    "Les doutes en domaine public : reptile, grenouille, morceaux de mort, mottes de terre ; les deux sentiers, l'un pur et l'autre impur.",
+    "Un lieu privé qui devient public ou inversement : quand le doute est impur ou pur, et les quatre doutes de Rabbi Yehochoua.",
+    "Le potier qui laisse ses pots et descend boire, celui qui confie sa clé à un am haaretz, et l'am haaretz laissé dans la maison, éveillé ou endormi.",
+    "Celui qui habite avec un am haaretz dans une cour et y oublie des vases, le dépôt chez un am haaretz, et les objets perdus et retrouvés de jour ou de nuit.",
+    "Les olives : à partir de quand elles reçoivent l'impureté (sueur du tas), et quand le travail terminé les rend aptes.",
+    "Celui qui ferme le pressoir à cause des foulons et des vendangeurs : les vases impurs, le pressoir et les ouvriers qui entrent."
    ]
   },
   "mikvaot": {
-   "book": "Les bains rituels (mikvaot) : les degrés de pureté, la quantité d'eau, la source, les cas qui invalident et ce qui fait obstacle.",
+   "book": "Les bains rituels (mikvaot) : les degrés de qualité des eaux, la quantité requise, les sources, les causes d'invalidation et ce qui fait obstacle.",
    "chapters": [
-    "Les six degrés des bains rituels, du moins pur au plus pur.",
-    "L'impur qui a trempé dans le doute, et les cas d'immersion incertaine.",
-    "Deux bains sans la quantité requise, qui se joignent par un tuyau.",
-    "Les vases placés sous un tuyau et ce qui se remplit d'eau.",
-    "Une source dont l'eau est détournée dans un récipient, et les conditions de validité.",
-    "Ce qui est mélangé à un bain et sa validité, ainsi que les trous qui les relient.",
-    "Les cas où l'on augmente un bain sans l'invalider, et les cas où on l'invalide.",
-    "La Terre d'Israël est pure, et ses bains aussi ; les autres lieux.",
-    "Ce qui fait obstacle sur le corps (fil de laine, cheveux, etc.).",
-    "Les manches de vases et les objets entrés autrement que dans l'usage."
+    "Les six degrés des eaux d'immersion, du moins pur au plus pur : eaux de fosses, bains de quarante séa, sources.",
+    "Le doute sur l'immersion : l'impur qui ne sait pas s'il a trempé ou si le bain avait quarante séa, et les eaux puisées.",
+    "Deux bains inférieurs à la mesure qui se mélangent, les trois lougim d'eau puisée qui invalident un bain, et la fosse remplie d'eau puisée.",
+    "Les vases posés sous un tuyau qui invalident le bain, volontairement ou par oubli, et le tuyau creusé pour recueillir.",
+    "La source dont l'eau est détournée sur un récipient, une rigole ou une piscine : quand elle reste valide.",
+    "Ce qui est relié à un bain, les trous et fissures d'une grotte, le seau plein de vases qu'on immerge, trois bains de vingt séa.",
+    "Ce qui augmente un bain sans l'invalider (neige, grêle, glace, sel), ce qui l'invalide sans l'augmenter, et le changement de couleur de l'eau.",
+    "La Terre d'Israël et les bains de l'étranger ; les bains valables pour les impurs de pollution et pour la niddah.",
+    "Ce qui fait obstacle à l'immersion sur le corps (fils de laine ou de lin, rubans) et ce qui n'en fait pas.",
+    "Les manches de vases, l'immersion d'un vase par son ouverture, et les coussins et sacs qui doivent s'imbiber d'eau."
    ]
   },
   "niddah": {
-   "book": "La nidda : les règles de l'impureté de la femme, ses examens, les taches, les naissances et la puberté.",
+   "book": "La nidda : l'impureté de la femme, les examens, les taches, les fausses couches, la puberté et les purifications.",
    "chapters": [
-    "Chammaï dit : chaque femme est jugée selon son moment ; les écoles et les cas d'impureté.",
-    "Les examens (bedikot) et les cas où l'on est strict ou indulgent.",
-    "La fausse couche et ce qu'elle apporte comme impureté, et les cas de naissance.",
-    "Les filles de Samaritains et les cas de statut de nidda dès l'enfance.",
-    "La naissance par césarienne, les jours de pureté et les statuts de l'enfant.",
-    "Les signes de puberté (inférieurs et supérieurs) et l'âge de la majorité.",
-    "Le sang de la nidda et la chair du mort : leur impureté à l'état liquide.",
-    "Les taches (ketamim) sur la chair ou les vêtements et leur impureté.",
-    "Une femme qui voit du sang pendant qu'elle fait ses besoins, et les cas de doute.",
-    "La fillette qui n'a pas atteint l'âge, et les cas de sang vu ou non vu."
+    "Quand la femme devient impure : « chaque femme à son moment » selon Chammaï, « d'un examen à l'autre » selon Hillel, et l'avis des sages.",
+    "Les examens (bedikot), la femme et l'homme à qui l'on attribue le sang trouvé, et ce qu'on entend par « après le temps ».",
+    "Les fausses couches : chair, sang, formes diverses, et ce qui rend la femme impure ou non.",
+    "Les filles des Samaritains et des Sadducéens, et le sang d'une non-juive.",
+    "La naissance par césarienne, l'âge où la petite fille peut devenir impure, et les conduites de celui qui mange la terouma.",
+    "Les signes de puberté (inférieurs et supérieurs) et leurs effets sur la halitsa et le lévirat ; l'impureté des vases.",
+    "Les impuretés qui se transmettent à l'état liquide ou sec, le reptile trouvé dans une ruelle, et les taches de couleur.",
+    "Les taches (ketamim) sur le corps ou les vêtements : où elles rendent impure et quand elles s'expliquent par autre chose.",
+    "Le sang vu en faisant ses besoins ou dans un récipient, et la façon de le reporter à une autre cause.",
+    "La jeune fille mariée avant l'âge (quatre nuits ou jusqu'à la guérison), l'examen du septième jour pour la nidda et le zav."
    ]
   },
   "makhshirin": {
-   "book": "Les liquides qui rendent les aliments aptes à recevoir l'impureté (makhchirin), et les cas où on les ignore.",
+   "book": "Les liquides qui rendent les aliments aptes à recevoir l'impureté (makhchirin) : l'intention, la sueur, la pluie, l'immersion.",
    "chapters": [
-    "Un liquide mis volontairement : il rend l'aliment apte à l'impureté, selon l'intention.",
-    "L'humidité des maisons, des puits et des grottes, et les liquides qui comptent.",
-    "Un sac de fruits posé dans l'eau ou sous la pluie : à quel moment l'intention joue.",
-    "Celui qui se penche pour boire : l'eau remontant dans sa bouche et les cas d'intention.",
-    "Celui qui s'est immergé dans un fleuve, et l'eau qui reste sur lui.",
-    "Celui qui monte ses fruits au toit à cause des fourmis, et les liquides qu'il laisse."
+    "Le liquide mis volontairement (« ki youtan ») rend l'aliment apte, selon l'intention ; l'arbre secoué ; les liquides impurs.",
+    "La sueur des maisons, des puits et de l'homme est pure ; la sueur d'un bain impur ou pur, et celle qui rend apte à l'impureté.",
+    "Un sac de fruits au bord d'un fleuve ou d'un puits, une jarre de fruits dans un liquide, le pain chaud sur une jarre de vin.",
+    "Celui qui se penche pour boire : l'eau qui remonte dans sa bouche ; le puisage, la pluie et le plat posé sur le mur pour être lavé.",
+    "Celui qui s'est immergé et traverse un autre fleuve, un ami qui le pousse, ce qui jaillit en naviguant, et les fruits mouillés par une gouttière.",
+    "Celui qui monte ses fruits au toit à cause des fourmis et que la rosée touche, les œufs des vendeurs de boisson, l'ail mis au toit."
    ]
   },
   "zavim": {
-   "book": "L'impureté du zav (homme atteint d'un écoulement) et celle des personnes et objets qu'il touche.",
+   "book": "Le zav, homme atteint d'un écoulement : les visions qui le rendent impur, les examens, et l'impureté par pression ou par contact.",
    "chapters": [
-    "Une seule vision d'écoulement, selon Beit Chammaï et Beit Hillel, et ses effets.",
-    "Tous deviennent impurs par l'écoulement, y compris les convertis, selon les opinions.",
-    "Le zav et le pur qui s'assoient dans un bateau ou sur un radeau.",
-    "La femme niddah assise avec un pur : les effets de l'impureté.",
-    "Le toucher du zav et ce qui transmet l'impureté."
+    "Une seule vision d'écoulement : comme la gardienne de jour pour Chammaï, comme le pollué pour Hillel ; une vision suivie d'une interruption.",
+    "Tous deviennent impurs par l'écoulement (convertis, esclaves, sourds-muets, eunuques, androgyne) ; les sept examens du zav.",
+    "Le zav et le pur assis dans un bateau, un radeau ou sur une bête : impureté par pression même sans contact des vêtements ; le grand bateau.",
+    "La niddah assise avec une femme pure sur un lit, les objets sur le bateau, et ce que le zav fait trembler (poutre, porte, serrure).",
+    "Toucher ou déplacer le zav : ce qui devient impur ; la règle générale de Rabbi Yehochoua et ce qui porte le zav."
    ]
   },
   "tevul-yom": {
-   "book": "Le tevoul yom : celui qui s'est immergé mais attend le coucher du soleil, et ce qu'il peut rendre impur.",
+   "book": "Le tevoul yom, qui s'est immergé et attend le coucher du soleil : ses liquides, ses contacts et ce qu'il peut rendre impur.",
    "chapters": [
-    "Celui qui rassemble des pains pour les prélever, et le statut du tevoul yom.",
-    "Le liquide du tevoul yom et sa portée.",
-    "Les manches des aliments qui forment un lien avec l'aliment principal.",
-    "Celui qui mange de la dîme devenue apte à l'impureté, et le contact avec le tevoul yom."
+    "Les pains rassemblés pour la halla qui se mordent : le lien qui s'établit pour le tevoul yom selon Beit Chammaï et Beit Hillel.",
+    "Le liquide du tevoul yom, la marmite pleine, le contact avec la terouma, l'ail et l'huile profane.",
+    "Les manches des aliments qui forment une liaison avec l'aliment pour le père d'impureté et pour le tevoul yom ; légume et œuf battu.",
+    "La dîme rendue apte par un liquide et touchée par un tevoul yom ou des mains impures ; la femme tevoulat yom qui pétrit et sépare la halla."
    ]
   },
   "yadayim": {
-   "book": "Les mains : leur impureté, le lavage des mains, et le canon des Écritures qui rendent les mains impures.",
+   "book": "Les mains : le lavage rituel, l'impureté des mains, et les livres saints qui les rendent impures.",
    "chapters": [
-    "La mesure d'eau (revi'it) pour laver les mains, et la façon de verser.",
-    "Le lavage partiel : une main lavée avec un seul versement, et l'effet sur la pureté.",
-    "Les mains qui entrent dans une maison atteinte de plaie, et les livres saints qui rendent les mains impures (dont le Cantique des Cantiques et l'Ecclésiaste).",
-    "Le jour de la décision sur les Ammonites et les Moabites, et les controverses entre sages sur la loi et les Sadducéens."
+    "La quantité d'eau (revi'it) pour verser sur les mains, pour une ou plusieurs personnes, les vases valables et l'eau invalide.",
+    "Verser sur une main ou sur les deux d'un seul lavage, les mains impures jusqu'au poignet, l'eau première et seconde.",
+    "Les mains qui entrent dans une maison atteinte de plaie, ce qui rend les mains impures (terouma, livres saints, Cantique des Cantiques, Ecclésiaste).",
+    "Les décisions prises « ce jour-là » (aravat haraglayim, offrandes, Ammon et Moab en septième année), et les controverses avec les Sadducéens."
    ]
   },
   "oktzin": {
    "book": "Les queues des fruits (oktsin) : les parties qui transmettent ou protègent l'impureté dans les fruits.",
    "chapters": [
-    "Ce qui est poignée sans être protection, transmet et reçoit l'impureté.",
-    "Les olives conservées avec leurs feuilles, et ce qui est pur.",
-    "Ce qui a besoin d'être rendu apte à l'impureté, et ce qui n'en a pas besoin."
+    "Ce qui est poignée sans être protection transmet et reçoit l'impureté sans s'additionner ; la protection, qui s'additionne ; racines d'ail et d'oignon.",
+    "Les olives conservées avec leurs feuilles, le houblon, les noyaux, la grenade ou la pastèque entamées : ce qui s'additionne ou non.",
+    "Ce qui doit être rendu apte (hechsher) et/ou d'une intention (machshava), et les cas de découpe d'un animal mort."
    ]
   }
  }
