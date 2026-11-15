@@ -226,6 +226,23 @@
         return { hebrew: h, feasts: feasts, omer: omer, roshChodesh: roshChodesh };
     }
 
+    // 'Hol Hamoed : 'souccot' ou 'pessah' si le jour est un jour intermédiaire de cette fête (ni jour de fête complet, ni Chemini Atséret), sinon null.
+    // Souccot : du 16 (Israël) ou du 17 (diaspora) au 21 Tichri, Hocha'ana Raba compris. Pessa'h : du 16 ou du 17 au 20 Nissan.
+    function cholHamoedOf(fixed, israel) {
+        var year = hebrewFromFixed(fixed).year;
+        var s = CY.hebrewToFixed(year, 'Tishri', 15), p = CY.hebrewToFixed(year, 'Nisan', 15);
+        var skip = israel ? 1 : 2;
+        if (fixed >= s + skip && fixed <= s + 6) return 'souccot';
+        if (fixed >= p + skip && fixed <= p + 5) return 'pessah';
+        return null;
+    }
+
+    // L'identifiant du nom d'une fête pour un jour donné : 'souccot_ch' / 'pessah_ch' pendant 'Hol Hamoed (« 'Hol Hamoed Souccot »), sinon l'identifiant de la fête.
+    function feastNameId(feastId, fixed, israel) {
+        var ch = (feastId === 'souccot' || feastId === 'pessah') ? cholHamoedOf(fixed, israel) : null;
+        return ch === feastId ? feastId + '_ch' : feastId;
+    }
+
     function feastIds() { return FEASTS.map(function (f) { return f.id; }); }
 
     return {
@@ -234,6 +251,6 @@
         monthData: monthData, leap: leap, cycleYear: cycleYear, monthsOf: monthsOf, monthLabelId: monthLabelId, monthHebrew: monthHebrew, yearInfo: yearInfo,
         hebrewFromFixed: hebrewFromFixed, gregorianToHebrew: gregorianToHebrew, hebrewToGregorian: hebrewToGregorian,
         isSupportedGregorian: isSupportedGregorian, fixedOfGregorian: fixedOfGregorian, weekdayOf: weekdayOf,
-        hebrewNumeral: hebrewNumeral, feastsOf: feastsOf, dayInfo: dayInfo, feastIds: feastIds
+        hebrewNumeral: hebrewNumeral, feastsOf: feastsOf, dayInfo: dayInfo, feastIds: feastIds, cholHamoedOf: cholHamoedOf, feastNameId: feastNameId
     };
 }));

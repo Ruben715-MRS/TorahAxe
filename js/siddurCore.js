@@ -273,7 +273,8 @@
             shemini: shemini, pesach: pesach, shavuot: shavuot, sukkot: sukkot, yomTov: yomTov,
             hanukkah: inFeast('hanouka'), purim: h.month === purimId && h.day === 14,
             tishaBav: !!fastDay && fastDay.id === 'tichabav', fastPublic: !!fastDay, shabbat: shabbat,
-            noTachanun: Z.noTachanun(fixed, israel)
+            noTachanun: Z.noTachanun(fixed, israel),
+            tachanunMorning: Z.tachanunStatus(fixed, israel) === 'morning'
         };
         // Chabbats particuliers : le Chabbat des dix jours de pénitence, un Chabbat qui est aussi Roch 'Hodesh, 'Hol haMoed ou Hanouka, et le Chabbat qui précède Roch 'Hodesh.
         flags.shabbatShuva = shabbat && flags.aseret;
@@ -325,7 +326,7 @@
         if (f.purim) n.push('purim');
         if (f.tishaBav) n.push('tishaBav');
         else if (f.fastPublic) n.push('fast');
-        n.push(f.noTachanun ? 'noTachanun' : 'tachanun');
+        n.push(f.noTachanun ? 'noTachanun' : f.tachanunMorning ? 'tachanunMorning' : 'tachanun');
         if (ctx.omer) n.push('omer');
         return n;
     }

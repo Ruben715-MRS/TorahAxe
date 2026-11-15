@@ -486,7 +486,7 @@ function homeRenderToday(content) {
     cards.appendChild(homeInfoCard('Paracha', par ? par.name : '…', par ? 'Lire dans le Tikkoun' : '', par ? () => openTikkounAtParasha(par.index) : null));
     const feast = homeNextFeast(day);
     if (feast) {
-        const name = t('tools.hcal_f_' + feast.id + '_name');
+        const name = t('tools.hcal_f_' + (feast.ongoing ? HebrewCalendarCore.feastNameId(feast.id, day.ctx.fixed, day.israel) : feast.id) + '_name');
         cards.appendChild(homeInfoCard(feast.ongoing ? 'En ce moment' : 'Prochaine fête', name,
             feast.ongoing ? 'Aujourd\'hui' : (feast.days === 1 ? 'demain' : 'dans ' + feast.days + ' jours'), () => openTool('hebrewCalendar', 'screen-main')));
     }
