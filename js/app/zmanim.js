@@ -93,7 +93,8 @@ function zmStoredOpts() {
     return out;
 }
 
-// La fenêtre de Birkat haLévana du mois en cours (ou du suivant si elle est passée), en une ligne ; null s'il n'y en a pas.
+// La fenêtre de Birkat haLévana du mois en cours (ou du suivant si elle est passée), en une ligne ; null s'il n'y en a pas
+// ou si elle ne s'ouvre pas dans les 14 jours. Pendant la fenêtre : « Jusqu'au soir du … » ; avant : « Demain soir » / « Dans N jours ».
 function zmLevanaInfo(place, civil, h, opts) {
     const Z = ZmanimCore;
     const months = HebrewCalendarCore.monthsOf(h.year);
@@ -102,14 +103,20 @@ function zmLevanaInfo(place, civil, h, opts) {
     const candidates = [[h.year, months[index].id]];
     candidates.push(index + 1 < months.length ? [h.year, months[index + 1].id] : [h.year + 1, 'Tishri']);
     const dayStart = Z.localToUtc(place.tz, civil.year, civil.month, civil.day, 0);
+    const todayFixed = CalendarYearCore.gregorianToFixed(civil.year, civil.month, civil.day);
     for (const [year, month] of candidates) {
         const win = Z.levanaWindow(year, month, opts.levanaWait || 7);
         const evenings = Z.levanaEvenings(place, win, opts);
         if (!evenings) continue;
         const last = Z.localToUtc(place.tz, evenings.last.year, evenings.last.month, evenings.last.day, 23);
         if (last < dayStart) continue;
-        const fmt = (d) => hcalGregorianText(CalendarYearCore.gregorianToFixed(d.year, d.month, d.day), { weekday: undefined, year: undefined, month: 'long', day: 'numeric' });
-        return t('tools.zm_levana_window', { from: fmt(evenings.first), to: fmt(evenings.last) });
+        const fixedOf = (d) => CalendarYearCore.gregorianToFixed(d.year, d.month, d.day);
+        const fmt = (d) => hcalGregorianText(fixedOf(d), { weekday: undefined, year: undefined, month: 'long', day: 'numeric' });
+        const daysToFirst = fixedOf(evenings.first) - todayFixed;
+        if (daysToFirst <= 0) return 'Jusqu\'au soir du ' + fmt(evenings.last);
+        if (daysToFirst > 14) return null;
+        const window = t('tools.zm_levana_window', { from: fmt(evenings.first), to: fmt(evenings.last) });
+        return (daysToFirst === 1 ? 'Demain soir' : 'Dans ' + daysToFirst + ' jours') + ' : ' + window.charAt(0).toLowerCase() + window.slice(1);
     }
     return null;
 }
