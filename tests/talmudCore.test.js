@@ -337,3 +337,11 @@ test('summaryOf : l\'ordre, le traité et le chapitre ; vide si inconnu', () => 
     // Chabbat : un résumé par chapitre, celui du chapitre 24 est le dernier.
     assert.strictEqual(T.summaryOf(resume, index, 'shabbat', 24).chapter, resume.tractates.shabbat.chapters[23]);
 });
+
+test('résumés : les 37 traités ont leur résumé, un par chapitre', () => {
+    const resume = read('resume');
+    const missing = T.tractates(index).filter(tr => !resume.tractates[tr.id]).map(tr => tr.id);
+    assert.deepStrictEqual(missing, []);
+    assert.strictEqual(Object.keys(resume.tractates).length, 37);
+    assert.strictEqual(Object.values(resume.tractates).reduce((n, r) => n + r.chapters.length, 0), T.tractates(index).reduce((n, tr) => n + tr.chapters.length, 0));
+});
