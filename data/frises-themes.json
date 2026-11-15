@@ -1,0 +1,3048 @@
+{
+  "themes": [
+    {
+      "id": "thm_histoire_juive_civile",
+      "nom": "Histoire du peuple juif (Années civiles)",
+      "difficulte": "Tous niveaux",
+      "events": [
+        {
+          "id": "hjc_1",
+          "axe": "Torah",
+          "date": -3761,
+          "titre": "La création du monde",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Cr%C3%A9ation_(th%C3%A9ologie)",
+          "dl": 267
+        },
+        {
+          "id": "hjc_2",
+          "axe": "Torah",
+          "date": -2105,
+          "titre": "Le déluge et l’arche de Noé",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Arche_de_No%C3%A9",
+          "dl": 244
+        },
+        {
+          "id": "hjc_3",
+          "axe": "Torah",
+          "date": -1813,
+          "titre": "Naissance d’Avraham",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Abraham",
+          "dl": 254
+        },
+        {
+          "id": "hjc_4",
+          "axe": "Torah",
+          "date": -1743,
+          "titre": "L’alliance entre les morceaux (Brit bein HaBetarim)",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Alliance_entre_les_morceaux",
+          "dl": 256
+        },
+        {
+          "id": "hjc_5",
+          "axe": "Torah",
+          "date": -1713,
+          "titre": "Naissance d’Its’hak",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Isaac",
+          "dl": 209
+        },
+        {
+          "id": "hjc_6",
+          "axe": "Torah",
+          "date": -1676,
+          "titre": "Ligature d’Its’hak (Akedah)",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Ligature_d%27Isaac",
+          "dl": 254
+        },
+        {
+          "id": "hjc_7",
+          "axe": "Torah",
+          "date": -1653,
+          "titre": "Naissance de Yaakov",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Jacob",
+          "dl": 204
+        },
+        {
+          "id": "hjc_8",
+          "axe": "Torah",
+          "date": -1523,
+          "titre": "Descente de la famille de Yaakov en Égypte",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Livre_de_la_Gen%C3%A8se",
+          "dl": 317
+        },
+        {
+          "id": "hjc_9",
+          "axe": "Torah",
+          "date": -1393,
+          "titre": "Naissance de Moché",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Mo%C3%AFse",
+          "dl": 229
+        },
+        {
+          "id": "hjc_10",
+          "axe": "Torah",
+          "date": -1313,
+          "titre": "La sortie d’Égypte",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Exode_hors_d%27%C3%89gypte",
+          "dl": 253
+        },
+        {
+          "id": "hjc_11",
+          "axe": "Torah",
+          "date": -1312,
+          "titre": "La faute des explorateurs",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Explorateurs_(Bible)",
+          "dl": 268
+        },
+        {
+          "id": "hjc_12",
+          "axe": "Prophètes (Nevi’im)",
+          "date": -1273,
+          "titre": "Entrée en Terre d’Israël sous Yéhochoua",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Josu%C3%A9_(personnage_biblique)",
+          "dl": 255
+        },
+        {
+          "id": "hjc_13",
+          "axe": "Prophètes (Nevi’im)",
+          "date": -1245,
+          "titre": "Début de la période des Juges",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Livre_des_Juges",
+          "dl": 273
+        },
+        {
+          "id": "hjc_14",
+          "axe": "Prophètes (Nevi’im)",
+          "date": -1025,
+          "titre": "Onction de Shaoul, premier Roi d’Israël",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Sa%C3%BCl",
+          "dl": 296
+        },
+        {
+          "id": "hjc_15",
+          "axe": "Prophètes (Nevi’im)",
+          "date": -1010,
+          "titre": "Avènement et règne du Roi David à Jérusalem",
+          "wikipedia": "https://fr.wikipedia.org/wiki/David_(Bible)",
+          "dl": 299
+        },
+        {
+          "id": "hjc_16",
+          "axe": "Prophètes (Nevi’im)",
+          "date": -957,
+          "titre": "Construction du Premier Temple par le Roi Shlomo",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Premier_Temple_de_J%C3%A9rusalem",
+          "dl": 262
+        },
+        {
+          "id": "hjc_17",
+          "axe": "Prophètes (Nevi’im)",
+          "date": -931,
+          "titre": "Division en deux royaumes",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Royaume_de_Juda",
+          "dl": 264
+        },
+        {
+          "id": "hjc_18",
+          "axe": "Prophètes (Nevi’im)",
+          "date": -722,
+          "titre": "Royaume du Nord chute, exil des dix Tribus",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Dix_tribus_perdues",
+          "dl": 288
+        },
+        {
+          "id": "hjc_19",
+          "axe": "Prophètes (Nevi’im)",
+          "date": -622,
+          "titre": "Réformes de Yoshiyahou (Josias)",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Josias",
+          "dl": 267
+        },
+        {
+          "id": "hjc_20",
+          "axe": "Prophètes (Nevi’im)",
+          "date": -586,
+          "titre": "Destruction du Premier Temple par Nabuchodonosor",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Si%C3%A8ge_de_J%C3%A9rusalem_(587/586_av._J.-C.)",
+          "dl": 244
+        },
+        {
+          "id": "hjc_21",
+          "axe": "Hagiographes (Ketouvim)",
+          "date": -538,
+          "titre": "Décret de Cyrus (fin de l’exil de Babylone)",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Cylindre_de_Cyrus",
+          "dl": 269
+        },
+        {
+          "id": "hjc_22",
+          "axe": "Hagiographes (Ketouvim)",
+          "date": -516,
+          "titre": "Inauguration et reconstruction du Deuxième Temple",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Second_Temple_de_J%C3%A9rusalem",
+          "dl": 266
+        },
+        {
+          "id": "hjc_23",
+          "axe": "Hagiographes (Ketouvim)",
+          "date": -474,
+          "titre": "Le miracle de Pourim en Perse",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Pourim",
+          "dl": 301
+        },
+        {
+          "id": "hjc_24",
+          "axe": "Hagiographes (Ketouvim)",
+          "date": -458,
+          "titre": "Retour d’Ezra et Néhémie à Jérusalem",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Esdras",
+          "dl": 298
+        },
+        {
+          "id": "hjc_26",
+          "axe": "Histoire antique",
+          "date": -332,
+          "titre": "Arrivée d’Alexandre le Grand en Judée",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Alexandre_le_Grand",
+          "dl": 319
+        },
+        {
+          "id": "hjc_25",
+          "axe": "Hagiographes (Ketouvim)",
+          "date": -313,
+          "titre": "Fin de l’ère des Prophètes, fermeture du canon",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Grande_Assembl%C3%A9e",
+          "dl": 242
+        },
+        {
+          "id": "hjc_27",
+          "axe": "Histoire antique",
+          "date": -246,
+          "titre": "Traduction de la Torah en grec (Septante)",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Septante",
+          "dl": 277
+        },
+        {
+          "id": "hjc_28",
+          "axe": "Histoire antique",
+          "date": -167,
+          "titre": "Décrets de persécution religieuse d’Antiochus IV Épiphane",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Antiochos_IV",
+          "dl": 269
+        },
+        {
+          "id": "hjc_29",
+          "axe": "Histoire antique",
+          "date": -164,
+          "titre": "Révolte des Hasmonéens et miracle de Hanouka",
+          "wikipedia": "https://fr.wikipedia.org/wiki/R%C3%A9volte_des_Maccab%C3%A9es",
+          "dl": 277
+        },
+        {
+          "id": "hjc_30",
+          "axe": "Histoire antique",
+          "date": -63,
+          "titre": "Prise de Jérusalem par le général romain Pompée",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Si%C3%A8ge_de_J%C3%A9rusalem_(63_av._J.-C.)",
+          "dl": 241
+        },
+        {
+          "id": "hjc_31",
+          "axe": "Histoire antique",
+          "date": -19,
+          "titre": "Rénovation monumentale du Temple par Hérode le Grand",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Temple_d%27H%C3%A9rode",
+          "dl": 262
+        },
+        {
+          "id": "hjc_32",
+          "axe": "Histoire antique",
+          "date": 66,
+          "titre": "La Grande Révolte juive éclate contre l’Empire romain",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Premi%C3%A8re_guerre_jud%C3%A9o-romaine",
+          "dl": 228
+        },
+        {
+          "id": "hjc_33",
+          "axe": "Histoire antique",
+          "date": 70,
+          "titre": "Destruction définitive du Deuxième Temple par Titus",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Si%C3%A8ge_de_J%C3%A9rusalem_(70)",
+          "dl": 224
+        },
+        {
+          "id": "hjc_34",
+          "axe": "Histoire antique",
+          "date": 73,
+          "titre": "Chute de Massada",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Si%C3%A8ge_de_Massada",
+          "dl": 274
+        },
+        {
+          "id": "hjc_35",
+          "axe": "Histoire antique",
+          "date": 135,
+          "titre": "Bar Kokhba vaincu, expulsion des Juifs de Judée",
+          "wikipedia": "https://fr.wikipedia.org/wiki/R%C3%A9volte_de_Bar_Kokhba",
+          "dl": 292
+        },
+        {
+          "id": "hjc_36",
+          "axe": "Littérature rabbinique et Codification halakhique",
+          "date": 200,
+          "titre": "Rédaction de la Mishna par Rabbi Yehouda HaNassi",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Mishna",
+          "dl": 211
+        },
+        {
+          "id": "hjc_37",
+          "axe": "Littérature rabbinique et Codification halakhique",
+          "date": 350,
+          "titre": "Clôture du Talmud de Jérusalem",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Talmud_de_J%C3%A9rusalem",
+          "dl": 235
+        },
+        {
+          "id": "hjc_38",
+          "axe": "Littérature rabbinique et Codification halakhique",
+          "date": 500,
+          "titre": "Achi et Rabina clôturent le Talmud de Babylone",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Talmud_de_Babylone",
+          "dl": 269
+        },
+        {
+          "id": "hjc_42",
+          "axe": "Mouvements spirituels, mystiques et intellectuels",
+          "date": 589,
+          "dateFin": 1038,
+          "titre": "Période des Geonim",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Geonim",
+          "dl": 280
+        },
+        {
+          "id": "hjc_39",
+          "axe": "Littérature rabbinique et Codification halakhique",
+          "date": 1040,
+          "titre": "Naissance de Rachi",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Rachi",
+          "dl": 284
+        },
+        {
+          "id": "hjc_48",
+          "axe": "Exils, Persécutions et Émancipation",
+          "date": 1096,
+          "titre": "Massacres de Rhénanie lors de la première croisade",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Pers%C3%A9cution_des_Juifs_pendant_la_premi%C3%A8re_croisade",
+          "dl": 270
+        },
+        {
+          "id": "hjc_40",
+          "axe": "Littérature rabbinique et Codification halakhique",
+          "date": 1180,
+          "titre": "Rédaction du Mishné Torah par Maïmonide (Rambam)",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Mishn%C3%A9_Torah",
+          "dl": 229
+        },
+        {
+          "id": "hjc_43",
+          "axe": "Mouvements spirituels, mystiques et intellectuels",
+          "date": 1290,
+          "titre": "Diffusions des écrits kabbalistiques et du Zohar",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Zohar",
+          "dl": 235
+        },
+        {
+          "id": "hjc_49",
+          "axe": "Exils, Persécutions et Émancipation",
+          "date": 1290,
+          "titre": "Expulsion des Juifs d’Angleterre",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Expulsion_des_Juifs_d%27Angleterre",
+          "dl": 260
+        },
+        {
+          "id": "hjc_50",
+          "axe": "Exils, Persécutions et Émancipation",
+          "date": 1306,
+          "titre": "Expulsion des Juifs de France par Philippe",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Expulsion_des_Juifs_de_France",
+          "dl": 242
+        },
+        {
+          "id": "hjc_51",
+          "axe": "Exils, Persécutions et Émancipation",
+          "date": 1492,
+          "titre": "Expulsion des Juifs d’Espagne (Décret de l’Alhambra)",
+          "wikipedia": "https://fr.wikipedia.org/wiki/D%C3%A9cret_de_l%27Alhambra",
+          "dl": 312
+        },
+        {
+          "id": "hjc_52",
+          "axe": "Exils, Persécutions et Émancipation",
+          "date": 1497,
+          "titre": "Expulsion des Juifs du Portugal",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Expulsion_des_Juifs_du_Portugal",
+          "dl": 255
+        },
+        {
+          "id": "hjc_41",
+          "axe": "Littérature rabbinique et Codification halakhique",
+          "date": 1565,
+          "titre": "Parution du Shoulhan Aroukh par Rabbi Yossef Karo",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Choulhan_Aroukh",
+          "dl": 278
+        },
+        {
+          "id": "hjc_53",
+          "axe": "Exils, Persécutions et Émancipation",
+          "date": 1648,
+          "titre": "Pogroms de Chmielnicki en Europe de l’Est",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Soul%C3%A8vement_de_Khmelnytsky",
+          "dl": 293
+        },
+        {
+          "id": "hjc_44",
+          "axe": "Mouvements spirituels, mystiques et intellectuels",
+          "date": 1666,
+          "titre": "Déclaration messianique de Sabbataï Tsevi",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Sabbata%C3%AF_Tsevi",
+          "dl": 308
+        },
+        {
+          "id": "hjc_45",
+          "axe": "Mouvements spirituels, mystiques et intellectuels",
+          "date": 1730,
+          "titre": "Mouvement hassidique fondé par le Baal Shem Tov",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Hassidisme",
+          "dl": 279
+        },
+        {
+          "id": "hjc_46",
+          "axe": "Mouvements spirituels, mystiques et intellectuels",
+          "date": 1770,
+          "titre": "Début de la Haskala (mouvement des Lumières juives)",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Haskala",
+          "dl": 257
+        },
+        {
+          "id": "hjc_54",
+          "axe": "Exils, Persécutions et Émancipation",
+          "date": 1791,
+          "titre": "Décret d’Émancipation des Juifs par l’Assemblée constituante française",
+          "wikipedia": "https://fr.wikipedia.org/wiki/%C3%89mancipation_des_Juifs",
+          "dl": 273
+        },
+        {
+          "id": "hjc_47",
+          "axe": "Mouvements spirituels, mystiques et intellectuels",
+          "date": 1840,
+          "titre": "Mouvement du Moussar par Rabbi Israël Salanter",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Mouvement_du_Moussar",
+          "dl": 246
+        },
+        {
+          "id": "hjc_59",
+          "axe": "Sionisme, Souveraineté et État d’Israël",
+          "date": 1881,
+          "titre": "Première Aliyah vers la Terre d’Israël",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Premi%C3%A8re_Aliyah",
+          "dl": 278
+        },
+        {
+          "id": "hjc_55",
+          "axe": "Exils, Persécutions et Émancipation",
+          "date": 1894,
+          "titre": "Début de l’Affaire Dreyfus en France",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Affaire_Dreyfus",
+          "dl": 259
+        },
+        {
+          "id": "hjc_60",
+          "axe": "Sionisme, Souveraineté et État d’Israël",
+          "date": 1897,
+          "titre": "Premier Congrès sioniste à Bâle réuni par Herzl",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Premier_congr%C3%A8s_sioniste",
+          "dl": 276
+        },
+        {
+          "id": "hjc_61",
+          "axe": "Sionisme, Souveraineté et État d’Israël",
+          "date": 1917,
+          "titre": "Publication de la Déclaration Balfour",
+          "wikipedia": "https://fr.wikipedia.org/wiki/D%C3%A9claration_Balfour_de_1917",
+          "dl": 295
+        },
+        {
+          "id": "hjc_56",
+          "axe": "Exils, Persécutions et Émancipation",
+          "date": 1938,
+          "titre": "Nuit de Cristal",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Nuit_de_Cristal",
+          "dl": 284
+        },
+        {
+          "id": "hjc_57",
+          "axe": "Exils, Persécutions et Émancipation",
+          "date": 1939,
+          "dateFin": 1945,
+          "titre": "Shoah, extermination de six millions de Juifs d’Europe",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Shoah",
+          "dl": 324
+        },
+        {
+          "id": "hjc_62",
+          "axe": "Sionisme, Souveraineté et État d’Israël",
+          "date": 1947,
+          "titre": "Plan de partage de la Palestine par l’ONU",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Plan_de_partage_de_la_Palestine",
+          "dl": 259
+        },
+        {
+          "id": "hjc_58",
+          "axe": "Exils, Persécutions et Émancipation",
+          "date": 1948,
+          "dateFin": 1970,
+          "titre": "Exode des Juifs des pays arabes et musulmans",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Exode_des_Juifs_des_pays_arabes_et_musulmans",
+          "dl": 310
+        },
+        {
+          "id": "hjc_63",
+          "axe": "Sionisme, Souveraineté et État d’Israël",
+          "date": 1948,
+          "titre": "Déclaration d’indépendance de l’État d’Israël",
+          "wikipedia": "https://fr.wikipedia.org/wiki/D%C3%A9claration_d%27ind%C3%A9pendance_de_l%27%C3%89tat_d%27Isra%C3%ABl",
+          "dl": 225
+        },
+        {
+          "id": "hjc_64",
+          "axe": "Sionisme, Souveraineté et État d’Israël",
+          "date": 1967,
+          "titre": "Guerre des Six Jours et réunification de Jérusalem",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Guerre_des_Six_Jours",
+          "dl": 253
+        },
+        {
+          "id": "hjc_65",
+          "axe": "Sionisme, Souveraineté et État d’Israël",
+          "date": 1973,
+          "titre": "Guerre du Kippour",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Guerre_du_Kippour",
+          "dl": 270
+        },
+        {
+          "id": "hjc_66",
+          "axe": "Sionisme, Souveraineté et État d’Israël",
+          "date": 1979,
+          "titre": "Traité de paix israélo-égyptien",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Trait%C3%A9_de_paix_isra%C3%A9lo-%C3%A9gyptien",
+          "dl": 260
+        },
+        {
+          "id": "hjc_67",
+          "axe": "Sionisme, Souveraineté et État d’Israël",
+          "date": 1993,
+          "titre": "Accords d’Oslo",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Accords_d%27Oslo",
+          "dl": 277
+        },
+        {
+          "id": "hjc_68",
+          "axe": "Sionisme, Souveraineté et État d’Israël",
+          "date": 2020,
+          "titre": "Signature des Accords d’Abraham",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Accords_d%27Abraham",
+          "dl": 257
+        },
+        {
+          "id": "hjc_69",
+          "axe": "Sionisme, Souveraineté et État d’Israël",
+          "date": 1993,
+          "titre": "Signature des accords d'Oslo à Washington",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Accords_d%27Oslo",
+          "dl": 492
+        },
+        {
+          "id": "hjc_70",
+          "axe": "Sionisme, Souveraineté et État d’Israël",
+          "date": 2020,
+          "titre": "Signature des accords d'Abraham de normalisation diplomatique",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Accords_d%27Abraham",
+          "dl": 441
+        }
+      ],
+      "axeOrder": [
+        "Torah",
+        "Prophètes (Nevi’im)",
+        "Hagiographes (Ketouvim)",
+        "Histoire antique",
+        "Littérature rabbinique et Codification halakhique",
+        "Mouvements spirituels, mystiques et intellectuels",
+        "Exils, Persécutions et Émancipation",
+        "Sionisme, Souveraineté et État d’Israël"
+      ],
+      "essentiel": [
+        "hjc_1",
+        "hjc_3",
+        "hjc_5",
+        "hjc_9",
+        "hjc_13",
+        "hjc_14",
+        "hjc_16",
+        "hjc_18",
+        "hjc_20",
+        "hjc_21",
+        "hjc_25",
+        "hjc_27",
+        "hjc_30",
+        "hjc_33",
+        "hjc_34",
+        "hjc_36",
+        "hjc_42",
+        "hjc_39",
+        "hjc_48",
+        "hjc_49",
+        "hjc_52",
+        "hjc_44",
+        "hjc_46",
+        "hjc_59",
+        "hjc_55",
+        "hjc_60",
+        "hjc_57",
+        "hjc_63",
+        "hjc_66",
+        "hjc_69"
+      ]
+    },
+    {
+      "id": "thm_histoire_juive_hebraique",
+      "nom": "Histoire du peuple juif (Années hébraïques)",
+      "difficulte": "Tous niveaux",
+      "events": [
+        {
+          "id": "hjh_1",
+          "axe": "Torah : de la Création au Déluge",
+          "date": 1,
+          "titre": "La création du monde",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Cr%C3%A9ation_(th%C3%A9ologie)",
+          "dl": 430
+        },
+        {
+          "id": "hjh_71",
+          "axe": "Torah : de la Création au Déluge",
+          "date": 1,
+          "titre": "La faute de l’Arbre de la Connaissance",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Jardin_d%27%C3%89den",
+          "dl": 377
+        },
+        {
+          "id": "hjh_72",
+          "axe": "Torah : de la Création au Déluge",
+          "date": 40,
+          "titre": "Le meurtre d’Abel par Caïn",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Ca%C3%AFn_et_Abel",
+          "dl": 366
+        },
+        {
+          "id": "hjh_73",
+          "axe": "Torah : de la Création au Déluge",
+          "date": 130,
+          "titre": "Naissance de Seth",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Seth_(Bible)",
+          "dl": 287
+        },
+        {
+          "id": "hjh_74",
+          "axe": "Torah : de la Création au Déluge",
+          "date": 235,
+          "titre": "Naissance d’Énosh",
+          "wikipedia": "https://fr.wikipedia.org/wiki/%C3%89nosh",
+          "dl": 315
+        },
+        {
+          "id": "hjh_75",
+          "axe": "Torah : de la Création au Déluge",
+          "date": 325,
+          "titre": "Naissance de Kénan",
+          "wikipedia": "https://fr.wikipedia.org/wiki/G%C3%A9n%C3%A9alogies_de_la_Gen%C3%A8se",
+          "dl": 324
+        },
+        {
+          "id": "hjh_76",
+          "axe": "Torah : de la Création au Déluge",
+          "date": 395,
+          "titre": "Naissance de Mahalalel",
+          "wikipedia": "https://fr.wikipedia.org/wiki/G%C3%A9n%C3%A9alogies_de_la_Gen%C3%A8se",
+          "dl": 318
+        },
+        {
+          "id": "hjh_77",
+          "axe": "Torah : de la Création au Déluge",
+          "date": 460,
+          "titre": "Naissance de Yéred",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Yared_(Bible)",
+          "dl": 313
+        },
+        {
+          "id": "hjh_78",
+          "axe": "Torah : de la Création au Déluge",
+          "date": 622,
+          "titre": "Naissance de Hénoch",
+          "wikipedia": "https://fr.wikipedia.org/wiki/H%C3%A9noch",
+          "dl": 299
+        },
+        {
+          "id": "hjh_79",
+          "axe": "Torah : de la Création au Déluge",
+          "date": 687,
+          "titre": "Naissance de Mathusalem",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Mathusalem",
+          "dl": 305
+        },
+        {
+          "id": "hjh_80",
+          "axe": "Torah : de la Création au Déluge",
+          "date": 874,
+          "titre": "Naissance de Lémekh",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Lamech_(No%C3%A9)",
+          "dl": 283
+        },
+        {
+          "id": "hjh_81",
+          "axe": "Torah : de la Création au Déluge",
+          "date": 930,
+          "titre": "Mort d’Adam",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Adam",
+          "dl": 350
+        },
+        {
+          "id": "hjh_82",
+          "axe": "Torah : de la Création au Déluge",
+          "date": 987,
+          "titre": "Hénoch enlevé auprès de Dieu",
+          "wikipedia": "https://fr.wikipedia.org/wiki/H%C3%A9noch",
+          "dl": 347
+        },
+        {
+          "id": "hjh_83",
+          "axe": "Torah : de la Création au Déluge",
+          "date": 1042,
+          "titre": "Mort de Seth",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Seth_(Bible)",
+          "dl": 258
+        },
+        {
+          "id": "hjh_84",
+          "axe": "Torah : de la Création au Déluge",
+          "date": 1056,
+          "titre": "Naissance de Noé",
+          "wikipedia": "https://fr.wikipedia.org/wiki/No%C3%A9",
+          "dl": 283
+        },
+        {
+          "id": "hjh_85",
+          "axe": "Torah : de la Création au Déluge",
+          "date": 1556,
+          "titre": "Naissance de Sem",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Sem_(Bible)",
+          "dl": 277
+        },
+        {
+          "id": "hjh_2",
+          "axe": "Torah : de la Création au Déluge",
+          "date": 1656,
+          "titre": "Le déluge et l’arche de Noé",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Arche_de_No%C3%A9",
+          "dl": 376
+        },
+        {
+          "id": "hjh_86",
+          "axe": "Torah : de la Création au Déluge",
+          "date": 1657,
+          "titre": "Sortie de l’arche et alliance de l’arc-en-ciel",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Lois_noahides",
+          "dl": 377
+        },
+        {
+          "id": "hjh_87",
+          "axe": "Torah : de Noé à Avraham",
+          "date": 1693,
+          "titre": "Naissance de Shélah",
+          "wikipedia": "https://fr.wikipedia.org/wiki/G%C3%A9n%C3%A9alogies_de_la_Gen%C3%A8se",
+          "dl": 298
+        },
+        {
+          "id": "hjh_88",
+          "axe": "Torah : de Noé à Avraham",
+          "date": 1723,
+          "titre": "Naissance d’Éber",
+          "wikipedia": "https://fr.wikipedia.org/wiki/%C3%89ber",
+          "dl": 316
+        },
+        {
+          "id": "hjh_89",
+          "axe": "Torah : de Noé à Avraham",
+          "date": 1757,
+          "titre": "Naissance de Péleg",
+          "wikipedia": "https://fr.wikipedia.org/wiki/P%C3%A9leg",
+          "dl": 323
+        },
+        {
+          "id": "hjh_90",
+          "axe": "Torah : de Noé à Avraham",
+          "date": 1787,
+          "titre": "Naissance de Réou",
+          "wikipedia": "https://fr.wikipedia.org/wiki/G%C3%A9n%C3%A9alogies_de_la_Gen%C3%A8se",
+          "dl": 297
+        },
+        {
+          "id": "hjh_91",
+          "axe": "Torah : de Noé à Avraham",
+          "date": 1819,
+          "titre": "Naissance de Seroug",
+          "wikipedia": "https://fr.wikipedia.org/wiki/G%C3%A9n%C3%A9alogies_de_la_Gen%C3%A8se",
+          "dl": 240
+        },
+        {
+          "id": "hjh_92",
+          "axe": "Torah : de Noé à Avraham",
+          "date": 1849,
+          "titre": "Naissance de Nahor",
+          "wikipedia": "https://fr.wikipedia.org/wiki/G%C3%A9n%C3%A9alogies_de_la_Gen%C3%A8se",
+          "dl": 244
+        },
+        {
+          "id": "hjh_93",
+          "axe": "Torah : de Noé à Avraham",
+          "date": 1878,
+          "titre": "Naissance de Térah",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Terah",
+          "dl": 310
+        },
+        {
+          "id": "hjh_94",
+          "axe": "Torah : de Noé à Avraham",
+          "date": 1996,
+          "titre": "La tour de Babel et la dispersion des langues",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Tour_de_Babel",
+          "dl": 417
+        },
+        {
+          "id": "hjh_3",
+          "axe": "Torah : les Patriarches",
+          "date": 1948,
+          "titre": "Naissance d’Avraham",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Abraham",
+          "dl": 313
+        },
+        {
+          "id": "hjh_95",
+          "axe": "Torah : les Patriarches",
+          "date": 1958,
+          "titre": "Naissance de Sarah",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Sara_(Bible)",
+          "dl": 317
+        },
+        {
+          "id": "hjh_96",
+          "axe": "Torah : les Patriarches",
+          "date": 2018,
+          "titre": "L’appel d’Avraham (Lekh Lekha)",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Abraham",
+          "dl": 370
+        },
+        {
+          "id": "hjh_4",
+          "axe": "Torah : les Patriarches",
+          "date": 2018,
+          "titre": "L’alliance entre les morceaux (Brit bein HaBetarim)",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Abraham",
+          "dl": 428
+        },
+        {
+          "id": "hjh_97",
+          "axe": "Torah : les Patriarches",
+          "date": 2034,
+          "titre": "Naissance d’Ichmaël",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Isma%C3%ABl",
+          "dl": 327
+        },
+        {
+          "id": "hjh_98",
+          "axe": "Torah : les Patriarches",
+          "date": 2047,
+          "titre": "La circoncision d’Avraham et l’alliance de la Brit mila",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Brit_mila",
+          "dl": 363
+        },
+        {
+          "id": "hjh_5",
+          "axe": "Torah : les Patriarches",
+          "date": 2048,
+          "titre": "Naissance d’Its’hak",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Isaac",
+          "dl": 336
+        },
+        {
+          "id": "hjh_6",
+          "axe": "Torah : les Patriarches",
+          "date": 2085,
+          "titre": "Ligature d’Its’hak (Akedah)",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Ligature_d%27Isaac",
+          "dl": 386
+        },
+        {
+          "id": "hjh_99",
+          "axe": "Torah : les Patriarches",
+          "date": 2085,
+          "titre": "Mort de Sarah et achat de la grotte de Makhpéla",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Tombeau_des_Patriarches",
+          "dl": 372
+        },
+        {
+          "id": "hjh_100",
+          "axe": "Torah : les Patriarches",
+          "date": 2085,
+          "titre": "Naissance de Rivka",
+          "wikipedia": "https://fr.wikipedia.org/wiki/R%C3%A9becca",
+          "dl": 288
+        },
+        {
+          "id": "hjh_101",
+          "axe": "Torah : les Patriarches",
+          "date": 2088,
+          "titre": "Mariage d’Its’hak et de Rivka",
+          "wikipedia": "https://fr.wikipedia.org/wiki/R%C3%A9becca",
+          "dl": 314
+        },
+        {
+          "id": "hjh_7",
+          "axe": "Torah : les Patriarches",
+          "date": 2108,
+          "titre": "Naissance de Yaakov et d’Essav",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Jacob",
+          "dl": 362
+        },
+        {
+          "id": "hjh_102",
+          "axe": "Torah : les Patriarches",
+          "date": 2123,
+          "titre": "Mort d’Avraham",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Abraham",
+          "dl": 330
+        },
+        {
+          "id": "hjh_103",
+          "axe": "Torah : les Patriarches",
+          "date": 2171,
+          "titre": "Les bénédictions d’Its’hak et la fuite de Yaakov",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Jacob",
+          "dl": 357
+        },
+        {
+          "id": "hjh_104",
+          "axe": "Torah : les Patriarches",
+          "date": 2185,
+          "titre": "Mariages de Yaakov et naissance des tribus",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Douze_tribus_d%27Isra%C3%ABl",
+          "dl": 361
+        },
+        {
+          "id": "hjh_105",
+          "axe": "Torah : les Patriarches",
+          "date": 2199,
+          "titre": "Naissance de Binyamin",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Benjamin_(Bible)",
+          "dl": 299
+        },
+        {
+          "id": "hjh_106",
+          "axe": "Torah : les Patriarches",
+          "date": 2205,
+          "titre": "Mort de Rivka",
+          "wikipedia": "https://fr.wikipedia.org/wiki/R%C3%A9becca",
+          "dl": 327
+        },
+        {
+          "id": "hjh_107",
+          "axe": "Torah : les Patriarches",
+          "date": 2208,
+          "titre": "Mort de Rachel",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Rachel_(Bible)",
+          "dl": 326
+        },
+        {
+          "id": "hjh_108",
+          "axe": "Torah : les Patriarches",
+          "date": 2228,
+          "titre": "Mort d’Its’hak",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Isaac",
+          "dl": 315
+        },
+        {
+          "id": "hjh_8",
+          "axe": "Torah : les Patriarches",
+          "date": 2238,
+          "titre": "Descente de la famille de Yaakov en Égypte",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Livre_de_la_Gen%C3%A8se",
+          "dl": 356
+        },
+        {
+          "id": "hjh_109",
+          "axe": "Torah : les Patriarches",
+          "date": 2255,
+          "titre": "Mort de Yaakov et funérailles à Hébron",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Jacob",
+          "dl": 335
+        },
+        {
+          "id": "hjh_110",
+          "axe": "Torah : les Patriarches",
+          "date": 2309,
+          "titre": "Mort de Yossef",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Joseph_(fils_de_Jacob)",
+          "dl": 337
+        },
+        {
+          "id": "hjh_111",
+          "axe": "Torah : l’Égypte et la sortie d’Égypte",
+          "date": 2332,
+          "titre": "Début de l’asservissement des Hébreux en Égypte",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Livre_de_l%27Exode",
+          "dl": 471
+        },
+        {
+          "id": "hjh_9",
+          "axe": "Torah : l’Égypte et la sortie d’Égypte",
+          "date": 2368,
+          "titre": "Naissance de Moché",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Mo%C3%AFse",
+          "dl": 322
+        },
+        {
+          "id": "hjh_112",
+          "axe": "Torah : l’Égypte et la sortie d’Égypte",
+          "date": 2447,
+          "titre": "Le buisson ardent et l’appel de Moché",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Buisson_ardent",
+          "dl": 364
+        },
+        {
+          "id": "hjh_113",
+          "axe": "Torah : l’Égypte et la sortie d’Égypte",
+          "date": 2447,
+          "titre": "Les dix plaies d’Égypte",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Plaies_d%27%C3%89gypte",
+          "dl": 339
+        },
+        {
+          "id": "hjh_10",
+          "axe": "Torah : l’Égypte et la sortie d’Égypte",
+          "date": 2448,
+          "titre": "La sortie d’Égypte",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Exode_hors_d%27%C3%89gypte",
+          "dl": 381
+        },
+        {
+          "id": "hjh_114",
+          "axe": "Torah : l’Égypte et la sortie d’Égypte",
+          "date": 2448,
+          "titre": "L’ouverture de la mer des Joncs",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Passage_de_la_mer_Rouge",
+          "dl": 370
+        },
+        {
+          "id": "hjh_115",
+          "axe": "Torah : l’Égypte et la sortie d’Égypte",
+          "date": 2448,
+          "titre": "Le don de la Torah au mont Sinaï",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Don_de_la_Torah_sur_le_mont_Sina%C3%AF",
+          "dl": 387
+        },
+        {
+          "id": "hjh_116",
+          "axe": "Torah : l’Égypte et la sortie d’Égypte",
+          "date": 2448,
+          "titre": "La faute du Veau d’or",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Veau_d%27or",
+          "dl": 404
+        },
+        {
+          "id": "hjh_117",
+          "axe": "Torah : l’Égypte et la sortie d’Égypte",
+          "date": 2449,
+          "titre": "Les secondes Tables de la Loi",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Tables_de_la_Loi",
+          "dl": 316
+        },
+        {
+          "id": "hjh_118",
+          "axe": "Torah : l’Égypte et la sortie d’Égypte",
+          "date": 2449,
+          "titre": "Inauguration du Michkan",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Tabernacle",
+          "dl": 350
+        },
+        {
+          "id": "hjh_11",
+          "axe": "Torah : le désert et la mort de Moché",
+          "date": 2449,
+          "titre": "La faute des explorateurs",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Livre_des_Nombres",
+          "dl": 394
+        },
+        {
+          "id": "hjh_119",
+          "axe": "Torah : le désert et la mort de Moché",
+          "date": 2449,
+          "titre": "La révolte de Kora’h",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Cor%C3%A9_(Bible)",
+          "dl": 410
+        },
+        {
+          "id": "hjh_120",
+          "axe": "Torah : le désert et la mort de Moché",
+          "date": 2449,
+          "titre": "Les quarante années d’errance au désert",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Livre_des_Nombres",
+          "dl": 376
+        },
+        {
+          "id": "hjh_121",
+          "axe": "Torah : le désert et la mort de Moché",
+          "date": 2487,
+          "titre": "Mort d’Aharon au mont Hor",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Aaron",
+          "dl": 357
+        },
+        {
+          "id": "hjh_122",
+          "axe": "Torah : le désert et la mort de Moché",
+          "date": 2488,
+          "titre": "Mort de Moché au mont Nébo",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Mo%C3%AFse",
+          "dl": 341
+        },
+        {
+          "id": "hjh_12",
+          "axe": "Nevi’im : Yéhochoua et les Juges",
+          "date": 2488,
+          "titre": "Entrée en Terre d’Israël sous Yéhochoua",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Josu%C3%A9",
+          "dl": 355
+        },
+        {
+          "id": "hjh_123",
+          "axe": "Nevi’im : Yéhochoua et les Juges",
+          "date": 2488,
+          "titre": "La chute de Jéricho",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Bataille_de_J%C3%A9richo",
+          "dl": 400
+        },
+        {
+          "id": "hjh_124",
+          "axe": "Nevi’im : Yéhochoua et les Juges",
+          "date": 2488,
+          "titre": "Le partage de la Terre entre les tribus",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Livre_de_Josu%C3%A9",
+          "dl": 422
+        },
+        {
+          "id": "hjh_125",
+          "axe": "Nevi’im : Yéhochoua et les Juges",
+          "date": 2516,
+          "titre": "Mort de Yéhochoua",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Josu%C3%A9",
+          "dl": 330
+        },
+        {
+          "id": "hjh_13",
+          "axe": "Nevi’im : Yéhochoua et les Juges",
+          "date": 2516,
+          "titre": "Début de la période des Juges",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Livre_des_Juges",
+          "dl": 391
+        },
+        {
+          "id": "hjh_126",
+          "axe": "Nevi’im : Yéhochoua et les Juges",
+          "date": 2516,
+          "titre": "Otniel ben Kénaz, premier Juge d’Israël",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Othoniel",
+          "dl": 371
+        },
+        {
+          "id": "hjh_127",
+          "axe": "Nevi’im : Yéhochoua et les Juges",
+          "date": 2556,
+          "titre": "Ehoud délivre Israël d’Eglon de Moav",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Ehud",
+          "dl": 385
+        },
+        {
+          "id": "hjh_128",
+          "axe": "Nevi’im : Yéhochoua et les Juges",
+          "date": 2636,
+          "titre": "Déborah et Barak triomphent de Sissera",
+          "wikipedia": "https://fr.wikipedia.org/wiki/D%C3%A9borah",
+          "dl": 411
+        },
+        {
+          "id": "hjh_129",
+          "axe": "Nevi’im : Yéhochoua et les Juges",
+          "date": 2676,
+          "titre": "L’oppression madianite",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Madian",
+          "dl": 357
+        },
+        {
+          "id": "hjh_130",
+          "axe": "Nevi’im : Yéhochoua et les Juges",
+          "date": 2683,
+          "titre": "Guidéon libère Israël",
+          "wikipedia": "https://fr.wikipedia.org/wiki/G%C3%A9d%C3%A9on",
+          "dl": 393
+        },
+        {
+          "id": "hjh_131",
+          "axe": "Nevi’im : Yéhochoua et les Juges",
+          "date": 2723,
+          "titre": "Avimélekh, le roi éphémère de Sichem",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Livre_des_Juges",
+          "dl": 350
+        },
+        {
+          "id": "hjh_132",
+          "axe": "Nevi’im : Yéhochoua et les Juges",
+          "date": 2726,
+          "titre": "Tola juge Israël",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Livre_des_Juges",
+          "dl": 372
+        },
+        {
+          "id": "hjh_133",
+          "axe": "Nevi’im : Yéhochoua et les Juges",
+          "date": 2748,
+          "titre": "Yaïr le Galaadite",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Ya%C3%AFr",
+          "dl": 355
+        },
+        {
+          "id": "hjh_134",
+          "axe": "Nevi’im : Yéhochoua et les Juges",
+          "date": 2770,
+          "titre": "L’oppression des Philistins et des Ammonites",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Philistins",
+          "dl": 357
+        },
+        {
+          "id": "hjh_135",
+          "axe": "Nevi’im : Yéhochoua et les Juges",
+          "date": 2786,
+          "titre": "Yiftah le Galaadite",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Jepht%C3%A9",
+          "dl": 451
+        },
+        {
+          "id": "hjh_136",
+          "axe": "Nevi’im : Yéhochoua et les Juges",
+          "date": 2792,
+          "titre": "Ivtsan (Boaz) juge Israël",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Booz",
+          "dl": 335
+        },
+        {
+          "id": "hjh_137",
+          "axe": "Nevi’im : Yéhochoua et les Juges",
+          "date": 2797,
+          "titre": "Élon le Zabulonite",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Livre_des_Juges",
+          "dl": 290
+        },
+        {
+          "id": "hjh_138",
+          "axe": "Nevi’im : Yéhochoua et les Juges",
+          "date": 2806,
+          "titre": "Avdon juge Israël",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Livre_des_Juges",
+          "dl": 304
+        },
+        {
+          "id": "hjh_139",
+          "axe": "Nevi’im : Yéhochoua et les Juges",
+          "date": 2813,
+          "titre": "Chimchon (Samson) face aux Philistins",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Samson",
+          "dl": 423
+        },
+        {
+          "id": "hjh_140",
+          "axe": "Nevi’im : Yéhochoua et les Juges",
+          "date": 2833,
+          "titre": "Éli, Grand Prêtre, et la prise de l’Arche",
+          "wikipedia": "https://fr.wikipedia.org/wiki/%C3%89li_(juge_d%27Isra%C3%ABl)",
+          "dl": 362
+        },
+        {
+          "id": "hjh_141",
+          "axe": "Nevi’im : Yéhochoua et les Juges",
+          "date": 2872,
+          "titre": "Début du ministère du prophète Chmouel",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Samuel_(Bible)",
+          "dl": 398
+        },
+        {
+          "id": "hjh_14",
+          "axe": "Nevi’im : le Royaume uni",
+          "date": 2881,
+          "titre": "Onction de Shaoul, premier Roi d’Israël",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Sa%C3%BCl",
+          "dl": 418
+        },
+        {
+          "id": "hjh_142",
+          "axe": "Nevi’im : le Royaume uni",
+          "date": 2884,
+          "titre": "David oint roi à Hébron",
+          "wikipedia": "https://fr.wikipedia.org/wiki/David_(Bible)",
+          "dl": 329
+        },
+        {
+          "id": "hjh_15",
+          "axe": "Nevi’im : le Royaume uni",
+          "date": 2892,
+          "titre": "Avènement et règne du Roi David à Jérusalem",
+          "wikipedia": "https://fr.wikipedia.org/wiki/David_(Bible)",
+          "dl": 376
+        },
+        {
+          "id": "hjh_143",
+          "axe": "Nevi’im : le Royaume uni",
+          "date": 2920,
+          "titre": "La révolte d’Avshalom",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Absalon",
+          "dl": 334
+        },
+        {
+          "id": "hjh_144",
+          "axe": "Nevi’im : le Royaume uni",
+          "date": 2924,
+          "titre": "Shlomo monte sur le trône",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Salomon",
+          "dl": 359
+        },
+        {
+          "id": "hjh_16",
+          "axe": "Nevi’im : le Royaume uni",
+          "date": 2928,
+          "titre": "Construction du Premier Temple par le Roi Shlomo",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Premier_Temple_de_J%C3%A9rusalem",
+          "dl": 387
+        },
+        {
+          "id": "hjh_145",
+          "axe": "Nevi’im : le Royaume uni",
+          "date": 2935,
+          "titre": "Inauguration du Premier Temple",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Premier_Temple_de_J%C3%A9rusalem",
+          "dl": 379
+        },
+        {
+          "id": "hjh_17",
+          "axe": "Nevi’im : les royaumes divisés et les Prophètes",
+          "date": 2964,
+          "titre": "Division en deux royaumes",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Royaume_de_Juda",
+          "dl": 377
+        },
+        {
+          "id": "hjh_146",
+          "axe": "Nevi’im : les royaumes divisés et les Prophètes",
+          "date": 3022,
+          "titre": "Le règne d’A’hav et le combat d’Éliyahou",
+          "wikipedia": "https://fr.wikipedia.org/wiki/%C3%89lie",
+          "dl": 391
+        },
+        {
+          "id": "hjh_147",
+          "axe": "Nevi’im : les royaumes divisés et les Prophètes",
+          "date": 3043,
+          "titre": "Éliyahou enlevé au ciel, Élicha lui succède",
+          "wikipedia": "https://fr.wikipedia.org/wiki/%C3%89lis%C3%A9e",
+          "dl": 385
+        },
+        {
+          "id": "hjh_18",
+          "axe": "Nevi’im : les royaumes divisés et les Prophètes",
+          "date": 3205,
+          "titre": "Royaume du Nord chute, exil des dix Tribus",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Dix_tribus_perdues",
+          "dl": 380
+        },
+        {
+          "id": "hjh_19",
+          "axe": "Nevi’im : les royaumes divisés et les Prophètes",
+          "date": 3283,
+          "titre": "Réformes de Yoshiyahou (Josias)",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Josias",
+          "dl": 388
+        },
+        {
+          "id": "hjh_148",
+          "axe": "Nevi’im : la fin de Juda et le Premier Temple",
+          "date": 3319,
+          "titre": "La montée de Nabuchodonosor",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Nabuchodonosor_II",
+          "dl": 340
+        },
+        {
+          "id": "hjh_149",
+          "axe": "Nevi’im : la fin de Juda et le Premier Temple",
+          "date": 3327,
+          "titre": "La première déportation de Judéens à Babylone",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Exil_%C3%A0_Babylone",
+          "dl": 400
+        },
+        {
+          "id": "hjh_150",
+          "axe": "Nevi’im : la fin de Juda et le Premier Temple",
+          "date": 3336,
+          "titre": "Début du siège de Jérusalem (10 Tevet)",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Si%C3%A8ge_de_J%C3%A9rusalem_(587/586_av._J.-C.)",
+          "dl": 338
+        },
+        {
+          "id": "hjh_20",
+          "axe": "Nevi’im : la fin de Juda et le Premier Temple",
+          "date": 3338,
+          "titre": "Destruction du Premier Temple par Nabuchodonosor",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Si%C3%A8ge_de_J%C3%A9rusalem_(587/586_av._J.-C.)",
+          "dl": 365
+        },
+        {
+          "id": "hjh_151",
+          "axe": "Nevi’im : la fin de Juda et le Premier Temple",
+          "date": 3338,
+          "titre": "Les soixante-dix années d’exil à Babylone",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Exil_%C3%A0_Babylone",
+          "dl": 395
+        },
+        {
+          "id": "hjh_21",
+          "axe": "Nevi’im : retour d’exil et Second Temple",
+          "date": 3390,
+          "titre": "Décret de Cyrus (fin de l’exil de Babylone)",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Cylindre_de_Cyrus",
+          "dl": 382
+        },
+        {
+          "id": "hjh_23",
+          "axe": "Nevi’im : retour d’exil et Second Temple",
+          "date": 3405,
+          "titre": "Le miracle de Pourim en Perse",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Pourim",
+          "dl": 424
+        },
+        {
+          "id": "hjh_22",
+          "axe": "Nevi’im : retour d’exil et Second Temple",
+          "date": 3408,
+          "titre": "Début de la reconstruction du Deuxième Temple",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Second_Temple_de_J%C3%A9rusalem",
+          "dl": 373
+        },
+        {
+          "id": "hjh_152",
+          "axe": "Nevi’im : retour d’exil et Second Temple",
+          "date": 3412,
+          "titre": "Achèvement et inauguration du Second Temple",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Second_Temple_de_J%C3%A9rusalem",
+          "dl": 407
+        },
+        {
+          "id": "hjh_24",
+          "axe": "Nevi’im : retour d’exil et Second Temple",
+          "date": 3413,
+          "titre": "Retour d’Ezra et Néhémie à Jérusalem",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Esdras",
+          "dl": 405
+        },
+        {
+          "id": "hjh_25",
+          "axe": "Nevi’im : retour d’exil et Second Temple",
+          "date": 3448,
+          "titre": "Fin de l’ère des Prophètes, fermeture du canon",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Grande_Assembl%C3%A9e",
+          "dl": 410
+        },
+        {
+          "id": "hjh_153",
+          "axe": "Ketouvim : les Hagiographes",
+          "date": 2790,
+          "titre": "Ruth, aïeule de la royauté davidique",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Livre_de_Ruth",
+          "dl": 375
+        },
+        {
+          "id": "hjh_154",
+          "axe": "Ketouvim : les Hagiographes",
+          "date": 2884,
+          "titre": "Tehillim, le livre des Psaumes",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Livre_des_Psaumes",
+          "dl": 367
+        },
+        {
+          "id": "hjh_155",
+          "axe": "Ketouvim : les Hagiographes",
+          "date": 2924,
+          "titre": "Iyov (Job) et la question de la souffrance",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Livre_de_Job",
+          "dl": 435
+        },
+        {
+          "id": "hjh_156",
+          "axe": "Ketouvim : les Hagiographes",
+          "date": 2924,
+          "titre": "Michlé, les Proverbes de Shlomo",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Livre_des_Proverbes",
+          "dl": 397
+        },
+        {
+          "id": "hjh_157",
+          "axe": "Ketouvim : les Hagiographes",
+          "date": 2924,
+          "titre": "Chir haChirim, le Cantique des cantiques",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Cantique_des_cantiques",
+          "dl": 328
+        },
+        {
+          "id": "hjh_158",
+          "axe": "Ketouvim : les Hagiographes",
+          "date": 2924,
+          "titre": "Kohelet, l’Ecclésiaste",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Eccl%C3%A9siaste",
+          "dl": 374
+        },
+        {
+          "id": "hjh_159",
+          "axe": "Ketouvim : les Hagiographes",
+          "date": 3320,
+          "titre": "Daniel, prophète de l’exil babylonien",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Livre_de_Daniel",
+          "dl": 385
+        },
+        {
+          "id": "hjh_160",
+          "axe": "Ketouvim : les Hagiographes",
+          "date": 3338,
+          "titre": "Eikha, les Lamentations sur Jérusalem",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Livre_des_Lamentations",
+          "dl": 329
+        },
+        {
+          "id": "hjh_161",
+          "axe": "Ketouvim : les Hagiographes",
+          "date": 3404,
+          "titre": "La Meguila d’Esther",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Livre_d%27Esther",
+          "dl": 401
+        },
+        {
+          "id": "hjh_162",
+          "axe": "Ketouvim : les Hagiographes",
+          "date": 3408,
+          "titre": "Ezra-Néhémie, la restauration de Jérusalem",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Livre_d%27Esdras",
+          "dl": 365
+        },
+        {
+          "id": "hjh_163",
+          "axe": "Ketouvim : les Hagiographes",
+          "date": 3408,
+          "titre": "Divrei haYamim, les Chroniques",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Livre_des_Chroniques",
+          "dl": 363
+        },
+        {
+          "id": "hjh_26",
+          "axe": "Histoire antique",
+          "date": 3448,
+          "titre": "Arrivée d’Alexandre le Grand en Judée",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Alexandre_le_Grand",
+          "dl": 384
+        },
+        {
+          "id": "hjh_27",
+          "axe": "Histoire antique",
+          "date": 3515,
+          "titre": "Traduction de la Torah en grec (Septante)",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Septante",
+          "dl": 439
+        },
+        {
+          "id": "hjh_28",
+          "axe": "Histoire antique",
+          "date": 3622,
+          "titre": "Décrets de persécution religieuse d’Antiochus IV Épiphane",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Antiochos_IV",
+          "dl": 380
+        },
+        {
+          "id": "hjh_29",
+          "axe": "Histoire antique",
+          "date": 3625,
+          "titre": "Révolte des Hasmonéens et miracle de Hanouka",
+          "wikipedia": "https://fr.wikipedia.org/wiki/R%C3%A9volte_des_Maccab%C3%A9es",
+          "dl": 400
+        },
+        {
+          "id": "hjh_30",
+          "axe": "Histoire antique",
+          "date": 3698,
+          "titre": "Prise de Jérusalem par le général romain Pompée",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Si%C3%A8ge_de_J%C3%A9rusalem_(63_av._J.-C.)",
+          "dl": 366
+        },
+        {
+          "id": "hjh_31",
+          "axe": "Histoire antique",
+          "date": 3742,
+          "titre": "Rénovation monumentale du Temple par Hérode le Grand",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Temple_d%27H%C3%A9rode",
+          "dl": 335
+        },
+        {
+          "id": "hjh_32",
+          "axe": "Histoire antique",
+          "date": 3826,
+          "titre": "La Grande Révolte juive éclate contre l’Empire romain",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Premi%C3%A8re_guerre_jud%C3%A9o-romaine",
+          "dl": 395
+        },
+        {
+          "id": "hjh_33",
+          "axe": "Histoire antique",
+          "date": 3828,
+          "titre": "Destruction définitive du Deuxième Temple par Titus",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Si%C3%A8ge_de_J%C3%A9rusalem_(70)",
+          "dl": 419
+        },
+        {
+          "id": "hjh_34",
+          "axe": "Histoire antique",
+          "date": 3833,
+          "titre": "Chute de Massada",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Massada",
+          "dl": 330
+        },
+        {
+          "id": "hjh_35",
+          "axe": "Histoire antique",
+          "date": 3895,
+          "titre": "Bar Kokhba vaincu, expulsion des Juifs de Judée",
+          "wikipedia": "https://fr.wikipedia.org/wiki/R%C3%A9volte_de_Bar_Kokhba",
+          "dl": 441
+        },
+        {
+          "id": "hjh_36",
+          "axe": "Littérature rabbinique et Codification halakhique",
+          "date": 3960,
+          "titre": "Rédaction de la Mishna par Rabbi Yehouda HaNassi",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Mishna",
+          "dl": 348
+        },
+        {
+          "id": "hjh_37",
+          "axe": "Littérature rabbinique et Codification halakhique",
+          "date": 4110,
+          "titre": "Clôture du Talmud de Jérusalem",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Talmud_de_J%C3%A9rusalem",
+          "dl": 376
+        },
+        {
+          "id": "hjh_38",
+          "axe": "Littérature rabbinique et Codification halakhique",
+          "date": 4260,
+          "titre": "Achi et Rabina clôturent le Talmud de Babylone",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Talmud_de_Babylone",
+          "dl": 386
+        },
+        {
+          "id": "hjh_39",
+          "axe": "Littérature rabbinique et Codification halakhique",
+          "date": 4800,
+          "titre": "Naissance de Rachi",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Rachi",
+          "dl": 371
+        },
+        {
+          "id": "hjh_40",
+          "axe": "Littérature rabbinique et Codification halakhique",
+          "date": 4940,
+          "titre": "Rédaction du Mishné Torah par Maïmonide (Rambam)",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Mishn%C3%A9_Torah",
+          "dl": 380
+        },
+        {
+          "id": "hjh_41",
+          "axe": "Littérature rabbinique et Codification halakhique",
+          "date": 5325,
+          "titre": "Parution du Shoulhan Aroukh par Rabbi Yossef Karo",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Choulhan_Aroukh",
+          "dl": 361
+        },
+        {
+          "id": "hjh_42",
+          "axe": "Mouvements spirituels, mystiques et intellectuels",
+          "date": 4349,
+          "titre": "Période des Geonim",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Geonim",
+          "dl": 377
+        },
+        {
+          "id": "hjh_43",
+          "axe": "Mouvements spirituels, mystiques et intellectuels",
+          "date": 5050,
+          "titre": "Diffusions des écrits kabbalistiques et du Zohar",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Zohar",
+          "dl": 418
+        },
+        {
+          "id": "hjh_44",
+          "axe": "Mouvements spirituels, mystiques et intellectuels",
+          "date": 5426,
+          "titre": "Déclaration messianique de Sabbataï Tsevi",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Sabbata%C3%AF_Tsevi",
+          "dl": 408
+        },
+        {
+          "id": "hjh_45",
+          "axe": "Mouvements spirituels, mystiques et intellectuels",
+          "date": 5490,
+          "titre": "Émergence du hassidisme fondé par Baal Shem Tov",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Hassidisme",
+          "dl": 441
+        },
+        {
+          "id": "hjh_46",
+          "axe": "Mouvements spirituels, mystiques et intellectuels",
+          "date": 5530,
+          "titre": "Début de la Haskala (mouvement des Lumières juives)",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Haskala",
+          "dl": 401
+        },
+        {
+          "id": "hjh_47",
+          "axe": "Mouvements spirituels, mystiques et intellectuels",
+          "date": 5600,
+          "titre": "Émergence du Moussar par Rabbi Israël Salanter",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Mouvement_du_Moussar",
+          "dl": 372
+        },
+        {
+          "id": "hjh_48",
+          "axe": "Exils, Persécutions et Émancipation",
+          "date": 4856,
+          "titre": "Massacres de Rhénanie durant la première croisade",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Pers%C3%A9cution_des_Juifs_pendant_la_premi%C3%A8re_croisade",
+          "dl": 403
+        },
+        {
+          "id": "hjh_49",
+          "axe": "Exils, Persécutions et Émancipation",
+          "date": 5050,
+          "titre": "Expulsion des Juifs d’Angleterre",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Expulsion_des_Juifs_d%27Angleterre",
+          "dl": 394
+        },
+        {
+          "id": "hjh_50",
+          "axe": "Exils, Persécutions et Émancipation",
+          "date": 5066,
+          "titre": "Expulsion des Juifs de France par Philippe le Bel",
+          "wikipedia": "https://fr.wikipedia.org/wiki/%C3%89dit_d%27Expulsion_(1306)",
+          "dl": 401
+        },
+        {
+          "id": "hjh_51",
+          "axe": "Exils, Persécutions et Émancipation",
+          "date": 5252,
+          "titre": "Expulsion des Juifs d’Espagne (Décret de l’Alhambra)",
+          "wikipedia": "https://fr.wikipedia.org/wiki/D%C3%A9cret_de_l%27Alhambra",
+          "dl": 432
+        },
+        {
+          "id": "hjh_52",
+          "axe": "Exils, Persécutions et Émancipation",
+          "date": 5257,
+          "titre": "Expulsion des Juifs du Portugal",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Expulsion_des_Juifs_du_Portugal",
+          "dl": 379
+        },
+        {
+          "id": "hjh_53",
+          "axe": "Exils, Persécutions et Émancipation",
+          "date": 5408,
+          "titre": "Pogroms de Chmielnicki en Europe de l’Est",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Soul%C3%A8vement_de_Khmelnytsky",
+          "dl": 380
+        },
+        {
+          "id": "hjh_54",
+          "axe": "Exils, Persécutions et Émancipation",
+          "date": 5551,
+          "titre": "Émancipation des Juifs par l’Assemblée constituante française",
+          "wikipedia": "https://fr.wikipedia.org/wiki/%C3%89mancipation_des_Juifs",
+          "dl": 427
+        },
+        {
+          "id": "hjh_55",
+          "axe": "Exils, Persécutions et Émancipation",
+          "date": 5655,
+          "titre": "Début de l’Affaire Dreyfus en France",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Affaire_Dreyfus",
+          "dl": 378
+        },
+        {
+          "id": "hjh_56",
+          "axe": "Exils, Persécutions et Émancipation",
+          "date": 5699,
+          "titre": "Nuit de Cristal",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Nuit_de_Cristal",
+          "dl": 395
+        },
+        {
+          "id": "hjh_57",
+          "axe": "Exils, Persécutions et Émancipation",
+          "date": 5700,
+          "titre": "Shoah, extermination de six millions de Juifs d'Europe",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Shoah",
+          "dl": 418
+        },
+        {
+          "id": "hjh_58",
+          "axe": "Exils, Persécutions et Émancipation",
+          "date": 5708,
+          "titre": "Exode des Juifs des pays arabes et musulmans",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Exode_des_Juifs_des_pays_arabes_et_musulmans",
+          "dl": 358
+        },
+        {
+          "id": "hjh_59",
+          "axe": "Sionisme, Souveraineté et État d’Israël",
+          "date": 5642,
+          "titre": "Début de la Première Aliyah vers Israël",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Premi%C3%A8re_Aliyah",
+          "dl": 394
+        },
+        {
+          "id": "hjh_60",
+          "axe": "Sionisme, Souveraineté et État d’Israël",
+          "date": 5657,
+          "titre": "Premier Congrès sioniste à Bâle réuni par Herzl",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Premier_congr%C3%A8s_sioniste",
+          "dl": 385
+        },
+        {
+          "id": "hjh_61",
+          "axe": "Sionisme, Souveraineté et État d’Israël",
+          "date": 5678,
+          "titre": "Publication de la Déclaration Balfour",
+          "wikipedia": "https://fr.wikipedia.org/wiki/D%C3%A9claration_Balfour_de_1917",
+          "dl": 409
+        },
+        {
+          "id": "hjh_62",
+          "axe": "Sionisme, Souveraineté et État d’Israël",
+          "date": 5708,
+          "titre": "Plan de partage de la Palestine par l’ONU",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Plan_de_partage_de_la_Palestine",
+          "dl": 376
+        },
+        {
+          "id": "hjh_63",
+          "axe": "Sionisme, Souveraineté et État d’Israël",
+          "date": 5708,
+          "titre": "Déclaration d’indépendance de l’État d’Israël",
+          "wikipedia": "https://fr.wikipedia.org/wiki/D%C3%A9claration_d%27ind%C3%A9pendance_de_l%27%C3%89tat_d%27Isra%C3%ABl",
+          "dl": 373
+        },
+        {
+          "id": "hjh_64",
+          "axe": "Sionisme, Souveraineté et État d’Israël",
+          "date": 5727,
+          "titre": "Guerre des Six Jours et réunification de Jérusalem",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Guerre_des_Six_Jours",
+          "dl": 397
+        },
+        {
+          "id": "hjh_65",
+          "axe": "Sionisme, Souveraineté et État d’Israël",
+          "date": 5734,
+          "titre": "Guerre du Kippour",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Guerre_du_Kippour",
+          "dl": 423
+        },
+        {
+          "id": "hjh_66",
+          "axe": "Sionisme, Souveraineté et État d’Israël",
+          "date": 5739,
+          "titre": "Traité de paix israélo-égyptien",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Trait%C3%A9_de_paix_isra%C3%A9lo-%C3%A9gyptien",
+          "dl": 385
+        },
+        {
+          "id": "hjh_67",
+          "axe": "Sionisme, Souveraineté et État d’Israël",
+          "date": 5753,
+          "titre": "Accords d’Oslo",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Accords_d%27Oslo",
+          "dl": 383
+        },
+        {
+          "id": "hjh_68",
+          "axe": "Sionisme, Souveraineté et État d’Israël",
+          "date": 5780,
+          "titre": "Signature des Accords d’Abraham",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Accords_d%27Abraham",
+          "dl": 431
+        }
+      ],
+      "axeOrder": [
+        "Torah : de la Création au Déluge",
+        "Torah : de Noé à Avraham",
+        "Torah : les Patriarches",
+        "Torah : l’Égypte et la sortie d’Égypte",
+        "Torah : le désert et la mort de Moché",
+        "Nevi’im : Yéhochoua et les Juges",
+        "Nevi’im : le Royaume uni",
+        "Nevi’im : les royaumes divisés et les Prophètes",
+        "Nevi’im : la fin de Juda et le Premier Temple",
+        "Nevi’im : retour d’exil et Second Temple",
+        "Ketouvim : les Hagiographes",
+        "Histoire antique",
+        "Littérature rabbinique et Codification halakhique",
+        "Mouvements spirituels, mystiques et intellectuels",
+        "Exils, Persécutions et Émancipation",
+        "Sionisme, Souveraineté et État d’Israël"
+      ],
+      "essentiel": [
+        "hjh_1",
+        "hjh_2",
+        "hjh_3",
+        "hjh_4",
+        "hjh_5",
+        "hjh_6",
+        "hjh_7",
+        "hjh_8",
+        "hjh_9",
+        "hjh_10",
+        "hjh_115",
+        "hjh_122",
+        "hjh_12",
+        "hjh_13",
+        "hjh_14",
+        "hjh_15",
+        "hjh_16",
+        "hjh_17",
+        "hjh_18",
+        "hjh_20",
+        "hjh_21",
+        "hjh_23",
+        "hjh_22",
+        "hjh_25",
+        "hjh_154",
+        "hjh_27",
+        "hjh_29",
+        "hjh_30",
+        "hjh_33",
+        "hjh_34",
+        "hjh_36",
+        "hjh_38",
+        "hjh_39",
+        "hjh_40",
+        "hjh_41",
+        "hjh_42",
+        "hjh_43",
+        "hjh_44",
+        "hjh_45",
+        "hjh_46",
+        "hjh_48",
+        "hjh_49",
+        "hjh_51",
+        "hjh_52",
+        "hjh_55",
+        "hjh_57",
+        "hjh_59",
+        "hjh_60",
+        "hjh_61",
+        "hjh_63",
+        "hjh_64",
+        "hjh_66",
+        "hjh_67"
+      ]
+    },
+    {
+      "id": "thm_histoire_hassidisme",
+      "nom": "Histoire du hassidisme",
+      "difficulte": "Intermédiaire",
+      "axeOrder": [
+        "Origines et le Baal Shem Tov (Besht) au XVIIIe s.",
+        "Le Maggid de Mezeritch et la première expansion en Europe de l'Est",
+        "Grandes dynasties et écoles (Chabad, Bratslav, Tchernobyl, Ruzhin, Kotzk)",
+        "Épreuves de la modernité, Haskalah et la Shoah au XXe s.",
+        "Renaissance contemporaine, grands centres et rayonnement mondial"
+      ],
+      "events": [
+        {
+          "id": "has_1",
+          "axe": "Origines et le Baal Shem Tov (Besht) au XVIIIe s.",
+          "date": 1698,
+          "titre": "Naissance d'Israël ben Eliezer, futur Baal Shem Tov",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Baal_Shem_Tov",
+          "dl": 429
+        },
+        {
+          "id": "has_2",
+          "axe": "Origines et le Baal Shem Tov (Besht) au XVIIIe s.",
+          "date": 1720,
+          "titre": "Les années de solitude et de méditation mystique",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Baal_Shem_Tov",
+          "dl": 494
+        },
+        {
+          "id": "has_3",
+          "axe": "Origines et le Baal Shem Tov (Besht) au XVIIIe s.",
+          "date": 1734,
+          "titre": "Révélation publique du Besht (Hitgalout) et guérisons populaires",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Baal_Shem_Tov",
+          "dl": 433
+        },
+        {
+          "id": "has_4",
+          "axe": "Origines et le Baal Shem Tov (Besht) au XVIIIe s.",
+          "date": 1740,
+          "titre": "Installation du Besht à Medzhybizh, berceau du hassidisme",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Medjybij",
+          "dl": 463
+        },
+        {
+          "id": "has_5",
+          "axe": "Origines et le Baal Shem Tov (Besht) au XVIIIe s.",
+          "date": 1747,
+          "titre": "Lettre du Besht sur l'ascension de l'âme",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Baal_Shem_Tov",
+          "dl": 522
+        },
+        {
+          "id": "has_6",
+          "axe": "Origines et le Baal Shem Tov (Besht) au XVIIIe s.",
+          "date": 1750,
+          "titre": "Ralliement de Yaakov Yossef de Polonne au Besht",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Jacob_Joseph_de_Polonne",
+          "dl": 411
+        },
+        {
+          "id": "has_7",
+          "axe": "Origines et le Baal Shem Tov (Besht) au XVIIIe s.",
+          "date": 1752,
+          "titre": "L'invention du Nigoun, le chant mystique sans paroles",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Nigoun",
+          "dl": 477
+        },
+        {
+          "id": "has_8",
+          "axe": "Origines et le Baal Shem Tov (Besht) au XVIIIe s.",
+          "date": 1755,
+          "titre": "Doctrine de l'étincelle divine cachée dans toute matière",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Kabbale_lourianique",
+          "dl": 447
+        },
+        {
+          "id": "has_9",
+          "axe": "Origines et le Baal Shem Tov (Besht) au XVIIIe s.",
+          "date": 1757,
+          "titre": "La confrontation avec les sectes frankistes",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Jacob_Frank",
+          "dl": 445
+        },
+        {
+          "id": "has_10",
+          "axe": "Origines et le Baal Shem Tov (Besht) au XVIIIe s.",
+          "date": 1758,
+          "titre": "Institution de la Seoudah Shelishit le samedi après-midi",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Chabbat",
+          "dl": 426
+        },
+        {
+          "id": "has_11",
+          "axe": "Origines et le Baal Shem Tov (Besht) au XVIIIe s.",
+          "date": 1759,
+          "titre": "L'enseignement sur la prière fervente de l'homme simple",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Hassidisme",
+          "dl": 423
+        },
+        {
+          "id": "has_12",
+          "axe": "Origines et le Baal Shem Tov (Besht) au XVIIIe s.",
+          "date": 1760,
+          "titre": "Mort du Baal Shem Tov à Medzhybizh",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Baal_Shem_Tov",
+          "dl": 401
+        },
+        {
+          "id": "has_13",
+          "axe": "Origines et le Baal Shem Tov (Besht) au XVIIIe s.",
+          "date": 1760,
+          "titre": "Transmission du bâton de conduite spirituelle au Maggid",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Dov_Baer_de_Mezeritch",
+          "dl": 389
+        },
+        {
+          "id": "has_14",
+          "axe": "Origines et le Baal Shem Tov (Besht) au XVIIIe s.",
+          "date": 1765,
+          "titre": "Théorie mystique du Tsaddik, canal des bénédictions divines",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Tsadik",
+          "dl": 410
+        },
+        {
+          "id": "has_15",
+          "axe": "Le Maggid de Mezeritch et la première expansion en Europe de l'Est",
+          "date": 1766,
+          "titre": "Cour de Mezeritch devient le quartier général intellectuel",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Dov_Baer_de_Mezeritch",
+          "dl": 423
+        },
+        {
+          "id": "has_16",
+          "axe": "Le Maggid de Mezeritch et la première expansion en Europe de l'Est",
+          "date": 1768,
+          "titre": "Les massacres de la Koliivchtchina",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Massacre_d%27Ouman",
+          "dl": 504
+        },
+        {
+          "id": "has_17",
+          "axe": "Le Maggid de Mezeritch et la première expansion en Europe de l'Est",
+          "date": 1770,
+          "titre": "La doctrine du Bitoul ha-Yech",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Dov_Baer_de_Mezeritch",
+          "dl": 428
+        },
+        {
+          "id": "has_18",
+          "axe": "Le Maggid de Mezeritch et la première expansion en Europe de l'Est",
+          "date": 1772,
+          "titre": "Le premier anathème (Herem) proclamé par le Gaon",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Gaon_de_Vilna",
+          "dl": 474
+        },
+        {
+          "id": "has_19",
+          "axe": "Le Maggid de Mezeritch et la première expansion en Europe de l'Est",
+          "date": 1772,
+          "titre": "Mort du Maggid de Mezeritch",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Dov_Baer_de_Mezeritch",
+          "dl": 398
+        },
+        {
+          "id": "has_20",
+          "axe": "Le Maggid de Mezeritch et la première expansion en Europe de l'Est",
+          "date": 1777,
+          "titre": "La grande aliyah de Menachem Mendel de Vitebsk",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Menahem_Mendel_de_Vitebsk",
+          "dl": 491
+        },
+        {
+          "id": "has_21",
+          "axe": "Le Maggid de Mezeritch et la première expansion en Europe de l'Est",
+          "date": 1780,
+          "titre": "Publication du Toledot Yaakov Yossef, livre imprimé hassidique",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Jacob_Joseph_de_Polonne",
+          "dl": 372
+        },
+        {
+          "id": "has_22",
+          "axe": "Le Maggid de Mezeritch et la première expansion en Europe de l'Est",
+          "date": 1785,
+          "titre": "Levi Yitzchok devient rabbin de Berditchev",
+          "wikipedia": "https://fr.wikipedia.org/wiki/L%C3%A9vi_Isaac_de_Berditchev",
+          "dl": 414
+        },
+        {
+          "id": "has_23",
+          "axe": "Le Maggid de Mezeritch et la première expansion en Europe de l'Est",
+          "date": 1787,
+          "titre": "Elimelech de Lizhensk publie Noam Elimelech",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Elimelekh_de_Le%C5%BCajsk",
+          "dl": 381
+        },
+        {
+          "id": "has_24",
+          "axe": "Le Maggid de Mezeritch et la première expansion en Europe de l'Est",
+          "date": 1788,
+          "titre": "Frères Elimelech de Lizhensk et Zusha d'Anipoli",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Zusha_d%27Anipoli",
+          "dl": 492
+        },
+        {
+          "id": "has_25",
+          "axe": "Le Maggid de Mezeritch et la première expansion en Europe de l'Est",
+          "date": 1796,
+          "titre": "Schneur Zalman de Liadi publie le Tanya",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Tanya_(livre)",
+          "dl": 427
+        },
+        {
+          "id": "has_26",
+          "axe": "Le Maggid de Mezeritch et la première expansion en Europe de l'Est",
+          "date": 1798,
+          "titre": "Libération de Schneur Zalman, forteresse Pierre-et-Paul, Saint-Pétersbourg",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Schneur_Zalman_de_Liadi",
+          "dl": 320
+        },
+        {
+          "id": "has_27",
+          "axe": "Le Maggid de Mezeritch et la première expansion en Europe de l'Est",
+          "date": 1800,
+          "titre": "Le Chozeh de Lublin, le Voyant de Lublin",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Voyant_de_Lublin",
+          "dl": 393
+        },
+        {
+          "id": "has_28",
+          "axe": "Le Maggid de Mezeritch et la première expansion en Europe de l'Est",
+          "date": 1802,
+          "titre": "Moché Leib de Sassov",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Hassidisme",
+          "dl": 430
+        },
+        {
+          "id": "has_29",
+          "axe": "Grandes dynasties et écoles (Chabad, Bratslav, Tchernobyl, Ruzhin, Kotzk)",
+          "date": 1802,
+          "titre": "Rebbe Nachman de Bratslav s'établit à Bratslav",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Nahman_de_Bratslav",
+          "dl": 301
+        },
+        {
+          "id": "has_30",
+          "axe": "Grandes dynasties et écoles (Chabad, Bratslav, Tchernobyl, Ruzhin, Kotzk)",
+          "date": 1806,
+          "titre": "Rebbe Nachman commence à conter ses Contes mystiques",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Contes_de_Nahman_de_Bratslav",
+          "dl": 443
+        },
+        {
+          "id": "has_31",
+          "axe": "Grandes dynasties et écoles (Chabad, Bratslav, Tchernobyl, Ruzhin, Kotzk)",
+          "date": 1810,
+          "titre": "Mort de Rebbe Nachman à Ouman",
+          "wikipedia": "https://fr.wikipedia.org/wiki/P%C3%A8lerinage_de_Nahman_de_Bratslav_%C3%A0_Ouman",
+          "dl": 432
+        },
+        {
+          "id": "has_32",
+          "axe": "Grandes dynasties et écoles (Chabad, Bratslav, Tchernobyl, Ruzhin, Kotzk)",
+          "date": 1812,
+          "titre": "Schneur Zalman soutient tsar Alexandre Ier contre Napoléon",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Schneur_Zalman_de_Liadi",
+          "dl": 458
+        },
+        {
+          "id": "has_33",
+          "axe": "Grandes dynasties et écoles (Chabad, Bratslav, Tchernobyl, Ruzhin, Kotzk)",
+          "date": 1813,
+          "titre": "Dovber Schneuri installe la dynastie Chabad à Loubavitch",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Dovber_Schneuri",
+          "dl": 425
+        },
+        {
+          "id": "has_34",
+          "axe": "Grandes dynasties et écoles (Chabad, Bratslav, Tchernobyl, Ruzhin, Kotzk)",
+          "date": 1815,
+          "titre": "Saint Juif, Yaakov Yitzchak de Przysucha",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Saint_Juif",
+          "dl": 389
+        },
+        {
+          "id": "has_35",
+          "axe": "Grandes dynasties et écoles (Chabad, Bratslav, Tchernobyl, Ruzhin, Kotzk)",
+          "date": 1817,
+          "titre": "Menachem Mendel Morgenstern fonde l'école de Kotzk",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Menahem_Mendel_de_Kotzk",
+          "dl": 456
+        },
+        {
+          "id": "has_36",
+          "axe": "Grandes dynasties et écoles (Chabad, Bratslav, Tchernobyl, Ruzhin, Kotzk)",
+          "date": 1820,
+          "titre": "Israël de Ruzhin",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Yisroel_Friedman_de_Ruzhin",
+          "dl": 464
+        },
+        {
+          "id": "has_37",
+          "axe": "Grandes dynasties et écoles (Chabad, Bratslav, Tchernobyl, Ruzhin, Kotzk)",
+          "date": 1827,
+          "titre": "Menachem Mendel Schneersohn prend la tête de Chabad",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Menahem_Mendel_Schneersohn",
+          "dl": 421
+        },
+        {
+          "id": "has_38",
+          "axe": "Grandes dynasties et écoles (Chabad, Bratslav, Tchernobyl, Ruzhin, Kotzk)",
+          "date": 1859,
+          "titre": "Yitzchak Meir Alter fonde dynastie hassidique de Ger",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Dynastie_hassidique_de_G%C3%B3ra_Kalwaria",
+          "dl": 403
+        },
+        {
+          "id": "has_39",
+          "axe": "Grandes dynasties et écoles (Chabad, Bratslav, Tchernobyl, Ruzhin, Kotzk)",
+          "date": 1860,
+          "titre": "La dynastie de Belz sous Sholom Rokeach",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Dynastie_hassidique_de_Belz",
+          "dl": 284
+        },
+        {
+          "id": "has_40",
+          "axe": "Grandes dynasties et écoles (Chabad, Bratslav, Tchernobyl, Ruzhin, Kotzk)",
+          "date": 1870,
+          "titre": "La dynastie de Satmar sous Zalman Leib Teitelbaum",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Dynastie_hassidique_de_Satmar",
+          "dl": 405
+        },
+        {
+          "id": "has_41",
+          "axe": "Grandes dynasties et écoles (Chabad, Bratslav, Tchernobyl, Ruzhin, Kotzk)",
+          "date": 1880,
+          "titre": "Les « Rebbes morts » de Bratslav",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Hassidisme_de_Bratslav",
+          "dl": 412
+        },
+        {
+          "id": "has_42",
+          "axe": "Grandes dynasties et écoles (Chabad, Bratslav, Tchernobyl, Ruzhin, Kotzk)",
+          "date": 1897,
+          "titre": "Sholom Dovber Schneersohn fonde Tomchei Temimim à Loubavitch",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Chalom_Dov_Baer_Schneersohn",
+          "dl": 402
+        },
+        {
+          "id": "has_43",
+          "axe": "Épreuves de la modernité, Haskalah et la Shoah au XXe s.",
+          "date": 1912,
+          "titre": "Fondation de l'Agoudat Israel à Katowice sous l'égide",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Agoudat_Israel",
+          "dl": 389
+        },
+        {
+          "id": "has_44",
+          "axe": "Épreuves de la modernité, Haskalah et la Shoah au XXe s.",
+          "date": 1917,
+          "titre": "Les Rebbes hassidiques",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Yosef_Yitzchok_Schneersohn",
+          "dl": 463
+        },
+        {
+          "id": "has_45",
+          "axe": "Épreuves de la modernité, Haskalah et la Shoah au XXe s.",
+          "date": 1927,
+          "titre": "Arrestation de Yosef Yitzchak, condamnation à mort commuée",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Yosef_Yitzchok_Schneersohn",
+          "dl": 402
+        },
+        {
+          "id": "has_46",
+          "axe": "Épreuves de la modernité, Haskalah et la Shoah au XXe s.",
+          "date": 1939,
+          "titre": "Kalonymus Kalman Shapira prêche la foi au ghetto",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Kalonymus_Kalman_Shapira",
+          "dl": 414
+        },
+        {
+          "id": "has_47",
+          "axe": "Épreuves de la modernité, Haskalah et la Shoah au XXe s.",
+          "date": 1940,
+          "titre": "L'arrivée de Yosef Yitzchak Schneersohn à Brooklyn",
+          "wikipedia": "https://fr.wikipedia.org/wiki/770_Eastern_Parkway",
+          "dl": 369
+        },
+        {
+          "id": "has_48",
+          "axe": "Épreuves de la modernité, Haskalah et la Shoah au XXe s.",
+          "date": 1944,
+          "titre": "Le sauvetage de Rebbe Yoel Teitelbaum de Satmar",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Joel_Teitelbaum",
+          "dl": 437
+        },
+        {
+          "id": "has_49",
+          "axe": "Épreuves de la modernité, Haskalah et la Shoah au XXe s.",
+          "date": 1944,
+          "titre": "La fuite tragique",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Aharon_Rokeach",
+          "dl": 351
+        },
+        {
+          "id": "has_50",
+          "axe": "Épreuves de la modernité, Haskalah et la Shoah au XXe s.",
+          "date": 1945,
+          "titre": "L'anéantissement des shtetls hassidiques d'Europe de l'Est",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Shoah",
+          "dl": 467
+        },
+        {
+          "id": "has_51",
+          "axe": "Épreuves de la modernité, Haskalah et la Shoah au XXe s.",
+          "date": 1947,
+          "titre": "Le Rebbe Yisrael Alter (le Beit Yisrael) reconstruit",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Dynastie_hassidique_de_G%C3%B3ra_Kalwaria",
+          "dl": 435
+        },
+        {
+          "id": "has_52",
+          "axe": "Épreuves de la modernité, Haskalah et la Shoah au XXe s.",
+          "date": 1948,
+          "titre": "Fondation de la cité hassidique de Kiryas Joel",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Kiryas_Joel",
+          "dl": 425
+        },
+        {
+          "id": "has_53",
+          "axe": "Épreuves de la modernité, Haskalah et la Shoah au XXe s.",
+          "date": 1950,
+          "titre": "Fondation du village de Kfar Chabad en Israël",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Kfar_Chabad",
+          "dl": 385
+        },
+        {
+          "id": "has_54",
+          "axe": "Épreuves de la modernité, Haskalah et la Shoah au XXe s.",
+          "date": 1951,
+          "titre": "Menachem Mendel Schneerson devient 7e Rebbe de Loubavitch",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Menachem_Mendel_Schneerson",
+          "dl": 395
+        },
+        {
+          "id": "has_55",
+          "axe": "Épreuves de la modernité, Haskalah et la Shoah au XXe s.",
+          "date": 1955,
+          "titre": "Klausenberg",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Yekousiel_Yehouda_Halberstam",
+          "dl": 463
+        },
+        {
+          "id": "has_56",
+          "axe": "Épreuves de la modernité, Haskalah et la Shoah au XXe s.",
+          "date": 1960,
+          "titre": "Buber et Scholem font redécouvrir le hassidisme",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Martin_Buber",
+          "dl": 439
+        },
+        {
+          "id": "has_57",
+          "axe": "Renaissance contemporaine, grands centres et rayonnement mondial",
+          "date": 1967,
+          "titre": "Rebbe de Loubavitch lance Campagne des Téfilines",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Menachem_Mendel_Schneerson",
+          "dl": 449
+        },
+        {
+          "id": "has_58",
+          "axe": "Renaissance contemporaine, grands centres et rayonnement mondial",
+          "date": 1974,
+          "titre": "L'essor des « Mitzvah Tanks »",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Chlouhim",
+          "dl": 437
+        },
+        {
+          "id": "has_59",
+          "axe": "Renaissance contemporaine, grands centres et rayonnement mondial",
+          "date": 1977,
+          "titre": "Rebbe de Loubavitch reçoit le président égyptien Anouar",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Menachem_Mendel_Schneerson",
+          "dl": 433
+        },
+        {
+          "id": "has_60",
+          "axe": "Renaissance contemporaine, grands centres et rayonnement mondial",
+          "date": 1980,
+          "titre": "Inauguration de la Synagogue de Belz à Jérusalem",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Dynastie_hassidique_de_Belz",
+          "dl": 437
+        },
+        {
+          "id": "has_61",
+          "axe": "Renaissance contemporaine, grands centres et rayonnement mondial",
+          "date": 1984,
+          "titre": "Le Rebbe de Loubavitch institue l'étude quotidienne universelle",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Michn%C3%A9_Torah",
+          "dl": 446
+        },
+        {
+          "id": "has_62",
+          "axe": "Renaissance contemporaine, grands centres et rayonnement mondial",
+          "date": 1989,
+          "titre": "La chute du rideau de fer",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Berel_Lazar",
+          "dl": 436
+        },
+        {
+          "id": "has_63",
+          "axe": "Renaissance contemporaine, grands centres et rayonnement mondial",
+          "date": 1991,
+          "titre": "Les émeutes de Crown Heights à Brooklyn",
+          "wikipedia": "https://fr.wikipedia.org/wiki/%C3%89meutes_de_Crown_Heights",
+          "dl": 450
+        },
+        {
+          "id": "has_64",
+          "axe": "Renaissance contemporaine, grands centres et rayonnement mondial",
+          "date": 1994,
+          "titre": "Disparition du Rebbe de Loubavitch Menachem Mendel Schneerson",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Ohel_(Loubavitch)",
+          "dl": 430
+        },
+        {
+          "id": "has_65",
+          "axe": "Renaissance contemporaine, grands centres et rayonnement mondial",
+          "date": 2000,
+          "titre": "L'expansion démographique du monde hassidique à Bnei Brak",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Bnei_Brak",
+          "dl": 432
+        },
+        {
+          "id": "has_66",
+          "axe": "Renaissance contemporaine, grands centres et rayonnement mondial",
+          "date": 2008,
+          "titre": "Attentat terroriste contre la Maison Chabad de Mumbai",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Attaques_de_novembre_2008_%C3%A0_Bombay",
+          "dl": 479
+        },
+        {
+          "id": "has_67",
+          "axe": "Renaissance contemporaine, grands centres et rayonnement mondial",
+          "date": 2015,
+          "titre": "Rassemblement annuel des cinq mille émissaires Chabad",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Chlouhim",
+          "dl": 430
+        },
+        {
+          "id": "has_68",
+          "axe": "Renaissance contemporaine, grands centres et rayonnement mondial",
+          "date": 2018,
+          "titre": "Musique hassidique contemporaine et chanteurs pop-hassidiques",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Musique_juive",
+          "dl": 420
+        },
+        {
+          "id": "has_69",
+          "axe": "Renaissance contemporaine, grands centres et rayonnement mondial",
+          "date": 2020,
+          "titre": "Le pèlerinage d'Ouman rassemble plus de cinquante mille",
+          "wikipedia": "https://fr.wikipedia.org/wiki/P%C3%A8lerinage_de_Nahman_de_Bratslav_%C3%A0_Ouman",
+          "dl": 465
+        },
+        {
+          "id": "has_70",
+          "axe": "Renaissance contemporaine, grands centres et rayonnement mondial",
+          "date": 2024,
+          "titre": "L'expansion des institutions hassidiques mondiales",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Hassidisme",
+          "dl": 493
+        }
+      ],
+      "essentiel": [
+        "has_1",
+        "has_2",
+        "has_7",
+        "has_8",
+        "has_12",
+        "has_13",
+        "has_15",
+        "has_18",
+        "has_19",
+        "has_22",
+        "has_24",
+        "has_27",
+        "has_29",
+        "has_31",
+        "has_33",
+        "has_36",
+        "has_38",
+        "has_41",
+        "has_43",
+        "has_45",
+        "has_47",
+        "has_50",
+        "has_52",
+        "has_55",
+        "has_57",
+        "has_60",
+        "has_62",
+        "has_64",
+        "has_66",
+        "has_69"
+      ]
+    },
+    {
+      "id": "thm_isr",
+      "nom": "Histoire de l'État d'Israël 🇮🇱",
+      "difficulte": "Intermédiaire",
+      "events": [
+        {
+          "id": "isr1",
+          "axe": "Origines antiques et Terre d'Israël (jusqu'en 1897)",
+          "date": -1000,
+          "titre": "David fait de Jérusalem sa capitale",
+          "wikipedia": "https://fr.wikipedia.org/wiki/David_(roi_d%27Isra%C3%ABl)",
+          "dl": 399
+        },
+        {
+          "id": "isr2",
+          "axe": "Origines antiques et Terre d'Israël (jusqu'en 1897)",
+          "date": -957,
+          "titre": "Construction du Temple de Salomon",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Temple_de_Salomon",
+          "dl": 377
+        },
+        {
+          "id": "isr3",
+          "axe": "Origines antiques et Terre d'Israël (jusqu'en 1897)",
+          "date": -586,
+          "titre": "Destruction du Temple et exil Babylone",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Si%C3%A8ge_de_J%C3%A9rusalem_(587-586_av._J.-C.)",
+          "dl": 387
+        },
+        {
+          "id": "isr4",
+          "axe": "Origines antiques et Terre d'Israël (jusqu'en 1897)",
+          "date": -538,
+          "titre": "Édit de Cyrus et retour d'exil",
+          "wikipedia": "https://fr.wikipedia.org/wiki/%C3%89dit_de_Cyrus",
+          "dl": 383
+        },
+        {
+          "id": "isr5",
+          "axe": "Origines antiques et Terre d'Israël (jusqu'en 1897)",
+          "date": -167,
+          "titre": "Révolte des Maccabées et Hanoucca",
+          "wikipedia": "https://fr.wikipedia.org/wiki/R%C3%A9volte_des_Maccab%C3%A9es",
+          "dl": 419
+        },
+        {
+          "id": "isr6",
+          "axe": "Origines antiques et Terre d'Israël (jusqu'en 1897)",
+          "date": -37,
+          "titre": "Hérode le Grand reconstruit le Temple",
+          "wikipedia": "https://fr.wikipedia.org/wiki/H%C3%A9rode_Ier_le_Grand",
+          "dl": 423
+        },
+        {
+          "id": "isr7",
+          "axe": "Origines antiques et Terre d'Israël (jusqu'en 1897)",
+          "date": 70,
+          "titre": "Destruction du Second Temple Titus",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Si%C3%A8ge_de_J%C3%A9rusalem_(70)",
+          "dl": 425
+        },
+        {
+          "id": "isr8",
+          "axe": "Origines antiques et Terre d'Israël (jusqu'en 1897)",
+          "date": 73,
+          "titre": "Siège héroïque de Massada",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Si%C3%A8ge_de_Massada",
+          "dl": 439
+        },
+        {
+          "id": "isr9",
+          "axe": "Origines antiques et Terre d'Israël (jusqu'en 1897)",
+          "date": 132,
+          "titre": "Révolte de Bar Kokhba contre Rome",
+          "wikipedia": "https://fr.wikipedia.org/wiki/R%C3%A9volte_de_Bar_Kokhba",
+          "dl": 419
+        },
+        {
+          "id": "isr10",
+          "axe": "Origines antiques et Terre d'Israël (jusqu'en 1897)",
+          "date": 200,
+          "titre": "Rédaction de la Mishna par Juda",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Mishna",
+          "dl": 432
+        },
+        {
+          "id": "isr11",
+          "axe": "Mouvement sioniste et Mandat britannique (1897–1948)",
+          "date": 1897,
+          "titre": "Premier Congrès sioniste à Bâle",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Premier_congr%C3%A8s_sioniste",
+          "dl": 440
+        },
+        {
+          "id": "isr12",
+          "axe": "Mouvement sioniste et Mandat britannique (1897–1948)",
+          "date": 1909,
+          "titre": "Fondation de Tel-Aviv sur les dunes",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Tel_Aviv-Jaffa",
+          "dl": 455
+        },
+        {
+          "id": "isr13",
+          "axe": "Mouvement sioniste et Mandat britannique (1897–1948)",
+          "date": 1910,
+          "titre": "Fondation de Degania premier kibboutz",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Degania",
+          "dl": 441
+        },
+        {
+          "id": "isr14",
+          "axe": "Mouvement sioniste et Mandat britannique (1897–1948)",
+          "date": 1917,
+          "titre": "Publication de la Déclaration Balfour",
+          "wikipedia": "https://fr.wikipedia.org/wiki/D%C3%A9claration_Balfour_de_1917",
+          "dl": 429
+        },
+        {
+          "id": "isr15",
+          "axe": "Mouvement sioniste et Mandat britannique (1897–1948)",
+          "date": 1920,
+          "titre": "Création de la Haganah clandestine",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Haganah",
+          "dl": 442
+        },
+        {
+          "id": "isr16",
+          "axe": "Mouvement sioniste et Mandat britannique (1897–1948)",
+          "date": 1922,
+          "titre": "Mandat britannique sur la Palestine",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Palestine_mandataire",
+          "dl": 426
+        },
+        {
+          "id": "isr17",
+          "axe": "Mouvement sioniste et Mandat britannique (1897–1948)",
+          "date": 1925,
+          "titre": "Inauguration de l'Université hébraïque",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Universit%C3%A9_h%C3%A9bra%C3%AFque_de_J%C3%A9rusalem",
+          "dl": 426
+        },
+        {
+          "id": "isr18",
+          "axe": "Mouvement sioniste et Mandat britannique (1897–1948)",
+          "date": 1936,
+          "titre": "Grande Révolte arabe et Livre blanc",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Grande_R%C3%A9volte_arabe_de_1936-1939_en_Palestine_mandataire",
+          "dl": 432
+        },
+        {
+          "id": "isr19",
+          "axe": "Mouvement sioniste et Mandat britannique (1897–1948)",
+          "date": 1947,
+          "titre": "L'épopée tragique de l'Exodus 1947",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Exodus_1947",
+          "dl": 446
+        },
+        {
+          "id": "isr20",
+          "axe": "Mouvement sioniste et Mandat britannique (1897–1948)",
+          "date": 1947,
+          "titre": "Plan de partage de l'ONU",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Plan_de_partage_de_la_Palestine",
+          "dl": 470
+        },
+        {
+          "id": "isr21",
+          "axe": "Fondation, guerres et construction nationale (1948–1967)",
+          "date": 1948,
+          "titre": "Proclamation de l'État d'Israël",
+          "wikipedia": "https://fr.wikipedia.org/wiki/D%C3%A9claration_d%27ind%C3%A9pendance_de_l%27%C3%89tat_d%27Isra%C3%ABl",
+          "dl": 407
+        },
+        {
+          "id": "isr22",
+          "axe": "Fondation, guerres et construction nationale (1948–1967)",
+          "date": 1948,
+          "titre": "Création de l'armée Tsahal",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Arm%C3%A9e_de_d%C3%A9fense_d%27Isra%C3%ABl",
+          "dl": 445
+        },
+        {
+          "id": "isr23",
+          "axe": "Fondation, guerres et construction nationale (1948–1967)",
+          "date": 1949,
+          "titre": "Accords d'armistice et admission ONU",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Conventions_d%27armistice_de_1949",
+          "dl": 417
+        },
+        {
+          "id": "isr24",
+          "axe": "Fondation, guerres et construction nationale (1948–1967)",
+          "date": 1950,
+          "titre": "Promulgation de la Loi du retour",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Loi_du_retour",
+          "dl": 444
+        },
+        {
+          "id": "isr25",
+          "axe": "Fondation, guerres et construction nationale (1948–1967)",
+          "date": 1950,
+          "titre": "Opération Tapis Volant au Yémen",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Op%C3%A9ration_Tapis_volant_(Y%C3%A9men)",
+          "dl": 467
+        },
+        {
+          "id": "isr26",
+          "axe": "Fondation, guerres et construction nationale (1948–1967)",
+          "date": 1956,
+          "titre": "Campagne du Sinaï et crise Suez",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Crise_du_canal_de_Suez",
+          "dl": 473
+        },
+        {
+          "id": "isr27",
+          "axe": "Fondation, guerres et construction nationale (1948–1967)",
+          "date": 1960,
+          "titre": "Capture du nazi Adolf Eichmann",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Adolf_Eichmann",
+          "dl": 420
+        },
+        {
+          "id": "isr28",
+          "axe": "Fondation, guerres et construction nationale (1948–1967)",
+          "date": 1961,
+          "titre": "Procès historique d'Eichmann à Jérusalem",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Proc%C3%A8s_d%27Adolf_Eichmann",
+          "dl": 428
+        },
+        {
+          "id": "isr29",
+          "axe": "Fondation, guerres et construction nationale (1948–1967)",
+          "date": 1964,
+          "titre": "Inauguration de l'Aqueduc national d'Israël",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Aqueduc_national_d%27Isra%C3%ABl",
+          "dl": 449
+        },
+        {
+          "id": "isr30",
+          "axe": "Conflits régionaux et processus de paix (1967–1993)",
+          "date": 1967,
+          "titre": "Victoire de guerre des Six Jours",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Guerre_des_Six_Jours",
+          "dl": 470
+        },
+        {
+          "id": "isr31",
+          "axe": "Conflits régionaux et processus de paix (1967–1993)",
+          "date": 1969,
+          "titre": "Golda Meir Première ministre d'Israël",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Golda_Meir",
+          "dl": 465
+        },
+        {
+          "id": "isr32",
+          "axe": "Conflits régionaux et processus de paix (1967–1993)",
+          "date": 1972,
+          "titre": "Prise d'otages aux JO Munich",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Prise_d%27otages_des_Jeux_olympiques_de_Munich",
+          "dl": 460
+        },
+        {
+          "id": "isr33",
+          "axe": "Conflits régionaux et processus de paix (1967–1993)",
+          "date": 1973,
+          "titre": "Guerre héroïque du Kippour",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Guerre_du_Kippour",
+          "dl": 416
+        },
+        {
+          "id": "isr34",
+          "axe": "Conflits régionaux et processus de paix (1967–1993)",
+          "date": 1976,
+          "titre": "Raid héroïque d'Entebbe en Ouganda",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Raid_d%27Entebbe",
+          "dl": 461
+        },
+        {
+          "id": "isr35",
+          "axe": "Conflits régionaux et processus de paix (1967–1993)",
+          "date": 1977,
+          "titre": "Victoire électorale du Likoud Begin",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Menahem_Begin",
+          "dl": 477
+        },
+        {
+          "id": "isr36",
+          "axe": "Conflits régionaux et processus de paix (1967–1993)",
+          "date": 1977,
+          "titre": "Visite d'Anouar el-Sadate à Jérusalem",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Visite_d%27Anouar_el-Sadate_en_Isra%C3%ABl",
+          "dl": 369
+        },
+        {
+          "id": "isr37",
+          "axe": "Conflits régionaux et processus de paix (1967–1993)",
+          "date": 1979,
+          "titre": "Traité de paix israélo-égyptien à Washington",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Trait%C3%A9_de_paix_isra%C3%A9lo-%C3%A9gyptien",
+          "dl": 417
+        },
+        {
+          "id": "isr38",
+          "axe": "Conflits régionaux et processus de paix (1967–1993)",
+          "date": 1981,
+          "titre": "Raid aérien d'Osirak en Irak",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Op%C3%A9ration_Op%C3%A9ra",
+          "dl": 437
+        },
+        {
+          "id": "isr39",
+          "axe": "Conflits régionaux et processus de paix (1967–1993)",
+          "date": 1982,
+          "titre": "Guerre du Liban en 1982",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Guerre_du_Liban",
+          "dl": 452
+        },
+        {
+          "id": "isr40",
+          "axe": "Conflits régionaux et processus de paix (1967–1993)",
+          "date": 1984,
+          "titre": "Opération Moïse pour Juifs d'Éthiopie",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Op%C3%A9ration_Mo%C3%AFse",
+          "dl": 470
+        },
+        {
+          "id": "isr41",
+          "axe": "Conflits régionaux et processus de paix (1967–1993)",
+          "date": 1987,
+          "titre": "Déclenchement de la Première Intifada",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Premi%C3%A8re_intifada",
+          "dl": 439
+        },
+        {
+          "id": "isr42",
+          "axe": "Accords d'Oslo et Israël contemporain (depuis 1993)",
+          "date": 1993,
+          "titre": "Signature des accords d'Oslo à Washington",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Accords_d%27Oslo",
+          "dl": 427
+        },
+        {
+          "id": "isr43",
+          "axe": "Accords d'Oslo et Israël contemporain (depuis 1993)",
+          "date": 1994,
+          "titre": "Traité de paix israélo-jordanien",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Trait%C3%A9_de_paix_isra%C3%A9lo-jordanien",
+          "dl": 433
+        },
+        {
+          "id": "isr44",
+          "axe": "Accords d'Oslo et Israël contemporain (depuis 1993)",
+          "date": 1995,
+          "titre": "Assassinat d'Yitzhak Rabin à Tel-Aviv",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Assassinat_d%27Yitzhak_Rabin",
+          "dl": 444
+        },
+        {
+          "id": "isr45",
+          "axe": "Accords d'Oslo et Israël contemporain (depuis 1993)",
+          "date": 2000,
+          "titre": "Retrait militaire du Sud-Liban",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Retrait_isra%C3%A9lien_du_Sud-Liban",
+          "dl": 429
+        },
+        {
+          "id": "isr46",
+          "axe": "Accords d'Oslo et Israël contemporain (depuis 1993)",
+          "date": 2000,
+          "titre": "Déclenchement de la Seconde Intifada",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Seconde_intifada",
+          "dl": 457
+        },
+        {
+          "id": "isr47",
+          "axe": "Accords d'Oslo et Israël contemporain (depuis 1993)",
+          "date": 2005,
+          "titre": "Désengagement unilatéral de la bande Gaza",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Plan_de_d%C3%A9sengagement_de_la_bande_de_Gaza",
+          "dl": 432
+        },
+        {
+          "id": "isr48",
+          "axe": "Accords d'Oslo et Israël contemporain (depuis 1993)",
+          "date": 2006,
+          "titre": "Seconde Guerre du Liban contre Hezbollah",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Seconde_Guerre_du_Liban",
+          "dl": 425
+        },
+        {
+          "id": "isr49",
+          "axe": "Accords d'Oslo et Israël contemporain (depuis 1993)",
+          "date": 2011,
+          "titre": "Déploiement du bouclier Dôme de fer",
+          "wikipedia": "https://fr.wikipedia.org/wiki/D%C3%B4me_de_fer",
+          "dl": 442
+        },
+        {
+          "id": "isr50",
+          "axe": "Accords d'Oslo et Israël contemporain (depuis 1993)",
+          "date": 2011,
+          "titre": "Mouvement social des tentes à Tel-Aviv",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Mouvement_social_isra%C3%A9lien_de_2011",
+          "dl": 459
+        },
+        {
+          "id": "isr51",
+          "axe": "Accords d'Oslo et Israël contemporain (depuis 1993)",
+          "date": 2020,
+          "titre": "Signature des accords d'Abraham à Washington",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Accords_d%27Abraham",
+          "dl": 485
+        },
+        {
+          "id": "isr52",
+          "axe": "Accords d'Oslo et Israël contemporain (depuis 1993)",
+          "date": 2023,
+          "titre": "Attaque du 7 Octobre et guerre",
+          "wikipedia": "https://fr.wikipedia.org/wiki/Attaque_du_Hamas_contre_Isra%C3%ABl",
+          "dl": 521
+        }
+      ],
+      "axeOrder": [
+        "Origines antiques et Terre d'Israël (jusqu'en 1897)",
+        "Mouvement sioniste et Mandat britannique (1897–1948)",
+        "Fondation, guerres et construction nationale (1948–1967)",
+        "Conflits régionaux et processus de paix (1967–1993)",
+        "Accords d'Oslo et Israël contemporain (depuis 1993)"
+      ],
+      "essentiel": [
+        "isr1",
+        "isr2",
+        "isr3",
+        "isr4",
+        "isr5",
+        "isr7",
+        "isr8",
+        "isr9",
+        "isr11",
+        "isr14",
+        "isr16",
+        "isr19",
+        "isr20",
+        "isr21",
+        "isr28",
+        "isr30",
+        "isr33",
+        "isr34",
+        "isr36",
+        "isr37",
+        "isr41",
+        "isr42",
+        "isr44",
+        "isr46",
+        "isr51",
+        "isr52"
+      ]
+    }
+  ]
+}

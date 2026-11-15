@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Dessin schématique d’un tétradrachme de la révolte de Bar Kokhba, avers et revers">
+<rect width="900" height="520" fill="#F2EADB"/>
+<circle cx="230" cy="250" r="170" fill="#B9B6AE" stroke="#8C8A84" stroke-width="4"/><circle cx="230" cy="250" r="150" fill="none" stroke="#8C8A84" stroke-width="1.5" stroke-dasharray="2 5"/>
+<rect x="135" y="320" width="190" height="12" fill="#6F6B63"/>
+<rect x="135" y="180" width="190" height="10" fill="#6F6B63"/>
+<rect x="145" y="190" width="10" height="130" fill="#6F6B63"/>
+<rect x="175" y="190" width="10" height="130" fill="#6F6B63"/>
+<rect x="275" y="190" width="10" height="130" fill="#6F6B63"/>
+<rect x="305" y="190" width="10" height="130" fill="#6F6B63"/>
+<rect x="202" y="230" width="56" height="44" rx="5" fill="none" stroke="#6F6B63" stroke-width="4"/>
+<path d="M202 244 Q 230 224 258 244" fill="none" stroke="#6F6B63" stroke-width="3"/>
+<polygon points="230.0 136.0 233.5 145.1 243.3 145.7 235.7 151.9 238.2 161.3 230.0 156.0 221.8 161.3 224.3 151.9 216.7 145.7 226.5 145.1" fill="#6F6B63"/>
+<text x="230.0" y="368.0" font-size="18" fill="#3A3833" text-anchor="middle" font-weight="bold" font-style="italic">« Shimon »</text>
+<circle cx="670" cy="250" r="170" fill="#B9B6AE" stroke="#8C8A84" stroke-width="4"/><circle cx="670" cy="250" r="150" fill="none" stroke="#8C8A84" stroke-width="1.5" stroke-dasharray="2 5"/>
+<path d="M660 330 L660 170" stroke="#6F6B63" stroke-width="10" stroke-linecap="round"/>
+<path d="M660 190 Q 630 180 626 166" fill="none" stroke="#6F6B63" stroke-width="4"/>
+<path d="M660 190 Q 690 180 694 166" fill="none" stroke="#6F6B63" stroke-width="4"/>
+<path d="M660 212 Q 630 202 626 188" fill="none" stroke="#6F6B63" stroke-width="4"/>
+<path d="M660 212 Q 690 202 694 188" fill="none" stroke="#6F6B63" stroke-width="4"/>
+<path d="M660 234 Q 630 224 626 210" fill="none" stroke="#6F6B63" stroke-width="4"/>
+<path d="M660 234 Q 690 224 694 210" fill="none" stroke="#6F6B63" stroke-width="4"/>
+<path d="M660 256 Q 630 246 626 232" fill="none" stroke="#6F6B63" stroke-width="4"/>
+<path d="M660 256 Q 690 246 694 232" fill="none" stroke="#6F6B63" stroke-width="4"/>
+<path d="M660 278 Q 630 268 626 254" fill="none" stroke="#6F6B63" stroke-width="4"/>
+<path d="M660 278 Q 690 268 694 254" fill="none" stroke="#6F6B63" stroke-width="4"/>
+<path d="M660 300 Q 630 290 626 276" fill="none" stroke="#6F6B63" stroke-width="4"/>
+<path d="M660 300 Q 690 290 694 276" fill="none" stroke="#6F6B63" stroke-width="4"/>
+<ellipse cx="722" cy="290" rx="22" ry="30" fill="none" stroke="#6F6B63" stroke-width="5"/>
+<text x="670.0" y="368.0" font-size="15" fill="#3A3833" text-anchor="middle" font-weight="bold" font-style="italic">« An 2 de la liberté d’Israël »</text>
+<text x="230.0" y="470.0" font-size="17" fill="#2B2420" text-anchor="middle" font-weight="bold" font-style="normal">Avers : la façade du Temple détruit</text>
+<text x="230.0" y="492.0" font-size="14" fill="#6B5F55" text-anchor="middle" font-weight="normal" font-style="italic">et, sur certaines pièces, une étoile</text>
+<text x="670.0" y="470.0" font-size="17" fill="#2B2420" text-anchor="middle" font-weight="bold" font-style="normal">Revers : le bouquet de la fête de Souccot</text>
+<text x="670.0" y="492.0" font-size="14" fill="#6B5F55" text-anchor="middle" font-weight="normal" font-style="italic">la palme (loulav) et le cédrat (étrog)</text>
+<text x="450.0" y="40.0" font-size="14" fill="#6B5F55" text-anchor="middle" font-weight="normal" font-style="italic">Dessin schématique : les inscriptions sont en hébreu ancien sur les vraies pièces</text>
+</svg>

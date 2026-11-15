@@ -1,0 +1,378 @@
+/* =========================================================================
+   === HISTORIAXE — POLICES AUTO-HÉBERGÉES (INTER + MATERIAL SYMBOLS) ===
+   =========================================================================
+   Anciennement chargées depuis fonts.googleapis.com/fonts.gstatic.com au
+   lancement de l'app. Un accès hors-ligne ou à un réseau qui bloque ces
+   domaines tiers (Chine, réseau d'entreprise) faisait tomber l'app en
+   police système sans prévenir, cassant visuellement le premier lancement
+   hors-ligne. Fichiers récupérés une fois depuis Google Fonts (licence
+   Inter: SIL OFL 1.1 ; Material Symbols: Apache 2.0) et servis en local
+   dans assets/fonts/, mis en cache par le Service Worker comme le reste
+   de l'App Shell. */
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400 700;
+    font-display: swap;
+    src: url('../assets/fonts/inter-latin.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'Material Symbols Outlined';
+    font-style: normal;
+    font-weight: 100 700;
+    font-display: swap;
+    src: url('../assets/fonts/material-symbols-outlined.woff2') format('woff2');
+}
+
+.material-symbols-outlined {
+    font-family: 'Material Symbols Outlined';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* BEGIN writing fonts (généré par scripts/writing/build_fonts.py : ne pas modifier à la main) */
+
+@font-face {
+    font-family: 'HX Ecritures';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/writing/armenien.woff2') format('woff2');
+    unicode-range: U+532, U+561-562, U+564-566, U+569-56C, U+56E-570, U+574-576, U+578, U+57A, U+57D-582, U+584, U+587, U+589;
+}
+
+@font-face {
+    font-family: 'HX Ecritures';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/writing/georgien.woff2') format('woff2');
+    unicode-range: U+10D0-10D1, U+10D3-10D5, U+10D7-10D8, U+10DA-10DD, U+10E0-10E1, U+10E3-10E4, U+10E6-10E7, U+10EC;
+}
+
+@font-face {
+    font-family: 'HX Ecritures';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/writing/arabe.woff2') format('woff2');
+    unicode-range: U+622-623, U+626-62D, U+62F, U+631-634, U+638-639, U+641-648, U+64A-64B, U+67E, U+6A9, U+6BA, U+6C1, U+6CC, U+6D2, U+6D4, U+200C;
+}
+
+@font-face {
+    font-family: 'HX Ecritures';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/writing/hebreu.woff2') format('woff2');
+    unicode-range: U+5B4, U+5B7, U+5BE-5BF, U+5D0-5D1, U+5D3-5E2, U+5E4, U+5E8-5EA, U+5F0, U+5F2;
+}
+
+@font-face {
+    font-family: 'HX Ecritures';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/writing/syriaque.woff2') format('woff2');
+    unicode-range: U+710, U+712, U+715, U+717-718, U+71D, U+71F-722, U+728-729, U+72B-72C;
+}
+
+@font-face {
+    font-family: 'HX Ecritures';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/writing/devanagari.woff2') format('woff2');
+    unicode-range: U+902-903, U+905-906, U+914-915, U+917, U+91B-91C, U+920, U+923-928, U+92A, U+92C-930, U+932, U+935, U+937-939, U+93E-943, U+947-948, U+94B-94D;
+}
+
+@font-face {
+    font-family: 'HX Ecritures';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/writing/bengali.woff2') format('woff2');
+    unicode-range: U+982, U+985-986, U+98F, U+995, U+997, U+99C, U+9A3-9A4, U+9A6-9A8, U+9AC-9B0, U+9B2, U+9B7-9B9, U+9BC, U+9BE-9C1, U+9C7, U+9CB, U+9CD, U+9F0-9F1;
+}
+
+@font-face {
+    font-family: 'HX Ecritures';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/writing/gurmukhi.woff2') format('woff2');
+    unicode-range: U+A02, U+A05-A07, U+A15, U+A1A, U+A1C, U+A24, U+A26, U+A28, U+A2A, U+A2C, U+A30, U+A35, U+A38-A39, U+A3C, U+A3E-A3F, U+A41, U+A47-A48, U+A70-A71;
+}
+
+@font-face {
+    font-family: 'HX Ecritures';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/writing/tamoul.woff2') format('woff2');
+    unicode-range: U+B85, U+B89, U+B8E, U+B95, U+B9A, U+BA4, U+BA8-BAA, U+BAE-BB3, U+BB5, U+BBE-BBF, U+BC1, U+BC7-BC8, U+BCD;
+}
+
+@font-face {
+    font-family: 'HX Ecritures';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/writing/telugu.woff2') format('woff2');
+    unicode-range: U+C02, U+C15, U+C17, U+C1A-C1B, U+C21, U+C24, U+C26, U+C28, U+C2A, U+C2E, U+C30, U+C32, U+C35, U+C37-C39, U+C3E, U+C41-C42, U+C47, U+C4B-C4D;
+}
+
+@font-face {
+    font-family: 'HX Ecritures';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/writing/thai.woff2') format('woff2');
+    unicode-range: U+E01, U+E04, U+E07, U+E14, U+E17-E19, U+E20-E23, U+E25, U+E28-E2B, U+E2D, U+E30-E32, U+E34-E35, U+E38, U+E40-E41, U+E43, U+E49, U+E4C;
+}
+
+@font-face {
+    font-family: 'HX Ecritures';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/writing/lao.woff2') format('woff2');
+    unicode-range: U+E81, U+E84, U+E94, U+E97, U+E99-E9A, U+E9E, U+EA1, U+EA5, U+EAA, U+EB0-EB2, U+EB4-EB5, U+EB8, U+EBB, U+EBD, U+EC0-EC1, U+EC8;
+}
+
+@font-face {
+    font-family: 'HX Ecritures';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/writing/khmer.woff2') format('woff2');
+    unicode-range: U+1780, U+1782, U+1784-1785, U+178F-1793, U+1796-1798, U+179A-179B, U+179F, U+17A2, U+17B6-17B8, U+17BB-17BC, U+17BE, U+17C1, U+17C3, U+17C6, U+17CB, U+17D2, U+17D4;
+}
+
+@font-face {
+    font-family: 'HX Ecritures';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/writing/birman.woff2') format('woff2');
+    unicode-range: U+1000-1002, U+1004-1005, U+100A, U+100F-1010, U+1014-1016, U+1019, U+101B-101C, U+101E, U+1021, U+102C-1031, U+1037-103E, U+104B;
+}
+
+@font-face {
+    font-family: 'HX Ecritures';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/writing/tibetain.woff2') format('woff2');
+    unicode-range: U+F0B, U+F0D, U+F42, U+F44, U+F46, U+F51, U+F53, U+F56, U+F58, U+F60, U+F62-F63, U+F66, U+F72, U+F74, U+F7A, U+F7C, U+F90, U+F92, U+FB1;
+}
+
+@font-face {
+    font-family: 'HX Ecritures';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/writing/ethiopien.woff2') format('woff2');
+    unicode-range: U+1201, U+1208-1209, U+120D, U+1218, U+121D, U+122D, U+1230, U+1232, U+1260, U+1265, U+1275, U+1290, U+1293, U+12A5, U+12A9, U+12AD, U+12C8, U+12CD, U+12E8, U+12EB, U+12F5, U+1305, U+133B, U+1362;
+}
+
+@font-face {
+    font-family: 'HX Ecritures';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/writing/gujarati.woff2') format('woff2');
+    unicode-range: U+A82, U+A85, U+A95, U+A97, U+A9B-A9C, U+AA3-AA5, U+AA7-AA8, U+AAC, U+AAE, U+AB0, U+AB5, U+AB8, U+ABE-ABF, U+AC7, U+ACB-ACD;
+}
+
+@font-face {
+    font-family: 'HX Ecritures';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/writing/kannada.woff2') format('woff2');
+    unicode-range: U+C82, U+C85, U+C8E, U+C95, U+C97-C98, U+C9F, U+CA4, U+CA6, U+CA8, U+CAE-CB0, U+CB2-CB3, U+CB5, U+CB7-CB9, U+CBE-CBF, U+CC1-CC2, U+CC6-CC7, U+CCD;
+}
+
+@font-face {
+    font-family: 'HX Ecritures';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/writing/malayalam.woff2') format('woff2');
+    unicode-range: U+D02, U+D05, U+D0E, U+D15, U+D19, U+D1C, U+D23-D24, U+D28, U+D2E-D30, U+D32-D33, U+D35-D38, U+D3E-D3F, U+D41, U+D4D;
+}
+
+@font-face {
+    font-family: 'HX Ecritures';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/writing/cingalais.woff2') format('woff2');
+    unicode-range: U+D85, U+D87, U+D8B, U+D94, U+D9A, U+D9C, U+DAD, U+DAF, U+DB1, U+DB4, U+DB6, U+DB8, U+DBA-DBB, U+DBD, U+DC0, U+DC2-DC4, U+DCA, U+DCF, U+DD2, U+DD4, U+DD9, U+DDD, U+200D;
+}
+
+@font-face {
+    font-family: 'HX Ecritures';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/writing/cherokee.woff2') format('woff2');
+    unicode-range: U+13A0-13A1, U+13A3, U+13A9, U+13B3, U+13B8-13B9, U+13C6, U+13CD, U+13CF, U+13D3, U+13D9, U+13E3, U+13E5, U+13E9, U+13EF, U+13F2;
+}
+
+@font-face {
+    font-family: 'HX Ecritures';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/writing/inuktitut.woff2') format('woff2');
+    unicode-range: U+1403, U+144E, U+1450, U+1466, U+1483, U+14A1, U+14A5, U+14C4, U+14C7, U+14D7, U+14DA, U+14EF, U+1557, U+1585;
+}
+
+@font-face {
+    font-family: 'HX Ecritures';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/writing/tifinagh.woff2') format('woff2');
+    unicode-range: U+2D30, U+2D37, U+2D3C-2D3D, U+2D49, U+2D4D-2D4F, U+2D53-2D54, U+2D56, U+2D5C, U+2D62-2D63;
+}
+
+@font-face {
+    font-family: 'HX Ecritures';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/writing/nko.woff2') format('woff2');
+    unicode-range: U+7CA-7CD, U+7CF, U+7D2-7D3, U+7D5-7D6, U+7D8, U+7DB, U+7DD-7DF, U+7EC, U+7F2;
+}
+
+@font-face {
+    font-family: 'HX Ecritures';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/writing/phenicien.woff2') format('woff2');
+    unicode-range: U+10900-10902, U+10904, U+10906-10907, U+1090A-1090D, U+1090F-10910, U+10913, U+10915;
+}
+
+@font-face {
+    font-family: 'HX Ecritures';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/writing/runes.woff2') format('woff2');
+    unicode-range: U+16A8, U+16B1-16B2, U+16B7, U+16B9-16BA, U+16BE, U+16C1, U+16C3, U+16C9-16CA, U+16CF, U+16D6, U+16DA, U+16DE-16DF;
+}
+
+@font-face {
+    font-family: 'HX Ecritures';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/writing/ogham.woff2') format('woff2');
+    unicode-range: U+1681-1687, U+169B-169C;
+}
+
+@font-face {
+    font-family: 'HX Ecritures';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/writing/lineaire_b.woff2') format('woff2');
+    unicode-range: U+10001-10003, U+1000A, U+1000F, U+10013-10014, U+10019, U+1001B, U+1001E, U+10021, U+10026, U+10028, U+1002C, U+10030, U+10033-10034, U+10037, U+1003A;
+}
+
+@font-face {
+    font-family: 'HX Ecritures';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/writing/cuneiforme.woff2') format('woff2');
+    unicode-range: U+12000, U+1202D, U+1208D, U+121A0, U+121B3, U+12217, U+1222C, U+12313;
+}
+
+@font-face {
+    font-family: 'HX Ecritures';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/writing/hieroglyphes.woff2') format('woff2');
+    unicode-range: U+13124, U+131F3, U+13250, U+132AA, U+132B5, U+132B9, U+132F9, U+1339F, U+133CF;
+}
+
+@font-face {
+    font-family: 'HX Ecritures';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/writing/glagolitique.woff2') format('woff2');
+    unicode-range: U+2C30-2C32, U+2C34-2C36, U+2C39, U+2C3F-2C41, U+2C44-2C45, U+2C48, U+2C4D-2C51, U+2C54;
+}
+
+/* END writing fonts */
+
+/* Torah (écran de l'Atelier, js/app/torah.js) : Noto Serif Hebrew, voyelles et accents compris (SIL OFL 1.1, voir
+   assets/fonts/torah/OFL.txt). Hors du bloc généré ci-dessus, qui ne concerne que les écritures. */
+@font-face {
+    font-family: 'HX Torah';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/torah/noto-serif-hebrew.woff2') format('woff2');
+}
+
+/* Polices du texte de la Torah au choix (aide « ? » du lecteur) : SIL OFL 1.1, voir assets/fonts/torah/LICENSE-*.txt */
+@font-face {
+    font-family: 'HX David';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/torah/david-libre-400.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'HX Miriam';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/torah/miriam-libre-400.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'HX Frank';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/torah/frank-ruhl-libre-400.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'HX Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/torah/noto-sans-hebrew-400.woff2') format('woff2');
+}
+
+/* Shlomo semiStam : la police de tikkun.io, pour le rendu du Tikkoun Korim. Base SIL OFL (voir assets/fonts/torah/LICENSE-ShlomosemiStam.txt) ;
+   mention « usage non commercial » de l'éditeur : à vérifier avant toute diffusion payante. */
+@font-face {
+    font-family: 'ShlomosemiStam';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/torah/ShlomosemiStam.woff2') format('woff2');
+}
+

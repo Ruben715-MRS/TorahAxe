@@ -1,0 +1,623 @@
+{
+  "id": "affaire-dreyfus",
+  "titre": "L’affaire Dreyfus",
+  "sousTitre": "Douze ans pour la vérité (1894-1906)",
+  "auteur": "Rédaction HistoriAxe",
+  "niveau": "moyen",
+  "themes": [
+    "thm_19fr",
+    "thm_fr",
+    "thm_histoire_juive_civile",
+    "thm_medias"
+  ],
+  "evenements": [
+    "pan_fr_zola",
+    "amfr102",
+    "pan_fr_dreyfus",
+    "f19_23",
+    "litty23",
+    "f19_85",
+    "f19_26",
+    "f19_27",
+    "hjc_60",
+    "f19_28",
+    "f19_87",
+    "f19_29",
+    "f19_30",
+    "f19_89"
+  ],
+  "chapitres": [
+    {
+      "titre": "Introduction",
+      "blocs": [
+        {
+          "type": "p",
+          "texte": "Paris, samedi 5 janvier 1895, neuf heures du matin. Il fait un froid glacial dans la grande cour de l’École militaire, sur le Champ-de-Mars. Des troupes de toutes les armes forment un immense carré : quatre mille soldats, l’arme au pied. Derrière les grilles, une foule de plusieurs milliers de personnes s’est massée depuis l’aube. Des journalistes du monde entier sont là. On est venu voir un spectacle rare : la dégradation d’un officier condamné pour trahison."
+        },
+        {
+          "type": "p",
+          "texte": "Un roulement de tambour. Un homme de trente-cinq ans, mince, le visage pâle derrière un lorgnon, est conduit au centre de la cour par quatre artilleurs. Le général qui commande la cérémonie lui crie : « Alfred Dreyfus, vous êtes indigne de porter les armes. Au nom du peuple français, nous vous dégradons ! » Un adjudant de la garde républicaine, un colosse, s’avance. Il arrache un à un les galons du képi et des manches, les bandes rouges du pantalon, les boutons. Puis il saisit le sabre du condamné et le brise sur son genou."
+        },
+        {
+          "type": "p",
+          "texte": "Pendant tout ce temps, l’homme crie : « Soldats, on dégrade un innocent ! Soldats, on déshonore un innocent ! Vive la France ! Vive l’armée ! » Derrière les grilles, la foule hurle : « À mort ! À mort le juif ! » Puis le condamné doit faire le tour du carré, devant les troupes, sous les insultes. Parmi les journalistes se trouve un correspondant de la *Neue Freie Presse*, le grand quotidien de Vienne. Il s’appelle Theodor Herzl."
+        },
+        {
+          "type": "p",
+          "texte": "Ce matin-là, presque toute la France est convaincue que le capitaine [[Alfred Dreyfus|evt:pan_fr_dreyfus]] est un traître, qui a vendu les secrets de l’armée à l’Allemagne. Il ne reste que quelques personnes pour croire à son innocence : sa femme, son frère, quelques proches. Douze ans plus tard, dans la même École militaire, le même homme recevra la Légion d’honneur, sous les applaudissements."
+        },
+        {
+          "type": "p",
+          "texte": "Entre les deux, l’affaire Dreyfus va déchirer la France comme peu d’événements l’ont fait. Des familles se brouillent, des amis ne se parlent plus, des hommes se battent en duel. Écrivains, savants, politiques, prêtres, ouvriers, tout le monde doit choisir son camp. Comment un officier innocent a-t-il pu être condamné ? Pourquoi l’armée s’est-elle obstinée dans l’erreur, jusqu’au mensonge et au faux ? Comment la vérité a-t-elle fini par éclater ? Pour le comprendre, il faut remonter à une défaite : celle de 1870."
+        }
+      ]
+    },
+    {
+      "titre": "I – Le coupable idéal",
+      "blocs": [
+        {
+          "type": "h",
+          "texte": "La France de la revanche"
+        },
+        {
+          "type": "p",
+          "texte": "En 1870, la France de Napoléon III a été écrasée en quelques semaines par la Prusse et ses alliés allemands. L’empereur a été fait prisonnier, Paris assiégé. Par le traité de Francfort, en 1871, la France a dû céder à l’Allemagne nouvellement unifiée l’Alsace et une partie de la Lorraine. Pour les Français de la fin du XIXe siècle, cette blessure ne se referme pas. On rêve de revanche. L’armée, reconstruite, est l’objet d’un véritable culte : elle est l’« arche sainte » de la nation."
+        },
+        {
+          "type": "p",
+          "texte": "La France est devenue une république, la IIIe République, mais elle reste fragile. Les monarchistes et les catholiques conservateurs ne l’acceptent pas. En 1889, un général populaire, Boulanger, a failli la renverser : c’est la [[crise boulangiste|evt:f19_85]]. En 1892, le [[scandale de Panama|evt:f19_26]] révèle que des dizaines de parlementaires ont été achetés par la compagnie qui creusait le canal. Plusieurs des intermédiaires de l’affaire sont juifs, ce que la presse antisémite exploite aussitôt."
+        },
+        {
+          "type": "p",
+          "texte": "Car l’antisémitisme est en plein essor. En 1886, un journaliste, [[Édouard Drumont|fiche:drumont]], a publié *La France juive*, un énorme pamphlet qui accuse les Juifs de dominer et de ruiner le pays. Le livre se vend à des centaines de milliers d’exemplaires. En 1892, Drumont fonde un quotidien, *La Libre Parole*, dont la devise est « La France aux Français ». Il dénonce sans relâche la présence d’officiers juifs dans l’armée. La même année, un capitaine juif, Armand Mayer, est tué en duel par un antisémite, le marquis de Morès, qui l’avait provoqué après ces attaques."
+        },
+        {
+          "type": "p",
+          "texte": "Les Juifs de France sont pourtant peu nombreux : environ 70 000 en métropole, sur près de quarante millions d’habitants. La France a été le premier pays d’Europe à leur accorder l’égalité des droits, en 1791. Beaucoup sont profondément attachés à la République qui les a émancipés, et à l’armée. Plusieurs centaines d’officiers sont juifs. Beaucoup viennent d’Alsace, la région qui comptait le plus de Juifs en France, et qui vient d’être perdue."
+        },
+        {
+          "type": "h",
+          "texte": "Un officier sans histoire"
+        },
+        {
+          "type": "p",
+          "texte": "Alfred Dreyfus est l’un d’eux. Il est né en 1859 à Mulhouse, dans une famille d’industriels du textile. Il a onze ans quand les Allemands entrent dans la ville. En 1872, la famille choisit de rester française : les plus jeunes partent s’installer à Paris, tandis qu’un frère aîné reste à Mulhouse pour faire tourner l’usine. Le jeune Alfred décide de devenir soldat, pour reprendre un jour l’Alsace."
+        },
+        {
+          "type": "p",
+          "texte": "Il entre à l’École polytechnique, choisit l’artillerie, puis réussit le concours de l’École supérieure de guerre, qui forme les officiers d’état-major. En 1893, il est affecté comme stagiaire à l’état-major de l’armée, au ministère de la Guerre, rue Saint-Dominique à Paris. Il est le seul officier juif de l’état-major. Il est riche, travailleur, un peu raide, peu aimé de certains de ses camarades, qui le trouvent arrogant. Marié à Lucie Hadamard, il a deux jeunes enfants, Pierre et Jeanne."
+        },
+        {
+          "type": "p",
+          "texte": "Son parcours n’a pas été sans obstacle. À l’École supérieure de guerre, l’un des généraux examinateurs lui a donné une note exécrable, en expliquant qu’il ne voulait « pas de Juifs à l’état-major ». Dreyfus a protesté auprès du directeur de l’école, sans résultat. Il en est tout de même sorti neuvième de sa promotion, sur plus de quatre-vingts officiers. Il est convaincu que, dans l’armée de la République, seul compte le mérite."
+        },
+        {
+          "type": "h",
+          "texte": "Un papier dans une corbeille"
+        },
+        {
+          "type": "p",
+          "texte": "Au ministère de la Guerre, un petit service, la [[Section de statistique|fiche:section]], s’occupe en réalité d’espionnage et de contre-espionnage. Elle a une source précieuse, qu’elle appelle « la voie ordinaire » : une femme de ménage de l’ambassade d’Allemagne, Marie Bastian, qui récupère le contenu des corbeilles à papier et le remet en secret aux agents français. On recolle ensuite les morceaux de papier déchirés."
+        },
+        {
+          "type": "p",
+          "texte": "À la fin de septembre 1894, la voie ordinaire apporte un document déchiré en six morceaux. C’est une lettre sans date ni signature, adressée à l’attaché militaire allemand à Paris, le colonel [[Max von Schwartzkoppen|fiche:schwartzkoppen]]. Son auteur lui annonce l’envoi de plusieurs documents sur l’armée française : une note sur un frein hydraulique de canon, des renseignements sur l’organisation de l’artillerie et des troupes, un projet de manuel de tir. On l’appellera le [[bordereau|fiche:bordereau]]."
+        },
+        {
+          "type": "p",
+          "texte": "Il y a donc un traître au ministère. Qui ? Les enquêteurs raisonnent vite, et mal. Les documents concernent l’artillerie : le traître doit être un artilleur. Il touche à plusieurs services : ce doit être un stagiaire, qui passe d’un bureau à l’autre. On compare les écritures des officiers. Celle de Dreyfus présente une ressemblance avec celle du bordereau. Et Dreyfus est juif. Pour beaucoup d’officiers, imprégnés d’antisémitisme, cela suffit à rendre le soupçon vraisemblable."
+        },
+        {
+          "type": "p",
+          "texte": "Certains détails auraient pourtant dû faire réfléchir. Le bordereau se termine par ces mots : « Je vais partir en manœuvres. » Or les stagiaires de l’état-major, comme Dreyfus, avaient appris en mai 1894 qu’ils n’iraient pas aux manœuvres cette année-là. Et plusieurs des documents annoncés n’intéressaient guère un officier d’état-major. Mais personne ne cherche ce qui pourrait innocenter le suspect. On cherche à confirmer ce qu’on croit déjà savoir."
+        },
+        {
+          "type": "p",
+          "texte": "Le 15 octobre 1894, Dreyfus est convoqué au ministère en tenue civile, sous un prétexte. Un officier à monocle, le commandant [[du Paty de Clam|fiche:du-paty]], lui demande d’écrire une lettre sous sa dictée, sous prétexte qu’il a mal au doigt. La lettre reprend des phrases du bordereau. Du Paty croit voir trembler la main de Dreyfus. Il se lève et lui annonce : « Au nom de la loi, je vous arrête. Vous êtes accusé du crime de haute trahison. » Dreyfus, stupéfait, proteste de son innocence. On l’emmène à la prison militaire du Cherche-Midi."
+        }
+      ]
+    },
+    {
+      "titre": "II – Le procès à huis clos",
+      "blocs": [
+        {
+          "type": "h",
+          "texte": "« Haute trahison. Arrestation de l’officier juif »"
+        },
+        {
+          "type": "p",
+          "texte": "Pendant deux semaines, l’arrestation reste secrète. Du Paty interroge Dreyfus des dizaines de fois, de nuit, en braquant sur lui une lampe, en lui montrant des fragments du bordereau. Dreyfus ne comprend rien à ce qu’on lui reproche. Il n’avoue rien, puisqu’il n’a rien à avouer. Aucune preuve matérielle n’est trouvée : ni argent, ni maîtresse, ni dettes, ni documents. Le dossier est vide, à part l’écriture."
+        },
+        {
+          "type": "p",
+          "texte": "Le jour même de l’arrestation, du Paty se présente au domicile du capitaine, avenue du Trocadéro. Il fait fouiller l’appartement et annonce à Lucie Dreyfus que son mari est accusé d’un crime très grave, sans lui dire lequel. Il lui ordonne le silence absolu : un seul mot, et ce serait la guerre avec l’Allemagne. Pendant deux semaines, Lucie ne sait même pas où se trouve son mari."
+        },
+        {
+          "type": "p",
+          "texte": "Les experts en écriture ne sont d’ailleurs pas d’accord. Deux sur cinq jugent que le bordereau n’est pas de Dreyfus. L’un de ceux qui l’accusent, [[Alphonse Bertillon|fiche:bertillon]], le chef du service d’identité judiciaire de la préfecture de police, n’est pas un spécialiste des écritures. Il invente une théorie extravagante : si l’écriture du bordereau ne ressemble pas tout à fait à celle de Dreyfus, c’est que Dreyfus l’a imitée lui-même pour pouvoir se défendre en cas de découverte."
+        },
+        {
+          "type": "p",
+          "texte": "Le 1er novembre, *La Libre Parole*, informée par une fuite venue du ministère, titre : « Haute trahison. Arrestation de l’officier juif A. Dreyfus ». Toute la presse s’enflamme. Le ministre de la Guerre, le général [[Mercier|fiche:mercier]], attaqué pour sa faiblesse, ne peut plus reculer : il déclare publiquement que la culpabilité de Dreyfus est certaine, avant même le procès."
+        },
+        {
+          "type": "p",
+          "texte": "Pourquoi Mercier s’acharne-t-il ? Le ministre est contesté, accusé par la presse nationaliste d’avoir laissé l’armée s’affaiblir. Il a affirmé publiquement que le traître était pris. Si Dreyfus était acquitté, c’est lui qui serait ridiculisé, et peut-être renversé. À partir de ce moment, la culpabilité de Dreyfus devient une affaire d’honneur pour le ministre, puis pour l’état-major tout entier. Chaque nouvelle erreur obligera à en commettre une autre pour la cacher."
+        },
+        {
+          "type": "p",
+          "texte": "Les Juifs de France, eux, se taisent. Beaucoup ont peur qu’en défendant Dreyfus on les accuse de faire passer la solidarité religieuse avant la patrie. Certains sont même convaincus de sa culpabilité, comme le reste du pays. Le grand rabbin de France assiste en silence à la tempête. Pendant des années, la communauté juive restera d’une grande discrétion."
+        },
+        {
+          "type": "h",
+          "texte": "Le dossier secret"
+        },
+        {
+          "type": "p",
+          "texte": "Le procès s’ouvre le 19 décembre 1894 devant un [[conseil de guerre|fiche:conseil-guerre]], un tribunal militaire composé de sept officiers, à Paris. Le huis clos est prononcé : le public et la presse sont exclus. L’avocat de Dreyfus, Edgar Demange, un ténor du barreau catholique, a accepté de le défendre après avoir lu le dossier et s’être convaincu de son innocence."
+        },
+        {
+          "type": "p",
+          "texte": "L’accusation est fragile. Alors un officier de la Section de statistique, le commandant [[Hubert Henry|fiche:henry]], un ancien soldat sorti du rang, frappe les esprits. À la barre, il affirme qu’une « personne honorable » l’a averti de la présence d’un traître au ministère. Il se retourne, pointe le doigt vers Dreyfus et lance : « Le traître, le voici ! » Il refuse de donner le nom de sa source, en jurant sur son honneur d’officier."
+        },
+        {
+          "type": "p",
+          "texte": "Surtout, pendant que les juges délibèrent, on leur remet en secret, sur ordre du ministre, une enveloppe contenant quelques pièces : c’est le [[dossier secret|fiche:dossier-secret]]. Ni Dreyfus ni son avocat n’en connaissent l’existence. L’une de ces pièces est une lettre de l’attaché militaire allemand à son collègue italien, qui parle de « ce canaille de D. ». Rien ne prouve qu’il s’agit de Dreyfus ; on saura plus tard que l’initiale visait un autre homme. Communiquer des pièces aux juges sans que la défense puisse les discuter est une grave illégalité."
+        },
+        {
+          "type": "p",
+          "texte": "Le 22 décembre 1894, à l’unanimité, les sept juges déclarent Dreyfus coupable. Il est condamné à la déportation à vie dans une enceinte fortifiée et à la dégradation militaire. Ce soir-là, il écrit à sa femme qu’il pense au suicide. Il y renonce, pour ses enfants et pour son nom. Il décide de vivre pour prouver son innocence."
+        },
+        {
+          "type": "h",
+          "texte": "« Je suis innocent »"
+        },
+        {
+          "type": "p",
+          "texte": "Après la dégradation du 5 janvier, une rumeur se répand : Dreyfus aurait avoué. Un capitaine de la garde républicaine, Lebrun-Renault, raconte que le condamné lui aurait dit, ce matin-là : « Si j’ai livré des documents, c’étaient des documents sans importance, et c’était pour en avoir de plus considérables. » La phrase, sortie de son contexte et rapportée de seconde main, sera longtemps brandie comme un aveu. Dreyfus avait sans doute raconté ce que du Paty lui avait proposé de dire pour obtenir l’indulgence."
+        },
+        {
+          "type": "p",
+          "texte": "Pour être bien sûr que le traître ne s’échappe pas, le gouvernement fait voter en février 1895 une loi spéciale. Elle désigne comme lieu de déportation les îles du Salut, au large de la Guyane, à plus de sept mille kilomètres de la France, où l’État a installé un [[bagne|evt:amfr102]] depuis les années 1850. L’une de ces îles, la plus petite, servait autrefois à isoler les lépreux. On l’appelle l’île du Diable."
+        }
+      ]
+    },
+    {
+      "titre": "III – L’île du Diable",
+      "blocs": [
+        {
+          "type": "h",
+          "texte": "Un rocher au milieu de l’océan"
+        },
+        {
+          "type": "p",
+          "texte": "Embarqué à l’île de Ré en février 1895, Dreyfus voyage dans une cage grillagée, au fond d’un navire. Il arrive aux îles du Salut en mars, puis il est installé sur l’[[île du Diable|fiche:ile-diable]] en avril. Il en est le seul prisonnier. On lui a construit une case de pierre de quatre mètres sur quatre. Des gardiens le surveillent jour et nuit, avec ordre de ne pas lui adresser la parole. Il n’a le droit de se promener que sur une petite partie de l’île, sous le soleil écrasant, au milieu des moustiques et des fièvres."
+        },
+        {
+          "type": "figure",
+          "src": "assets/recits/affaire-dreyfus/guyane.svg",
+          "legende": "La Guyane française et les îles du Salut. L’île du Diable, la plus petite des trois, mesure à peine plus d’un kilomètre de long.",
+          "credit": "Carte HistoriAxe"
+        },
+        {
+          "type": "p",
+          "texte": "Ses lettres sont lues, recopiées, censurées, et lui parviennent avec des mois de retard. Il écrit à sa femme presque chaque jour, et tient un journal. À plusieurs reprises, il adresse des suppliques au président de la République pour demander qu’on cherche le vrai coupable. En septembre 1896, à la suite d’une fausse nouvelle d’évasion publiée par un journal anglais, le ministre ordonne de l’entourer d’une palissade et de le mettre aux fers la nuit : pendant près de deux mois, ses chevilles sont attachées à son lit par une double boucle de fer. Il tient bon. Dans ses lettres à Lucie, il répète qu’il vit pour elle, pour leurs enfants et pour leur honneur."
+        },
+        {
+          "type": "p",
+          "texte": "Pour ne pas devenir fou, il s’impose une discipline de fer. Il lit tout ce qu’on lui laisse lire, Shakespeare, Montaigne, Balzac, des revues ; il apprend l’anglais, fait des exercices de mathématiques, dessine. Lucie demande à le rejoindre, comme la loi le permet aux épouses de déportés. Sa demande est refusée."
+        },
+        {
+          "type": "h",
+          "texte": "Le frère admirable"
+        },
+        {
+          "type": "p",
+          "texte": "À Paris, sa famille ne renonce pas. Son frère aîné, [[Mathieu Dreyfus|fiche:mathieu]], quitte ses affaires de Mulhouse pour se consacrer entièrement à le sauver. On l’appellera « le frère admirable ». Il frappe à toutes les portes, consulte des experts en écriture, finance des enquêtes. Il va même consulter une voyante. Mais les portes restent fermées : qui voudrait défendre un traître juif ?"
+        },
+        {
+          "type": "p",
+          "texte": "En septembre 1896, pour réveiller l’opinion, Mathieu fait publier par un journal anglais la fausse nouvelle de l’évasion de son frère. La ruse fait parler de l’Affaire dans la presse, mais elle se retourne contre le prisonnier : c’est à la suite de cette rumeur qu’il est mis aux fers. En 1898, les dreyfusards publieront ses lettres à sa femme sous le titre *Lettres d’un innocent*. Leur dignité bouleversera de nombreux lecteurs."
+        },
+        {
+          "type": "p",
+          "texte": "En novembre 1896, un jeune écrivain et journaliste juif, [[Bernard Lazare|fiche:lazare]], publie à Bruxelles une brochure intitulée *Une erreur judiciaire. La vérité sur l’affaire Dreyfus*. C’est le premier texte public en faveur du condamné. Il passe presque inaperçu. Le même mois, le journal *Le Matin* publie un fac-similé du bordereau, obtenu de l’un des experts. Tout le monde peut désormais voir l’écriture du traître. Ce détail va tout changer."
+        },
+        {
+          "type": "h",
+          "texte": "Le petit bleu"
+        },
+        {
+          "type": "p",
+          "texte": "Entre-temps, la Section de statistique a changé de chef. En juillet 1895, le lieutenant-colonel [[Georges Picquart|fiche:picquart]], un officier brillant de quarante ans, alsacien lui aussi, en a pris la direction. Il n’aime pas les Juifs, comme beaucoup d’officiers de son temps. Mais c’est un homme d’honneur, attaché à la vérité."
+        },
+        {
+          "type": "p",
+          "texte": "Au printemps 1896, la voie ordinaire apporte un nouveau document déchiré : un « petit bleu », une carte-télégramme envoyée par pneumatique, que Schwartzkoppen n’a finalement pas expédiée. Elle est adressée à un officier français, le commandant [[Walsin Esterhazy|fiche:esterhazy]]. Picquart enquête sur cet homme. Il découvre un officier criblé de dettes, joueur, menteur, qui cherche à se faire affecter au ministère et qui s’intéresse beaucoup à l’artillerie."
+        },
+        {
+          "type": "p",
+          "texte": "En août 1896, Picquart se procure des lettres d’Esterhazy. En voyant son écriture, il a un choc : c’est celle du bordereau. Il fait vérifier par Bertillon, qui s’exclame, sans savoir de qui il s’agit : « C’est l’écriture du bordereau ! » Picquart ouvre alors le dossier secret qui a servi à condamner Dreyfus. Il le trouve vide de toute preuve. Il en est désormais certain : Dreyfus est innocent, et le traître est Esterhazy."
+        },
+        {
+          "type": "figure",
+          "src": "assets/recits/affaire-dreyfus/pieces.svg",
+          "legende": "Les quatre pièces au cœur de l’Affaire : qui les a écrites, qui les a trouvées, à quoi elles ont servi.",
+          "credit": "Schéma HistoriAxe"
+        },
+        {
+          "type": "h",
+          "texte": "« Que vous importe ? »"
+        },
+        {
+          "type": "p",
+          "texte": "Picquart prévient ses supérieurs, les généraux de Boisdeffre, chef d’état-major, et Gonse, son adjoint. Il s’attend à ce qu’on rouvre l’enquête. On lui demande au contraire de séparer les deux affaires : poursuivre Esterhazy si l’on veut, mais ne pas toucher à Dreyfus. Rouvrir le procès, ce serait avouer que l’armée s’est trompée, et que le ministre a commis une illégalité. Selon Picquart, Gonse lui dit : « Que vous importe que ce juif reste à l’île du Diable ? » Picquart répond : « Mon général, il est innocent. Je n’emporterai pas ce secret dans la tombe. »"
+        },
+        {
+          "type": "p",
+          "texte": "En novembre 1896, Picquart est éloigné de Paris, envoyé en mission dans l’Est, puis en Tunisie, dans un régiment de tirailleurs. Son adjoint, le commandant Henry, prend sa place. Et Henry fabrique une preuve. Il compose une fausse lettre, attribuée à l’attaché militaire italien, qui cite cette fois Dreyfus en toutes lettres. On l’appellera le « faux Henry ». L’état-major le joint au dossier, comme la preuve définitive de la culpabilité de Dreyfus."
+        },
+        {
+          "type": "p",
+          "texte": "Henry et du Paty ne s’arrêtent pas là. Ils fabriquent d’autres pièces pour discréditer Picquart, et préviennent Esterhazy du danger qui le menace. En octobre 1897, lors de rendez-vous secrets, du Paty, déguisé, et une mystérieuse « dame voilée » lui donnent des conseils pour sa défense. L’état-major protège désormais le vrai traître pour sauver sa propre erreur."
+        },
+        {
+          "type": "p",
+          "texte": "Picquart, inquiet, rédige un testament pour que la vérité soit connue s’il lui arrivait malheur. En juin 1897, en congé à Paris, il se confie à un ami avocat, Louis Leblois. La vérité est désormais hors de l’armée."
+        }
+      ]
+    },
+    {
+      "titre": "IV – « J’accuse… ! »",
+      "blocs": [
+        {
+          "type": "h",
+          "texte": "« Il n’y a pas d’affaire Dreyfus »"
+        },
+        {
+          "type": "p",
+          "texte": "Leblois prévient un homme respecté de tous : [[Auguste Scheurer-Kestner|fiche:scheurer]], vice-président du Sénat, alsacien, républicain et protestant. Convaincu, celui-ci tente de convaincre le gouvernement. On lui oppose un mur. Le président du Conseil, Jules Méline, déclare à la Chambre, le 4 décembre 1897 : « Il n’y a pas d’affaire Dreyfus. »"
+        },
+        {
+          "type": "p",
+          "texte": "Mais un hasard précipite les choses. Un banquier, en voyant dans une vitrine le fac-similé du bordereau publié par *Le Matin*, reconnaît l’écriture de l’un de ses clients : Esterhazy. Il prévient Mathieu Dreyfus. Le 15 novembre 1897, Mathieu dénonce publiquement Esterhazy comme l’auteur du bordereau, dans une lettre au ministre de la Guerre. Esterhazy est contraint de demander à être jugé, sûr d’être protégé par l’état-major, qui l’aide en secret."
+        },
+        {
+          "type": "p",
+          "texte": "Peu après, *Le Figaro* publie des lettres écrites des années plus tôt par Esterhazy à une ancienne maîtresse. Il y exprime une haine furieuse contre la France et l’armée française. Dans l’une d’elles, il écrit qu’il ne ferait pas de mal à un petit chien, mais qu’il ferait tuer cent mille Français avec plaisir, et rêve d’entrer dans Paris à la tête d’un escadron de uhlans, des cavaliers allemands. Esterhazy prétend que ces lettres sont des faux."
+        },
+        {
+          "type": "p",
+          "texte": "Son procès devant un conseil de guerre, les 10 et 11 janvier 1898, est une comédie. Les débats importants ont lieu à huis clos. Les experts jugent que l’écriture du bordereau n’est pas celle d’Esterhazy. Après une très courte délibération, il est acquitté à l’unanimité. À la sortie, la foule l’acclame aux cris de « Vive l’armée ! À bas les juifs ! ». Le lendemain, c’est Picquart qui est arrêté et enfermé au mont Valérien pour avoir divulgué des secrets."
+        },
+        {
+          "type": "h",
+          "texte": "Une bombe en première page"
+        },
+        {
+          "type": "p",
+          "texte": "[[Émile Zola|evt:pan_fr_zola]] est alors l’écrivain le plus célèbre de France. Il a cinquante-sept ans. Ses romans, comme *[[Germinal|evt:litty23]]*, se vendent dans le monde entier. Il s’est intéressé à l’Affaire depuis l’automne, et il a déjà écrit plusieurs articles. L’acquittement d’Esterhazy le décide à frapper un grand coup. En deux jours, il écrit une longue lettre ouverte au président de la République, Félix Faure."
+        },
+        {
+          "type": "p",
+          "texte": "Zola n’est pas un homme politique, et il a longtemps hésité. Mais en novembre et décembre 1897, il a déjà publié dans *Le Figaro* trois articles favorables à la révision, puis deux brochures, une *Lettre à la jeunesse* et une *Lettre à la France*. Les lecteurs du *Figaro* se sont désabonnés en masse, et le journal a cessé de publier ses articles. Zola cherche une autre tribune."
+        },
+        {
+          "type": "p",
+          "texte": "Le 13 janvier 1898, elle paraît en première page de *L’Aurore*, un petit quotidien républicain dirigé par Ernest Vaughan, dont l’éditorialiste est [[Georges Clemenceau|fiche:clemenceau]]. C’est Clemenceau qui trouve le titre, en lettres énormes : « [[J’accuse…!|evt:f19_28]] ». Le journal, qui tire d’habitude à trente mille exemplaires, en vend environ trois cent mille dans la journée. Les crieurs s’époumonent sur les boulevards."
+        },
+        {
+          "type": "p",
+          "texte": "Zola raconte toute l’affaire, puis il accuse nommément, l’un après l’autre, les responsables : du Paty de Clam, le général Mercier, les généraux de Boisdeffre et Gonse, les experts en écriture, les juges qui ont condamné Dreyfus sur une pièce secrète, et ceux qui ont acquitté Esterhazy « par ordre ». Il sait que ces accusations le rendent passible de poursuites pour diffamation. C’est exactement ce qu’il cherche : un procès public, où la vérité pourra enfin être dite."
+        },
+        {
+          "type": "citation",
+          "texte": "Je n’ai qu’une passion, celle de la lumière, au nom de l’humanité qui a tant souffert et qui a droit au bonheur. Ma protestation enflammée n’est que le cri de mon âme. Qu’on ose donc me traduire en cour d’assises et que l’enquête ait lieu au grand jour ! J’attends.",
+          "source": "Émile Zola, « J’accuse…! », L’Aurore, 13 janvier 1898."
+        },
+        {
+          "type": "h",
+          "texte": "Le procès Zola"
+        },
+        {
+          "type": "p",
+          "texte": "Zola est jugé en février 1898 devant la cour d’assises de la Seine. Le procès dure plus de deux semaines et passionne le pays. Mais le président du tribunal interdit toute question sur l’affaire Dreyfus elle-même, avec une formule qu’il répète sans cesse : « La question ne sera pas posée. » Picquart témoigne courageusement. Les généraux viennent affirmer, la main sur le cœur, que Dreyfus est coupable. L’un d’eux, de Pellieux, évoque une preuve absolue : c’est le faux Henry."
+        },
+        {
+          "type": "p",
+          "texte": "Le gouvernement allemand, lui, a fait savoir officiellement, dès janvier 1898, par la voix de son ministre des Affaires étrangères devant le Reichstag, qu’il n’avait jamais eu aucune relation avec Dreyfus. En France, les antidreyfusards n’y voient qu’une manœuvre de l’ennemi pour semer le trouble."
+        },
+        {
+          "type": "p",
+          "texte": "À chaque audience, une foule hostile attend Zola à la sortie du palais de justice. On le siffle, on le menace, on lui jette des pierres ; il doit être protégé par la police. Son avocat, Fernand Labori, plaide avec flamme, tout comme Georges Clemenceau, autorisé à prendre la parole aux côtés de son frère Albert, l’avocat de L’Aurore. Le 5 mars, quelques jours après le verdict, Picquart et Henry, qui se sont traités de menteurs à l’audience, se battent en duel à l’épée. Henry est légèrement blessé."
+        },
+        {
+          "type": "p",
+          "texte": "Zola est condamné au maximum : un an de prison et trois mille francs d’amende. Le jugement est annulé pour vice de forme, mais un second procès, à Versailles en juillet, le condamne de nouveau. Sur le conseil de ses amis, il s’exile en Angleterre le soir même, pour éviter que la condamnation ne lui soit signifiée. Il y reste près d’un an, sous un faux nom."
+        },
+        {
+          "type": "encadre",
+          "titre": "La naissance des « intellectuels »",
+          "texte": "Le lendemain de « J’accuse…! », L’Aurore publie une pétition demandant la révision du procès. Elle est signée par des écrivains, des professeurs, des savants, des artistes : Anatole France, le jeune Marcel Proust, le peintre Claude Monet, l’historien Gabriel Monod, des étudiants de l’École normale supérieure. Leurs adversaires les appellent avec mépris les « intellectuels ». Le mot, rarement employé jusque-là, devient un drapeau.\n\nPour la première fois, des hommes et des femmes connus pour leurs œuvres se réunissent pour peser sur une décision politique, au nom de la vérité et de la justice. C’est ce modèle de l’intellectuel engagé, né de l’Affaire, qui traversera tout le XXe siècle.\n\nEn face, d’autres écrivains, comme Maurice Barrès, défendent l’armée et la nation contre ce qu’ils jugent une campagne qui l’affaiblit. Pour Barrès, peu importe que Dreyfus soit coupable ou non : l’intérêt de la France passe avant la vérité d’un individu."
+        },
+        {
+          "type": "h",
+          "texte": "La France coupée en deux"
+        },
+        {
+          "type": "p",
+          "texte": "En janvier et février 1898, des émeutes antisémites éclatent dans plus de cinquante villes de France : on brise les vitrines des magasins juifs, on brûle des effigies de Zola. En Algérie, où l’antisémitisme est particulièrement violent, les émeutes font plusieurs morts. En mai, les électeurs d’Alger envoient Drumont à la Chambre des députés."
+        },
+        {
+          "type": "p",
+          "texte": "La France se divise en deux camps. D’un côté, les dreyfusards, qui exigent la révision du procès au nom de la justice et des droits de l’homme. En février 1898, ils jettent les bases de la [[Ligue des droits de l’homme|fiche:ligue]], fondée officiellement en juin. De l’autre, les antidreyfusards, pour qui l’honneur de l’armée et l’unité de la nation passent avant tout. Ils fondent leurs propres ligues, comme la Ligue de la patrie française, et une partie d’entre eux s’en prend violemment aux Juifs, aux protestants, aux « sans-patrie »."
+        },
+        {
+          "type": "p",
+          "texte": "Les camps ne recoupent pas exactement la gauche et la droite. Il y a des catholiques dreyfusards et des socialistes qui hésitent longtemps, avant que [[Jean Jaurès|evt:pan_fr_jaures]] ne les entraîne dans le combat pour Dreyfus. Le dessinateur Caran d’Ache, antidreyfusard, résume la situation dans un dessin célèbre. Sur la première image, une famille se met à table : « Surtout ! ne parlons pas de l’affaire Dreyfus ! » Sur la seconde, la table est renversée et les convives se battent : « … Ils en ont parlé… »"
+        }
+      ]
+    },
+    {
+      "titre": "V – Le faux",
+      "blocs": [
+        {
+          "type": "h",
+          "texte": "Un faux découvert à la lampe"
+        },
+        {
+          "type": "p",
+          "texte": "En juin 1898, un nouveau ministre de la Guerre, Godefroy Cavaignac, veut en finir. Honnête et convaincu de la culpabilité de Dreyfus, il lit triomphalement à la Chambre, le 7 juillet, trois pièces du dossier, dont le faux Henry. Les députés, enthousiastes, votent l’affichage de son discours dans les 36 000 communes de France. Pour les antidreyfusards, l’affaire est close."
+        },
+        {
+          "type": "p",
+          "texte": "Cavaignac ordonne alors une vérification complète du dossier. Le 13 août 1898, un officier chargé de ce travail, le capitaine Louis Cuignet, examine le faux Henry le soir, à la lumière d’une lampe. Il remarque que le papier quadrillé de la lettre est fait de deux morceaux, dont les lignes ne sont pas de la même couleur. L’en-tête et la signature appartiennent à une vraie lettre ; le milieu a été ajouté. C’est un faux grossier."
+        },
+        {
+          "type": "p",
+          "texte": "Le 30 août, Cavaignac interroge Henry lui-même. Après une heure de dénégations, Henry avoue : il a fabriqué la lettre, « dans l’intérêt du pays », pour calmer les esprits. Il est arrêté et enfermé au mont Valérien. Le lendemain, 31 août 1898, on le retrouve mort dans sa cellule, la gorge tranchée avec un rasoir. Le chef d’état-major, le général de Boisdeffre, démissionne. Esterhazy s’enfuit en Belgique, puis en Angleterre, où il finira par reconnaître devant des journalistes qu’il a écrit le bordereau."
+        },
+        {
+          "type": "p",
+          "texte": "Cavaignac, qui s’était porté garant du faux devant la Chambre, démissionne quelques jours plus tard, tout en restant persuadé de la culpabilité de Dreyfus. Picquart, lui, est toujours en prison : arrêté de nouveau en juillet 1898, il y restera près d’un an, accusé à son tour d’avoir fabriqué le petit bleu. L’état-major ne renonce pas à le faire condamner."
+        },
+        {
+          "type": "p",
+          "texte": "Pour les dreyfusards, la révision est désormais inévitable. Pourtant, une partie des antidreyfusards ne désarme pas. Un écrivain monarchiste, Charles Maurras, présente Henry comme un héros qui a commis un « faux patriotique ». *La Libre Parole* ouvre une souscription pour aider sa veuve à poursuivre en justice Joseph Reinach, un dreyfusard qui l’accusait. Elle reçoit des milliers de dons, accompagnés de messages haineux contre les Juifs, publiés sous le nom de « monument Henry »."
+        },
+        {
+          "type": "h",
+          "texte": "La République en danger"
+        },
+        {
+          "type": "p",
+          "texte": "En février 1899, le président Félix Faure meurt subitement à l’Élysée. Lors de ses funérailles, un nationaliste exalté, Paul Déroulède, tente d’entraîner un régiment vers l’Élysée pour renverser la République. Le général refuse ; Déroulède est arrêté. La tentative est ridicule, mais elle montre que l’Affaire est devenue une crise du régime lui-même."
+        },
+        {
+          "type": "p",
+          "texte": "Le 3 juin 1899, toutes les chambres réunies de la [[Cour de cassation|fiche:cassation]], la plus haute juridiction du pays, annulent le jugement de 1894. Elles renvoient Dreyfus devant un nouveau conseil de guerre, à Rennes. Quelques jours plus tard, un nouveau gouvernement est formé par un républicain modéré, Pierre Waldeck-Rousseau. C’est un gouvernement de « [[défense républicaine|evt:f19_87]] », qui veut mettre fin à l’agitation et reprendre l’armée en main."
+        },
+        {
+          "type": "h",
+          "texte": "Le retour"
+        },
+        {
+          "type": "p",
+          "texte": "Sur l’île du Diable, Dreyfus apprend la nouvelle par un simple télégramme. Il ne sait presque rien de ce qui s’est passé depuis quatre ans : ni la découverte d’Esterhazy, ni « J’accuse…! », ni le faux Henry. Il ne connaît même pas le nom de Zola dans son affaire. Il est rapatrié et débarque en pleine nuit, le 1er juillet 1899, sur une plage de la presqu’île de Quiberon, en Bretagne, sous une pluie battante. On le conduit à la prison de Rennes, où il retrouve sa femme après près de cinq ans."
+        },
+        {
+          "type": "p",
+          "texte": "Ceux qui le voient sont frappés. À trente-neuf ans, il a l’air d’un vieillard : amaigri, les cheveux blanchis, il a perdu des dents et a du mal à parler, à force de silence. Beaucoup de dreyfusards, qui se sont battus pour un symbole, sont déçus par cet homme raide et réservé, qui parle d’une voix sans éclat. Un militant aurait dit : « Nous étions prêts à mourir pour Dreyfus, mais pas Dreyfus. » La formule est peut-être inventée, mais elle dit quelque chose de vrai."
+        },
+        {
+          "type": "h",
+          "texte": "Rennes"
+        },
+        {
+          "type": "p",
+          "texte": "Le procès de Rennes s’ouvre le 7 août 1899 dans une salle du lycée de la ville. Le monde entier le suit : plus de quatre cents journalistes sont présents. Le général Mercier y vient défendre sa décision de 1894 et répète que Dreyfus est coupable. Le 14 août, l’avocat de Dreyfus, Fernand Labori, est blessé d’une balle dans le dos par un inconnu, qui ne sera jamais retrouvé."
+        },
+        {
+          "type": "p",
+          "texte": "Pendant les débats, Dreyfus reste le plus souvent silencieux, raide sur sa chaise, se levant pour répondre d’une voix monotone. Il découvre au fil des audiences toute l’histoire de son affaire. Le dernier jour, invité à parler, il dit seulement qu’il est certain d’affirmer devant son pays et devant l’armée qu’il est innocent, et qu’il ne demande qu’à rendre l’honneur à ses enfants. Il ne fait aucun effet de tribune. Beaucoup de journalistes étrangers sont frappés par cette dignité ; certains pensent qu’elle l’a desservi auprès de juges qui attendaient peut-être des larmes."
+        },
+        {
+          "type": "p",
+          "texte": "À Paris, pendant ce temps, l’agitation continue. Le chef de la Ligue antisémitique, Jules Guérin, menacé d’arrestation pour complot contre la République, s’enferme avec quelques fidèles dans le siège de sa ligue, rue de Chabrol. Il y soutient pendant plus d’un mois un siège burlesque, ravitaillé par ses partisans, sous les yeux des badauds. Les journaux l’appellent « Fort Chabrol ». Il finit par se rendre à la fin de septembre."
+        },
+        {
+          "type": "p",
+          "texte": "Le 9 septembre 1899, le verdict tombe. Par cinq voix contre deux, les juges déclarent Dreyfus de nouveau coupable, mais « avec circonstances atténuantes ». Ils le condamnent à dix ans de détention. Le verdict est absurde : comment une trahison pourrait-elle avoir des circonstances atténuantes ? Les juges militaires n’ont pas voulu désavouer leurs chefs. À l’étranger, l’indignation est générale."
+        },
+        {
+          "type": "p",
+          "texte": "Le gouvernement cherche une issue. Il propose à Dreyfus une grâce présidentielle. L’accepter, c’est renoncer à faire appel, et donc admettre implicitement sa condamnation. Certains dreyfusards, comme Clemenceau, veulent qu’il refuse, pour continuer le combat. Mais Dreyfus est épuisé et malade, et son frère craint qu’il ne survive pas à une nouvelle détention. Il accepte. Le 19 septembre 1899, le président Émile Loubet le gracie. Dreyfus fait savoir qu’il continuera à se battre pour faire reconnaître son innocence. Le ministre de la Guerre, le général de Galliffet, déclare : « L’incident est clos. »"
+        },
+        {
+          "type": "p",
+          "texte": "Pour certains dreyfusards, la grâce est une défaite déguisée. L’écrivain Charles Péguy, qui s’était battu pour Dreyfus dans les rues du Quartier latin, écrira plus tard que la « mystique » dreyfusarde, le combat pour la justice, s’est dégradée en « politique », en arrangements de partis. Pour d’autres, l’essentiel est fait : Dreyfus est libre et vivant, et la bataille pour la vérité peut continuer."
+        },
+        {
+          "type": "frise",
+          "items": [
+            {
+              "date": "1894",
+              "texte": "Arrestation, procès à huis clos et condamnation de Dreyfus"
+            },
+            {
+              "date": "1895",
+              "texte": "Dégradation à l’École militaire ; déportation à l’île du Diable"
+            },
+            {
+              "date": "1896",
+              "texte": "Picquart découvre Esterhazy ; Henry fabrique son faux"
+            },
+            {
+              "date": "1898",
+              "texte": "Acquittement d’Esterhazy ; « J’accuse…! » ; aveux et mort d’Henry"
+            },
+            {
+              "date": "1899",
+              "texte": "Annulation du jugement de 1894 ; procès de Rennes ; grâce"
+            },
+            {
+              "date": "1906",
+              "texte": "Réhabilitation par la Cour de cassation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titre": "Épilogue – La vérité en marche",
+      "blocs": [
+        {
+          "type": "h",
+          "texte": "Réhabilité"
+        },
+        {
+          "type": "p",
+          "texte": "L’incident n’est pas clos. En 1900, une loi d’amnistie éteint toutes les poursuites liées à l’Affaire : ni Mercier, ni du Paty, ni Zola, ni Picquart ne seront jugés. Les dreyfusards la vivent comme une injustice de plus. Le 29 septembre 1902, Émile Zola meurt asphyxié dans son appartement parisien, par le gaz d’une cheminée bouchée. Accident ou crime ? Un demi-siècle plus tard, un témoignage tardif affirmera qu’un fumiste antidreyfusard avait bouché le conduit. Rien n’a jamais été prouvé. Aux obsèques, Anatole France dit de lui : « Il fut un moment de la conscience humaine. »"
+        },
+        {
+          "type": "p",
+          "texte": "En 1903, Jaurès relance l’Affaire à la Chambre. Une nouvelle enquête est ouverte. Le 12 juillet 1906, la Cour de cassation [[annule sans renvoi|evt:f19_89]] le jugement de Rennes : il n’y a plus rien à juger, Dreyfus est innocent. Le lendemain, une loi le réintègre dans l’armée avec le grade de chef d’escadron, l’équivalent de commandant. Picquart est fait général. Quelques mois plus tard, il devient ministre de la Guerre dans le gouvernement de Clemenceau."
+        },
+        {
+          "type": "p",
+          "texte": "Le 21 juillet 1906, dans une cour de l’École militaire, à quelques dizaines de mètres de l’endroit où il avait été dégradé, Dreyfus est fait chevalier de la Légion d’honneur. Quand la cérémonie s’achève, la foule crie : « Vive Dreyfus ! » Il répond : « Non, je vous en prie. Vive la République, vive la vérité ! » Mais la carrière qu’on lui a volée ne lui est pas rendue : le temps passé au bagne n’est pas compté dans son ancienneté. Il prend sa retraite dès 1907."
+        },
+        {
+          "type": "p",
+          "texte": "En 1908, lors du transfert des cendres de Zola au Panthéon, un journaliste nationaliste tire deux coups de revolver sur Dreyfus et le blesse au bras. Il est acquitté. Pendant la Première Guerre mondiale, Dreyfus, à cinquante-cinq ans, reprend du service comme officier d’artillerie, notamment au Chemin des Dames et près de Verdun. Il meurt à Paris le 12 juillet 1935, à soixante-quinze ans, jour pour jour vingt-neuf ans après sa réhabilitation."
+        },
+        {
+          "type": "p",
+          "texte": "Lucie Dreyfus survit à son mari. Pendant la Seconde Guerre mondiale, sous l’Occupation, elle doit se cacher sous un faux nom dans le sud de la France. Elle meurt en 1945. L’une de ses petites-filles, Madeleine Lévy, résistante, est arrêtée à Toulouse, déportée à Auschwitz et y meurt en 1944. La famille Dreyfus n’a pas échappé à la haine dont l’Affaire avait été un premier avertissement."
+        },
+        {
+          "type": "encadre",
+          "titre": "Ce que l’on sait du vrai traître",
+          "texte": "Esterhazy n’a jamais été jugé pour le bordereau. Réfugié en Angleterre, il a donné plusieurs versions, prétendant parfois avoir agi sur ordre de ses chefs pour intoxiquer les Allemands, ce que rien ne confirme. Il est mort en 1923 près de Londres, sous un faux nom.\n\nEn 1930, les carnets de Max von Schwartzkoppen, l’attaché militaire allemand, publiés après sa mort, ont confirmé qu’Esterhazy était bien son informateur, et qu’il n’avait jamais eu aucun contact avec Dreyfus. Selon sa famille, sur son lit de mort, en 1917, il aurait encore murmuré : « Dreyfus est innocent. »\n\nQuant aux documents livrés, les historiens pensent qu’ils avaient peu de valeur. L’armée française a donc condamné un innocent et protégé un coupable, pour une trahison qui ne lui avait presque rien coûté."
+        },
+        {
+          "type": "h",
+          "texte": "Ce que l’Affaire a changé"
+        },
+        {
+          "type": "p",
+          "texte": "L’affaire Dreyfus a profondément transformé la France. La victoire des dreyfusards renforce la République et les républicains de gauche. Elle conduit à la [[loi de 1901 sur les associations|evt:f19_29]], qui frappe les congrégations religieuses accusées d’avoir soutenu l’antidreyfusisme, puis à la [[loi de séparation des Églises et de l’État|evt:f19_30]] en 1905. L’armée est placée plus étroitement sous le contrôle du pouvoir civil."
+        },
+        {
+          "type": "p",
+          "texte": "Mais l’Affaire a aussi fait naître une extrême droite nationaliste et antisémite, organisée et durable. L’Action française, fondée en 1899 dans le camp antidreyfusard, en devient la voix la plus influente. Quand, en 1945, son chef Charles Maurras est condamné pour collaboration avec l’occupant, il s’écrie : « C’est la revanche de Dreyfus ! »"
+        },
+        {
+          "type": "p",
+          "texte": "L’Affaire a eu un témoin attentif venu de Vienne. Theodor Herzl a assisté à la dégradation de 1895. Quelques mois plus tard, il écrit *L’État des Juifs*, et réunit en 1897 à Bâle le [[premier Congrès sioniste|evt:hjc_60]]. Herzl affirmera plus tard que l’Affaire a fait de lui un sioniste. Les historiens nuancent : ses carnets de l’époque en parlent peu, et l’antisémitisme de Vienne, où un maire ouvertement antisémite venait d’être élu, a sans doute compté autant. Mais pour beaucoup, le spectacle de la foule criant « À mort les juifs ! » dans le pays des droits de l’homme a été un choc."
+        },
+        {
+          "type": "p",
+          "texte": "L’Affaire a passionné le monde entier. En 1899, après le verdict de Rennes, des manifestations ont lieu devant les ambassades de France, et certains appellent à boycotter l’Exposition universelle prévue à Paris en 1900. Elle a aussi profondément marqué la littérature : Marcel Proust, dreyfusard de la première heure, en a fait l’un des fils de *À la recherche du temps perdu*, où elle divise les salons parisiens comme elle a divisé la France."
+        },
+        {
+          "type": "p",
+          "texte": "Il a fallu longtemps pour que l’institution militaire reconnaisse officiellement son erreur. En 1995, à la suite d’une polémique provoquée par une note d’un officier du service historique de l’armée qui présentait encore l’innocence de Dreyfus comme une simple « thèse », le chef de ce service déclare publiquement que l’affaire Dreyfus est « une conspiration militaire qui aboutit à la déportation d’un innocent ». À Paris, une statue de l’artiste Tim montre le capitaine tenant son sabre brisé, droit, au garde-à-vous."
+        },
+        {
+          "type": "p",
+          "texte": "Le 12 juillet 2006, pour le centenaire de la réhabilitation, le président de la République, Jacques Chirac, rend hommage à Dreyfus dans la cour de l’École militaire, là même où il avait été dégradé puis décoré. Il salue « un officier exemplaire » et tous ceux qui ont lutté pour la justice."
+        },
+        {
+          "type": "p",
+          "texte": "En novembre 1897, Zola avait écrit dans *Le Figaro* : « La vérité est en marche, et rien ne l’arrêtera. » Il lui a fallu douze ans pour arriver. L’affaire Dreyfus reste le symbole d’une erreur judiciaire, de la force des préjugés et de l’antisémitisme, mais aussi du courage de quelques hommes et femmes : une épouse, un frère, un officier qui n’aimait pas les Juifs mais aimait la vérité, un écrivain qui a tout risqué. Et d’un homme seul sur un rocher, qui n’a jamais cessé de crier son innocence."
+        }
+      ]
+    }
+  ],
+  "fiches": {
+    "drumont": {
+      "titre": "Édouard Drumont",
+      "texte": "Un journaliste et écrivain (1844-1917), auteur de *La France juive* (1886), l’un des plus grands succès de librairie du XIXe siècle, qui fait de l’antisémitisme une idée politique en France. Fondateur du quotidien *La Libre Parole* en 1892, il est l’un des principaux meneurs de la campagne contre Dreyfus. Il est élu député d’Alger en 1898."
+    },
+    "section": {
+      "titre": "La Section de statistique",
+      "texte": "Le service de renseignement de l’état-major de l’armée française, créé après la défaite de 1870. Son nom discret cache des activités d’espionnage et de contre-espionnage, tournées surtout contre l’Allemagne. Dirigée en 1894 par le colonel Sandherr, puis par Picquart, elle compte quelques officiers seulement. Elle est réorganisée après l’Affaire, qui a révélé ses méthodes."
+    },
+    "schwartzkoppen": {
+      "titre": "Max von Schwartzkoppen",
+      "texte": "Un officier prussien (1850-1917), attaché militaire à l’ambassade d’Allemagne à Paris de 1891 à 1897. C’est à lui qu’est adressé le bordereau, et c’est lui qui rémunère Esterhazy. Tenu par le secret et par ses ordres, il ne dit jamais publiquement que Dreyfus est innocent. Ses carnets, publiés en 1930, le confirment."
+    },
+    "bordereau": {
+      "titre": "Le bordereau",
+      "texte": "Une lettre manuscrite non signée, sur papier pelure, déchirée en six morceaux, trouvée à l’ambassade d’Allemagne en septembre 1894. Son auteur annonce l’envoi de cinq documents militaires. Attribuée à Dreyfus sur la foi d’une ressemblance d’écriture, elle était en réalité d’Esterhazy. Elle est conservée aujourd’hui aux Archives nationales."
+    },
+    "du-paty": {
+      "titre": "Du Paty de Clam",
+      "texte": "Le commandant Armand du Paty de Clam (1853-1916), officier de l’état-major, chargé de l’enquête en 1894. Amateur de mises en scène, il organise la dictée qui piège Dreyfus et l’interroge pendant des semaines. Il aide ensuite Esterhazy en secret. Mis à la retraite après l’Affaire, il reprend du service en 1914 et meurt de ses blessures."
+    },
+    "bertillon": {
+      "titre": "Alphonse Bertillon",
+      "texte": "Un policier et criminologue (1853-1914), inventeur de l’anthropométrie, une méthode d’identification des criminels par leurs mensurations, et des photographies de face et de profil. Célèbre dans le monde entier, il n’était pas expert en écriture. Sa théorie compliquée de l’« autoforgerie » de Dreyfus a été démolie par les mathématiciens, dont Henri Poincaré, en 1904."
+    },
+    "mercier": {
+      "titre": "Le général Mercier",
+      "texte": "Auguste Mercier (1833-1921), ministre de la Guerre en 1894. Accusé de faiblesse par la presse nationaliste, il pousse à la condamnation de Dreyfus et fait transmettre aux juges le dossier secret, en violation de la loi. Il ne reconnaît jamais son erreur et témoigne de nouveau contre Dreyfus à Rennes. Protégé par l’amnistie de 1900, il devient sénateur."
+    },
+    "conseil-guerre": {
+      "titre": "Le conseil de guerre",
+      "texte": "Le tribunal militaire chargé de juger les soldats et officiers en temps de paix comme en temps de guerre. Il est composé de sept officiers, qui ne sont pas des juristes, et présidé par un colonel. Ses décisions ne peuvent être attaquées que devant un conseil de révision, ou devant la Cour de cassation en cas de fait nouveau."
+    },
+    "henry": {
+      "titre": "Le commandant Henry",
+      "texte": "Hubert Henry (1846-1898), fils de paysans, engagé comme simple soldat et devenu officier, membre de la Section de statistique. C’est lui qui reçoit les papiers de la « voie ordinaire ». Il témoigne contre Dreyfus en 1894, puis fabrique le faux qui porte son nom en 1896. Démasqué en août 1898, il avoue et meurt le lendemain dans sa cellule."
+    },
+    "dossier-secret": {
+      "titre": "Le dossier secret",
+      "texte": "Un ensemble de pièces réunies par la Section de statistique et transmises en secret aux juges de 1894, sans que la défense en ait connaissance. Il grossit ensuite jusqu’à plusieurs centaines de pièces, dont beaucoup sans rapport avec l’affaire, et quelques faux. Sa communication illégale aux juges est l’une des raisons de l’annulation du premier procès."
+    },
+    "ile-diable": {
+      "titre": "L’île du Diable",
+      "texte": "La plus petite des trois îles du Salut, au large de Kourou, en Guyane. Elle mesure environ 1,2 kilomètre de long et 400 mètres de large. Elle abrite d’abord des lépreux, puis Dreyfus de 1895 à 1899, et plus tard des déportés politiques. Le bagne de Guyane est fermé après la Seconde Guerre mondiale ; les derniers bagnards rentrent en France en 1953."
+    },
+    "mathieu": {
+      "titre": "Mathieu Dreyfus",
+      "texte": "Le frère aîné d’Alfred (1857-1930), industriel à Mulhouse. Dès l’arrestation, il consacre tout son temps et une partie de sa fortune à prouver l’innocence de son frère, avec patience et discrétion. C’est lui qui dénonce publiquement Esterhazy en novembre 1897. Ses souvenirs ont été publiés en 1978 sous le titre *L’Affaire telle que je l’ai vécue*."
+    },
+    "lazare": {
+      "titre": "Bernard Lazare",
+      "texte": "Un écrivain et journaliste (1865-1903), né à Nîmes dans une famille juive. Il est le premier à défendre publiquement Dreyfus, dans une brochure publiée en 1896. Proche des anarchistes, il devient ensuite sioniste, avant de se brouiller avec Herzl. L’écrivain Charles Péguy a fait de lui, dans *Notre jeunesse*, le portrait d’un prophète."
+    },
+    "picquart": {
+      "titre": "Georges Picquart",
+      "texte": "Un officier (1854-1914), né à Strasbourg, chef de la Section de statistique à partir de 1895. Il découvre la culpabilité d’Esterhazy et refuse de se taire, ce qui lui vaut d’être éloigné, emprisonné et chassé de l’armée. Réintégré comme général en 1906, il devient ministre de la Guerre dans le gouvernement Clemenceau, de 1906 à 1909. Il meurt d’une chute de cheval en 1914."
+    },
+    "esterhazy": {
+      "titre": "Walsin Esterhazy",
+      "texte": "Ferdinand Walsin Esterhazy (1847-1923), officier d’infanterie, issu d’une branche bâtarde d’une grande famille hongroise. Joueur, couvert de dettes, il propose ses services à l’attaché militaire allemand en 1894 contre de l’argent. Acquitté en 1898, il s’enfuit en Angleterre après les aveux d’Henry. Il y vit sous un faux nom jusqu’à sa mort."
+    },
+    "scheurer": {
+      "titre": "Auguste Scheurer-Kestner",
+      "texte": "Un chimiste et industriel alsacien (1833-1899), républicain et protestant, sénateur inamovible et vice-président du Sénat. Convaincu de l’innocence de Dreyfus en 1897, il est le premier homme politique de premier plan à demander la révision, ce qui lui coûte sa vice-présidence. Il meurt le 19 septembre 1899, le jour même où Dreyfus est gracié."
+    },
+    "clemenceau": {
+      "titre": "Georges Clemenceau",
+      "texte": "Un homme politique radical (1841-1929), médecin de formation, battu aux élections de 1893 après le scandale de Panama. Éditorialiste à L’Aurore, il écrit des centaines d’articles pour Dreyfus et trouve le titre de « J’accuse…! ». Il devient président du Conseil en 1906, puis de nouveau en 1917, quand il conduit la France à la victoire."
+    },
+    "ligue": {
+      "titre": "La Ligue des droits de l’homme",
+      "texte": "Une association fondée en 1898 par le sénateur Ludovic Trarieux et un groupe de dreyfusards, pour défendre les principes de la Déclaration des droits de l’homme et du citoyen de 1789. Elle compte rapidement des dizaines de milliers de membres. Elle existe toujours et a inspiré la création de ligues semblables dans d’autres pays."
+    },
+    "cassation": {
+      "titre": "La Cour de cassation",
+      "texte": "La plus haute juridiction de l’ordre judiciaire en France, installée au palais de justice de Paris. Elle ne juge pas les faits, mais vérifie que la loi a été correctement appliquée. Elle peut aussi réviser une condamnation en cas de fait nouveau. Dans l’Affaire, elle annule le jugement de 1894 en 1899, puis celui de Rennes en 1906."
+    }
+  },
+  "sources": [
+    "Vincent Duclert, Alfred Dreyfus. L’honneur d’un patriote, Fayard, 2006 ; et L’Affaire Dreyfus, La Découverte, coll. « Repères ».",
+    "Jean-Denis Bredin, L’Affaire, Julliard, 1983 ; nouvelle édition, Fayard, 1993.",
+    "Alfred Dreyfus, Cinq années de ma vie, 1901 (rééd. La Découverte, 2006).",
+    "Émile Zola, « J’accuse…! », L’Aurore, 13 janvier 1898 (texte intégral disponible en ligne).",
+    "Musée d’art et d’histoire du judaïsme, Paris : fonds Alfred et Lucie Dreyfus (mahj.org)."
+  ]
+}

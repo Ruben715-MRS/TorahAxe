@@ -1,0 +1,52 @@
+{
+  "recits": [
+    {
+      "id": "affaire-dreyfus",
+      "fichier": "assets/recits/affaire-dreyfus.json",
+      "titre": "L’affaire Dreyfus",
+      "sousTitre": "Douze ans pour la vérité (1894-1906)",
+      "resume": "En 1894, un capitaine juif est condamné pour trahison sur la foi d’une ressemblance d’écriture, puis déporté sur un rocher au large de la Guyane. Le vrai traître est un autre, et l’armée le sait. Entre un officier qui refuse de se taire, un faux grossier et un article de Zola, récit de l’affaire qui a coupé la France en deux.",
+      "periode": "Époque contemporaine",
+      "niveau": "moyen",
+      "minutes": [
+        25,
+        35
+      ],
+      "image": "assets/portraits/pan_fr_dreyfus.jpg",
+      "imageLegende": "Alfred Dreyfus en uniforme d’officier",
+      "publie": "2026-11-14"
+    },
+    {
+      "id": "israel-1948",
+      "fichier": "assets/recits/israel-1948.json",
+      "titre": "La création de l’État d’Israël",
+      "sousTitre": "Deux peuples, une terre, une guerre (1881-1949)",
+      "resume": "Le 14 mai 1948, à Tel-Aviv, David Ben Gourion proclame l’État d’Israël. Pour les Juifs, c’est l’aboutissement d’un rêve né cinquante ans plus tôt et une renaissance après la Shoah ; pour les Arabes de Palestine, c’est la Nakba, la catastrophe. Récit des cinquante années et de la guerre qui ont fait naître un État et des centaines de milliers de réfugiés.",
+      "periode": "Époque contemporaine",
+      "niveau": "moyen",
+      "minutes": [
+        25,
+        35
+      ],
+      "image": "assets/portraits/pan_il_bengourion.jpg",
+      "imageLegende": "David Ben Gourion",
+      "publie": "2026-11-14"
+    },
+    {
+      "id": "bar-kokhba",
+      "fichier": "assets/recits/bar-kokhba.json",
+      "titre": "La révolte de Bar Kokhba",
+      "sousTitre": "La dernière guerre des Juifs contre Rome (132-135)",
+      "resume": "En 1960, dans une grotte du désert de Judée, des archéologues découvrent des lettres signées « Shimon ben Kosiba ». Leur auteur a mené, dix-huit siècles plus tôt, la dernière grande révolte des Juifs contre Rome, face à l’empereur Hadrien. Messie pour les uns, « fils du mensonge » pour les autres : récit d’une guerre dont on ignore encore beaucoup, et qui a changé le visage du judaïsme.",
+      "periode": "Antiquité",
+      "niveau": "moyen",
+      "minutes": [
+        25,
+        35
+      ],
+      "image": "assets/portraits/pan_es_hadrien.jpg",
+      "imageLegende": "Hadrien, tête colossale en marbre (IIe siècle)",
+      "publie": "2026-11-14"
+    }
+  ]
+}
