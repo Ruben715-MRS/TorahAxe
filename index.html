@@ -759,11 +759,18 @@
             <div class="tool-history-chips" id="tool-tanakh-show" role="group" aria-label="Langues affichées" data-i18n-attr="aria-label:tools.tanakh_show_label"></div>
             <hr class="tanakh-chips-sep" aria-hidden="true">
             <div class="tool-history-chips" id="tool-tanakh-vowels" role="group" aria-label="Affichage du texte" data-i18n-attr="aria-label:tools.torah_vowels_label"></div>
+            <hr class="tanakh-chips-sep" aria-hidden="true">
+            <div class="tool-history-chips" id="tool-tanakh-flow" role="group" aria-label="Mise en page du texte" data-i18n-attr="aria-label:tools.tanakh_flow_label"></div>
+            <p class="tool-small" id="tool-tanakh-flow-note" hidden></p>
+            <button type="button" class="tool-history-chip tanakh-auto-btn" id="tool-tanakh-auto" aria-pressed="false" onclick="autoScrollToggle('tanakh')" data-i18n="autoscroll.start" data-i18n-attr="title:autoscroll.help" title="Le texte défile tout seul ; vous réglez la vitesse">▶︎ Défilement automatique</button>
             <details class="tanakh-comm-panel" id="tool-tanakh-comm" hidden>
                 <summary id="tool-tanakh-comm-summary" data-i18n="tools.tanakh_comm_title">Commentateurs</summary>
                 <div class="tanakh-comm-list" id="tool-tanakh-comm-list" role="group" aria-label="Commentateurs" data-i18n-attr="aria-label:tools.tanakh_comm_title"></div>
             </details>
-            <label class="dict-toggle" id="tool-tanakh-chne-label" hidden data-i18n-attr="title:tools.tanakh_chne_help" title="Chaque verset deux fois, puis sa traduction araméenne (Targoum Onkelos)"><input type="checkbox" id="tool-tanakh-chne" onchange="tanakhToggleChne(this.checked)"> <span data-i18n="tools.tanakh_chne">Chné Mikra</span></label>
+            <div class="tanakh-toggles">
+                <label class="dict-toggle" id="tool-tanakh-chne-label" hidden data-i18n-attr="title:tools.tanakh_chne_help" title="Chaque verset deux fois, puis sa traduction araméenne (Targoum Onkelos)"><input type="checkbox" id="tool-tanakh-chne" onchange="tanakhToggleChne(this.checked)"> <span data-i18n="tools.tanakh_chne">Chné Mikra</span></label>
+                <label class="dict-toggle" id="tool-tanakh-summary-label" data-i18n-attr="title:tools.tanakh_summary_help" title="Une phrase pour le livre et une pour chaque chapitre"><input type="checkbox" id="tool-tanakh-summary-on" onchange="tanakhToggleSummary(this.checked)"> <span data-i18n="tools.tanakh_summary_toggle">Résumé</span></label>
+            </div>
             <p class="tool-msg" id="tool-tanakh-msg" role="status"></p>
         </div>
         <div class="tanakh-text" id="tool-tanakh-text"></div>

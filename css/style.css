@@ -17146,6 +17146,9 @@ body[data-view-profile="religieux"] .league-btn {
 .torah-nav { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 10px 0; }
 .torah-nav .tool-history-chip { min-width: 44px; min-height: 44px; font-size: 20px; }
 .tanakh-chips-sep { margin: 10px 0; border: 0; border-top: 2px solid var(--border-soft, #c9ced8); }
+.tanakh-toggles { display: flex; flex-wrap: wrap; align-items: center; gap: 0 22px; }
+.tanakh-auto-btn { margin: 6px 0; }
+.tanakh-auto-btn[aria-pressed="true"] { background: var(--tk-accent, #eaf1ff); border-color: var(--tk-toggle-active, currentColor); }
 .tanakh-nav-bottom { margin: 18px 0 8px; }
 .tanakh-nav-bottom .tanakh-nav-label { flex: 1; min-width: 0; font-size: 15px; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 #screen-tool-tanakh .torah-nav { scroll-margin-top: 64px; }
@@ -17304,11 +17307,24 @@ body[data-view-profile="religieux"] .league-btn {
 .tanakh-comm.tanakh-comm-fr { font-family: system-ui, sans-serif; font-size: 15px; line-height: 1.6; text-align: start; }
 .tanakh-comm-tag { display: inline-block; padding: 0 6px; border-radius: 6px; font-size: 0.8em; font-weight: 700; color: #fff; background: var(--comm-color, var(--muted-text)); }
 .dict-toggle[hidden] { display: none; }
+/* Le résumé d'un chapitre, sous son titre (mode « Par paracha »). */
+.tanakh-chapter-summary { margin: 0 0 10px; font: italic 14px/1.5 system-ui, sans-serif; color: var(--muted-text); text-align: start; }
 .tanakh-aliyah-title { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin: 14px 0 6px; padding: 2px 10px; border-radius: 8px; background: var(--surface, #eef1f6); font: 700 13px system-ui, sans-serif; color: var(--text-dark); text-align: start; }
 .tanakh-aliyah-title [lang="he"] { font-family: var(--torah-font); font-size: 16px; }
 .tanakh-chapter-title { margin: 18px 0 8px; font: 700 15px system-ui, sans-serif; text-align: start; color: var(--muted-text); border-bottom: 1px solid var(--border-soft, #c9ced8); padding-bottom: 4px; }
 .tanakh-chapter-title:first-child { margin-top: 0; }
 .tanakh-verse-repeat { opacity: 0.75; }
+/* Texte continu : les versets se suivent dans un même paragraphe, chacun précédé de son petit numéro. */
+.tanakh-block .tanakh-flow { margin: 0 0 12px; }
+.tanakh-verse.tanakh-flow { line-height: 2; }
+.tanakh-fr.tanakh-flow { line-height: 1.7; text-align: justify; hyphens: auto; }
+/* Le numéro d'un verset commenté est un bouton (pastille discrète) ; ouvert, il se remplit comme la pastille « 💬 n » du verset par verset. */
+.tanakh-num-btn { padding: 0 6px; min-height: 22px; border: 1px solid var(--border-soft, #c9ced8); border-radius: 10px; background: transparent; cursor: pointer; position: relative; }
+.tanakh-num-btn::after { content: ""; position: absolute; inset: -8px -4px; }   /* zone de toucher plus large que la pastille */
+.tanakh-num-btn[aria-expanded="true"] { background: var(--muted-text); border-color: var(--muted-text); color: #fff; }
+.tanakh-flow-comm { margin: 0 0 14px; padding: 6px 0 2px; border-top: 1px solid var(--border-soft, #c9ced8); border-bottom: 1px solid var(--border-soft, #c9ced8); direction: ltr; }
+.tanakh-flow-comm-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; font: 700 13px system-ui, sans-serif; color: var(--muted-text); text-align: start; }
+.tanakh-flow-comm-hide { min-height: 32px; padding: 0 10px; border: 0; background: transparent; color: var(--muted-text); font: 700 13px system-ui, sans-serif; text-decoration: underline; cursor: pointer; }
 .tanakh-targum { margin: 0 0 6px; padding-inline-start: 10px; border-inline-start: 3px solid #b8860b; font-family: var(--torah-font); font-size: 20px; line-height: 1.8; color: var(--muted-text); }
 .tanakh-comm-badge { margin-inline-start: 8px; padding: 0 8px; min-height: 24px; border: 1px solid var(--border-soft, #c9ced8); border-radius: 12px; background: transparent; color: var(--muted-text); font: 700 12px system-ui, sans-serif; cursor: pointer; vertical-align: middle; }
 .tanakh-comm-badge[aria-expanded="true"] { background: var(--muted-text); color: #fff; }

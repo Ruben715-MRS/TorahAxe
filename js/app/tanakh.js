@@ -50,6 +50,7 @@ const tanakhLoaded = {};  // id -> livre chargé
 const tanakhCommLoaded = {};   // commentateur -> livre -> { he, fr } : commentaire chargé (fr : null sans traduction)
 const tanakhCommPending = {};  // « commentateur/livre » -> promesse en cours, pour ne charger qu'une fois
 const tanakhOnkelosLoaded = {};  // livre -> onkelos-<livre>.json (le Targoum)
+const tanakhSummaries = {};   // livre -> resume-<livre>.json : { book, parts?, chapters[c] } (un résumé d'une phrase par chapitre)
 const tanakhCounts = {};   // livre -> counts-<livre>.json : { order, chapters[c][v] = masque } (quels exégètes commentent le verset)
 let tanakhAliyot = null;     // data/torah/aliyot.json : { parashot[k] = [7 débuts [c, v], maftir ou null] } (null tant qu'il n'est pas chargé)
 let tanakhHaftarot = null;   // data/torah/haftarot.json : { regular, combined, sabbaths } (null tant qu'il n'est pas chargé)
@@ -57,8 +58,29 @@ let tanakhCalendar = null;   // data/torah/calendar.json : { sabbaths } (le cale
 let tanakhWeekDate = null;   // la date choisie pour « Paracha et haftara par date » (null : aujourd'hui)
 let tanakhWeekOpen = false;
 let tanakhParashot = null;  // data/torah/parashot.json : { books, parashot[] } (null tant qu'il n'est pas chargé)
-let tanakhState = { haftara: null, book: null, chapter: 0, parasha: 0, aliyah: 0, mode: 'chapter', vowels: 'full', show: 'both', comm: {}, open: {}, chne: false };  // mode : 'chapter' ou 'parasha' ; parasha : rang dans les parachiot du livre ; aliyah : 0 (toute la paracha), 1 à 7, 8 (maftir) ; chne : mode Chné Mikra ; chapter : index dans le livre (0 = premier) ; comm : { id: true } cochés ; open : { 'chapitre:verset': true } dépliés par la pastille
+const TANAKH_FLOW_KEY = 'tanakhFlow';
+const TANAKH_FLOW_CHUNK = 8;   // en texte continu, hébreu et français ensemble : un paragraphe de 8 versets au plus, pour que le français reste en face de son hébreu
+
+const TANAKH_SUMMARY_KEY = 'tanakhSummary';
+
+// La case « Résumé » est cochée par défaut ; le choix est gardé sur l'appareil.
+function tanakhStoredSummary() {
+    try { return localStorage.getItem(TANAKH_SUMMARY_KEY) !== '0'; } catch (e) { return true; }
+}
+
+function tanakhStoredFlow() {
+    try { return localStorage.getItem(TANAKH_FLOW_KEY) === 'text' ? 'text' : 'verses'; } catch (e) { return 'verses'; }
+}
+
+// Le texte continu est-il choisi ?
+function tanakhFlowOn() {
+    return tanakhState.flow === 'text';
+}
+
+let tanakhState = { haftara: null, book: null, chapter: 0, parasha: 0, aliyah: 0, mode: 'chapter', vowels: 'full', show: 'both', flow: tanakhStoredFlow(), summary: tanakhStoredSummary(), comm: {}, open: {}, chne: false };  // mode : 'chapter' ou 'parasha' ; parasha : rang dans les parachiot du livre ; aliyah : 0 (toute la paracha), 1 à 7, 8 (maftir) ; chne : mode Chné Mikra ; chapter : index dans le livre (0 = premier) ; comm : { id: true } cochés ; open : { 'chapitre:verset': true } dépliés par la pastille
 // show : 'both' (hébreu et français), 'he' (hébreu seul), 'fr' (français seul)
+// flow : 'verses' (un verset par bloc, avec commentaires et Chné Mikra) ou 'text' (texte continu : les versets se suivent dans un même paragraphe, sans
+// retour à la ligne ; les commentaires s'ouvrent au toucher du numéro d'un verset, pas de Chné Mikra). Mémorisé sur l'appareil.
 
 // Une ouverture demandée par un autre écran (les Téhilim du jour de l'écran Zmanim) : { book, chapter, show } (chapter : index, 0 = premier ; show : 'he', 'fr' ou 'both', facultatif). Prise au prochain toolTanakhInit.
 let tanakhPending = null;
@@ -68,6 +90,7 @@ function tanakhOpenAt(book, chapter, show) {
 }
 
 function toolTanakhInit() {
+    autoScrollClose('tanakh');
     if (tanakhPending && tanakhIndex) {
         const p = tanakhPending;
         tanakhPending = null;
@@ -97,12 +120,13 @@ function tanakhOpen(id, extra) {
     const msg = toolEl('tool-tanakh-msg');
     const show = (book) => {
         tanakhLoaded[id] = book;
-        tanakhState = { book: id, chapter: 0, parasha: 0, aliyah: 0, mode: tanakhState.mode, vowels: tanakhState.vowels, show: tanakhState.show, comm: tanakhState.comm, open: {}, chne: tanakhState.chne, haftara: null };
+        tanakhState = { book: id, chapter: 0, parasha: 0, aliyah: 0, mode: tanakhState.mode, vowels: tanakhState.vowels, show: tanakhState.show, flow: tanakhState.flow, summary: tanakhState.summary, comm: tanakhState.comm, open: {}, chne: tanakhState.chne, haftara: null };
         Object.assign(tanakhState, extra || {});
         msg.textContent = '';
         tanakhRender();
         tanakhLoadComments(id);
         tanakhLoadCounts(id);
+        tanakhLoadSummaries(id);
         tanakhLoadOnkelos(id);
         tanakhLoadParashot();
     };
@@ -131,7 +155,7 @@ function tanakhHasOnkelos() {
 
 // Le mode Chné Mikra est-il en marche ici ? Coché, et le livre a son Targoum.
 function tanakhChneOn() {
-    return tanakhState.chne && tanakhHasOnkelos();
+    return tanakhState.chne && tanakhHasOnkelos() && !tanakhFlowOn();
 }
 
 // Charge le Targoum du livre (une fois) quand le mode est coché ; puis réaffiche si on est toujours sur ce livre.
@@ -157,7 +181,7 @@ function tanakhToggleChne(checked) {
 
 // La case « Chné Mikra » : visible seulement pour un livre qui a son Targoum.
 function tanakhRenderChneToggle() {
-    toolEl('tool-tanakh-chne-label').hidden = !tanakhHasOnkelos();
+    toolEl('tool-tanakh-chne-label').hidden = !tanakhHasOnkelos() || tanakhFlowOn();   // en texte continu, la case disparaît (elle reste cochée et revient en « Verset par verset »)
     toolEl('tool-tanakh-chne').checked = tanakhState.chne;
 }
 
@@ -176,7 +200,8 @@ function tanakhCommAvailable() {
 // Les exégètes dont un commentaire est à l'écran, donc dont la source se mentionne : les cochés, et ceux qu'une pastille dépliée a fait charger.
 function tanakhCommSources() {
     const opened = Object.keys(tanakhState.open).length > 0;
-    return tanakhCommAvailable().filter(c => tanakhState.comm[c.id] || (opened && (tanakhCommLoaded[c.id] || {})[tanakhState.book]));
+    const flow = tanakhFlowOn();   // en texte continu, seuls les versets ouverts montrent des commentaires : les cases cochées ne comptent pas
+    return tanakhCommAvailable().filter(c => (!flow && tanakhState.comm[c.id]) || (opened && (tanakhCommLoaded[c.id] || {})[tanakhState.book]));
 }
 
 // Les commentateurs cochés qui couvrent le livre ouvert : ceux qu'on affiche.
@@ -274,9 +299,11 @@ function tanakhRender() {
     tanakhRenderAliyah();
     tanakhRenderCycle();
     tanakhRenderSummary();
+    tanakhRenderSummaryToggle();
     tanakhRenderBottomNav();
     tanakhRenderVowels();
     tanakhRenderShow();
+    tanakhRenderFlow();
     tanakhRenderCommPanel();
     tanakhRenderChneToggle();
     tanakhRenderText(book);
@@ -427,23 +454,65 @@ function tanakhAliyahChoices() {
     return [1, 2, 3, 4, 5, 6, 7].concat(starts[7] ? [8] : []);
 }
 
-// Le résumé de ce qu'on lit : celui de la paracha affichée (mode « Par paracha », livres de la Torah), ou, pour les cinq méguilot, celui du livre et du
-// chapitre ouvert. Les textes sont ceux de « Commandements et principes » (`tools.cmd_parachiot_*` et `tools.cmd_megilot_*`, ui/fr.json) : une seule
-// rédaction, lue ici. Une clé absente donne un encadré masqué.
-const TANAKH_MEGILOT = { cantique: ['shir', 'sh'], ruth: ['ruth', 'ru'], lamentations: ['eikha', 'ei'], qohelet: ['kohelet', 'ko'], esther: ['esther', 'es'] };
+// Les résumés (case « Résumé ») : une phrase par chapitre pour les 929 chapitres des 24 livres, et une phrase par livre (ou par partie : I et II Samuel, les
+// douze prophètes…), dans `data/tanakh/resume-<livre>.json` (chapters : même ordre que les chapitres du livre ; parts : une phrase par partie du livre, quand il
+// en a). Texte écrit pour l'application, en français, à relire par une personne compétente. Chargés une fois par livre ; sans le fichier, rien ne s'affiche.
+function tanakhLoadSummaries(id) {
+    if (tanakhSummaries[id]) return;
+    fetch('data/tanakh/resume-' + id + '.json')
+        .then(res => { if (!res.ok) throw new Error('resume HTTP ' + res.status); return res.json(); })
+        .then(data => {
+            tanakhSummaries[id] = data;
+            if (tanakhState.book === id) tanakhRender();
+        })
+        .catch(() => { /* pas de résumé : le reste de l'écran fonctionne */ });
+}
+
+// Le résumé du chapitre `c` (depuis 0) du livre ouvert, ou ''.
+function tanakhChapterSummary(c) {
+    const data = tanakhSummaries[tanakhState.book];
+    return data && data.chapters && data.chapters[c] ? data.chapters[c] : '';
+}
+
+// Le nom d'un chapitre pour l'étiquette d'un résumé : « Chapitre 3 », ou « I Samuel 3 » pour un livre en parties.
+function tanakhChapterName(book, c) {
+    const part = book.parts ? tanakhPartOf(book, c) : null;
+    return part ? t('tools.tanakh_part_chapter', { part: part.fr, n: c - part.first + 1 }) : t('tools.tanakh_chapter_option', { n: c + 1 });
+}
+
+// Ce qu'on lit, résumé : la ligne du livre (ou de sa partie) et celle du chapitre ouvert (mode « Par chapitre ») ; en mode « Par paracha », la paracha
+// affichée (texte de « Commandements et principes », `tools.cmd_parachiot_*`, ui/fr.json : une seule rédaction, lue ici), les résumés de chapitre se
+// plaçant sous le titre de chaque chapitre (tanakhRenderText). Rien pour une haftara, ni quand la case « Résumé » est décochée.
 function tanakhSummaryLines() {
     const lines = [];
+    if (!tanakhState.summary || tanakhState.haftara) return lines;
     const get = (key) => { const v = t(key); return v && v !== key ? v : ''; };
+    const book = tanakhCurrent();
     const torah = TANAKH_TORAH_IDS.indexOf(tanakhState.book);
-    if (torah >= 0) {
-        if (tanakhMode() !== 'parasha') return lines;
+    if (torah >= 0 && tanakhMode() === 'parasha') {
         lines.push([t('tools.tanakh_summary_parasha'), get('tools.cmd_parachiot_' + ['g', 'e', 'l', 'n', 'd'][torah] + (tanakhState.parasha + 1) + '_text')]);
-    } else if (TANAKH_MEGILOT[tanakhState.book]) {
-        const [group, prefix] = TANAKH_MEGILOT[tanakhState.book];
-        lines.push([t('tools.tanakh_summary_book'), get('tools.cmd_megilot_group_' + group + '_summary')]);
-        lines.push([t('tools.tanakh_summary_chapter', { n: tanakhState.chapter + 1 }), get('tools.cmd_megilot_' + prefix + (tanakhState.chapter + 1) + '_text')]);
+        return lines.filter(l => l[1]);
     }
+    const data = tanakhSummaries[tanakhState.book];
+    if (!data || !book) return lines;
+    const c = tanakhState.chapter;
+    const part = book.parts ? book.parts.indexOf(tanakhPartOf(book, c)) : -1;
+    lines.push([t('tools.tanakh_summary_book'), part >= 0 && data.parts ? data.parts[part] : data.book]);
+    lines.push([tanakhChapterName(book, c) + ' :', tanakhChapterSummary(c)]);
     return lines.filter(l => l[1]);
+}
+
+// La case « Résumé » : à droite de « Chné Mikra » sur la même ligne, ou à sa place quand ce mode n'est pas proposé (texte continu, ou livre sans Targoum).
+// Pour une haftara (qui montre des morceaux de chapitres), pas de résumé : la case disparaît.
+function tanakhRenderSummaryToggle() {
+    toolEl('tool-tanakh-summary-label').hidden = !!tanakhState.haftara;
+    toolEl('tool-tanakh-summary-on').checked = !!tanakhState.summary;
+}
+
+function tanakhToggleSummary(checked) {
+    tanakhState.summary = checked;
+    try { localStorage.setItem(TANAKH_SUMMARY_KEY, checked ? '1' : '0'); } catch (e) {}
+    tanakhRender();
 }
 
 function tanakhRenderSummary() {
@@ -570,13 +639,41 @@ function tanakhRenderShow() {
     });
 }
 
+// Verset par verset, ou texte continu. La préférence est gardée sur l'appareil ; une note rappelle ce que le texte continu ne montre pas.
+function tanakhRenderFlow() {
+    const box = toolEl('tool-tanakh-flow');
+    toolClear(box);
+    [['verses', 'tools.tanakh_flow_verses'], ['text', 'tools.tanakh_flow_text']].forEach(([mode, key]) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'tool-history-chip';
+        btn.setAttribute('aria-pressed', mode === tanakhState.flow ? 'true' : 'false');
+        btn.textContent = t(key);
+        btn.onclick = () => tanakhSetFlow(mode);
+        box.appendChild(btn);
+    });
+    const note = toolEl('tool-tanakh-flow-note');
+    note.hidden = !tanakhFlowOn();
+    note.textContent = t('tools.tanakh_flow_note');
+}
+
+function tanakhSetFlow(mode) {
+    tanakhState.flow = mode;
+    try { localStorage.setItem(TANAKH_FLOW_KEY, mode); } catch (e) {}
+    tanakhRender();
+    if (mode === 'verses') {   // les commentaires et le Targoum cochés reviennent : on les charge s'ils manquent
+        tanakhLoadComments(tanakhState.book);
+        tanakhLoadOnkelos(tanakhState.book);
+    }
+}
+
 // Le panneau « Commentateurs » : une case par exégète du registre, construites une fois (le focus du clavier ne se perd pas à chaque
 // affichage). Le panneau disparaît si aucun exégète ne couvre le livre ; un exégète qui ne le couvre pas est grisé, sa case gardée.
 function tanakhRenderCommPanel() {
     const panel = toolEl('tool-tanakh-comm');
     const list = toolEl('tool-tanakh-comm-list');
     const available = tanakhCommAvailable();
-    panel.hidden = available.length === 0;
+    panel.hidden = available.length === 0 || tanakhFlowOn();   // en texte continu, les commentaires ne s'affichent pas : le panneau se cache, ses cases restent cochées
     if (!list.children.length) {
         TANAKH_COMMENTATORS.forEach(comm => {
             const label = document.createElement('label');
@@ -625,6 +722,124 @@ function tanakhRenderVowels() {
     });
 }
 
+// Le texte hébreu d'un verset : le qere est lu ; « sans voyelles » garde les consonnes du ketiv.
+function tanakhHebrewVerse(verse) {
+    return tanakhState.vowels === 'full'
+        ? TorahCore.ketivText(verse).replace(/[{}]/g, '')
+        : TorahCore.kriText(verse);
+}
+
+// Texte continu d'un morceau de chapitre (versets de `from` à `to` exclu) : les versets d'une même langue se suivent dans un paragraphe, chacun
+// précédé de son petit numéro. Le paragraphe est coupé là où le texte le coupe (les marques (פ) et (ס) de la fin d'un verset) et à un repère
+// d'aliyah ; avec l'hébreu et le français ensemble, un paragraphe compte aussi au plus TANAKH_FLOW_CHUNK versets, et le français suit
+// l'hébreu de la même tranche.
+// Les commentaires : le numéro d'un verset que des exégètes commentent est un bouton (comme la pastille « 💬 n » du mode verset par verset) ; au
+// toucher, ses commentaires s'ouvrent sous le verset, le paragraphe étant coupé juste après lui (il reprend dessous), au bon endroit du texte.
+// Seuls les versets ouverts montrent des commentaires : les cases du panneau « Commentateurs » (caché ici) ne jouent pas en texte continu.
+function tanakhRenderFlowText(box, c, from, to, verses, frChapter, marks, showHe, showFr) {
+    const groups = [];
+    for (let i = from; i < to; i++) {
+        const last = groups[groups.length - 1];
+        const mark = marks[c + ':' + i];
+        const parashah = i > from && /\((?:פ|ס)\)/.test(verses[i - 1]);   // le verset d'avant finit une parasha ouverte (פ) ou fermée (ס) : nouveau paragraphe
+        const afterOpen = i > from && !!tanakhState.open[c + ':' + (i - 1)];   // le verset d'avant montre ses commentaires : le paragraphe s'arrête là
+        if (!last || mark || parashah || afterOpen || (showHe && showFr && i - last.from >= TANAKH_FLOW_CHUNK)) groups.push({ from: i, to: i + 1, marks: mark || [] });
+        else last.to = i + 1;
+    }
+    // Le numéro d'un verset : un bouton quand il a des commentaires, sinon un simple numéro.
+    const number = (lang, i, text) => {
+        const list = tanakhVerseComms(c, i);
+        if (!list.length) {
+            const num = document.createElement('span');
+            num.className = 'tanakh-num';
+            num.textContent = text;
+            return num;
+        }
+        const key = c + ':' + i;
+        const names = list.map(x => x.name).join(', ');
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'tanakh-num tanakh-num-btn';
+        btn.dataset.badge = key + ':' + lang;   // le focus du clavier revient ici quand le texte est reconstruit
+        btn.textContent = text;
+        btn.title = names;
+        btn.setAttribute('aria-label', t(list.length === 1 ? 'tools.tanakh_comm_count_one' : 'tools.tanakh_comm_count', { n: list.length, names }) + ' (' + t('tools.tanakh_verse_n', { n: i + 1 }) + ')');
+        btn.setAttribute('aria-expanded', tanakhState.open[key] ? 'true' : 'false');
+        btn.onclick = () => tanakhToggleVerse(c, i);
+        return btn;
+    };
+    const paragraph = (lang, className, group, text, label) => {
+        const p = document.createElement('p');
+        p.className = className + ' tanakh-flow';
+        p.lang = lang;
+        p.dir = lang === 'he' ? 'rtl' : 'ltr';
+        for (let i = group.from; i < group.to; i++) {
+            if (i > group.from) p.appendChild(document.createTextNode(' '));
+            p.appendChild(number(lang, i, label(i)));
+            p.appendChild(document.createTextNode(' ' + text(i)));
+        }
+        return p;
+    };
+    // Les commentaires du verset `i`, sous son paragraphe : un titre, un bouton pour les masquer, puis les exégètes.
+    const comments = (i) => {
+        const inVerse = tanakhVerseComms(c, i);
+        const box = document.createElement('div');
+        box.className = 'tanakh-flow-comm';
+        const head = document.createElement('div');
+        head.className = 'tanakh-flow-comm-head';
+        const title = document.createElement('span');
+        title.lang = 'fr';
+        title.dir = 'ltr';
+        title.textContent = t('tools.tanakh_flow_comm_title', { n: i + 1 });
+        const hide = document.createElement('button');
+        hide.type = 'button';
+        hide.className = 'tanakh-flow-comm-hide';
+        hide.lang = 'fr';
+        hide.textContent = t('tools.tanakh_flow_comm_hide');
+        hide.onclick = () => tanakhToggleVerse(c, i);
+        head.appendChild(title);
+        head.appendChild(hide);
+        box.appendChild(head);
+        const paragraphs = tanakhCommParagraphs(c, i, inVerse, true);
+        paragraphs.forEach(p => box.appendChild(p));
+        if (inVerse.some(x => !(tanakhCommLoaded[x.id] || {})[tanakhState.book])) {   // pas encore chargés : la page se refait toute seule à leur arrivée
+            const wait = document.createElement('p');
+            wait.className = 'tool-small';
+            wait.textContent = t('tools.torah_loading');
+            box.appendChild(wait);
+        }
+        return box;
+    };
+    groups.forEach(group => {
+        const block = document.createElement('div');
+        block.className = 'tanakh-block';
+        group.marks.forEach(n => block.appendChild(tanakhAliyahTitle(n)));
+        if (showHe) block.appendChild(paragraph('he', 'tanakh-verse', group, i => tanakhHebrewVerse(verses[i]), i => TorahCore.hebrewNumeral(i + 1)));
+        if (showFr) block.appendChild(paragraph('fr', 'tanakh-fr', group, i => frChapter[i], i => String(i + 1)));
+        const last = group.to - 1;
+        if (tanakhState.open[c + ':' + last] && tanakhVerseComms(c, last).length) block.appendChild(comments(last));
+        box.appendChild(block);
+    });
+}
+
+// Les paragraphes de commentaires à afficher sous le verset (chapitre `c`, verset `i`) : ceux des exégètes cochés (sauf `onlyOpened`, texte continu)
+// et, si la pastille ou le numéro est ouvert, tous ceux qui le commentent ; seulement ceux dont le livre est chargé et qui ont quelque chose à dire
+// ici. L'étiquette de nom n'est utile qu'à partir de deux exégètes.
+function tanakhCommParagraphs(c, i, inVerse, onlyOpened) {
+    const open = !!tanakhState.open[c + ':' + i];
+    const blocks = tanakhCommAvailable()
+        .filter(x => (!onlyOpened && tanakhState.comm[x.id]) || (open && inVerse.includes(x)))
+        .filter(x => (tanakhCommLoaded[x.id] || {})[tanakhState.book])
+        .map(x => [x, tanakhCommBlock(x, tanakhCommLoaded[x.id][tanakhState.book], c, i)])
+        .filter(([, list]) => list.length);
+    const out = [];
+    blocks.forEach(([comm, list]) => {
+        if (blocks.length > 1) tanakhCommTag(comm, list[0]);
+        list.forEach(p => out.push(p));
+    });
+    return out;
+}
+
 // Un verset par bloc, numéroté dans son chapitre : l'hébreu (voyelles ou consonnes) et, dessous, la traduction française.
 // Le qere est lu ; « sans voyelles » garde les consonnes du ketiv. `show` choisit ce qui s'affiche.
 function tanakhRenderText(book) {
@@ -648,6 +863,20 @@ function tanakhRenderText(book) {
             const part = book.parts ? tanakhPartOf(book, c) : null;
             title.textContent = part ? t('tools.tanakh_part_chapter', { part: part.fr, n: c - part.first + 1 }) : t('tools.tanakh_chapter_option', { n: c + 1 });
             box.appendChild(title);
+            // Le résumé du chapitre, sous son titre (mode « Par paracha » : plusieurs chapitres à la suite ; pas pour une haftara).
+            const summary = tanakhState.summary && !tanakhState.haftara ? tanakhChapterSummary(c) : '';
+            if (summary) {
+                const line = document.createElement('p');
+                line.className = 'tanakh-chapter-summary';
+                line.lang = 'fr';
+                line.dir = 'ltr';
+                line.textContent = summary;
+                box.appendChild(line);
+            }
+        }
+        if (tanakhFlowOn()) {
+            tanakhRenderFlowText(box, c, from, Math.min(to, verses.length), verses, frChapter, marks, showHe, showFr);
+            return;
         }
         verses.slice(from, to).forEach((verse, k) => {
             const i = from + k;
@@ -665,9 +894,7 @@ function tanakhRenderText(book) {
                 num.className = 'tanakh-num';
                 num.textContent = TorahCore.hebrewNumeral(i + 1);
                 p.appendChild(num);
-                const text = tanakhState.vowels === 'full'
-                    ? TorahCore.ketivText(verse).replace(/[{}]/g, '')
-                    : TorahCore.kriText(verse);
+                const text = tanakhHebrewVerse(verse);
                 p.appendChild(document.createTextNode(' ' + text));
                 block.appendChild(p);
                 lead.push(p);
@@ -703,18 +930,7 @@ function tanakhRenderText(book) {
                 lead.push(f);
             }
             if (inVerse.length && lead.length) lead[0].appendChild(tanakhBadge(c, i, inVerse));
-            // Les commentaires affichés : les exégètes cochés, plus tous ceux du verset si sa pastille est dépliée ; seulement ceux dont le
-            // livre est chargé et qui ont quelque chose à dire ici. L'étiquette de nom n'est utile qu'à partir de deux exégètes.
-            const open = !!tanakhState.open[c + ':' + i];
-            const blocks = tanakhCommAvailable()
-                .filter(x => tanakhState.comm[x.id] || (open && inVerse.includes(x)))
-                .filter(x => (tanakhCommLoaded[x.id] || {})[tanakhState.book])
-                .map(x => [x, tanakhCommBlock(x, tanakhCommLoaded[x.id][tanakhState.book], c, i)])
-                .filter(([, list]) => list.length);
-            blocks.forEach(([comm, list]) => {
-                if (blocks.length > 1) tanakhCommTag(comm, list[0]);
-                list.forEach(p => block.appendChild(p));
-            });
+            tanakhCommParagraphs(c, i, inVerse, false).forEach(p => block.appendChild(p));
             box.appendChild(block);
         });
     });
