@@ -23,6 +23,141 @@
     "Les controverses de Beit Chammaï et Beit Hillel sur le repas : kiddouch et vin, lavage des mains, lumière et havdala.",
     "Les bénédictions devant les miracles, le tonnerre et les nouvelles, les quatre qui doivent remercier, les rêves et le respect du Mont du Temple."
    ]
+  },
+  "shabbat": {
+   "book": "Les lois du Chabbat : les trente-neuf travaux interdits, le transport d'un domaine à l'autre, la lumière, la cuisson et les soins.",
+   "chapters": [
+    "Le transport d'un domaine à l'autre, ce qu'on ne commence pas à l'approche de Chabbat (coiffeur, bain, repas) et les dix-huit décrets.",
+    "Les mèches et huiles permises pour la lumière de Chabbat, Hanouka, la leçon de Hillel au converti et les trois paroles de la veille.",
+    "Garder un plat au chaud sur un four ou une plaque, ce qu'on peut y poser ou y laisser avant Chabbat, et le réchauffage de l'eau.",
+    "Ce qui permet de garder un plat au chaud avant Chabbat (tmina) : les matières permises et interdites, et ce qu'on peut couvrir ou déplacer.",
+    "Ce qu'un animal peut porter en sortant le Chabbat : harnais, anneaux et ornements, permis ou interdits.",
+    "Ce qu'une femme et un homme peuvent porter en sortant le Chabbat : bijoux, sandales, armes et parures.",
+    "La règle générale du Chabbat : les trente-neuf travaux interdits, l'oubli de Chabbat et le nombre de fautes.",
+    "Les quantités minimales à partir desquelles on est fautif en transportant : vin, lait, miel, huile, cordes et autres objets.",
+    "Les enseignements de Rabbi Akiva sur l'idolâtrie et son impureté, les pratiques de l'Amori et divers cas de travaux.",
+    "Sortir quelque chose pour le semer, comme échantillon ou comme remède, et le transport d'un domaine à l'autre selon le geste.",
+    "Lancer d'un domaine à l'autre, transporter sur quatre coudées, et les objets qui roulent ou tombent.",
+    "La construction, le travail de la pierre, le labour et l'écriture : à partir de quelle mesure on est fautif.",
+    "Le tissage, les travaux qui détruisent (dont on n'est pas fautif) et la chasse d'un oiseau ou d'un cerf dans une maison.",
+    "Les huit reptiles dont on est fautif, la chasse, et les remèdes et soins permis ou interdits le Chabbat.",
+    "Les nœuds interdits, ceux qui sont permis, et ce qu'on peut plier ou défaire le Chabbat.",
+    "Les livres saints qu'on sauve d'un incendie, la nourriture qu'on peut sauver et l'aide permise en cas de feu.",
+    "Les ustensiles qu'on peut déplacer le Chabbat, avec leurs portes, et ce qu'on peut en faire.",
+    "Évacuer des objets pour des invités ou pour l'étude, secourir les bêtes et aider une femme à accoucher le Chabbat.",
+    "La circoncision qui repousse le Chabbat, ce qu'on prépare et fait ce jour-là, et le soin du bébé.",
+    "Filtrer le vin et préparer des boissons le Chabbat (tamis, passoire, levure), et le fourrage des bêtes.",
+    "Porter un enfant tenant une pierre, déplacer ce qu'on peut lever le Chabbat, et débarrasser la table des os et des coquilles.",
+    "Une jarre brisée, la nourriture qu'on sauve, le bain, les huiles et les soins du corps le Chabbat.",
+    "Emprunter à son prochain, tirer au sort, ne pas engager d'ouvriers, et les soins et préparatifs pour un mort.",
+    "Celui que la nuit surprend en route, la nourriture des bêtes le Chabbat, et le principe selon lequel Israël n'a pas de signe astral."
+   ]
+  },
+  "eruvin": {
+   "book": "L'érouv : comment on unit des cours et des ruelles pour pouvoir porter le Chabbat, et les limites de déplacement (techoumin).",
+   "chapters": [
+    "Les dimensions d'une ruelle (mavoï) : hauteur, largeur, poteau et traverse, et ce qui permet d'y porter.",
+    "Les clôtures autour des puits et des enclos, les jardins de soixante-dix coudées et leurs mesures.",
+    "Avec quoi on fait l'érouv, qui peut le porter et où le déposer, et les aliments qu'on peut y mettre.",
+    "Celui que des non-juifs ou un esprit ont emmené hors de la limite, celui qui s'endort en route, et les deux mille coudées.",
+    "Comment on mesure et on étend les limites d'une ville : maisons, remparts, corde de cinquante coudées et mesureur.",
+    "Le voisin non-juif ou non pratiquant dans la même cour, celui qui oublie l'érouv, et les cours partagées.",
+    "Les fenêtres, murs, fossés et mangeoires entre deux cours, qui séparent ou unissent les voisins pour l'érouv.",
+    "Le chitouf des limites et des cours : la jarre mise à la disposition de tous, la quantité de nourriture et l'oubli.",
+    "Les toits de la ville, les grandes et petites cours, les brèches sur le domaine public et les règles du domaine privé.",
+    "Ce qu'on peut déplacer le Chabbat : tefilin trouvés, livre qui roule, objet sur une fenêtre, et le passage d'un domaine à l'autre."
+   ]
+  },
+  "pesachim": {
+   "book": "Pessah : l'élimination du hamets, le sacrifice pascal, le Pessah Chéni et le soir du Seder (matsa, maror, quatre coupes, Haggada).",
+   "chapters": [
+    "La recherche du hamets la nuit du 14 Nissan à la lumière d'une bougie, et le moment où on le détruit.",
+    "Quand le hamets devient interdit, son usage, sa vente ou son prêt à un non-juif, et la façon de s'en défaire.",
+    "Les produits qui contiennent du hamets (boissons, pâtes), le levain et le pétrissage de la 'halla pendant la fête.",
+    "Les coutumes des lieux : travail la veille de Pessah, vente de petit bétail, lumière à Yom Kippour et Tich'a beAv.",
+    "Le sacrifice pascal : l'heure de l'abattage, le sacrifice perpétuel (tamid) et les intentions qui l'invalident.",
+    "Les cas où le sacrifice de Pessah repousse le Chabbat, et ce qui n'est pas permis ce jour-là.",
+    "La cuisson du sacrifice de Pessah (rôti), sa consommation en un seul lieu, l'impureté et le sort des os.",
+    "Le sacrifice pascal pour plusieurs personnes : qui s'inscrit, qui se retire du groupe, et la consommation.",
+    "Le deuxième Pessah (Pessah Chéni) pour l'impur ou le voyageur éloigné, et ce qui le distingue du premier.",
+    "Le soir du Seder : les quatre coupes, la Haggada qui commence par la honte et finit par la louange, la matsa, le maror et le Hallel."
+   ]
+  },
+  "rosh-hashanah": {
+   "book": "Roch Hachana : les quatre nouvelles années, la fixation du mois par les témoins, le shofar et les prières de la fête.",
+   "chapters": [
+    "Les quatre nouvelles années, les quatre moments où le monde est jugé et les mois où l'on guette la nouvelle lune.",
+    "Les témoins de la nouvelle lune : comment on les reçoit et on les examine, les signaux de feu et les messagers.",
+    "Les shofars valides ou non, leur forme et leur usage, et l'intention requise pour entendre le son.",
+    "Roch Hachana un Chabbat : le shofar au Temple et ailleurs, les décrets de Rabban Yohanan ben Zakkaï et les bénédictions de la Amida."
+   ]
+  },
+  "yoma": {
+   "book": "Yom Kippour : le service du Cohen Gadol au Temple, les deux boucs, l'encens, et les interdits du jeûne et du repentir.",
+   "chapters": [
+    "Les sept jours avant Yom Kippour : le Cohen Gadol est mis à part, instruit et préparé au service.",
+    "Le tirage au sort qui désigne qui prélève les cendres et fait les tâches du matin au Temple.",
+    "L'annonce du lever du jour, l'abattage du sacrifice du matin, les ablutions et les vêtements du Cohen Gadol.",
+    "Le tirage au sort des deux boucs, le fil écarlate et la confession sur le taureau.",
+    "L'encens dans le Saint des Saints, la pierre de fondation et l'aspersion du sang du taureau et du bouc.",
+    "Les deux boucs : celui qu'on envoie à Azazel et celui qu'on offre, et la confession sur chacun.",
+    "La lecture de la Torah par le Cohen Gadol, ses huit vêtements et la fin du service.",
+    "Les interdits de Yom Kippour (manger, boire, se laver), la techouva et la valeur du pardon."
+   ]
+  },
+  "sukkah": {
+   "book": "Souccot : la souccah, le loulav et l'étrog, le saule, et la joie de la libation de l'eau au Temple.",
+   "chapters": [
+    "La hauteur et la forme de la souccah, ses parois et son toit, l'ombre qui doit dépasser le soleil, et la vieille souccah.",
+    "Dormir et manger dans la souccah, ses conditions de validité et qui en est dispensé.",
+    "Les quatre espèces : les conditions de validité du loulav, du myrte, du saule et de l'étrog.",
+    "Le nombre de jours de chaque rite de la fête : loulav, saule, Hallel, souccah, libation d'eau et flûte.",
+    "La joie de la Simhat Beit HaShoeva : flûte, danses et service du Temple pendant la fête."
+   ]
+  },
+  "beitzah": {
+   "book": "Les règles du jour de fête (Yom Tov) : ce qu'on peut cuire, porter ou déplacer, et les controverses de Beit Chammaï et Beit Hillel.",
+   "chapters": [
+    "L'œuf pondu un jour de fête, les controverses de Beit Chammaï et Beit Hillel, et ce qu'on peut déplacer.",
+    "Une fête qui tombe la veille de Chabbat : l'érouv tavchilin, les préparatifs et les offrandes de la fête.",
+    "La chasse et la pêche un jour de fête, les animaux qu'on peut abattre, et le premier-né tombé dans un puits.",
+    "Transporter des jarres, du bois et des aliments d'un lieu à un autre un jour de fête, et ce qu'on peut fendre.",
+    "Les soins aux provisions un jour de fête, et les actes que les sages interdisent aussi à la fête qu'au Chabbat."
+   ]
+  },
+  "taanit": {
+   "book": "Les jeûnes : les prières pour la pluie, les jeûnes publics pour les fléaux, les cinq malheurs du 9 Av et les jours de joie.",
+   "chapters": [
+    "La mention de la pluie et la demande de pluie, leurs dates, et les jeûnes individuels qui suivent le retard des pluies.",
+    "Le déroulement des jeûnes publics : l'arche sur la place, les prières, les supplications et les anciens qui exhortent.",
+    "Les jeûnes décrétés pour les fléaux (famine, maladie, invasion), les règles de l'alarme et les récits de Honi.",
+    "La bénédiction des cohanim les jours de jeûne, les cinq malheurs du 17 Tamouz et du 9 Av, et les deux jours de joie."
+   ]
+  },
+  "megillah": {
+   "book": "Pourim et la lecture de la Méguila : les jours et les règles de la lecture, la synagogue, et les lectures de la Torah.",
+   "chapters": [
+    "Les jours de lecture de la Méguila selon les villes (entourées de remparts ou non), Adar I et II, et l'étude du récit d'Esther.",
+    "Les règles de la lecture : la lecture à l'envers, par cœur ou en traduction, et qui peut la lire.",
+    "La lecture debout ou assis, les actes qui exigent dix personnes (Barekhou, bénédiction des cohanim) et les règles de la lecture de la Torah.",
+    "La sainteté de la synagogue et ce qu'on peut en faire, puis les lectures de la Torah des fêtes et des jours spéciaux (Chekalim…)."
+   ]
+  },
+  "moed-katan": {
+   "book": "Les travaux permis à 'Hol Hamoëd, les règles de l'écriture et de la coupe de cheveux, et celles du deuil.",
+   "chapters": [
+    "Les travaux permis ou interdits à 'Hol Hamoëd (irrigation, réparations, récoltes) et les mariages qu'on ne célèbre pas.",
+    "Le travail interrompu par un deuil ou un malheur (olives, pressoir), les cas de force majeure et ce qu'on peut acheter.",
+    "Qui peut se couper les cheveux à 'Hol Hamoëd, ce qu'on peut écrire, et les usages du deuil (déchirure, sept et trente jours)."
+   ]
+  },
+  "chagigah": {
+   "book": "Les offrandes de pèlerinage, les limites de l'étude de certains sujets, et la pureté des objets et des aliments pendant les fêtes.",
+   "chapters": [
+    "Qui est tenu de monter au Temple et d'y faire l'offrande de fête, qui en est dispensé, et les offrandes de la fête.",
+    "Les limites de l'étude (relations interdites, Création, Char), les quatre entrés au Pardès, les couples de maîtres et l'imposition des mains.",
+    "Les degrés de pureté et de sainteté, la confiance accordée au peuple pour la pureté, et les règles de pureté de la fête."
+   ]
   }
  }
 }

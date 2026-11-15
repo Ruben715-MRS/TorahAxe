@@ -327,9 +327,13 @@ test('summaryOf : l\'ordre, le traité et le chapitre ; vide si inconnu', () => 
     assert.deepStrictEqual(T.summaryOf(resume, index, 'inconnu', 1), { seder: '', book: '', chapter: '' });
     assert.strictEqual(T.summaryOf(null, index, 'berakhot', 1).book, '');
     assert.strictEqual(T.summaryOf(resume, index, 'berakhot', 99).chapter, '');
-    // Un traité sans résumé (Chabbat) : la phrase de son ordre seulement.
-    const shabbat = T.summaryOf(resume, index, 'shabbat', 1);
-    assert.strictEqual(shabbat.book, '');
-    assert.strictEqual(shabbat.chapter, '');
-    assert.strictEqual(shabbat.seder, resume.sedarim.moed);
+    // Un traité sans résumé (Bava Kama, pas encore écrit) : la phrase de son ordre seulement.
+    if (!resume.tractates['bava-kamma']) {
+        const bk = T.summaryOf(resume, index, 'bava-kamma', 1);
+        assert.strictEqual(bk.book, '');
+        assert.strictEqual(bk.chapter, '');
+        assert.strictEqual(bk.seder, resume.sedarim.nezikin);
+    }
+    // Chabbat : un résumé par chapitre, celui du chapitre 24 est le dernier.
+    assert.strictEqual(T.summaryOf(resume, index, 'shabbat', 24).chapter, resume.tractates.shabbat.chapters[23]);
 });
