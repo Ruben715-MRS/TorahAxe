@@ -16692,6 +16692,24 @@ body[data-view-profile="religieux"] .league-btn {
 .parashagame-verse small, .whogame-clue small { display: block; margin-bottom: 6px; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted-text); }
 .whogame-clue p { margin: 0; font-size: 17px; line-height: 1.5; color: var(--text-dark); }
 .whogame-clue.is-unseen { opacity: 0.6; border-style: dashed; }
+/* « Le bon ordre » : les places (une liste numérotée), puis les éléments encore à placer. */
+.ordergame-help { margin: 0 0 8px; text-align: center; }
+.ordergame-slots, .ordergame-answer { list-style: none; margin: 0 0 12px; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.ordergame-slot { display: flex; align-items: center; gap: 10px; min-height: 52px; padding: 6px 10px; border-radius: 12px; border: 1px dashed var(--border-soft); background: var(--surface-2); }
+.ordergame-slot.is-filled { border-style: solid; background: var(--surface); }
+.ordergame-slot.correct { background: var(--selected-tint); border-color: var(--progress-green); }
+.ordergame-slot.wrong { border-color: var(--danger-red-text); }
+.ordergame-n { flex: 0 0 26px; height: 26px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--surface-2); border: 1px solid var(--border-soft); font-size: 13px; font-weight: 700; color: var(--muted-text); }
+.ordergame-empty { color: var(--muted-text); font-size: 13px; }
+.ordergame-chip { display: inline-flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; min-height: 44px; padding: 8px 12px; border-radius: 12px; border: 1px solid var(--border-soft); background: var(--surface); color: var(--text-dark); font: inherit; font-weight: 600; cursor: pointer; }
+.ordergame-slot .ordergame-chip { flex: 1; flex-direction: row; justify-content: space-between; border: 0; background: transparent; padding: 4px 6px; text-align: left; }
+.ordergame-chip .he { font-size: 14px; font-weight: 400; color: var(--muted-text); }
+.ordergame-chip:disabled { cursor: default; }
+.ordergame-pool { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 0 0 12px; min-height: 12px; }
+.ordergame-actions { margin-bottom: 12px; }
+.ordergame-answer { counter-reset: none; margin: 8px 0; }
+.ordergame-answer li { font-size: 15px; }
+.ordergame-answer small { color: var(--muted-text); }
 .parashagame-he { margin: 0; font-size: 24px; line-height: 1.7; text-align: right; color: var(--text-dark); }
 .parashagame-fr { margin: 8px 0 0; font-size: 14px; line-height: 1.45; color: var(--muted-text); }
 .parashagame-points { margin: 0 0 8px; text-align: center; font-weight: 700; }

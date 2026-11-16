@@ -7205,5 +7205,31 @@
     "found": "{found} bonnes réponses sur {total} : {score} points.",
     "how": "Un personnage parle à la première personne : qui est-ce ? Cinq personnages par partie, 100 points chacun. Chaque indice de plus, du plus vague au plus précis, coûte 20 points. Vous n'avez qu'une réponse : une erreur vaut 0 point et dévoile la réponse.",
     "how_sources": "Les personnages de la Bible ont des indices écrits à la main d'après le texte biblique. Pour les sages du Talmud, les indices viennent de leur fiche dans le dictionnaire araméen : l'époque, leurs maîtres, leurs disciples, puis ce que l'on dit d'eux."
+  },
+  "ordergame": {
+    "title": "Le bon ordre",
+    "desc": "Remettez dans l'ordre des parachiot, des livres, des traités, des générations ou des rois.",
+    "status": "Classement {n} sur {total} · {score} points",
+    "section_aria": "Listes jouées",
+    "section_all": "Tout",
+    "section_textes": "Textes",
+    "section_personnages": "Personnages",
+    "pool_aria": "Éléments à classer",
+    "help": "Touchez un élément pour le placer à la première place libre ; touchez un élément placé pour le retirer.",
+    "slot_empty": "place libre",
+    "slot_aria": "Place {n} : {label}. Toucher pour retirer.",
+    "chip_aria": "{label} : toucher pour le placer",
+    "check": "Vérifier",
+    "clear": "Tout effacer",
+    "perfect": "Parfait : {points} points",
+    "partial": "{count} sur {size} à la bonne place : {points} points",
+    "wrong": "Aucun à la bonne place : 0 point",
+    "answer_title": "Le bon ordre :",
+    "next": "Classement suivant",
+    "finish": "Voir le score",
+    "found": "{found} classements parfaits sur {total} : {score} points.",
+    "how": "Cinq éléments d'une liste connue (les parachiot, les livres du Tanakh, les traités de la Michna ou du Talmud, les générations, les fils de Jacob, les rois) sont donnés en désordre : touchez-les dans l'ordre, le premier d'abord. 20 points par élément à la bonne place, soit 100 pour un classement parfait ; cinq classements par partie.",
+    "loading": "Chargement des listes…",
+    "load_error": "Les listes n'ont pas pu être chargées : vérifiez la connexion, puis rouvrez le jeu."
   }
 }

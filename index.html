@@ -799,6 +799,7 @@
     <script src="js/verseGameCore.js"></script>
     <script src="js/whoData.js"></script>
     <script src="js/whoGameCore.js"></script>
+    <script src="js/orderGameCore.js"></script>
     <script src="js/app/quiz-ui.js"></script>
     <script src="js/app/lexicon-game.js"></script>
     <script src="js/app/gemara-game.js"></script>
@@ -808,6 +809,7 @@
     <script src="js/app/mitsva-game.js"></script>
     <script src="js/app/verse-game.js"></script>
     <script src="js/app/who-game.js"></script>
+    <script src="js/app/order-game.js"></script>
     <script src="js/app/tools.js"></script>
     <script src="js/app/navigation.js"></script>
     <script src="js/app/settings.js"></script>
@@ -1094,6 +1096,41 @@
             <h3 data-i18n="arcade.over">Partie terminée</h3>
             <p id="whogame-over-text"></p>
             <button type="button" class="btn" onclick="whogameStart()" data-i18n="arcade.replay">Rejouer</button>
+        </div>
+    </div>
+
+<div id="screen-ordergame" class="list-screen hidden">
+        <button class="back-btn" onclick="ordergameBack()" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title" data-i18n="ordergame.title">Le bon ordre</h2>
+        <p class="modes-header-subtitle" id="ordergame-status" role="status"></p>
+        <div id="ordergame-setup" class="lexgame-setup">
+            <p class="tool-small" id="ordergame-load" role="status"></p>
+            <div class="lexgame-levels" id="ordergame-sections" role="group" aria-label="Listes jouées" data-i18n-attr="aria-label:ordergame.section_aria"></div>
+            <button type="button" class="btn" id="ordergame-start" onclick="ordergameStart()" data-i18n="arcade.play">Jouer</button>
+            <p class="tool-small" data-i18n="ordergame.how">Cinq éléments d'une liste connue (les parachiot, les livres du Tanakh, les traités de la Michna ou du Talmud, les générations, les fils de Jacob, les rois) sont donnés en désordre : touchez-les dans l'ordre, le premier d'abord. 20 points par élément à la bonne place, soit 100 pour un classement parfait ; cinq classements par partie.</p>
+        </div>
+        <div id="ordergame-play" class="hidden">
+            <p class="cause-question" id="ordergame-question"></p>
+            <p class="tool-small ordergame-help" data-i18n="ordergame.help">Touchez un élément pour le placer à la première place libre ; touchez un élément placé pour le retirer.</p>
+            <ol class="ordergame-slots" id="ordergame-slots"></ol>
+            <div class="ordergame-pool" id="ordergame-pool" role="group" aria-label="Éléments à classer" data-i18n-attr="aria-label:ordergame.pool_aria"></div>
+            <div class="lexgame-actions ordergame-actions" id="ordergame-actions">
+                <button type="button" class="btn" id="ordergame-check" onclick="ordergameCheck()" data-i18n="ordergame.check">Vérifier</button>
+                <button type="button" class="btn btn-secondary" id="ordergame-clear" onclick="ordergameClear()" data-i18n="ordergame.clear">Tout effacer</button>
+            </div>
+            <div class="wheel-feedback hidden" id="ordergame-feedback" role="status">
+                <strong id="ordergame-feedback-title"></strong>
+                <ol class="ordergame-answer" id="ordergame-answer"></ol>
+                <p class="tool-small hidden" id="ordergame-feedback-note"></p>
+                <div class="lexgame-actions">
+                    <button type="button" class="btn" id="ordergame-next" onclick="ordergameContinue()"></button>
+                </div>
+            </div>
+        </div>
+        <div class="arcade-over hidden" id="ordergame-over">
+            <h3 data-i18n="arcade.over">Partie terminée</h3>
+            <p id="ordergame-over-text"></p>
+            <button type="button" class="btn" onclick="ordergameStart()" data-i18n="arcade.replay">Rejouer</button>
         </div>
     </div>
 
