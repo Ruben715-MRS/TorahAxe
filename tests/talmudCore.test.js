@@ -377,7 +377,7 @@ test('sugyotIn : les sugyot d\'un amoud, celle qui vient d\'avant et celles qui 
     const here = T.sugyotIn(data, tr, p58b);
     assert.deepStrictEqual(here.map(s => [s.starts, s.continues]), [[-1, true], [3, false]]);   // la 2e finit en 58b:3 ; la 3e commence en 58b:4
     assert.strictEqual(T.sugyotIn(data, tr, T.pageOf(tr, '57b')).length, 0);
-    assert.strictEqual(T.sugyotIn(data, T.find(index, 'shabbat'), 0).length, 0);
+    assert.strictEqual(T.sugyotIn(data, tr, 0).length, 0);
     assert.strictEqual(T.sugyotIn(null, tr, p58b).length, 0);
     assert.strictEqual(T.refOf(tr, '99z:1'), null);
 });
