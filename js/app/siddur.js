@@ -21,6 +21,7 @@ let sdPlace = null;
 let sdCtx = null;
 // Une ouverture demandée par un autre écran (l'accueil) : { group } ou { ids, title }, exécutée dès que l'index du siddour est chargé.
 let sdPending = null;
+let sdDirectBack = false;    // ouvert depuis l'écran Bénédictions d'Explorer : le retour de la lecture ramène directement là-bas, sans passer par l'accueil du siddour
 const sdOrigText = new WeakMap();   // le texte d'origine (avec voyelles) de chaque nœud de texte du lecteur
 let sdSheetEl = null;               // la feuille ouverte (sommaire, affichage, rayon…), s'il y en a une
 let sdRestoreTop = null;
@@ -189,7 +190,10 @@ const SD_RAYONS = [
     ] },
     { id: 'benedictions', he: 'ברכות', fr: 'Bénédictions', rows: [
         { key: 's:birkat-hamazon', he: 'ברכת המזון', ids: ['birkat-hamazon'] },
+        { key: 's:birkat-hamazon-ashkenaze', he: 'ברכת המזון · אשכנז', ids: ['birkat-hamazon-ashkenaze'] },
+        { key: 's:birkat-hamazon-habad', he: 'ברכת המזון · ספרד (חב״ד)', ids: ['birkat-hamazon-habad'] },
         { key: 's:al-hamihya', he: 'מעין שלוש', ids: ['al-hamihya'] },
+        { key: 's:al-hamihya-ashkenaze', he: 'מעין שלוש · אשכנז', ids: ['al-hamihya-ashkenaze'] },
         { key: 's:birkhot-hanehenin', he: 'ברכות הנהנין', ids: ['birkhot-hanehenin'] },
         { key: 's:birkat-halevana', he: 'קידוש לבנה', ids: ['birkat-halevana'] },
         { key: 's:tefilat-haderekh', he: 'תפילת הדרך', ids: ['tefilat-haderekh'] },
@@ -200,6 +204,10 @@ const SD_RAYONS = [
         { key: 's:terouma-maasser', he: 'תרומות', ids: ['terouma-maasser'] },
         { key: 's:arc-en-ciel', he: 'קשת', ids: ['arc-en-ciel'] },
         { key: 's:eclairs-tonnerre', he: 'ברקים', ids: ['eclairs-tonnerre'] },
+        { key: 's:birkhot-hareiyot', he: 'ברכות הראייה', ids: ['birkhot-hareiyot'] },
+        { key: 's:birkhot-hareach', he: 'ברכות הריח', ids: ['birkhot-hareach'] },
+        { key: 's:dayan-haemet', he: 'דיין האמת', ids: ['dayan-haemet'] },
+        { key: 's:chehehyanou', he: 'שהחיינו', ids: ['chehehyanou'] },
         { key: 's:remede', he: 'רפואה', ids: ['remede'] }
     ] },
     { id: 'vie', he: 'שמחות', fr: 'Vie', rows: [
@@ -504,6 +512,7 @@ function sdOpenInfo() {
 
 // --- Entrée de l'écran ---------------------------------------------------------------------------------------------------------------------
 function toolSiddurInit() {
+    sdDirectBack = false;
     sdLoadPrefs();
     sdCloseSheet();
     sdView = { mode: 'home', ids: [], title: '' };
@@ -572,10 +581,10 @@ function sdRender() {
     else sdRenderHome(body);
 }
 
-// Retour : de la lecture à l'accueil du siddour, puis à l'accueil de l'application.
+// Retour : de la lecture à l'accueil du siddour, puis à l'accueil de l'application (ou, depuis Bénédictions, directement à cet écran).
 function sdBack() {
     sdCloseSheet();
-    if (sdView.mode === 'reader') {
+    if (sdView.mode === 'reader' && !sdDirectBack) {
         sdView = { mode: 'home', ids: [], title: '' };
         sdRestoreTop = null;
         sdRender();
@@ -584,6 +593,7 @@ function sdBack() {
         if (screen) screen.scrollTop = 0;
         return;
     }
+    sdDirectBack = false;
     toolBack('siddur');
 }
 

@@ -18369,3 +18369,35 @@ body:has(#screen-recit:not(.hidden))::after {
 .michna-block.is-flash { animation: michnaFlash 1.5s ease-out; border-radius: 12px; }
 @keyframes michnaFlash { 0% { background-color: rgba(212, 160, 23, 0.35); } 100% { background-color: transparent; } }
 @media (prefers-reduced-motion: reduce) { .michna-block.is-flash { animation: none; background-color: rgba(212, 160, 23, 0.2); } }
+
+/* --- Guide des bénédictions (Explorer) --- */
+.ben-card { gap: 8px; }
+.ben-steps { display: flex; flex-direction: column; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.ben-step { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; }
+.ben-tag-he { font-size: 14px; }
+.ben-tag-aucune { background: transparent; border-style: dashed; }
+.ben-text-he { font-size: 20px; line-height: 1.6; color: var(--text-dark); margin: 4px 0; }
+.ben-tr { font-style: italic; }
+.ben-texts { margin-top: 4px; }
+.ben-source { margin-top: 4px; }
+.ben-rites { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; padding: 4px; border: 1px solid var(--border-soft); border-radius: 14px; background: var(--surface-2); }
+.ben-rite { min-height: 40px; padding: 6px 4px; border: 0; border-radius: 10px; background: transparent; font: inherit; font-size: 14px; font-weight: 600; color: var(--text-dark); cursor: pointer; }
+.ben-rite[aria-pressed="true"] { background: var(--surface); box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18); font-weight: 800; }
+.ben-rite-info { margin: 0; }
+.ben-card.is-diff { border-left: 4px solid #d97706; }
+.ben-diff { background: #fef3c7; color: #78350f; border-color: transparent; font-weight: 700; }
+.ben-was { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 0; }
+.ben-rite-note { display: flex; flex-direction: column; gap: 2px; padding: 8px 10px; border-radius: 10px; background: var(--surface-2); }
+.ben-rite-note p { margin: 0; }
+.ben-other { margin-top: 4px; }
+.ben-other[open] { gap: 8px; }
+.ben-other-row { display: flex; align-items: center; gap: 12px; width: 100%; min-height: 52px; padding: 8px 10px; border: 1px solid var(--border-soft); border-radius: 12px; background: var(--surface); font: inherit; text-align: left; color: var(--text-dark); cursor: pointer; }
+.ben-other-he { flex: 0 0 76px; font-size: 20px; text-align: center; }
+.ben-other-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.ben-other-text small { margin: 0; }
+.ben-final { display: flex; flex-direction: column; gap: 2px; padding-top: 6px; border-top: 1px dashed var(--border-soft); }
+.ben-final-tags { align-items: center; }
+.ben-final-btn { font: inherit; font-size: 12px; cursor: pointer; }
+.ben-shiur, .ben-final-none { margin: 0; }
+.ben-finals-rule { font-style: italic; }
+.ben-finals { margin-top: 4px; }
