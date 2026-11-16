@@ -363,24 +363,33 @@ function tanakhRenderBooks() {
 
 // Charge (une fois) la liste des parachiot ; puis réaffiche, car le choix par paracha n'existe qu'une fois la liste là.
 function tanakhLoadParashot() {
-    if (tanakhParashot || !tanakhHasParashot(true)) return;
-    torahReaderLoadParashot()
-        .then(data => { tanakhParashot = data; tanakhRender(); })
-        .catch(() => { /* pas de choix par paracha : le choix par chapitre reste */ });
+    if (!tanakhHasParashot(true)) return;
+    // Chaque fichier se charge à part, s'il manque : tanakhParashot peut déjà être rempli (ouverture depuis l'accueil) sans que les autres le soient.
+    if (!tanakhParashot) {
+        torahReaderLoadParashot()
+            .then(data => { tanakhParashot = data; tanakhRender(); })
+            .catch(() => { /* pas de choix par paracha : le choix par chapitre reste */ });
+    }
     // Les aliyot arrivent à part : sans elles, la paracha s'affiche entière, sans rangée de boutons.
-    fetch('data/torah/aliyot.json')
-        .then(res => { if (!res.ok) throw new Error('aliyot HTTP ' + res.status); return res.json(); })
-        .then(data => { tanakhAliyot = data; tanakhRender(); })
-        .catch(() => { /* pas de découpage par aliyah */ });
+    if (!tanakhAliyot) {
+        fetch('data/torah/aliyot.json')
+            .then(res => { if (!res.ok) throw new Error('aliyot HTTP ' + res.status); return res.json(); })
+            .then(data => { tanakhAliyot = data; tanakhRender(); })
+            .catch(() => { /* pas de découpage par aliyah */ });
+    }
     // Les haftarot et le calendrier des parachiot : sans eux, ni la rangée « Haftara » ni la recherche par date.
-    fetch('data/torah/haftarot.json')
-        .then(res => { if (!res.ok) throw new Error('haftarot HTTP ' + res.status); return res.json(); })
-        .then(data => { tanakhHaftarot = data; tanakhRender(); })
-        .catch(() => { /* pas de haftarot */ });
-    fetch('data/torah/calendar.json')
-        .then(res => { if (!res.ok) throw new Error('calendrier HTTP ' + res.status); return res.json(); })
-        .then(data => { tanakhCalendar = data; tanakhRender(); })
-        .catch(() => { /* pas de recherche par date */ });
+    if (!tanakhHaftarot) {
+        fetch('data/torah/haftarot.json')
+            .then(res => { if (!res.ok) throw new Error('haftarot HTTP ' + res.status); return res.json(); })
+            .then(data => { tanakhHaftarot = data; tanakhRender(); })
+            .catch(() => { /* pas de haftarot */ });
+    }
+    if (!tanakhCalendar) {
+        fetch('data/torah/calendar.json')
+            .then(res => { if (!res.ok) throw new Error('calendrier HTTP ' + res.status); return res.json(); })
+            .then(data => { tanakhCalendar = data; tanakhRender(); })
+            .catch(() => { /* pas de recherche par date */ });
+    }
 }
 
 // Le livre ouvert est l'un des cinq de la Torah ? (`ignoreLoaded` : sans exiger que la liste soit chargée.)
