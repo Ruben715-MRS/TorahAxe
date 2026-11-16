@@ -230,6 +230,7 @@ function benTextsPanel() {
 function benOpenSiddur(ids, title) {
     openSiddurSections(ids, title);
     toolReturns.siddur = 'screen-tool-benedictions';
+    sdDirectBack = true;    // après l'ouverture : toolSiddurInit remet ce drapeau à zéro
 }
 
 // Les autres bénédictions du groupe « Bénédictions » du Siddour : à la vue de…, odorat, tonnerre, Chéhé'héyanou…

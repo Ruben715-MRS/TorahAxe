@@ -21,6 +21,7 @@ let sdPlace = null;
 let sdCtx = null;
 // Une ouverture demandée par un autre écran (l'accueil) : { group } ou { ids, title }, exécutée dès que l'index du siddour est chargé.
 let sdPending = null;
+let sdDirectBack = false;    // ouvert depuis l'écran Bénédictions d'Explorer : le retour de la lecture ramène directement là-bas, sans passer par l'accueil du siddour
 const sdOrigText = new WeakMap();   // le texte d'origine (avec voyelles) de chaque nœud de texte du lecteur
 let sdSheetEl = null;               // la feuille ouverte (sommaire, affichage, rayon…), s'il y en a une
 let sdRestoreTop = null;
@@ -508,6 +509,7 @@ function sdOpenInfo() {
 
 // --- Entrée de l'écran ---------------------------------------------------------------------------------------------------------------------
 function toolSiddurInit() {
+    sdDirectBack = false;
     sdLoadPrefs();
     sdCloseSheet();
     sdView = { mode: 'home', ids: [], title: '' };
@@ -576,10 +578,10 @@ function sdRender() {
     else sdRenderHome(body);
 }
 
-// Retour : de la lecture à l'accueil du siddour, puis à l'accueil de l'application.
+// Retour : de la lecture à l'accueil du siddour, puis à l'accueil de l'application (ou, depuis Bénédictions, directement à cet écran).
 function sdBack() {
     sdCloseSheet();
-    if (sdView.mode === 'reader') {
+    if (sdView.mode === 'reader' && !sdDirectBack) {
         sdView = { mode: 'home', ids: [], title: '' };
         sdRestoreTop = null;
         sdRender();
@@ -588,6 +590,7 @@ function sdBack() {
         if (screen) screen.scrollTop = 0;
         return;
     }
+    sdDirectBack = false;
     toolBack('siddur');
 }
 
