@@ -6,6 +6,7 @@
 // Newman, directeur du Beth Rivka de New York, sous l'autorité du Rav Yehouda Kalman Marlowe, président du tribunal rabbinique de Crown Heights ; il se
 // fonde sur les décisions hala'hiques de l'Admour Hazaken, essentiellement énoncées dans son Séder Birkat Ha Néhénin (usage 'Habad).
 // Les textes hébreux des six bénédictions sont ceux du Siddour (data/siddur/birkhot-hanehenin.json) ; hamotsi est le texte usuel du pain.
+// Les écarts séfarades et ashkénazes (RITE_OVERRIDES) ne sont pas du Beth Loubavitch : ils sont signalés comme tels dans l'écran.
 // Outil d'étude, pas une décision de halakha. Consommé par js/benedictionsCore.js (testé dans tests/benedictionsCore.test.js) et js/app/benedictions.js.
 
 (function (root, factory) {
@@ -387,5 +388,45 @@
         33: "Il est préférable de ne pas consommer la quantité de tarte aux pommes permettant de se rassasier (Kedei Svya), soit plus de deux cent seize ou de deux cent vingt-quatre grammes. Si l'on souhaite atteindre cette quantité, on s'efforcera de le faire à l'intérieur d'un repas, introduit par la bénédiction Hamotsi. Ce principe s'applique, de la même façon, à tout aliment qui, une fois cuit, requiert la bénédiction Mezonot."
     };
 
-    return { SOURCE: SOURCE, BLESSINGS: BLESSINGS, ORDER: ORDER, NONE: NONE, FOODS: FOODS, NOTES: NOTES };
+    // Les rites. La liste du Beth Loubavitch est celle de 'Habad : c'est le rite par défaut, et celui des colonnes que l'on ne modifie pas.
+    // Pour les deux autres, `RITE_OVERRIDES` donne les écarts connus, par nom d'aliment : { b (la bénédiction du rite, si elle diffère de 'Habad), note }.
+    // Ces écarts ne viennent PAS du Beth Loubavitch : ils sont donnés par le propriétaire de l'app, à faire relire par un rav ; un aliment qui n'y figure pas
+    // s'affiche avec la bénédiction 'Habad, sans qu'on ait vérifié l'usage des autres rites.
+    var RITES = {
+        sefarade: { fr: 'Séfarade', short: 'Séfarade', desc: 'Usage séfarade, d\'après le Choul\'han Arou\'h de Maran Rabbi Yossef Karo et des décisionnaires séfarades comme le Rav Ovadia Yossef. Sur plusieurs points, il diffère de l\'usage \'Habad.' },
+        ashkenaze: { fr: 'Ashkénaze', short: 'Ashkénaze', desc: 'Usage ashkénaze courant, d\'après le Rema et le Michna Béroura. \'Habad en est une branche, mais l\'Admour Hazaken a tranché différemment sur quelques points.' },
+        habad: { fr: 'Loubavitch (\'Habad)', short: '\'Habad', desc: 'La liste du Beth Loubavitch, telle quelle, d\'après les décisions de l\'Admour Hazaken (Séder Birkat Ha Néhénin et Sidour).' }
+    };
+    var RITE_ORDER = ['sefarade', 'ashkenaze', 'habad'];
+    var DEFAULT_RITE = 'habad';
+
+    var RICE_SEF = { b: 'mezonot', note: 'Mezonot, surtout si le riz est cuit et mou ou collant, car il nourrit. Certains décisionnaires disent aussi Mezonot quand les grains restent distincts. La bénédiction finale reste Boré Nefachot.' };
+    var RICE_ASH = { b: 'mezonot', note: 'Généralement Mezonot, surtout si le riz est cuit et un peu collant ou mou : c\'est l\'avis le plus répandu chez les Ashkénazes non-\'Habad. La bénédiction finale reste Boré Nefachot.' };
+    var SALTY = 'Mezonot. De nombreuses autorités (dont des Séfarades) ne reprennent pas la précaution \'Habad de les manger dans un repas, après Hamotsi.';
+
+    var RITE_OVERRIDES = {
+        'Riz': { sefarade: RICE_SEF, ashkenaze: RICE_ASH },
+        'Soupe au riz': { sefarade: RICE_SEF, ashkenaze: RICE_ASH },
+        'Omelette au riz': { sefarade: RICE_SEF, ashkenaze: RICE_ASH },
+        'Banane': {
+            sefarade: { note: 'Haadama, de façon claire et certaine : pas de doute de Haets, contrairement à ce que dit la note 2 pour \'Habad. Si l\'on a dit Haets par erreur, de nombreux décisionnaires considèrent qu\'on est quitte.' },
+            ashkenaze: { note: 'Haadama, comme chez \'Habad : le doute de Haets que mentionne la note 2 reste théorique, et la pratique courante est Haadama.' }
+        },
+        'Petit pain': {
+            sefarade: { note: 'Hamotsi, sauf si la douceur est notable (goût sucré net, comme beaucoup de challot modernes au sucre ou aux raisins) : on dit alors Mezonot. Un Séfarade invité chez des Ashkénazes ou des \'Habad peut demander une challa non sucrée, ou apporter la sienne.' },
+            ashkenaze: { note: 'Hamotsi, y compris pour les challot sucrées (comme chez \'Habad).' }
+        },
+        'Matsa': {
+            sefarade: { b: 'mezonot', note: 'Souvent Mezonot hors de Pessa\'h, surtout si la matsa est fine et croustillante, ou selon certains usages. D\'autres disent Hamotsi : suivre l\'usage de sa communauté.' },
+            ashkenaze: { note: 'Hamotsi hors de Pessa\'h, comme chez \'Habad.' }
+        },
+        'Chocolat': { sefarade: { note: 'Chéhakol aussi, le plus souvent ; certains décisionnaires séfarades discutent davantage la possibilité de Haets (voir la note 12).' } },
+        'Bretzel': { sefarade: { note: SALTY }, ashkenaze: { note: SALTY } },
+        'Biscuit salé': { sefarade: { note: SALTY }, ashkenaze: { note: SALTY } },
+        'Soupe d\'orge sans légume': { sefarade: { note: 'Les règles très précises de ce cas sont celles de l\'Admour Hazaken. Chez les Séfarades, elles sont parfois plus souples ou classées autrement : suivre son rav.' } },
+        'Soupe d\'orge et de légumes': { sefarade: { note: 'Les règles très précises de ce cas sont celles de l\'Admour Hazaken. Chez les Séfarades, elles sont parfois plus souples ou classées autrement : suivre son rav.' } },
+        'Soupe de champignon et d\'orge': { sefarade: { note: 'Les règles très précises de ce cas sont celles de l\'Admour Hazaken. Chez les Séfarades, elles sont parfois plus souples ou classées autrement : suivre son rav.' } }
+    };
+
+    return { SOURCE: SOURCE, BLESSINGS: BLESSINGS, ORDER: ORDER, NONE: NONE, FOODS: FOODS, NOTES: NOTES, RITES: RITES, RITE_ORDER: RITE_ORDER, DEFAULT_RITE: DEFAULT_RITE, RITE_OVERRIDES: RITE_OVERRIDES };
 }));

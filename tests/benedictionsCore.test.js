@@ -64,3 +64,39 @@ test('les compteurs : chaque aliment est compté au moins une fois', () => {
     assert.ok(total >= D.FOODS.length);
     assert.strictEqual(counts.aucune, 1);
 });
+
+test('les rites : \'Habad est la liste telle quelle, les autres ont leurs écarts', () => {
+    const riz = find('Riz');
+    assert.strictEqual(C.view(riz, 'habad').b, 'chehakol');
+    assert.strictEqual(C.view(riz, undefined).b, 'chehakol');
+    assert.strictEqual(C.view(riz, 'inconnu').b, 'chehakol');
+    ['sefarade', 'ashkenaze'].forEach(r => {
+        const v = C.view(riz, r);
+        assert.strictEqual(v.b, 'mezonot');
+        assert.ok(v.diff && v.habad === 'chehakol' && v.note);
+    });
+});
+
+test('les rites : une précision sans changement de bénédiction', () => {
+    const banane = find('Banane');
+    const v = C.view(banane, 'sefarade');
+    assert.strictEqual(v.b, 'haadama');
+    assert.ok(!v.diff && v.note);
+    assert.strictEqual(C.view(banane, 'habad').note, null);
+    assert.strictEqual(C.view(find('Matsa'), 'sefarade').b, 'mezonot');
+    assert.strictEqual(C.view(find('Matsa'), 'ashkenaze').b, 'hamotsi');
+});
+
+test('les rites : le filtre et les compteurs suivent le rite', () => {
+    const chehakolHabad = C.filterFoods({ b: 'chehakol', rite: 'habad' }).map(f => f.n);
+    const chehakolSef = C.filterFoods({ b: 'chehakol', rite: 'sefarade' }).map(f => f.n);
+    assert.ok(chehakolHabad.indexOf('Riz') !== -1 && chehakolSef.indexOf('Riz') === -1);
+    assert.ok(C.filterFoods({ b: 'mezonot', rite: 'sefarade' }).some(f => f.n === 'Riz'));
+    assert.strictEqual(C.countByBlessing('sefarade').mezonot, C.countByBlessing('habad').mezonot + 4);
+});
+
+test('les écarts de rite ne désignent que des aliments qui existent', () => {
+    const names = D.FOODS.map(f => f.n);
+    Object.keys(D.RITE_OVERRIDES).forEach(n => assert.ok(names.indexOf(n) !== -1, n));
+    assert.deepStrictEqual(D.RITE_ORDER.slice().sort(), Object.keys(D.RITES).sort());
+});
