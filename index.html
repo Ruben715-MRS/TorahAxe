@@ -227,6 +227,28 @@
         </div>
     </div>
 
+<div id="screen-tool-chronologie" class="list-screen gen-screen chr-screen hidden">
+        <button class="back-btn" onclick="toolBack('chronologie')" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title sr-only" data-i18n="tools.chronologie_title">Chronologie</h2>
+        <p class="modes-header-subtitle sr-only" data-i18n="tools.chronologie_intro">Une grande frise de l'histoire juive : ce qui se passe en même temps, l'un au-dessus de l'autre. Faites-la défiler vers la droite ; touchez un élément pour sa fiche. Dates de la tradition (Séder Olam).</p>
+        <div class="gen-bar chr-bar">
+            <input type="search" id="tool-chr-search" class="tool-input" autocomplete="off" placeholder="Chercher un roi, un prophète, un événement" aria-label="Chercher un roi, un prophète, un événement" data-i18n-attr="placeholder:tools.chronologie_search;aria-label:tools.chronologie_search">
+            <div class="tool-history-chips is-scroll hidden" id="tool-chr-results" role="group" aria-label="Résultats" data-i18n-attr="aria-label:tools.chronologie_results_aria"></div>
+            <div class="chr-controls">
+                <div class="tool-history-chips" id="tool-chr-modes" role="group" aria-label="Années de la règle" data-i18n-attr="aria-label:tools.chronologie_modes_aria"></div>
+                <div class="tool-history-chips" id="tool-chr-zoom" role="group" aria-label="Zoom" data-i18n-attr="aria-label:tools.chronologie_zoom_aria"></div>
+            </div>
+            <div class="tool-history-chips is-scroll" id="tool-chr-jumps" role="group" aria-label="Aller à une époque" data-i18n-attr="aria-label:tools.chronologie_jumps_aria"></div>
+            <details class="chr-about">
+                <summary id="tool-chr-count" aria-live="polite"></summary>
+                <p class="tool-small" data-i18n="tools.chronologie_intro">Une grande frise de l'histoire juive : ce qui se passe en même temps, l'un au-dessus de l'autre. Faites-la défiler vers la droite ; touchez un élément pour sa fiche. Dates de la tradition (Séder Olam).</p>
+                <p class="tool-small" id="tool-chr-source"></p>
+            </details>
+        </div>
+        <div class="chr-view" id="tool-chr-view" tabindex="0" role="region" aria-label="Chronologie" data-i18n-attr="aria-label:tools.chronologie_title"></div>
+        <div class="tr-info hidden" id="tool-chr-info" aria-live="polite"></div>
+    </div>
+
 <div id="screen-tool-foodlaws" class="list-screen hidden">
         <button class="back-btn" onclick="toolBack('foodlaws')" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
         <h2 class="header-title" data-i18n="tools.food_title">Pur et impur : animaux et aliments</h2>
@@ -673,6 +695,8 @@
     <script src="js/geomagCore.js"></script>
     <script src="js/genealogyCore.js"></script>
     <script src="js/genealogyChronology.js"></script>
+    <script src="js/chronologieCore.js"></script>
+    <script src="js/app/chronologie.js"></script>
     <script src="js/app/genealogy.js"></script>
     <script src="js/hassidoutData.js"></script>
     <script src="js/transmissionMedievalData.js"></script>

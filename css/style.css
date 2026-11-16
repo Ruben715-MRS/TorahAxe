@@ -18401,3 +18401,95 @@ body:has(#screen-recit:not(.hidden))::after {
 .ben-shiur, .ben-final-none { margin: 0; }
 .ben-finals-rule { font-style: italic; }
 .ben-finals { margin-top: 4px; }
+
+/* === La chronologie (écran « Explorer ») === */
+/* Même principe que la chaîne de transmission : l'écran est une colonne, la frise prend toute la place restante, une fiche ouverte réserve sa hauteur en bas. */
+.list-screen.chr-screen { padding-top: 0; padding-bottom: 0; }
+.list-screen.chr-screen .chr-bar { margin-top: calc(env(safe-area-inset-top, 0px) + 66px); gap: 6px; max-width: 720px; align-items: stretch; }
+.chr-bar #tool-chr-search { width: 100%; height: 40px; margin: 0; }
+.chr-controls { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.chr-bar .tool-history-chip { min-height: 34px; padding: 4px 12px; font-size: 13px; }
+.chr-bar .tool-history-chip.is-date { min-width: 38px; padding: 4px 10px; font-size: 18px; }
+.chr-about { font-size: 12px; color: var(--muted-text); }
+.chr-about summary { cursor: pointer; padding: 2px 0; }
+.chr-about p { margin: 4px 0; }
+.chr-view {
+    --chr-ruler-h: 46px;
+    position: relative;
+    flex: 1 1 auto;
+    min-height: 0;
+    width: 100%;
+    margin-top: 6px;
+    overflow: auto;
+    border-top: 1px solid var(--border-soft);
+    background: var(--surface);
+    direction: ltr;
+    overscroll-behavior: contain;
+}
+.chr-view.has-info { margin-bottom: calc(var(--tr-sheet) + env(safe-area-inset-bottom, 0px) + 12px); }
+.chr-stage {
+    position: relative;
+    padding-bottom: 24px;
+    background-image: repeating-linear-gradient(to right, var(--border-soft) 0, var(--border-soft) 1px, transparent 1px, transparent var(--chr-decade, 80px));
+}
+.chr-ruler {
+    position: sticky;
+    top: 0;
+    z-index: 4;
+    height: var(--chr-ruler-h);
+    background: var(--surface);
+    border-bottom: 1px solid var(--border-soft);
+}
+.chr-tick { position: absolute; top: 0; height: 100%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 11px; line-height: 1.25; color: var(--muted-text); white-space: nowrap; }
+.chr-tick b { font-size: 13px; color: var(--text-dark); }
+.chr-lane { position: relative; padding: 0 0 6px; border-bottom: 1px solid var(--border-soft); }
+.chr-lane-title {
+    position: sticky;
+    left: 0;
+    z-index: 3;
+    display: inline-block;
+    margin: 6px 0 4px 6px;
+    padding: 2px 10px;
+    border-radius: 12px;
+    background: var(--chr-c, #e2e8f0);
+    color: #0f172a;
+    font-size: 12px;
+    font-weight: 700;
+}
+.chr-lane-body { position: relative; }
+.chr-item {
+    position: absolute;
+    height: 30px;
+    min-width: 12px;
+    box-sizing: border-box;
+    padding: 0 6px;
+    border: 1px solid color-mix(in srgb, var(--chr-c, #94a3b8) 70%, #000);
+    border-radius: 8px;
+    background: var(--chr-c, #e2e8f0);
+    color: #0f172a;
+    font: inherit;
+    font-size: 12px;
+    line-height: 28px;
+    text-align: left;
+    white-space: nowrap;
+    cursor: pointer;
+}
+.chr-item .chr-label { display: block; overflow: hidden; text-overflow: ellipsis; pointer-events: none; }
+.chr-item .chr-label.is-out { position: absolute; left: 100%; top: 0; margin-left: 4px; overflow: visible; color: var(--text-dark); }
+.chr-item.is-point { padding: 0; border-radius: 50%; width: 12px !important; height: 12px; margin-top: 9px; }
+.chr-item.is-point .chr-label.is-out { margin-left: 6px; top: -9px; }
+.chr-item.is-approx { border-style: dashed; }
+.chr-item.is-detail { height: 22px; line-height: 20px; margin-top: 4px; opacity: 0.85; }
+.chr-item.is-oppression { --chr-c: #fca5a5; }
+.chr-item.is-cut-left { border-top-left-radius: 0; border-bottom-left-radius: 0; border-left-width: 3px; }
+.chr-item.is-cut-right { border-top-right-radius: 0; border-bottom-right-radius: 0; border-right-width: 3px; }
+.chr-item.is-selected { outline: 3px solid #f59e0b; outline-offset: 1px; z-index: 2; }
+.chr-item:focus-visible { outline: 3px solid #2563eb; outline-offset: 1px; z-index: 2; }
+.chr-lane-eres { --chr-c: #fde68a; }
+.chr-lane-lieu { --chr-c: #fdba74; }
+.chr-lane-prophetie { --chr-c: #c4b5fd; }
+.chr-lane-chefs { --chr-c: #86efac; }
+.chr-lane-juda { --chr-c: #93c5fd; }
+.chr-lane-israel { --chr-c: #f9a8d4; }
+.chr-lane-evenements { --chr-c: #cbd5e1; }
+.chr-lane-evenements .chr-item.is-point { background: #475569; border-color: #475569; }
