@@ -41,6 +41,11 @@
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="manifest" href="manifest.webmanifest">
     <script src="js/appearanceCore.js"></script>
+    <script src="js/dataCore.js"></script>
+    <script>
+        /* Anciennes clés historiaxe_* copiées vers torahaxe_* avant que quoi que ce soit ne lise le stockage. */
+        try { DataCore.migrateStorage(localStorage); } catch (e) { }
+    </script>
     <script>
         /* Thème, fond et motif posés avant le premier affichage : pas de flash clair en mode sombre. */
         try { AppearanceCore.apply(document.documentElement, JSON.parse(localStorage.getItem(AppearanceCore.KEY) || "null"), window.matchMedia("(prefers-color-scheme: dark)").matches); } catch (e) { }
@@ -792,7 +797,6 @@
     <script src="js/app/transmission-game.js"></script>
     <script src="js/app/tools.js"></script>
     <script src="js/app/navigation.js"></script>
-    <script src="js/dataCore.js"></script>
     <script src="js/app/settings.js"></script>
     <script src="js/app/home.js"></script>
 

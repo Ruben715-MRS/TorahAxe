@@ -8,9 +8,9 @@
 // Les styles `.tk-*` sont adaptés de css/page.css et css/master.css du dépôt tikkun.io. Tout ce qui vient du texte passe par
 // textContent (les accolades du qere sont traduites en éléments, jamais en HTML).
 
-const TORAH_READER_ANNOTATIONS_KEY = 'historiaxe_torah_reader_annotations';
+const TORAH_READER_ANNOTATIONS_KEY = 'torahaxe_torah_reader_annotations';
 // Nouvelle clé : les choix mémorisés avant (essais) ne s'appliquent plus, Shlomo semiStam redevient la police par défaut.
-const TORAH_READER_FONT_KEY = 'historiaxe_torah_reader_font_v2';
+const TORAH_READER_FONT_KEY = 'torahaxe_torah_reader_font_v2';
 // Polices proposées. Shlomo semiStam est la police de tikkun.io (par défaut). Les autres reposent sur Noto Serif Hebrew
 // pour les accents qu'elles ne contiennent pas.
 const TORAH_READER_FONTS = [
@@ -86,7 +86,7 @@ function toolTorahReaderInit() {
 }
 
 // Mémoire de lecture : le bloc au centre de l'écran, gardé sur l'appareil. Rien n'est enregistré avant la restauration.
-const TORAH_READER_POSITION_KEY = 'historiaxe_torah_reader_position';
+const TORAH_READER_POSITION_KEY = 'torahaxe_torah_reader_position';
 // La position n'est enregistrée qu'après une action de l'utilisateur (toucher, molette, clic) : les ajustements automatiques
 // (mise à l'échelle, rendu des pages voisines) ne modifient pas la mémoire.
 let torahReaderSaveEnabled = false;

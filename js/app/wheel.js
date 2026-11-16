@@ -7,7 +7,7 @@
 // Facultatif et à côté du niveau : il ne rapporte pas d'étoiles au Chemin et ne bloque rien. Données et règles :
 // js/calendarWheel.js (pur, testé) ; ici, seulement l'écran.
 
-const WHEEL_KEY = 'historiaxe_wheel_v1';
+const WHEEL_KEY = 'torahaxe_wheel_v1';
 const WHEEL_SVG_NS = 'http://www.w3.org/2000/svg';
 // Rayons (le viewBox est centré sur 0,0) : les fêtes posées vivent dans [WHEEL_R_IN, WHEEL_R_RIM], les mois
 // sur la jante entre WHEEL_R_RIM et WHEEL_R_OUT.

@@ -32,7 +32,7 @@ function lexgameBack() {
 }
 
 // Les réglages de l'appareil : le niveau de fréquence joué (3 très fréquents, 2 courants, 1 rares, 0 absents de la Torah, chacun une fois débloqué) et le mode « rouleau ».
-const LEXGAME_PREFS_KEY = 'historiaxe_lexgame_prefs_v1';
+const LEXGAME_PREFS_KEY = 'torahaxe_lexgame_prefs_v1';
 let lexgameLevel = 3;
 let lexgameScroll = false;
 
