@@ -226,6 +226,10 @@ function hcalDescribeDay(out, fixed) {
         hcalPara(out, t('tools.hcal_no_feast'));
     }
     hcalPara(out, t('tools.hcal_night_note'));
+    // L'année hébraïque de ce jour, sur la grande frise (les années comptent depuis la création du monde).
+    const chr = hcalEl('div', 'gen-actions');
+    out.appendChild(chr);
+    if (typeof chrAddYearButton === 'function') chrAddYearButton(chr, h.year, 'screen-tool-hebrew-calendar');
 }
 
 function hcalHebrewPanel() {

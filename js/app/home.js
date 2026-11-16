@@ -251,6 +251,25 @@ function homeSearchResults(query) {
     });
 }
 
+// Les résultats « Dans la chronologie » d'une recherche. `alone` : aucun outil ne correspond, donc « Aucun résultat » si la frise non plus.
+function homeChronoResults(query, holder, alone) {
+    const none = () => { if (alone) holder.appendChild(hEl('p', 'home-empty', 'Aucun résultat pour « ' + query.trim() + ' ».')); };
+    if (typeof chrLoadModel !== 'function' || typeof ChronologieCore === 'undefined') { none(); return; }
+    chrLoadModel().then(model => {
+        if (homeQuery !== query || !holder.isConnected) return;
+        const hits = ChronologieCore.search(model, query).slice(0, 8);
+        if (!hits.length) { none(); return; }
+        holder.appendChild(hEl('h2', 'home-section-title', t('tools.chronologie_in_search')));
+        const voies = {};
+        model.voies.forEach(v => { voies[v.id] = v.fr; });
+        holder.appendChild(homeRows(hits.map(x => ({
+            id: x.id, he: x.he || '⏳', fr: x.fr,
+            desc: ChronologieCore.dating(x, 'am') + ' · ' + ChronologieCore.dating(x, 'civil') + ' · ' + voies[x.voie],
+            run: () => openChronologie('screen-main', { item: x })
+        }))));
+    }).catch(() => none());
+}
+
 function homeRenderBrowse(content) {
     const titles = { etude: 'Étude', explorer: 'Explorer', reviser: 'Réviser' };
     homeHeader(content, titles[homeTab]);
@@ -272,8 +291,11 @@ function homeRenderBrowse(content) {
     }
     if (homeTab !== 'reviser' && homeQuery.trim()) {
         const found = homeSearchResults(homeQuery);
-        if (!found.length) { content.appendChild(hEl('p', 'home-empty', 'Aucun résultat pour « ' + homeQuery.trim() + ' ».')); return; }
-        content.appendChild(homeRows(found));
+        if (found.length) content.appendChild(homeRows(found));
+        // Les éléments de la chronologie (rois, sages, événements…) : une fois la frise chargée, on les ajoute sous les outils.
+        const holder = hEl('div');
+        content.appendChild(holder);
+        homeChronoResults(homeQuery, holder, !found.length);
         return;
     }
     HOME_LAYOUT[homeTab].forEach(section => homeSection(content, section));

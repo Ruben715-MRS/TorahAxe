@@ -71,6 +71,27 @@ function chrButton(target, from) {
     b.onclick = () => openChronologie(from, target);
     return b;
 }
+// Ajoute à `container`, une fois la frise chargée, le bouton qui situe un élément précis de la frise (Temple, Michkan…).
+function chrAddItemButton(container, itemId, from) {
+    if (typeof chrLoadModel !== 'function') return;
+    chrLoadModel().then(model => {
+        const item = model.byId[itemId];
+        const b = item && chrButton({ item: item }, from);
+        if (b && container.isConnected) container.appendChild(b);
+    }).catch(() => {});
+}
+// Ajoute à `container` le bouton qui marque une année de la création (AM) sur la frise, si elle est dans la plage de la frise.
+function chrAddYearButton(container, year, from) {
+    chrLoadModel().then(model => {
+        if (!(year >= model.plage[0] && year <= model.plage[1]) || !container.isConnected) return;
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'btn';
+        b.textContent = t('tools.chronologie_locate_year', { year: year });
+        b.onclick = () => openChronologie(from, { from: year, to: year, label: t('tools.chronologie_year_label', { year: year }) });
+        container.appendChild(b);
+    }).catch(() => {});
+}
 // Les cibles, calculées sur le modèle (chargé à la demande : on charge le fichier une fois, puis on répond sans attendre).
 function chrLoadModel() {
     if (chrModel) return Promise.resolve(chrModel);

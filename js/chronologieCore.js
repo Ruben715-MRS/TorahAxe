@@ -145,12 +145,22 @@
     function norm(s) {
         return String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[’']/g, '').replace(/[^a-z0-9א-ת ]+/g, ' ').replace(/\s+/g, ' ').trim();
     }
+    // Recherche : chaque mot de la requête doit se trouver dans le nom, l'hébreu ou la note. Les noms d'abord (le nom commence par la requête, puis
+    // contient tous les mots), les notes ensuite ; à égalité, dans l'ordre du temps.
     function search(model, query) {
         var q = norm(query);
         if (!q) return [];
-        return model.items.filter(function (x) {
-            return norm(x.fr).indexOf(q) !== -1 || (x.he && norm(x.he).indexOf(q) !== -1) || norm(x.note).indexOf(q) !== -1;
-        }).sort(function (a, b) { return a.from - b.from; });
+        var words = q.split(' ');
+        var scored = [];
+        model.items.forEach(function (x) {
+            var name = norm(x.fr), he = x.he ? norm(x.he) : '', note = norm(x.note);
+            var all = name + ' ' + he + ' ' + note;
+            for (var i = 0; i < words.length; i++) if (all.indexOf(words[i]) === -1) return;
+            var inName = words.every(function (w) { return name.indexOf(w) !== -1 || (he && he.indexOf(w) !== -1); });
+            var score = name.indexOf(q) === 0 || (he && he.indexOf(q) === 0) ? 0 : name.indexOf(q) !== -1 ? 1 : inName ? 2 : 3;
+            scored.push({ x: x, score: score });
+        });
+        return scored.sort(function (a, b) { return a.score - b.score || a.x.from - b.x.from; }).map(function (r) { return r.x; });
     }
 
     // Ce qui se passe en même temps : les éléments des AUTRES voies (hors époques) qui recouvrent l'élément, du plus proche au plus lointain de son début.

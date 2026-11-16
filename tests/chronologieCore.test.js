@@ -343,3 +343,13 @@ test('situer une œuvre : la période d\'écriture, en années de la création',
     assert.strictEqual(C.forYears('x', 0, 0), null);
     L.WORKS.forEach(w => { const c = C.forYears(w.fr, w.from, w.to); assert.ok(c && c.from <= c.to, w.id); });
 });
+
+test('recherche : tous les mots, les noms avant les notes, le nom qui commence par la requête en premier', () => {
+    const hillel = C.search(M, 'hillel').map(x => x.id);
+    assert.ok(['n_hillel', 'n_hillel2', 's_zug5'].some(id => hillel.indexOf(id) !== -1 && hillel.indexOf(id) < hillel.indexOf('j_avdon')), 'Hillel avant Avdon ben Hillel');
+    assert.ok(/^hillel/i.test(M.byId[hillel[0]].fr), 'le premier résultat commence par Hillel : ' + M.byId[hillel[0]].fr);
+    const destruction = C.search(M, 'destruction du temple').map(x => x.id);
+    assert.ok(destruction.indexOf('e_destruction') !== -1 && destruction.indexOf('e_destruction2') !== -1);
+    assert.ok(['e_destruction', 'e_destruction2'].indexOf(destruction[0]) !== -1, 'les destructions en tête');
+    assert.deepStrictEqual(C.search(M, 'destruction zzzz'), []);
+});
