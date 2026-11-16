@@ -382,3 +382,9 @@ test('situer un livre et une fête', () => {
     assert.strictEqual(C.forFeast(M, 'tichabav').item.id, 'e_destruction');
     assert.strictEqual(C.forFeast(M, 'tubichvat'), null);
 });
+
+test('situer la Michna et le Talmud', () => {
+    assert.strictEqual(C.forText(M, 'michna').item.id, 'tannaim_ere');
+    assert.strictEqual(C.forText(M, 'talmud').item.id, 'o_bavli');
+    assert.strictEqual(C.forText(M, 'autre'), null);
+});

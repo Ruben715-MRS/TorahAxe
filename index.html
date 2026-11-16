@@ -233,18 +233,28 @@
         <h2 class="header-title sr-only" data-i18n="tools.chronologie_title">Chronologie</h2>
         <p class="modes-header-subtitle sr-only" data-i18n="tools.chronologie_intro">Une grande frise de l'histoire juive : ce qui se passe en même temps, l'un au-dessus de l'autre. Faites-la défiler vers la droite ; touchez un élément pour sa fiche. Dates de la tradition (Séder Olam).</p>
         <div class="gen-bar chr-bar">
-            <input type="search" id="tool-chr-search" class="tool-input" autocomplete="off" placeholder="Chercher un roi, un prophète, un événement" aria-label="Chercher un roi, un prophète, un événement" data-i18n-attr="placeholder:tools.chronologie_search;aria-label:tools.chronologie_search">
-            <div class="tool-history-chips is-scroll hidden" id="tool-chr-results" role="group" aria-label="Résultats" data-i18n-attr="aria-label:tools.chronologie_results_aria"></div>
-            <div class="chr-controls">
-                <div class="tool-history-chips" id="tool-chr-modes" role="group" aria-label="Années de la règle" data-i18n-attr="aria-label:tools.chronologie_modes_aria"></div>
-                <div class="tool-history-chips" id="tool-chr-zoom" role="group" aria-label="Zoom" data-i18n-attr="aria-label:tools.chronologie_zoom_aria"></div>
+            <!-- Une seule ligne, à la hauteur du bouton retour : recherche, années, zoom, époques. Le reste se déplie à la demande. -->
+            <div class="chr-toolbar" id="tool-chr-toolbar">
+                <button type="button" class="tool-history-chip chr-tb-search" id="tool-chr-search-btn" onclick="chrOpenSearch()" aria-label="Chercher un roi, un prophète, un événement" data-i18n-attr="aria-label:tools.chronologie_search">🔍</button>
+                <div class="chr-seg" id="tool-chr-modes" role="group" aria-label="Années de la règle" data-i18n-attr="aria-label:tools.chronologie_modes_aria"></div>
+                <div class="chr-seg" id="tool-chr-zoom" role="group" aria-label="Zoom" data-i18n-attr="aria-label:tools.chronologie_zoom_aria"></div>
+                <button type="button" class="tool-history-chip chr-tb-menu" id="tool-chr-menu-btn" onclick="chrToggleMenu()" aria-expanded="false" aria-controls="tool-chr-menu" data-i18n="tools.chronologie_menu">Époques ▾</button>
             </div>
-            <div class="tool-history-chips is-scroll" id="tool-chr-jumps" role="group" aria-label="Aller à une époque" data-i18n-attr="aria-label:tools.chronologie_jumps_aria"></div>
-            <details class="chr-about">
-                <summary id="tool-chr-count" aria-live="polite"></summary>
-                <p class="tool-small" data-i18n="tools.chronologie_intro">Une grande frise de l'histoire juive : ce qui se passe en même temps, l'un au-dessus de l'autre. Faites-la défiler vers la droite ; touchez un élément pour sa fiche. Dates de la tradition (Séder Olam).</p>
-                <p class="tool-small" id="tool-chr-source"></p>
-            </details>
+            <div class="chr-searchrow hidden" id="tool-chr-searchrow">
+                <input type="search" id="tool-chr-search" class="tool-input" autocomplete="off" placeholder="Chercher un roi, un prophète, un événement" aria-label="Chercher un roi, un prophète, un événement" data-i18n-attr="placeholder:tools.chronologie_search;aria-label:tools.chronologie_search">
+                <button type="button" class="tool-history-chip" onclick="chrCloseSearch()" aria-label="Fermer la recherche" data-i18n-attr="aria-label:tools.chronologie_search_close">✕</button>
+            </div>
+            <div class="chr-drop hidden" id="tool-chr-results" role="group" aria-label="Résultats" data-i18n-attr="aria-label:tools.chronologie_results_aria"></div>
+            <div class="chr-drop hidden" id="tool-chr-menu">
+                <p class="tool-small chr-menu-title" data-i18n="tools.chronologie_jumps_aria">Aller à une époque</p>
+                <div class="tool-history-chips chr-jumps" id="tool-chr-jumps" role="group" aria-label="Aller à une époque" data-i18n-attr="aria-label:tools.chronologie_jumps_aria"></div>
+                <details class="chr-about">
+                    <summary data-i18n="tools.chronologie_sources">Sources et méthode</summary>
+                    <p class="tool-small" data-i18n="tools.chronologie_intro">Une grande frise de l'histoire juive : ce qui se passe en même temps, l'un au-dessus de l'autre. Faites-la défiler vers la droite ; touchez un élément pour sa fiche. Dates de la tradition (Séder Olam).</p>
+                    <p class="tool-small" id="tool-chr-source"></p>
+                </details>
+            </div>
+            <div class="chr-markerrow hidden" id="tool-chr-markerrow"></div>
         </div>
         <div class="chr-view" id="tool-chr-view" tabindex="0" role="region" aria-label="Chronologie" data-i18n-attr="aria-label:tools.chronologie_title"></div>
         <div class="tr-info hidden" id="tool-chr-info" aria-live="polite"></div>
@@ -598,6 +608,7 @@
             <button type="button" class="tool-history-chip tanakh-nav-label" id="tool-michna-nav-label" onclick="michnaScrollTop()" aria-label="Remonter au début du texte" data-i18n-attr="aria-label:tools.tanakh_top"></button>
             <button type="button" class="tool-history-chip" id="tool-michna-next2" onclick="michnaGo(1)" aria-label="Chapitre suivant" data-i18n-attr="aria-label:tools.torah_next">›</button>
         </div>
+        <div class="gen-actions" id="tool-michna-chrono"></div>
         <p class="tool-small" id="tool-michna-source"></p>
     </div>
 
@@ -632,6 +643,7 @@
             <button type="button" class="tool-history-chip tanakh-nav-label" id="tool-talmud-nav-label" onclick="talmudScrollTop()" aria-label="Remonter au début du texte" data-i18n-attr="aria-label:tools.tanakh_top"></button>
             <button type="button" class="tool-history-chip" id="tool-talmud-next2" onclick="talmudGo(1)" aria-label="Amoud suivant" data-i18n-attr="aria-label:tools.talmud_next">›</button>
         </div>
+        <div class="gen-actions" id="tool-talmud-chrono"></div>
         <p class="tool-small" id="tool-talmud-source"></p>
         <div class="talmud-lookup" id="tool-talmud-lookup" role="dialog" aria-labelledby="tool-talmud-lookup-word" hidden>
             <button type="button" class="talmud-lookup-close" onclick="talmudLookupClose()" aria-label="Fermer" data-i18n-attr="aria-label:tools.talmud_lookup_close">✕</button>

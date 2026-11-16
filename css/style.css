@@ -18405,11 +18405,30 @@ body:has(#screen-recit:not(.hidden))::after {
 /* === La chronologie (écran « Explorer ») === */
 /* Même principe que la chaîne de transmission : l'écran est une colonne, la frise prend toute la place restante, une fiche ouverte réserve sa hauteur en bas. */
 .list-screen.chr-screen { padding-top: 0; padding-bottom: 0; }
-.list-screen.chr-screen .chr-bar { margin-top: calc(env(safe-area-inset-top, 0px) + 66px); gap: 6px; max-width: 720px; align-items: stretch; }
-.chr-bar #tool-chr-search { width: 100%; height: 40px; margin: 0; }
-.chr-controls { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-.chr-bar .tool-history-chip { min-height: 34px; padding: 4px 12px; font-size: 13px; }
-.chr-bar .tool-history-chip.is-date { min-width: 38px; padding: 4px 10px; font-size: 18px; }
+/* La barre tient sur une ligne, à la hauteur du bouton retour (fixe, 42 px à 14 px du haut) : la frise gagne le reste de l'écran. */
+.list-screen.chr-screen .chr-bar { position: relative; z-index: 20; margin-top: calc(env(safe-area-inset-top, 0px) + 14px); gap: 6px; max-width: 720px; align-items: stretch; }
+.chr-toolbar { display: flex; align-items: center; gap: 6px; min-height: 42px; }
+@media (max-width: 560px) { .chr-toolbar, .chr-searchrow { margin-left: 50px; } }
+.chr-toolbar.hidden, .chr-searchrow.hidden { display: none; }
+.chr-seg { display: flex; flex: none; border: 1px solid var(--border-soft); border-radius: 18px; background: var(--surface); overflow: hidden; }
+.chr-bar .chr-seg .tool-history-chip { min-height: 34px; min-width: 34px; padding: 2px 9px; border: 0; border-radius: 0; font-size: 13px; box-shadow: none; }
+.chr-bar .chr-seg .tool-history-chip + .tool-history-chip { border-left: 1px solid var(--border-soft); }
+.chr-bar .chr-seg .tool-history-chip[aria-pressed="true"] { background: var(--selected-tint); font-weight: 800; }
+.chr-bar .chr-seg .tool-history-chip.is-date { font-size: 18px; padding: 0 10px; }
+.chr-bar .chr-seg .tool-history-chip:disabled { opacity: 0.35; }
+.chr-bar .chr-tb-search { flex: none; min-width: 40px; min-height: 36px; padding: 0 8px; font-size: 16px; }
+.chr-bar .chr-tb-menu { flex: none; margin-left: auto; min-height: 36px; padding: 0 12px; font-size: 13px; font-weight: 700; white-space: nowrap; }
+.chr-searchrow { display: flex; align-items: center; gap: 6px; min-height: 42px; }
+.chr-searchrow #tool-chr-search { flex: 1 1 auto; min-width: 0; width: auto; height: 40px; margin: 0; }
+.chr-searchrow .tool-history-chip { flex: none; min-width: 40px; min-height: 40px; padding: 0; }
+.chr-markerrow { display: flex; }
+.chr-markerrow.hidden { display: none; }
+/* Les menus s'ouvrent par-dessus la frise : ils ne la déplacent pas. */
+.chr-drop { position: absolute; left: 0; right: 0; top: calc(100% + 4px); z-index: 30; display: flex; flex-wrap: wrap; gap: 6px; padding: 10px; border: 1px solid var(--border-soft); border-radius: 16px; background: var(--surface); box-shadow: var(--card-shadow); max-height: 60vh; overflow: auto; }
+.chr-drop.hidden { display: none; }
+.chr-drop .chr-menu-title { flex: 1 1 100%; margin: 0; font-weight: 700; }
+.chr-drop .chr-jumps { flex-wrap: wrap; overflow: visible; }
+.chr-drop .chr-about { flex: 1 1 100%; }
 .chr-about { font-size: 12px; color: var(--muted-text); }
 .chr-about summary { cursor: pointer; padding: 2px 0; }
 .chr-about p { margin: 4px 0; }
@@ -18430,8 +18449,9 @@ body:has(#screen-recit:not(.hidden))::after {
 .chr-stage {
     position: relative;
     padding-bottom: 24px;
-    background-image: repeating-linear-gradient(to right, var(--border-soft) 0, var(--border-soft) 1px, transparent 1px, transparent var(--chr-decade, 80px));
 }
+.chr-grid { position: absolute; left: 0; right: 0; top: var(--chr-ruler-h); bottom: 0; pointer-events: none; }
+.chr-gridline { position: absolute; top: 0; bottom: 0; width: 1px; background: var(--border-soft); }
 .chr-ruler {
     position: sticky;
     top: 0;

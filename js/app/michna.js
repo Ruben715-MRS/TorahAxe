@@ -316,7 +316,15 @@ function michnaCommParagraphs(c, i, inMishna) {
 
 // --- L'écran ------------------------------------------------------------------------------------------
 
+// « Situer dans la chronologie » : l'époque des maîtres de ce texte (une seule fois par ouverture de l'écran).
+function michnaChrono() {
+    const box = toolEl('tool-michna-chrono');
+    if (!box || box.firstChild || typeof chrAddTargetButton !== 'function' || typeof ChronologieCore === 'undefined') return;
+    chrAddTargetButton(box, model => ChronologieCore.forText(model, 'michna'), 'screen-tool-michna');
+}
+
 function michnaRender() {
+    michnaChrono();
     if (!michnaIndex) return;
     const tr = MichnaCore.find(michnaIndex, michnaState.id);
     // Les six ordres : un bouton chacun, qui ouvre son premier traité.

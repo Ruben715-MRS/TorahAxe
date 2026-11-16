@@ -31,6 +31,8 @@ function chrView() { return toolEl('tool-chr-view'); }
 function toolChronologieInit() {
     chrSelected = '';
     chrMarker = null;
+    chrCloseSearch();
+    chrToggleMenu(false);
     const input = toolEl('tool-chr-search');
     if (input && !input.dataset.bound) {
         input.dataset.bound = '1';
@@ -44,7 +46,7 @@ function toolChronologieInit() {
     fetch('data/chronologie.json')
         .then(r => r.json())
         .then(data => { chrModel = ChronologieCore.build(data); })
-        .catch(() => { toolEl('tool-chr-count').textContent = t('tools.chronologie_error'); })
+        .catch(() => { toolEl('tool-chr-view').textContent = t('tools.chronologie_error'); })
         .then(() => { chrLoading = false; if (chrModel) chrRender(); });
 }
 
@@ -143,9 +145,11 @@ function chrJump(item) {
 function chrRenderControls() {
     const modes = toolEl('tool-chr-modes');
     toolClear(modes);
-    [['am', 'tools.chronologie_mode_am'], ['civil', 'tools.chronologie_mode_civil']].forEach(([id, key]) => {
-        const b = chrNode('button', 'tool-history-chip', t(key));
+    [['am', 'tools.chronologie_mode_am', 'tools.chronologie_mode_am_short'], ['civil', 'tools.chronologie_mode_civil', 'tools.chronologie_mode_civil_short']].forEach(([id, key, short]) => {
+        const b = chrNode('button', 'tool-history-chip', t(short));
         b.type = 'button';
+        b.title = t(key);
+        b.setAttribute('aria-label', t(key));
         b.setAttribute('aria-pressed', chrMode === id ? 'true' : 'false');
         b.onclick = () => chrSetMode(id);
         modes.appendChild(b);
@@ -160,21 +164,54 @@ function chrRenderControls() {
         b.onclick = () => chrSetZoom(d);
         zoom.appendChild(b);
     });
-    const jumps = toolEl('tool-chr-jumps');
-    toolClear(jumps);
+    // Le repère posé depuis une autre fiche : une pastille sous la barre, seulement quand il y en a un.
+    const markerRow = toolEl('tool-chr-markerrow');
+    toolClear(markerRow);
+    markerRow.classList.toggle('hidden', !chrMarker);
     if (chrMarker) {
         const m = chrNode('button', 'tool-history-chip is-marker', '📍 ' + t('tools.chronologie_marker', { name: chrMarker.label }) + ' ×');
         m.type = 'button';
         m.setAttribute('aria-label', t('tools.chronologie_marker_clear'));
         m.onclick = chrClearMarker;
-        jumps.appendChild(m);
+        markerRow.appendChild(m);
     }
+    // Les sauts d'époque, dans le menu « Époques ».
+    const jumps = toolEl('tool-chr-jumps');
+    toolClear(jumps);
     chrModel.sauts.forEach(item => {
         const b = chrNode('button', 'tool-history-chip', item.fr);
         b.type = 'button';
-        b.onclick = () => chrJump(item);
+        b.onclick = () => { chrToggleMenu(false); chrJump(item); };
         jumps.appendChild(b);
     });
+}
+
+// Le menu « Époques » et la recherche s'ouvrent par-dessus la frise, sans la déplacer.
+function chrToggleMenu(force) {
+    const menu = toolEl('tool-chr-menu'), btn = toolEl('tool-chr-menu-btn');
+    if (!menu || !btn) return;
+    const open = typeof force === 'boolean' ? force : menu.classList.contains('hidden');
+    menu.classList.toggle('hidden', !open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (open) chrCloseSearch();
+}
+
+function chrOpenSearch() {
+    chrToggleMenu(false);
+    toolEl('tool-chr-toolbar').classList.add('hidden');
+    toolEl('tool-chr-searchrow').classList.remove('hidden');
+    const input = toolEl('tool-chr-search');
+    input.focus();
+}
+
+function chrCloseSearch() {
+    const row = toolEl('tool-chr-searchrow');
+    if (!row) return;
+    row.classList.add('hidden');
+    toolEl('tool-chr-toolbar').classList.remove('hidden');
+    const input = toolEl('tool-chr-search');
+    if (input) input.value = '';
+    chrOnSearch();
 }
 
 // La règle : une graduation tous les 10 ans (tous les 20 au plus petit zoom), avec les deux calendriers l'un sous l'autre.
@@ -224,10 +261,16 @@ function chrRender(keepScroll) {
     const stage = chrNode('div', 'chr-stage');
     stage.style.width = width + 'px';
     const ruler = chrRuler(width);
-    // Le quadrillage suit les graduations (de 10, 20 ou 50 ans selon le zoom), dans le calendrier choisi.
-    stage.style.setProperty('--chr-decade', (chrScale() * (chrScale() < 3 ? 50 : chrScale() < 6 ? 20 : 10)) + 'px');
-    stage.style.backgroundPosition = ruler.dataset.first + 'px 0';
     stage.appendChild(ruler);
+    // Le quadrillage suit les graduations (de 10, 20 ou 50 ans selon le zoom), dans le calendrier choisi. Ce sont de vraies lignes, pas un fond répété :
+    // une image de fond de plus de 20 000 px est rendue floue par les navigateurs.
+    const grid = chrNode('div', 'chr-grid');
+    ChronologieCore.ticks(chrModel.plage, chrScale() < 3 ? 50 : chrScale() < 6 ? 20 : 10, chrMode).forEach(y => {
+        const line = chrNode('i', 'chr-gridline');
+        line.style.left = ((y - from) * chrScale()) + 'px';
+        grid.appendChild(line);
+    });
+    stage.appendChild(grid);
     if (chrMarker) {
         const band = chrNode('div', 'chr-marker');
         band.style.left = ((Math.max(chrMarker.from, from) - from) * chrScale()) + 'px';
@@ -256,12 +299,12 @@ function chrRender(keepScroll) {
         stage.appendChild(lane);
     });
     view.appendChild(stage);
-    toolEl('tool-chr-count').textContent = t('tools.chronologie_about', { n: shown });
     toolEl('tool-chr-source').textContent = chrModel.sources;
     if (keepScroll) { view.scrollLeft = left; view.scrollTop = top; }
     chrRenderInfo();
     if (!view.dataset.bound) {
         view.dataset.bound = '1';
+        view.addEventListener('pointerdown', () => chrToggleMenu(false));
         let timer = 0;
         view.addEventListener('scroll', () => { clearTimeout(timer); timer = setTimeout(chrUpdateIdle, 160); }, { passive: true });
     }
@@ -379,7 +422,7 @@ function chrOnSearch() {
     found.forEach(x => {
         const b = chrNode('button', 'tool-history-chip', x.fr);
         b.type = 'button';
-        b.onclick = () => { toolEl('tool-chr-search').value = ''; chrOnSearch(); chrSelect(x.id, true); };
+        b.onclick = () => { chrCloseSearch(); chrSelect(x.id, true); };
         box.appendChild(b);
     });
 }

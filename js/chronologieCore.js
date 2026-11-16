@@ -97,7 +97,7 @@
             return { id: v.id, fr: v.fr, items: all.filter(function (x) { return x.voie === v.id; }).sort(function (a, b) { return a.from - b.from || (b.to || b.from) - (a.to || a.from); }) };
         });
         var sauts = all.filter(function (x) { return x.saut; }).sort(function (a, b) { return a.from - b.from; });
-        return { plage: data.plage, sources: data.sources, voies: voies, items: all, byId: byId, sauts: sauts, livres: data.livres || {}, fetes: data.fetes || {} };
+        return { plage: data.plage, sources: data.sources, voies: voies, items: all, byId: byId, sauts: sauts, livres: data.livres || {}, fetes: data.fetes || {}, textes: data.textes || {} };
     }
 
     // La partie d'un élément qui tombe dans la plage affichée : { from, to, cutLeft, cutRight }.
@@ -208,6 +208,11 @@
         if (b.item) return model.byId[b.item] ? { item: model.byId[b.item] } : null;
         return { from: b.from, to: b.to, label: label || bookId };
     }
+    // La Michna ou le Talmud : l'époque de ses maîtres.
+    function forText(model, textId) {
+        var id = model.textes[textId];
+        return id && model.byId[id] ? { item: model.byId[id] } : null;
+    }
     // Une fête du Calendrier : l'événement qu'elle rappelle.
     function forFeast(model, feastId) {
         var id = model.fetes[feastId];
@@ -238,6 +243,6 @@
 
     return {
         CREATION_OFFSET: CREATION_OFFSET, civilYear: civilYear, civilLabel: civilLabel, amLabel: amLabel, yearLabel: yearLabel, dating: dating, duration: duration,
-        durationLabel: durationLabel, build: build, clip: clip, layout: layout, search: search, contemporains: contemporains, forGen: forGen, forSage: forSage, forBook: forBook, forFeast: forFeast, forYears: forYears, ce: ce, GROUP_ERA: GROUP_ERA, ticks: ticks, norm: norm
+        durationLabel: durationLabel, build: build, clip: clip, layout: layout, search: search, contemporains: contemporains, forGen: forGen, forSage: forSage, forBook: forBook, forText: forText, forFeast: forFeast, forYears: forYears, ce: ce, GROUP_ERA: GROUP_ERA, ticks: ticks, norm: norm
     };
 }));
