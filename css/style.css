@@ -18395,3 +18395,9 @@ body:has(#screen-recit:not(.hidden))::after {
 .ben-other-he { flex: 0 0 76px; font-size: 20px; text-align: center; }
 .ben-other-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
 .ben-other-text small { margin: 0; }
+.ben-final { display: flex; flex-direction: column; gap: 2px; padding-top: 6px; border-top: 1px dashed var(--border-soft); }
+.ben-final-tags { align-items: center; }
+.ben-final-btn { font: inherit; font-size: 12px; cursor: pointer; }
+.ben-shiur, .ben-final-none { margin: 0; }
+.ben-finals-rule { font-style: italic; }
+.ben-finals { margin-top: 4px; }

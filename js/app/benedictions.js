@@ -63,6 +63,7 @@ function benRender() {
             Array.prototype.forEach.call(rites.children, el => el.setAttribute('aria-pressed', el.dataset.rite === id ? 'true' : 'false'));
             benRenderRiteInfo();
             benRenderChips();
+            benRenderFinalsRule();
             benRenderRows();
         };
         rites.appendChild(btn);
@@ -103,6 +104,7 @@ function benRender() {
     body.appendChild(list);
 
     body.appendChild(benTextsPanel());
+    body.appendChild(benFinalsPanel());
     body.appendChild(benOtherPanel());
     body.appendChild(benSourceCard());
     benRenderRows();
@@ -178,6 +180,7 @@ function benRenderRows() {
                 card.appendChild(was);
             }
         }
+        card.appendChild(benFinalRow(food));
         // La précision du rite choisi (ses écarts ne viennent pas du Beth Loubavitch).
         if (view.note) {
             const box = benNode('div', 'ben-rite-note');
@@ -231,6 +234,79 @@ function benOpenSiddur(ids, title) {
     openSiddurSections(ids, title);
     toolReturns.siddur = 'screen-tool-benedictions';
     sdDirectBack = true;    // après l'ouverture : toolSiddurInit remet ce drapeau à zéro
+}
+
+// La bénédiction finale d'un aliment dans le rite choisi : une puce par bénédiction (elle ouvre le texte dans le Siddour), puis la quantité qui l'exige.
+function benFinalRow(food) {
+    const D = BenedictionsData;
+    const rite = benState.rite;
+    const keys = BenedictionsCore.finalsOf(food, rite);
+    const row = benNode('div', 'ben-final');
+    if (!keys.length) {
+        row.appendChild(benNode('p', 'tool-small ben-final-none', D.FINAL_NONE));
+        return row;
+    }
+    const line = benNode('div', 'kor-tags ben-final-tags');
+    line.appendChild(benNode('span', 'tool-small ben-final-label', t('tools.ben_after')));
+    keys.forEach(k => {
+        const def = D.FINALS[k];
+        const btn = benNode('button', 'kor-tag ben-final-btn ben-final-' + k);
+        btn.type = 'button';
+        btn.dataset.final = k;
+        btn.setAttribute('aria-label', t('tools.ben_final_open', { name: def.fr }));
+        btn.appendChild(benHebrew('span', def.he, 'ben-tag-he'));
+        btn.appendChild(document.createTextNode(' ' + def.fr));
+        btn.onclick = () => benOpenSiddur(def.sections, def.title);
+        line.appendChild(btn);
+    });
+    row.appendChild(line);
+    // La quantité : une seule ligne par mesure différente (un cas à plusieurs étapes peut en avoir deux).
+    const seen = [];
+    keys.forEach(k => {
+        const text = BenedictionsCore.shiur(k, food, rite);
+        if (seen.indexOf(text) === -1) seen.push(text);
+    });
+    row.appendChild(benNode('p', 'tool-small ben-shiur', t('tools.ben_if', { shiur: seen.join(' ; ') })));
+    const note = BenedictionsCore.finalNote(food, rite);
+    if (note) row.appendChild(benNode('p', 'tool-small ben-shiur', note));
+    return row;
+}
+
+// Les bénédictions finales : ce que chacune couvre, la quantité dans le rite choisi, et son texte dans le Siddour.
+function benFinalsPanel() {
+    const D = BenedictionsData;
+    const panel = benNode('details', 'kor-details ben-finals');
+    panel.id = 'ben-finals';
+    panel.appendChild(benNode('summary', '', t('tools.ben_finals_title')));
+    panel.appendChild(benNode('p', 'tool-small', t('tools.ben_finals_lead')));
+    D.FINAL_ORDER.forEach(k => {
+        const def = D.FINALS[k];
+        const card = benNode('article', 'tool-result kor-type');
+        const head = benNode('div', 'kor-type-head');
+        head.appendChild(benHebrew('strong', def.he, 'kor-he kor-he-inline'));
+        head.appendChild(benNode('span', 'kor-type-name', def.fr));
+        card.appendChild(head);
+        card.appendChild(benNode('p', 'tool-small', def.use));
+        const btn = benNode('button', 'tool-history-chip', t('tools.ben_final_open', { name: def.fr }));
+        btn.type = 'button';
+        btn.onclick = () => benOpenSiddur(def.sections, def.title);
+        card.appendChild(btn);
+        panel.appendChild(card);
+    });
+    const rule = benNode('p', 'tool-small ben-finals-rule');
+    rule.id = 'ben-finals-rule';
+    panel.appendChild(rule);
+    benRenderFinalsRule();
+    return panel;
+}
+
+// La quantité du rite choisi, sous la liste des bénédictions finales.
+function benRenderFinalsRule() {
+    const D = BenedictionsData;
+    const rule = toolEl('ben-finals-rule');
+    if (!rule) return;
+    const S = D.SHIUR[benState.rite];
+    rule.textContent = t('tools.ben_finals_rule', { rite: D.RITES[benState.rite].fr, food: S.food, drink: S.drink }) + ' ' + D.SHIUR_HINT[benState.rite];
 }
 
 // Les autres bénédictions du groupe « Bénédictions » du Siddour : à la vue de…, odorat, tonnerre, Chéhé'héyanou…

@@ -100,3 +100,46 @@ test('les écarts de rite ne désignent que des aliments qui existent', () => {
     Object.keys(D.RITE_OVERRIDES).forEach(n => assert.ok(names.indexOf(n) !== -1, n));
     assert.deepStrictEqual(D.RITE_ORDER.slice().sort(), Object.keys(D.RITES).sort());
 });
+
+test('les bénédictions finales : déduites de la bénédiction initiale', () => {
+    const f = (name, rite) => C.finalsOf(find(name), rite);
+    assert.deepStrictEqual(f('Pain de seigle', 'habad'), ['hamazon']);
+    assert.deepStrictEqual(f('Gâteau', 'sefarade'), ['hamihya']);
+    assert.deepStrictEqual(f('Vin de raisin frais ou de raisin sec', 'ashkenaze'), ['hagefen']);
+    assert.deepStrictEqual(f('Datte', 'habad'), ['haets']);
+    assert.deepStrictEqual(f('Pomme', 'habad'), ['nefachot']);
+    assert.deepStrictEqual(f('Carotte crue', 'sefarade'), ['nefachot']);
+    assert.deepStrictEqual(f('Viande', 'ashkenaze'), ['nefachot']);
+    assert.deepStrictEqual(f("Aspirine n'ayant pas de goût", 'habad'), []);
+});
+
+test('les bénédictions finales : le riz finit par Boré Nefachot dans les trois rites', () => {
+    ['sefarade', 'ashkenaze', 'habad'].forEach(r => ['Riz', 'Soupe au riz', 'Omelette au riz'].forEach(n => assert.deepStrictEqual(C.finalsOf(find(n), r), ['nefachot'], n + ' ' + r)));
+});
+
+test('les bénédictions finales : la matsa suit le rite', () => {
+    assert.deepStrictEqual(C.finalsOf(find('Matsa'), 'habad'), ['hamazon']);
+    assert.deepStrictEqual(C.finalsOf(find('Matsa'), 'ashkenaze'), ['hamazon']);
+    assert.deepStrictEqual(C.finalsOf(find('Matsa'), 'sefarade'), ['hamihya']);
+    assert.ok(C.finalNote(find('Matsa'), 'sefarade'));
+    assert.strictEqual(C.finalNote(find('Matsa'), 'habad'), null);
+});
+
+test('les bénédictions finales : un cas à plusieurs étapes, et la quantité', () => {
+    assert.deepStrictEqual(C.finalsOf(find('Glace dans un cornet sucré'), 'habad'), ['nefachot', 'hamihya']);
+    assert.deepStrictEqual(C.finalsOf(find('Spaghetti et boulettes de viande, s\'ils sont mangés séparément'), 'sefarade'), ['hamihya', 'nefachot']);
+    assert.ok(/huitième de litre/.test(C.shiur('nefachot', find('Café'), 'habad')));
+    assert.ok(/kazaït/.test(C.shiur('nefachot', find('Viande'), 'habad')));
+    assert.ok(/revi/.test(C.shiur('hagefen', find('Champagne'), 'sefarade')));
+});
+
+test('les bénédictions finales : tous les aliments sont couverts, et les données sont cohérentes', () => {
+    const names = D.FOODS.map(f => f.n);
+    D.LIQUIDS.concat(D.SEVEN_SPECIES, Object.keys(D.FINAL_OVERRIDES), Object.keys(D.FINAL_NOTES)).forEach(n => assert.ok(names.indexOf(n) !== -1, n));
+    D.FOODS.forEach(f => ['sefarade', 'ashkenaze', 'habad'].forEach(r => {
+        const finals = C.finalsOf(f, r);
+        finals.forEach(k => assert.ok(D.FINALS[k], f.n + ' : ' + k));
+        if (f.b !== 'aucune') assert.ok(finals.length > 0, f.n);
+    }));
+    D.FINAL_ORDER.forEach(k => D.FINALS[k].sections.forEach(id => assert.ok(require('fs').existsSync(__dirname + '/../data/siddur/' + id + '.json'), id)));
+});

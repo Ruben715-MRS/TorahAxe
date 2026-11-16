@@ -4,6 +4,7 @@
 // Les données sont dans js/benedictionsData.js ; l'écran dans js/app/benedictions.js. Ici, ce qui se calcule, testé dans tests/benedictionsCore.test.js :
 //  - la recherche d'un aliment (sans accents ni majuscules, sur son nom, le détail de ses cas et le nom de sa bénédiction) ;
 //  - le rite (Séfarade, Ashkénaze, 'Habad) : la liste est celle de 'Habad ; `view` donne l'aliment tel qu'un autre rite le lit (bénédiction et note propres) ;
+//  - la bénédiction finale (Birkat Hamazon, Al Hamihya, Al Haguéfen, Al Haets, Boré Nefachot) d'un aliment, et la quantité qui l'exige, selon le rite ;
 //  - le filtre par bénédiction (un aliment à plusieurs bénédictions apparaît sous chacune d'elles) ;
 //  - les notes d'un aliment, dans l'ordre et sans doublon.
 
@@ -77,6 +78,41 @@
         });
     }
 
+    // La bénédiction finale (clé de Data.FINALS) qui suit une bénédiction initiale `b` pour un aliment, ou null s'il n'y en a pas.
+    function finalOf(b, food) {
+        if (b === 'aucune') return null;
+        if (Data.FINAL_OVERRIDES[food.n]) return Data.FINAL_OVERRIDES[food.n];
+        if (b === 'hamotsi') return 'hamazon';
+        if (b === 'mezonot') return 'hamihya';
+        if (b === 'haguafen') return 'hagefen';
+        if (b === 'haets') return Data.SEVEN_SPECIES.indexOf(food.n) !== -1 ? 'haets' : 'nefachot';
+        return 'nefachot';
+    }
+
+    // Les bénédictions finales d'un aliment dans un rite, sans doublon, dans l'ordre des bénédictions initiales (vide : aucune).
+    function finalsOf(food, rite) {
+        var seen = [];
+        blessingsOf(food, rite).forEach(function (b) {
+            var k = finalOf(b, food);
+            if (k && seen.indexOf(k) === -1) seen.push(k);
+        });
+        return seen;
+    }
+
+    function isLiquid(food) { return Data.LIQUIDS.indexOf(food.n) !== -1; }
+
+    // La quantité qui oblige à dire la bénédiction finale `key` : un liquide (revi'it) pour le vin et les boissons, un kazaït sinon.
+    function shiur(key, food, rite) {
+        var S = Data.SHIUR[riteOf(rite)];
+        return (key === 'hagefen' || (key === 'nefachot' && isLiquid(food))) ? S.drink : S.food;
+    }
+
+    // La précision propre à un aliment et à un rite sur la bénédiction finale, ou null.
+    function finalNote(food, rite) {
+        var n = Data.FINAL_NOTES[food.n];
+        return (n && n[riteOf(rite)]) || null;
+    }
+
     // Le nombre d'aliments par bénédiction (pour les puces du filtre).
     function countByBlessing(rite) {
         var counts = {};
@@ -85,5 +121,5 @@
         return counts;
     }
 
-    return { normalize: normalize, riteOf: riteOf, override: override, view: view, blessingsOf: blessingsOf, notesOf: notesOf, label: label, filterFoods: filterFoods, countByBlessing: countByBlessing };
+    return { normalize: normalize, riteOf: riteOf, override: override, view: view, blessingsOf: blessingsOf, notesOf: notesOf, label: label, finalOf: finalOf, finalsOf: finalsOf, isLiquid: isLiquid, shiur: shiur, finalNote: finalNote, filterFoods: filterFoods, countByBlessing: countByBlessing };
 }));

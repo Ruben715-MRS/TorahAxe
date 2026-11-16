@@ -6,7 +6,7 @@
 // Newman, directeur du Beth Rivka de New York, sous l'autorité du Rav Yehouda Kalman Marlowe, président du tribunal rabbinique de Crown Heights ; il se
 // fonde sur les décisions hala'hiques de l'Admour Hazaken, essentiellement énoncées dans son Séder Birkat Ha Néhénin (usage 'Habad).
 // Les textes hébreux des six bénédictions sont ceux du Siddour (data/siddur/birkhot-hanehenin.json) ; hamotsi est le texte usuel du pain.
-// Les écarts séfarades et ashkénazes (RITE_OVERRIDES) ne sont pas du Beth Loubavitch : ils sont signalés comme tels dans l'écran.
+// Les bénédictions finales (FINALS) et les écarts séfarades et ashkénazes (RITE_OVERRIDES) ne sont pas du Beth Loubavitch : ils sont signalés comme tels dans l'écran.
 // Outil d'étude, pas une décision de halakha. Consommé par js/benedictionsCore.js (testé dans tests/benedictionsCore.test.js) et js/app/benedictions.js.
 
 (function (root, factory) {
@@ -430,5 +430,47 @@
         'Soupe de champignon et d\'orge': { sefarade: { note: 'Les règles très précises de ce cas sont celles de l\'Admour Hazaken. Chez les Séfarades, elles sont parfois plus souples ou classées autrement : suivre son rav.' } }
     };
 
-    return { SOURCE: SOURCE, BLESSINGS: BLESSINGS, ORDER: ORDER, NONE: NONE, FOODS: FOODS, NOTES: NOTES, RITES: RITES, RITE_ORDER: RITE_ORDER, DEFAULT_RITE: DEFAULT_RITE, RITE_OVERRIDES: RITE_OVERRIDES };
+    // --- Les bénédictions finales (après avoir mangé ou bu) -----------------------------------------------------------------------------
+    // Elles se déduisent de la bénédiction initiale : Hamotsi → Birkat Hamazon ; Mezonot → Al Hamihya ; Haguafen → Al Haguéfen ; Haets → Al Haets si c'est
+    // l'un des fruits des sept espèces (raisin, figue, grenade, olive, datte), sinon Boré Nefachot ; Haadama et Chéhakol → Boré Nefachot. Ces règles ne viennent
+    // PAS du guide du Beth Loubavitch (qui ne cite la bénédiction finale que dans quelques notes) : elles sont ajoutées par l'application et sont à faire relire
+    // par un rav. Les textes s'ouvrent dans le Siddour (`sections`).
+    var FINALS = {
+        hamazon: { he: 'בִּרְכַּת הַמָּזוֹן', fr: 'Birkat Hamazon', use: 'Après un repas avec du pain.', sections: ['birkat-hamazon'], title: 'Birkat Hamazon' },
+        hamihya: { he: 'עַל הַמִּחְיָה', fr: 'Al Hamihya', use: 'Après un aliment des cinq céréales, hors pain (Méeïn Chalosh).', sections: ['al-hamihya'], title: 'Al Hamihya (Méeïn Chalosh)' },
+        hagefen: { he: 'עַל הַגֶּפֶן', fr: 'Al Haguéfen', use: 'Après le vin ou le jus de raisin (Méeïn Chalosh).', sections: ['al-hamihya'], title: 'Al Haguéfen (Méeïn Chalosh)' },
+        haets: { he: 'עַל הָעֵץ', fr: 'Al Haets', use: 'Après l\'un des fruits des sept espèces : raisin, figue, grenade, olive, datte (Méeïn Chalosh).', sections: ['al-hamihya'], title: 'Al Haets (Méeïn Chalosh)' },
+        nefachot: { he: 'בּוֹרֵא נְפָשׁוֹת', fr: 'Boré Nefachot', use: 'Après tout autre aliment ou boisson.', sections: ['birkhot-hanehenin'], title: 'Boré Nefachot' }
+    };
+    var FINAL_ORDER = ['hamazon', 'hamihya', 'hagefen', 'haets', 'nefachot'];
+    var FINAL_NONE = 'Pas de bénédiction initiale, donc pas de bénédiction finale.';
+
+    // Les fruits des sept espèces de la liste (Al Haets) ; les autres fruits de l'arbre se terminent par Boré Nefachot.
+    var SEVEN_SPECIES = ['Datte', 'Figue', 'Grenade', 'Olives mûres ou préparées', 'Raisin mûr', 'Raisin sec'];
+    // Les aliments où la bénédiction finale ne suit pas la règle (le riz, même quand on dit Mezonot au début : Boré Nefachot dans tous les rites).
+    var FINAL_OVERRIDES = { 'Riz': 'nefachot', 'Soupe au riz': 'nefachot', 'Omelette au riz': 'nefachot' };
+    // Les boissons et les soupes : la quantité est une revi'it (un liquide), non un kazaït.
+    var LIQUIDS = ['Boisson au chocolat', 'Bouillon', 'Bouillon de poulet sans pâtes', 'Brandy', 'Café', 'Café glacé', 'Cidre', 'Citronnade', 'Eau, quand on a soif', 'Eau gazeuse',
+        'Jus de fruits à l\'exception du jus de raisin ou de tomate', 'Jus d\'ananas', 'Jus de pamplemousse', 'Jus de pomme', 'Jus de pruneau', 'Jus de tomate', 'Lait', 'Limonade',
+        'Petit lait', 'Soda aux extraits de gingembre', 'Soda gazeux', 'Thé', 'Thé glacé', 'Whisky', 'Soupe au riz', 'Soupe au maïs', 'Soupe aux choux', 'Soupe de betterave', 'Soupe de champignon',
+        'Soupe de légumes', 'Soupe de légumes secs', 'Soupe de lentilles', 'Soupe de petits pois', 'Soupe de pois cassés', 'Soupe à la tomate'];
+    // Une précision de plus sur la bénédiction finale, pour un aliment et un rite.
+    var FINAL_NOTES = {
+        'Matsa': { sefarade: 'À Pessa\'h, où la matsa devient Hamotsi : Birkat Hamazon.' }
+    };
+    // La quantité qui oblige à la bénédiction finale. Les mesures de 'Habad sont celles des notes 4 et 7 du guide ; pour les autres rites, on n'a pas de mesure
+    // sourcée : l'écran renvoie au rav.
+    var SHIUR = {
+        habad: { food: 'au moins un kazaït (une trentaine de grammes), mangé en six minutes environ', drink: 'environ un huitième de litre (revi\'it), bu en six minutes environ' },
+        sefarade: { food: 'au moins un kazaït (un volume d\'olive), mangé en peu de temps', drink: 'au moins une revi\'it, bue en peu de temps' },
+        ashkenaze: { food: 'au moins un kazaït (un volume d\'olive), mangé en peu de temps', drink: 'au moins une revi\'it, bue en peu de temps' }
+    };
+    var SHIUR_HINT = {
+        habad: 'Mesures du guide du Beth Loubavitch (notes 4 et 7).',
+        sefarade: 'Les mesures en grammes, en centilitres et en minutes varient selon les avis : demandez à votre rav.',
+        ashkenaze: 'Les mesures en grammes, en centilitres et en minutes varient selon les avis : demandez à votre rav.'
+    };
+
+    return { FINALS: FINALS, FINAL_ORDER: FINAL_ORDER, FINAL_NONE: FINAL_NONE, SEVEN_SPECIES: SEVEN_SPECIES, FINAL_OVERRIDES: FINAL_OVERRIDES, LIQUIDS: LIQUIDS,
+        FINAL_NOTES: FINAL_NOTES, SHIUR: SHIUR, SHIUR_HINT: SHIUR_HINT, SOURCE: SOURCE, BLESSINGS: BLESSINGS, ORDER: ORDER, NONE: NONE, FOODS: FOODS, NOTES: NOTES, RITES: RITES, RITE_ORDER: RITE_ORDER, DEFAULT_RITE: DEFAULT_RITE, RITE_OVERRIDES: RITE_OVERRIDES };
 }));
