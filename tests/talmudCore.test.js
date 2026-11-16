@@ -402,6 +402,7 @@ test('titres de sugya : le Daf Yomi à venir est couvert amoud par amoud (Bekhor
     assert.deepStrictEqual(covered('eruvin', '2a', '105a'), []);
     assert.deepStrictEqual(covered('pesachim', '2a', '121b'), []);
     assert.deepStrictEqual(covered('rosh-hashanah', '2a', '35a'), []);
+    assert.deepStrictEqual(covered('yoma', '2a', '88a'), []);
 });
 
 test('michnayot citées : chaque repère tombe sur un segment qui existe et sur une michna qui existe ; le début de la citation reprend celui de la michna', () => {
