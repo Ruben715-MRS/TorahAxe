@@ -95,6 +95,7 @@
                 <button type="button" class="btn" onclick="genCollapseAll()" data-i18n="tools.genealogy_collapse_all">Tout replier</button>
                 <button type="button" class="btn" onclick="genExpandAll()" data-i18n="tools.genealogy_expand_all">Tout déplier</button>
             </div>
+            <div class="gen-focus hidden" id="gen-focus" aria-live="polite"></div>
             <p class="gen-legend"><span class="gen-key is-man" data-i18n="tools.genealogy_men">Hommes</span> <span class="gen-key is-woman" data-i18n="tools.genealogy_women">Femmes</span><button type="button" class="gen-cat-toggle" id="gen-cat-toggle" aria-expanded="false" aria-controls="gen-cat-menu" onclick="genCatToggleMenu()"><span id="gen-cat-dot" class="gen-cat-dot hidden"></span><span id="gen-cat-toggle-label" data-i18n="tools.genealogy_cat_button">Catégories</span> ▾</button></p>
             <div class="gen-cat-menu hidden" id="gen-cat-menu" role="group" aria-label="Catégories" data-i18n-attr="aria-label:tools.genealogy_cat_button"></div>
             <section class="gen-cat-panel hidden" id="gen-cat-panel" aria-live="polite"></section>

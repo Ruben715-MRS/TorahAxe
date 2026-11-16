@@ -166,6 +166,37 @@
         }).slice(0, limit || 8);
     }
 
+    // --- Situer une fiche d'un autre outil sur la frise ------------------------------------------------------------------------------
+    // Trois façons : un élément précis de la frise (lien `gen` vers la généalogie, ou `sage` vers la chaîne de transmission), une période d'années
+    // (un maître dont on connaît la vie, une œuvre), ou, à défaut, l'époque du maître. Le résultat : { item } ou { from, to, label }.
+    var LANE_PRIORITY = ['patriarches', 'chefs', 'juda', 'israel', 'prophetie', 'sages', 'bavel', 'judee', 'maitres', 'hassidim', 'lieu', 'empires', 'babylonie', 'oeuvres', 'evenements', 'eres'];
+    // Les groupes de la chaîne de transmission et l'époque qui les contient.
+    var GROUP_ERA = { sinai: 'moise_ere', zougot: 'zougot_ere', tannaim: 'tannaim_ere', amoraim_israel: 'amoraim_ere', amoraim_babylonie: 'amoraim_ere',
+        gueonim: 'geonim_ere', richonim: 'richonim_ere', aharonim: 'acharonim_ere', hassidout: 'acharonim_ere' };
+    function ce(year) { return year + 3760; }
+    function lanePos(x) { var i = LANE_PRIORITY.indexOf(x.voie); return i === -1 ? 99 : i; }
+    function forGen(model, id) {
+        var hits = model.items.filter(function (x) { return x.gen === id; }).sort(function (a, b) { return lanePos(a) - lanePos(b) || a.from - b.from; });
+        return hits.length ? { item: hits[0] } : null;
+    }
+    function yearOf(text) { var m = /(\d{4})/.exec(String(text || '')); return m ? parseInt(m[1], 10) : null; }
+    // `sage` : un maître de js/transmissionCore.js.
+    function forSage(model, sage) {
+        var hit = model.items.filter(function (x) { return x.sage && [].concat(x.sage).indexOf(sage.id) !== -1; })[0];
+        if (hit) return { item: hit };
+        var born = sage.born, died = sage.died;
+        if (sage.hass) { born = yearOf(sage.naissance); died = yearOf(sage.deces); }
+        if (born && died) return { from: ce(born), to: ce(died), label: sage.fr };
+        if (born) return { from: ce(born), to: ce(born), label: sage.fr };
+        var era = model.byId[GROUP_ERA[sage.grp]];
+        return era ? { item: era } : null;
+    }
+    // `from`, `to` : des années de l'ère commune (une œuvre).
+    function forYears(label, from, to) {
+        if (!from) return null;
+        return { from: ce(from), to: ce(to || from), label: label };
+    }
+
     // Les graduations de la règle, en années depuis la création : une toutes les `step` années (10 par défaut). En mode 'am', les multiples de `step` ;
     // en mode 'civil', les années civiles rondes (−460, −450…), converties en années de la création.
     function ticks(plage, step, mode) {
@@ -185,6 +216,6 @@
 
     return {
         CREATION_OFFSET: CREATION_OFFSET, civilYear: civilYear, civilLabel: civilLabel, amLabel: amLabel, yearLabel: yearLabel, dating: dating, duration: duration,
-        durationLabel: durationLabel, build: build, clip: clip, layout: layout, search: search, contemporains: contemporains, ticks: ticks, norm: norm
+        durationLabel: durationLabel, build: build, clip: clip, layout: layout, search: search, contemporains: contemporains, forGen: forGen, forSage: forSage, forYears: forYears, ce: ce, GROUP_ERA: GROUP_ERA, ticks: ticks, norm: norm
     };
 }));

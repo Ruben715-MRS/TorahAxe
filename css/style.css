@@ -18505,5 +18505,12 @@ body:has(#screen-recit:not(.hidden))::after {
 .chr-lane-babylonie { --chr-c: #fbcfe8; }
 .chr-lane-oeuvres { --chr-c: #fde68a; }
 .chr-lane-evenements .chr-item.is-point { background: #475569; border-color: #475569; }
+.chr-marker { position: absolute; top: var(--chr-ruler-h); bottom: 0; z-index: 1; pointer-events: none; background: rgba(245, 158, 11, 0.18); border-left: 2px solid #f59e0b; border-right: 2px solid #f59e0b; box-sizing: border-box; }
+.chr-bar .tool-history-chip.is-marker { background: #fef3c7; border-color: #f59e0b; color: #78350f; white-space: nowrap; }
+.gen-focus { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 10px; margin: 6px 0; font-size: 14px; }
+.gen-focus.hidden { display: none; }
+.gen-focus strong { font-weight: 700; }
+.gen-focus .btn { width: auto; min-width: 44px; min-height: 36px; padding: 6px 12px; font-size: 13px; }
+.gen-card { cursor: pointer; }
 .chr-lane-maitres { --chr-c: #a7f3d0; }
 .chr-lane-hassidim { --chr-c: #fecdd3; }

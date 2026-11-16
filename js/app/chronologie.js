@@ -15,6 +15,7 @@ let chrLoading = false;
 let chrZoom = 1;                          // l'indice dans CHR_SCALES
 let chrMode = 'am';                       // 'am' (années hébraïques) | 'civil'
 let chrSelected = '';
+let chrMarker = null;                       // { from, to, label } : une période posée sur la frise depuis une autre fiche
 const chrCollapsed = new Set();             // les voies repliées (on touche le titre d'une voie pour la replier)
 
 function chrNode(tag, className, text) {
@@ -29,6 +30,7 @@ function chrView() { return toolEl('tool-chr-view'); }
 
 function toolChronologieInit() {
     chrSelected = '';
+    chrMarker = null;
     const input = toolEl('tool-chr-search');
     if (input && !input.dataset.bound) {
         input.dataset.bound = '1';
@@ -46,13 +48,33 @@ function toolChronologieInit() {
         .then(() => { chrLoading = false; if (chrModel) chrRender(); });
 }
 
-// Ouvre la chronologie sur un élément (depuis une autre fiche).
-function openChronologie(from, itemId) {
+// Ouvre la chronologie depuis une autre fiche. `target` : { item } (un élément de la frise, qu'on sélectionne) ou { from, to, label } (une période, qu'on
+// marque et qu'on montre). Résultat de ChronologieCore.forGen / forSage / forYears.
+function openChronologie(from, target) {
     openTool('chronologie', from);
-    if (itemId) {
-        const go = () => { if (chrModel) chrSelect(itemId, true); else setTimeout(go, 60); };
-        go();
-    }
+    if (!target) return;
+    const go = () => {
+        if (!chrModel) { setTimeout(go, 60); return; }
+        if (target.item) chrSelect(target.item.id, true);
+        else { chrMarker = { from: target.from, to: target.to, label: target.label || '' }; chrRender(true); chrScrollToYear(target.from); }
+    };
+    go();
+}
+
+// Le bouton « Situer dans la chronologie » des autres fiches : une cible, ou rien (pas de bouton). Chaque outil appelle la fonction qui lui convient.
+function chrButton(target, from) {
+    if (!target) return null;
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'btn';
+    b.textContent = t('tools.chronologie_locate');
+    b.onclick = () => openChronologie(from, target);
+    return b;
+}
+// Les cibles, calculées sur le modèle (chargé à la demande : on charge le fichier une fois, puis on répond sans attendre).
+function chrLoadModel() {
+    if (chrModel) return Promise.resolve(chrModel);
+    return fetch('data/chronologie.json').then(r => r.json()).then(data => { chrModel = ChronologieCore.build(data); return chrModel; });
 }
 
 // --- Commandes -------------------------------------------------------------------------------------------------------------------------
@@ -70,6 +92,16 @@ function chrSetZoom(delta) {
     chrZoom = next;
     chrRender(true);
     view.scrollLeft = (centerYear - chrModel.plage[0]) * chrScale() - view.clientWidth / 2;
+}
+
+function chrScrollToYear(am) {
+    const view = chrView();
+    view.scrollTo({ left: Math.max(0, (am - chrModel.plage[0]) * chrScale() - view.clientWidth / 3), top: 0, behavior: 'smooth' });
+}
+
+function chrClearMarker() {
+    chrMarker = null;
+    chrRender(true);
 }
 
 function chrJump(item) {
@@ -100,6 +132,13 @@ function chrRenderControls() {
     });
     const jumps = toolEl('tool-chr-jumps');
     toolClear(jumps);
+    if (chrMarker) {
+        const m = chrNode('button', 'tool-history-chip is-marker', '📍 ' + t('tools.chronologie_marker', { name: chrMarker.label }) + ' ×');
+        m.type = 'button';
+        m.setAttribute('aria-label', t('tools.chronologie_marker_clear'));
+        m.onclick = chrClearMarker;
+        jumps.appendChild(m);
+    }
     chrModel.sauts.forEach(item => {
         const b = chrNode('button', 'tool-history-chip', item.fr);
         b.type = 'button';
@@ -159,6 +198,12 @@ function chrRender(keepScroll) {
     stage.style.setProperty('--chr-decade', (chrScale() * (chrScale() < 3 ? 50 : chrScale() < 6 ? 20 : 10)) + 'px');
     stage.style.backgroundPosition = ruler.dataset.first + 'px 0';
     stage.appendChild(ruler);
+    if (chrMarker) {
+        const band = chrNode('div', 'chr-marker');
+        band.style.left = ((Math.max(chrMarker.from, from) - from) * chrScale()) + 'px';
+        band.style.width = Math.max(4, (Math.min(chrMarker.to, to) - Math.max(chrMarker.from, from)) * chrScale()) + 'px';
+        stage.appendChild(band);
+    }
     const opts = { scale: chrScale(), charW: 7.2, pad: 16, minW: 14, gap: 6, point: 12 };
     let shown = 0;
     chrModel.voies.forEach(voie => {
@@ -213,6 +258,7 @@ function chrUpdateIdle() {
 // --- Sélection et fiche ----------------------------------------------------------------------------------------------------------------
 function chrSelect(id, scroll) {
     chrSelected = id;
+    chrMarker = null;
     chrRender(true);
     if (scroll) chrScrollTo(id);
 }

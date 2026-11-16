@@ -135,6 +135,13 @@ function libItem(x) {
             body.appendChild(b);
         }
         card.appendChild(body);
+        // « Situer dans la chronologie » : la période où l'œuvre a été écrite.
+        if (typeof ChronologieCore !== 'undefined' && typeof chrLoadModel === 'function') {
+            chrLoadModel().then(model => {
+                const button = chrButton(ChronologieCore.forYears(x.fr, x.from, x.to), 'screen-tool-library');
+                if (button && body.isConnected) body.appendChild(button);
+            }).catch(() => {});
+        }
     }
     return card;
 }

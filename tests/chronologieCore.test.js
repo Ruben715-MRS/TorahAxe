@@ -299,3 +299,47 @@ test('lot 4 : la vie de Yaakov chez Laban et de Yossef', () => {
     assert.strictEqual(get('e0_isaac_mort').from, get('g_isaac').to);
     assert.strictEqual(get('e0_abraham_mort').from, get('g_abraham').to);
 });
+
+const T = require('../js/transmissionCore.js');
+
+test('liens vers les autres outils : chaque `sage` désigne un maître de la chaîne', () => {
+    const liens = M.items.filter(x => x.sage);
+    assert.ok(liens.length >= 30);
+    liens.forEach(x => [].concat(x.sage).forEach(id => assert.ok(T.byId(id), x.id + ' : maître inconnu ' + id)));
+});
+
+test('situer une personne de la généalogie : l\'élément le plus parlant', () => {
+    assert.strictEqual(C.forGen(M, 'david').item.voie, 'chefs', 'le règne plutôt que la vie ou l\'événement');
+    assert.strictEqual(C.forGen(M, 'adam').item.voie, 'patriarches');
+    assert.strictEqual(C.forGen(M, 'rehoboam').item.id, 'k_rehoboam');
+    assert.strictEqual(C.forGen(M, 'personne_inconnue'), null);
+});
+
+test('situer un maître : son élément, sa vie, ou son époque', () => {
+    assert.strictEqual(C.forSage(M, T.byId('akiva')).item.id, 't_akiva');
+    assert.strictEqual(C.forSage(M, T.byId('hillel')).item.id, 's_zug5');
+    assert.strictEqual(C.forSage(M, T.byId('moche')).item.id, 'p_moise');
+    const rachi = C.forSage(M, T.byId('rachi'));              // pas d'élément lié : sa vie, en années de la création
+    assert.strictEqual(rachi.from, 1040 + 3760);
+    assert.strictEqual(rachi.to, 1105 + 3760);
+    const bst = C.forSage(M, T.byId('bst'));                  // un maître du hassidisme : « c. 1698 » → 1698
+    assert.strictEqual(bst.from, 1698 + 3760);
+    assert.strictEqual(bst.to, 1760 + 3760);
+    const tarfon = C.forSage(M, T.byId('tarfon'));            // un tanna sans date : l'époque des Tannaïm
+    assert.strictEqual(tarfon.item.id, 'tannaim_ere');
+});
+
+test('situer un maître : tous les maîtres de la chaîne ont une cible', () => {
+    const sans = T.SAGES.filter(s => !C.forSage(M, s));
+    assert.deepStrictEqual(sans.map(s => s.id), [], 'maîtres sans cible : ' + sans.map(s => s.id).join(', '));
+});
+
+test('situer une œuvre : la période d\'écriture, en années de la création', () => {
+    const L = require('../js/libraryCore.js');
+    const michna = L.byId('michna');
+    const cible = C.forYears(michna.fr, michna.from, michna.to);
+    assert.strictEqual(cible.from, 200 + 3760);
+    assert.strictEqual(cible.to, 220 + 3760);
+    assert.strictEqual(C.forYears('x', 0, 0), null);
+    L.WORKS.forEach(w => { const c = C.forYears(w.fr, w.from, w.to); assert.ok(c && c.from <= c.to, w.id); });
+});
