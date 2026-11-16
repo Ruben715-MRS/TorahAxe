@@ -18,6 +18,9 @@
         return String(text == null ? '' : text).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/œ/g, 'oe')
             .replace(/[^a-z0-9]+/g, ' ').trim();
     }
+    // Singulier et pluriel se confondent : « pâtes » trouve « pâte », « pommes » trouve « pomme » (un mot de plus de trois lettres perd son s ou son x final).
+    function stem(word) { return word.length > 3 ? word.replace(/[sx]$/, '') : word; }
+    function stemmed(text) { return normalize(text).split(' ').map(stem).join(' '); }
     function active(v) { return v !== undefined && v !== null && v !== '' && v !== 'all'; }
 
     function riteOf(rite) { return Data.RITES[rite] ? rite : Data.DEFAULT_RITE; }
@@ -69,20 +72,30 @@
         var parts = [food.n];
         (view(food, rite).steps || []).forEach(function (s) { parts.push(s.t); });
         blessingsOf(food, rite).forEach(function (b) { parts.push(label(b)); });
-        return normalize(parts.join(' '));
+        return stemmed(parts.join(' '));
     }
 
     // `f` : { b (une clé de Data.ORDER, ou « all »), query, rite } ; une valeur absente, vide ou « all » ne filtre pas.
     // Chaque mot de la recherche doit se retrouver (« tarte pomme » trouve « Tarte aux pommes »).
     function filterFoods(f) {
         f = f || {};
-        var words = active(f.query) ? normalize(f.query).split(' ').filter(Boolean) : [];
-        return Data.FOODS.filter(function (food) {
+        var words = active(f.query) ? stemmed(f.query).split(' ').filter(Boolean) : [];
+        var found = Data.FOODS.filter(function (food) {
             if (active(f.b) && blessingsOf(food, f.rite).indexOf(f.b) === -1) return false;
             if (!words.length) return true;
             var hay = searchText(food, f.rite);
             return words.every(function (w) { return hay.indexOf(w) !== -1; });
         });
+        if (!words.length) return found;
+        // Avec une recherche : d'abord le nom exact (« Pâtes »), puis les noms qui commencent par la recherche, puis le reste, chacun dans l'ordre du guide.
+        var q = words.join(' ');
+        function rank(food) {
+            var name = stemmed(food.n);
+            return name === q ? 0 : name.indexOf(q) === 0 ? 1 : 2;
+        }
+        return found.map(function (food, i) { return { food: food, r: rank(food), i: i }; })
+            .sort(function (a, b) { return a.r - b.r || a.i - b.i; })
+            .map(function (x) { return x.food; });
     }
 
     // La bénédiction finale (clé de Data.FINALS) qui suit une bénédiction initiale `b` pour un aliment, ou null s'il n'y en a pas.

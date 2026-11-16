@@ -2,7 +2,7 @@
 // === GUIDE DES BÉNÉDICTIONS : QUE DIRE SUR QUEL ALIMENT (DONNÉES) ===
 // =========================================================================
 // La liste « Aliment → bénédiction » et ses 33 notes sont celles du Guide des bénédictions du Beth Loubavitch (www.loubavitch.fr), reprises avec
-// son accord et sans changement de fond (seules des fautes de frappe évidentes ont été corrigées, dont deux renvois de notes : 18 → 17 et 24 → 20). Ce guide a été compilé par le Rav Yehouda Leib
+// son accord et sans changement de fond (seules des fautes de frappe évidentes ont été corrigées, dont « Pâte » (les pâtes) écrit au singulier dans le guide, dont deux renvois de notes : 18 → 17 et 24 → 20). Ce guide a été compilé par le Rav Yehouda Leib
 // Newman, directeur du Beth Rivka de New York, sous l'autorité du Rav Yehouda Kalman Marlowe, président du tribunal rabbinique de Crown Heights ; il se
 // fonde sur les décisions hala'hiques de l'Admour Hazaken, essentiellement énoncées dans son Séder Birkat Ha Néhénin (usage 'Habad).
 // Les textes hébreux des six bénédictions sont ceux du Siddour (data/siddur/birkhot-hanehenin.json) ; hamotsi est le texte usuel du pain.
@@ -254,7 +254,7 @@
         {"id": 194, "n": "Pamplemousse", "b": "haets"},
         {"id": 195, "n": "Pastèque", "b": "haadama"},
         {"id": 196, "n": "Patate douce", "b": "haadama"},
-        {"id": 197, "n": "Pâte", "b": "mezonot"},
+        {"id": 197, "n": "Pâtes", "b": "mezonot"},
         {"id": 198, "n": "Pâte au fromage", "b": "mezonot"},
         {"id": 199, "n": "Pâte à tarte", "b": "mezonot"},
         {"id": 200, "n": "Pâté de foie", "b": "chehakol"},
