@@ -18443,3 +18443,22 @@ body:has(#screen-recit:not(.hidden))::after {
 .gen-card { cursor: pointer; }
 .chr-lane-maitres { --chr-c: #a7f3d0; }
 .chr-lane-hassidim { --chr-c: #fecdd3; }
+
+/* Défilement automatique (js/app/autoscroll.js) : le bandeau est ajouté à <body> (une colonne flex) ; sans position fixe il devenait un simple
+   bloc d'étiquettes en bas à gauche. Ici : un bandeau opaque collé au bord bas, au-dessus de la zone de l'indicateur d'accueil, deux lignes
+   (état, puis commandes). Pendant qu'il est ouvert, l'écran garde de la marge pour que le dernier texte remonte au-dessus. */
+.autoscroll-bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 10px 14px calc(var(--sab, env(safe-area-inset-bottom, 0px)) + 10px); background: var(--surface); color: var(--text-dark); border-top: 1px solid var(--border-soft); box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.12); }
+.autoscroll-bar[hidden] { display: none; }
+.autoscroll-status { margin: 0; max-width: 520px; font: 600 14px/1.3 system-ui, sans-serif; text-align: center; color: var(--muted-text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.autoscroll-count { font-variant-numeric: tabular-nums; }
+.autoscroll-row { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; max-width: 520px; }
+.autoscroll-btn { flex: none; min-width: 48px; height: 48px; padding: 0 14px; border: 1px solid var(--border-soft); border-radius: 24px; background: var(--surface-2); color: var(--text-dark); font: 700 20px/1 system-ui, sans-serif; cursor: pointer; touch-action: manipulation; }
+.autoscroll-btn:active { transform: scale(0.96); }
+.autoscroll-btn:focus-visible, .autoscroll-level:focus-visible { outline: 2px solid var(--primary-blue); outline-offset: 2px; }
+:root[data-theme="dark"] .autoscroll-btn:focus-visible, :root[data-theme="dark"] .autoscroll-level:focus-visible { outline-color: var(--text-dark); }
+.autoscroll-play { min-width: 56px; background: var(--primary-blue); border-color: var(--primary-blue); color: #fff; }
+:root[data-theme="dark"] .autoscroll-play { background: var(--text-dark); border-color: var(--text-dark); color: var(--bg-color); }
+.autoscroll-level { flex: 1 1 auto; min-width: 0; max-width: 200px; text-align: center; font: 700 16px/1 system-ui, sans-serif; font-variant-numeric: tabular-nums; color: var(--text-dark); white-space: nowrap; }
+button.autoscroll-mode { height: 48px; padding: 0 12px; border: 1px dashed var(--border-soft); border-radius: 24px; background: transparent; cursor: pointer; }
+.autoscroll-close { color: var(--muted-text); font-size: 18px; }
+.has-autoscroll { padding-bottom: calc(var(--sab, env(safe-area-inset-bottom, 0px)) + 130px) !important; }
