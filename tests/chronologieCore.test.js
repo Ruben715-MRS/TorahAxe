@@ -119,10 +119,11 @@ test('mise en rangées : deux éléments d\'une même rangée ne se recouvrent j
 });
 
 test('les éléments coupés par la plage sont signalés', () => {
-    const c = C.clip(get('egypte'), M.plage);
+    const lot1 = [2400, 3340];
+    const c = C.clip(get('egypte'), lot1);
     assert.strictEqual(c.cutLeft, true);
-    assert.strictEqual(c.from, M.plage[0]);
-    const lot1 = [2400, 3340];                    // la plage du premier lot : Jérémie en déborde
+    assert.strictEqual(c.from, lot1[0]);
+    assert.strictEqual(C.clip(get('egypte'), M.plage).cutLeft, false, 'la plage entière commence à la création');                    // la plage du premier lot : Jérémie en déborde
     assert.strictEqual(C.clip(get('p_yirmeyahou'), lot1).cutRight, true);
     assert.strictEqual(C.clip(get('p_yirmeyahou'), M.plage).cutRight, false);
     assert.strictEqual(C.clip(get('silo'), M.plage).cutLeft, false);
@@ -240,4 +241,61 @@ test('lot 3 : la frise va jusqu\'à aujourd\'hui, et la plage couvre tout', () =
     assert.ok(C.search(M, 'Rachi').some(x => x.id === 'm_rachi'));
     assert.ok(C.search(M, 'Baal Chem').some(x => x.id === 'hs_besht'));
     assert.ok(C.search(M, 'Pittsburgh').some(x => x.id === 'e3_pittsburgh'));
+});
+
+
+test('lot 4 : la plage commence à la création du monde', () => {
+    assert.strictEqual(M.plage[0], 1);
+    assert.strictEqual(get('e0_creation').from, 1);
+    assert.strictEqual(get('g_adam').from, 1);
+});
+
+test('lot 4 : les âges de la Genèse (durée de vie de chaque patriarche)', () => {
+    const vie = { g_adam: 929, g_seth: 912, g_enosh: 905, g_kenan: 910, g_mahalalel: 895, g_yered: 962, g_hanoch: 365, g_metushelah: 969, g_lamech: 777, g_noah: 950,
+        g_shem: 600, g_arpachshad: 438, g_shelah: 433, g_ever: 464, g_peleg: 239, g_reu: 239, g_serug: 230, g_nahor: 148, g_terah: 205, g_abraham: 175, g_sarah: 127,
+        g_ishmael: 137, g_isaac: 180, g_jacob: 147, g_joseph: 110 };
+    // Adam : créé en l'an 1 (début de l'an 1), mort en 930 → 929 ans entre les deux repères.
+    Object.keys(vie).forEach(id => assert.strictEqual(get(id).to - get(id).from, vie[id], id));
+});
+
+test('lot 4 : l\'âge du père à la naissance du fils, d\'Adam à Abraham', () => {
+    const chaine = [['g_adam', 'g_seth', 129], ['g_seth', 'g_enosh', 105], ['g_enosh', 'g_kenan', 90], ['g_kenan', 'g_mahalalel', 70], ['g_mahalalel', 'g_yered', 65],
+        ['g_yered', 'g_hanoch', 162], ['g_hanoch', 'g_metushelah', 65], ['g_metushelah', 'g_lamech', 187], ['g_lamech', 'g_noah', 182],
+        ['g_arpachshad', 'g_shelah', 35], ['g_shelah', 'g_ever', 30], ['g_ever', 'g_peleg', 34], ['g_peleg', 'g_reu', 30], ['g_reu', 'g_serug', 32], ['g_serug', 'g_nahor', 30],
+        ['g_nahor', 'g_terah', 29], ['g_terah', 'g_abraham', 70], ['g_abraham', 'g_isaac', 100], ['g_isaac', 'g_jacob', 60], ['g_abraham', 'g_ishmael', 86]];
+    chaine.forEach(([p, f, age]) => assert.strictEqual(get(f).from - get(p).from, age, p + ' → ' + f));
+    assert.strictEqual(get('g_adam').to, 930);
+    assert.strictEqual(get('g_shem').from - get('g_noah').from, 502);
+    assert.strictEqual(get('e0_deluge').from - get('g_noah').from, 600, 'Noé a 600 ans au Déluge');
+    assert.strictEqual(get('g_arpachshad').from, get('e0_deluge').from + 2, 'Arpakhchad naît deux ans après le Déluge');
+    assert.strictEqual(get('g_arpachshad').from - get('g_shem').from, 100);
+    assert.strictEqual(get('g_joseph').from - get('g_jacob').from, 91);
+    assert.strictEqual(get('g_levi').to, get('e0_levi_mort').from);
+    assert.strictEqual(get('g_metushelah').to, get('e0_deluge').from, 'Métouchélah meurt l\'année du Déluge');
+});
+
+test('lot 4 : les totaux avant la sortie d\'Égypte : 400, 430, 500, 210 ans, 120 ans avant le Déluge', () => {
+    assert.strictEqual(get('g_isaac').from + 400, get('e_sortie').from);
+    assert.strictEqual(get('e0_alliance').from + 430, get('e_sortie').from);
+    assert.strictEqual(get('g_abraham').from + 500, get('e_sortie').from);
+    assert.strictEqual(get('e0_descente').from, get('g_jacob').from + 130);
+    assert.strictEqual(get('e0_descente').from + 210, get('e_sortie').from);
+    assert.strictEqual(get('e0_arche').from + 120, get('e0_deluge').from);
+    ['d400', 'd430', 'd500'].forEach(id => assert.strictEqual(get(id).to, get('e_sortie').from, id));
+    assert.strictEqual(get('e0_moise').from + 80, get('e_sortie').from, 'Moïse a 80 ans à la sortie');
+    assert.strictEqual(get('e0_aharon').from + 83, get('e_sortie').from);
+    assert.strictEqual(get('e0_yaakov_mort').from, get('g_jacob').to);
+    assert.strictEqual(get('e0_yossef_mort').from, get('g_joseph').to);
+});
+
+test('lot 4 : la vie de Yaakov chez Laban et de Yossef', () => {
+    assert.strictEqual(get('e0_charan').from - get('e0_beer_cheva').from, 14, 'quatorze ans chez Ever');
+    assert.strictEqual(get('e0_beer_cheva').from - get('g_jacob').from, 63);
+    assert.strictEqual(get('e0_fuite').from - get('e0_charan').from, 20, 'vingt ans chez Laban');
+    assert.strictEqual(get('e0_vente').from - get('g_joseph').from, 17);
+    assert.strictEqual(get('e0_vice_roi').from - get('g_joseph').from, 30);
+    assert.strictEqual(get('e0_descente').from - get('e0_vente').from, 22, 'vingt-deux ans de séparation');
+    assert.strictEqual(get('e0_sept_ans').to - get('e0_sept_ans').from, 7);
+    assert.strictEqual(get('e0_isaac_mort').from, get('g_isaac').to);
+    assert.strictEqual(get('e0_abraham_mort').from, get('g_abraham').to);
 });
