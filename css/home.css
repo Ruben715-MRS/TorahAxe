@@ -178,6 +178,7 @@ body > #screen-main {
 
 /* --- Cartes d'information --- */
 .home-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.home-card-wide { grid-column: 1 / -1; }   /* une carte seule sur sa rangée (« À réviser ») */
 .home-card {
     border: 1px solid var(--border-soft);
     background: var(--surface);

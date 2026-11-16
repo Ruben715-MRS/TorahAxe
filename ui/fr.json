@@ -7080,5 +7080,27 @@
     "perfect_won": "Sans faute ! Clio a gagné sa tenue du Nouvel An chinois et la porte déjà.",
     "perfect_owned": "Sans faute ! Clio a déjà sa tenue du Nouvel An chinois.",
     "gift_won": "Tenue du Nouvel An chinois gagnée ! Clio la porte déjà."
+  },
+  "review": {
+    "title": "À réviser aujourd'hui",
+    "status": "Question {n} sur {total} · {score} points",
+    "option_aria": "Réponse {n} : {label}",
+    "right": "Bonne réponse",
+    "wrong": "Pas tout à fait",
+    "next": "Question suivante",
+    "finish": "Voir le score",
+    "found": "{found} bonnes réponses sur {total} : {score} points.",
+    "start": "Lancer la révision",
+    "again": "Encore une séance",
+    "how": "Une seule séance pour tout ce qui arrive à échéance aujourd'hui, dans « Mots du Tanakh » comme dans « Mots de la Guémara » : les éléments les plus fragiles d'abord. Rien de nouveau n'y est appris. Chaque réponse met à jour la progression du jeu concerné.",
+    "due": "{total} à réviser (Tanakh : {lexicon} · Guémara : {gemara}). La prochaine séance en reprend {session}.",
+    "none": "Rien à réviser aujourd'hui. Jouez à « Mots du Tanakh » ou « Mots de la Guémara » pour apprendre de nouveaux éléments : ils reviendront ici à l'échéance.",
+    "progress_due": "{total} à réviser",
+    "progress_none": "Rien à réviser",
+    "left": "Il reste {n} à réviser aujourd'hui.",
+    "done": "Tout est révisé pour aujourd'hui.",
+    "row_desc": "Mots du Tanakh et de la Guémara à revoir aujourd'hui, en une seule séance",
+    "row_due": "{total} à revoir aujourd'hui, en une seule séance",
+    "row_none": "Rien à revoir aujourd'hui"
   }
 }

@@ -43,6 +43,7 @@ const HOME_ENTRIES = {
     foodlaws: { he: 'כשרות', fr: 'Cacherout', desc: 'Les animaux purs et impurs, les mélanges interdits', kw: 'casher kasher aliments sauterelles oiseaux poissons', run: homeTool('foodlaws') },
     benedictions: { he: 'ברכות', fr: 'Bénédictions', desc: 'Quelle bénédiction dire sur quel aliment : 290 aliments, avec les notes (Beth Loubavitch)', kw: 'bracha berakha brakha berakhot aliment manger boire haets haadama mezonot chehakol hamotsi haguafen fruit légume pain vin birkhot hanehenin', run: homeTool('benedictions') },
     measures: { he: 'מידות', fr: 'Mesures', desc: 'Poids, volumes, distances et monnaies de la Bible', kw: 'coudée poids volumes monnaies chékel', run: homeTool('measures') },
+    review: { he: 'חזרה', fr: 'À réviser aujourd\'hui', desc: 'Mots du Tanakh et de la Guémara à revoir aujourd\'hui, en une seule séance', kw: 'réviser révision répétition espacée rappel mémoire jeu', run: () => openReview('screen-main') },
     lexgame: { he: 'מילים', fr: 'Mots du Tanakh', desc: 'Le vocabulaire hébreu de la Bible, du plus fréquent au plus rare', kw: 'jeu hébreu vocabulaire', run: () => openLexiconGame('screen-main') },
     gemgame: { he: 'גמרא', fr: 'Mots de la Guémara', desc: 'Les mots, les abréviations et les sages de la Guémara', kw: 'jeu araméen guemara', run: () => openGemaraGame('screen-main') },
     trgame: { he: 'מסורה', fr: 'Maîtres et élèves', desc: 'Qui a reçu la Torah de qui ? Retrouvez le maître d\'un sage', kw: 'jeu sages transmission', run: () => openTransmissionGame('screen-main') },
@@ -71,6 +72,7 @@ const HOME_LAYOUT = {
     // Les jeux sont rangés par thème (Hébreu, Tanakh, Sages, Halakha, Histoire) : un jeu de plus = un id dans la bonne section. Une section sans jeu n'est
     // pas affichée (homeSection) ; « Tanakh » apparaîtra avec son premier jeu.
     jouer: [
+        { title: 'Révision', as: 'rows', ids: ['review'], subs: () => ({ review: homeReviewDesc() }) },
         { title: 'Hébreu et araméen', as: 'rows', ids: ['lexgame', 'gemgame'] },
         { title: 'Tanakh', as: 'rows', ids: [] },
         { title: 'Sages', as: 'rows', ids: ['trgame'] },
@@ -219,12 +221,19 @@ function homeRows(entries, subs) {
     return box;
 }
 
+// Ce que la ligne « À réviser aujourd'hui » annonce : le nombre d'éléments à revoir (js/app/review.js), ou qu'il n'y a rien.
+function homeReviewDesc() {
+    if (typeof reviewSummary !== 'function') return HOME_ENTRIES.review.desc;
+    const s = reviewSummary();
+    return s.total ? t('review.row_due', { total: s.total }) : t('review.row_none');
+}
+
 function homeSection(content, section) {
     if (section.promo) { content.appendChild(homePromo(section.promo)); return; }
     if (!section.ids.length) return;   // un thème sans jeu pour l'instant : pas de titre vide
     content.appendChild(hEl('h2', 'home-section-title', section.title));
     const entries = section.ids.map(id => Object.assign({ id: id }, HOME_ENTRIES[id]));
-    if (section.as === 'rows') { content.appendChild(homeRows(entries)); return; }
+    if (section.as === 'rows') { content.appendChild(homeRows(entries, section.subs && section.subs())); return; }
     const grid = hEl('div', 'home-tiles c' + (section.cols || 3));
     entries.forEach(entry => grid.appendChild(homeTile(entry)));
     content.appendChild(grid);
@@ -522,6 +531,13 @@ function homeRenderToday(content) {
         const name = t('tools.hcal_f_' + (feast.ongoing ? HebrewCalendarCore.feastNameId(feast.id, day.ctx.fixed, day.israel) : feast.id) + '_name');
         cards.appendChild(homeInfoCard(feast.ongoing ? 'En ce moment' : 'Prochaine fête', name,
             feast.ongoing ? 'Aujourd\'hui' : (feast.days === 1 ? 'demain' : 'dans ' + feast.days + ' jours'), () => hcalOpenFeast(feast.id, feast.year, feast.israel)));
+    }
+    // La révision du jour : la carte n'apparaît que s'il y a quelque chose à revoir.
+    const due = typeof reviewSummary === 'function' ? reviewSummary() : null;
+    if (due && due.total) {
+        const card = homeInfoCard('À réviser', t('review.progress_due', { total: due.total }), 'Une séance de ' + due.session + ' questions', () => openReview('screen-main'));
+        card.classList.add('home-card-wide');
+        cards.appendChild(card);
     }
     content.appendChild(cards);
 

@@ -348,6 +348,27 @@
         return Quiz.createState(questions, { level: level, scroll: !!options.scroll });
     }
 
+    // Les mots déjà vus et à réviser aujourd'hui, tous niveaux confondus : [{ id (numéro de Strong), ref (le mot), entry (sa progression) }]. Sert à la révision commune (js/reviewCore.js).
+    function dueItems(progress, now) {
+        var p = normalizeProgress(progress);
+        var t = now || Date.now();
+        return Lexicon.ENTRIES.filter(function (e) { return isPlayable(e) && p.words[e.strong] && SRS.isDue(p.words[e.strong], t); })
+            .map(function (e) { return { id: e.strong, ref: e, entry: p.words[e.strong] }; });
+    }
+
+    // Les questions de ces mots (`wordIds`, avec `types` : numéro de Strong → sorte de question) : chaque mot a ses mauvaises réponses dans son propre niveau.
+    function makeQuestions(options) {
+        var random = options.rng || Math.random;
+        var everyone = Lexicon.ENTRIES.filter(isPlayable);
+        var byStrong = {};
+        everyone.forEach(function (e) { byStrong[e.strong] = e; });
+        var pools = {};
+        return (options.wordIds || []).map(function (id) { return byStrong[id]; }).filter(Boolean).map(function (w) {
+            var pool = pools[w.level] || (pools[w.level] = poolOf(w.level));
+            return makeQuestion(w, pool.length >= 12 ? pool : everyone, random, options.types && options.types[w.strong], options.scroll);
+        });
+    }
+
     function question(state) { return Quiz.question(state); }
     // Répond en choisissant une proposition (0 à 3) : ['right'], ['wrong'], ou [] si rien ne se passe.
     function answer(state, choice) { return Quiz.answer(state, choice, function (q, right) { return { strong: q.strong, right: right, type: q.type }; }); }
@@ -361,6 +382,6 @@
         rootEligible: rootEligible, hebrewDistractors: hebrewDistractors,
         isName: isName, isFunctionWord: isFunctionWord, isPlayable: isPlayable, kindOf: kindOf, poolOf: poolOf,
         labelOf: labelOf, overlaps: overlaps, distractors: distractors,
-        createGame: createGame, question: question, answer: answer, next: next
+        createGame: createGame, dueItems: dueItems, makeQuestions: makeQuestions, question: question, answer: answer, next: next
     };
 }));

@@ -792,10 +792,12 @@
     <script src="js/lexiconGameCore.js"></script>
     <script src="js/gemaraGameCore.js"></script>
     <script src="js/transmissionGameCore.js"></script>
+    <script src="js/reviewCore.js"></script>
     <script src="js/app/quiz-ui.js"></script>
     <script src="js/app/lexicon-game.js"></script>
     <script src="js/app/gemara-game.js"></script>
     <script src="js/app/transmission-game.js"></script>
+    <script src="js/app/review.js"></script>
     <script src="js/app/tools.js"></script>
     <script src="js/app/navigation.js"></script>
     <script src="js/app/settings.js"></script>
@@ -917,6 +919,39 @@
             <p id="lexgame-over-text"></p>
             <p id="lexgame-over-progress"></p>
             <button type="button" class="btn" onclick="lexgameStart()" data-i18n="arcade.replay">Rejouer</button>
+        </div>
+    </div>
+
+<div id="screen-review" class="list-screen hidden">
+        <button class="back-btn" onclick="reviewBack()" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title" data-i18n="review.title">À réviser aujourd'hui</h2>
+        <p class="modes-header-subtitle" id="review-status" role="status"></p>
+        <div id="review-setup" class="lexgame-setup">
+            <p class="lexgame-progress-text" id="review-progress-text"></p>
+            <div class="lexgame-bar" id="review-bar" role="progressbar" aria-valuemin="0" aria-valuemax="1" aria-valuenow="0" aria-labelledby="review-progress-text"><i id="review-bar-fill"></i></div>
+            <p class="tool-small" id="review-today"></p>
+            <button type="button" class="btn" id="review-start" onclick="reviewStart()" data-i18n="review.start">Lancer la révision</button>
+            <p class="tool-small" data-i18n="review.how">Une seule séance pour tout ce qui arrive à échéance aujourd'hui, dans « Mots du Tanakh » comme dans « Mots de la Guémara » : les éléments les plus fragiles d'abord. Rien de nouveau n'y est appris. Chaque réponse met à jour la progression du jeu concerné.</p>
+        </div>
+        <div id="review-play" class="hidden">
+            <p class="cause-question" id="review-question"></p>
+            <p class="lexgame-word" id="review-word" lang="he" dir="rtl"></p>
+            <div class="cause-cards" id="review-options"></div>
+            <div class="wheel-feedback hidden" id="review-feedback" role="status">
+                <strong id="review-feedback-title"></strong>
+                <p id="review-feedback-text"></p>
+                <p class="tool-small hidden" id="review-feedback-extra"></p>
+                <p class="tool-small hidden" id="review-feedback-note"></p>
+                <div class="lexgame-actions">
+                    <button type="button" class="btn" id="review-next" onclick="reviewContinue()"></button>
+                </div>
+            </div>
+        </div>
+        <div class="arcade-over hidden" id="review-over">
+            <h3 data-i18n="arcade.over">Partie terminée</h3>
+            <p id="review-over-text"></p>
+            <p id="review-over-progress"></p>
+            <button type="button" class="btn" id="review-again" onclick="reviewStart()" data-i18n="review.again">Encore une séance</button>
         </div>
     </div>
 

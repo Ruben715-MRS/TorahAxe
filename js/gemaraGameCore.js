@@ -267,8 +267,21 @@
         var rounds = options.rounds || ROUNDS;
         var cards = options.cardIds ? options.cardIds.map(cardById).filter(Boolean) : Quiz.shuffle(pool(section), random);
         cards = cards.slice(0, rounds);
-        var questions = cards.map(function (c) { return makeQuestion(c, random, options.types && options.types[c.id]); });
+        var questions = makeQuestions({ cardIds: cards.map(function (c) { return c.id; }), types: options.types, rng: random });
         return Quiz.createState(questions, { section: section });
+    }
+
+    // Les cartes déjà vues et à réviser aujourd'hui, toutes sections confondues : [{ id, ref (la carte), entry (sa progression) }]. Sert à la révision commune (js/reviewCore.js).
+    function dueItems(progress, now) {
+        var p = normalizeProgress(progress);
+        var t = now || Date.now();
+        return ALL.filter(function (c) { return p.cards[c.id] && SRS.isDue(p.cards[c.id], t); }).map(function (c) { return { id: c.id, ref: c, entry: p.cards[c.id] }; });
+    }
+
+    // Les questions de ces cartes (`cardIds`, avec `types` : identifiant → sorte de question).
+    function makeQuestions(options) {
+        var random = options.rng || Math.random;
+        return (options.cardIds || []).map(cardById).filter(Boolean).map(function (c) { return makeQuestion(c, random, options.types && options.types[c.id]); });
     }
 
     function question(state) { return Quiz.question(state); }
@@ -283,6 +296,6 @@
         cards: pool, cardById: cardById, labelOf: labelOf, hebrewOf: hebrewOf, overlaps: overlaps, distractors: distractors,
         typesFor: typesFor, pickType: pickType,
         normalizeProgress: normalizeProgress, isMastered: isMastered, recordResult: recordResult, summary: summary, chooseSession: chooseSession,
-        createGame: createGame, question: question, answer: answer, next: next
+        createGame: createGame, dueItems: dueItems, makeQuestions: makeQuestions, question: question, answer: answer, next: next
     };
 }));
