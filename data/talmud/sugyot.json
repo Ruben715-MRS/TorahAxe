@@ -4993,13 +4993,18 @@
    },
    {
     "from": "95a:13",
+    "to": "95a:20",
+    "title": "Michna : celui qui construit un étage sur deux maisons ; Rabbi Yehouda : on fait l'eiruv à l'impasse ; Rabba : ce n'est pas le motif ; Abayé objecte."
+   },
+   {
+    "from": "95a:22",
     "to": "95a:23",
-    "title": "Chap. X. Michna : celui qui construit un étage sur deux maisons ; Rabbi Yehouda : on fait l'eiruv à l'impasse ; Rabba : ce n'est pas le motif ; Abayé objecte."
+    "title": "Chap. X. Michna : celui qui trouve des tefilin les rentre deux par deux (Rabban Gamliel : deux par deux) ; trouvés en paquets ou liens, on attend la nuit."
    },
    {
     "from": "95b:1",
     "to": "96a:5",
-    "title": "Celui qui trouve des tefilin le Chabbat : en danger il les couvre ; Rabbi Chimon : il les donne à son compagnon ; une seule paire ; Rabbi Meir ; Rava ; Rabban Gamliel : deux par deux."
+    "title": "Les tefilin trouvés le Chabbat : en danger il les couvre ; Rabbi Chimon : il les donne à son compagnon ; une seule paire ; Rabbi Meir ; Rava ; Rabban Gamliel : deux par deux."
    },
    {
     "from": "96a:6",
@@ -5023,8 +5028,78 @@
    },
    {
     "from": "98a:1",
-    "to": "98a:16",
+    "to": "98a:12",
     "title": "Le seuil : Rabba (seuil foulé), Abayé (seuil de karmelit) ; dans les quatre coudées ; Ben Azzaï : marcher vaut arrêt ; Rav Aha bar Ahava."
+   },
+   {
+    "from": "98a:13",
+    "to": "98b:5",
+    "title": "Michna : celui qui lisait sur le toit et dont le rouleau tombe : le retourner sur l'écriture ; « il n'a pas posé » ; Abayé ; mur non incliné, au-dessus de trois paumes ; Rabbi Yehouda."
+   },
+   {
+    "from": "98b:6",
+    "to": "99b:4",
+    "title": "Michna : la saillie devant une fenêtre : on y pose les objets ; vers quel domaine donne-t-elle (Abayé) ; on utilise tout le mur jusqu'à dix."
+   },
+   {
+    "from": "99b:5",
+    "to": "100a:1",
+    "title": "Michna : on recueille l'eau d'une gouttière à moins de dix ; on peut « attraper » mais non « joindre » ; baraïta : se tenir en domaine privé et boire du tuyau."
+   },
+   {
+    "from": "100a:2",
+    "to": "100b:7",
+    "title": "Les racines d'un arbre hautes de trois paumes : Rabba permet d'en profiter, Rav Chéchet ; le palmier d'Abayé ; Rav Aha bar Tahlifa."
+   },
+   {
+    "from": "100b:8",
+    "to": "100b:30",
+    "title": "Marcher sur les herbes le Chabbat : permis ou interdit (baraïtot contradictoires) ; verts ou secs ; été ou hiver ; Rabbi Chimon ; Rami bar Hama, Rami bar Abba au nom de Rav Assi."
+   },
+   {
+    "from": "101a:1",
+    "to": "101b:1",
+    "title": "Michna : la porte du dépôt et les « hadakim » dans une brèche ; Abayé : s'ils ont un gond ; Rava ; Rabbi Hiyya : la porte de veuve ; Rav Yehouda : le foyer ; l'œuf, la marmite."
+   },
+   {
+    "from": "101b:2",
+    "to": "102a:1",
+    "title": "Baraïta : les portes de jardin et les boutiques ouvertes sur le domaine public : verrou à moins ou plus de dix ; fenêtre de quatre sur quatre (Abayé) ; Rabbi Meir : on creuse ; Rav Dimi."
+   },
+   {
+    "from": "102a:2",
+    "to": "102b:4",
+    "title": "Michna : la barre coulissante : on ferme avec elle au Temple, pas en province ; Rabbi Yehouda ; Rav Yehouda au nom de Chemouel ; Rava ; Rav Ouïa à Nehardea ; Rabbi Zeira : « nikmaz »"
+   },
+   {
+    "from": "102b:5",
+    "to": "102b:19",
+    "title": "Michna : on remet le gond inférieur d'une porte au Temple, non en province ; gonds de coffre, de puits, d'échelle ; on remet le pansement ; Rav Yehouda au nom de Chemouel ; Mar bar Rav Ashi."
+   },
+   {
+    "from": "103a:1",
+    "to": "103b:7",
+    "title": "La corde de cithare brisée (Rabbi Eliezer, Rabbi Chimon) ; Michna : on coupe une verrue au Temple, non en province ; « il l'a greffé et amené de l'extérieur »"
+   },
+   {
+    "from": "103b:8",
+    "to": "104a:4",
+    "title": "Michna : le prêtre blessé au doigt l'enveloppe de jonc ; Rav Yehouda fils de Rabbi Hiyya ; Rabbi Yohanan : le surplus de vêtement ; l'interposition ; main gauche ; Rava au nom de Rav Hisda."
+   },
+   {
+    "from": "104a:5",
+    "to": "104b:1",
+    "title": "Michna : on répand du sel sur la rampe de l'autel le Chabbat ; Rav Ika de Pachronia ; la paille non annulée ; Rav Aha fils de Rava à Rav Ashi ; Rava : la cour abîmée par la pluie."
+   },
+   {
+    "from": "104b:2",
+    "to": "104b:17",
+    "title": "Le puits froid (Chemouel) ; « ils n'ont pas permis tous les puits froids » ; Rav Nahman bar Yitzhak : puits d'eaux vives ; Michna : le reptile trouvé au Temple : le prêtre le sort avec sa tunique."
+   },
+   {
+    "from": "105a:1",
+    "to": "105a:11",
+    "title": "Rabbi Yohanan : les deux opinions dérivent du même verset ; qui entre dans le Hekhal pour le réparer ; Rav Houna : Rav Kahana ; « seulement » ; l'impur ou le défectueux."
    }
   ]
  }
