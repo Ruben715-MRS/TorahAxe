@@ -7155,5 +7155,31 @@
     "fb_trap": "Énoncé à la forme négative, il est pourtant classé par le Rambam parmi les commandements positifs.",
     "how": "Dix commandements de la liste du Rambam, 100 points chacun, quelques secondes pour répondre : de quelle paracha, ou de quel livre de la Torah, le Rambam tire-t-il le commandement ? Une fois le temps écoulé, la question est comptée fausse.",
     "how_sure": "La question porte toujours sur le verset que le Rambam cite à l'appui, pas sur tous les endroits où la loi apparaît. De temps en temps : « positif ou négatif ? » sur un commandement positif formulé à la forme négative."
+  },
+  "parashagame": {
+    "title": "Dans quelle paracha ?",
+    "desc": "Un verset tiré au hasard dans la Torah : retrouvez sa paracha, avec des indices qui coûtent des points.",
+    "status": "Verset {n} sur {total} · {score} points",
+    "with_fr": "Afficher aussi la traduction française (Bible du Rabbinat)",
+    "loading": "Chargement du texte de la Torah (environ 2 Mo, une seule fois)…",
+    "load_error": "Le texte de la Torah n'a pas pu être chargé : vérifiez la connexion, puis rouvrez le jeu.",
+    "verse_n": "Verset {n}",
+    "points": "Points en jeu : {n}",
+    "hint": "Indice : le verset suivant (−{cost} points)",
+    "hint_last": "Dernier indice : il dévoile la paracha (0 point)",
+    "hint_none": "Plus d'indice",
+    "ask": "De quelle paracha vient ce verset ?",
+    "pick_book": "Choisissez un livre, puis une paracha.",
+    "books_aria": "Livre de la Torah",
+    "right": "Bonne réponse : {n} points",
+    "revealed": "La paracha est dévoilée : 0 point",
+    "wrong_try": "Ce n'est pas {name} : −{cost} points.",
+    "answer_is": "C'était la paracha {fr} ({he}), dans le livre {book}. Le premier verset était {ref}.",
+    "next": "Verset suivant",
+    "finish": "Voir le score",
+    "found": "{found} bonnes réponses sur {total} : {score} points.",
+    "read": "Lire la paracha",
+    "how": "Cinq versets tirés au hasard dans toute la Torah : de quelle paracha vient chacun ? Chaque verset vaut 100 points. Un indice montre le verset suivant et coûte 20 points ; une mauvaise réponse en coûte 20 aussi. À zéro point, la paracha est dévoilée.",
+    "how_formula": "Les versets qui ne sont que « L'Éternel parla à Moïse en disant » ne sont jamais tirés : on les trouve partout. Ils peuvent en revanche apparaître en indice."
   }
 }

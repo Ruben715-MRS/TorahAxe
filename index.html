@@ -794,7 +794,9 @@
     <script src="js/transmissionGameCore.js"></script>
     <script src="js/reviewCore.js"></script>
     <script src="js/purityGameCore.js"></script>
+    <script src="js/torahRefs.js"></script>
     <script src="js/mitsvaGameCore.js"></script>
+    <script src="js/verseGameCore.js"></script>
     <script src="js/app/quiz-ui.js"></script>
     <script src="js/app/lexicon-game.js"></script>
     <script src="js/app/gemara-game.js"></script>
@@ -802,6 +804,7 @@
     <script src="js/app/review.js"></script>
     <script src="js/app/purity-game.js"></script>
     <script src="js/app/mitsva-game.js"></script>
+    <script src="js/app/verse-game.js"></script>
     <script src="js/app/tools.js"></script>
     <script src="js/app/navigation.js"></script>
     <script src="js/app/settings.js"></script>
@@ -1021,6 +1024,41 @@
             <h3 data-i18n="arcade.over">Partie terminée</h3>
             <p id="mitsvagame-over-text"></p>
             <button type="button" class="btn" onclick="mitsvagameStart()" data-i18n="arcade.replay">Rejouer</button>
+        </div>
+    </div>
+
+<div id="screen-parashagame" class="list-screen hidden">
+        <button class="back-btn" onclick="parashagameBack()" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title" data-i18n="parashagame.title">Dans quelle paracha ?</h2>
+        <p class="modes-header-subtitle" id="parashagame-status" role="status"></p>
+        <div id="parashagame-setup" class="lexgame-setup">
+            <p class="tool-small" id="parashagame-load" role="status"></p>
+            <label class="gem-reduce"><input type="checkbox" id="parashagame-fr" onchange="parashagameToggleFr()"> <span data-i18n="parashagame.with_fr">Afficher aussi la traduction française (Bible du Rabbinat)</span></label>
+            <button type="button" class="btn" id="parashagame-start" onclick="parashagameStart()" data-i18n="arcade.play">Jouer</button>
+            <p class="tool-small" data-i18n="parashagame.how">Cinq versets tirés au hasard dans toute la Torah : de quelle paracha vient chacun ? Chaque verset vaut 100 points. Un indice montre le verset suivant et coûte 20 points ; une mauvaise réponse en coûte 20 aussi. À zéro point, la paracha est dévoilée.</p>
+            <p class="tool-small" data-i18n="parashagame.how_formula">Les versets qui ne sont que « L'Éternel parla à Moïse en disant » ne sont jamais tirés : on les trouve partout. Ils peuvent en revanche apparaître en indice.</p>
+        </div>
+        <div id="parashagame-play" class="hidden">
+            <div class="parashagame-verses" id="parashagame-verses" aria-live="polite"></div>
+            <p class="parashagame-points" id="parashagame-points"></p>
+            <button type="button" class="btn btn-secondary" id="parashagame-hint" onclick="parashagameHint()"></button>
+            <p class="cause-question parashagame-ask" id="parashagame-ask"></p>
+            <div class="lexgame-levels" id="parashagame-sections" role="group" aria-label="Livre de la Torah" data-i18n-attr="aria-label:parashagame.books_aria"></div>
+            <div class="parashagame-grid" id="parashagame-parashot"></div>
+            <div class="wheel-feedback hidden" id="parashagame-feedback" role="status">
+                <strong id="parashagame-feedback-title"></strong>
+                <p id="parashagame-feedback-text"></p>
+                <p class="tool-small hidden" id="parashagame-feedback-note"></p>
+                <div class="lexgame-actions">
+                    <button type="button" class="btn" id="parashagame-next" onclick="parashagameContinue()"></button>
+                    <button type="button" class="btn lexgame-dict-btn" onclick="parashagameOpenParasha()" data-i18n="parashagame.read">Lire la paracha</button>
+                </div>
+            </div>
+        </div>
+        <div class="arcade-over hidden" id="parashagame-over">
+            <h3 data-i18n="arcade.over">Partie terminée</h3>
+            <p id="parashagame-over-text"></p>
+            <button type="button" class="btn" onclick="parashagameStart()" data-i18n="arcade.replay">Rejouer</button>
         </div>
     </div>
 

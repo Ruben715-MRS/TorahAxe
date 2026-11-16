@@ -13,9 +13,9 @@
 // Torah : la question est toujours « le verset que le Rambam cite », jamais « où ce commandement apparaît ».
 // Contenu d'après le Mishné Torah et le Séfer ha-Mitsvot, comme l'outil des 613 : à relire par une personne compétente.
 (function (root, factory) {
-    if (typeof module === 'object' && module.exports) module.exports = factory(require('./commandmentsCore.js'), require('./quizCore.js'));
-    else root.MitsvaGameCore = factory(root.CommandmentsCore, root.QuizCore);
-}(typeof self !== 'undefined' ? self : this, function (Commandments, Quiz) {
+    if (typeof module === 'object' && module.exports) module.exports = factory(require('./commandmentsCore.js'), require('./quizCore.js'), require('./torahRefs.js'));
+    else root.MitsvaGameCore = factory(root.CommandmentsCore, root.QuizCore, root.TorahRefs);
+}(typeof self !== 'undefined' ? self : this, function (Commandments, Quiz, Refs) {
     'use strict';
 
     var ROUNDS = Quiz.ROUNDS;
@@ -24,14 +24,7 @@
     var BOOK_NAMES = ['Genèse', 'Exode', 'Lévitique', 'Nombres', 'Deutéronome'];
     var REF = /^(Genèse|Exode|Lévitique|Nombres|Deutéronome) (\d+):(\d+)(?:-(\d+))?$/;
 
-    // L'indice (dans parashot.json) de la paracha qui contient ce verset : la dernière dont le début ne dépasse pas le verset.
-    function parashaOf(parashot, book, chapter, verse) {
-        var found = -1;
-        parashot.parashot.forEach(function (p, i) {
-            if (p.book < book || (p.book === book && (p.c < chapter || (p.c === chapter && p.v <= verse)))) found = i;
-        });
-        return found;
-    }
+    var parashaOf = Refs.parashaOf;   // l'indice (dans parashot.json) de la paracha qui contient un verset (js/torahRefs.js)
 
     // Les commandements jouables : { kind, n, text, ref, book (1 à 5), bookFr, parasha (indice), trap (positif formulé à la forme négative) }.
     // `parashot` : le contenu de data/torah/parashot.json.

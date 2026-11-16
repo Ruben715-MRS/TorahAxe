@@ -16685,6 +16685,22 @@ body[data-view-profile="religieux"] .league-btn {
 .quiz-timer.is-low i { background: var(--danger-red-text); }
 .quiz-time { margin: 0 0 12px; text-align: center; }
 #screen-mitsvagame .lexgame-word.mitsvagame-text { font-size: 22px; line-height: 1.35; margin-bottom: 14px; }   /* l'énoncé d'un commandement : une phrase, pas un mot */
+
+/* « Dans quelle paracha ? » : les versets montrés (le premier, puis un de plus par indice), les points en jeu, puis le choix du livre et de la paracha. */
+.parashagame-verses { display: flex; flex-direction: column; gap: 10px; margin: 0 0 12px; }
+.parashagame-verse { border: 1px solid var(--border-soft); border-radius: 12px; background: var(--surface); padding: 12px 14px; }
+.parashagame-verse small { display: block; margin-bottom: 6px; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted-text); }
+.parashagame-he { margin: 0; font-size: 24px; line-height: 1.7; text-align: right; color: var(--text-dark); }
+.parashagame-fr { margin: 8px 0 0; font-size: 14px; line-height: 1.45; color: var(--muted-text); }
+.parashagame-points { margin: 0 0 8px; text-align: center; font-weight: 700; }
+#parashagame-hint { width: 100%; margin-bottom: 14px; }
+.parashagame-ask { margin-bottom: 8px; }
+.parashagame-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 10px 0 12px; }
+.parashagame-par { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 52px; padding: 8px; border-radius: 12px; border: 1px solid var(--border-soft); background: var(--surface); color: var(--text-dark); font: inherit; font-weight: 600; cursor: pointer; }
+.parashagame-par .he { font-size: 15px; font-weight: 400; color: var(--muted-text); }
+.parashagame-par.correct { background: var(--selected-tint); border-color: var(--progress-green); }
+.parashagame-par.wrong { opacity: 0.55; border-color: var(--danger-red-text); }
+.parashagame-par:disabled { cursor: default; }
 .purgame-options { display: grid; grid-template-columns: 1fr 1fr; }   /* Pur à gauche, Impur à droite : toujours au même endroit */
 .lex-train-btn { display: inline-flex; flex-direction: column; align-items: flex-start; gap: 2px; text-align: left; }
 .lex-train-btn small { font-size: 12px; font-weight: 400; opacity: .85; }
