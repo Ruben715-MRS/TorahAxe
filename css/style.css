@@ -16688,12 +16688,14 @@ body[data-view-profile="religieux"] .league-btn {
 
 /* « Dans quelle paracha ? » : les versets montrés (le premier, puis un de plus par indice), les points en jeu, puis le choix du livre et de la paracha. */
 .parashagame-verses { display: flex; flex-direction: column; gap: 10px; margin: 0 0 12px; }
-.parashagame-verse { border: 1px solid var(--border-soft); border-radius: 12px; background: var(--surface); padding: 12px 14px; }
-.parashagame-verse small { display: block; margin-bottom: 6px; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted-text); }
+.parashagame-verse, .whogame-clue { border: 1px solid var(--border-soft); border-radius: 12px; background: var(--surface); padding: 12px 14px; }
+.parashagame-verse small, .whogame-clue small { display: block; margin-bottom: 6px; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted-text); }
+.whogame-clue p { margin: 0; font-size: 17px; line-height: 1.5; color: var(--text-dark); }
+.whogame-clue.is-unseen { opacity: 0.6; border-style: dashed; }
 .parashagame-he { margin: 0; font-size: 24px; line-height: 1.7; text-align: right; color: var(--text-dark); }
 .parashagame-fr { margin: 8px 0 0; font-size: 14px; line-height: 1.45; color: var(--muted-text); }
 .parashagame-points { margin: 0 0 8px; text-align: center; font-weight: 700; }
-#parashagame-hint { width: 100%; margin-bottom: 14px; }
+#parashagame-hint, #whogame-hint { width: 100%; margin-bottom: 14px; }
 .parashagame-ask { margin-bottom: 8px; }
 .parashagame-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 10px 0 12px; }
 .parashagame-par { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 52px; padding: 8px; border-radius: 12px; border: 1px solid var(--border-soft); background: var(--surface); color: var(--text-dark); font: inherit; font-weight: 600; cursor: pointer; }

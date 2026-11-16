@@ -797,6 +797,8 @@
     <script src="js/torahRefs.js"></script>
     <script src="js/mitsvaGameCore.js"></script>
     <script src="js/verseGameCore.js"></script>
+    <script src="js/whoData.js"></script>
+    <script src="js/whoGameCore.js"></script>
     <script src="js/app/quiz-ui.js"></script>
     <script src="js/app/lexicon-game.js"></script>
     <script src="js/app/gemara-game.js"></script>
@@ -805,6 +807,7 @@
     <script src="js/app/purity-game.js"></script>
     <script src="js/app/mitsva-game.js"></script>
     <script src="js/app/verse-game.js"></script>
+    <script src="js/app/who-game.js"></script>
     <script src="js/app/tools.js"></script>
     <script src="js/app/navigation.js"></script>
     <script src="js/app/settings.js"></script>
@@ -1059,6 +1062,38 @@
             <h3 data-i18n="arcade.over">Partie terminée</h3>
             <p id="parashagame-over-text"></p>
             <button type="button" class="btn" onclick="parashagameStart()" data-i18n="arcade.replay">Rejouer</button>
+        </div>
+    </div>
+
+<div id="screen-whogame" class="list-screen hidden">
+        <button class="back-btn" onclick="whogameBack()" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title" data-i18n="whogame.title">Qui suis-je ?</h2>
+        <p class="modes-header-subtitle" id="whogame-status" role="status"></p>
+        <div id="whogame-setup" class="lexgame-setup">
+            <div class="lexgame-levels" id="whogame-sections" role="group" aria-label="Personnages joués" data-i18n-attr="aria-label:whogame.section_aria"></div>
+            <button type="button" class="btn" onclick="whogameStart()" data-i18n="arcade.play">Jouer</button>
+            <p class="tool-small" data-i18n="whogame.how">Un personnage parle à la première personne : qui est-ce ? Cinq personnages par partie, 100 points chacun. Chaque indice de plus, du plus vague au plus précis, coûte 20 points. Vous n'avez qu'une réponse : une erreur vaut 0 point et dévoile la réponse.</p>
+            <p class="tool-small" data-i18n="whogame.how_sources">Les personnages de la Bible ont des indices écrits à la main d'après le texte biblique. Pour les sages du Talmud, les indices viennent de leur fiche dans le dictionnaire araméen : l'époque, leurs maîtres, leurs disciples, puis ce que l'on dit d'eux.</p>
+        </div>
+        <div id="whogame-play" class="hidden">
+            <div class="parashagame-verses" id="whogame-clues" aria-live="polite"></div>
+            <p class="parashagame-points" id="whogame-points"></p>
+            <button type="button" class="btn btn-secondary" id="whogame-hint" onclick="whogameHint()"></button>
+            <p class="cause-question parashagame-ask" id="whogame-ask"></p>
+            <div class="cause-cards" id="whogame-options"></div>
+            <div class="wheel-feedback hidden" id="whogame-feedback" role="status">
+                <strong id="whogame-feedback-title"></strong>
+                <p id="whogame-feedback-text"></p>
+                <p class="tool-small hidden" id="whogame-feedback-note"></p>
+                <div class="lexgame-actions">
+                    <button type="button" class="btn" id="whogame-next" onclick="whogameContinue()"></button>
+                </div>
+            </div>
+        </div>
+        <div class="arcade-over hidden" id="whogame-over">
+            <h3 data-i18n="arcade.over">Partie terminée</h3>
+            <p id="whogame-over-text"></p>
+            <button type="button" class="btn" onclick="whogameStart()" data-i18n="arcade.replay">Rejouer</button>
         </div>
     </div>
 

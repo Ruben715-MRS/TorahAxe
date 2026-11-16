@@ -77,18 +77,14 @@
         return out;
     }
 
-    function resetRound(state) {
-        state.shown = 1;                 // versets montrés (1 + les indices demandés)
-        state.points = START_POINTS;     // points en jeu pour ce verset
-        state.wrong = [];                // les parachiot déjà essayées (indices)
-    }
+    var CFG = { start: START_POINTS, hintCost: HINT_COST, wrongCost: WRONG_COST, maxHints: MAX_HINTS };   // la mécanique des indices : js/quizCore.js
 
     // options : { books, parashot, rng, rounds, indices } ; `indices`, s'il est donné, fixe les versets de départ (tests).
     function createGame(options) {
         var o = options || {};
         var indices = o.indices || pick(o.books, o.rng, o.rounds || ROUNDS);
         var state = Quiz.createState(indices.map(function (i) { return makeQuestion(o.parashot, i); }), {});
-        resetRound(state);
+        Quiz.resetRound(state, CFG);
         return state;
     }
 
@@ -102,39 +98,22 @@
         return out;
     }
 
-    function finishRound(state, outcome) {
-        var q = question(state);
-        state.resolved = outcome;
-        if (outcome === 'right') { state.score += state.points; state.found += 1; }
-        state.results.push({ id: q.id, right: outcome === 'right', revealed: outcome === 'revealed', hints: state.shown - 1, wrong: state.wrong.length, points: outcome === 'right' ? state.points : 0 });
-    }
-
     // Un indice : le verset suivant, pour 20 points. ['hint'], et ['revealed'] en plus quand les points tombent à zéro (la paracha est alors dévoilée) ;
     // [] si le verset est déjà résolu ou si les cinq indices sont donnés.
-    function hint(state) {
-        if (state.over || state.resolved || state.shown >= 1 + MAX_HINTS) return [];
-        state.shown += 1;
-        state.points = Math.max(0, state.points - HINT_COST);
-        if (state.points <= 0) { finishRound(state, 'revealed'); return ['hint', 'revealed']; }
-        return ['hint'];
-    }
+    function hint(state) { return Quiz.roundHint(state, CFG); }
 
     // Une réponse : l'indice de la paracha (dans parashot.json). ['right'] (les points restants sont gagnés), ['wrong'] (20 points de moins, la paracha est écartée),
     // ['wrong', 'revealed'] quand cette erreur fait tomber les points à zéro ; [] si rien ne se passe (verset résolu, paracha déjà essayée).
     function guess(state, parasha) {
         var q = question(state);
-        if (state.over || !q || state.resolved || state.wrong.indexOf(parasha) >= 0 || !(parasha >= 0)) return [];
-        if (parasha === q.parasha) { finishRound(state, 'right'); return ['right']; }
-        state.wrong.push(parasha);
-        state.points = Math.max(0, state.points - WRONG_COST);
-        if (state.points <= 0) { finishRound(state, 'revealed'); return ['wrong', 'revealed']; }
-        return ['wrong'];
+        if (!q || !(parasha >= 0)) return [];
+        return Quiz.roundGuess(state, parasha, parasha === q.parasha, CFG);
     }
 
     // Verset suivant : ['done'] à la fin de la partie, [] sinon.
     function next(state) {
         var events = Quiz.next(state);
-        if (!events.length && !state.over) resetRound(state);
+        if (!events.length && !state.over) Quiz.resetRound(state, CFG);
         return events;
     }
 

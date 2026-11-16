@@ -67,6 +67,42 @@
         return ['timeout'];
     }
 
+    // --- Les manches à indices (« Dans quelle paracha ? », « Qui suis-je ? ») ---------------------------------------------------------------------
+    // Une question qu'on résout en piochant des indices : `cfg` = { start (points au départ), hintCost, wrongCost, maxHints }. Chaque indice et chaque mauvaise
+    // réponse coûtent des points ; à zéro, la réponse est dévoilée (`resolved` = 'revealed', rien n'est gagné). Les champs de la manche (`shown`, `points`, `wrong`)
+    // sont dans la partie ; `results` garde pour chaque question { id, right, revealed, hints, wrong, points }.
+    function resetRound(state, cfg) {
+        state.shown = 1;                 // éléments montrés (1 + les indices demandés)
+        state.points = cfg.start;        // points en jeu pour cette question
+        state.wrong = [];                // les mauvaises réponses déjà essayées (clés quelconques)
+    }
+
+    function finishRound(state, outcome) {
+        var q = question(state);
+        state.resolved = outcome;
+        if (outcome === 'right') { state.score += state.points; state.found += 1; }
+        state.results.push({ id: q.id, right: outcome === 'right', revealed: outcome === 'revealed', hints: state.shown - 1, wrong: state.wrong.length, points: outcome === 'right' ? state.points : 0 });
+    }
+
+    // Un indice : ['hint'], et ['revealed'] en plus quand les points tombent à zéro ; [] si la question est résolue ou si tous les indices sont donnés.
+    function roundHint(state, cfg) {
+        if (state.over || state.resolved || state.shown >= 1 + cfg.maxHints) return [];
+        state.shown += 1;
+        state.points = Math.max(0, state.points - cfg.hintCost);
+        if (state.points <= 0) { finishRound(state, 'revealed'); return ['hint', 'revealed']; }
+        return ['hint'];
+    }
+
+    // Une réponse : `key` identifie la réponse (déjà essayée → rien), `right` dit si elle est bonne. ['right'], ['wrong'], ['wrong', 'revealed'] ou [].
+    function roundGuess(state, key, right, cfg) {
+        if (state.over || !question(state) || state.resolved || state.wrong.indexOf(key) >= 0) return [];
+        if (right) { finishRound(state, 'right'); return ['right']; }
+        state.wrong.push(key);
+        state.points = Math.max(0, state.points - cfg.wrongCost);
+        if (state.points <= 0) { finishRound(state, 'revealed'); return ['wrong', 'revealed']; }
+        return ['wrong'];
+    }
+
     // Passe à la question suivante. Renvoie ['done'] à la fin de la partie, [] si elle continue (ou si la question n'est pas répondue).
     function next(state) {
         if (state.over || !state.resolved) return [];
@@ -77,5 +113,5 @@
         return [];
     }
 
-    return { ROUNDS: ROUNDS, CHOICES: CHOICES, POINTS: POINTS, shuffle: shuffle, createState: createState, question: question, answer: answer, expire: expire, next: next };
+    return { ROUNDS: ROUNDS, CHOICES: CHOICES, POINTS: POINTS, shuffle: shuffle, createState: createState, question: question, answer: answer, expire: expire, next: next, resetRound: resetRound, roundHint: roundHint, roundGuess: roundGuess };
 });

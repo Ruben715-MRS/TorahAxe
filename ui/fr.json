@@ -7181,5 +7181,29 @@
     "read": "Lire la paracha",
     "how": "Cinq versets tirés au hasard dans toute la Torah : de quelle paracha vient chacun ? Chaque verset vaut 100 points. Un indice montre le verset suivant et coûte 20 points ; une mauvaise réponse en coûte 20 aussi. À zéro point, la paracha est dévoilée.",
     "how_formula": "Les versets qui ne sont que « L'Éternel parla à Moïse en disant » ne sont jamais tirés : on les trouve partout. Ils peuvent en revanche apparaître en indice."
+  },
+  "whogame": {
+    "title": "Qui suis-je ?",
+    "desc": "Un personnage de la Bible ou un sage du Talmud parle : devinez qui, avec des indices qui coûtent des points.",
+    "status": "Personnage {n} sur {total} · {score} points",
+    "section_aria": "Personnages joués",
+    "section_all": "Tous",
+    "section_bible": "Bible",
+    "section_sages": "Sages",
+    "clue_n": "Indice {n}",
+    "clue_unseen": "non demandé",
+    "points": "Points en jeu : {n}",
+    "hint": "Indice suivant (−{cost} points)",
+    "hint_none": "Plus d'indice",
+    "ask": "Qui suis-je ?",
+    "option_aria": "Réponse {n} : {label}",
+    "right": "Bonne réponse : {n} points",
+    "revealed": "La réponse est dévoilée : 0 point",
+    "answer_is": "C'était {fr} ({he}).",
+    "next": "Personnage suivant",
+    "finish": "Voir le score",
+    "found": "{found} bonnes réponses sur {total} : {score} points.",
+    "how": "Un personnage parle à la première personne : qui est-ce ? Cinq personnages par partie, 100 points chacun. Chaque indice de plus, du plus vague au plus précis, coûte 20 points. Vous n'avez qu'une réponse : une erreur vaut 0 point et dévoile la réponse.",
+    "how_sources": "Les personnages de la Bible ont des indices écrits à la main d'après le texte biblique. Pour les sages du Talmud, les indices viennent de leur fiche dans le dictionnaire araméen : l'époque, leurs maîtres, leurs disciples, puis ce que l'on dit d'eux."
   }
 }
