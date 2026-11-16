@@ -8,7 +8,7 @@
 // Réutilise les fonctions de date de js/app/hebrew-calendar.js (hcalGregorianText, hcalHebrewText, hcalHebrewLetters). Tout ce qui vient de
 // la saisie ou du réseau passe par textContent, jamais par du HTML. Contenu halakhique écrit à la main : à relire par une personne compétente.
 
-const ZM_KEYS = { place: 'zmanimPlace', favs: 'zmanimFavs', opts: 'zmanimOpts' };
+const ZM_KEYS = { place: 'zmanimPlace', favs: 'zmanimFavs', opts: 'zmanimOpts', follow: 'zmanimFollow', autoPos: 'zmanimAutoPos' };
 const ZM_GEOCODER = 'https://geocoding-api.open-meteo.com/v1/search';
 const ZM_DAY_MS = 86400000;
 
@@ -317,6 +317,68 @@ function zmDeviceTimeZone() {
     try { return Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC'; } catch (e) { return 'UTC'; }
 }
 
+// --- Suivi des déplacements : le lieu suit la position de l'appareil -------------------------------------------------------------
+// Activé par le bouton « Suivre mes déplacements ». Ensuite, à l'ouverture de l'app et au retour sur l'app, la position est lue SANS
+// demande d'autorisation (seulement si elle est déjà accordée) ; si elle a bougé de plus de ZM_MOVE_KM depuis le dernier lieu détecté,
+// le lieu devient « Ma position » et les horaires sont recalculés. Un lieu choisi à la main n'est pas écrasé tant que l'appareil ne bouge pas.
+const ZM_MOVE_KM = 25;
+const ZM_AUTO_EVERY_MS = 10 * 60 * 1000;
+let zmAutoBusy = false;
+let zmAutoLast = 0;
+
+function zmFollowOn() { return zmRead(ZM_KEYS.follow, false) === true; }
+
+function zmDistanceKm(a, b) {
+    const rad = d => d * Math.PI / 180;
+    const dLat = rad(b.lat - a.lat), dLon = rad(b.lon - a.lon);
+    const h = Math.sin(dLat / 2) ** 2 + Math.cos(rad(a.lat)) * Math.cos(rad(b.lat)) * Math.sin(dLon / 2) ** 2;
+    return 6371 * 2 * Math.asin(Math.min(1, Math.sqrt(h)));
+}
+
+// Le lieu devient la position détectée (même forme que « Utiliser ma position »).
+function zmApplyDetected(pos, announce) {
+    const place = ZmanimCore.normalizePlace({ name: t('tools.zm_my_position'), lat: pos.lat, lon: pos.lon, elevation: 0, tz: zmDeviceTimeZone() });
+    if (!place) return;
+    zmWrite(ZM_KEYS.autoPos, { lat: pos.lat, lon: pos.lon });
+    zmPlace = place;
+    zmWrite(ZM_KEYS.place, place);
+    zmFound = null;
+    zmDate = zmToday();
+    zmResched();
+    zmRender(true);
+    if (announce) showToast(t('tools.zm_auto_moved'));
+}
+
+// Lecture silencieuse de la position (jamais de fenêtre d'autorisation ici) ; ne fait rien si le suivi est coupé.
+function zmAutoFollow() {
+    if (!zmFollowOn() || zmAutoBusy) return;
+    if (typeof HistoriAxeLocation === 'undefined' || !HistoriAxeLocation.isSupported()) return;
+    if (Date.now() - zmAutoLast < ZM_AUTO_EVERY_MS) return;
+    zmAutoBusy = true;
+    zmAutoLast = Date.now();
+    HistoriAxeLocation.status()
+        .then(s => (s === 'granted' ? HistoriAxeLocation.currentPosition() : null))
+        .then(pos => {
+            zmAutoBusy = false;
+            if (!pos || !zmFollowOn()) return;
+            const last = zmRead(ZM_KEYS.autoPos, null);
+            if (last && zmDistanceKm(last, pos) < ZM_MOVE_KM) return;
+            zmApplyDetected(pos, !!last);   // un premier lieu est fixé sans annonce ; un déplacement est annoncé
+        })
+        .catch(() => { zmAutoBusy = false; });
+}
+
+// Bouton : activer demande la position une fois (le joueur a cliqué) ; désactiver arrête le suivi.
+function zmToggleFollow() {
+    if (zmFollowOn()) { zmWrite(ZM_KEYS.follow, false); zmRender(true); return; }
+    if (typeof HistoriAxeLocation === 'undefined' || !HistoriAxeLocation.isSupported()) { showToast(t('tools.zm_gps_unavailable')); return; }
+    HistoriAxeLocation.locate().then(pos => {
+        if (!pos) { showToast(t('tools.zm_gps_failed')); return; }
+        zmWrite(ZM_KEYS.follow, true);
+        zmApplyDetected(pos, false);
+    });
+}
+
 function zmLocate() {
     if (typeof HistoriAxeLocation === 'undefined' || !HistoriAxeLocation.isSupported()) { showToast(t('tools.zm_gps_unavailable')); return; }
     zmFound = { loading: true };
@@ -388,6 +450,15 @@ function zmPlaceEditor(body) {
     gps.id = 'zm-gps';
     gps.onclick = zmLocate;
     panel.appendChild(gps);
+
+    // Suivi des déplacements
+    const follow = zmEl('button', 'tool-history-chip zm-follow', (zmFollowOn() ? '✓ ' : '') + t('tools.zm_follow'));
+    follow.type = 'button';
+    follow.id = 'zm-follow';
+    follow.setAttribute('aria-pressed', zmFollowOn() ? 'true' : 'false');
+    follow.onclick = zmToggleFollow;
+    panel.appendChild(follow);
+    panel.appendChild(zmEl('p', 'tool-small', t('tools.zm_follow_note', { km: ZM_MOVE_KM })));
 
     // Favoris
     if (zmFavs.length) {
@@ -1217,3 +1288,7 @@ function zmOptions(body) {
     });
     body.appendChild(details);
 }
+
+// Le suivi se vérifie à l'ouverture de l'app et à chaque retour sur l'app.
+document.addEventListener('DOMContentLoaded', zmAutoFollow);
+document.addEventListener('visibilitychange', () => { if (!document.hidden) zmAutoFollow(); });

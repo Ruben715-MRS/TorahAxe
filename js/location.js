@@ -134,6 +134,8 @@ var HistoriAxeLocation = (function () {
 
     return {
         isSupported: isSupported,
+        status: status,
+        currentPosition: currentPosition,
         locate: locate,
         askOnce: askOnce,
         locateControl: locateControl
