@@ -54,6 +54,19 @@
         return [state.resolved];
     }
 
+    // Le temps est écoulé sans réponse (jeux chronométrés) : la question est comptée fausse, sans proposition choisie. Renvoie ['timeout'], ou []
+    // si rien ne se passe. Même ligne dans `results` que `answer`, avec `timeout: true`.
+    function expire(state, describe) {
+        var q = question(state);
+        if (state.over || !q || state.resolved) return [];
+        state.resolved = 'wrong';
+        state.picked = null;
+        var entry = describe ? describe(q, false) : { id: q.id, right: false, type: q.type };
+        entry.timeout = true;
+        state.results.push(entry);
+        return ['timeout'];
+    }
+
     // Passe à la question suivante. Renvoie ['done'] à la fin de la partie, [] si elle continue (ou si la question n'est pas répondue).
     function next(state) {
         if (state.over || !state.resolved) return [];
@@ -64,5 +77,5 @@
         return [];
     }
 
-    return { ROUNDS: ROUNDS, CHOICES: CHOICES, POINTS: POINTS, shuffle: shuffle, createState: createState, question: question, answer: answer, next: next };
+    return { ROUNDS: ROUNDS, CHOICES: CHOICES, POINTS: POINTS, shuffle: shuffle, createState: createState, question: question, answer: answer, expire: expire, next: next };
 });

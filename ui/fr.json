@@ -7102,5 +7102,31 @@
     "row_desc": "Mots du Tanakh et de la Guémara à revoir aujourd'hui, en une seule séance",
     "row_due": "{total} à revoir aujourd'hui, en une seule séance",
     "row_none": "Rien à revoir aujourd'hui"
+  },
+  "purgame": {
+    "title": "Pur ou impur ?",
+    "desc": "Triez les animaux, vite : pur (permis) ou impur (interdit), avec les signes à connaître.",
+    "status": "Question {n} sur {total} · {score} points",
+    "ask_item": "Cet animal est-il pur ou impur ?",
+    "pur": "Pur",
+    "impur": "Impur",
+    "is_pur": "pur (permis)",
+    "is_impur": "impur (interdit)",
+    "option_aria": "Réponse {n} : {label}",
+    "right": "Bonne réponse",
+    "wrong": "Pas tout à fait",
+    "timeout": "Temps écoulé.",
+    "time_left": "{n} s",
+    "time_aria": "Temps restant",
+    "next": "Animal suivant",
+    "finish": "Voir le score",
+    "found": "{found} bonnes réponses sur {total} : {score} points.",
+    "section_aria": "Animaux joués",
+    "section_all": "Tous",
+    "section_terre": "Terre",
+    "section_oiseaux": "Oiseaux",
+    "section_eau": "Eau",
+    "how": "Dix animaux, 100 points chacun, huit secondes pour répondre : pur (permis) ou impur (interdit) ? Une fois le temps écoulé, la question est comptée fausse.",
+    "how_sure": "Seuls les cas sans discussion sont posés : les animaux dont l'identification est perdue ou discutée (le zémer, le tétras, la girafe…) ne sont jamais demandés. Outil d'étude, pas une décision de halakha."
   }
 }

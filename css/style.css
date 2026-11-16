@@ -16679,6 +16679,12 @@ body[data-view-profile="religieux"] .league-btn {
 .lexgame-progress-text { margin: 0; font-size: 18px; font-weight: 700; color: var(--text-dark); }
 .lexgame-bar { width: 100%; height: 12px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--border-soft); overflow: hidden; }
 .lexgame-bar i { display: block; height: 100%; width: 0; background: var(--progress-green); }
+/* « Pur ou impur ? » : la barre de temps se vide ; rouge sur la fin. Pas de transition : elle suit l'horloge par pas de 100 ms. */
+.purgame-timer { margin-bottom: 4px; }
+.purgame-timer i { width: 100%; }
+.purgame-timer.is-low i { background: var(--danger-red-text); }
+.purgame-time { margin: 0 0 12px; text-align: center; }
+.purgame-options { display: grid; grid-template-columns: 1fr 1fr; }   /* Pur à gauche, Impur à droite : toujours au même endroit */
 .lex-train-btn { display: inline-flex; flex-direction: column; align-items: flex-start; gap: 2px; text-align: left; }
 .lex-train-btn small { font-size: 12px; font-weight: 400; opacity: .85; }
 .lex-mastered { flex-basis: 100%; font-size: 12px; font-weight: 700; color: var(--progress-green); }

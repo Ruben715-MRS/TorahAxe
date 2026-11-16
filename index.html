@@ -793,11 +793,13 @@
     <script src="js/gemaraGameCore.js"></script>
     <script src="js/transmissionGameCore.js"></script>
     <script src="js/reviewCore.js"></script>
+    <script src="js/purityGameCore.js"></script>
     <script src="js/app/quiz-ui.js"></script>
     <script src="js/app/lexicon-game.js"></script>
     <script src="js/app/gemara-game.js"></script>
     <script src="js/app/transmission-game.js"></script>
     <script src="js/app/review.js"></script>
+    <script src="js/app/purity-game.js"></script>
     <script src="js/app/tools.js"></script>
     <script src="js/app/navigation.js"></script>
     <script src="js/app/settings.js"></script>
@@ -952,6 +954,39 @@
             <p id="review-over-text"></p>
             <p id="review-over-progress"></p>
             <button type="button" class="btn" id="review-again" onclick="reviewStart()" data-i18n="review.again">Encore une séance</button>
+        </div>
+    </div>
+
+<div id="screen-purgame" class="list-screen hidden">
+        <button class="back-btn" onclick="purgameBack()" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title" data-i18n="purgame.title">Pur ou impur ?</h2>
+        <p class="modes-header-subtitle" id="purgame-status" role="status"></p>
+        <div id="purgame-setup" class="lexgame-setup">
+            <div class="lexgame-levels" id="purgame-sections" role="group" aria-label="Animaux joués" data-i18n-attr="aria-label:purgame.section_aria"></div>
+            <button type="button" class="btn" onclick="purgameStart()" data-i18n="arcade.play">Jouer</button>
+            <p class="tool-small" data-i18n="purgame.how">Dix animaux, 100 points chacun, huit secondes pour répondre : pur (permis) ou impur (interdit) ? Une fois le temps écoulé, la question est comptée fausse.</p>
+            <p class="tool-small" data-i18n="purgame.how_sure">Seuls les cas sans discussion sont posés : les animaux dont l'identification est perdue ou discutée (le zémer, le tétras, la girafe…) ne sont jamais demandés. Outil d'étude, pas une décision de halakha.</p>
+        </div>
+        <div id="purgame-play" class="hidden">
+            <p class="cause-question" id="purgame-question"></p>
+            <p class="lexgame-word is-french" id="purgame-word"></p>
+            <p class="tool-small trgame-he" id="purgame-he" lang="he" dir="rtl"></p>
+            <div class="lexgame-bar purgame-timer" id="purgame-timer" role="progressbar" aria-valuemin="0" aria-valuemax="8" aria-valuenow="8" aria-label="Temps restant" data-i18n-attr="aria-label:purgame.time_aria"><i id="purgame-timer-fill"></i></div>
+            <p class="tool-small purgame-time" id="purgame-time"></p>
+            <div class="cause-cards purgame-options" id="purgame-options"></div>
+            <div class="wheel-feedback hidden" id="purgame-feedback" role="status">
+                <strong id="purgame-feedback-title"></strong>
+                <p id="purgame-feedback-text"></p>
+                <p class="tool-small hidden" id="purgame-feedback-note"></p>
+                <div class="lexgame-actions">
+                    <button type="button" class="btn" id="purgame-next" onclick="purgameContinue()"></button>
+                </div>
+            </div>
+        </div>
+        <div class="arcade-over hidden" id="purgame-over">
+            <h3 data-i18n="arcade.over">Partie terminée</h3>
+            <p id="purgame-over-text"></p>
+            <button type="button" class="btn" onclick="purgameStart()" data-i18n="arcade.replay">Rejouer</button>
         </div>
     </div>
 
