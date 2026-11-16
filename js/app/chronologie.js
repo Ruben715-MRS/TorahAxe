@@ -164,6 +164,7 @@ function chrRender(keepScroll) {
     chrModel.voies.forEach(voie => {
         const lay = ChronologieCore.layout(voie.items, chrModel.plage, opts);
         const lane = chrNode('section', 'chr-lane chr-lane-' + voie.id);
+        lane.dataset.voie = voie.id;
         const folded = chrCollapsed.has(voie.id);
         const head = chrNode('h3', 'chr-lane-head');
         const title = chrNode('button', 'chr-lane-title', (folded ? '▸ ' : '▾ ') + voie.fr);
@@ -174,6 +175,7 @@ function chrRender(keepScroll) {
         lane.appendChild(head);
         const body = chrNode('div', 'chr-lane-body' + (folded ? ' is-folded' : ''));
         body.style.height = folded ? '0px' : (lay.rows * (CHR_ROW_H + CHR_ROW_GAP)) + 'px';
+        body.dataset.h = String(lay.rows * (CHR_ROW_H + CHR_ROW_GAP));
         if (!folded) lay.placed.forEach(p => { body.appendChild(chrItemNode(p)); shown++; });
         lane.appendChild(body);
         stage.appendChild(lane);
@@ -183,6 +185,29 @@ function chrRender(keepScroll) {
     toolEl('tool-chr-source').textContent = chrModel.sources;
     if (keepScroll) { view.scrollLeft = left; view.scrollTop = top; }
     chrRenderInfo();
+    if (!view.dataset.bound) {
+        view.dataset.bound = '1';
+        let timer = 0;
+        view.addEventListener('scroll', () => { clearTimeout(timer); timer = setTimeout(chrUpdateIdle, 160); }, { passive: true });
+    }
+    chrUpdateIdle();
+}
+
+// Une voie sans rien dans la zone visible se replie d'elle-même (son titre reste) : on ne garde à l'écran que ce qui se passe à l'époque regardée.
+function chrUpdateIdle() {
+    const view = chrView();
+    if (!view || !chrModel) return;
+    const from = chrModel.plage[0] + view.scrollLeft / chrScale();
+    const to = from + view.clientWidth / chrScale();
+    view.querySelectorAll('.chr-lane').forEach(lane => {
+        const voie = chrModel.voies.find(v => v.id === lane.dataset.voie);
+        const body = lane.querySelector('.chr-lane-body');
+        if (!voie || !body || chrCollapsed.has(voie.id)) return;
+        const busy = voie.items.some(x => x.from <= to && (x.to === undefined ? x.from : x.to) >= from);
+        body.style.height = busy ? body.dataset.h + 'px' : '0px';
+        body.classList.toggle('is-idle', !busy);
+        lane.classList.toggle('is-idle', !busy);
+    });
 }
 
 // --- Sélection et fiche ----------------------------------------------------------------------------------------------------------------

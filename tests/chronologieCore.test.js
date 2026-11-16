@@ -213,3 +213,31 @@ test('lot 2 : chaque voie a de la matière, et la recherche trouve les nouveaux 
     assert.ok(C.search(M, 'hanouka').some(x => x.id === 'e_hanouka'));
     assert.ok(C.search(M, 'Pompee').some(x => x.id === 'e_pompee'));
 });
+
+test('lot 3 : conversions et repères des Richonim aux Aharonim', () => {
+    assert.strictEqual(C.civilYear(get('e3_expulsion_espagne').from), 1492);
+    assert.strictEqual(C.civilYear(get('e3_etat').from), 1948);
+    assert.strictEqual(get('e3_etat').from, 5708);
+    assert.strictEqual(get('richonim_ere').to, get('acharonim_ere').from);
+    assert.strictEqual(get('geonim_ere').to, get('richonim_ere').from);
+    assert.strictEqual(get('e3_expulsion_espagne').from, get('richonim_ere').to, '1492 = AM 5252');
+});
+
+test('lot 3 : les durées d\'exil et les vies sont cohérentes', () => {
+    assert.ok(Math.abs((get('e3_cromwell').from - get('e3_angleterre_expulsion').from) - 366) <= 1, 'expulsion d\'Angleterre : environ 367 ans');
+    assert.strictEqual(get('m_rambam').to - get('m_rambam').from, 66);
+    assert.strictEqual(get('m_rachi').to - get('m_rachi').from, 65);
+    assert.strictEqual(get('hs_besht').to - get('hs_besht').from, 62);
+    assert.ok(get('m_caro').from < get('o3_beit_yosef').from && get('o3_beit_yosef').from < get('m_caro').to);
+    assert.ok(get('e3_oct7').from === 5784 && get('e3_oct7').he);
+});
+
+test('lot 3 : la frise va jusqu\'à aujourd\'hui, et la plage couvre tout', () => {
+    assert.ok(M.plage[1] >= 5787);
+    const last = Math.max.apply(null, M.items.map(x => x.to === undefined ? x.from : x.to));
+    assert.ok(last <= M.plage[1] + 50, 'rien ne dépasse la plage de plus de 50 ans');
+    ['maitres', 'hassidim'].forEach(id => assert.ok(M.voies.find(v => v.id === id).items.length >= 25, id));
+    assert.ok(C.search(M, 'Rachi').some(x => x.id === 'm_rachi'));
+    assert.ok(C.search(M, 'Baal Chem').some(x => x.id === 'hs_besht'));
+    assert.ok(C.search(M, 'Pittsburgh').some(x => x.id === 'e3_pittsburgh'));
+});

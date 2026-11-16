@@ -18460,7 +18460,9 @@ body:has(#screen-recit:not(.hidden))::after {
     font-weight: 700;
 }
 .chr-lane-body { position: relative; }
-.chr-lane-body.is-folded { overflow: hidden; }
+.chr-lane-body.is-folded, .chr-lane-body.is-idle { overflow: hidden; }
+.chr-lane-body { transition: height 0.15s ease; }
+.chr-lane.is-idle .chr-lane-title { opacity: 0.55; }
 .chr-item {
     position: absolute;
     height: 30px;
@@ -18503,3 +18505,5 @@ body:has(#screen-recit:not(.hidden))::after {
 .chr-lane-babylonie { --chr-c: #fbcfe8; }
 .chr-lane-oeuvres { --chr-c: #fde68a; }
 .chr-lane-evenements .chr-item.is-point { background: #475569; border-color: #475569; }
+.chr-lane-maitres { --chr-c: #a7f3d0; }
+.chr-lane-hassidim { --chr-c: #fecdd3; }
