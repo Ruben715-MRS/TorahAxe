@@ -89,8 +89,25 @@ function tanakhOpenAt(book, chapter, show) {
     openTool('tanakh', toolReturns.tanakh || 'screen-tools');
 }
 
+// Une paracha et une montée demandées par l'accueil (« Paracha » du jour) : gi = indice dans data/torah/parashot.json, aliyah comme tanakhGoParasha.
+let tanakhPendingParasha = null;
+function tanakhOpenParasha(gi, aliyah, from) {
+    torahReaderLoadParashot().then(data => {
+        tanakhParashot = data;
+        tanakhPendingParasha = { gi: gi, aliyah: aliyah };
+        tanakhPending = null;
+        openTool('tanakh', from || 'screen-main');
+    }).catch(() => { /* paracha indisponible : rien ne s'ouvre */ });
+}
+
 function toolTanakhInit() {
     autoScrollClose('tanakh');
+    if (tanakhPendingParasha && tanakhIndex) {
+        const pp = tanakhPendingParasha;
+        tanakhPendingParasha = null;
+        tanakhGoParasha(pp.gi, pp.aliyah);
+        return;
+    }
     if (tanakhPending && tanakhIndex) {
         const p = tanakhPending;
         tanakhPending = null;
@@ -105,6 +122,12 @@ function toolTanakhInit() {
         .then(index => {
             tanakhIndex = index;
             msg.textContent = '';
+            if (tanakhPendingParasha) {
+                const pp = tanakhPendingParasha;
+                tanakhPendingParasha = null;
+                tanakhGoParasha(pp.gi, pp.aliyah);
+                return;
+            }
             const p = tanakhPending;
             tanakhPending = null;
             const wanted = p && index.books.find(b => b.id === p.book && b.available);

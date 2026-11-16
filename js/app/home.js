@@ -484,7 +484,9 @@ function homeRenderToday(content) {
 
     const cards = hEl('div', 'home-cards');
     const par = homeParashaName(day);
-    cards.appendChild(homeInfoCard('Paracha', par ? par.name : '…', par ? 'Lire dans le Tikkoun' : '', par ? () => openTikkounAtParasha(par.index) : null));
+    // La montée du jour : dimanche = 1re, samedi = 7e (Date.getDay() : 0 = dimanche).
+    const aliyahOfDay = new Date(day.civil.year, day.civil.month - 1, day.civil.day).getDay() + 1;
+    cards.appendChild(homeInfoCard('Paracha', par ? par.name : '…', par ? 'Lire dans le Tanakh' : '', par ? () => tanakhOpenParasha(par.index, aliyahOfDay) : null));
     const feast = homeNextFeast(day);
     if (feast) {
         const name = t('tools.hcal_f_' + (feast.ongoing ? HebrewCalendarCore.feastNameId(feast.id, day.ctx.fixed, day.israel) : feast.id) + '_name');
