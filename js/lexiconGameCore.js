@@ -33,14 +33,13 @@
 // réponse soit juste.
 
 (function (root, factory) {
-    if (typeof module === 'object' && module.exports) module.exports = factory(require('./lexiconCore.js'), require('./arcadeCore.js'), require('./srs.js'), require('./gematriaCore.js'));
-    else root.LexiconGameCore = factory(root.LexiconCore, root.ArcadeCore, root.SRS, root.GematriaCore);
-}(typeof self !== 'undefined' ? self : this, function (Lexicon, Arcade, SRS, Gematria) {
+    if (typeof module === 'object' && module.exports) module.exports = factory(require('./lexiconCore.js'), require('./quizCore.js'), require('./srs.js'), require('./gematriaCore.js'));
+    else root.LexiconGameCore = factory(root.LexiconCore, root.QuizCore, root.SRS, root.GematriaCore);
+}(typeof self !== 'undefined' ? self : this, function (Lexicon, Quiz, SRS, Gematria) {
     'use strict';
 
-    var ROUNDS = 10;          // questions par partie
-    var CHOICES = 4;          // réponses proposées
-    var POINTS = 100;         // par bonne réponse
+    var ROUNDS = Quiz.ROUNDS;   // questions par partie
+    var CHOICES = Quiz.CHOICES; // réponses proposées
     var MASTERED_BOX = 4;     // boîte à partir de laquelle un mot est « maîtrisé » (intervalle de 14 jours atteint)
     var NEW_PER_SESSION = 5;  // mots nouveaux au plus par partie…
     var MIN_NEW = 2;          // …et au moins deux tant qu'il en reste, même quand beaucoup de mots sont à réviser
@@ -102,7 +101,7 @@
     function distractors(word, pool, rng, count) {
         var taken = {};
         taken[labelOf(word)] = true;
-        var candidates = Arcade.shuffle(pool.filter(function (e) {
+        var candidates = Quiz.shuffle(pool.filter(function (e) {
             return e.strong !== word.strong && !overlaps(word, e);
         }), rng);
         var same = candidates.filter(function (e) { return kindOf(e) === kindOf(word); });
@@ -127,7 +126,7 @@
         var taken = {};
         taken[formOf(word, scroll)] = true;
         var out = [];
-        var candidates = Arcade.shuffle(pool.filter(function (e) { return e.strong !== word.strong && !overlaps(word, e); }), rng);
+        var candidates = Quiz.shuffle(pool.filter(function (e) { return e.strong !== word.strong && !overlaps(word, e); }), rng);
         var same = candidates.filter(function (e) { return kindOf(e) === kindOf(word); });
         var other = candidates.filter(function (e) { return kindOf(e) !== kindOf(word); });
         same.concat(other).forEach(function (e) {
@@ -152,7 +151,7 @@
         var roots = [];
         Lexicon.ENTRIES.forEach(function (e) { if (e.root && !seen[e.root]) { seen[e.root] = true; roots.push(e.root); } });
         var share = function (r) { return r.split('').some(function (c) { return word.root.indexOf(c) >= 0; }); };
-        var shuffled = Arcade.shuffle(roots, rng);
+        var shuffled = Quiz.shuffle(roots, rng);
         return shuffled.filter(share).concat(shuffled.filter(function (r) { return !share(r); })).slice(0, count);
     }
 
@@ -162,7 +161,7 @@
 
     // Trois autres nombres plausibles : un écart de dizaine, d'unité ou de centaine, jamais zéro ni la bonne valeur.
     function valueDistractors(value, rng, count) {
-        var deltas = Arcade.shuffle([-100, -50, -30, -20, -10, -9, -7, -6, -5, -3, -2, -1, 1, 2, 3, 5, 6, 7, 9, 10, 20, 30, 50, 100], rng);
+        var deltas = Quiz.shuffle([-100, -50, -30, -20, -10, -9, -7, -6, -5, -3, -2, -1, 1, 2, 3, 5, 6, 7, 9, 10, 20, 30, 50, 100], rng);
         var out = [];
         deltas.forEach(function (d) {
             var v = value + d;
@@ -276,14 +275,14 @@
         var picks = due.slice(0, rounds - reserved);
         var fresh = unseen.slice(0, Math.min(unseen.length, rounds - picks.length, NEW_PER_SESSION));
         picks = picks.concat(fresh);
-        var extra = Arcade.shuffle(notDue, random).slice(0, rounds - picks.length);
+        var extra = Quiz.shuffle(notDue, random).slice(0, rounds - picks.length);
         picks = picks.concat(extra);
         if (picks.length < rounds) {
             var more = unseen.slice(fresh.length, fresh.length + rounds - picks.length);
             fresh = fresh.concat(more);
             picks = picks.concat(more);
         }
-        var ordered = Arcade.shuffle(picks, random);
+        var ordered = Quiz.shuffle(picks, random);
         var types = {};
         ordered.forEach(function (e) { types[e.strong] = pickType(e, p.words[e.strong], random); });
         return {
@@ -303,23 +302,23 @@
         var options, answerIndex;
         if (kind === 'fr-he') {
             var wrongHe = hebrewDistractors(word, pool, rng, CHOICES - 1, !!scroll);
-            var allHe = Arcade.shuffle([word].concat(wrongHe), rng);
+            var allHe = Quiz.shuffle([word].concat(wrongHe), rng);
             options = allHe.map(function (e) { return { strong: e.strong, label: formOf(e, !!scroll), lang: 'he' }; });
             answerIndex = allHe.indexOf(word);
             q.shown = null;
             q.prompt = labelOf(word);
         } else if (kind === 'root') {
-            var roots = Arcade.shuffle([word.root].concat(rootDistractors(word, rng, CHOICES - 1)), rng);
+            var roots = Quiz.shuffle([word.root].concat(rootDistractors(word, rng, CHOICES - 1)), rng);
             options = roots.map(function (r) { return { label: r, lang: 'he' }; });
             answerIndex = roots.indexOf(word.root);
         } else if (kind === 'value') {
             var value = valueOf(word);
-            var values = Arcade.shuffle([value].concat(valueDistractors(value, rng, CHOICES - 1)), rng);
+            var values = Quiz.shuffle([value].concat(valueDistractors(value, rng, CHOICES - 1)), rng);
             options = values.map(function (v) { return { label: String(v), lang: 'num', value: v }; });
             answerIndex = values.indexOf(value);
         } else {
             var wrong = distractors(word, pool, rng, CHOICES - 1);
-            var all = Arcade.shuffle([word].concat(wrong), rng);
+            var all = Quiz.shuffle([word].concat(wrong), rng);
             options = all.map(function (e) { return { strong: e.strong, label: labelOf(e), lang: 'fr' }; });
             answerIndex = all.indexOf(word);
         }
@@ -342,42 +341,21 @@
         var rounds = options.rounds || ROUNDS;
         var words = options.wordIds
             ? options.wordIds.map(function (id) { return byStrong[id]; }).filter(Boolean)
-            : Arcade.shuffle(pool, random);
+            : Quiz.shuffle(pool, random);
         words = words.slice(0, rounds);
         var distractPool = pool.length >= 12 ? pool : everyone;
         var questions = words.map(function (w) { return makeQuestion(w, distractPool, random, options.types && options.types[w.strong], options.scroll); });
-        return {
-            level: level, scroll: !!options.scroll, questions: questions, index: 0, score: 0, found: 0, results: [], resolved: null, picked: null,
-            over: !questions.length, empty: !questions.length
-        };
+        return Quiz.createState(questions, { level: level, scroll: !!options.scroll });
     }
 
-    function question(state) { return state.questions[state.index] || null; }
-
-    // Répond en choisissant une proposition (0 à 3). Renvoie la liste des événements : ['right'] ou ['wrong'] ; vide si rien ne se passe.
-    function answer(state, choice) {
-        var q = question(state);
-        if (state.over || !q || state.resolved || !(choice >= 0 && choice < q.options.length)) return [];
-        var right = choice === q.answer;
-        state.resolved = right ? 'right' : 'wrong';
-        state.picked = choice;
-        if (right) { state.score += POINTS; state.found += 1; }
-        state.results.push({ strong: q.strong, right: right, type: q.type });
-        return [state.resolved];
-    }
-
-    // Passe à la question suivante. Renvoie ['done'] à la fin de la partie, [] si elle continue (ou si la question n'est pas répondue).
-    function next(state) {
-        if (state.over || !state.resolved) return [];
-        state.resolved = null;
-        state.picked = null;
-        state.index += 1;
-        if (state.index >= state.questions.length) { state.over = true; return ['done']; }
-        return [];
-    }
+    function question(state) { return Quiz.question(state); }
+    // Répond en choisissant une proposition (0 à 3) : ['right'], ['wrong'], ou [] si rien ne se passe.
+    function answer(state, choice) { return Quiz.answer(state, choice, function (q, right) { return { strong: q.strong, right: right, type: q.type }; }); }
+    // Question suivante : ['done'] à la fin de la partie, [] sinon.
+    function next(state) { return Quiz.next(state); }
 
     return {
-        ROUNDS: ROUNDS, CHOICES: CHOICES, POINTS: POINTS, MASTERED_BOX: MASTERED_BOX, NEW_PER_SESSION: NEW_PER_SESSION, MIN_NEW: MIN_NEW,
+        ROUNDS: ROUNDS, CHOICES: CHOICES, POINTS: Quiz.POINTS, MASTERED_BOX: MASTERED_BOX, NEW_PER_SESSION: NEW_PER_SESSION, MIN_NEW: MIN_NEW,
         normalizeProgress: normalizeProgress, isMastered: isMastered, recordResult: recordResult, summary: summary, chooseSession: chooseSession,
         LEVELS: LEVELS, clampLevel: clampLevel, UNLOCK_RATIO: UNLOCK_RATIO, TYPES: TYPES, unlockInfo: unlockInfo, scrollForm: scrollForm, valueOf: valueOf, typesFor: typesFor, pickType: pickType,
         rootEligible: rootEligible, hebrewDistractors: hebrewDistractors,

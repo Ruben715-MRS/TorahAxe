@@ -15,6 +15,9 @@ let gemgameReturn = 'screen-arcade';
 let gemgameSection = 'all';
 let gemgameMasteredBefore = 0;
 
+// Le réglage de l'appareil (la section jouée) : cette clé n'était jusqu'ici définie nulle part, donc le choix n'était jamais retenu.
+const GEMARA_PREFS_KEY = 'torahaxe_gemgame_prefs_v1';
+
 const GEMGAME_SECTION_KEYS = { all: 'section_all', words: 'section_words', abbr: 'section_abbr', sages: 'section_sages' };
 
 function openGemaraGame(fromScreen) {
@@ -30,13 +33,12 @@ function gemgameBack() {
 
 // Le réglage de l'appareil : la section jouée.
 function gemgameLoadPrefs() {
-    let raw = null;
-    try { raw = JSON.parse(localStorage.getItem(GEMARA_PREFS_KEY)); } catch (e) { raw = null; }
+    const raw = QuizUI.loadPrefs(GEMARA_PREFS_KEY);
     gemgameSection = raw && GemaraGameCore.SECTIONS.indexOf(raw.section) >= 0 ? raw.section : 'all';
 }
 
 function gemgameSavePrefs() {
-    try { localStorage.setItem(GEMARA_PREFS_KEY, JSON.stringify({ section: gemgameSection })); } catch (e) { /* stockage indisponible */ }
+    QuizUI.savePrefs(GEMARA_PREFS_KEY, { section: gemgameSection });
 }
 
 function gemgameSetSection(section) {
@@ -70,31 +72,14 @@ function gemgameMasteredSet() {
 function gemgameSetup() {
     gemgame = null;
     const s = gemgameSummary();
-    document.getElementById('gemgame-status').textContent = '';
-    document.getElementById('gemgame-play').classList.add('hidden');
-    document.getElementById('gemgame-over').classList.add('hidden');
-    document.getElementById('gemgame-setup').classList.remove('hidden');
-    document.getElementById('gemgame-progress-text').textContent = gemgameProgressLabel(s.mastered, s.total);
-    const bar = document.getElementById('gemgame-bar');
-    bar.setAttribute('aria-valuemax', String(s.total));
-    bar.setAttribute('aria-valuenow', String(s.mastered));
-    document.getElementById('gemgame-bar-fill').style.width = (s.total ? Math.round(100 * s.mastered / s.total) : 0) + '%';
+    QuizUI.phase('gemgame', 'setup');
+    QuizUI.progress('gemgame', gemgameProgressLabel(s.mastered, s.total), s.mastered, s.total);
     // Ce que la prochaine partie contiendra vraiment (les cartes nouvelles dépendent de la place laissée par les cartes à réviser).
     const fresh = GemaraGameCore.chooseSession({ progress: gemaraLoad(), section: gemgameSection, now: Date.now() }).fresh;
     // Le choix de la section : tout, les mots, les abréviations ou les sages, avec leur effectif.
-    const holder = document.getElementById('gemgame-sections');
-    toolClear(holder);
-    GemaraGameCore.SECTIONS.forEach(section => {
-        const total = GemaraGameCore.cards(section).length;
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'tool-history-chip';
-        btn.id = 'gemgame-section-' + section;
-        btn.setAttribute('aria-pressed', section === gemgameSection ? 'true' : 'false');
-        btn.textContent = t('gemgame.' + GEMGAME_SECTION_KEYS[section]) + ' (' + total + ')';
-        btn.onclick = () => gemgameSetSection(section);
-        holder.appendChild(btn);
-    });
+    QuizUI.chips('gemgame', GemaraGameCore.SECTIONS.map(section => ({
+        id: section, label: t('gemgame.' + GEMGAME_SECTION_KEYS[section]) + ' (' + GemaraGameCore.cards(section).length + ')'
+    })), gemgameSection, gemgameSetSection);
     document.getElementById('gemgame-today').textContent = s.due > 0
         ? t('gemgame.today', { due: s.due, fresh: fresh })
         : t(s.unseen > 0 ? 'gemgame.today_none' : 'gemgame.today_done', { fresh: fresh });
@@ -105,15 +90,8 @@ function gemgameStart() {
     const session = GemaraGameCore.chooseSession({ progress: gemaraLoad(), section: gemgameSection, now: Date.now() });
     gemgame = GemaraGameCore.createGame({ section: gemgameSection, cardIds: session.cardIds, types: session.types });
     gemgameMasteredBefore = gemgameSummary().mastered;
-    document.getElementById('gemgame-setup').classList.add('hidden');
-    document.getElementById('gemgame-over').classList.add('hidden');
-    document.getElementById('gemgame-play').classList.remove('hidden');
+    QuizUI.phase('gemgame', 'play');
     gemgameRender();
-}
-
-function gemgameStatus() {
-    const g = gemgame;
-    document.getElementById('gemgame-status').textContent = t('gemgame.status', { n: g.index + 1, total: g.questions.length, score: g.score });
 }
 
 // Le texte de la question, selon sa sorte.
@@ -129,30 +107,11 @@ function gemgameOptionLabel(option) {
 function gemgameRender() {
     const g = gemgame;
     const q = GemaraGameCore.question(g);
-    gemgameStatus();
+    QuizUI.status('gemgame', g);
     document.getElementById('gemgame-question').textContent = gemgameAsk(q);
     // Le mot, le sigle ou le nom hébreu en grand ; pour les questions « en français », c'est la traduction ou le nom français.
-    const word = document.getElementById('gemgame-word');
-    const french = q.shownLang === 'fr';
-    word.textContent = q.shown;
-    word.lang = french ? 'fr' : 'he';
-    word.dir = french ? 'ltr' : 'rtl';
-    word.classList.toggle('is-french', french);
-    document.getElementById('gemgame-feedback').classList.add('hidden');
-    const box = document.getElementById('gemgame-options');
-    toolClear(box);
-    q.options.forEach((option, i) => {
-        const label = gemgameOptionLabel(option);
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'quiz-option cause-card lexgame-option';
-        if (option.lang === 'he') { btn.lang = 'he'; btn.dir = 'rtl'; btn.classList.add('lexgame-option-he'); }
-        btn.dataset.choice = String(i);
-        btn.textContent = label;
-        btn.setAttribute('aria-label', t('gemgame.option_aria', { n: i + 1, label: label }));
-        btn.onclick = () => gemgameAnswer(i);
-        box.appendChild(btn);
-    });
+    QuizUI.word('gemgame', q.shown, q.shownLang === 'fr');
+    QuizUI.options('gemgame', q, option => ({ label: gemgameOptionLabel(option), lang: option.lang }), gemgameAnswer);
 }
 
 // Les mots hébreux ou araméens, isolés dans une phrase française (sans quoi le « : » qui suit se glisse dans la lecture de droite à gauche).
@@ -168,34 +127,11 @@ function gemgameCardInfo(card) {
 
 function gemgameAnswer(choice) {
     const g = gemgame;
-    const events = GemaraGameCore.answer(g, choice);
-    if (!events.length) return;
+    if (!GemaraGameCore.answer(g, choice).length) return;
     const q = GemaraGameCore.question(g);
-    const right = g.resolved === 'right';
-    arcadeSound(right ? 'good' : 'bad');
-    gemgameStatus();
     // Enregistrée aussitôt : une partie quittée en route n'est pas perdue.
-    gemaraRecord(q.id, right);
-    // La bonne réponse en vert, la réponse choisie à tort en rouge.
-    document.querySelectorAll('#gemgame-options .lexgame-option').forEach(btn => {
-        const i = Number(btn.dataset.choice);
-        btn.disabled = true;
-        if (i === q.answer) btn.classList.add('correct');
-        else if (i === choice) btn.classList.add('wrong');
-    });
-    const feedback = document.getElementById('gemgame-feedback');
-    feedback.classList.toggle('is-wrong', !right);
-    document.getElementById('gemgame-feedback-title').textContent = t(right ? 'gemgame.right' : 'gemgame.wrong');
-    const info = gemgameCardInfo(q.card);
-    document.getElementById('gemgame-feedback-text').textContent = info.line;
-    const note = document.getElementById('gemgame-feedback-note');
-    note.textContent = info.note;
-    note.classList.toggle('hidden', !info.note);
-    const last = g.index + 1 >= g.questions.length;
-    const next = document.getElementById('gemgame-next');
-    next.textContent = t(last ? 'gemgame.finish' : 'gemgame.next');
-    feedback.classList.remove('hidden');
-    next.focus();
+    gemaraRecord(q.id, g.resolved === 'right');
+    QuizUI.resolve('gemgame', g, q, choice, gemgameCardInfo(q.card));
 }
 
 // Du retour à l'écran du dictionnaire, on retrouve la partie en cours : le bouton « Voir dans le dictionnaire » y mène, sur le bon onglet.
@@ -218,18 +154,8 @@ function gemgameContinue() {
 }
 
 function gemgameFinish() {
-    const g = gemgame;
-    const best = arcadeRecord('gemara', g.score);
-    document.getElementById('gemgame-play').classList.add('hidden');
-    document.getElementById('gemgame-status').textContent = '';
-    document.getElementById('gemgame-over-text').textContent =
-        t('gemgame.found', { found: g.found, total: g.questions.length, score: g.score }) + ' ' + t('arcade.best', { score: best.gemara });
     // Le bilan de la mémoire : les cartes maîtrisées, et ce que la partie en a ajouté.
     const s = gemgameSummary();
     const gain = Math.max(0, s.mastered - gemgameMasteredBefore);
-    document.getElementById('gemgame-over-progress').textContent = gemgameProgressLabel(s.mastered, s.total)
-        + (gain > 0 ? ' ' + t('gemgame.gain', { n: gain }) : '');
-    document.getElementById('gemgame-over').classList.remove('hidden');
-    // La progression part vers le compte (comme après chaque partie).
-    if (typeof syncPushProgress === 'function') syncPushProgress();
+    QuizUI.finish('gemgame', gemgame, 'gemara', gemgameProgressLabel(s.mastered, s.total) + (gain > 0 ? ' ' + t('gemgame.gain', { n: gain }) : ''));
 }

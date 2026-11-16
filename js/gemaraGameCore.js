@@ -22,14 +22,13 @@
 // ensemble, et leur libellé reçoit une seconde traduction quand la première est ambiguë, pour qu'une seule réponse soit juste.
 
 (function (root, factory) {
-    if (typeof module === 'object' && module.exports) module.exports = factory(require('./gemaraCore.js'), require('./lexiconCore.js'), require('./arcadeCore.js'), require('./srs.js'));
-    else root.GemaraGameCore = factory(root.GemaraCore, root.LexiconCore, root.ArcadeCore, root.SRS);
-}(typeof self !== 'undefined' ? self : this, function (Gemara, Lexicon, Arcade, SRS) {
+    if (typeof module === 'object' && module.exports) module.exports = factory(require('./gemaraCore.js'), require('./lexiconCore.js'), require('./quizCore.js'), require('./srs.js'));
+    else root.GemaraGameCore = factory(root.GemaraCore, root.LexiconCore, root.QuizCore, root.SRS);
+}(typeof self !== 'undefined' ? self : this, function (Gemara, Lexicon, Quiz, SRS) {
     'use strict';
 
-    var ROUNDS = 10;          // questions par partie
-    var CHOICES = 4;          // réponses proposées (l'époque d'un sage en propose autant que de groupes : quatre)
-    var POINTS = 100;         // par bonne réponse
+    var ROUNDS = Quiz.ROUNDS; // questions par partie
+    var CHOICES = Quiz.CHOICES; // réponses proposées (l'époque d'un sage en propose autant que de groupes : quatre)
     var MASTERED_BOX = 4;     // boîte à partir de laquelle une carte est « maîtrisée » (intervalle de 14 jours atteint)
     var NEW_PER_SESSION = 5;  // cartes nouvelles au plus par partie…
     var MIN_NEW = 2;          // …et au moins deux tant qu'il en reste
@@ -108,7 +107,7 @@
     function distractors(card, rng, count, labelFn) {
         var taken = {};
         taken[labelFn(card)] = true;
-        var candidates = Arcade.shuffle(ALL.filter(function (c) {
+        var candidates = Quiz.shuffle(ALL.filter(function (c) {
             return c.kind === card.kind && c.id !== card.id && (card.kind === 's' || !overlaps(card, c));
         }), rng);
         var group = groupOf(card);
@@ -214,14 +213,14 @@
         var picks = due.slice(0, rounds - reserved);
         var fresh = unseen.slice(0, Math.min(unseen.length, rounds - picks.length, NEW_PER_SESSION));
         picks = picks.concat(fresh);
-        var extra = Arcade.shuffle(notDue, random).slice(0, rounds - picks.length);
+        var extra = Quiz.shuffle(notDue, random).slice(0, rounds - picks.length);
         picks = picks.concat(extra);
         if (picks.length < rounds) {
             var more = unseen.slice(fresh.length, fresh.length + rounds - picks.length);
             fresh = fresh.concat(more);
             picks = picks.concat(more);
         }
-        var ordered = Arcade.shuffle(picks, random);
+        var ordered = Quiz.shuffle(picks, random);
         var types = {};
         ordered.forEach(function (c) { types[c.id] = pickType(c, p.cards[c.id], random); });
         return {
@@ -240,13 +239,13 @@
         var all, label;
         if (kind === 'ar-fr' || kind === 'sigle-fr' || kind === 'sage-name') {
             q.shown = hebrewOf(card);
-            all = Arcade.shuffle([card].concat(distractors(card, rng, CHOICES - 1, labelOf)), rng);
+            all = Quiz.shuffle([card].concat(distractors(card, rng, CHOICES - 1, labelOf)), rng);
             q.options = all.map(function (c) { return { label: labelOf(c), lang: 'fr' }; });
             q.answer = all.indexOf(card);
         } else if (kind === 'fr-ar' || kind === 'fr-sigle') {
             q.shown = labelOf(card);
             q.shownLang = 'fr';
-            all = Arcade.shuffle([card].concat(distractors(card, rng, CHOICES - 1, hebrewOf)), rng);
+            all = Quiz.shuffle([card].concat(distractors(card, rng, CHOICES - 1, hebrewOf)), rng);
             q.options = all.map(function (c) { return { label: hebrewOf(c), lang: 'he' }; });
             q.answer = all.indexOf(card);
         } else {
@@ -266,41 +265,20 @@
         var random = options.rng || Math.random;
         var section = SECTIONS.indexOf(options.section) >= 0 ? options.section : 'all';
         var rounds = options.rounds || ROUNDS;
-        var cards = options.cardIds ? options.cardIds.map(cardById).filter(Boolean) : Arcade.shuffle(pool(section), random);
+        var cards = options.cardIds ? options.cardIds.map(cardById).filter(Boolean) : Quiz.shuffle(pool(section), random);
         cards = cards.slice(0, rounds);
         var questions = cards.map(function (c) { return makeQuestion(c, random, options.types && options.types[c.id]); });
-        return {
-            section: section, questions: questions, index: 0, score: 0, found: 0, results: [], resolved: null, picked: null,
-            over: !questions.length, empty: !questions.length
-        };
+        return Quiz.createState(questions, { section: section });
     }
 
-    function question(state) { return state.questions[state.index] || null; }
-
-    // Répond en choisissant une proposition. Renvoie la liste des événements : ['right'] ou ['wrong'] ; vide si rien ne se passe.
-    function answer(state, choice) {
-        var q = question(state);
-        if (state.over || !q || state.resolved || !(choice >= 0 && choice < q.options.length)) return [];
-        var right = choice === q.answer;
-        state.resolved = right ? 'right' : 'wrong';
-        state.picked = choice;
-        if (right) { state.score += POINTS; state.found += 1; }
-        state.results.push({ id: q.id, right: right, type: q.type });
-        return [state.resolved];
-    }
-
-    // Passe à la question suivante. Renvoie ['done'] à la fin de la partie, [] si elle continue (ou si la question n'est pas répondue).
-    function next(state) {
-        if (state.over || !state.resolved) return [];
-        state.resolved = null;
-        state.picked = null;
-        state.index += 1;
-        if (state.index >= state.questions.length) { state.over = true; return ['done']; }
-        return [];
-    }
+    function question(state) { return Quiz.question(state); }
+    // Répond en choisissant une proposition : ['right'], ['wrong'], ou [] si rien ne se passe.
+    function answer(state, choice) { return Quiz.answer(state, choice); }
+    // Question suivante : ['done'] à la fin de la partie, [] sinon.
+    function next(state) { return Quiz.next(state); }
 
     return {
-        ROUNDS: ROUNDS, CHOICES: CHOICES, POINTS: POINTS, MASTERED_BOX: MASTERED_BOX, NEW_PER_SESSION: NEW_PER_SESSION, MIN_NEW: MIN_NEW,
+        ROUNDS: ROUNDS, CHOICES: CHOICES, POINTS: Quiz.POINTS, MASTERED_BOX: MASTERED_BOX, NEW_PER_SESSION: NEW_PER_SESSION, MIN_NEW: MIN_NEW,
         SECTIONS: SECTIONS, TYPES: TYPES, TYPES_OF_KIND: TYPES_OF_KIND,
         cards: pool, cardById: cardById, labelOf: labelOf, hebrewOf: hebrewOf, overlaps: overlaps, distractors: distractors,
         typesFor: typesFor, pickType: pickType,

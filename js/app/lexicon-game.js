@@ -37,8 +37,7 @@ let lexgameLevel = 3;
 let lexgameScroll = false;
 
 function lexgameLoadPrefs() {
-    let raw = null;
-    try { raw = JSON.parse(localStorage.getItem(LEXGAME_PREFS_KEY)); } catch (e) { raw = null; }
+    const raw = QuizUI.loadPrefs(LEXGAME_PREFS_KEY);
     lexgameLevel = LexiconGameCore.clampLevel(raw && raw.level);
     lexgameScroll = !!(raw && raw.scroll);
     // Un niveau verrouillé (progression réinitialisée depuis) n'est pas rejoué.
@@ -46,7 +45,7 @@ function lexgameLoadPrefs() {
 }
 
 function lexgameSavePrefs() {
-    try { localStorage.setItem(LEXGAME_PREFS_KEY, JSON.stringify({ level: lexgameLevel, scroll: lexgameScroll })); } catch (e) { /* stockage indisponible */ }
+    QuizUI.savePrefs(LEXGAME_PREFS_KEY, { level: lexgameLevel, scroll: lexgameScroll });
 }
 
 function lexgameSetLevel(level) {
@@ -86,15 +85,8 @@ function lexgameMasteredSet() {
 function lexgameSetup() {
     lexgame = null;
     const s = lexgameSummary();
-    document.getElementById('lexgame-status').textContent = '';
-    document.getElementById('lexgame-play').classList.add('hidden');
-    document.getElementById('lexgame-over').classList.add('hidden');
-    document.getElementById('lexgame-setup').classList.remove('hidden');
-    document.getElementById('lexgame-progress-text').textContent = lexgameProgressLabel(s.mastered, s.total);
-    const bar = document.getElementById('lexgame-bar');
-    bar.setAttribute('aria-valuemax', String(s.total));
-    bar.setAttribute('aria-valuenow', String(s.mastered));
-    document.getElementById('lexgame-bar-fill').style.width = (s.total ? Math.round(100 * s.mastered / s.total) : 0) + '%';
+    QuizUI.phase('lexgame', 'setup');
+    QuizUI.progress('lexgame', lexgameProgressLabel(s.mastered, s.total), s.mastered, s.total);
     // Ce que la prochaine partie contiendra vraiment (les mots nouveaux dépendent de la place laissée par les mots à réviser).
     const fresh = LexiconGameCore.chooseSession({ progress: lexiconLoad(), level: lexgameLevel, now: Date.now() }).fresh;
     // Le choix du niveau : chacun reste verrouillé tant que 80 % du niveau précédent ne sont pas maîtrisés ; la note dit ce qui manque au premier verrouillé.
@@ -119,17 +111,10 @@ function lexgameStart() {
     const session = LexiconGameCore.chooseSession({ progress: lexiconLoad(), level: lexgameLevel, now: Date.now() });
     lexgame = LexiconGameCore.createGame({ level: lexgameLevel, wordIds: session.wordIds, types: session.types, scroll: lexgameScroll });
     lexgameMasteredBefore = lexgameSummary().mastered;
-    document.getElementById('lexgame-setup').classList.add('hidden');
-    document.getElementById('lexgame-over').classList.add('hidden');
-    document.getElementById('lexgame-play').classList.remove('hidden');
+    QuizUI.phase('lexgame', 'play');
     lexgameRender();
 }
 let lexgameMasteredBefore = 0;
-
-function lexgameStatus() {
-    const g = lexgame;
-    document.getElementById('lexgame-status').textContent = t('lexgame.status', { n: g.index + 1, total: g.questions.length, score: g.score });
-}
 
 // Le texte de la question, selon sa sorte.
 function lexgameAsk(q) {
@@ -143,30 +128,12 @@ function lexgameAsk(q) {
 function lexgameRender() {
     const g = lexgame;
     const q = LexiconGameCore.question(g);
-    lexgameStatus();
+    QuizUI.status('lexgame', g);
     document.getElementById('lexgame-question').textContent = lexgameAsk(q);
     // Le mot hébreu en grand ; pour « comment dit-on… ? », c'est la traduction qui est en grand.
-    const word = document.getElementById('lexgame-word');
     const french = q.type === 'fr-he';
-    word.textContent = french ? q.prompt : q.shown;
-    word.lang = french ? 'fr' : 'he';
-    word.dir = french ? 'ltr' : 'rtl';
-    word.classList.toggle('is-french', french);
-    document.getElementById('lexgame-feedback').classList.add('hidden');
-    const box = document.getElementById('lexgame-options');
-    box.innerHTML = '';
-    q.options.forEach((option, i) => {
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'quiz-option cause-card lexgame-option';
-        if (option.lang === 'he') { btn.lang = 'he'; btn.dir = 'rtl'; btn.classList.add('lexgame-option-he'); }
-        if (option.lang === 'num') btn.classList.add('lexgame-option-num');
-        btn.dataset.choice = String(i);
-        btn.textContent = option.label;
-        btn.setAttribute('aria-label', t('lexgame.option_aria', { n: i + 1, label: option.label }));
-        btn.onclick = () => lexgameAnswer(i);
-        box.appendChild(btn);
-    });
+    QuizUI.word('lexgame', french ? q.prompt : q.shown, french);
+    QuizUI.options('lexgame', q, option => ({ label: option.label, lang: option.lang }), lexgameAnswer);
 }
 
 // Ce que la fiche ajoute à la traduction, selon la question : la famille de la racine, ou le détail du calcul en guématria.
@@ -184,37 +151,12 @@ function lexgameExtra(q) {
 
 function lexgameAnswer(choice) {
     const g = lexgame;
-    const events = LexiconGameCore.answer(g, choice);
-    if (!events.length) return;
+    if (!LexiconGameCore.answer(g, choice).length) return;
     const q = LexiconGameCore.question(g);
-    const right = g.resolved === 'right';
-    arcadeSound(right ? 'good' : 'bad');
-    lexgameStatus();
     // Enregistrée aussitôt : une partie quittée en route n'est pas perdue.
-    lexiconRecord(q.strong, right);
-    // La bonne réponse en vert, la réponse choisie à tort en rouge.
-    document.querySelectorAll('#lexgame-options .lexgame-option').forEach(btn => {
-        const i = Number(btn.dataset.choice);
-        btn.disabled = true;
-        if (i === q.answer) btn.classList.add('correct');
-        else if (i === choice) btn.classList.add('wrong');
-    });
+    lexiconRecord(q.strong, g.resolved === 'right');
     // La fiche du mot : toutes ses traductions, sa remarque ; jamais sa transcription.
-    const feedback = document.getElementById('lexgame-feedback');
-    feedback.classList.toggle('is-wrong', !right);
-    document.getElementById('lexgame-feedback-title').textContent = t(right ? 'lexgame.right' : 'lexgame.wrong');
-    document.getElementById('lexgame-feedback-text').textContent = q.word.he + ' : ' + q.word.fr.join(' ; ');
-    const extra = document.getElementById('lexgame-feedback-extra');
-    extra.textContent = lexgameExtra(q);
-    extra.classList.toggle('hidden', !extra.textContent);
-    const note = document.getElementById('lexgame-feedback-note');
-    note.textContent = q.word.note || '';
-    note.classList.toggle('hidden', !q.word.note);
-    const last = g.index + 1 >= g.questions.length;
-    const next = document.getElementById('lexgame-next');
-    next.textContent = t(last ? 'lexgame.finish' : 'lexgame.next');
-    feedback.classList.remove('hidden');
-    next.focus();
+    QuizUI.resolve('lexgame', g, q, choice, { line: q.word.he + ' : ' + q.word.fr.join(' ; '), extra: lexgameExtra(q), note: q.word.note });
 }
 
 // Du retour à l'écran du dictionnaire, on retrouve la partie en cours : le bouton « Voir dans le dictionnaire » y mène.
@@ -238,18 +180,8 @@ function lexgameContinue() {
 }
 
 function lexgameFinish() {
-    const g = lexgame;
-    const best = arcadeRecord('lexicon', g.score);
-    document.getElementById('lexgame-play').classList.add('hidden');
-    document.getElementById('lexgame-status').textContent = '';
-    document.getElementById('lexgame-over-text').textContent =
-        t('lexgame.found', { found: g.found, total: g.questions.length, score: g.score }) + ' ' + t('arcade.best', { score: best.lexicon });
     // Le bilan de la mémoire : les mots maîtrisés, et ce que la partie en a ajouté.
     const s = lexgameSummary();
     const gain = Math.max(0, s.mastered - lexgameMasteredBefore);
-    document.getElementById('lexgame-over-progress').textContent = lexgameProgressLabel(s.mastered, s.total)
-        + (gain > 0 ? ' ' + t('lexgame.gain', { n: gain }) : '');
-    document.getElementById('lexgame-over').classList.remove('hidden');
-    // La progression part vers le compte (comme après chaque partie).
-    if (typeof syncPushProgress === 'function') syncPushProgress();
+    QuizUI.finish('lexgame', lexgame, 'lexicon', lexgameProgressLabel(s.mastered, s.total) + (gain > 0 ? ' ' + t('lexgame.gain', { n: gain }) : ''));
 }
