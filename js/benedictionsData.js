@@ -2,7 +2,7 @@
 // === GUIDE DES BÉNÉDICTIONS : QUE DIRE SUR QUEL ALIMENT (DONNÉES) ===
 // =========================================================================
 // La liste « Aliment → bénédiction » et ses 33 notes sont celles du Guide des bénédictions du Beth Loubavitch (www.loubavitch.fr), reprises avec
-// son accord et sans changement de fond (seules des fautes de frappe évidentes ont été corrigées). Ce guide a été compilé par le Rav Yehouda Leib
+// son accord et sans changement de fond (seules des fautes de frappe évidentes ont été corrigées, dont deux renvois de notes : 18 → 17 et 24 → 20). Ce guide a été compilé par le Rav Yehouda Leib
 // Newman, directeur du Beth Rivka de New York, sous l'autorité du Rav Yehouda Kalman Marlowe, président du tribunal rabbinique de Crown Heights ; il se
 // fonde sur les décisions hala'hiques de l'Admour Hazaken, essentiellement énoncées dans son Séder Birkat Ha Néhénin (usage 'Habad).
 // Les textes hébreux des six bénédictions sont ceux du Siddour (data/siddur/birkhot-hanehenin.json) ; hamotsi est le texte usuel du pain.
@@ -370,13 +370,13 @@
         15: "Si la crème glacée est à base de lait, on s'assurera que celui-ci est surveillé.",
         16: "Si la majeure partie du liquide mélangé à la farine pour constituer la pâte est de l'eau, on dira la bénédiction Hamotsi (Séder Birkat Ha Néhénin, chapitre 2, au paragraphe 8).",
         17: "Si le cornet de glace n'a pas de goût, aucune bénédiction n'est récitée, le concernant, car il n'a alors qu'un rôle accessoire, par rapport à la glace et il n'a pas d'autre but que de la tenir (Choul'han Arou'h, chapitre 168, au paragraphe 9).",
-        18: "Ce qui est dit à la note 18 s'applique, de manière identique, dans ce cas.",
+        18: "Ce qui est dit à la note 17 s'applique, de manière identique, dans ce cas.",
         19: "Tel est l'avis des autorités actuelles.",
         20: "Si la bénédiction du petit pain constituant le hot dog est Mezonot, sa pâte ayant été préparée avec du jus de fruits et si la quantité qui en est consommée n'est pas suffisante pour être rassasié, on dira uniquement Mezonot et non Chéhakol (Séder Birkat Ha Néhénin, chapitre 3, au paragraphe 9). Il est cependant nécessaire d'inclure, dans la première bouchée consommée, à la fois du petit pain et de la viande. En outre, il convient de formuler des réserves sur l'attitude qui consiste à dire, séparément, Mezonot sur le petit pain et Chéhakol sur la viande.",
         21: "Certains, quand ils consomment de la Matsa en dehors de la fête de Pessa'h, disent la bénédiction Mezonot. Tel n'est cependant pas notre usage.",
         22: "Attention, si la Matsa aux œufs remplace le pain, il est préférable de manger d'abord du véritable pain, après avoir dit la bénédiction Hamotsi, puis, seulement après cela, de consommer ces Matsot.",
         23: "Tel est l'avis des autorités hala'hiques contemporaines.",
-        24: "Ce qui est dit à la note 21 s'applique, de manière identique, dans ce cas.",
+        24: "Ce qui est dit à la note 20 s'applique, de manière identique, dans ce cas.",
         25: "Ce qui est dit, à la note 33, à propos de la tarte aux pommes s'applique, de la même façon, pour la pizza.",
         26: "Telle est la décision hala'hique du Rav Dvorkin.",
         27: "Si le raisin n'est pas mûr, on dira Haadama. En outre, il est préférable de ne pas manger, en dehors du repas, une grappe entière de raisin ou bien une trentaine de grammes de raisins (Kazait). En pareil cas, il y aurait un doute sur la bénédiction finale, qui peut être Al Haets ou bien Boré Nefachot.",
