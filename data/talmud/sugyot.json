@@ -6658,6 +6658,653 @@
     "to": "73a:15",
     "title": "« Immergée le lendemain et unie » : mauvaise coutume ; le dixième jour est-il comme le neuvième ? (Rabbi Yohanan) ; « en dehors de son temps » : proche de sa nidda ; « impure » : elle rend impur son partenaire."
    }
+  ],
+  "rosh-hashanah": [
+   {
+    "from": "2a:1",
+    "to": "2a:4",
+    "title": "Michna : les quatre nouvelles années : 1er Nissan (rois et fêtes), 1er Eloul (dîme du bétail."
+   },
+   {
+    "from": "2a:5",
+    "to": "2b:6",
+    "title": "« Pour les rois » : à quoi cela sert-il ? Rav Hisda : aux actes ; actes antidatés et postdatés ; le roi qui accède le 29 Adar : l'année compte dès Nissan."
+   },
+   {
+    "from": "2b:7",
+    "to": "3a:3",
+    "title": "Rabbi Yohanan : d'où que les rois se comptent depuis Nissan : « quatre cent quatre-vingts ans » ; la sortie d'Égypte ; mort d'Aaron et « quarantième année » ; Rav Papa : guézéra chava."
+   },
+   {
+    "from": "3a:4",
+    "to": "3a:13",
+    "title": "Pourquoi pas Iyar, Sivan ou un autre mois ? Le Tabernacle érigé ; « au troisième mois » ; Rabbi Elazar : « il commença à bâtir au deuxième mois » ; Ravina : le deuxième jour de la semaine."
+   },
+   {
+    "from": "3a:14",
+    "to": "3b:6",
+    "title": "Rav Hisda : ceci vaut pour les rois d'Israël ; pour les rois des nations, depuis Tichri : Néhémie, « le mois de Kislev, vingtième année » ; Artaxerxès ; Rav Papa."
+   },
+   {
+    "from": "3b:7",
+    "to": "3b:11",
+    "title": "Rav Yossef objecte : la deuxième année de Darius ; Rabbi Abahou : Cyrus était un roi vertueux ; Cyrus, Darius et Artaxerxès sont-ils le même ; avant ou après qu'il se soit aigri ; Rabbi Yitzhak."
+   },
+   {
+    "from": "3b:12",
+    "to": "4a:11",
+    "title": "Rav Kahana : et a-t-il vraiment tourné ? Les offrandes de Cyrus ; « ce sela pour la tsedaka » ; les assises de pierre ; Salomon ; la « chégal » (reine ou chienne ?)"
+   },
+   {
+    "from": "4a:12",
+    "to": "4b:2",
+    "title": "« Et pour les fêtes » : Rav Hisda : la fête qui la suit ; conséquences pour celui qui fait un vœu : « bal tého'ar » ; Rabbi Chimon : trois fêtes dans l'ordre, la fête de la matsa d'abord."
+   },
+   {
+    "from": "4b:3",
+    "to": "5a:2",
+    "title": "Les raisons de chaque avis : le premier tanna, Rabbi Chimon, Rabbi Meïr, Rabbi Eliezer ben Yaakov, Rabbi Elazar fils de Rabbi Chimon : « aux fêtes, au Chavouot, à Souccot »"
+   },
+   {
+    "from": "5a:3",
+    "to": "5a:9",
+    "title": "D'où les jours de rattrapage pour Chavouot ? Rabba bar Chmouël : « compte des jours » ; Rava : compte-t-on les semaines ? Le Pessah a-t-il un temps fixe ? Rav Hisda : « Pessah comme un vase »"
+   },
+   {
+    "from": "5a:10",
+    "to": "6a:4",
+    "title": "Le premier-né et « bal tého'ar » : exclure l'échange de l'olah et des chélamim ; Rav Chéchet : deux fêtes passées et un défaut ; Rabbi Meïr ; Rava ; « il y aura en toi péché »"
+   },
+   {
+    "from": "6a:5",
+    "to": "6a:13",
+    "title": "Baraïta : « ce qui sort de tes lèvres » (précepte positif), « tu garderas » (négatif), « tu feras » (avertissement au tribunal) ; « il l'offrira » : on contraint."
+   },
+   {
+    "from": "6a:14",
+    "to": "6b:2",
+    "title": "« De ta bouche » : la tsedaka, due aussitôt ; Rava : après une fête, on transgresse un précepte positif ; Rabbi Yehoshoua et Rabbi Papyas : le petit des chélamim ; Rav Zeviv."
+   },
+   {
+    "from": "6b:3",
+    "to": "6b:11",
+    "title": "Rava : après trois fêtes, chaque jour on transgresse ; objections ; Rav Kahana ; un an sans fêtes ou des fêtes sans une année ; l'année embolismique : Rabbi et les sages."
+   },
+   {
+    "from": "6b:12",
+    "to": "7a:2",
+    "title": "Rabbi Zeira : l'héritier est-il concerné ? La femme ? Abaye : elle est dans la joie ; depuis quand compte-t-on l'année du premier-né : dès la naissance ou dès qu'il est visible."
+   },
+   {
+    "from": "7a:3",
+    "to": "7a:11",
+    "title": "Baraïta : le 1er Nissan est le nouvel an des mois, de l'embolisme, du prélèvement des sicles (et selon certains des loyers) ; d'où les mois : « ce mois sera pour vous » ; Iyar, Adar, « abiv »"
+   },
+   {
+    "from": "7a:12",
+    "to": "7a:16",
+    "title": "L'embolisme : pas d'année embolismique avant Roch Hachana ; Rav Nahman bar Yitzhak : interruption de l'embolisme ; jusqu'à Pourim ; trente jours avant Pessah ; le calcul."
+   },
+   {
+    "from": "7a:17",
+    "to": "7b:2",
+    "title": "Le prélèvement des sicles : Rabbi Yoshiya : « c'est l'holocauste du mois dans son mois » ; analogie « année / année »"
+   },
+   {
+    "from": "7b:3",
+    "to": "7b:6",
+    "title": "Le loyer des maisons : louer pour un an se compte de date à date ; pourquoi pas dès Tichri ; la saison des pluies ; les fumées."
+   },
+   {
+    "from": "7b:7",
+    "to": "7b:11",
+    "title": "Le 1er Eloul, nouvel an du bétail : Rabbi Meïr ; « et pour les fêtes » : Rabbi Chimon ; Rav Yossef : Rabbi suit une opinion différente selon le sujet ; « quatre » ou cinq ? Rava."
+   },
+   {
+    "from": "7b:12",
+    "to": "8a:3",
+    "title": "Objection : le seize Nissan (omer), le six Sivan (deux pains) : pourquoi n'en compte-t-on que quatre ? Rav Papa : ce qui s'établit dès le soir."
+   },
+   {
+    "from": "8a:4",
+    "to": "8a:9",
+    "title": "Rabbi Elazar et Rabbi Chimon : le 1er Tichri : « les prés se revêtent de moutons » : Rabbi Yohanan ; « ils crient et chantent » ; les vallées couvertes de blé ; Rava."
+   },
+   {
+    "from": "8a:10",
+    "to": "8a:15",
+    "title": "Le 1er Tichri, nouvel an des années : Rav Papa : les actes ; contradiction avec « pour les rois » ; rois d'Israël et rois des nations ; Rabbi Zeira : la période solaire."
+   },
+   {
+    "from": "8a:16",
+    "to": "8b:5",
+    "title": "Rav Nahman bar Yitzhak : le jugement ; « du début de l'année à sa fin » ; « sonnez du chofar au mois de la couverture » ; « c'est une loi pour Israël » ; le tribunal céleste."
+   },
+   {
+    "from": "8b:6",
+    "to": "9a:1",
+    "title": "La chemita et le yovel : « un repos de chabbat pour la terre » ; année avec ou sans mois ; le yovel le dix Tichri : « le jour de Kippour tu feras passer le chofar »"
+   },
+   {
+    "from": "9a:2",
+    "to": "9a:8",
+    "title": "Ajouter du profane au sacré : « en labour et en moisson tu chômeras » : Rabbi Akiva, Rabbi Yichmaël ; la moisson de l'omer ; « vous affligerez vos âmes le neuvième » ; « d'un soir à l'autre »"
+   },
+   {
+    "from": "9b:1",
+    "to": "9b:10",
+    "title": "Baraïta : « c'est le jubilé » : même sans que les terres aient chômé, même sans sonnerie ; Rabbi Yehouda et Rabbi Yossé sur le renvoi des esclaves ; « autre explication »"
+   },
+   {
+    "from": "9b:11",
+    "to": "10a:3",
+    "title": "« Et pour la plantation » : « trois ans incirconcis » et « la quatrième année » ; analogie année / année ; planter, marcotter ou greffer trente jours avant Roch Hachana : compte comme une année."
+   },
+   {
+    "from": "10a:4",
+    "to": "10b:9",
+    "title": "Est-ce contre Rabbi Meïr ? « Un jour de l'année compte pour une année » : le taureau de la Torah, Rabbi Elazar ; Rava : a fortiori de la nidda ; « ni plantation ni marcottage »"
+   },
+   {
+    "from": "10b:10",
+    "to": "11a:6",
+    "title": "Rabbi Eliezer : le monde fut créé en Tichri, les patriarches naquirent et moururent en Tichri, Isaac naquit à Pessah, l'esclavage cessa à Roch Hachana, rédemption en Nissan, future rédemption en."
+   },
+   {
+    "from": "11a:7",
+    "to": "11a:15",
+    "title": "D'où la naissance des patriarches : « tous les hommes d'Israël se rassemblèrent auprès du roi Salomon au mois d'Eitanim » ; « mois de Ziv » ; Rav Yehouda ; mort des patriarches."
+   },
+   {
+    "from": "11a:16",
+    "to": "11b:3",
+    "title": "À Roch Hachana Sara, Rachel et Hanna furent visitées : Rabbi Elazar : « pékida / pékida », « zikhira / zikhira » ; Yossef libéré de prison ; « sonnez du chofar au mois »"
+   },
+   {
+    "from": "11b:4",
+    "to": "12a:5",
+    "title": "Rabbi Yehoshoua : rédemption et future rédemption en Nissan : « nuit de garde » ; le Déluge : le dix-sept du deuxième mois : Marheshvan ; la constellation Kima et les sources."
+   },
+   {
+    "from": "12a:6",
+    "to": "12a:9",
+    "title": "« Et pour les légumes » : légumes, dîmes et vœux ; la dîme des légumes ; elle est rabbinique alors que la Michna la place avec des lois de la Torah ; dîme de bétail et de grain."
+   },
+   {
+    "from": "12a:10",
+    "to": "12b:5",
+    "title": "Baraïta : légumes cueillis la veille de Roch Hachana avant le coucher du soleil et ceux d'après : on ne prélève pas de l'un pour l'autre."
+   },
+   {
+    "from": "12b:6",
+    "to": "12b:8",
+    "title": "« Et pour les vœux » : celui qui s'interdit à autrui pour un an compte de date à date ; il s'est affligé ; en matière de vœux, on suit la langue des gens."
+   },
+   {
+    "from": "12b:9",
+    "to": "13a:3",
+    "title": "Michna citée : le fenugrec dès qu'il germe ; le blé et l'olive dès le tiers de leur croissance ; Rav Assi au nom de Rabbi Yohanan ; Rabbi Zeira : peut-être n'est-il pas entré du tout."
+   },
+   {
+    "from": "13a:4",
+    "to": "13b:2",
+    "title": "Rabbi Yirmeya : savent-ils distinguer un tiers d'un peu moins ? Quarante séa, un grain d'œuf, trois sur trois ; les compagnons à Rav Kahana : l'omer à l'entrée."
+   },
+   {
+    "from": "13b:3",
+    "to": "14a:5",
+    "title": "Michna citée : riz, millet, pavot et sésame qui ont pris racine avant Roch Hachana ; Rabba : l'arbre suit la formation du fruit, le blé et les olives le tiers, les légumes la cueillette ; Abaye."
+   },
+   {
+    "from": "14a:6",
+    "to": "14a:8",
+    "title": "Rabbi Yossé le Galiléen et Rabbi Akiva sur « quand tu rentreras de ton aire et de ton pressoir » : plantes qui croissent sur l'eau de pluie ou beaucoup d'eau."
+   },
+   {
+    "from": "14a:9",
+    "to": "14a:10",
+    "title": "Le 1er Chevat, nouvel an de l'arbre : Rabbi Elazar au nom de Rabbi Oshaya : la majeure partie des pluies de l'année est tombée."
+   },
+   {
+    "from": "14a:11",
+    "to": "14b:10",
+    "title": "Rabbi Akiva cueillit un étrog au premier Chevat et prit deux dîmes selon Beit Chammaï et Beit Hillel ; Rabbi Yossé bar Yehouda : selon Rabban Gamliel et Rabbi Eliezer."
+   },
+   {
+    "from": "14b:11",
+    "to": "15a:4",
+    "title": "Objection : Rabbi Chimon ben Elazar : étrog cueilli la veille du quinze Chevat ; Rabban Gamliel suit la cueillette ; Rabba bar Rav Houna ; « si la deuxième entrait dans la troisième »"
+   },
+   {
+    "from": "15a:5",
+    "to": "15b:1",
+    "title": "Rabbi Yohanan à Rabbi Yannaï : quand est le nouvel an de l'étrog ? Année embolismique ; Rabba : étrog de la sixième année entrant dans la septième : exempt de dîme et de biour ; Abaye."
+   },
+   {
+    "from": "15b:2",
+    "to": "15b:12",
+    "title": "Rabbi Yohanan et Resh Lakich : l'étrog de la sixième entrant dans la septième reste de la sixième ; arbres dont les fruits se sont formés avant le quinze Chevat ; deux bassins."
+   },
+   {
+    "from": "16a:1",
+    "to": "16a:4",
+    "title": "Michna (chap. 1) : le monde est jugé à quatre époques : à Pessah pour le grain, à Chavouot pour les fruits des arbres ; Roch Hachana pour tous les hommes."
+   },
+   {
+    "from": "16a:5",
+    "to": "16a:11",
+    "title": "Quel tanna ? Ni Rabbi Meïr, ni Rabbi Yehouda, ni Rabbi Yossé, ni Rabbi Natan : « tous sont jugés à Roch Hachana et le verdict est scellé à Kippour »"
+   },
+   {
+    "from": "16a:12",
+    "to": "16a:13",
+    "title": "Le roi et la communauté : le roi est jugé en premier ; Rav Yossef : prier pour les moissonneurs et les malades comme Rabbi Yossé."
+   },
+   {
+    "from": "16a:14",
+    "to": "16b:1",
+    "title": "Pourquoi l'omer à Pessah, la libation d'eau à Souccot, le chofar de bélier ? Rabbi Yehouda au nom de Rabbi Akiva ; Rabbi Abahou."
+   },
+   {
+    "from": "16b:2",
+    "to": "16b:7",
+    "title": "Rabbi Yitzhak : une année qu'on ne sonne pas au début, on sonne la téroua à la fin ; l'année pauvre au début s'enrichit à la fin ; on ne juge l'homme que selon ses actes de l'heure."
+   },
+   {
+    "from": "16b:8",
+    "to": "16b:11",
+    "title": "Rabbi Yitzhak : il faut saluer son maître aux fêtes : « pourquoi vas-tu vers lui aujourd'hui ni à la nouvelle lune ni au chabbat » ; se purifier aux fêtes : « n'approchez pas leur cadavre »"
+   },
+   {
+    "from": "16b:12",
+    "to": "16b:14",
+    "title": "Trois livres s'ouvrent à Roch Hachana : Rabbi Krospedaï au nom de Rabbi Yohanan ; Rabbi Avin : « qu'ils soient effacés du livre de vie » ; Rav Nahman bar Yitzhak : « efface-moi de ton livre »."
+   },
+   {
+    "from": "16b:15",
+    "to": "17a:8",
+    "title": "Beit Chammaï : trois groupes au jour du jugement : justes parfaits, impies parfaits, intermédiaires ; « je ferai passer le troisième par le feu » ; Beit Hillel : « abondant en bonté »"
+   },
+   {
+    "from": "17a:9",
+    "to": "17a:11",
+    "title": "Rava : « j'aime car l'Éternel entend » : l'Assemblée d'Israël ; les fautifs d'Israël dans leur corps : le crâne qui n'a pas mis les tefilin."
+   },
+   {
+    "from": "17a:12",
+    "to": "17b:1",
+    "title": "Beit Hillel : « abondant en bonté » : comment ? Rabbi Eliezer : il maîtrise les fautes ; l'école de Rabbi Yichmaël : il fait passer les fautes une à une ; Rava : celui qui passe sur ses défauts."
+   },
+   {
+    "from": "17b:2",
+    "to": "17b:7",
+    "title": "Contradictions entre versets sur la bonté et la justice : Rav Houna, Rabbi Elazar, Ilfi ; « il passa devant lui et proclama » ; Rabbi Yohanan : Dieu s'enveloppa comme un chef de prière."
+   },
+   {
+    "from": "17b:8",
+    "to": "17b:16",
+    "title": "Rabbi Yohanan : grande est la techouva : elle déchire le décret ; « rends insensible le cœur de ce peuple » ; Rav Papa à Abaye : avant le décret ? « et il le guérira »"
+   },
+   {
+    "from": "17b:17",
+    "to": "18a:4",
+    "title": "Bruria la convertie à Rabban Gamliel : « qui ne fait pas acception de personnes » et « que l'Éternel élève sa face » ; Rabbi Yossé le cohen ; Rabbi Akiva : avant ou après le décret."
+   },
+   {
+    "from": "18a:5",
+    "to": "18a:9",
+    "title": "Le décret de la communauté peut-il être déchiré ? « lave ton cœur du mal » ; « même si tu te laves avec du natron » ; un décret assorti d'un serment ; Rav Chmouël bar Ami."
+   },
+   {
+    "from": "18a:10",
+    "to": "18a:14",
+    "title": "Le décret de la communauté n'est pas scellé ; « cherchez l'Éternel quand il se trouve » ; l'individu et la communauté ; les dix jours entre Roch Hachana et Kippour."
+   },
+   {
+    "from": "18a:15",
+    "to": "18b:3",
+    "title": "Michna : on envoie des messagers pour six mois : Nissan (Pessah), Av (jeûne), Eloul (Roch Hachana), Tichri, Kislev, Adar ; Iyar pour le petit Pessah."
+   },
+   {
+    "from": "18b:4",
+    "to": "18b:8",
+    "title": "Rabbi Chimon : quatre choses que Rabbi Akiva expliquait et que je n'explique pas : les jeûnes du quatrième, cinquième, dixième mois ; le dix Tevet : le roi de Babel assiégea Jérusalem."
+   },
+   {
+    "from": "18b:9",
+    "to": "18b:14",
+    "title": "Le rouleau des jeûnes (Meguilat Taanit) est-il abrogé ? Rav et Rabbi Hanina oui ; Rabbi Yohanan et Rabbi Yehoshoua ben Lévi non ; Rav Kahana : on décréta un jeûne à Hanoucca à Lod."
+   },
+   {
+    "from": "18b:15",
+    "to": "19b:1",
+    "title": "Le trois Tichri, on abolit la mention du nom divin dans les actes : le décret du royaume grec ; au temps du Temple ; le jour du meurtre de Guedalia ; la nouvelle lune est de la Torah ; Rav Achi."
+   },
+   {
+    "from": "19b:2",
+    "to": "19b:8",
+    "title": "Ces jours du rouleau des jeûnes : divergence tannaïque ; deux halakhot contradictoires : Hanoucca et Pourim ou les autres jours."
+   },
+   {
+    "from": "19b:9",
+    "to": "19b:14",
+    "title": "Kislev pour Hanoucca, Adar pour Pourim ; si l'année est embolismique, aussi le second Adar."
+   },
+   {
+    "from": "19b:15",
+    "to": "20a:7",
+    "title": "Mar Oukva : l'Adar qui précède Nissan est toujours défectif ; Rav Nahman objecte : on profane le chabbat pour deux mois, Nissan et Tichri ; la mitsva de sanctifier sur vision."
+   },
+   {
+    "from": "20a:8",
+    "to": "20a:13",
+    "title": "Oula : on a embolisé Eloul : quel bien fait-on aux compagnons babyloniens ? Les légumes ou les morts ; Rabbi Aha bar Hanina ; Kippour après chabbat ; une fête adjacente au chabbat ; le chaud."
+   },
+   {
+    "from": "20a:14",
+    "to": "20b:1",
+    "title": "Rabba bar Chmouël : peut-on embolismer le mois comme l'année ? Rava : pour l'embolisme ou la sanctification ; Rabbi Yehoshoua ben Lévi : on intimide les témoins ; Rabbi Yehouda Nassi à Rabbi Ami."
+   },
+   {
+    "from": "20b:2",
+    "to": "20b:14",
+    "title": "Chmouël : je puis régler tout l'exil ; Abba père de Rabbi Chimlaï : le secret de l'embolisme : la naissance de la lune avant ou après midi ; Rabbi Zeira ; il faut une nuit et un jour du mois."
+   },
+   {
+    "from": "21a:1",
+    "to": "21a:10",
+    "title": "« Deux mois défectifs ont de la renommée » ; Lévi à Babylone le onze Tichri ; Rabbi Yohanan : si les messagers de Nissan sont arrivés mais pas ceux de Tichri, on fait deux jours."
+   },
+   {
+    "from": "21b:1",
+    "to": "21b:7",
+    "title": "Michna : on profane le chabbat pour deux mois, Nissan et Tichri : les messagers partent pour la Syrie ; contradiction avec les six mois."
+   },
+   {
+    "from": "21b:8",
+    "to": "22a:1",
+    "title": "Michna : qu'on l'ait vu clairement ou non, on profane le chabbat ; Rabbi Yossé ; plus de quarante couples retenus par Rabbi Akiva à Lod, Rabban Gamliel ; sens de « baalil » ; Rabbi Abahou."
+   },
+   {
+    "from": "22a:2",
+    "to": "22a:7",
+    "title": "Michna : le père et le fils qui ont vu la lune : ils vont témoigner ; Rabbi Yossé : l'histoire de Tovia le médecin, son fils et son esclave affranchi ; Rabbi Chimon : « en Égypte »"
+   },
+   {
+    "from": "22a:8",
+    "to": "22a:11",
+    "title": "Michna : les invalides : joueur aux dés, usurier, éleveur de pigeons, trafiquant de chemita, esclaves ; Rav Achi : les voleurs rabbiniques valent pour le témoignage de la femme."
+   },
+   {
+    "from": "22a:13",
+    "to": "22b:6",
+    "title": "Chapitre 2 : « s'ils ne le connaissent pas » on envoie un autre avec lui ; au début on acceptait le témoignage sur la lune de chacun ; qu'est-ce que « un autre » ? Rav Papa : une autre paire."
+   },
+   {
+    "from": "22b:7",
+    "to": "22b:10",
+    "title": "Quel dégât ont causé les Boethusiens ? Celui qui monta la côte ; « dis comment tu as vu la lune » ; deux cents zouz ; l'employeur sera pendu au poteau."
+   },
+   {
+    "from": "22b:11",
+    "to": "23a:4",
+    "title": "Michna : au début on allumait des feux (michoot) ; après la corruption des Samaritains on envoya des messagers ; cèdre, roseaux, bois d'olivier, étoupe de lin."
+   },
+   {
+    "from": "23a:5",
+    "to": "23a:8",
+    "title": "Les espèces de cèdres : Rav Yehouda : quatre ; Rabba bar Rav Houna : dix ; Rav Dimi : on y ajoute chênes et amandiers ; « un navire puissant » : Rav : un grand bateau."
+   },
+   {
+    "from": "23a:9",
+    "to": "23a:13",
+    "title": "Comment procédait-on ? Six mille hommes en douze mois ; trois pelleteries ; Rabbi Yohanan : chaque poutre prise par les nations à Jérusalem sera rendue."
+   },
+   {
+    "from": "23a:14",
+    "to": "23b:5",
+    "title": "« Et de Beit Biltin » : Rav : Birem ; « galouta » : Poumbedita ; « comme un feu de joie » : chacun prend une torche ; Rabbi Chimon ben Elazar : aussi Harim, Kayyar, Gader."
+   },
+   {
+    "from": "23b:6",
+    "to": "23b:10",
+    "title": "Michna : une grande cour à Jérusalem, Beit Yaazek, où se rassemblent les témoins ; Rabban Gamliel l'Ancien permit de marcher deux mille coudées dans toutes les directions."
+   },
+   {
+    "from": "23b:11",
+    "to": "24a:3",
+    "title": "Michna : comment examine-t-on les témoins ? Le couple arrivé en premier d'abord, on fait entrer le plus âgé ; gémara : devant ou derrière le soleil, nord ou sud ; Abaye : l'échancrure de la lune."
+   },
+   {
+    "from": "24a:4",
+    "to": "24a:8",
+    "title": "Baraïta : l'un dit deux mardaot de haut, l'autre trois ; vue dans l'eau, dans une lanterne, dans les nuages : pas de témoignage ; moitié dans l'eau, moitié dans le ciel."
+   },
+   {
+    "from": "24a:9",
+    "to": "24a:17",
+    "title": "Michna : le président du tribunal dit « mekoudach » et tout le peuple répond ; Rabbi Elazar fils de Rabbi Tsadok : si ce n'est pas à temps, on ne le sanctifie pas, car le Ciel l'a déjà sanctifié."
+   },
+   {
+    "from": "24a:18",
+    "to": "24b:2",
+    "title": "Michna : Rabban Gamliel avait des figures de la lune sur une tablette et au mur de son étage pour interroger les témoins."
+   },
+   {
+    "from": "24b:3",
+    "to": "24b:13",
+    "title": "Les figures de soleils impossibles à imiter sont-elles permises ? « Vous ne ferez pas avec moi » ; le visage humain seul ; Rav Houna ; « ce qui est dans les cieux », « en haut », « sur terre »"
+   },
+   {
+    "from": "24b:14",
+    "to": "25a:6",
+    "title": "Michna : deux témoins : « nous l'avons vu le matin à l'est et le soir à l'ouest » ; Rabbi Yohanan ben Nouri : faux témoins ; à Yavné Rabban Gamliel les accepta."
+   },
+   {
+    "from": "25a:7",
+    "to": "25a:14",
+    "title": "Gémara : Rabban Gamliel : « ainsi j'ai reçu de la maison de mon grand-père » ; « il a fait la lune pour les époques » ; Rabbi Yohanan ; Rabbi Hiya et la lune vue le matin du vingt-neuf."
+   },
+   {
+    "from": "25a:15",
+    "to": "25b:5",
+    "title": "Pourquoi les noms de ces sages ne sont-ils pas précisés ? Jerubaal, Bedan, Yiftah comparés à Moïse, Aaron et Samuel ; « tu iras vers les prêtres, les lévites et le juge de ces jours »"
+   },
+   {
+    "from": "25b:7",
+    "to": "26a:2",
+    "title": "Chapitre 3. Michna : si le tribunal et tout Israël ont vu la lune et les témoins sont interrogés jusqu'à la nuit : année embolismique ; le tribunal seul : deux témoins se lèvent."
+   },
+   {
+    "from": "26a:3",
+    "to": "26a:16",
+    "title": "Michna : tous les chofarot sont valables sauf celui de la vache : c'est une corne ; Rabbi Yossé : toutes sont appelées cornes ; « elle plaira à l'Éternel plus qu'un bœuf, un taureau » ; Rav Matna."
+   },
+   {
+    "from": "26a:17",
+    "to": "26b:6",
+    "title": "Les langues des autres régions : « yovel » = bélier en arabe ; Rabbi Akiva en Galilée ; la femme niddah ; Rabbi dans les villes de la mer ; Resh Lakich et le pays de Kan Nechraya."
+   },
+   {
+    "from": "26b:7",
+    "to": "26b:12",
+    "title": "Michna : le chofar de Roch Hachana est de bouquetin, droit, bouche dorée, avec deux trompettes ; aux jeûnes, de bélier courbé, bouche argentée."
+   },
+   {
+    "from": "27a:1",
+    "to": "27a:9",
+    "title": "Dorer le chofar à l'endroit de la bouche ; Abaye ; peut-on entendre deux sons ? « Souviens-toi » et « garde » dits en une parole ; entendre la fin sans le début ; tekia et longue téroua."
+   },
+   {
+    "from": "27a:10",
+    "to": "27a:17",
+    "title": "Pourquoi or à Roch Hachana et argent aux jeûnes ? L'honneur de la fête ; Rav Papa bar Chmouël veut faire comme la Michna, Rava : seulement au Temple."
+   },
+   {
+    "from": "27a:18",
+    "to": "27b:2",
+    "title": "Michna : chofar fendu puis recollé : invalide ; coller des morceaux de chofar ; troué et bouché ; sonner dans une fosse, une citerne ou un grand pot."
+   },
+   {
+    "from": "27b:3",
+    "to": "27b:13",
+    "title": "Baraïta : long et raccourci, valable ; gratté, retourné ; doré à l'endroit de la bouche ; un chofar dans un chofar ; Rav Papa : élargir le court et raccourcir le large ; ajouter quoi que ce soit."
+   },
+   {
+    "from": "27b:14",
+    "to": "28a:8",
+    "title": "Celui qui sonne dans la fosse : Rav Houna : seulement pour ceux au bord de la fosse ; contradiction entre baraïtot."
+   },
+   {
+    "from": "28a:9",
+    "to": "28b:1",
+    "title": "Rav Yehouda : chofar d'une olah ou de chélamim : ne pas sonner, mais si on l'a fait on s'acquitte ; méïla ; Rava : les mitsvot n'ont pas été données pour en jouir."
+   },
+   {
+    "from": "28b:2",
+    "to": "28b:9",
+    "title": "Si on lisait la Torah et le moment de la lecture arrive : avec ou sans intention ; derrière la synagogue : entendre le chofar ou la Meguila ; l'auditeur sans intention du lecteur."
+   },
+   {
+    "from": "28b:10",
+    "to": "29a:5",
+    "title": "Rav Chemen bar Abba : le cohen qui monte au douchan ; « bal tigra » et « bal tossif » ; les dons mêlés (Rabbi Eliezer, Rabbi Yehoshoua)"
+   },
+   {
+    "from": "29a:6",
+    "to": "29a:8",
+    "title": "Michna : « quand Moïse levait la main Israël l'emportait » : les mains de Moïse ; « fais-toi un serpent brûlant » ; le sourd, l'idiot et le mineur ne s'acquittent pas pour la communauté."
+   },
+   {
+    "from": "29a:9",
+    "to": "29a:16",
+    "title": "Baraïta : tous sont tenus au chofar : cohanim, lévites, Israélites, convertis, esclaves affranchis, tumtum, androgyne ; « jour de téroua pour vous » et les trompettes."
+   },
+   {
+    "from": "29a:17",
+    "to": "29b:3",
+    "title": "Ahava fils de Rabbi Zeira : toutes les bénédictions dispensent même celui qui s'est acquitté, sauf celle du pain et du vin ; Rava : le pain de la matsa et le vin du kiddouch."
+   },
+   {
+    "from": "29b:5",
+    "to": "29b:6",
+    "title": "Chapitre 4. Michna : Roch Hachana tombant un chabbat : au Temple on sonnait, pas ailleurs ; après la destruction Rabban Yohanan ben Zakkaï institua."
+   },
+   {
+    "from": "29b:7",
+    "to": "29b:11",
+    "title": "D'où cela ? Rabbi Lévi bar Lahma au nom de Rabbi Hama bar Hanina : « mémorial de téroua » ; Rava : si c'est de la Torah comment sonne-t-on au Temple ? Le chofar n'est pas un travail."
+   },
+   {
+    "from": "29b:12",
+    "to": "30a:1",
+    "title": "Baraïta : Roch Hachana tombait un chabbat à Yavné : « sonnons puis jugeons » ; « on a déjà entendu le chofar à Yavné » ; Rabbi Elazar : Rabban Yohanan l'a institué seulement à Yavné."
+   },
+   {
+    "from": "30a:2",
+    "to": "30a:15",
+    "title": "Rava objecte : « et de plus » ; Rav Yitzhak bar Yossef : l'officiant ; « le jour de Kippour vous ferez passer le chofar » ; « l'homme et sa maison » ; Rav Chéchet : le jubilé comme Roch Hachana."
+   },
+   {
+    "from": "30a:16",
+    "to": "30b:4",
+    "title": "Michna : au début le loulav se prenait sept jours au Temple et un jour ailleurs ; Rabban Yohanan ben Zakkaï : sept jours partout ; le jour de l'omer tout entier est interdit."
+   },
+   {
+    "from": "30b:5",
+    "to": "31a:1",
+    "title": "Michna : au début on acceptait le témoignage de la lune toute la journée ; une fois les témoins en retard les lévites perturbèrent le chant ; on décida jusqu'à minha."
+   },
+   {
+    "from": "31a:2",
+    "to": "31a:12",
+    "title": "Baraïta : les psaumes du Temple chaque jour de la semaine : premier jour « à l'Éternel la terre et ce qu'elle contient », deuxième « grand est l'Éternel », troisième « Dieu se tient dans l'assemb."
+   },
+   {
+    "from": "31a:13",
+    "to": "31b:2",
+    "title": "Dix déplacements de la Chekhina et dix exils du Sanhédrin : du couvercle au chérubin, au seuil, à la cour, à l'autel, à la ville, à la montagne, au désert."
+   },
+   {
+    "from": "31b:3",
+    "to": "31b:6",
+    "title": "Michna : Rabbi Yehoshoua ben Karha : Rabban Yohanan ben Zakkaï institua aussi que même le président du tribunal en tout lieu reçoive le témoignage."
+   },
+   {
+    "from": "31b:7",
+    "to": "32a:1",
+    "title": "Les autres institutions : le converti de nos jours met de côté le quart pour son nid ; Rabbi Chimon ben Elazar."
+   },
+   {
+    "from": "32a:2",
+    "to": "32a:5",
+    "title": "Michna : l'ordre des bénédictions : patriarches, puissances, sainteté du Nom avec la royauté, on ne sonne pas ; puis sainteté du jour et on sonne, souvenirs et on sonne, chofarot et on sonne."
+   },
+   {
+    "from": "32a:6",
+    "to": "32a:15",
+    "title": "D'où dit-on les patriarches : « rendez à l'Éternel, fils de puissants » ; les puissances ; royauté, souvenirs et chofarot : Rabbi Eliezer : « mémorial de téroua » ; Rabbi Akiva."
+   },
+   {
+    "from": "32a:16",
+    "to": "32a:23",
+    "title": "Michna : pas moins de dix royautés, dix souvenirs, dix chofarot ; Rabbi Yohanan ben Nouri : trois de chacun suffisent."
+   },
+   {
+    "from": "32b:1",
+    "to": "32b:12",
+    "title": "Exemples de royauté, de souvenir et de chofar de malheur ; « par ma vie… je règnerai sur vous avec une main forte » ; « il se souvint qu'ils sont chair » ; « sonnez du chofar à Guiv'a »"
+   },
+   {
+    "from": "32b:13",
+    "to": "32b:17",
+    "title": "On commence par la Torah et on termine par un prophète : Rabbi Yossé : si on a terminé par la Torah, il s'est acquitté ; a posteriori ou d'emblée."
+   },
+   {
+    "from": "32b:18",
+    "to": "32b:22",
+    "title": "Michna : l'officiant de Roch Hachana : le second fait sonner, à l'heure du Hallel le premier lit le Hallel ; « dans la multitude du peuple est la gloire du roi »"
+   },
+   {
+    "from": "32b:23",
+    "to": "33b:4",
+    "title": "Michna : on ne franchit pas la limite pour le chofar, on ne dégage pas d'éboulis, on ne monte pas aux arbres ; on n'empêche pas les enfants de sonner ; celui qui s'exerce ne s'acquitte pas."
+   },
+   {
+    "from": "33b:5",
+    "to": "33b:7",
+    "title": "Michna : ordre des sonneries : trois séries de trois ; la tekia vaut trois téroot, la téroua trois yevavot ; celui qui a béni puis reçu un chofar sonne trois fois."
+   },
+   {
+    "from": "33b:8",
+    "to": "34a:4",
+    "title": "Mesure de la tekia et de la téroua : Abaye ; « jour de téroua » traduit « jour de yevava » ; « tu feras passer le chofar de téroua » ; « au septième mois » ; une tekia droite avant et après."
+   },
+   {
+    "from": "34a:5",
+    "to": "34a:23",
+    "title": "Cette baraïta passe de l'analogie à la guézéra chava du désert ; « vous sonnerez une téroua » ; Rabbi Yichmaël fils de Rabbi Yohanan ben Beroka ; trois téroot et six tekiot."
+   },
+   {
+    "from": "34a:24",
+    "to": "34b:5",
+    "title": "Si l'on a entendu neuf sonneries en neuf heures du jour, on s'acquitte ; de neuf personnes à la fois, non ; Rabbi Yohanan ; Rabbi Chimon ben Yehotsadak : Hallel et Meguila."
+   },
+   {
+    "from": "34b:6",
+    "to": "34b:12",
+    "title": "Les sonneries ne se conditionnent pas entre elles, ni les bénédictions ; Rabba : « dites devant moi royauté, souvenirs, chofarot » ; celui qui a béni puis reçu un chofar."
+   },
+   {
+    "from": "34b:13",
+    "to": "35a:4",
+    "title": "On a dit à Rabban Gamliel : si chaque individu doit, pourquoi la communauté prie-t-elle ? Il répond : et l'officiant, pourquoi descend-il ? Rabba bar bar Hana : les sages concèdent."
+   },
+   {
+    "from": "35a:5",
+    "to": "35a:12",
+    "title": "Pourquoi ces bénédictions ? Rav Hananel au nom de Rav : « et dans ta Torah il est écrit » ; Rabbi Elazar : il faut toujours ordonner sa prière avant de prier ; Rabbi Abba ; Rav Yehouda."
+   }
   ]
  }
 }
