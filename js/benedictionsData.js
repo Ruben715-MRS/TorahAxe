@@ -435,12 +435,22 @@
     // l'un des fruits des sept espèces (raisin, figue, grenade, olive, datte), sinon Boré Nefachot ; Haadama et Chéhakol → Boré Nefachot. Ces règles ne viennent
     // PAS du guide du Beth Loubavitch (qui ne cite la bénédiction finale que dans quelques notes) : elles sont ajoutées par l'application et sont à faire relire
     // par un rav. Les textes s'ouvrent dans le Siddour (`sections`).
+    // Où s'ouvre le texte d'une bénédiction finale, selon le rite : { ids (sections du Siddour), title }. Boré Nefachot est le même dans les trois rites ;
+    // Méeïn Chalosh (Al Hamihya, Al Haguéfen, Al Haets) a une édition séfarade et une ashkénaze (utilisée aussi pour 'Habad, faute d'un texte 'Habad sourcé).
+    function SAME(ids, title) { var o = { ids: ids, title: title }; return { sefarade: o, ashkenaze: o, habad: o }; }
+    function MEEIN(name) {
+        return {
+            sefarade: { ids: ['al-hamihya'], title: name + ' (Méeïn Chalosh)' },
+            ashkenaze: { ids: ['al-hamihya-ashkenaze'], title: name + ' (Méeïn Chalosh, nusach ashkénaze)' },
+            habad: { ids: ['al-hamihya-ashkenaze'], title: name + ' (Méeïn Chalosh, nusach ashkénaze)' }
+        };
+    }
     var FINALS = {
-        hamazon: { he: 'בִּרְכַּת הַמָּזוֹן', fr: 'Birkat Hamazon', use: 'Après un repas avec du pain.', sections: ['birkat-hamazon'], title: 'Birkat Hamazon' },
-        hamihya: { he: 'עַל הַמִּחְיָה', fr: 'Al Hamihya', use: 'Après un aliment des cinq céréales, hors pain (Méeïn Chalosh).', sections: ['al-hamihya'], title: 'Al Hamihya (Méeïn Chalosh)' },
-        hagefen: { he: 'עַל הַגֶּפֶן', fr: 'Al Haguéfen', use: 'Après le vin ou le jus de raisin (Méeïn Chalosh).', sections: ['al-hamihya'], title: 'Al Haguéfen (Méeïn Chalosh)' },
-        haets: { he: 'עַל הָעֵץ', fr: 'Al Haets', use: 'Après l\'un des fruits des sept espèces : raisin, figue, grenade, olive, datte (Méeïn Chalosh).', sections: ['al-hamihya'], title: 'Al Haets (Méeïn Chalosh)' },
-        nefachot: { he: 'בּוֹרֵא נְפָשׁוֹת', fr: 'Boré Nefachot', use: 'Après tout autre aliment ou boisson.', sections: ['birkhot-hanehenin'], title: 'Boré Nefachot' }
+        hamazon: { he: 'בִּרְכַּת הַמָּזוֹן', fr: 'Birkat Hamazon', use: 'Après un repas avec du pain.', open: { sefarade: { ids: ['birkat-hamazon'], title: 'Birkat haMazon' }, ashkenaze: { ids: ['birkat-hamazon-ashkenaze'], title: 'Birkat haMazon (nusach ashkénaze)' }, habad: { ids: ['birkat-hamazon-habad'], title: 'Birkat haMazon (nusach Sefard)' } } },
+        hamihya: { he: 'עַל הַמִּחְיָה', fr: 'Al Hamihya', use: 'Après un aliment des cinq céréales, hors pain (Méeïn Chalosh).', open: MEEIN('Al Hamihya') },
+        hagefen: { he: 'עַל הַגֶּפֶן', fr: 'Al Haguéfen', use: 'Après le vin ou le jus de raisin (Méeïn Chalosh).', open: MEEIN('Al Haguéfen') },
+        haets: { he: 'עַל הָעֵץ', fr: 'Al Haets', use: 'Après l\'un des fruits des sept espèces : raisin, figue, grenade, olive, datte (Méeïn Chalosh).', open: MEEIN('Al Haets') },
+        nefachot: { he: 'בּוֹרֵא נְפָשׁוֹת', fr: 'Boré Nefachot', use: 'Après tout autre aliment ou boisson.', open: SAME(['birkhot-hanehenin'], 'Boré Nefachot') }
     };
     var FINAL_ORDER = ['hamazon', 'hamihya', 'hagefen', 'haets', 'nefachot'];
     var FINAL_NONE = 'Pas de bénédiction initiale, donc pas de bénédiction finale.';

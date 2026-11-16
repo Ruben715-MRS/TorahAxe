@@ -190,7 +190,10 @@ const SD_RAYONS = [
     ] },
     { id: 'benedictions', he: 'ברכות', fr: 'Bénédictions', rows: [
         { key: 's:birkat-hamazon', he: 'ברכת המזון', ids: ['birkat-hamazon'] },
+        { key: 's:birkat-hamazon-ashkenaze', he: 'ברכת המזון · אשכנז', ids: ['birkat-hamazon-ashkenaze'] },
+        { key: 's:birkat-hamazon-habad', he: 'ברכת המזון · ספרד (חב״ד)', ids: ['birkat-hamazon-habad'] },
         { key: 's:al-hamihya', he: 'מעין שלוש', ids: ['al-hamihya'] },
+        { key: 's:al-hamihya-ashkenaze', he: 'מעין שלוש · אשכנז', ids: ['al-hamihya-ashkenaze'] },
         { key: 's:birkhot-hanehenin', he: 'ברכות הנהנין', ids: ['birkhot-hanehenin'] },
         { key: 's:birkat-halevana', he: 'קידוש לבנה', ids: ['birkat-halevana'] },
         { key: 's:tefilat-haderekh', he: 'תפילת הדרך', ids: ['tefilat-haderekh'] },

@@ -256,7 +256,7 @@ function benFinalRow(food) {
         btn.setAttribute('aria-label', t('tools.ben_final_open', { name: def.fr }));
         btn.appendChild(benHebrew('span', def.he, 'ben-tag-he'));
         btn.appendChild(document.createTextNode(' ' + def.fr));
-        btn.onclick = () => benOpenSiddur(def.sections, def.title);
+        btn.onclick = () => { const o = BenedictionsCore.finalOpen(k, rite); benOpenSiddur(o.ids, o.title); };
         line.appendChild(btn);
     });
     row.appendChild(line);
@@ -289,7 +289,7 @@ function benFinalsPanel() {
         card.appendChild(benNode('p', 'tool-small', def.use));
         const btn = benNode('button', 'tool-history-chip', t('tools.ben_final_open', { name: def.fr }));
         btn.type = 'button';
-        btn.onclick = () => benOpenSiddur(def.sections, def.title);
+        btn.onclick = () => { const o = BenedictionsCore.finalOpen(k, benState.rite); benOpenSiddur(o.ids, o.title); };
         card.appendChild(btn);
         panel.appendChild(card);
     });

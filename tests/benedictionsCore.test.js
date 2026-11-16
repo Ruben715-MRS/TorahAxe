@@ -141,5 +141,15 @@ test('les bénédictions finales : tous les aliments sont couverts, et les donn�
         finals.forEach(k => assert.ok(D.FINALS[k], f.n + ' : ' + k));
         if (f.b !== 'aucune') assert.ok(finals.length > 0, f.n);
     }));
-    D.FINAL_ORDER.forEach(k => D.FINALS[k].sections.forEach(id => assert.ok(require('fs').existsSync(__dirname + '/../data/siddur/' + id + '.json'), id)));
+    D.FINAL_ORDER.forEach(k => D.RITE_ORDER.forEach(r => C.finalOpen(k, r).ids.forEach(id => assert.ok(require('fs').existsSync(__dirname + '/../data/siddur/' + id + '.json'), id + ' (' + k + ', ' + r + ')'))));
+});
+
+test('les bénédictions finales : le texte s\'ouvre dans le nusach du rite', () => {
+    assert.deepStrictEqual(C.finalOpen('hamazon', 'sefarade').ids, ['birkat-hamazon']);
+    assert.deepStrictEqual(C.finalOpen('hamazon', 'ashkenaze').ids, ['birkat-hamazon-ashkenaze']);
+    assert.deepStrictEqual(C.finalOpen('hamazon', 'habad').ids, ['birkat-hamazon-habad']);
+    assert.deepStrictEqual(C.finalOpen('hamihya', 'sefarade').ids, ['al-hamihya']);
+    assert.deepStrictEqual(C.finalOpen('hagefen', 'ashkenaze').ids, ['al-hamihya-ashkenaze']);
+    ['sefarade', 'ashkenaze', 'habad'].forEach(r => assert.deepStrictEqual(C.finalOpen('nefachot', r).ids, ['birkhot-hanehenin']));
+    assert.deepStrictEqual(C.finalOpen('hamazon', 'inconnu').ids, ['birkat-hamazon-habad']);     // rite inconnu : 'Habad, le rite par défaut
 });

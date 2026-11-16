@@ -113,6 +113,9 @@
         return (n && n[riteOf(rite)]) || null;
     }
 
+    // Où s'ouvre le texte d'une bénédiction finale dans un rite : { ids, title }.
+    function finalOpen(key, rite) { return Data.FINALS[key].open[riteOf(rite)]; }
+
     // Le nombre d'aliments par bénédiction (pour les puces du filtre).
     function countByBlessing(rite) {
         var counts = {};
@@ -121,5 +124,5 @@
         return counts;
     }
 
-    return { normalize: normalize, riteOf: riteOf, override: override, view: view, blessingsOf: blessingsOf, notesOf: notesOf, label: label, finalOf: finalOf, finalsOf: finalsOf, isLiquid: isLiquid, shiur: shiur, finalNote: finalNote, filterFoods: filterFoods, countByBlessing: countByBlessing };
+    return { normalize: normalize, riteOf: riteOf, override: override, view: view, blessingsOf: blessingsOf, notesOf: notesOf, label: label, finalOf: finalOf, finalOpen: finalOpen, finalsOf: finalsOf, isLiquid: isLiquid, shiur: shiur, finalNote: finalNote, filterFoods: filterFoods, countByBlessing: countByBlessing };
 }));
