@@ -200,6 +200,7 @@ const SD_RAYONS = [
         { key: 's:terouma-maasser', he: 'תרומות', ids: ['terouma-maasser'] },
         { key: 's:arc-en-ciel', he: 'קשת', ids: ['arc-en-ciel'] },
         { key: 's:eclairs-tonnerre', he: 'ברקים', ids: ['eclairs-tonnerre'] },
+        { key: 's:birkhot-hareiyot', he: 'ברכות הראייה', ids: ['birkhot-hareiyot'] },
         { key: 's:remede', he: 'רפואה', ids: ['remede'] }
     ] },
     { id: 'vie', he: 'שמחות', fr: 'Vie', rows: [

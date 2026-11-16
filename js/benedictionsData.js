@@ -402,6 +402,8 @@
 
     var RICE_SEF = { b: 'mezonot', note: 'Mezonot, surtout si le riz est cuit et mou ou collant, car il nourrit. Certains décisionnaires disent aussi Mezonot quand les grains restent distincts. La bénédiction finale reste Boré Nefachot.' };
     var RICE_ASH = { b: 'mezonot', note: 'Généralement Mezonot, surtout si le riz est cuit et un peu collant ou mou : c\'est l\'avis le plus répandu chez les Ashkénazes non-\'Habad. La bénédiction finale reste Boré Nefachot.' };
+    // Le petit pain au jus de fruits est une autre ligne de la liste : c'est le liquide de la pâte, non le sucre, qui change la bénédiction chez 'Habad et chez les Ashkénazes.
+    var JUS_PAIN = 'Ne pas le confondre avec le « petit pain confectionné avec du jus de fruits » (ligne à part, Mezonot) : chez \'Habad et chez les Ashkénazes, ce n\'est pas le sucre qui change la bénédiction, mais le liquide de la pâte (jus de fruits plutôt qu\'eau).';
     var SALTY = 'Mezonot. De nombreuses autorités (dont des Séfarades) ne reprennent pas la précaution \'Habad de les manger dans un repas, après Hamotsi.';
 
     var RITE_OVERRIDES = {
@@ -413,11 +415,11 @@
             ashkenaze: { note: 'Haadama, comme chez \'Habad : le doute de Haets que mentionne la note 2 reste théorique, et la pratique courante est Haadama.' }
         },
         'Petit pain': {
-            sefarade: { note: 'Hamotsi, sauf si la douceur est notable (goût sucré net, comme beaucoup de challot modernes au sucre ou aux raisins) : on dit alors Mezonot. Un Séfarade invité chez des Ashkénazes ou des \'Habad peut demander une challa non sucrée, ou apporter la sienne.' },
-            ashkenaze: { note: 'Hamotsi, y compris pour les challot sucrées (comme chez \'Habad).' }
+            sefarade: { note: 'Hamotsi, sauf si la douceur est notable (goût sucré net, comme beaucoup de challot modernes au sucre ou aux raisins) : on dit alors Mezonot. Un Séfarade invité chez des Ashkénazes ou des \'Habad peut demander une challa non sucrée, ou apporter la sienne. ' + JUS_PAIN },
+            ashkenaze: { note: 'Hamotsi, y compris pour les challot sucrées, comme chez \'Habad. ' + JUS_PAIN }
         },
         'Matsa': {
-            sefarade: { b: 'mezonot', note: 'Souvent Mezonot hors de Pessa\'h, surtout si la matsa est fine et croustillante, ou selon certains usages. D\'autres disent Hamotsi : suivre l\'usage de sa communauté.' },
+            sefarade: { b: 'mezonot', note: 'Mezonot toute l\'année, sauf à Pessa\'h, où elle devient Hamotsi (c\'est alors le seul pain que l\'on a).' },
             ashkenaze: { note: 'Hamotsi hors de Pessa\'h, comme chez \'Habad.' }
         },
         'Chocolat': { sefarade: { note: 'Chéhakol aussi, le plus souvent ; certains décisionnaires séfarades discutent davantage la possibilité de Haets (voir la note 12).' } },
