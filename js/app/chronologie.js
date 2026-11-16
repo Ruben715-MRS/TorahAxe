@@ -80,6 +80,15 @@ function chrAddItemButton(container, itemId, from) {
         if (b && container.isConnected) container.appendChild(b);
     }).catch(() => {});
 }
+// Ajoute à `container` le bouton d'une cible calculée sur le modèle (`pick(model)` renvoie la cible ou null) une fois la frise chargée.
+function chrAddTargetButton(container, pick, from, stillWanted) {
+    if (typeof chrLoadModel !== 'function') return;
+    chrLoadModel().then(model => {
+        if (!container.isConnected || (stillWanted && !stillWanted())) return;
+        const b = chrButton(pick(model), from);
+        if (b) container.appendChild(b);
+    }).catch(() => {});
+}
 // Ajoute à `container` le bouton qui marque une année de la création (AM) sur la frise, si elle est dans la plage de la frise.
 function chrAddYearButton(container, year, from) {
     chrLoadModel().then(model => {

@@ -748,5 +748,7 @@
     {"id": "e3_steinman_mort", "voie": "evenements", "fr": "Mort de Rabbi Aharon Leib Steinman", "from": 5778},
     {"id": "e3_sacks", "voie": "evenements", "fr": "Mort du rabbin Jonathan Sacks", "from": 5781},
     {"id": "e3_kanievsky_mort", "voie": "evenements", "fr": "Mort de Rabbi Haïm Kanievsky", "from": 5782}
-  ]
+  ],
+  "livres": {"genesis": {"from": 1, "to": 2309}, "exode": {"from": 2238, "to": 2449}, "levitique": {"from": 2449, "to": 2449}, "nombres": {"from": 2449, "to": 2488}, "deuteronome": {"from": 2488, "to": 2488}, "josue": {"from": 2488, "to": 2516}, "juges": {"from": 2516, "to": 2871}, "samuel": {"from": 2830, "to": 2924}, "rois": {"from": 2924, "to": 3364}, "isaie": {"item": "p_yeshayahou"}, "jeremie": {"item": "p_yirmeyahou"}, "ezechiel": {"item": "p_yehezkel"}, "douze": {"from": 3130, "to": 3448}, "psaumes": {"from": 2884, "to": 2924}, "proverbes": {"from": 2924, "to": 2964}, "cantique": {"from": 2924, "to": 2964}, "ruth": {"item": "e_ruth"}, "lamentations": {"item": "e_destruction"}, "qohelet": {"from": 2924, "to": 2964}, "esther": {"item": "e_pourim"}, "daniel": {"item": "p_daniel"}, "esdras": {"from": 3390, "to": 3448}, "chroniques": {"from": 1, "to": 3390}},
+  "fetes": {"rosh": "e0_creation", "guedalia": "e_gedalia", "hanouka": "e_hanouka", "tevet10": "e_siege", "pourimkatan": "e_pourim", "esther": "e_pourim", "pourim": "e_pourim", "chouchan": "e_pourim", "pessah": "e_sortie", "chavouot": "e_sinai", "tamouz17": "e_breche", "tichabav": "e_destruction", "lagbaomer": "t_meir", "yerushalayim": "e3_6jours", "atzmaut": "e3_etat", "shoah": "e3_shoah"}
 }

@@ -97,7 +97,7 @@
             return { id: v.id, fr: v.fr, items: all.filter(function (x) { return x.voie === v.id; }).sort(function (a, b) { return a.from - b.from || (b.to || b.from) - (a.to || a.from); }) };
         });
         var sauts = all.filter(function (x) { return x.saut; }).sort(function (a, b) { return a.from - b.from; });
-        return { plage: data.plage, sources: data.sources, voies: voies, items: all, byId: byId, sauts: sauts };
+        return { plage: data.plage, sources: data.sources, voies: voies, items: all, byId: byId, sauts: sauts, livres: data.livres || {}, fetes: data.fetes || {} };
     }
 
     // La partie d'un élément qui tombe dans la plage affichée : { from, to, cutLeft, cutRight }.
@@ -201,6 +201,18 @@
         var era = model.byId[GROUP_ERA[sage.grp]];
         return era ? { item: era } : null;
     }
+    // Un livre du Tanakh : l'époque qu'il raconte (un élément de la frise, ou une période en années de la création).
+    function forBook(model, bookId, label) {
+        var b = model.livres[bookId];
+        if (!b) return null;
+        if (b.item) return model.byId[b.item] ? { item: model.byId[b.item] } : null;
+        return { from: b.from, to: b.to, label: label || bookId };
+    }
+    // Une fête du Calendrier : l'événement qu'elle rappelle.
+    function forFeast(model, feastId) {
+        var id = model.fetes[feastId];
+        return id && model.byId[id] ? { item: model.byId[id] } : null;
+    }
     // `from`, `to` : des années de l'ère commune (une œuvre).
     function forYears(label, from, to) {
         if (!from) return null;
@@ -226,6 +238,6 @@
 
     return {
         CREATION_OFFSET: CREATION_OFFSET, civilYear: civilYear, civilLabel: civilLabel, amLabel: amLabel, yearLabel: yearLabel, dating: dating, duration: duration,
-        durationLabel: durationLabel, build: build, clip: clip, layout: layout, search: search, contemporains: contemporains, forGen: forGen, forSage: forSage, forYears: forYears, ce: ce, GROUP_ERA: GROUP_ERA, ticks: ticks, norm: norm
+        durationLabel: durationLabel, build: build, clip: clip, layout: layout, search: search, contemporains: contemporains, forGen: forGen, forSage: forSage, forBook: forBook, forFeast: forFeast, forYears: forYears, ce: ce, GROUP_ERA: GROUP_ERA, ticks: ticks, norm: norm
     };
 }));

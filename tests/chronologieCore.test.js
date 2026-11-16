@@ -353,3 +353,32 @@ test('recherche : tous les mots, les noms avant les notes, le nom qui commence p
     assert.ok(['e_destruction', 'e_destruction2'].indexOf(destruction[0]) !== -1, 'les destructions en tête');
     assert.deepStrictEqual(C.search(M, 'destruction zzzz'), []);
 });
+
+test('liens vers le Tanakh et les fêtes : livres du Tanakh, éléments et plages existants', () => {
+    const index = JSON.parse(fs.readFileSync(path.resolve(__dirname, '..', 'data', 'tanakh', 'index.json'), 'utf8'));
+    index.books.forEach(b => {
+        if (b.id === 'job') return;                          // Job : l'époque est discutée, pas de lien
+        assert.ok(M.livres[b.id], 'livre sans lien : ' + b.id);
+    });
+    Object.keys(M.livres).forEach(id => {
+        assert.ok(index.books.some(b => b.id === id), 'livre inconnu : ' + id);
+        const l = M.livres[id];
+        if (l.item) assert.ok(M.byId[l.item], id + ' : élément ' + l.item);
+        else assert.ok(l.from >= M.plage[0] && l.to <= M.plage[1] && l.from <= l.to, id + ' : plage');
+    });
+    const feasts = require('../js/hebrewCalendarCore.js').feastIds();
+    Object.keys(M.fetes).forEach(id => {
+        assert.ok(feasts.indexOf(id) !== -1, 'fête inconnue : ' + id);
+        assert.ok(M.byId[M.fetes[id]], id + ' : élément ' + M.fetes[id]);
+    });
+});
+
+test('situer un livre et une fête', () => {
+    assert.deepStrictEqual(C.forBook(M, 'exode', 'Exode'), { from: 2238, to: 2449, label: 'Exode' });
+    assert.strictEqual(C.forBook(M, 'isaie', 'Isaïe').item.id, 'p_yeshayahou');
+    assert.strictEqual(C.forBook(M, 'job', 'Job'), null);
+    assert.strictEqual(C.forFeast(M, 'pessah').item.id, 'e_sortie');
+    assert.strictEqual(C.forFeast(M, 'chavouot').item.id, 'e_sinai');
+    assert.strictEqual(C.forFeast(M, 'tichabav').item.id, 'e_destruction');
+    assert.strictEqual(C.forFeast(M, 'tubichvat'), null);
+});

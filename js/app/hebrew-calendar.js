@@ -455,6 +455,10 @@ function hcalFeastRow(f, isNext) {
     }
     hcalPara(content, t('tools.hcal_f_' + f.id + '_what'));
     hcalPara(content, t('tools.hcal_source', { src: t('tools.hcal_f_' + f.id + '_src') }), 'tool-small hcal-source');
+    // L'événement que la fête rappelle (la sortie d'Égypte, le don de la Torah, la destruction du Temple…), sur la grande frise.
+    const chr = hcalEl('div', 'gen-actions');
+    content.appendChild(chr);
+    if (typeof chrAddTargetButton === 'function' && typeof ChronologieCore !== 'undefined') chrAddTargetButton(chr, model => ChronologieCore.forFeast(model, f.id), 'screen-tool-hebrew-calendar');
     details.appendChild(content);
     return details;
 }
