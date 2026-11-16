@@ -17488,6 +17488,9 @@ body[data-view-profile="religieux"] .league-btn {
 .zm-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 18px; }
 .zm-actions .tool-history-chip { min-height: 0; padding: 4px 0; border: 0; border-radius: 0; background: none; box-shadow: none; color: #4a4f5c; font-size: 13px; }
 .zm-actions .tool-history-chip[aria-pressed="true"] { border: 0; background: none; color: var(--text-dark); font-weight: 600; }
+/* Une petite barre verticale entre les deux boutons. */
+.zm-actions .tool-history-chip + .tool-history-chip { position: relative; }
+.zm-actions .tool-history-chip + .tool-history-chip::before { content: ''; position: absolute; left: -10px; top: 50%; width: 1px; height: 14px; background: #9ca3af; transform: translateY(-50%); }
 .zm-manual summary, .zm-options summary { min-height: 44px; display: flex; align-items: center; cursor: pointer; font-weight: 700; color: var(--text-dark); }
 .zm-manual, .zm-options { display: flex; flex-direction: column; gap: 10px; }
 .zm-manual[open], .zm-options[open] { gap: 10px; }
