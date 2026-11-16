@@ -103,6 +103,7 @@ function benRender() {
     body.appendChild(list);
 
     body.appendChild(benTextsPanel());
+    body.appendChild(benOtherPanel());
     body.appendChild(benSourceCard());
     benRenderRows();
 }
@@ -220,11 +221,45 @@ function benTextsPanel() {
     const open = benNode('button', 'tool-history-chip', t('tools.ben_open_siddur'));
     open.type = 'button';
     open.id = 'ben-open-siddur';
-    open.onclick = () => {
-        openSiddurSections(['birkhot-hanehenin'], 'Birkhot haNéhénin');
-        toolReturns.siddur = 'screen-tool-benedictions';
-    };
+    open.onclick = () => benOpenSiddur(['birkhot-hanehenin'], 'Birkhot haNéhénin');
     panel.appendChild(open);
+    return panel;
+}
+
+// Ouvre le Siddour sur des sections ; le retour ramène ici.
+function benOpenSiddur(ids, title) {
+    openSiddurSections(ids, title);
+    toolReturns.siddur = 'screen-tool-benedictions';
+}
+
+// Les autres bénédictions du groupe « Bénédictions » du Siddour : à la vue de…, odorat, tonnerre, Chéhé'héyanou…
+const BEN_OTHER = [
+    { he: 'ברכות הראייה', fr: 'À la vue de…', desc: 'Merveilles de la nature, lieux, sages et rois, cimetière', ids: ['birkhot-hareiyot'], title: 'Birkhot haRéyiyot' },
+    { he: 'ברכות הריח', fr: 'À l\'odorat', desc: 'Aromates, arbustes, herbes, fruits odoriférants', ids: ['birkhot-hareach'], title: 'Birkhot haRéa\'h' },
+    { he: 'קשת', fr: 'Arc-en-ciel', desc: 'Celui qui se souvient de l\'alliance', ids: ['arc-en-ciel'], title: 'Arc-en-ciel' },
+    { he: 'ברקים', fr: 'Éclairs et tonnerre', desc: 'Œuvre de la Création ; Sa force remplit le monde', ids: ['eclairs-tonnerre'], title: 'Éclairs et tonnerre' },
+    { he: 'שהחיינו', fr: 'Chéhé\'héyanou', desc: 'Vêtement neuf, fruit de saison, nouvelle maison', ids: ['chehehyanou'], title: 'Chéhé\'héyanou' },
+    { he: 'דיין האמת', fr: 'Dayan haEmet, Hatov véhaMétiv', desc: 'Un décès ; une bonne nouvelle partagée', ids: ['dayan-haemet'], title: 'Dayan haEmet et Hatov véhaMétiv' }
+];
+
+function benOtherPanel() {
+    const panel = benNode('details', 'kor-details ben-other');
+    panel.id = 'ben-other';
+    panel.appendChild(benNode('summary', '', t('tools.ben_other_title')));
+    panel.appendChild(benNode('p', 'tool-small', t('tools.ben_other_lead')));
+    BEN_OTHER.forEach((o, i) => {
+        const btn = benNode('button', 'ben-other-row');
+        btn.type = 'button';
+        btn.dataset.ids = o.ids.join(',');
+        btn.id = 'ben-other-' + i;
+        btn.appendChild(benHebrew('span', o.he, 'ben-other-he'));
+        const text = benNode('span', 'ben-other-text');
+        text.appendChild(benNode('strong', '', o.fr));
+        text.appendChild(benNode('small', 'tool-small', o.desc));
+        btn.appendChild(text);
+        btn.onclick = () => benOpenSiddur(o.ids, o.title);
+        panel.appendChild(btn);
+    });
     return panel;
 }
 

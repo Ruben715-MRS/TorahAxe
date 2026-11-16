@@ -4479,6 +4479,8 @@
     "ben_rite_note": "Précision, rite {rite}",
     "ben_texts_title": "Les six bénédictions : texte, phonétique, traduction",
     "ben_open_siddur": "Ouvrir dans le Siddour",
+    "ben_other_title": "Autres bénédictions, dans le Siddour",
+    "ben_other_lead": "Les bénédictions de circonstance : ce que l'on dit en voyant, en sentant ou en apprenant quelque chose. Elles s'ouvrent dans le Siddour, avec le texte hébreu et la traduction.",
     "ben_source_title": "Source",
     "ben_source_text": "Liste et notes tirées du {guide} du Beth Loubavitch, reproduites avec son accord, {by}. Elle est établie {basis}.",
     "ben_disclaimer": "La liste et ses notes sont celles du Beth Loubavitch (usage 'Habad). Les précisions séfarades et ashkénazes ne viennent pas du Beth Loubavitch : elles sont indicatives et à faire relire. Outil d'étude, pas une décision de halakha : en cas de doute, suivez votre rav ou l'usage de votre famille ; il existe aussi des différences entre communautés d'un même rite (marocaine, tunisienne…).",

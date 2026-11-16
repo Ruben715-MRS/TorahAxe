@@ -18389,3 +18389,9 @@ body:has(#screen-recit:not(.hidden))::after {
 .ben-was { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 0; }
 .ben-rite-note { display: flex; flex-direction: column; gap: 2px; padding: 8px 10px; border-radius: 10px; background: var(--surface-2); }
 .ben-rite-note p { margin: 0; }
+.ben-other { margin-top: 4px; }
+.ben-other[open] { gap: 8px; }
+.ben-other-row { display: flex; align-items: center; gap: 12px; width: 100%; min-height: 52px; padding: 8px 10px; border: 1px solid var(--border-soft); border-radius: 12px; background: var(--surface); font: inherit; text-align: left; color: var(--text-dark); cursor: pointer; }
+.ben-other-he { flex: 0 0 76px; font-size: 20px; text-align: center; }
+.ben-other-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.ben-other-text small { margin: 0; }
