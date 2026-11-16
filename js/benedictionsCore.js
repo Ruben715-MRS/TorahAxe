@@ -22,18 +22,25 @@
 
     function riteOf(rite) { return Data.RITES[rite] ? rite : Data.DEFAULT_RITE; }
 
-    // L'écart d'un rite pour un aliment, ou null : { b?, note }. 'Habad (la liste telle quelle) n'a jamais d'écart.
+    // L'écart d'un rite pour un aliment, ou null : { b?, steps?, note }. 'Habad est la liste telle quelle, sauf pour les rares aliments qui ont un écart 'Habad explicite.
     function override(food, rite) {
         rite = riteOf(rite);
         var o = Data.RITE_OVERRIDES[food.n];
-        return (rite !== 'habad' && o && o[rite]) || null;
+        return (o && o[rite]) || null;
     }
 
     // L'aliment tel qu'il se lit dans un rite : { b ou steps, diff (la bénédiction change par rapport à 'Habad), habad (la bénédiction 'Habad, si diff), note }.
     function view(food, rite) {
         var o = override(food, rite);
         var v = { b: food.b, steps: food.steps, diff: false, habad: null, note: o ? o.note : null };
-        if (o && o.b && o.b !== food.b) { v.b = o.b; v.diff = true; v.habad = food.b; }
+        if (o && o.steps) {
+            v.steps = o.steps;
+            v.b = undefined;
+            // Les cas d'un rite : « différent de 'Habad » s'ils ne sont pas ceux de la lecture 'Habad (les cas 'Habad, ou ceux du guide ; jamais pour 'Habad lui-même).
+            var h = Data.RITE_OVERRIDES[food.n] && Data.RITE_OVERRIDES[food.n].habad;
+            var ref = h && h.steps ? h.steps : food.steps;
+            v.diff = riteOf(rite) !== 'habad' && JSON.stringify(o.steps) !== JSON.stringify(ref || [{ b: food.b }]);
+        } else if (o && o.b && o.b !== food.b) { v.b = o.b; v.diff = true; v.habad = food.b; }
         return v;
     }
 
@@ -60,7 +67,7 @@
 
     function searchText(food, rite) {
         var parts = [food.n];
-        (food.steps || []).forEach(function (s) { parts.push(s.t); });
+        (view(food, rite).steps || []).forEach(function (s) { parts.push(s.t); });
         blessingsOf(food, rite).forEach(function (b) { parts.push(label(b)); });
         return normalize(parts.join(' '));
     }

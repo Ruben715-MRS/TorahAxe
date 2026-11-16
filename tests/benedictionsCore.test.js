@@ -153,3 +153,20 @@ test('les bénédictions finales : le texte s\'ouvre dans le nusach du rite', ()
     ['sefarade', 'ashkenaze', 'habad'].forEach(r => assert.deepStrictEqual(C.finalOpen('nefachot', r).ids, ['birkhot-hanehenin']));
     assert.deepStrictEqual(C.finalOpen('hamazon', 'inconnu').ids, ['birkat-hamazon-habad']);     // rite inconnu : 'Habad, le rite par défaut
 });
+
+test('la pizza : cas selon la pâte et la quantité, dans chaque rite', () => {
+    const pizza = find('Pizza');
+    const sef = C.view(pizza, 'sefarade');
+    assert.deepStrictEqual(sef.steps.map(s => s.b), ['hamotsi', 'mezonot', 'hamotsi', 'hamotsi']);
+    assert.ok(sef.diff && sef.note);       // les cas séfarades diffèrent de ceux de 'Habad
+    ['ashkenaze', 'habad'].forEach(r => {
+        const v = C.view(pizza, r);
+        assert.deepStrictEqual(v.steps.map(s => s.b), ['mezonot', 'hamotsi', 'hamotsi']);
+        assert.strictEqual(v.diff, false, r);
+    });
+    assert.deepStrictEqual(C.blessingsOf(pizza, 'sefarade'), ['hamotsi', 'mezonot']);
+    assert.deepStrictEqual(C.finalsOf(pizza, 'habad'), ['hamihya', 'hamazon']);
+    assert.ok(C.filterFoods({ query: 'pizza', b: 'hamotsi', rite: 'sefarade' }).length === 1);
+    assert.ok(C.filterFoods({ query: 'pizza', b: 'hamotsi', rite: 'habad' }).length === 1);
+    assert.deepStrictEqual(C.notesOf(pizza), [25]);
+});

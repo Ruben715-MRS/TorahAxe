@@ -406,7 +406,26 @@
     var JUS_PAIN = 'Ne pas le confondre avec le « petit pain confectionné avec du jus de fruits » (ligne à part, Mezonot) : chez \'Habad et chez les Ashkénazes, ce n\'est pas le sucre qui change la bénédiction, mais le liquide de la pâte (jus de fruits plutôt qu\'eau).';
     var SALTY = 'Mezonot. De nombreuses autorités (dont des Séfarades) ne reprennent pas la précaution \'Habad de les manger dans un repas, après Hamotsi.';
 
+    // La pizza : le guide ne donne que Mezonot (notes 25 et 33). Selon la pâte et la quantité, la bénédiction change : un écart peut donc aussi porter des cas (`steps`),
+    // pour n'importe quel rite, 'Habad compris. Le plus sûr, en cas de doute : se laver les mains, dire Hamotsi sur du pain ordinaire et manger la pizza dans ce repas.
+    var PIZZA_SEF = [
+        { t: 'Pâte ordinaire (eau, farine, sel, levure), même garnie de fromage et de tomate', b: 'hamotsi' },
+        { t: 'Pâte enrichie de lait, de sucre ou de jus de fruit, dont le goût est réellement perceptible : une petite portion', b: 'mezonot' },
+        { t: 'Quantité de repas (classiquement autour de 216 g de pâte, soit environ deux parts) ou plus, même sur une pâte Mezonot', b: 'hamotsi' },
+        { t: 'Pizza accompagnée de salade, de frites, etc., qui en font un repas', b: 'hamotsi' }
+    ];
+    var PIZZA_ASH = [
+        { t: 'Une petite part, mangée seule comme en-cas', b: 'mezonot' },
+        { t: 'Quantité de repas (environ deux parts, plus de 216 g de pâte) ou plus', b: 'hamotsi' },
+        { t: 'Pizza accompagnée de salade, de frites, etc., qui en font un repas', b: 'hamotsi' }
+    ];
+    var PIZZA_SAFE = 'En cas de doute sérieux, le plus sûr est de se laver les mains, de dire Hamotsi sur du pain ordinaire et de manger la pizza dans ce repas.';
     var RITE_OVERRIDES = {
+        'Pizza': {
+            sefarade: { steps: PIZZA_SEF, note: 'Une étiquette « Mezonot » sur une pizza ne suffit pas : il faut vérifier la recette et le goût de la pâte. ' + PIZZA_SAFE },
+            ashkenaze: { steps: PIZZA_ASH, note: 'Beaucoup considèrent la pizza comme un en-cas. ' + PIZZA_SAFE },
+            habad: { steps: PIZZA_ASH, note: 'Le guide indique Mezonot (notes 25 et 33) : on ne mange pas la quantité d\'un repas hors d\'un repas introduit par Hamotsi. ' + PIZZA_SAFE }
+        },
         'Riz': { sefarade: RICE_SEF, ashkenaze: RICE_ASH },
         'Soupe au riz': { sefarade: RICE_SEF, ashkenaze: RICE_ASH },
         'Omelette au riz': { sefarade: RICE_SEF, ashkenaze: RICE_ASH },
