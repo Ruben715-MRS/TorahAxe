@@ -17069,6 +17069,16 @@ body[data-view-profile="religieux"] .league-btn {
 .tanakh-nav-bottom { margin: 18px 0 8px; }
 .tanakh-nav-bottom .tanakh-nav-label { flex: 1; min-width: 0; font-size: 15px; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 #screen-tool-tanakh .torah-nav { scroll-margin-top: 64px; }
+/* Barre de défilement du Tanakh : l'écran défile lui-même (.list-screen). Sans style, la barre native est invisible (iOS : masquée au repos)
+   ou se confond avec le fond. Ici : une barre fine, toujours visible, qui reprend la couleur du texte (donc juste en clair comme en sombre). */
+#screen-tool-tanakh { --tk-sb-thumb: color-mix(in srgb, var(--text-dark) 38%, transparent); --tk-sb-thumb-hover: color-mix(in srgb, var(--text-dark) 60%, transparent); --tk-sb-track: color-mix(in srgb, var(--text-dark) 8%, transparent); }
+#screen-tool-tanakh::-webkit-scrollbar { width: 10px; -webkit-appearance: none; }
+#screen-tool-tanakh::-webkit-scrollbar-track { background: var(--tk-sb-track); border-radius: 10px; margin: 4px 0; }
+#screen-tool-tanakh::-webkit-scrollbar-thumb { background-color: var(--tk-sb-thumb); border: 2px solid transparent; background-clip: content-box; border-radius: 10px; min-height: 44px; }
+#screen-tool-tanakh::-webkit-scrollbar-thumb:hover, #screen-tool-tanakh::-webkit-scrollbar-thumb:active { background-color: var(--tk-sb-thumb-hover); }
+@supports not selector(::-webkit-scrollbar) {
+    #screen-tool-tanakh { scrollbar-width: auto; scrollbar-color: var(--tk-sb-thumb-hover) var(--tk-sb-track); }
+}
 .tanakh-nav-flash { animation: tanakhNavFlash 1s ease-out; border-radius: 28px; }
 @keyframes tanakhNavFlash { 0% { box-shadow: 0 0 0 0 rgba(47, 111, 237, 0.55); } 60% { box-shadow: 0 0 0 10px rgba(47, 111, 237, 0); } 100% { box-shadow: 0 0 0 0 rgba(47, 111, 237, 0); } }
 .torah-chapter { width: auto; min-width: 150px; }
