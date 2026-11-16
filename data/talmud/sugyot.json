@@ -2,6 +2,653 @@
  "_note": "Titres de sugya écrits pour l'application, en français, d'après le texte de la Guémara (début de chaque développement, michna ou baraïta citée, avis nommés) : à relire par une personne compétente (note interne, non affichée). Les références sont « amoud:segment », segments numérotés depuis 1, bornes comprises ; un traité n'est couvert que là où sa liste le dit.",
  "v": 1,
  "tractates": {
+  "berakhot": [
+   {
+    "from": "2a:1",
+    "to": "3a:10",
+    "title": "Michna 1 : de quand lit-on le Chéma du soir ? Où est le tanna qui dit « de quand » ? Les trois veilles de la nuit, Rabban Gamliel et l'aube."
+   },
+   {
+    "from": "3a:11",
+    "to": "3b:9",
+    "title": "Les trois veilles de la nuit ; Rabbi Yossi entre dans une ruine et rencontre Élie ; pourquoi n'entre-t-on pas dans une ruine (écroulement, démons, soupçon)."
+   },
+   {
+    "from": "3b:10",
+    "to": "4a:2",
+    "title": "Combien de veilles la nuit ? David se levait à minuit : la harpe sous son lit, Ahitofel et Yoav."
+   },
+   {
+    "from": "4a:3",
+    "to": "4b:24",
+    "title": "Les cohanim, les lévites et les chants de David : « garde mon âme » ; « Que celui qui dit Téhila de David… » ; pourquoi pas de lettre noun dans Achré."
+   },
+   {
+    "from": "4b:25",
+    "to": "5a:5",
+    "title": "Rabbi Yéhochoua ben Lévi : lire le Chéma sur son lit ; Rabbi Yitzhak : cela écarte les démons ; Rav Nahman et l'écrit de l'ange de la mort."
+   },
+   {
+    "from": "5a:6",
+    "to": "5b:20",
+    "title": "Les souffrances d'amour : celui qui voit les épreuves venir doit examiner ses actes ; Rabbi Yohanan et la mort des fils ; trois cadeaux de Rabbi Chimon bar Yohaï."
+   },
+   {
+    "from": "5b:21",
+    "to": "6a:6",
+    "title": "Abba Binyamin : deux choses qui l'inquiétaient (la prière en face, le lit nord-sud) ; les démons innombrables (Rav Houna, Abayé, Rava)."
+   },
+   {
+    "from": "6a:7",
+    "to": "6b:1",
+    "title": "La prière de l'homme est-elle exaucée dans la synagogue ? Le tefilin de Dieu, « Qui est comme Ton peuple Israël » ; Dieu pose les tefilin."
+   },
+   {
+    "from": "6b:2",
+    "to": "6b:37",
+    "title": "Le mérite de la synagogue ; celui qui fixe un lieu à sa prière ; les salaires (agra) : de la conférence, de la noce, de l'étude ; prier derrière la synagogue."
+   },
+   {
+    "from": "7a:1",
+    "to": "7a:36",
+    "title": "« Qu'Il exauce Ma prière » : Dieu prie-t-Il ? Rabbi Yichmaël et le Saint-béni-soit-Il ; la colère divine ; « Tu verras Mon dos » ; Moïse et les attributs de miséricorde."
+   },
+   {
+    "from": "7b:1",
+    "to": "8a:3",
+    "title": "Le mérite d'Abraham pour Daniel ; la prière exaucée ; « Psaume de David lorsqu'il fuyait Absalom » ; la parabole de Rabbi Chimon ben Avichalom ; Rabbi Dostaï."
+   },
+   {
+    "from": "8a:4",
+    "to": "8b:11",
+    "title": "Dieu ne rejette pas la prière de la communauté ; la synagogue dans sa ville ; entrer par deux portes ; les neuf cent trois sortes de mort ; terminer ses parachiot avec la communauté."
+   },
+   {
+    "from": "8b:12",
+    "to": "9a:1",
+    "title": "Pourquoi deux portes ; Rabbi Akiva et Rabban Gamliel : trois choses que j'aime chez les Mèdes ; Rabbi Chimon bar Yohaï : parfois l'on ferme."
+   },
+   {
+    "from": "9a:2",
+    "to": "9b:2",
+    "title": "Pourquoi lit-on le Chéma du soir en premier ? « Il y eut un soir et il y eut un matin » ; sortie d'Égypte de nuit ou de jour ? « Parle, je te prie, aux oreilles du peuple »."
+   },
+   {
+    "from": "9b:3",
+    "to": "9b:8",
+    "title": "« Ils les leur ont prêtés » : l'or des Égyptiens ; le début de la michna du Chéma du matin ; « je serai ce que je serai » ; Éliahou : « réponds-moi »."
+   },
+   {
+    "from": "9b:9",
+    "to": "10a:11",
+    "title": "Michna : de quand lit-on le Chéma du matin ? Dès qu'on distingue entre bleu et blanc ; les vatikin et le lever du soleil ; adjoindre la rédemption à la prière."
+   },
+   {
+    "from": "10a:12",
+    "to": "10b:5",
+    "title": "« Bénis le Seigneur, mon âme » : l'interprétation de Rabbi Yohanan au nom de Rabbi Chimon bar Yohaï ; Berourya et Rabbi Méir ; « Qui est comme le sage »."
+   },
+   {
+    "from": "10b:6",
+    "to": "10b:36",
+    "title": "Les six choses de Hizkiya ; les hôtes : « une petite chambre haute » de la Chounamite et le prophète Élisée ; ce qu'on peut faire ou non en lisant le Chéma."
+   },
+   {
+    "from": "10b:37",
+    "to": "11a:23",
+    "title": "Michna : Beit Shammaï et Beit Hillel sur la position de lecture du Chéma (couché ou debout) ; l'histoire de Rabbi Tarfon."
+   },
+   {
+    "from": "11a:24",
+    "to": "11b:8",
+    "title": "Michna : les bénédictions du Chéma. Le matin deux avant et une après ; le soir deux avant et deux après. « Yotzer Or »."
+   },
+   {
+    "from": "11b:9",
+    "to": "12a:4",
+    "title": "Les bénédictions de la Torah avant l'étude (Rav Yehouda au nom de Samuel, Rav Houna) ; « Ahavat Olam » plutôt que « Ahavah Rabba » ; la Michna du Temple : « bénissez une bénédiction »."
+   },
+   {
+    "from": "12a:5",
+    "to": "12b:4",
+    "title": "Les dix commandements dans le Chéma : dans les provinces aussi on a voulu les lire ; les sectaires ; « Il redresse les courbés »."
+   },
+   {
+    "from": "12b:5",
+    "to": "12b:22",
+    "title": "« Le Dieu saint » et « le Roi qui aime la justice » ; que le sage malade s'occupe de ses affaires ; la parasha des tsitsit dans le Chéma (« 3 éléments »)."
+   },
+   {
+    "from": "12b:23",
+    "to": "13a:14",
+    "title": "Michna : on mentionne la sortie d'Égypte la nuit (Rabbi Elazar ben Azarya) ; Ben Zoma et les sages : « les jours viennent » ; Jacob s'appelle Israël."
+   },
+   {
+    "from": "13a:16",
+    "to": "13a:37",
+    "title": "Michna 2 : celui qui lisait dans la Torah et que vient le temps du Chéma ; l'intention nécessaire ; « Sur ton cœur » ; la loi de Rabbi Akiva."
+   },
+   {
+    "from": "13b:1",
+    "to": "14a:1",
+    "title": "« Sur ton cœur » et les quatre sens de la kavana ; l'ordre des mots (Rabbi Akiva) ; allonger le mot « Echad » (Sumkhos) ; Rav Yossef : on ne lit pas couché sur le dos."
+   },
+   {
+    "from": "14a:2",
+    "to": "14a:21",
+    "title": "S'interrompre pour le Chéma : saluer par respect ou par peur ; entre les parachiot (Rav Yehouda, Rabbi Ami)."
+   },
+   {
+    "from": "14b:1",
+    "to": "15a:5",
+    "title": "« Dieu de vérité » ; Rav Yossef et le sens des mots du Chéma ; la parasha de « Chéma » avant « Vehaya » ; Rabbi Yéhochoua ben Korha ; Rabbi Chimon bar Yohaï et la parasha « Vayomer »."
+   },
+   {
+    "from": "15a:6",
+    "to": "15b:11",
+    "title": "Michna 3 : celui qui lit sans se faire entendre s'acquitte-t-il ? Rabbi Yossi contre ; Rav Hisda et le sourd qui ne peut prélever la teroumah."
+   },
+   {
+    "from": "15b:12",
+    "to": "16a:6",
+    "title": "Si le lecteur n'a pas prononcé correctement ; les halakhot de Rabbi Yehouda et des sages ; Rav Yossef : tous sont-ils d'accord en dehors du Chéma ?"
+   },
+   {
+    "from": "16a:7",
+    "to": "16b:4",
+    "title": "Michna 4 : les artisans lisent au sommet de l'arbre ; la michna du marié et de Rabban Gamliel ; l'ouvrier au service du propriétaire."
+   },
+   {
+    "from": "16b:5",
+    "to": "17a:16",
+    "title": "Michna 5 : Rabban Gamliel s'est baigné la première nuit après la mort de sa femme ; son esclave Tavi ; condoléances pour les esclaves ; « Abba » pour un esclave."
+   },
+   {
+    "from": "17a:17",
+    "to": "17b:10",
+    "title": "Les commentaires sur la prière de la Torah : « nos chefs seront chargés » ; que notre groupe ne soit pas comme celui de David ; la fin du premier chapitre."
+   },
+   {
+    "from": "17b:12",
+    "to": "18a:9",
+    "title": "Michna chap. 3 : celui dont le mort est devant lui est dispensé du Chéma. Le deuil et le non-versé de la prière ; qui est dispensé."
+   },
+   {
+    "from": "18a:10",
+    "to": "18a:14",
+    "title": "Transporter les ossements ; les moqueurs du pauvre ; celui qui voit le mort et ne l'accompagne ; les morts et la parole."
+   },
+   {
+    "from": "18b:1",
+    "to": "19a:1",
+    "title": "Les morts et les vivants : « les pieux sont appelés vivants dans leur mort » ; les morts savent-ils ce qui se passe ? Rav Yehouda et Rav Hanan."
+   },
+   {
+    "from": "19a:2",
+    "to": "19b:1",
+    "title": "Pleurer le mort et honorer les sages ; « celui qui vient raconter les louanges du mort » ; qu'un homme ne dise pas « Les vivants… » ; le principe de Rabbi Yéhochoua ben Lévi."
+   },
+   {
+    "from": "19b:2",
+    "to": "20a:9",
+    "title": "Les kilaïm dans le vêtement ; la dignité de l'homme repousse-t-elle une interdiction ; « ne te moque pas d'un grand homme » ; faut-il retourner sur la route d'un mort ?"
+   },
+   {
+    "from": "20a:10",
+    "to": "20b:15",
+    "title": "Michna : les femmes, les esclaves et les enfants sont dispensés du Chéma, mais pas de la prière et de la mezouza."
+   },
+   {
+    "from": "20b:16",
+    "to": "21a:2",
+    "title": "Michna : celui qui a eu un écoulement séminal pense dans son cœur ; ne bénit ni avant ni après. La pensée vaut-elle la parole ? Les bénédictions de la Torah."
+   },
+   {
+    "from": "21a:3",
+    "to": "21b:1",
+    "title": "D'où la bénédiction après le repas est de la Torah ; la bénédiction de la Torah d'après la bénédiction du repas ; doute sur le Chéma ; Rav Houna et la communauté en prière."
+   },
+   {
+    "from": "21b:2",
+    "to": "22a:2",
+    "title": "Entrer à la synagogue quand la communauté prie : Rav Houna ; « Que Son grand nom soit béni » (Kaddich) ; les interruptions dans les bénédictions ; la loi du zav et de la nidda."
+   },
+   {
+    "from": "22a:3",
+    "to": "22b:12",
+    "title": "Les ablutions de celui qui a eu un écoulement : Ezra les a instituées ; neuf kav d'eau ; la tevila des élèves ; Rabbi Yéhouda ben Bétéra."
+   },
+   {
+    "from": "22b:13",
+    "to": "23a:2",
+    "title": "Michna : debout en prière, il se rappelle qu'il est impur ; ne doit pas interrompre. Les excréments devant lui ; l'eau qui coule sur ses genoux."
+   },
+   {
+    "from": "23a:3",
+    "to": "23b:1",
+    "title": "Prier en ayant besoin de se soulager ; « ils ne savent pas faire le mal » ; entrer aux toilettes avec les tefilin ; les ranger en public ; Rav Yaakov bar Aha."
+   },
+   {
+    "from": "23b:2",
+    "to": "24a:3",
+    "title": "Tenir un tefilin en main et un rouleau de la Torah ; entrer au repas fixe en ôtant les tefilin ; placer les tefilin sous ses pieds ; Rav Yossef bar Rav Nehounia."
+   },
+   {
+    "from": "24a:4",
+    "to": "24b:1",
+    "title": "Se tourner pour prier à côté d'une nudité ; deux dans un même lit ; « un palme chez la femme est nudité » ; Rav Hisda et la cuisse de la femme."
+   },
+   {
+    "from": "24b:2",
+    "to": "25a:5",
+    "title": "Faire entendre sa voix en prière ; dormir dans son vêtement ; celui qui marche dans les ruelles pleines d'impureté ; la prière en lisant."
+   },
+   {
+    "from": "25a:6",
+    "to": "25b:4",
+    "title": "Réciter le Chéma devant la saleté ; la bouche du porc ; l'urine ; sur ordure d'un lieu ; Rav Yehouda et l'ordure douteuse."
+   },
+   {
+    "from": "25b:5",
+    "to": "26a:6",
+    "title": "Eau trouble, eau claire ; excréments dans une lanterne ; un non-juif nu ; derrière une cloison de moins de trois paumes ; quelle est la distance d'un lit ?"
+   },
+   {
+    "from": "26a:7",
+    "to": "26a:21",
+    "title": "Michna : le zav qui a vu un écoulement, la nidda, la femme qui a eu un rapport ; lecture dans le chaudron. Débute le chapitre IV : « La prière du matin jusqu'à midi »."
+   },
+   {
+    "from": "26b:1",
+    "to": "27b:8",
+    "title": "Qui a oublié la prière de l'après-midi : la rattrape-t-il ? Les patriarches ont-ils institué les prières ; le temps de la mincha (Rabbi Yéhouda)."
+   },
+   {
+    "from": "27b:9",
+    "to": "28a:14",
+    "title": "Rav priait la prière du shabbat la veille ; sans mincha le soir ; Rabban Gamliel et Rabbi Yéhochoua : l'élève qui demande si la prière du soir est facultative."
+   },
+   {
+    "from": "28a:15",
+    "to": "28b:2",
+    "title": "Deux prières devant lui (mincha et moussaf) ; le moussaf avant l'aube ; Rabbi Yéhochoua ben Lévi et Rabbi Elazar : celui qui prie la prière du matin après quatre heures."
+   },
+   {
+    "from": "28b:3",
+    "to": "29a:6",
+    "title": "Michna : la prière de Rabbi Nehounia ben HaKanah en entrant et sortant de la maison d'étude. Michna : « Rabban Gamliel dit : chaque jour il prie dix-huit »."
+   },
+   {
+    "from": "29a:7",
+    "to": "29b:1",
+    "title": "Les dix-huit bénédictions : Yanaï ou Yohanan (Abayé et Rava) ; réciter les dix-huit tous les jours (Rav Nahman au nom de Samuel) ; l'omission de la pluie."
+   },
+   {
+    "from": "29b:2",
+    "to": "30a:6",
+    "title": "Si l'on omet des mentions dans la prière ; celui qui marche là où rôdent bêtes sauvages et brigands prie une prière brève ; Rav Houna : la halakha selon les autres."
+   },
+   {
+    "from": "30a:7",
+    "to": "30a:16",
+    "title": "Rabbi (Yéhouda) : la halakha ; l'aveugle qui ne peut s'orienter prie vers son cœur ; se tourner vers Jérusalem ; les pèlerins."
+   },
+   {
+    "from": "30a:17",
+    "to": "30b:2",
+    "title": "Michna : « La prière du moussaf n'est pas obligatoire », Rabbi Elazar ben Azarya ; Rabbi Yehouda et le moussaf ; Rav Hounah bar Hininah."
+   },
+   {
+    "from": "30b:3",
+    "to": "30b:12",
+    "title": "Rabbi Yohanan et Rabbi Yanaï : la halakha de la prière ; les bénédictions de Rosh Hodech ; celui qui a oublié."
+   },
+   {
+    "from": "30b:14",
+    "to": "31a:3",
+    "title": "Michna chap. 5 : on ne se tient en prière que dans le sérieux. d'où l'apprend-on (Rabbi Elazar) ; Rabbi Yohanan et Rabbi Yanaï ; qui prie dans un état d'esprit inadapté."
+   },
+   {
+    "from": "31a:4",
+    "to": "31b:2",
+    "title": "On ne se met pas à prier dans un état de jugement, de tristesse ou de légèreté ; la concentration (kavana) de la prière ; où prier ; la prière de Hanna."
+   },
+   {
+    "from": "31b:3",
+    "to": "32a:1",
+    "title": "La prière de Hanna : « elle parlait dans son cœur », Éli et le soupçon d'ivresse, « ni vin ni boisson fermentée » ; ce que l'on en apprend pour la prière (Rabbi Elazar)."
+   },
+   {
+    "from": "32a:2",
+    "to": "32a:33",
+    "title": "La prière de Moïse après le veau d'or : « Va, descends », « laisse-Moi », « Il apaisa la face de l'Éternel », « souviens-toi d'Abraham » ; Rabbi Elazar et Rabbi Yohanan."
+   },
+   {
+    "from": "32b:1",
+    "to": "33a:10",
+    "title": "Plus grande est la prière que les bonnes actions ; celui qui prie longuement ; les quatre qui ont besoin de renforcement ; « Sion dit : Dieu m'a abandonné » ; la méditation avant la prière."
+   },
+   {
+    "from": "33a:11",
+    "to": "33b:15",
+    "title": "Michna : on mentionne la puissance de la pluie dans la résurrection des morts ; la Havdala dans la prière ; pourquoi la prière a-t-elle été instituée à cet endroit (Rav Yossef)."
+   },
+   {
+    "from": "33b:16",
+    "to": "34a:1",
+    "title": "Michna : « Qui dit : « Sur le nid d'oiseau s'étende ta miséricorde » est réduit au silence ; ceux qui disent « Nous te remercions ». Pourquoi réduit au silence."
+   },
+   {
+    "from": "34a:2",
+    "to": "34b:11",
+    "title": "Michna : « Que les bons te bénissent » ; celui qui prie devant l'arche ; trois bénédictions ; le fait de s'incliner dans les bénédictions ; un élève devant l'arche."
+   },
+   {
+    "from": "34b:12",
+    "to": "34b:31",
+    "title": "Michna : celui qui prie et se trompe, c'est un mauvais signe ; Rabbi Haninah ben Dosa et la prière du malade ; le fils de Rabban Gamliel et le discernement de la prière."
+   },
+   {
+    "from": "35a:1",
+    "to": "35b:1",
+    "title": "Michna chap. 6 : « Comment bénit-on les fruits ? » La bénédiction des fruits de l'arbre ; « Saint pour les louanges » ; interdit de jouir de ce monde sans bénédiction."
+   },
+   {
+    "from": "35b:2",
+    "to": "36a:16",
+    "title": "Celui qui jouit de ce monde sans bénédiction : voler Dieu ; « Tu récolteras ton grain » (Rabbi Chimon bar Yohaï et Rabbi Ichmaël) ; l'ordre des prières dans le temps."
+   },
+   {
+    "from": "36a:17",
+    "to": "36b:14",
+    "title": "Le caprier : fruit ou légume ? Les prescriptions de orla ; le caprier de l'extérieur ; la bénédiction sur le caprier."
+   },
+   {
+    "from": "36b:15",
+    "to": "37b:3",
+    "title": "La orla : l'arbre gardé pour son fruit, quand le fruit est-il soumis à la orla ; Rabbi Méir."
+   },
+   {
+    "from": "37b:4",
+    "to": "38a:8",
+    "title": "Les aliments mixtes : le pain et les autres aliments ; le sort des bouillies ; la cuisson des céréales : bénédiction avant et après ; Rav Yossef et la bouillie de farine."
+   },
+   {
+    "from": "38a:9",
+    "to": "38b:8",
+    "title": "Les aliments épais et liquides (bouillie épaisse ou claire) ; la bénédiction ; Rav Hisda."
+   },
+   {
+    "from": "38b:9",
+    "to": "39a:7",
+    "title": "Les légumes cuits ; bénédiction sur le bouillon ; Rabbi Hiyya bar Abba au nom de Rabbi Yohanan : les légumes cuits et leur bénédiction."
+   },
+   {
+    "from": "39a:8",
+    "to": "39b:2",
+    "title": "Les plats de légumes et de poissons : le rôle principal ; Rav Houna et Rav Kahana et la betterave ; les épinards qui font du bien au cœur (Rav Hisda)."
+   },
+   {
+    "from": "39b:3",
+    "to": "39b:11",
+    "title": "Le pain entier et le pain tranché : lequel rompre ? Les fragments et les entiers ; l'homme craignant le ciel s'acquitte des deux ; Pessah et Shabbat : deux pains."
+   },
+   {
+    "from": "40a:1",
+    "to": "40a:11",
+    "title": "Celui qui prend le pain et bénit : « prends, bénis » ; le maître de maison rompt le pain ; les lentilles et les petits poissons ; maladies et aliments."
+   },
+   {
+    "from": "40a:12",
+    "to": "40b:11",
+    "title": "Michna : « Qui a béni « créateur du fruit de la terre » sur des fruits d'arbre » ; qui est l'auteur de la michna ; l'arbre est-il terre ?"
+   },
+   {
+    "from": "40b:12",
+    "to": "41a:2",
+    "title": "Michna : « sur ce qui ne pousse pas de la terre : Chéhakol » ; les champignons et le sel ; Abayé et la substance née de la terre."
+   },
+   {
+    "from": "41a:3",
+    "to": "41b:1",
+    "title": "Une olive et un radis : lequel bénir d'abord ? Les espèces de la terre d'Israël : froment, orge, vigne ; mesure du figuier ; « une terre d'olives et de miel »."
+   },
+   {
+    "from": "41b:2",
+    "to": "42a:6",
+    "title": "L'huile d'olive et le miel ; figues et raisins pendant le repas ; Rav Papa : ce qui vient à cause du repas est dispensé par la bénédiction du pain."
+   },
+   {
+    "from": "42a:7",
+    "to": "42b:1",
+    "title": "Qui prend l'huile ; la bénédiction sur le vin avant le repas ; le vin qui dispense la nourriture ; la michna : « Qui a béni sur le vin avant le repas dispense »."
+   },
+   {
+    "from": "42b:2",
+    "to": "43a:3",
+    "title": "Le vin dans le repas ; la bénédiction du vin dispense ce qui vient du repas ; le Qiddouch du lieu ; « Que celui qui dit : « Allons manger » »."
+   },
+   {
+    "from": "43a:4",
+    "to": "43a:19",
+    "title": "L'ordre de s'asseoir et de s'allonger ; les parfums ; le rôle du myrte ; qui bénit sur un parfum ; « Ceux de la bonne odeur »."
+   },
+   {
+    "from": "43b:1",
+    "to": "43b:20",
+    "title": "Le plantes odorantes (Rav Gidel) ; qui voit un arbre en fleur en Nissan : « Béni soit celui qui n'a rien manqué » ; six choses sont indignes d'un sage."
+   },
+   {
+    "from": "44a:1",
+    "to": "44a:7",
+    "title": "Michna : le poisson salé en premier et le pain avec ; Rabba bar bar Hana et Rabbi Yohanan ; le sel ; « Tout repas où il n'y a pas de sel… »."
+   },
+   {
+    "from": "44a:8",
+    "to": "44a:17",
+    "title": "Michna : raisins, figues, grenades : bénédiction finale selon Rabban Gamliel ; les sept espèces ; « une terre de froment et d'orge »."
+   },
+   {
+    "from": "44b:1",
+    "to": "45a:2",
+    "title": "Le riz, le millet et autres ; Rav Achi et la bénédiction finale ; « celui qui doit bénir avant doit bénir après » ; ce que Rabbi Yéhouda et les sages disent sur la rate."
+   },
+   {
+    "from": "45a:4",
+    "to": "45b:14",
+    "title": "Michna chap. 7 : trois qui ont mangé ensemble doivent se joindre (zimoun). D'où l'apprend-on ? « Exaltez l'Éternel avec moi » ; « Amen » ; le traducteur qui ne lève pas la voix."
+   },
+   {
+    "from": "45b:15",
+    "to": "46a:12",
+    "title": "Deux qui ont mangé ensemble : bonne coutume d'inviter ; Rava : j'ai dit ceci, et on l'a transmis au nom de Rav Pappa ; dix qui mangent d'un même plat."
+   },
+   {
+    "from": "46a:13",
+    "to": "46b:2",
+    "title": "« Hatov Vehametiv » n'est pas de la Torah ; Rav Yossef ; Rav Yitzhak bar Chemouel bar Marta au nom de Rav."
+   },
+   {
+    "from": "46b:3",
+    "to": "47a:3",
+    "title": "Celui qui rompt le pain donne la bénédiction ; Hatov Vehametiv ; les invités ; l'ordre du repas ; ne pas honorer sur les routes ou les ponts."
+   },
+   {
+    "from": "47a:4",
+    "to": "47a:16",
+    "title": "Le plat à partager ; ceux qui attendent ; ni « Amen » hâtif ni coupé ; Rav Yehouda bar Chemouel bar Chila."
+   },
+   {
+    "from": "47b:1",
+    "to": "48a:3",
+    "title": "« De toutes vos dîmes » ; qui est un ignorant ? Rav Houna : neuf et l'arche ; deux et le Chabbat ; le petit enfant devenu pubère."
+   },
+   {
+    "from": "48a:4",
+    "to": "48b:1",
+    "title": "Le zimoun avec un enfant ; s'appuyer (Rabban Chimon ben Gamliel) ; Rav Hana bar Yehouda au nom de Rava."
+   },
+   {
+    "from": "48b:2",
+    "to": "49a:5",
+    "title": "La bénédiction du repas : l'ordre des bénédictions ; « Que Dieu soit béni pour la terre désirable » (Rabbi Eliezer) ; de la Torah ; Moïse, Josué, David et Salomon."
+   },
+   {
+    "from": "49a:6",
+    "to": "49b:2",
+    "title": "Les conclusions : « qui rebâtit Jérusalem » ; « qui sanctifie le shabbat et Israël et les moments » ; que dire si l'on commence par « aie pitié de ton peuple » ; « Hatov Vehametiv »."
+   },
+   {
+    "from": "49b:3",
+    "to": "50a:2",
+    "title": "« Qui a béni… » : Rav Nahman et Rav Adda bar Ahava ; la halakha de l'enchaînement ; Abayé et Rabbi Yohanan ; Michna : comment procède-t-on au zimoun ?"
+   },
+   {
+    "from": "50a:3",
+    "to": "50b:1",
+    "title": "L'invitation : « Bénissez » ; « Bénissons ce que nous avons mangé » ; « Béni soit celui dont nous avons mangé » ; Rabbi Akiva dans la synagogue ; trois compagnies."
+   },
+   {
+    "from": "50b:2",
+    "to": "51a:2",
+    "title": "La table volée ; Rabbi Yossi bar Hanina : Rabbi Eliezer et les sages ; quatre choses dites du pain ; celui qui met un aliment dans la bouche sans bénir : l'avale ou le recrache."
+   },
+   {
+    "from": "51a:3",
+    "to": "51b:9",
+    "title": "Après un repas : l'asperge ; six choses sur l'asperge ; les trois choses que l'ange m'a dites ; qui boit la coupe de la bénédiction (Rabbi Yohanan)."
+   },
+   {
+    "from": "51b:11",
+    "to": "52a:13",
+    "title": "Michna : ce qui divise Beit Shammaï et Beit Hillel dans le repas : la bénédiction du jour ou du vin d'abord ; se laver les mains ou remplir la coupe ; l'ordre."
+   },
+   {
+    "from": "52a:14",
+    "to": "52b:7",
+    "title": "Beit Shammaï et Beit Hillel : se laver les mains avant ou après la coupe."
+   },
+   {
+    "from": "52b:8",
+    "to": "53a:1",
+    "title": "Essuyer les mains avec la serviette ; balayer la maison ; « de la lumière du feu » ; la bénédiction sur la lumière qui s'est reposée."
+   },
+   {
+    "from": "53a:2",
+    "to": "53b:1",
+    "title": "La lumière du feu : « qui cesse » ; un non-juif ou un Israélite qui allume ; la lumière dans la maison d'étude ; l'huile et les bougies du Chabbat."
+   },
+   {
+    "from": "53b:2",
+    "to": "53b:32",
+    "title": "Les braises ; « oumamot » ou « oumamot » ; le parfum ; il faut regarder la lumière ; Beit Hillel contre Beit Shammaï ; l'Amen après l'enfant ; Rabbi Zilaï et l'huile."
+   },
+   {
+    "from": "54a:1",
+    "to": "54b:11",
+    "title": "Michna chap. 9 : celui qui voit un lieu de miracle : « Béni celui qui a fait des miracles ici ». Les ponts de la mer, du Jourdain ; le fleuve Arnon ; les rochers d'Og."
+   },
+   {
+    "from": "54b:12",
+    "to": "55a:9",
+    "title": "Les quatre qui doivent rendre grâce : ceux qui voyagent en mer, dans le désert, les malades, le prisonnier ; les trois qui ont besoin de garde."
+   },
+   {
+    "from": "55a:10",
+    "to": "55b:1",
+    "title": "Trois choses que Dieu proclame ; Bezalel et les lettres de la création ; « tout rêve… » ; le rêve sans interprétation ; Rabbi Berekhia."
+   },
+   {
+    "from": "55b:2",
+    "to": "56b:6",
+    "title": "Les rêves : attendre un bon rêve vingt-quatre ans ; les rêves de David ; « celui qui voit un rêve » ; la bonne interprétation ; Rabbi Bizna bar Zabda."
+   },
+   {
+    "from": "56b:7",
+    "to": "57a:4",
+    "title": "Les rêves de puits, rivière, oiseau, marmite ; le roseau ; le bœuf ; la sagesse en rêve ; les cinq choses dites du bœuf."
+   },
+   {
+    "from": "57a:5",
+    "to": "57a:22",
+    "title": "Les rêves : blé, chèvre ; celui qui rêve de ; la mort dans la maison ; le prophète et l'Écriture au verset du rêve."
+   },
+   {
+    "from": "57b:1",
+    "to": "57b:22",
+    "title": "Celui qui se lève et dont un verset lui vient à la bouche : c'est une petite prophétie ; le rêve : un soixantième de la prophétie ; celui qui a mangé et bu dans la maison."
+   },
+   {
+    "from": "58a:1",
+    "to": "58a:17",
+    "title": "Bénédictions à la vue des multitudes d'Israël, des sages d'Israël, des sages des nations, des rois d'Israël et des rois des nations."
+   },
+   {
+    "from": "58b:1",
+    "to": "59a:4",
+    "title": "Voir les maisons d'Israël, les tombes d'Israël ; celui qui voit son prochain après trente jours ; les noirs ; le lépreux ; l'éléphant et le singe."
+   },
+   {
+    "from": "59a:5",
+    "to": "59a:15",
+    "title": "Les comètes ; les nuées du matin ; qui voit le ciel dans sa pureté ; les tremblements de terre, la foudre et le tonnerre."
+   },
+   {
+    "from": "59b:1",
+    "to": "60a:2",
+    "title": "Voir le soleil à sa période et la lune en sa force ; les étoiles ; « Beaucoup de remerciements »."
+   },
+   {
+    "from": "60a:3",
+    "to": "60a:19",
+    "title": "Une maison neuve ; Hillel entend des cris dans la ville ; prières en entrant et en sortant d'un lieu et du bain."
+   },
+   {
+    "from": "60a:20",
+    "to": "60b:7",
+    "title": "Prières en entrant et en sortant d'un lieu et du bain (« que cette voie me soit facile ») ; Abayé ; Rav Yossef."
+   },
+   {
+    "from": "60b:8",
+    "to": "61a:5",
+    "title": "Bénédictions et prières de la nuit et du matin : le coq, les premières bénédictions ; Rav Aha au nom de Rabbi Lévi."
+   },
+   {
+    "from": "61a:6",
+    "to": "61b:1",
+    "title": "Les premiers humains : la côte et la construction de la femme ; le yetser hara comme une mouche ; les deux reins ; le cœur et les reins."
+   },
+   {
+    "from": "61b:2",
+    "to": "61b:16",
+    "title": "« Tu aimeras l'Éternel ton Dieu » ; Rabbi Yossi HaGalili : bon et mauvais penchant ; Rabbi Akiva et la tentative des Romains contre l'étude de la Torah ; Pappos ben Yéhouda."
+   },
+   {
+    "from": "62a:1",
+    "to": "62a:22",
+    "title": "Les latrines : Ben Azzaï et Rabbi Akiva ; modestie aux latrines ; « qui est modeste » ; lever tôt ; se tenir aux deux bouts."
+   },
+   {
+    "from": "62b:1",
+    "to": "63a:9",
+    "title": "Se coucher sur son lit ; l'histoire de David et Saül (le coin du manteau) ; « de la salle d'attente » ; le crachat dans la synagogue."
+   },
+   {
+    "from": "63a:10",
+    "to": "63b:4",
+    "title": "Sagesses de la maison ; « la Torah est vivante » ; ne pas multiplier ses amis ; « pourquoi la parasha du nazir est-elle proche de celle de la sotah » ; l'étude vaut tout."
+   },
+   {
+    "from": "63b:5",
+    "to": "64a:1",
+    "title": "Les sages à Yavné dans la vigne ; « Moïse parlait face à face » ; « écoute (hasket) » ; la colère de l'élève ; celui qui se retire de la Torah."
+   },
+   {
+    "from": "64a:2",
+    "to": "64a:14",
+    "title": "Fin du traité : « Celui qui presse l'heure » ; Rabbi Lévi bar Hiya : la sortie de la synagogue ; « les sages n'ont pas de repos » ; la paix."
+   }
+  ],
   "bekhorot": [
    {
     "from": "58a:1",
