@@ -1,6 +1,7 @@
 // Ajoute au siddour des sections de bénédictions « de circonstance » : data/siddur/<id>.json, leur traduction française (data/siddur/fr/<id>.json) et leurs
 // entrées dans data/siddur/index.json (groupe « divers », à la suite de « Éclairs et tonnerre ») et fr/index.json.
-//  - birkhot-hareiyot : « À la vue de… » ; birkhot-hareach : « À l'odorat » ; dayan-haemet : nouvelle triste ou heureuse (Dayan haEmet, Hatov véhaMétiv).
+//  - birkhot-hareiyot : « À la vue de… » ; birkhot-hareach : « À l'odorat » ; dayan-haemet : nouvelle triste ou heureuse (Dayan haEmet, Hatov véhaMétiv) ;
+//    chehehyanou : Chéhé'héyanou, avec ses quatre occasions (une seule bénédiction, d'où des occasions en liste : `it[0]` et `it[1]` peuvent être des tableaux).
 // Les textes sont les bénédictions traditionnelles (hébreu vocalisé, usage séfarade) ; la liste des occasions suit la « Liste des bénédictions » de Torah-Box,
 // et la traduction française est celle de l'application (à faire relire). Idempotent : relancer réécrit les mêmes fichiers sans rien dupliquer.
 // Usage : node scripts/build_siddur_birkhot.js
@@ -43,11 +44,18 @@ const NEWS = [
     ['על דבר טוב שיש בו הנאה לו ולאחרים, כגון כלי חדש או בשורה טובה, מברך', 'Quand un objet nouvellement acquis ou un heureux événement procure de la satisfaction à plusieurs personnes :', 'הַטּוֹב וְהַמֵּטִיב:', 'Toi qui es bon et bienfaisant.']
 ];
 
+const CHEHEHYANOU = [
+    [['מברכים שהחיינו על בגד חדש בלבישה ראשונה', 'על פרי חדש של העונה', 'בחנוכת בית חדש', 'על לידת בת, לדעת יש מי שאומרים'],
+        ['En revêtant pour la première fois un vêtement neuf :', 'En mangeant un nouveau fruit de saison :', 'En inaugurant une nouvelle habitation :', 'À la naissance d\'une fille (selon certains décisionnaires) :'],
+        'שֶׁהֶחֱיָנוּ וְקִיְּמָנוּ וְהִגִּיעָנוּ לַזְּמַן הַזֶּה:', 'qui nous as maintenus en vie, nous as soutenus et nous as permis d\'atteindre ce temps.']
+];
+
 // id, titre hébreu de l'index, titre français, titre de la première ligne (hébreu), occasions.
 const SECTIONS = [
     { id: 'birkhot-hareiyot', he: 'ברכות ותפילות שונות › ברכות הראייה', fr: 'Birkhot haRéyiyot (bénédictions « à la vue de… »)', title: 'בִּרְכוֹת הָרְאִיָּה', items: REIYOT, after: 'eclairs-tonnerre' },
     { id: 'birkhot-hareach', he: 'ברכות ותפילות שונות › ברכות הריח', fr: 'Birkhot haRéa\'h (bénédictions de l\'odorat)', title: 'בִּרְכוֹת הָרֵיחַ', items: REACH, after: 'birkhot-hareiyot' },
-    { id: 'dayan-haemet', he: 'ברכות ותפילות שונות › דיין האמת והטוב והמטיב', fr: 'Dayan haEmet et Hatov véhaMétiv', title: 'דַּיַּן הָאֱמֶת וְהַטּוֹב וְהַמֵּטִיב', items: NEWS, after: 'birkhot-hareach' }
+    { id: 'dayan-haemet', he: 'ברכות ותפילות שונות › דיין האמת והטוב והמטיב', fr: 'Dayan haEmet et Hatov véhaMétiv', title: 'דַּיַּן הָאֱמֶת וְהַטּוֹב וְהַמֵּטִיב', items: NEWS, after: 'birkhot-hareach' },
+    { id: 'chehehyanou', he: 'ברכות ותפילות שונות › שהחיינו', fr: 'Chéhé\'héyanou', title: 'בִּרְכַּת שֶׁהֶחֱיָנוּ', items: CHEHEHYANOU, after: 'dayan-haemet' }
 ];
 
 const indexPath = path.join(DIR, 'index.json');
@@ -61,8 +69,10 @@ SECTIONS.forEach(sec => {
     const segments = ['<b><big><b>' + sec.title + '</b></big></b>'];
     const fr = {};
     sec.items.forEach((it) => {
-        segments.push('<b><small>' + it[0] + ':</small></b>');
-        fr[segments.length - 1] = it[1];
+        [].concat(it[0]).forEach((line, i) => {
+            segments.push('<b><small>' + line + (i === [].concat(it[0]).length - 1 ? ':' : '') + '</small></b>');
+            fr[segments.length - 1] = [].concat(it[1])[i];
+        });
         segments.push('<b>בָּרוּךְ</b> ' + START + ' ' + it[2]);
         fr[segments.length - 1] = START_FR + it[3];
     });

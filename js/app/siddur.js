@@ -203,6 +203,7 @@ const SD_RAYONS = [
         { key: 's:birkhot-hareiyot', he: 'ברכות הראייה', ids: ['birkhot-hareiyot'] },
         { key: 's:birkhot-hareach', he: 'ברכות הריח', ids: ['birkhot-hareach'] },
         { key: 's:dayan-haemet', he: 'דיין האמת', ids: ['dayan-haemet'] },
+        { key: 's:chehehyanou', he: 'שהחיינו', ids: ['chehehyanou'] },
         { key: 's:remede', he: 'רפואה', ids: ['remede'] }
     ] },
     { id: 'vie', he: 'שמחות', fr: 'Vie', rows: [
