@@ -43,6 +43,7 @@ const HOME_ENTRIES = {
     measures: { he: 'מידות', fr: 'Mesures', desc: 'Poids, volumes, distances et monnaies de la Bible', kw: 'coudée poids volumes monnaies chékel', run: homeTool('measures') },
     review: { he: 'חזרה', fr: 'À réviser aujourd\'hui', desc: 'Mots du Tanakh et de la Guémara à revoir aujourd\'hui, en une seule séance', kw: 'réviser révision répétition espacée rappel mémoire jeu', run: () => openReview('screen-main') },
     purgame: { he: 'טהור', fr: 'Pur ou impur ?', desc: 'Triez les animaux, vite : pur (permis) ou impur (interdit), avec les signes à connaître', kw: 'jeu cacherout casher kasher animaux poissons oiseaux quadrupèdes tahor tame', run: () => openPurityGame('screen-main') },
+    mitsvagame: { he: 'מצוות', fr: 'Mitsva express', desc: 'De quelle paracha le Rambam tire-t-il ce commandement ? Vite, parmi les 613', kw: 'jeu mitsvot commandements 613 rambam paracha parachiot torah livre', run: () => openMitsvaGame('screen-main') },
     lexgame: { he: 'מילים', fr: 'Mots du Tanakh', desc: 'Le vocabulaire hébreu de la Bible, du plus fréquent au plus rare', kw: 'jeu hébreu vocabulaire', run: () => openLexiconGame('screen-main') },
     gemgame: { he: 'גמרא', fr: 'Mots de la Guémara', desc: 'Les mots, les abréviations et les sages de la Guémara', kw: 'jeu araméen guemara', run: () => openGemaraGame('screen-main') },
     trgame: { he: 'מסורה', fr: 'Maîtres et élèves', desc: 'Qui a reçu la Torah de qui ? Retrouvez le maître d\'un sage', kw: 'jeu sages transmission', run: () => openTransmissionGame('screen-main') },
@@ -69,11 +70,11 @@ const HOME_LAYOUT = {
         { promo: 'tools' }
     ],
     // Les jeux sont rangés par thème (Hébreu, Tanakh, Sages, Halakha, Histoire) : un jeu de plus = un id dans la bonne section. Une section sans jeu n'est
-    // pas affichée (homeSection) ; « Tanakh » apparaîtra avec son premier jeu.
+    // pas affichée (homeSection).
     jouer: [
         { title: 'Révision', as: 'rows', ids: ['review'], subs: () => ({ review: homeReviewDesc() }) },
         { title: 'Hébreu et araméen', as: 'rows', ids: ['lexgame', 'gemgame'] },
-        { title: 'Tanakh', as: 'rows', ids: [] },
+        { title: 'Tanakh', as: 'rows', ids: ['mitsvagame'] },
         { title: 'Sages', as: 'rows', ids: ['trgame'] },
         { title: 'Halakha et fêtes', as: 'rows', ids: ['purgame', 'wheel'] },
         { title: 'Histoire : frises', as: 'rows', ids: ['frCivile', 'frHebraique', 'frHassidisme', 'frIsrael'] },

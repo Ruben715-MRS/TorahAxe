@@ -9,8 +9,6 @@
 let purgame = null;
 let purgameReturn = 'screen-main';
 let purgameSection = 'all';
-let purgameTimer = null;        // l'intervalle de la barre de temps
-let purgameDeadline = 0;        // l'instant (ms) où le temps est écoulé
 
 const PURGAME_PREFS_KEY = 'torahaxe_purgame_prefs_v1';
 
@@ -23,7 +21,7 @@ function openPurityGame(fromScreen) {
 }
 
 function purgameBack() {
-    purgameStopTimer();
+    QuizUI.timerStop();
     gamesBackTo(purgameReturn);
 }
 
@@ -35,7 +33,7 @@ function purgameSetSection(section) {
 }
 
 function purgameSetup() {
-    purgameStopTimer();
+    QuizUI.timerStop();
     purgame = null;
     QuizUI.phase('purgame', 'setup');
     QuizUI.chips('purgame', PurityGameCore.SECTIONS.map(section => ({ id: section, label: t('purgame.section_' + section) })), purgameSection, purgameSetSection);
@@ -47,40 +45,6 @@ function purgameStart() {
     purgameRender();
 }
 
-// --- La barre de temps ------------------------------------------------------------------------------------------------------------------------
-function purgameStopTimer() {
-    if (purgameTimer) { clearInterval(purgameTimer); purgameTimer = null; }
-}
-
-function purgameDrawTimer(msLeft) {
-    const left = Math.max(0, msLeft);
-    const bar = document.getElementById('purgame-timer');
-    document.getElementById('purgame-timer-fill').style.width = Math.round(100 * left / PurityGameCore.TIME_MS) + '%';
-    bar.classList.toggle('is-low', left <= 2500);
-    const seconds = Math.ceil(left / 1000);
-    bar.setAttribute('aria-valuenow', String(seconds));
-    bar.setAttribute('aria-valuetext', t('purgame.time_left', { n: seconds }));
-    document.getElementById('purgame-time').textContent = t('purgame.time_left', { n: seconds });
-}
-
-function purgameHideTimer() {
-    document.getElementById('purgame-timer').classList.add('hidden');
-    document.getElementById('purgame-time').classList.add('hidden');
-}
-
-function purgameStartTimer() {
-    purgameStopTimer();
-    purgameDeadline = Date.now() + PurityGameCore.TIME_MS;
-    purgameDrawTimer(PurityGameCore.TIME_MS);
-    purgameTimer = setInterval(() => {
-        // L'écran a été quitté sans passer par « Retour » (par exemple, un lien de l'accueil) : on arrête tout.
-        if (document.getElementById('screen-purgame').classList.contains('hidden')) { purgameStopTimer(); return; }
-        const left = purgameDeadline - Date.now();
-        purgameDrawTimer(left);
-        if (left <= 0) purgameTimeout();
-    }, 100);
-}
-
 // --- Le déroulé -------------------------------------------------------------------------------------------------------------------------------
 function purgameRender() {
     const g = purgame;
@@ -90,9 +54,7 @@ function purgameRender() {
     QuizUI.word('purgame', q.shown, true);
     document.getElementById('purgame-he').textContent = q.shownHe;
     QuizUI.options('purgame', q, option => ({ label: t('purgame.' + option.label) }), purgameAnswer);
-    document.getElementById('purgame-timer').classList.remove('hidden');
-    document.getElementById('purgame-time').classList.remove('hidden');
-    purgameStartTimer();
+    QuizUI.timerStart('purgame', PurityGameCore.TIME_MS, 'screen-purgame', purgameTimeout);
 }
 
 // La fiche : le statut de l'animal et pourquoi (les signes, le verset).
@@ -107,17 +69,17 @@ function purgameInfo(q, timedOut) {
 function purgameAnswer(choice) {
     const g = purgame;
     if (!PurityGameCore.answer(g, choice).length) return;
-    purgameStopTimer();
-    purgameHideTimer();
+    QuizUI.timerStop();
+    QuizUI.timerHide('purgame');
     QuizUI.resolve('purgame', g, PurityGameCore.question(g), choice, purgameInfo(PurityGameCore.question(g), false));
 }
 
 function purgameTimeout() {
     const g = purgame;
-    purgameStopTimer();
+    QuizUI.timerStop();
     if (!g || !PurityGameCore.expire(g).length) return;
     const q = PurityGameCore.question(g);
-    purgameHideTimer();
+    QuizUI.timerHide('purgame');
     QuizUI.resolve('purgame', g, q, -1, purgameInfo(q, true));
 }
 
@@ -129,6 +91,6 @@ function purgameContinue() {
 }
 
 function purgameFinish() {
-    purgameStopTimer();
+    QuizUI.timerStop();
     QuizUI.finish('purgame', purgame, 'purgame');
 }

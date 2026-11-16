@@ -114,6 +114,40 @@ const QuizUI = (function () {
         });
     }
 
+    // La barre de temps des jeux chronométrés (`-timer`, `-timer-fill`, `-time` ; clé de traduction `.time_left`) : un seul chronomètre à la fois. À zéro, `onExpire()`
+    // est appelé une fois. Si l'écran `screenId` est quitté sans passer par « Retour » (un lien de l'accueil), le chronomètre s'arrête de lui-même.
+    let timerId = null;
+    function timerStop() {
+        if (timerId) { clearInterval(timerId); timerId = null; }
+    }
+    function timerHide(p) {
+        $(p + '-timer').classList.add('hidden');
+        $(p + '-time').classList.add('hidden');
+    }
+    function timerDraw(p, ms, left) {
+        const bar = $(p + '-timer');
+        $(p + '-timer-fill').style.width = Math.round(100 * Math.max(0, left) / ms) + '%';
+        bar.classList.toggle('is-low', left <= 2500);
+        const seconds = Math.ceil(Math.max(0, left) / 1000);
+        bar.setAttribute('aria-valuemax', String(Math.ceil(ms / 1000)));
+        bar.setAttribute('aria-valuenow', String(seconds));
+        bar.setAttribute('aria-valuetext', t(p + '.time_left', { n: seconds }));
+        $(p + '-time').textContent = t(p + '.time_left', { n: seconds });
+    }
+    function timerStart(p, ms, screenId, onExpire) {
+        timerStop();
+        $(p + '-timer').classList.remove('hidden');
+        $(p + '-time').classList.remove('hidden');
+        const deadline = Date.now() + ms;
+        timerDraw(p, ms, ms);
+        timerId = setInterval(() => {
+            if ($(screenId).classList.contains('hidden')) { timerStop(); return; }
+            const left = deadline - Date.now();
+            timerDraw(p, ms, left);
+            if (left <= 0) { timerStop(); onExpire(); }
+        }, 100);
+    }
+
     // Les réglages de l'appareil (JSON dans le stockage local) : lus sans jamais planter, écrits sans jamais bloquer.
     function loadPrefs(key) {
         try { return JSON.parse(localStorage.getItem(key)) || null; } catch (e) { return null; }
@@ -122,5 +156,5 @@ const QuizUI = (function () {
         try { localStorage.setItem(key, JSON.stringify(prefs)); } catch (e) { /* stockage indisponible */ }
     }
 
-    return { phase: phase, status: status, options: options, resolve: resolve, word: word, finish: finish, progress: progress, chips: chips, loadPrefs: loadPrefs, savePrefs: savePrefs };
+    return { phase: phase, status: status, options: options, resolve: resolve, word: word, finish: finish, progress: progress, chips: chips, timerStart: timerStart, timerStop: timerStop, timerHide: timerHide, loadPrefs: loadPrefs, savePrefs: savePrefs };
 })();

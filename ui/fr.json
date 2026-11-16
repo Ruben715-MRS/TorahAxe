@@ -7128,5 +7128,32 @@
     "section_eau": "Eau",
     "how": "Dix animaux, 100 points chacun, huit secondes pour répondre : pur (permis) ou impur (interdit) ? Une fois le temps écoulé, la question est comptée fausse.",
     "how_sure": "Seuls les cas sans discussion sont posés : les animaux dont l'identification est perdue ou discutée (le zémer, le tétras, la girafe…) ne sont jamais demandés. Outil d'étude, pas une décision de halakha."
+  },
+  "mitsvagame": {
+    "title": "Mitsva express",
+    "desc": "De quelle paracha, de quel livre de la Torah, le Rambam tire-t-il ce commandement ? Vite !",
+    "status": "Question {n} sur {total} · {score} points",
+    "ask_parasha": "Le Rambam tire ce commandement d'un verset de quelle paracha ?",
+    "ask_book": "Le Rambam tire ce commandement d'un verset de quel livre de la Torah ?",
+    "ask_kind": "Commandement positif (« fais ») ou négatif (« ne fais pas ») ?",
+    "pos": "Positif",
+    "neg": "Négatif",
+    "option_aria": "Réponse {n} : {label}",
+    "right": "Bonne réponse",
+    "wrong": "Pas tout à fait",
+    "timeout": "Temps écoulé.",
+    "time_left": "{n} s",
+    "time_aria": "Temps restant",
+    "next": "Commandement suivant",
+    "finish": "Voir le score",
+    "found": "{found} bonnes réponses sur {total} : {score} points.",
+    "loading": "Chargement des parachiot…",
+    "load_error": "Les parachiot n'ont pas pu être chargées : vérifiez la connexion, puis rouvrez le jeu.",
+    "fb_pos": "Commandement positif n° {n} : {text}",
+    "fb_neg": "Commandement négatif n° {n} : {text}",
+    "fb_source": "Verset cité par le Rambam : {ref}, dans la paracha {parasha} ({book}).",
+    "fb_trap": "Énoncé à la forme négative, il est pourtant classé par le Rambam parmi les commandements positifs.",
+    "how": "Dix commandements de la liste du Rambam, 100 points chacun, quelques secondes pour répondre : de quelle paracha, ou de quel livre de la Torah, le Rambam tire-t-il le commandement ? Une fois le temps écoulé, la question est comptée fausse.",
+    "how_sure": "La question porte toujours sur le verset que le Rambam cite à l'appui, pas sur tous les endroits où la loi apparaît. De temps en temps : « positif ou négatif ? » sur un commandement positif formulé à la forme négative."
   }
 }

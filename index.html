@@ -794,12 +794,14 @@
     <script src="js/transmissionGameCore.js"></script>
     <script src="js/reviewCore.js"></script>
     <script src="js/purityGameCore.js"></script>
+    <script src="js/mitsvaGameCore.js"></script>
     <script src="js/app/quiz-ui.js"></script>
     <script src="js/app/lexicon-game.js"></script>
     <script src="js/app/gemara-game.js"></script>
     <script src="js/app/transmission-game.js"></script>
     <script src="js/app/review.js"></script>
     <script src="js/app/purity-game.js"></script>
+    <script src="js/app/mitsva-game.js"></script>
     <script src="js/app/tools.js"></script>
     <script src="js/app/navigation.js"></script>
     <script src="js/app/settings.js"></script>
@@ -971,8 +973,8 @@
             <p class="cause-question" id="purgame-question"></p>
             <p class="lexgame-word is-french" id="purgame-word"></p>
             <p class="tool-small trgame-he" id="purgame-he" lang="he" dir="rtl"></p>
-            <div class="lexgame-bar purgame-timer" id="purgame-timer" role="progressbar" aria-valuemin="0" aria-valuemax="8" aria-valuenow="8" aria-label="Temps restant" data-i18n-attr="aria-label:purgame.time_aria"><i id="purgame-timer-fill"></i></div>
-            <p class="tool-small purgame-time" id="purgame-time"></p>
+            <div class="lexgame-bar quiz-timer" id="purgame-timer" role="progressbar" aria-valuemin="0" aria-valuemax="8" aria-valuenow="8" aria-label="Temps restant" data-i18n-attr="aria-label:purgame.time_aria"><i id="purgame-timer-fill"></i></div>
+            <p class="tool-small quiz-time" id="purgame-time"></p>
             <div class="cause-cards purgame-options" id="purgame-options"></div>
             <div class="wheel-feedback hidden" id="purgame-feedback" role="status">
                 <strong id="purgame-feedback-title"></strong>
@@ -987,6 +989,38 @@
             <h3 data-i18n="arcade.over">Partie terminée</h3>
             <p id="purgame-over-text"></p>
             <button type="button" class="btn" onclick="purgameStart()" data-i18n="arcade.replay">Rejouer</button>
+        </div>
+    </div>
+
+<div id="screen-mitsvagame" class="list-screen hidden">
+        <button class="back-btn" onclick="mitsvagameBack()" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title" data-i18n="mitsvagame.title">Mitsva express</h2>
+        <p class="modes-header-subtitle" id="mitsvagame-status" role="status"></p>
+        <div id="mitsvagame-setup" class="lexgame-setup">
+            <p class="tool-small" id="mitsvagame-load" role="status"></p>
+            <button type="button" class="btn" id="mitsvagame-start" onclick="mitsvagameStart()" data-i18n="arcade.play">Jouer</button>
+            <p class="tool-small" data-i18n="mitsvagame.how">Dix commandements de la liste du Rambam, 100 points chacun, quelques secondes pour répondre : de quelle paracha, ou de quel livre de la Torah, le Rambam tire-t-il le commandement ? Une fois le temps écoulé, la question est comptée fausse.</p>
+            <p class="tool-small" data-i18n="mitsvagame.how_sure">La question porte toujours sur le verset que le Rambam cite à l'appui, pas sur tous les endroits où la loi apparaît. De temps en temps : « positif ou négatif ? » sur un commandement positif formulé à la forme négative.</p>
+        </div>
+        <div id="mitsvagame-play" class="hidden">
+            <p class="cause-question" id="mitsvagame-question"></p>
+            <p class="lexgame-word is-french mitsvagame-text" id="mitsvagame-word"></p>
+            <div class="lexgame-bar quiz-timer" id="mitsvagame-timer" role="progressbar" aria-valuemin="0" aria-valuemax="12" aria-valuenow="12" aria-label="Temps restant" data-i18n-attr="aria-label:mitsvagame.time_aria"><i id="mitsvagame-timer-fill"></i></div>
+            <p class="tool-small quiz-time" id="mitsvagame-time"></p>
+            <div class="cause-cards" id="mitsvagame-options"></div>
+            <div class="wheel-feedback hidden" id="mitsvagame-feedback" role="status">
+                <strong id="mitsvagame-feedback-title"></strong>
+                <p id="mitsvagame-feedback-text"></p>
+                <p class="tool-small hidden" id="mitsvagame-feedback-note"></p>
+                <div class="lexgame-actions">
+                    <button type="button" class="btn" id="mitsvagame-next" onclick="mitsvagameContinue()"></button>
+                </div>
+            </div>
+        </div>
+        <div class="arcade-over hidden" id="mitsvagame-over">
+            <h3 data-i18n="arcade.over">Partie terminée</h3>
+            <p id="mitsvagame-over-text"></p>
+            <button type="button" class="btn" onclick="mitsvagameStart()" data-i18n="arcade.replay">Rejouer</button>
         </div>
     </div>
 
