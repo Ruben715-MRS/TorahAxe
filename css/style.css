@@ -18443,7 +18443,10 @@ body:has(#screen-recit:not(.hidden))::after {
 .chr-tick { position: absolute; top: 0; height: 100%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 11px; line-height: 1.25; color: var(--muted-text); white-space: nowrap; }
 .chr-tick b { font-size: 13px; color: var(--text-dark); }
 .chr-lane { position: relative; padding: 0 0 6px; border-bottom: 1px solid var(--border-soft); }
+.chr-lane-head { margin: 0; font: inherit; }
 .chr-lane-title {
+    border: 0;
+    cursor: pointer;
     position: sticky;
     left: 0;
     z-index: 3;
@@ -18457,6 +18460,7 @@ body:has(#screen-recit:not(.hidden))::after {
     font-weight: 700;
 }
 .chr-lane-body { position: relative; }
+.chr-lane-body.is-folded { overflow: hidden; }
 .chr-item {
     position: absolute;
     height: 30px;
@@ -18492,4 +18496,10 @@ body:has(#screen-recit:not(.hidden))::after {
 .chr-lane-juda { --chr-c: #93c5fd; }
 .chr-lane-israel { --chr-c: #f9a8d4; }
 .chr-lane-evenements { --chr-c: #cbd5e1; }
+.chr-lane-empires { --chr-c: #a5f3fc; }
+.chr-lane-judee { --chr-c: #d9f99d; }
+.chr-lane-sages { --chr-c: #99f6e4; }
+.chr-lane-bavel { --chr-c: #bae6fd; }
+.chr-lane-babylonie { --chr-c: #fbcfe8; }
+.chr-lane-oeuvres { --chr-c: #fde68a; }
 .chr-lane-evenements .chr-item.is-point { background: #475569; border-color: #475569; }

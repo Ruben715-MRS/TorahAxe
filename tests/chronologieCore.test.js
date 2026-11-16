@@ -122,7 +122,9 @@ test('les éléments coupés par la plage sont signalés', () => {
     const c = C.clip(get('egypte'), M.plage);
     assert.strictEqual(c.cutLeft, true);
     assert.strictEqual(c.from, M.plage[0]);
-    assert.strictEqual(C.clip(get('p_yirmeyahou'), M.plage).cutRight, true);
+    const lot1 = [2400, 3340];                    // la plage du premier lot : Jérémie en déborde
+    assert.strictEqual(C.clip(get('p_yirmeyahou'), lot1).cutRight, true);
+    assert.strictEqual(C.clip(get('p_yirmeyahou'), M.plage).cutRight, false);
     assert.strictEqual(C.clip(get('silo'), M.plage).cutLeft, false);
 });
 
@@ -163,4 +165,51 @@ test('graduations civiles : des années rondes, sans année zéro', () => {
     assert.deepStrictEqual(t, [3331]);
     const across = C.ticks([3755, 3765], 5, 'civil');
     assert.deepStrictEqual(across.map(C.civilYear), [-5, 5], 'on saute 0');
+});
+
+test('lot 2 : conversions de l\'ère commune', () => {
+    assert.strictEqual(C.civilYear(3828), 68, 'la destruction du Second Temple, selon la tradition');
+    assert.strictEqual(C.civilYear(3949), 189);
+    assert.strictEqual(C.civilYear(get('x_aug').from), -27);
+    assert.strictEqual(C.civilYear(get('x_aug').to), 14);
+    assert.strictEqual(C.civilYear(get('e_pompee').from), -63);
+    assert.strictEqual(C.civilYear(get('e_hegire').from), 622);
+    assert.strictEqual(C.civilYear(get('e_espagne').from), 711);
+});
+
+test('lot 2 : exil, Second Temple, destruction', () => {
+    assert.strictEqual(get('exil_ere').to - get('exil_ere').from, 70);
+    assert.strictEqual(get('exil_ere').from, get('temple1').to);
+    assert.strictEqual(get('temple2').from, get('exil_ere').to);
+    assert.strictEqual(get('temple2').to - get('temple2').from, 420);
+    assert.strictEqual(get('temple2').to, get('e_destruction2').from);
+    assert.strictEqual(get('e_destruction').from, get('e_gedalia').from - 1);
+    assert.strictEqual(get('e_cyrus').from, get('exil_ere').from + 52, 'le décret de Cyrus');
+});
+
+test('lot 2 : les époques de la Michna à la fin des Guéonim se suivent sans trou', () => {
+    const chain = ['zougot_ere', 'tannaim_ere', 'transition_ere', 'amoraim_ere', 'savoraim_ere', 'geonim_ere'].map(get);
+    for (let i = 1; i < chain.length; i++) assert.strictEqual(chain[i].from, chain[i - 1].to, chain[i].id);
+    assert.strictEqual(get('o_michna').from, get('tannaim_ere').to - 1, 'la Michna, à la fin des Tannaïm');
+    assert.ok(get('e_calendrier').from >= get('n_hillel2').from && get('e_calendrier').from <= get('n_hillel2').to);
+    assert.strictEqual(get('n_gam7').to, get('e_patriarcat').from);
+});
+
+test('lot 2 : les Nessiim et les empereurs se suivent', () => {
+    const nessiim = ['n_hillel', 'n_shimon_h', 'n_gam1', 'n_shimon_g1', 'n_yochanan', 'n_gam2'].map(get);
+    for (let i = 1; i < nessiim.length; i++) assert.strictEqual(nessiim[i].from, nessiim[i - 1].to, nessiim[i].id);
+    const rois = ['n_gam3', 'n_yehuda1', 'n_yehuda2', 'n_gam5', 'n_yehuda3', 'n_hillel2', 'n_gam6', 'n_yehuda4', 'n_gam7'].map(get);
+    for (let i = 1; i < rois.length; i++) assert.strictEqual(rois[i].from, rois[i - 1].to, rois[i].id);
+    const emp = ['x_rep', 'x_trium', 'x_aug', 'x_tib', 'x_cal', 'x_clau', 'x_nero', 'x_gal', 'x_vesp', 'x_titus', 'x_dom', 'x_nerva', 'x_traj', 'x_hadr', 'x_antp', 'x_marc', 'x_comm'].map(get);
+    for (let i = 1; i < emp.length; i++) assert.strictEqual(emp[i].from, emp[i - 1].to, emp[i].id);
+    const has = ['h_judah', 'h_jonathan', 'h_simon', 'h_hyrcan1', 'h_arist1', 'h_yannai', 'h_salome', 'h_guerre', 'h_hyrcan2', 'h_antigone', 'h_herode'].map(get);
+    for (let i = 1; i < has.length; i++) assert.strictEqual(has[i].from, has[i - 1].to, has[i].id);
+});
+
+test('lot 2 : chaque voie a de la matière, et la recherche trouve les nouveaux noms', () => {
+    ['empires', 'judee', 'sages', 'bavel', 'babylonie', 'oeuvres'].forEach(id => assert.ok(M.voies.find(v => v.id === id).items.length >= 8, id));
+    assert.ok(C.search(M, 'Rabbi Akiva').some(x => x.id === 't_akiva'));
+    assert.ok(C.search(M, 'Saadia').some(x => x.id === 'v_saadia'));
+    assert.ok(C.search(M, 'hanouka').some(x => x.id === 'e_hanouka'));
+    assert.ok(C.search(M, 'Pompee').some(x => x.id === 'e_pompee'));
 });

@@ -15,6 +15,7 @@ let chrLoading = false;
 let chrZoom = 1;                          // l'indice dans CHR_SCALES
 let chrMode = 'am';                       // 'am' (années hébraïques) | 'civil'
 let chrSelected = '';
+const chrCollapsed = new Set();             // les voies repliées (on touche le titre d'une voie pour la replier)
 
 function chrNode(tag, className, text) {
     const el = document.createElement(tag);
@@ -163,10 +164,17 @@ function chrRender(keepScroll) {
     chrModel.voies.forEach(voie => {
         const lay = ChronologieCore.layout(voie.items, chrModel.plage, opts);
         const lane = chrNode('section', 'chr-lane chr-lane-' + voie.id);
-        lane.appendChild(chrNode('h3', 'chr-lane-title', voie.fr));
-        const body = chrNode('div', 'chr-lane-body');
-        body.style.height = (lay.rows * (CHR_ROW_H + CHR_ROW_GAP)) + 'px';
-        lay.placed.forEach(p => { body.appendChild(chrItemNode(p)); shown++; });
+        const folded = chrCollapsed.has(voie.id);
+        const head = chrNode('h3', 'chr-lane-head');
+        const title = chrNode('button', 'chr-lane-title', (folded ? '▸ ' : '▾ ') + voie.fr);
+        title.type = 'button';
+        title.setAttribute('aria-expanded', folded ? 'false' : 'true');
+        title.onclick = () => { if (chrCollapsed.has(voie.id)) chrCollapsed.delete(voie.id); else chrCollapsed.add(voie.id); chrRender(true); };
+        head.appendChild(title);
+        lane.appendChild(head);
+        const body = chrNode('div', 'chr-lane-body' + (folded ? ' is-folded' : ''));
+        body.style.height = folded ? '0px' : (lay.rows * (CHR_ROW_H + CHR_ROW_GAP)) + 'px';
+        if (!folded) lay.placed.forEach(p => { body.appendChild(chrItemNode(p)); shown++; });
         lane.appendChild(body);
         stage.appendChild(lane);
     });
