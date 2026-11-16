@@ -1728,7 +1728,7 @@
    {
     "from": "105b:2",
     "to": "105b:12",
-    "title": "Michna : celui qui déchire dans sa colère ou pour son mort ; qui est le « mort » ; l'homme probe ; Rabbi Yehouda ; Rabbi Chimon ben Pazi au nom de Rabbi Yehochoua ben Lévi ; Rabbi Hiyya bar Abba à Rabbi Yohanan."
+    "title": "Michna : déchirer dans sa colère ou pour son mort ; qui est le « mort » ; l'homme probe ; Rabbi Yehouda ; Rabbi Chimon ben Pazi, Rabbi Yehochoua ben Lévi ; Rabbi Hiyya bar Abba à Rabbi Yohanan."
    },
    {
     "from": "106a:1",
@@ -1738,7 +1738,7 @@
    {
     "from": "106a:7",
     "to": "107a:3",
-    "title": "Michna : chasser oiseau, cerf ou poisson dans un colombier, un jardin, une cour, un vivier (Rabbi Yehouda) ; vivier grand ou petit ; cerf aveugle ou endormi ; sauterelles et frelons ; le cerf entré dans la maison."
+    "title": "Michna : chasser oiseau, cerf ou poisson dans un colombier, jardin, cour ou vivier (Rabbi Yehouda) ; vivier grand ou petit ; cerf aveugle ou endormi ; sauterelles ; le cerf entré dans la maison."
    },
    {
     "from": "107a:5",
@@ -1752,8 +1752,153 @@
    },
    {
     "from": "108a:2",
-    "to": "108a:13",
-    "title": "Les peaux pour les tefilin (Rav Houna) ; Rabbi Zeira : « ses ailes » ; Chemouel et Karna au bord du fleuve : pourquoi la circoncision à cet endroit ; la question d'un sectaire à Rabbi Yehochoua HaGarsi."
+    "to": "108a:12",
+    "title": "Les peaux pour les tefilin (Rav Houna) ; Rabbi Zeira : « ses ailes » ; Chemouel et Karna au bord du fleuve : pourquoi la circoncision à cet endroit ; la question d'un sectaire à Rabbi Yehochoua."
+   },
+   {
+    "from": "108a:13",
+    "to": "108b:11",
+    "title": "Michna : on ne fait pas de « hilmi » (saumure) le Chabbat, mais de l'eau salée ; Rav Yehouda au nom de Chemouel ; Rabbi Yossi ; radis et cédrat ; Rabbi Yehouda bar Haviva ; Rabbi Abahou ; Rav Dimi."
+   },
+   {
+    "from": "108b:12",
+    "to": "109a:6",
+    "title": "Mar Oukba au nom de Chemouel : tremper dans le vin ou le vinaigre ; « la main sur l'œil : qu'elle soit coupée » ; feuilles ; Rav Hisda : le légume ; main ou pied blessé ; Rabina chez Rav Ashi."
+   },
+   {
+    "from": "109a:7",
+    "to": "109b:3",
+    "title": "On se lave dans les eaux de Guérar, de Hamtan, de Tibériade et la Grande Mer ; Rabbi Yohanan : Rabbi Méir contre Rabbi Yossi."
+   },
+   {
+    "from": "109b:4",
+    "to": "110a:4",
+    "title": "Michna : on ne mange pas d'hysope le Chabbat mais on mange du yoézer et on boit l'abouvrouah ; remèdes (Rav Yossef) ; la mère de Rav Ahdevoï bar Ami ; Rav Ouïa : lait de chèvre ; le serpent."
+   },
+   {
+    "from": "110a:5",
+    "to": "111a:2",
+    "title": "Michna : on mange tous les aliments pour guérir, sauf l'eau de palmier ; le zitom égyptien ; la coupe de racines ; remèdes contre la jaunisse."
+   },
+   {
+    "from": "111a:3",
+    "to": "111b:3",
+    "title": "Michna : mal aux dents, on ne se gargarise pas de vinaigre ; mal aux reins, pas d'huile ; Rav Aha Arikha ; Rava revient sur son avis ; Rabbi Abba bar Zavda ; « la halakha suit Rabbi Chimon »."
+   },
+   {
+    "from": "111b:5",
+    "to": "112b:4",
+    "title": "Chap. XV. Michna : les nœuds passibles (chameliers, marins ; Rabbi Méir : tout nœud durable) et ceux qui ne le sont pas ; bride, fente de chemise, lanières de sandale ; Rabbi Yohanan : détacher."
+   },
+   {
+    "from": "112b:5",
+    "to": "112b:8",
+    "title": "Les ustensiles de ménage et leurs mesures ; Rabbi Yohanan : « des visages nouveaux sont venus » ; « si les anciens étaient des hommes, nous sommes des ânes »."
+   },
+   {
+    "from": "112b:9",
+    "to": "113a:1",
+    "title": "Outres de vin et d'huile ; marmite de viande ; Rabbi Eliezer ben Yaakov : il la noue."
+   },
+   {
+    "from": "113a:2",
+    "to": "113a:10",
+    "title": "Michna : on attache un seau avec un bout de corde mais pas avec une corde (Rabbi Yehouda) ; Rabbi Abba au nom de Rav Hiyya bar Ashi ; Chemouel : ustensiles de lin ; Rava à Rav Nahman : le pilier."
+   },
+   {
+    "from": "113a:11",
+    "to": "113b:3",
+    "title": "Michna : plier les vêtements, même quatre ou cinq fois ; la maison de Rabban Gamliel ; « tu l'honoreras » : vêtements et paroles du Chabbat ; Rava : comment faire ; Rabbi à Rabbi Ichmaël bar Yossi."
+   },
+   {
+    "from": "113b:4",
+    "to": "113b:14",
+    "title": "Resh Lakich : pourquoi « Chinéar » ; Routh : « tu te laveras, t'oindras et mettras tes habits » (Rabbi Elazar) ; Booz et le grain rôti ; « sous sa gloire un feu brûlera » ; Rabbi Aha bar Abba."
+   },
+   {
+    "from": "114a:1",
+    "to": "114a:12",
+    "title": "Changer de vêtements est-il de la Torah (Rabbi Hiyya bar Abba) ; « les bâtisseurs » : les disciples des sages ; le sage dont l'intérieur ne ressemble pas à l'extérieur ; Rabbi Ichmaël, Rabbi Akiva."
+   },
+   {
+    "from": "114b:1",
+    "to": "115a:1",
+    "title": "Couper finement les légumes le Chabbat (Mar Kachicha bar Rav Hisda, Rav Chicha bar Rav Idi) ; interdit rabbinique proche ou éloigné ; Rabbi Zeira, Rav Houna ; Rabbi Hiyya bar Abba, Rabbi Yohanan."
+   },
+   {
+    "from": "115a:3",
+    "to": "115b:1",
+    "title": "Chap. XVI. Michna : on sauve de l'incendie tous les écrits saints, lus ou non ; écrits en traduction ou en une autre langue (Rav Houna) ; Rabbi Yossi : Abba Halafta."
+   },
+   {
+    "from": "115b:2",
+    "to": "116a:3",
+    "title": "Les bénédictions et les amulettes ; l'Exilarque et Rabba bar Rav Houna ; Rav Houna bar Halouv à Rav Nahman ; le targoum écrit comme le texte ; les quatre-vingt-cinq lettres du verset de l'arche."
+   },
+   {
+    "from": "116a:4",
+    "to": "116b:2",
+    "title": "Les marges d'un rouleau de Torah ; les livres des hérétiques ne sont pas sauvés ; Rabbi Ichmaël : le nom divin effacé pour la paix ; Imma Chalom, épouse de Rabbi Eliezer, et le juge."
+   },
+   {
+    "from": "116b:3",
+    "to": "117a:3",
+    "title": "Pourquoi ne lit-on pas les écrits saints le Chabbat (Rav, Chemouel, Rav Ashi) ; Michna : on sauve l'étui du livre et celui des tefilin ; quatorze Nissan un Chabbat ; Rav Hisda, Mar Oukba."
+   },
+   {
+    "from": "117a:4",
+    "to": "117b:1",
+    "title": "Où sauve-t-on les objets : dans la cour mélangée ; Rabba : trois cloisons et un montant (lehi) ; Abayé ; Rabbi Yehouda ; Rav Ashi."
+   },
+   {
+    "from": "117b:2",
+    "to": "118a:5",
+    "title": "Michna : on sauve la nourriture de trois repas ; pourquoi pas davantage ; le tonneau brisé sur le toit ; Rabbi Eliezer et Rabbi Yehochoua ; le pain oublié au four ; Rav Hisda ; Rav Ashi et Rav Kahana."
+   },
+   {
+    "from": "118a:6",
+    "to": "118b:4",
+    "title": "Le délice du Chabbat : « l'héritage de Jacob ton père » ; Rav Nahman bar Yitzhak : libéré de l'asservissement ; Rav Yehouda au nom de Rav : si Israël gardait deux Chabbats ; Rabbi Hiyya bar Abba."
+   },
+   {
+    "from": "118b:5",
+    "to": "119a:1",
+    "title": "Les vœux de Rabbi Yossi : que mon sort soit parmi ceux qui mangent trois repas, prient avec la communauté, collectent la tsedaka ; Rav Nahman ; Rav Yossef."
+   },
+   {
+    "from": "119a:2",
+    "to": "119b:2",
+    "title": "Honorer le Chabbat : Rabbi Hanina enveloppé, Rabbi Abba et les treize pièces, Rav Sefra grille une tête, Rava sale un poisson ; l'empereur et Rabbi Yehochoua ben Hananya ; l'Exilarque et Rav Hamnouna."
+   },
+   {
+    "from": "119b:3",
+    "to": "120a:1",
+    "title": "Qui prie la veille du Chabbat ; Rabbi Elazar : dresser sa table ; répondre « Amen » ; causes de la destruction de Jérusalem (Rabbi Abahou, Rav Hamnouna, Rav Amram, Rava)."
+   },
+   {
+    "from": "120a:2",
+    "to": "120a:8",
+    "title": "Michna : on sauve un panier plein de pains, un gâteau de figues ; où : dans la cour mélangée ; Rava et Rav Chizvi ; celui qui met un vêtement, le sort, l'ôte, le remet."
+   },
+   {
+    "from": "120a:9",
+    "to": "121a:2",
+    "title": "Michna : Rabbi Chimon ben Nanas : étendre des peaux sur un coffre qui brûle ; le manteau en feu ; la lampe sur un plateau ; faire une cloison contre le feu ; « vous détruirez leur nom »."
+   },
+   {
+    "from": "121a:3",
+    "to": "121b:1",
+    "title": "Michna : un non-juif vient éteindre : on ne lui dit ni de le faire ni de s'abstenir ; Rabbi Ami : en cas d'incendie ; le mineur ; on retourne un récipient sur la lampe pour protéger la poutre."
+   },
+   {
+    "from": "121b:2",
+    "to": "122a:3",
+    "title": "Retourner un récipient sur un excrément d'enfant ou un scorpion (Rabbi Yehochoua ben Lévi, Rabbi Yirmeya) ; vipères et scorpions qui se présentent ; Rabbi Abba bar Kahana."
+   },
+   {
+    "from": "122a:4",
+    "to": "122a:11",
+    "title": "Michna : un non-juif allume une lampe : on peut s'en servir ; celui qui a cueilli des herbes ; Rav Houna ; Rabban Gamliel ; ville mixte ; lampe d'un banquet à majorité de non-juifs."
    }
   ],
   "bekhorot": [
