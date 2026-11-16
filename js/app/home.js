@@ -377,12 +377,13 @@ function homeHero(content, day) {
 function homeNextFeast(day) {
     const C = HebrewCalendarCore;
     const h = day.ctx.hebrew;
-    const list = C.feastsOf(h.year, day.israel).concat(C.feastsOf(h.year + 1, day.israel))
+    const list = C.feastsOf(h.year, day.israel).map(f => Object.assign({ year: h.year }, f))
+        .concat(C.feastsOf(h.year + 1, day.israel).map(f => Object.assign({ year: h.year + 1 }, f)))
         .filter(f => (f.kind === 'moed' || f.kind === 'minor') && f.last >= day.ctx.fixed)
         .sort((a, b) => a.fixed - b.fixed);
     if (!list.length) return null;
     const f = list[0];
-    return { id: f.id, ongoing: f.fixed <= day.ctx.fixed, days: f.fixed - day.ctx.fixed };
+    return { id: f.id, year: f.year, israel: day.israel, ongoing: f.fixed <= day.ctx.fixed, days: f.fixed - day.ctx.fixed };
 }
 
 function homeParashaName(day) {
@@ -488,7 +489,7 @@ function homeRenderToday(content) {
     if (feast) {
         const name = t('tools.hcal_f_' + (feast.ongoing ? HebrewCalendarCore.feastNameId(feast.id, day.ctx.fixed, day.israel) : feast.id) + '_name');
         cards.appendChild(homeInfoCard(feast.ongoing ? 'En ce moment' : 'Prochaine fête', name,
-            feast.ongoing ? 'Aujourd\'hui' : (feast.days === 1 ? 'demain' : 'dans ' + feast.days + ' jours'), () => openTool('hebrewCalendar', 'screen-main')));
+            feast.ongoing ? 'Aujourd\'hui' : (feast.days === 1 ? 'demain' : 'dans ' + feast.days + ' jours'), () => hcalOpenFeast(feast.id, feast.year, feast.israel)));
     }
     content.appendChild(cards);
 

@@ -75,6 +75,16 @@ function hcalHebrewLine(parent, text, className) {
     return p;
 }
 
+// Une fête ouverte depuis l'accueil (« Prochaine fête ») : l'onglet Fêtes, son année et sa zone, puis l'encadré de cette fête déplié.
+let hcalPendingFeast = null;
+function hcalOpenFeast(id, year, israel) {
+    hcalTab = 'feasts';
+    hcalYear = year;
+    hcalIsrael = !!israel;
+    hcalPendingFeast = id;
+    openTool('hebrewCalendar', 'screen-main');
+}
+
 function toolHebrewCalendarInit() {
     if (hcalYear === null) hcalYear = hcalCurrentYear();
     const tabs = toolEl('tool-hcal-tabs');
@@ -400,6 +410,17 @@ function hcalFeastsTab(body) {
     const list = hcalEl('div', 'hcal-feasts');
     feasts.forEach((f, i) => list.appendChild(hcalFeastRow(f, i === nextIndex)));
     body.appendChild(list);
+
+    // Venue de l'accueil : on déplie l'encadré de la fête et on le fait voir.
+    if (hcalPendingFeast) {
+        const id = hcalPendingFeast;
+        hcalPendingFeast = null;
+        const target = list.querySelector('#hcal-feast-' + CSS.escape(id));
+        if (target) {
+            target.open = true;
+            setTimeout(() => target.scrollIntoView({ block: 'center', behavior: 'smooth' }), 0);
+        }
+    }
 }
 
 function hcalFeastRow(f, isNext) {
