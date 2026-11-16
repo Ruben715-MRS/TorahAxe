@@ -1,5 +1,5 @@
 // =========================================================================
-// === HISTORIAXE — LES KORBANOT (OFFRANDES ET SACRIFICES) : DONNÉES ===
+// === TORAHAXE — LES KORBANOT (OFFRANDES ET SACRIFICES) : DONNÉES ===
 // =========================================================================
 // Le contenu de l'écran « Offrandes et sacrifices » (js/app/korbanot.js), en sept parties : le tableau des offrandes (qui offre quoi, dans quelle
 // circonstance), le moussaf (les offrandes des jours de fête), les mena'hot et libations (farine, huile, vin), les animaux (espèces et âges), les offrandes des princes à l'inauguration de l'autel,

@@ -9,9 +9,7 @@
 const HOME_PROMO_URL = 'https://apps.apple.com/fr/app/historiaxe/id6827736918';
 const HOME_PROMOS = {
     tools: 'Vous aimez ces outils ? Retrouvez le même esprit pour toute l\'Histoire (convertisseurs, calendriers, cartes…) en téléchargeant HistoriAxe !',
-    games: 'Vous aimez ce type de jeux ? Découvrez notre Salle de jeux complète avec tous nos autres jeux en téléchargeant HistoriAxe !',
-    frises: 'Vous aimez les frises et vous voulez approfondir votre culture générale dans tous les domaines ? Téléchargez HistoriAxe !',
-    recits: 'Vous aimez (ou vous avez aimé) les récits ? Découvrez-en bien d\'autres dans tous les domaines et de toutes les époques en téléchargeant HistoriAxe !'
+    jouer: 'Vous aimez ces jeux, ces frises et ces récits ? Découvrez-en bien d\'autres, dans tous les domaines et de toutes les époques, en téléchargeant HistoriAxe !'
 };
 
 const homeTool = (id) => () => openTool(id, 'screen-main');
@@ -77,11 +75,9 @@ const HOME_LAYOUT = {
         { title: 'Tanakh', as: 'rows', ids: [] },
         { title: 'Sages', as: 'rows', ids: ['trgame'] },
         { title: 'Halakha et fêtes', as: 'rows', ids: ['wheel'] },
-        { promo: 'games' },
         { title: 'Histoire : frises', as: 'rows', ids: ['frCivile', 'frHebraique', 'frHassidisme', 'frIsrael'] },
-        { promo: 'frises' },
         { title: 'Histoire : récits', as: 'rows', ids: ['reDreyfus', 're1948', 'reBarKokhba'] },
-        { promo: 'recits' }
+        { promo: 'jouer' }   // le seul encart de l'onglet, tout en bas
     ]
 };
 
@@ -240,7 +236,7 @@ function homeSection(content, section) {
 }
 
 function homePromo(kind) {
-    const a = hEl('a', 'historiaxe-promo-card');
+    const a = hEl('a', 'promo-card');
     a.href = HOME_PROMO_URL;
     a.target = '_blank';
     a.rel = 'noopener';
@@ -532,13 +528,6 @@ function homeRenderToday(content) {
         cards.appendChild(homeInfoCard(feast.ongoing ? 'En ce moment' : 'Prochaine fête', name,
             feast.ongoing ? 'Aujourd\'hui' : (feast.days === 1 ? 'demain' : 'dans ' + feast.days + ' jours'), () => hcalOpenFeast(feast.id, feast.year, feast.israel)));
     }
-    // La révision du jour : la carte n'apparaît que s'il y a quelque chose à revoir.
-    const due = typeof reviewSummary === 'function' ? reviewSummary() : null;
-    if (due && due.total) {
-        const card = homeInfoCard('À réviser', t('review.progress_due', { total: due.total }), 'Une séance de ' + due.session + ' questions', () => openReview('screen-main'));
-        card.classList.add('home-card-wide');
-        cards.appendChild(card);
-    }
     content.appendChild(cards);
 
     // L'étude du jour : le Daf Yomi et les Téhilim
@@ -554,6 +543,16 @@ function homeRenderToday(content) {
     const tehilim = zmTehilimText(h);
     if (tehilim) study.appendChild(homeInfoCard('Téhilim du jour', tehilim, t('tools.zm_tehilim_day', { n: h.day }), () => { toolReturns.tanakh = 'screen-main'; tanakhOpenAt('psaumes', zmTehilimStart(h) - 1, 'he'); }));
     if (study.childElementCount) content.appendChild(study);
+
+    // La révision du jour : la carte n'apparaît que s'il y a quelque chose à revoir.
+    const due = typeof reviewSummary === 'function' ? reviewSummary() : null;
+    if (due && due.total) {
+        const review = hEl('div', 'home-cards');
+        const card = homeInfoCard('À réviser', t('review.progress_due', { total: due.total }), 'Une séance de ' + due.session + ' questions', () => openReview('screen-main'));
+        card.classList.add('home-card-wide');
+        review.appendChild(card);
+        content.appendChild(review);
+    }
 
     homeHilloulot(content, day);
 
@@ -576,11 +575,8 @@ function closeSettings() {
     closeModal('modal-settings');
 }
 
-// Charge les traductions et textes (ui/fr.json) dont les outils migrés d'HistoriAxe ont besoin pour
-// leur contenu généré dynamiquement (dates, tableaux…) : voir js/i18n.js. TorahAxe est en français
-// uniquement ; la tentative de téléchargement du contenu de jeu d'HistoriAxe (data/fr.json) que fait
-// i18n.js échoue silencieusement (voir sa gestion d'erreur), ce qui est normal : TorahAxe n'embarque
-// pas ce contenu. L'accueil se construit une fois les textes chargés.
+// Charge les textes de l'interface (ui/fr.json, voir js/i18n.js), puis construit l'accueil : les outils en ont besoin pour leur contenu généré
+// dynamiquement (dates, tableaux…).
 window.onload = async () => {
     if (typeof i18n !== 'undefined') await i18n.init();
     homeInit();

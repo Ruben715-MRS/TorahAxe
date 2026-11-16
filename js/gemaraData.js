@@ -1,5 +1,5 @@
 // =========================================================================
-// === HISTORIAXE — DICTIONNAIRE FRANÇAIS – ARAMÉEN (GUÉMARA) (données) ===
+// === TORAHAXE — DICTIONNAIRE FRANÇAIS – ARAMÉEN (GUÉMARA) (données) ===
 // =========================================================================
 // FICHIER GÉNÉRÉ par scripts/gemara/build.py : ne pas le modifier à la main. Les mots se corrigent dans scripts/gemara/entries.tsv,
 // puis on relance l'assemblage (voir scripts/gemara/README.md).

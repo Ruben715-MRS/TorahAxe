@@ -1,24 +1,22 @@
 // =========================================================================
-// === « MOTS HÉBREUX ESSENTIELS » : LE JEU DE VOCABULAIRE HÉBREU (écran de la Salle de jeux, « Jeux religieux ») ===
+// === « MOTS DU TANAKH » : LE JEU DE VOCABULAIRE HÉBREU (onglet « Jouer ») ===
 // =========================================================================
-// Les règles sont dans js/lexiconGameCore.js (pur, testé) ; les mots et leurs niveaux de fréquence dans le dictionnaire (js/lexiconCore.js).
-// Ici : l'écran, les boutons de réponse et la fiche du mot après chaque réponse. La transcription n'est jamais montrée. Le jeu se lance
-// depuis la salle de jeux (`screen-arcade`) ou depuis le dictionnaire (`screen-tool-lexicon`) et rend la main à l'écran d'où il vient.
-// Meilleur score : mêmes clés que l'arcade (ArcadeCore.normalizeBest). Tout ce qui vient des données passe par textContent.
-//
-// La mémoire (étape 2) : chaque réponse est enregistrée aussitôt (js/storage.js, `lexiconRecord`, clé synchronisée avec le compte) dans les
-// boîtes de révision espacée ; à l'ouverture, un bilan (« 47 mots sur 107 maîtrisés », les mots à réviser aujourd'hui) ; une partie mêle les mots
-// à réviser et des mots nouveaux (LexiconGameCore.chooseSession). Le même bilan s'affiche sur le bouton « S'entraîner » du dictionnaire.
-//
-// Les extensions (étape 3) : cinq sortes de questions (« que veut dire ce mot ? », le même mot sans voyelles, « comment dit-on… ? », la racine, la
-// valeur en guématria), choisies mot par mot selon sa maîtrise ; un réglage « rouleau » (tout sans voyelles) ; le niveau « courants », verrouillé
-// jusqu'à 80 % de maîtrise des mots très fréquents. Les réglages (niveau, rouleau) sont propres à l'appareil.
+// Les règles sont dans js/lexiconGameCore.js (pur, testé) ; les mots et leurs niveaux de fréquence dans le dictionnaire (js/lexiconCore.js). L'écran et son
+// déroulé (boutons de réponse, fiche, fin de partie) viennent de js/app/quiz-ui.js ; ici : les réglages (niveau, rouleau), le bilan de mémoire et la fiche du mot.
+// La transcription n'est jamais montrée. Le jeu se lance depuis l'onglet « Jouer » ou depuis le dictionnaire (`screen-tool-lexicon`) et rend la main à l'écran
+// d'où il vient. Tout ce qui vient des données passe par textContent.
+// 
+// La mémoire : chaque réponse est enregistrée aussitôt (js/memoryStore.js, `lexiconRecord`) dans les boîtes de révision espacée ; à l'ouverture, un bilan
+// (« 47 mots sur 107 maîtrisés », les mots à réviser aujourd'hui) ; une partie mêle les mots à réviser et des mots nouveaux (LexiconGameCore.chooseSession).
+// Les mots à réviser de tous les jeux se retrouvent aussi dans la séance « À réviser aujourd'hui » (js/app/review.js).
+// Les questions se corsent à mesure qu'un mot est su (le mot sans voyelles, « comment dit-on… ? », la racine, la valeur en guématria) ; le niveau « courants »
+// est verrouillé jusqu'à 80 % de maîtrise des mots très fréquents. Les réglages (niveau, rouleau) sont propres à l'appareil.
 
 let lexgame = null;
-let lexgameReturn = 'screen-arcade';
+let lexgameReturn = 'screen-main';
 
 function openLexiconGame(fromScreen) {
-    lexgameReturn = fromScreen || 'screen-arcade';
+    lexgameReturn = fromScreen || 'screen-main';
     showScreen('screen-lexgame', 'forward');
     lexgameLoadPrefs();
     lexgameSetup();

@@ -1,5 +1,5 @@
 // =========================================================================
-// === HISTORIAXE — TSARAAT (LA « LÈPRE » BIBLIQUE) : DONNÉES ===
+// === TORAHAXE — TSARAAT (LA « LÈPRE » BIBLIQUE) : DONNÉES ===
 // =========================================================================
 // Le contenu de l'écran « Tsaraat » (Atelier, groupe « Bible et tradition ») : cinq arbres de décision (la peau, la calvitie, l'inflammation ou la
 // brûlure, le nétek, les vêtements, les maisons), le tableau des couleurs, la purification du métsora (« Et ensuite ? ») et un petit lexique.

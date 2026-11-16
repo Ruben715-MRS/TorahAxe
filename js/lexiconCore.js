@@ -1,5 +1,5 @@
 // =========================================================================
-// === HISTORIAXE — DICTIONNAIRE FRANÇAIS – HÉBREU BIBLIQUE (recherche, sans DOM) ===
+// === TORAHAXE — DICTIONNAIRE FRANÇAIS – HÉBREU BIBLIQUE (recherche, sans DOM) ===
 // =========================================================================
 // La recherche dans les deux sens, sur les entrées de js/lexiconData.js (voir js/app/lexicon.js pour l'écran).
 //  - En français : sans tenir compte des accents ni des majuscules ; un mot exact passe avant un début de mot, qui passe avant un mot dans une phrase.

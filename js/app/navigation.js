@@ -7,7 +7,7 @@ function closeModal(id) {
     document.getElementById(id).classList.add('hidden');
 }
 
-// Bascule entre les écrans plein écran (body > div), avec le même glissement qu'HistoriAxe
+// Bascule entre les écrans plein écran (body > div), avec un glissement
 // (screen-slide-forward/back, voir css/style.css). Version réduite de js/app/navigation.js
 // d'HistoriAxe : TorahAxe n'a ni Atelier, ni Chemin, ni onboarding à coordonner au passage d'écran.
 function showScreen(screenId, direction) {
@@ -24,9 +24,7 @@ function showScreen(screenId, direction) {
     }
 }
 
-// Retour d'un des 3 jeux vers l'écran d'où on l'a ouvert (l'accueil, ou l'outil dictionnaire dont il
-// est issu). Version réduite de js/app/arcade.js d'HistoriAxe : pas de Salle de jeux ni de Chemin à
-// raffraîchir au retour dans TorahAxe.
+// Retour d'un jeu vers l'écran d'où on l'a ouvert (l'accueil, ou l'outil dictionnaire dont il est issu).
 function gamesBackTo(screenId) {
     showScreen(screenId, 'back');
 }

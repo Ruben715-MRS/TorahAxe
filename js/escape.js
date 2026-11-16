@@ -1,5 +1,5 @@
 // =========================================================================
-// === HISTORIAXE — ÉCHAPPEMENT DES TEXTES INSÉRÉS DANS LA PAGE ===
+// === TORAHAXE — ÉCHAPPEMENT DES TEXTES INSÉRÉS DANS LA PAGE ===
 // =========================================================================
 // Règle du projet : tout texte qui n'est pas une constante du code et qui entre dans `innerHTML` (ou dans un
 // attribut d'un gabarit) passe par `escapeHtml`. Sont à traiter comme non sûrs : noms de thèmes et titres,

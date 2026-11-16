@@ -1,5 +1,5 @@
 // =========================================================================
-// === HISTORIAXE — ACCÈS AU CLAVIER (js/a11y.js) =========================
+// === TORAHAXE — ACCÈS AU CLAVIER (js/a11y.js) =========================
 // =========================================================================
 //
 // Jusqu'ici l'app ne se jouait qu'au doigt ou à la souris. Un inventaire

@@ -1,5 +1,5 @@
 // =========================================================================
-// === HISTORIAXE — « MOTS DE LA GUÉMARA » : LES RÈGLES DU JEU D'ENTRAÎNEMENT (sans DOM) ===
+// === TORAHAXE — « MOTS DE LA GUÉMARA » : LES RÈGLES DU JEU D'ENTRAÎNEMENT (sans DOM) ===
 // =========================================================================
 // Un jeu de réflexion, sans minuteur : on apprend ce que contient le dictionnaire araméen (js/gemaraCore.js) — ses mots, ses abréviations et ses
 // sages. Ici, seulement les règles (états purs, sans DOM ni stockage) ; l'écran est dans js/app/gemara-game.js. Testé dans tests/gemaraGameCore.test.js.

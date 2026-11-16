@@ -1,21 +1,20 @@
 // =========================================================================
-// === « MAÎTRES ET ÉLÈVES » : LE JEU SUR LA CHAÎNE DE TRANSMISSION (écran de la Salle de jeux, « Jeux religieux ») ===
+// === « MAÎTRES ET ÉLÈVES » : LE JEU SUR LA CHAÎNE DE TRANSMISSION (onglet « Jouer ») ===
 // =========================================================================
-// Les règles sont dans js/transmissionGameCore.js (pur, testé) ; le contenu dans la chaîne de transmission (js/transmissionCore.js). Ici : l'écran, les
-// boutons de réponse et la fiche après chaque réponse. Le jeu se lance depuis la salle de jeux (`screen-arcade`) ou depuis l'écran de la chaîne
-// (`screen-tool-transmission`) et rend la main à l'écran d'où il vient. Meilleur score : mêmes clés que l'arcade (ArcadeCore.normalizeBest, clé
-// `transmission`). Pas de répétition espacée : les questions sont tirées au hasard dans les liens sûrs. Tout ce qui vient des données passe par
-// textContent, jamais par du HTML.
+// Les règles sont dans js/transmissionGameCore.js (pur, testé) ; le contenu dans la chaîne de transmission (js/transmissionCore.js). L'écran et son déroulé
+// viennent de js/app/quiz-ui.js ; ici : le choix de la section et la fiche après chaque réponse. Le jeu se lance depuis l'onglet « Jouer » ou depuis l'écran de la
+// chaîne (`screen-tool-transmission`) et rend la main à l'écran d'où il vient. Pas de répétition espacée : les questions sont tirées au hasard dans les liens
+// sûrs. Tout ce qui vient des données passe par textContent.
 
 let trgame = null;
-let trgameReturn = 'screen-arcade';
+let trgameReturn = 'screen-main';
 let trgameSection = 'all';
 
 // Le réglage de l'appareil (la section jouée) : cette clé n'était jusqu'ici définie nulle part, donc le choix n'était jamais retenu.
 const TRANSMISSION_PREFS_KEY = 'torahaxe_trgame_prefs_v1';
 
 function openTransmissionGame(fromScreen) {
-    trgameReturn = fromScreen || 'screen-arcade';
+    trgameReturn = fromScreen || 'screen-main';
     showScreen('screen-trgame', 'forward');
     trgameLoadPrefs();
     trgameSetup();

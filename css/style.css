@@ -6771,130 +6771,6 @@ textarea.form-input {
 }
 
 
-/* --- PACKS DE LANGUE (I18N SETTINGS) --- */
-.lang-packs-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 10px;
-}
-
-.lang-pack-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: var(--surface);
-    border: 1px solid var(--border-soft);
-    border-radius: 12px;
-    padding: 10px 14px;
-    gap: 10px;
-}
-
-.lang-pack-left {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    min-width: 0;
-}
-
-.lang-pack-flag {
-    font-size: 24px;
-    line-height: 1;
-}
-
-.lang-pack-info {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    min-width: 0;
-}
-
-.lang-pack-name {
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--text-dark);
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.lang-pack-status-badge {
-    font-size: 10px;
-    font-weight: 800;
-    padding: 2px 6px;
-    border-radius: 9999px;
-}
-
-.lang-pack-status-badge.active {
-    background: #d4edda;
-    color: #155724;
-}
-
-:root[data-theme="dark"] .lang-pack-status-badge.active {
-    background: rgba(46, 204, 113, 0.2);
-    color: #2ecc71;
-}
-
-.lang-pack-status-badge.installed {
-    background: #e2e3e5;
-    color: #383d41;
-}
-
-:root[data-theme="dark"] .lang-pack-status-badge.installed {
-    background: rgba(255, 255, 255, 0.1);
-    color: #ced4da;
-}
-
-.lang-pack-details {
-    font-size: 11.5px;
-    color: var(--muted-text);
-}
-
-.lang-pack-content-hint {
-    font-size: 11px;
-    font-style: italic;
-    color: var(--muted-text);
-    opacity: 0.85;
-}
-
-.lang-pack-actions {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    flex-shrink: 0;
-}
-
-.btn-pack-action {
-    font-size: 12px;
-    font-weight: 600;
-    padding: 6px 12px;
-    border-radius: 8px;
-    border: 1px solid var(--border-soft);
-    background: var(--surface-2);
-    color: var(--text-dark);
-    cursor: pointer;
-    transition: all 0.15s ease;
-}
-
-.btn-pack-action:hover {
-    background: var(--surface);
-    border-color: var(--primary-blue);
-}
-
-.btn-pack-action.btn-primary {
-    background: var(--primary-blue);
-    color: white;
-    border-color: transparent;
-}
-
-.btn-pack-action.btn-danger {
-    background: rgba(231, 76, 60, 0.1);
-    color: var(--danger-red-text);
-    border-color: rgba(231, 76, 60, 0.3);
-}
-
-
-
 /* --- ADAPTATIONS NATIVES IOS (SAFE AREA, DYNAMIC ISLAND, STATUS BAR) --- */
 :root {
     --sat: env(safe-area-inset-top, 0px);
@@ -18221,7 +18097,7 @@ button.zm-study-link:focus-visible { outline: 2px solid var(--primary-blue); out
 
 /* Encadré de renvoi vers HistoriAxe (frises, récits, jeux : voir js/app/frises.js et la tâche
    "encadrés promotionnels"). Un seul style partagé par tous ces emplacements. */
-.historiaxe-promo-card {
+.promo-card {
     display: flex;
     align-items: center;
     gap: 14px;
@@ -18233,13 +18109,13 @@ button.zm-study-link:focus-visible { outline: 2px solid var(--primary-blue); out
     text-decoration: none;
     box-shadow: var(--card-shadow);
 }
-.historiaxe-promo-card img {
+.promo-card img {
     width: 48px;
     height: 48px;
     border-radius: 12px;
     flex-shrink: 0;
 }
-.historiaxe-promo-card span {
+.promo-card span {
     font-size: 14px;
     line-height: 1.4;
     font-weight: 600;

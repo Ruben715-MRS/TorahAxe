@@ -1,17 +1,16 @@
 // =========================================================================
-// === « MOTS DE LA GUÉMARA » : LE JEU D'ENTRAÎNEMENT (écran de la Salle de jeux, « Jeux religieux ») ===
+// === « MOTS DE LA GUÉMARA » : LE JEU D'ENTRAÎNEMENT (onglet « Jouer ») ===
 // =========================================================================
-// Les règles sont dans js/gemaraGameCore.js (pur, testé) ; le contenu dans le dictionnaire araméen (js/gemaraCore.js : mots, abréviations, sages).
-// Ici : l'écran, les boutons de réponse et la fiche de la carte après chaque réponse. Le jeu se lance depuis la salle de jeux (`screen-arcade`) ou depuis
-// le dictionnaire araméen (`screen-tool-gemara`) et rend la main à l'écran d'où il vient. Meilleur score : mêmes clés que l'arcade
-// (ArcadeCore.normalizeBest, clé `gemara`). Tout ce qui vient des données passe par textContent, jamais par du HTML.
-//
-// La mémoire : chaque réponse est enregistrée aussitôt (js/storage.js, `gemaraRecord`, clé synchronisée avec le compte) dans les boîtes de révision
-// espacée ; à l'ouverture, un bilan (« 12 cartes sur 108 maîtrisées », les cartes à réviser aujourd'hui) ; une partie mêle les cartes à réviser et des
-// cartes nouvelles (GemaraGameCore.chooseSession). On choisit la section jouée : tout, les mots, les abréviations ou les sages (réglage de l'appareil).
+// Les règles sont dans js/gemaraGameCore.js (pur, testé) ; le contenu dans le dictionnaire araméen (js/gemaraCore.js : mots, abréviations, sages). L'écran et son
+// déroulé viennent de js/app/quiz-ui.js ; ici : le choix de la section, le bilan de mémoire et la fiche de la carte. Le jeu se lance depuis l'onglet « Jouer » ou
+// depuis le dictionnaire araméen (`screen-tool-gemara`) et rend la main à l'écran d'où il vient. Tout ce qui vient des données passe par textContent.
+// 
+// La mémoire : chaque réponse est enregistrée aussitôt (js/memoryStore.js, `gemaraRecord`) dans les boîtes de révision espacée ; à l'ouverture, un bilan
+// (« 12 cartes sur 108 maîtrisées »…) ; une partie mêle les cartes à réviser et des cartes nouvelles (GemaraGameCore.chooseSession). Les cartes à réviser
+// se retrouvent aussi dans la séance « À réviser aujourd'hui » (js/app/review.js). On choisit la section jouée : tout, les mots, les abréviations ou les sages.
 
 let gemgame = null;
-let gemgameReturn = 'screen-arcade';
+let gemgameReturn = 'screen-main';
 let gemgameSection = 'all';
 let gemgameMasteredBefore = 0;
 
@@ -21,7 +20,7 @@ const GEMARA_PREFS_KEY = 'torahaxe_gemgame_prefs_v1';
 const GEMGAME_SECTION_KEYS = { all: 'section_all', words: 'section_words', abbr: 'section_abbr', sages: 'section_sages' };
 
 function openGemaraGame(fromScreen) {
-    gemgameReturn = fromScreen || 'screen-arcade';
+    gemgameReturn = fromScreen || 'screen-main';
     showScreen('screen-gemgame', 'forward');
     gemgameLoadPrefs();
     gemgameSetup();

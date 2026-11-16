@@ -352,12 +352,12 @@ function zmApplyDetected(pos, announce) {
 // Lecture silencieuse de la position (jamais de fenêtre d'autorisation ici) ; ne fait rien si le suivi est coupé.
 function zmAutoFollow() {
     if (!zmFollowOn() || zmAutoBusy) return;
-    if (typeof HistoriAxeLocation === 'undefined' || !HistoriAxeLocation.isSupported()) return;
+    if (typeof TorahAxeLocation === 'undefined' || !TorahAxeLocation.isSupported()) return;
     if (Date.now() - zmAutoLast < ZM_AUTO_EVERY_MS) return;
     zmAutoBusy = true;
     zmAutoLast = Date.now();
-    HistoriAxeLocation.status()
-        .then(s => (s === 'granted' ? HistoriAxeLocation.currentPosition() : null))
+    TorahAxeLocation.status()
+        .then(s => (s === 'granted' ? TorahAxeLocation.currentPosition() : null))
         .then(pos => {
             zmAutoBusy = false;
             if (!pos || !zmFollowOn()) return;
@@ -371,8 +371,8 @@ function zmAutoFollow() {
 // Bouton : activer demande la position une fois (le joueur a cliqué) ; désactiver arrête le suivi.
 function zmToggleFollow() {
     if (zmFollowOn()) { zmWrite(ZM_KEYS.follow, false); zmRender(true); return; }
-    if (typeof HistoriAxeLocation === 'undefined' || !HistoriAxeLocation.isSupported()) { showToast(t('tools.zm_gps_unavailable')); return; }
-    HistoriAxeLocation.locate().then(pos => {
+    if (typeof TorahAxeLocation === 'undefined' || !TorahAxeLocation.isSupported()) { showToast(t('tools.zm_gps_unavailable')); return; }
+    TorahAxeLocation.locate().then(pos => {
         if (!pos) { showToast(t('tools.zm_gps_failed')); return; }
         zmWrite(ZM_KEYS.follow, true);
         zmApplyDetected(pos, false);
@@ -380,10 +380,10 @@ function zmToggleFollow() {
 }
 
 function zmLocate() {
-    if (typeof HistoriAxeLocation === 'undefined' || !HistoriAxeLocation.isSupported()) { showToast(t('tools.zm_gps_unavailable')); return; }
+    if (typeof TorahAxeLocation === 'undefined' || !TorahAxeLocation.isSupported()) { showToast(t('tools.zm_gps_unavailable')); return; }
     zmFound = { loading: true };
     zmRender(true);
-    HistoriAxeLocation.locate().then(pos => {
+    TorahAxeLocation.locate().then(pos => {
         if (!pos) { zmFound = { error: t('tools.zm_gps_failed') }; zmRender(true); return; }
         zmUsePlace({ name: t('tools.zm_my_position'), lat: pos.lat, lon: pos.lon, elevation: 0, tz: zmDeviceTimeZone() });
     });

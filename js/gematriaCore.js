@@ -1,5 +1,5 @@
 // =========================================================================
-// === HISTORIAXE — GUÉMATRIA (calcul, sans DOM) ===
+// === TORAHAXE — GUÉMATRIA (calcul, sans DOM) ===
 // =========================================================================
 // La valeur numérique des lettres hébraïques, selon quatre modes de calcul (voir js/app/gematria.js pour l'écran) :
 //  - « standard » (mispar hechrechi) : alef = 1 … yod = 10, kaf = 20 … qof = 100 … tav = 400. Les cinq lettres finales (ך ם ן ף ץ) valent

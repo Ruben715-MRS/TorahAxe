@@ -1,5 +1,5 @@
 // =========================================================================
-// === HISTORIAXE — « MAÎTRES ET ÉLÈVES » : LES RÈGLES DU JEU (sans DOM) ===
+// === TORAHAXE — « MAÎTRES ET ÉLÈVES » : LES RÈGLES DU JEU (sans DOM) ===
 // =========================================================================
 // Un jeu de réflexion, sans minuteur, sur la chaîne de transmission (js/transmissionCore.js) : qui a reçu la Torah de qui. Ici, seulement les règles (états
 // purs, sans DOM ni stockage) ; l'écran est dans js/app/transmission-game.js. Testé dans tests/transmissionGameCore.test.js.

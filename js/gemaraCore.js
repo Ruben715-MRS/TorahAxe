@@ -1,5 +1,5 @@
 // =========================================================================
-// === HISTORIAXE — DICTIONNAIRE FRANÇAIS – ARAMÉEN (GUÉMARA) (recherche, sans DOM) ===
+// === TORAHAXE — DICTIONNAIRE FRANÇAIS – ARAMÉEN (GUÉMARA) (recherche, sans DOM) ===
 // =========================================================================
 // La recherche dans les deux sens, sur les entrées de js/gemaraData.js (voir js/app/gemara.js pour l'écran). Le moteur reprend les règles du
 // dictionnaire hébreu (js/lexiconCore.js, dont il emprunte la normalisation) avec quatre différences propres à l'araméen talmudique :

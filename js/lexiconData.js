@@ -1,5 +1,5 @@
 // =========================================================================
-// === HISTORIAXE — DICTIONNAIRE FRANÇAIS – HÉBREU BIBLIQUE (données) ===
+// === TORAHAXE — DICTIONNAIRE FRANÇAIS – HÉBREU BIBLIQUE (données) ===
 // =========================================================================
 // FICHIER GÉNÉRÉ par scripts/lexicon/build.py : ne pas le modifier à la main. Les traductions se corrigent dans scripts/lexicon/glosses-fr.tsv,
 // puis on relance l'assemblage (voir scripts/lexicon/README.md).

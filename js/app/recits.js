@@ -1,5 +1,5 @@
 // =========================================================================
-// === HISTORIAXE — RÉCITS (écrans) ===
+// === TORAHAXE — RÉCITS (écrans) ===
 // =========================================================================
 // De longs récits d'histoire, à lire comme un livre (25 à 35 minutes), puis à tester. Le format et les règles sont dans
 // js/recitsCore.js (pur, testé) ; les fichiers dans assets/recits/ (index.json, puis un fichier par récit, chargé à
@@ -79,8 +79,6 @@ function recitMarkFinished() {
     if (!d.finis[recitCurrent.id]) {
         d.finis[recitCurrent.id] = Date.now();
         recitsStoreSave(d);
-        // La position se synchronise avec la prochaine partie ; un récit fini, tout de suite.
-        if (typeof syncPushProgress === 'function') syncPushProgress();
     }
 }
 

@@ -1,5 +1,5 @@
 // =========================================================================
-// === HISTORIAXE — POIDS ET MESURES BIBLIQUES (calculs purs, sans DOM) ===
+// === TORAHAXE — POIDS ET MESURES BIBLIQUES (calculs purs, sans DOM) ===
 // =========================================================================
 // Trois familles d'unités de la Bible et du Talmud — distances, volumes, monnaies — avec leur équivalent moderne. Chaque unité est
 // une taille exprimée dans l'unité de base de sa famille (le doigt, l'œuf, la proutah) ; les rapports entre unités bibliques sont donc

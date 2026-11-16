@@ -127,8 +127,8 @@ function kotelStopSensor() {
 }
 
 function kotelLocate() {
-    if (typeof HistoriAxeLocation === 'undefined' || !HistoriAxeLocation.isSupported()) { showToast(t('tools.zm_gps_unavailable')); return; }
-    HistoriAxeLocation.locate().then(pos => {
+    if (typeof TorahAxeLocation === 'undefined' || !TorahAxeLocation.isSupported()) { showToast(t('tools.zm_gps_unavailable')); return; }
+    TorahAxeLocation.locate().then(pos => {
         if (!pos) { showToast(t('tools.zm_gps_failed')); return; }
         kotelPlace = { name: t('tools.zm_my_position'), lat: pos.lat, lon: pos.lon };
         kotelRender();

@@ -1,5 +1,5 @@
 // =========================================================================
-// === HISTORIAXE — « MOTS ESSENTIELS » : LES RÈGLES DU JEU DE VOCABULAIRE HÉBREU (sans DOM) ===
+// === TORAHAXE — « MOTS ESSENTIELS » : LES RÈGLES DU JEU DE VOCABULAIRE HÉBREU (sans DOM) ===
 // =========================================================================
 // Un jeu de réflexion, sans minuteur : on apprend les mots les plus fréquents de la Torah (les niveaux de fréquence du
 // dictionnaire, js/lexiconCore.js). Ici, seulement les règles (états purs, sans DOM ni stockage) ; l'écran est dans
