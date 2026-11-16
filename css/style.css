@@ -18369,3 +18369,14 @@ body:has(#screen-recit:not(.hidden))::after {
 .michna-block.is-flash { animation: michnaFlash 1.5s ease-out; border-radius: 12px; }
 @keyframes michnaFlash { 0% { background-color: rgba(212, 160, 23, 0.35); } 100% { background-color: transparent; } }
 @media (prefers-reduced-motion: reduce) { .michna-block.is-flash { animation: none; background-color: rgba(212, 160, 23, 0.2); } }
+
+/* --- Guide des bénédictions (Explorer) --- */
+.ben-card { gap: 8px; }
+.ben-steps { display: flex; flex-direction: column; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.ben-step { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; }
+.ben-tag-he { font-size: 14px; }
+.ben-tag-aucune { background: transparent; border-style: dashed; }
+.ben-text-he { font-size: 20px; line-height: 1.6; color: var(--text-dark); margin: 4px 0; }
+.ben-tr { font-style: italic; }
+.ben-texts { margin-top: 4px; }
+.ben-source { margin-top: 4px; }

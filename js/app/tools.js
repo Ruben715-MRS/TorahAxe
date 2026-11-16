@@ -12,7 +12,7 @@ const TOOL_SCREENS = {
     statuts: 'screen-tool-statuts', tsaraat: 'screen-tool-tsaraat', gematria: 'screen-tool-gematria',
     tanakh: 'screen-tool-tanakh', michna: 'screen-tool-michna', talmud: 'screen-tool-talmud', lexicon: 'screen-tool-lexicon', gemara: 'screen-tool-gemara',
     genealogy: 'screen-tool-genealogy', transmission: 'screen-tool-transmission', hassidout: 'screen-tool-hassidout',
-    library: 'screen-tool-library', foodlaws: 'screen-tool-foodlaws', torahReader: 'screen-torah-reader'
+    library: 'screen-tool-library', foodlaws: 'screen-tool-foodlaws', benedictions: 'screen-tool-benedictions', torahReader: 'screen-torah-reader'
 };
 const toolReturns = {};
 
@@ -79,7 +79,7 @@ function openTool(id, from) {
         siddur: toolSiddurInit, kotel: toolKotelInit, mishkan: toolMishkanInit, statuts: toolStatutsInit,
         tsaraat: toolTsaraatInit, gematria: toolGematriaInit, tanakh: toolTanakhInit, michna: toolMichnaInit, talmud: toolTalmudInit, lexicon: toolLexiconInit,
         gemara: toolGemaraInit, genealogy: toolGenealogyInit, transmission: toolTransmissionInit,
-        hassidout: toolHassidoutInit, library: toolLibraryInit, foodlaws: toolFoodLawsInit,
+        hassidout: toolHassidoutInit, library: toolLibraryInit, foodlaws: toolFoodLawsInit, benedictions: toolBenedictionsInit,
         torahReader: toolTorahReaderInit
     }[id];
     if (init) init();
