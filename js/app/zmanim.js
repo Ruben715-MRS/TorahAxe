@@ -449,7 +449,9 @@ function zmPlaceEditor(body) {
     gps.type = 'button';
     gps.id = 'zm-gps';
     gps.onclick = zmLocate;
-    panel.appendChild(gps);
+    const actions = zmEl('div', 'zm-actions');
+    actions.appendChild(gps);
+    panel.appendChild(actions);
 
     // Suivi des déplacements
     const follow = zmEl('button', 'tool-history-chip zm-follow', (zmFollowOn() ? '✓ ' : '') + t('tools.zm_follow'));
@@ -457,7 +459,7 @@ function zmPlaceEditor(body) {
     follow.id = 'zm-follow';
     follow.setAttribute('aria-pressed', zmFollowOn() ? 'true' : 'false');
     follow.onclick = zmToggleFollow;
-    panel.appendChild(follow);
+    actions.appendChild(follow);
     panel.appendChild(zmEl('p', 'tool-small', t('tools.zm_follow_note', { km: ZM_MOVE_KM })));
 
     // Favoris

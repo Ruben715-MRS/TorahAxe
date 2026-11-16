@@ -17484,6 +17484,10 @@ body[data-view-profile="religieux"] .league-btn {
 .zm-fav .zm-result { flex: 1; }
 .zm-fav-del { flex: none; width: 44px; border: 1px solid var(--border-soft); border-radius: 12px; background: var(--surface); color: var(--muted-text); font: inherit; cursor: pointer; }
 .zm-gps { align-self: flex-start; }
+/* Les deux boutons de position, sur une même ligne : petits, sans contour, en gris foncé. */
+.zm-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 18px; }
+.zm-actions .tool-history-chip { min-height: 0; padding: 4px 0; border: 0; border-radius: 0; background: none; box-shadow: none; color: #4a4f5c; font-size: 13px; }
+.zm-actions .tool-history-chip[aria-pressed="true"] { border: 0; background: none; color: var(--text-dark); font-weight: 600; }
 .zm-manual summary, .zm-options summary { min-height: 44px; display: flex; align-items: center; cursor: pointer; font-weight: 700; color: var(--text-dark); }
 .zm-manual, .zm-options { display: flex; flex-direction: column; gap: 10px; }
 .zm-manual[open], .zm-options[open] { gap: 10px; }
