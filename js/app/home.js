@@ -2,7 +2,7 @@
 // === L'ACCUEIL DE TORAHAXE : quatre onglets ===
 // =========================================================================
 // Aujourd'hui (la prière de l'heure, les horaires, la paracha, l'étude du jour), Étude (les textes et les dictionnaires),
-// Explorer (les maîtres, les lieux, les lois) et Réviser (jeux, frises, récits). Tout part d'un seul catalogue, HOME_ENTRIES :
+// Explorer (les maîtres, les lieux, les lois) et Jouer (jeux par thème, frises, récits). Tout part d'un seul catalogue, HOME_ENTRIES :
 // les onglets, la recherche et les raccourcis lisent la même liste. Les mots hébreux des tuiles sont ceux du catalogue.
 // Rien n'est construit avec du HTML : seulement des nœuds DOM (createElement, textContent).
 
@@ -68,12 +68,17 @@ const HOME_LAYOUT = {
         { title: 'Lois et pratique', as: 'tiles', cols: 3, ids: ['korbanot', 'tsaraat', 'statuts', 'foodlaws', 'benedictions', 'measures', 'kotel'] },
         { promo: 'tools' }
     ],
-    reviser: [
-        { title: 'Jeux', as: 'rows', ids: ['lexgame', 'gemgame', 'trgame', 'wheel'] },
+    // Les jeux sont rangés par thème (Hébreu, Tanakh, Sages, Halakha, Histoire) : un jeu de plus = un id dans la bonne section. Une section sans jeu n'est
+    // pas affichée (homeSection) ; « Tanakh » apparaîtra avec son premier jeu.
+    jouer: [
+        { title: 'Hébreu et araméen', as: 'rows', ids: ['lexgame', 'gemgame'] },
+        { title: 'Tanakh', as: 'rows', ids: [] },
+        { title: 'Sages', as: 'rows', ids: ['trgame'] },
+        { title: 'Halakha et fêtes', as: 'rows', ids: ['wheel'] },
         { promo: 'games' },
-        { title: 'Frises', as: 'rows', ids: ['frCivile', 'frHebraique', 'frHassidisme', 'frIsrael'] },
+        { title: 'Histoire : frises', as: 'rows', ids: ['frCivile', 'frHebraique', 'frHassidisme', 'frIsrael'] },
         { promo: 'frises' },
-        { title: 'Récits', as: 'rows', ids: ['reDreyfus', 're1948', 'reBarKokhba'] },
+        { title: 'Histoire : récits', as: 'rows', ids: ['reDreyfus', 're1948', 'reBarKokhba'] },
         { promo: 'recits' }
     ]
 };
@@ -82,13 +87,13 @@ const HOME_ICONS = {
     today: '<path d="M4 17h16M7 17a5 5 0 0 1 10 0M12 5v3M4.5 9.5l2 2M19.5 9.5l-2 2M2 21h20"/>',
     etude: '<path d="M12 6c-2-1.5-5-2-8-1.5v13c3-.5 6 0 8 1.5 2-1.5 5-2 8-1.5v-13c-3-.5-6 0-8 1.5zM12 6v13"/>',
     explorer: '<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/>',
-    reviser: '<rect x="3.5" y="8" width="12.5" height="12.5" rx="2"/><path d="M8 8V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2"/>'
+    jouer: '<rect x="4" y="4" width="16" height="16" rx="3.5"/><circle cx="9" cy="9" r="0.9"/><circle cx="15" cy="9" r="0.9"/><circle cx="12" cy="12" r="0.9"/><circle cx="9" cy="15" r="0.9"/><circle cx="15" cy="15" r="0.9"/>'
 };
 const HOME_TABS = [
     { id: 'today', label: 'Aujourd\'hui' },
     { id: 'etude', label: 'Étude' },
     { id: 'explorer', label: 'Explorer' },
-    { id: 'reviser', label: 'Réviser' }
+    { id: 'jouer', label: 'Jouer' }
 ];
 
 let homeTab = 'today';
@@ -216,6 +221,7 @@ function homeRows(entries, subs) {
 
 function homeSection(content, section) {
     if (section.promo) { content.appendChild(homePromo(section.promo)); return; }
+    if (!section.ids.length) return;   // un thème sans jeu pour l'instant : pas de titre vide
     content.appendChild(hEl('h2', 'home-section-title', section.title));
     const entries = section.ids.map(id => Object.assign({ id: id }, HOME_ENTRIES[id]));
     if (section.as === 'rows') { content.appendChild(homeRows(entries)); return; }
@@ -237,7 +243,7 @@ function homePromo(kind) {
     return a;
 }
 
-// --- Étude, Explorer, Réviser ----------------------------------------------------------------------------------------------------------------
+// --- Étude, Explorer, Jouer ----------------------------------------------------------------------------------------------------------------
 function homeNormalize(s) {
     return String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/['’‑-]/g, ' ');
 }
@@ -271,9 +277,9 @@ function homeChronoResults(query, holder, alone) {
 }
 
 function homeRenderBrowse(content) {
-    const titles = { etude: 'Étude', explorer: 'Explorer', reviser: 'Réviser' };
+    const titles = { etude: 'Étude', explorer: 'Explorer', jouer: 'Jouer' };
     homeHeader(content, titles[homeTab]);
-    if (homeTab !== 'reviser') {
+    if (homeTab !== 'jouer') {
         const wrap = hEl('div', 'search-bar-wrap home-search');
         const bar = hEl('div', 'search-bar');
         bar.appendChild(hEl('span', 'search-bar-icon', '🔍'));
@@ -289,7 +295,7 @@ function homeRenderBrowse(content) {
         wrap.appendChild(bar);
         content.appendChild(wrap);
     }
-    if (homeTab !== 'reviser' && homeQuery.trim()) {
+    if (homeTab !== 'jouer' && homeQuery.trim()) {
         const found = homeSearchResults(homeQuery);
         if (found.length) content.appendChild(homeRows(found));
         // Les éléments de la chronologie (rois, sages, événements…) : une fois la frise chargée, on les ajoute sous les outils.
