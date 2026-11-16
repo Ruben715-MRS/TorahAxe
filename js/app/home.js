@@ -57,7 +57,7 @@ const HOME_ENTRIES = {
 // Les sections de chaque onglet (sauf Aujourd'hui, qui est calculé). `as` : « tiles » (tuiles à mot hébreu) ou « rows » (lignes avec description).
 const HOME_LAYOUT = {
     etude: [
-        { title: 'Textes', as: 'tiles', cols: 2, ids: ['tanakh', 'michna', 'talmud', 'torahReader'] },
+        { title: 'Textes', as: 'tiles', cols: 2, ids: ['torahReader', 'tanakh', 'michna', 'talmud'] },
         { title: 'Autour des textes', as: 'rows', ids: ['commandments', 'library', 'lexicon', 'gemara', 'gematria'] }
     ],
     explorer: [
