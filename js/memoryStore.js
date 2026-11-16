@@ -45,3 +45,31 @@ function gemaraRecord(id, isSuccess) {
     data.cards[id] = SRS.applyResult(data.cards[id], isSuccess, Date.now());
     gemaraSave(data);
 }
+
+// Son et haptique d'une réponse (reprise réduite de js/app/arcade.js d'HistoriAxe) : js/audio.js gère le réglage « Sons » / « Vibrations ».
+function arcadeSound(kind) {
+    try {
+        if (kind === 'good') {
+            if (typeof playCorrectSound === 'function') playCorrectSound(1);
+            if (typeof triggerHaptic === 'function') triggerHaptic('success');
+        } else {
+            if (typeof playWrongSound === 'function') playWrongSound();
+            if (typeof triggerHaptic === 'function') triggerHaptic('error');
+        }
+    } catch (e) { /* un son manquant ne doit jamais bloquer le jeu */ }
+}
+
+// Meilleurs scores des trois jeux (`lexicon`, `gemara`, `transmission`), gardés sur l'appareil. Renvoie tous les meilleurs scores après enregistrement.
+const ARCADE_BEST_KEY = 'torahaxe_best_v1';
+
+function arcadeRecord(game, score) {
+    let best = {};
+    try {
+        const raw = JSON.parse(localStorage.getItem(ARCADE_BEST_KEY));
+        if (raw && typeof raw === 'object') best = raw;
+    } catch (e) { best = {}; }
+    const n = Number(score) || 0;
+    if (!(best[game] >= n)) best[game] = n;
+    try { localStorage.setItem(ARCADE_BEST_KEY, JSON.stringify(best)); } catch (e) { }
+    return best;
+}
