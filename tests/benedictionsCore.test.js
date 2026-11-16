@@ -170,3 +170,28 @@ test('la pizza : cas selon la pâte et la quantité, dans chaque rite', () => {
     assert.ok(C.filterFoods({ query: 'pizza', b: 'hamotsi', rite: 'habad' }).length === 1);
     assert.deepStrictEqual(C.notesOf(pizza), [25]);
 });
+
+test('la recherche : singulier et pluriel se confondent, et « pâtes » trouve les pâtes', () => {
+    const names = (q) => C.filterFoods({ query: q }).map(f => f.n);
+    assert.ok(names('pâtes').indexOf('Pâtes') !== -1);
+    assert.ok(names('pates').indexOf('Pâtes') !== -1);
+    assert.ok(names('pâte').indexOf('Pâtes') !== -1);
+    assert.ok(names('pommes').indexOf('Pomme') !== -1);
+    assert.ok(names('carotte').indexOf('Carotte crue') !== -1);
+    assert.deepStrictEqual(names('tarte pommes'), ['Tarte aux pommes']);
+    assert.strictEqual(find('Pâtes').b, 'mezonot');
+});
+
+test('la recherche : les noms les plus courts d\'abord, puis les plus longs', () => {
+    const names = (q) => C.filterFoods({ query: q }).map(f => f.n);
+    ['pâtes', 'riz', 'pizza', 'soupe', 'gâteau', 'pain'].forEach(q => {
+        const lens = names(q).map(n => n.length);
+        assert.deepStrictEqual(lens, lens.slice().sort((a, b) => a - b), q);
+    });
+    assert.strictEqual(names('pâtes')[0], 'Pâtes');
+    assert.strictEqual(names('riz')[0], 'Riz');
+    assert.strictEqual(names('pizza')[0], 'Pizza');
+    // sans recherche : l'ordre du guide
+    assert.strictEqual(C.filterFoods({})[0].n, D.FOODS[0].n);
+    assert.strictEqual(C.filterFoods({ b: 'haets' })[0].n, D.FOODS.filter(f => f.b === 'haets')[0].n);
+});
