@@ -803,6 +803,7 @@
     <script src="js/mapGameCore.js"></script>
     <script src="js/dailyGameCore.js"></script>
     <script src="js/progressCore.js"></script>
+    <script src="js/personalDatesCore.js"></script>
     <script src="js/app/quiz-ui.js"></script>
     <script src="js/app/lexicon-game.js"></script>
     <script src="js/app/gemara-game.js"></script>
@@ -816,6 +817,7 @@
     <script src="js/app/map-game.js"></script>
     <script src="js/app/daily-game.js"></script>
     <script src="js/app/progress.js"></script>
+    <script src="js/app/personal-dates.js"></script>
     <script src="js/app/tools.js"></script>
     <script src="js/app/navigation.js"></script>
     <script src="js/app/settings.js"></script>
@@ -1209,6 +1211,20 @@
         <button class="back-btn" onclick="progressBack()" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
         <h2 class="header-title" data-i18n="progress.title">Ma progression</h2>
         <div id="progress-body" class="progress-body"></div>
+    </div>
+
+<div id="screen-dates" class="list-screen hidden">
+        <button class="back-btn" onclick="datesBack()" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title" data-i18n="dates.title">Dates personnelles</h2>
+        <div id="dates-body" class="dates-body"></div>
+    </div>
+
+    <div class="modal-overlay hidden" id="modal-date" onclick="if (event.target === this) datesCloseForm()">
+        <div class="modal-content">
+            <button class="back-btn" onclick="datesCloseForm()" aria-label="Fermer">‹</button>
+            <h2 class="header-title" id="date-form-title"></h2>
+            <div id="date-form-body" class="dates-form"></div>
+        </div>
     </div>
 
 <div id="screen-gemgame" class="list-screen hidden">
