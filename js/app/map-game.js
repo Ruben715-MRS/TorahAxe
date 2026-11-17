@@ -47,11 +47,10 @@ function mapgameSetSection(section) {
     mapgameSetup();
 }
 
-// Le réglage « Repères » : à l'écran de préparation, il se mémorise et s'applique à la partie suivante.
+// La case « Repères » : à l'écran de préparation, elle se mémorise et s'applique à la partie suivante.
 function mapgameToggleHints() {
-    mapgameHints = !mapgameHints;
+    mapgameHints = document.getElementById('mapgame-hints').checked;
     mapgameSavePrefs();
-    document.getElementById('mapgame-hints').setAttribute('aria-pressed', mapgameHints ? 'true' : 'false');
 }
 
 function mapgameLoad(then) {
@@ -70,7 +69,7 @@ function mapgameSetup() {
     mapgame = null;
     QuizUI.phase('mapgame', 'setup');
     QuizUI.chips('mapgame', MapGameCore.SECTIONS.map(section => ({ id: section, label: t('mapgame.section_' + section) })), mapgameSection, mapgameSetSection);
-    document.getElementById('mapgame-hints').setAttribute('aria-pressed', mapgameHints ? 'true' : 'false');
+    document.getElementById('mapgame-hints').checked = mapgameHints;
     const start = document.getElementById('mapgame-start');
     if (mapgameLand) { document.getElementById('mapgame-load').textContent = ''; start.classList.remove('hidden'); return; }
     start.classList.add('hidden');

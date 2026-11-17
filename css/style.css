@@ -16729,6 +16729,9 @@ body[data-view-profile="religieux"] .league-btn {
 .mapgame-actions { margin-bottom: 12px; }
 /* La fiche après la réponse : la légende et le bouton « Lieu suivant » ne se touchent pas. */
 #mapgame-feedback-note { margin: 8px 0 0; }
+/* La case « Repères » : elle est en retrait des modes de jeu, avec sa propre case. */
+.mapgame-hints-toggle { display: inline-flex; align-items: center; gap: 8px; margin: 4px 0 0; font-size: 15px; color: var(--text-dark); cursor: pointer; }
+.mapgame-hints-toggle input { width: 18px; height: 18px; margin: 0; accent-color: #001a4b; cursor: pointer; }
 /* Les repères (réglage « Repères ») : les points des villes et montagnes, les contours des tribus et des mers ; le repère touché s'illumine. */
 .mapgame-region { fill: rgba(61, 95, 154, 0.08); stroke: #3d5f9a; stroke-width: 0.6; stroke-dasharray: 2 1.5; stroke-linejoin: round; cursor: pointer; }
 .mapgame-spot { fill: #3d5f9a; fill-opacity: 0.6; stroke: #fff; stroke-width: 0.8; cursor: pointer; }
