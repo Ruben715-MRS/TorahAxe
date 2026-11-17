@@ -7380,6 +7380,10 @@
     "card_sub_none": "Terminez une partie",
     "row_desc": "Série de jours, niveaux par domaine et badges"
   },
+  "mishnayomi": {
+    "card_label": "Michna Yomit",
+    "card_sub": "Deux michnayot par jour · il reste {n} jours avant la fin du cycle"
+  },
   "omer": {
     "title": "Compte de l'Omer",
     "day": "Jour {n}",

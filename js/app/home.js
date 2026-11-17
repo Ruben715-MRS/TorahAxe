@@ -618,6 +618,14 @@ function homeRenderToday(content) {
     const h = day.ctx.hebrew;
     const tehilim = zmTehilimText(h);
     if (tehilim) study.appendChild(homeInfoCard('Téhilim du jour', tehilim, t('tools.zm_tehilim_day', { n: h.day }), () => { toolReturns.tanakh = 'screen-main'; tanakhOpenAt('psaumes', zmTehilimStart(h) - 1, 'he'); }));
+    // La Michna Yomit : deux michnayot par jour ; la carte ouvre la première dans la Michna.
+    const my = typeof MishnaYomiCore !== 'undefined' ? MishnaYomiCore.forFixed(day.fixed) : null;
+    if (my) {
+        const card = homeInfoCard(t('mishnayomi.card_label'), MishnaYomiCore.label(my), t('mishnayomi.card_sub', { n: my.daysLeft }),
+            () => michnaOpenAt(my.first.id, my.first.chapter, my.first.mishna, 'screen-main'));
+        card.classList.add('home-card-wide');
+        study.appendChild(card);
+    }
     if (study.childElementCount) content.appendChild(study);
 
     // La révision du jour : la carte n'apparaît que s'il y a quelque chose à revoir.
