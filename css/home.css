@@ -27,7 +27,8 @@ body > #screen-main {
     min-height: 0;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    padding: calc(var(--sat, 0px) + 12px) 16px 24px;
+    /* Le titre et la date restent nets : ils commencent sous le bord doux du flou de la bande d'état. */
+    padding: calc(var(--sat, 0px) + 28px) 16px 24px;
 }
 
 .home-content {
