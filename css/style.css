@@ -17652,8 +17652,9 @@ body[data-view-profile="religieux"] .league-btn {
 .sd-section-box { display: flex; flex-direction: column; gap: 2px; margin-bottom: 18px; }
 .sd-sec-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin: 18px 0 6px; padding: 8px 12px; border-radius: 12px; background: var(--selected-tint); color: var(--text-dark); font-size: 15px; scroll-margin-top: 72px; }
 .sd-sec-head-he { font-size: 20px; font-family: 'HX Frank', 'Frank Ruhl Libre', 'SBL Hebrew', serif; }
-.sd-seg, .sd-title { margin: 0; font-family: var(--sd-font, 'HX Torah', 'Noto Serif Hebrew', serif); font-size: var(--sd-size); line-height: 1.85; text-align: right; color: var(--text-dark); padding: 2px 0; }
-.sd-title { font-size: calc(var(--sd-size) * 1.15); font-weight: 700; text-align: center; margin: 14px 0 6px; }
+/* Texte de prière justifié comme dans un siddour imprimé : bord droit et bord gauche droits, dernière ligne calée à droite. */
+.sd-seg, .sd-title { margin: 0; font-family: var(--sd-font, 'HX Frank', 'HX Torah', serif); font-size: var(--sd-size); line-height: 1.65; text-align: justify; text-align-last: right; text-justify: inter-word; hyphens: none; color: var(--text-dark); padding: 3px 0; }
+.sd-title { font-size: calc(var(--sd-size) * 1.15); font-weight: 700; text-align: center; text-align-last: center; margin: 14px 0 6px; }
 .sd-big { font-size: 1.15em; }
 .sd-small { font-size: 0.68em; color: var(--muted-text); line-height: 1.5; }
 .sd-small.sd-v.is-on, .sd-v.is-on { color: var(--text-dark); }
@@ -18195,9 +18196,15 @@ button.zm-study-link:focus-visible { outline: 2px solid var(--primary-blue); out
 .player-profile-pseudo-form[hidden] { display: none; }
 .player-profile-pseudo-form input { flex: 1 1 140px; min-width: 0; padding: 8px 12px; border-radius: 10px; border: 1px solid var(--border-soft); background: var(--surface); color: var(--text-dark); font: inherit; }
 
-/* Siddour : les polices n'ont qu'une graisse (400). Le gras du livre (premiers mots, titres) est donc dessiné par un léger contour de la MÊME police,
-   au lieu de laisser le navigateur choisir une autre police pour le gras. */
-.sd-seg strong, .sd-title, .sd-title strong, .sd-big strong { font-family: inherit; font-weight: 400; font-synthesis: none; text-shadow: 0.35px 0 0 currentColor, -0.35px 0 0 currentColor, 0 0.2px 0 currentColor; }
+/* Siddour : le gras du livre (premiers mots, titres). Frank Ruhl Libre (police par défaut) a un vrai 700 (fonts.css) ;
+   les autres polices n'ont qu'une graisse, leur gras est alors dessiné par un léger contour de la MÊME police, au lieu de
+   laisser le navigateur prendre une autre police. data-bold est posé par sdSetFont (js/app/siddur.js). */
+/* La règle globale « * { font-family: var(--font-main) } » donnait Inter à tout ce qui est imbriqué dans le texte (titres en <big>,
+   consignes en <small>) : dans un texte de prière, tout hérite de la police choisie. */
+.sd-seg *, .sd-title * { font-family: inherit; }
+.sd-seg strong, .sd-title strong, .sd-big strong { font-synthesis: none; }
+.sd-content[data-bold="real"] :is(.sd-seg strong, .sd-title, .sd-title strong, .sd-big strong) { font-weight: 700; }
+.sd-content:not([data-bold="real"]) :is(.sd-seg strong, .sd-title, .sd-title strong, .sd-big strong) { font-weight: 400; text-shadow: 0.35px 0 0 currentColor, -0.35px 0 0 currentColor, 0 0.2px 0 currentColor; }
 .sd-font-list { display: flex; flex-direction: column; gap: 6px; margin: 8px 0 4px; }
 .sd-font-option { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; padding: 8px 14px; border: 1px solid var(--border-soft); border-radius: 12px; background: var(--surface); color: var(--text-dark); cursor: pointer; text-align: start; font: inherit; }
 .sd-font-option[aria-checked="true"] { border-color: var(--primary-blue); background: var(--selected-tint); }

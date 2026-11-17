@@ -351,12 +351,57 @@
     font-display: swap;
     src: url('../assets/fonts/torah/miriam-libre-400.woff2') format('woff2');
 }
+/* Frank Ruhl Libre, police par défaut du Siddour : trois vraies graisses (400 texte, 500 bandeaux, 700 premiers mots
+   et titres), pour ne plus simuler le gras. Chaque graisse a deux fichiers : l'hébreu (lettres, voyelles, accents)
+   et la ponctuation latine (virgule, point, deux-points, chiffres) que le texte hébreu emploie, découpée de la
+   version latine de la même police pour que « : » et « , » ne changent pas de dessin au milieu d'une ligne. */
 @font-face {
     font-family: 'HX Frank';
     font-style: normal;
     font-weight: 400;
     font-display: swap;
     src: url('../assets/fonts/torah/frank-ruhl-libre-400.woff2') format('woff2');
+    unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
+}
+@font-face {
+    font-family: 'HX Frank';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('../assets/fonts/torah/frank-ruhl-libre-500.woff2') format('woff2');
+    unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
+}
+@font-face {
+    font-family: 'HX Frank';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('../assets/fonts/torah/frank-ruhl-libre-700.woff2') format('woff2');
+    unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
+}
+@font-face {
+    font-family: 'HX Frank';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/torah/frank-ruhl-libre-punct-400.woff2') format('woff2');
+    unicode-range: U+0020-0040, U+005B-0060, U+007B-007E, U+00A0, U+00AB, U+00BB, U+2011-2027;
+}
+@font-face {
+    font-family: 'HX Frank';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('../assets/fonts/torah/frank-ruhl-libre-punct-500.woff2') format('woff2');
+    unicode-range: U+0020-0040, U+005B-0060, U+007B-007E, U+00A0, U+00AB, U+00BB, U+2011-2027;
+}
+@font-face {
+    font-family: 'HX Frank';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('../assets/fonts/torah/frank-ruhl-libre-punct-700.woff2') format('woff2');
+    unicode-range: U+0020-0040, U+005B-0060, U+007B-007E, U+00A0, U+00AB, U+00BB, U+2011-2027;
 }
 @font-face {
     font-family: 'HX Sans';

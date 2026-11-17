@@ -15,7 +15,11 @@ const SD_DATA = 'data/siddur/';
 
 let sdIndex = null;
 const sdCache = {};
-let sdPrefs = { size: 2, niqqud: true, all: false, fr: false, font: 'noto-serif' };
+// v : version des réglages. En v2, la police par défaut passe de Noto Serif à Frank Ruhl Libre (la seule à avoir un vrai gras) ;
+// un « noto-serif » enregistré avant la v2 n'était que l'ancien défaut, pas un choix : il est remplacé.
+let sdPrefs = { v: 2, size: 2, niqqud: true, all: false, fr: false, font: 'frank' };
+// Polices livrées avec leurs vraies graisses (fonts.css) : le gras y est dessiné par la police, pas simulé par un contour.
+const SD_REAL_BOLD = ['frank'];
 let sdView = { mode: 'home', ids: [], title: '' };
 let sdPlace = null;
 let sdCtx = null;
@@ -40,6 +44,11 @@ function sdFontStack() {
     const f = sdFontById(sdPrefs.font);
     return f ? f.stack : "'HX Torah', 'Noto Serif Hebrew', serif";
 }
+// Le contenu du lecteur reçoit la police, et dit si elle a un vrai gras (sinon style.css le simule).
+function sdSetFont(content) {
+    content.style.setProperty('--sd-font', sdFontStack());
+    content.dataset.bold = SD_REAL_BOLD.indexOf(sdPrefs.font) >= 0 ? 'real' : 'faux';
+}
 
 function sdLoadPrefs() {
     try {
@@ -48,7 +57,7 @@ function sdLoadPrefs() {
         if (typeof p.niqqud === 'boolean') sdPrefs.niqqud = p.niqqud;
         if (typeof p.all === 'boolean') sdPrefs.all = p.all;
         if (typeof p.fr === 'boolean') sdPrefs.fr = p.fr;
-        if (typeof p.font === 'string' && sdFontById(p.font)) sdPrefs.font = p.font;
+        if (typeof p.font === 'string' && sdFontById(p.font) && (p.v >= 2 || p.font !== 'noto-serif')) sdPrefs.font = p.font;
     } catch (e) { /* stockage indisponible : réglages par défaut */ }
 }
 function sdSavePrefs() {
@@ -822,7 +831,7 @@ function sdApplySizeAndFont() {
     const content = sdContentEl();
     if (!content) return;
     content.style.setProperty('--sd-size', SD_SIZES[sdPrefs.size] + 'px');
-    content.style.setProperty('--sd-font', sdFontStack());
+    sdSetFont(content);
 }
 
 function sdOpenDisplay() {
@@ -957,7 +966,7 @@ function sdRenderReader(body) {
     wrap.appendChild(bar);
     const content = sdEl('div', 'sd-content');
     content.style.setProperty('--sd-size', SD_SIZES[sdPrefs.size] + 'px');
-    content.style.setProperty('--sd-font', sdFontStack());
+    sdSetFont(content);
     wrap.appendChild(content);
     body.appendChild(wrap);
     content.appendChild(sdEl('p', 'tool-small', t('tools.sd_loading')));
