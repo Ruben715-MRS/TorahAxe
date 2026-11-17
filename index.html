@@ -801,6 +801,7 @@
     <script src="js/whoGameCore.js"></script>
     <script src="js/orderGameCore.js"></script>
     <script src="js/mapGameCore.js"></script>
+    <script src="js/dailyGameCore.js"></script>
     <script src="js/app/quiz-ui.js"></script>
     <script src="js/app/lexicon-game.js"></script>
     <script src="js/app/gemara-game.js"></script>
@@ -812,6 +813,7 @@
     <script src="js/app/who-game.js"></script>
     <script src="js/app/order-game.js"></script>
     <script src="js/app/map-game.js"></script>
+    <script src="js/app/daily-game.js"></script>
     <script src="js/app/tools.js"></script>
     <script src="js/app/navigation.js"></script>
     <script src="js/app/settings.js"></script>
@@ -1168,6 +1170,36 @@
             <h3 data-i18n="arcade.over">Partie terminée</h3>
             <p id="mapgame-over-text"></p>
             <button type="button" class="btn" onclick="mapgameStart()" data-i18n="arcade.replay">Rejouer</button>
+        </div>
+    </div>
+
+<div id="screen-dailygame" class="list-screen hidden">
+        <button class="back-btn" onclick="dailygameBack()" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title" data-i18n="dailygame.title">Défi du jour</h2>
+        <p class="modes-header-subtitle" id="dailygame-status" role="status"></p>
+        <div id="dailygame-setup" class="lexgame-setup">
+            <p class="lexgame-progress-text" id="dailygame-date"></p>
+            <p class="tool-small" id="dailygame-today" role="status"></p>
+            <button type="button" class="btn" id="dailygame-start" onclick="dailygameStart()" data-i18n="arcade.play">Jouer</button>
+            <p class="tool-small" data-i18n="dailygame.how">Cinq questions tirées de la date du jour : la paracha de la semaine, le Daf Yomi, le mois hébraïque, la prochaine fête, les Téhilim. Les mêmes pour tout le monde, un jour donné ; 100 points par bonne réponse. Les réponses se trouvent dans l'onglet « Aujourd'hui » : le défi invite à les connaître.</p>
+            <p class="tool-small" data-i18n="dailygame.how_rest">Il n'y a pas de défi le Chabbat ni les jours de fête.</p>
+        </div>
+        <div id="dailygame-play" class="hidden">
+            <p class="cause-question" id="dailygame-question"></p>
+            <div class="cause-cards" id="dailygame-options"></div>
+            <div class="wheel-feedback hidden" id="dailygame-feedback" role="status">
+                <strong id="dailygame-feedback-title"></strong>
+                <p id="dailygame-feedback-text"></p>
+                <p class="tool-small hidden" id="dailygame-feedback-note"></p>
+                <div class="lexgame-actions">
+                    <button type="button" class="btn" id="dailygame-next" onclick="dailygameContinue()"></button>
+                </div>
+            </div>
+        </div>
+        <div class="arcade-over hidden" id="dailygame-over">
+            <h3 data-i18n="arcade.over">Partie terminée</h3>
+            <p id="dailygame-over-text"></p>
+            <p id="dailygame-over-progress"></p>
         </div>
     </div>
 

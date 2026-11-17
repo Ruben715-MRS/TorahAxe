@@ -41,6 +41,7 @@ const HOME_ENTRIES = {
     foodlaws: { he: 'כשרות', fr: 'Cacherout', desc: 'Les animaux purs et impurs, les mélanges interdits', kw: 'casher kasher aliments sauterelles oiseaux poissons', run: homeTool('foodlaws') },
     benedictions: { he: 'ברכות', fr: 'Bénédictions', desc: 'Quelle bénédiction dire sur quel aliment : 290 aliments, avec les notes (Beth Loubavitch)', kw: 'bracha berakha brakha berakhot aliment manger boire haets haadama mezonot chehakol hamotsi haguafen fruit légume pain vin birkhot hanehenin', run: homeTool('benedictions') },
     measures: { he: 'מידות', fr: 'Mesures', desc: 'Poids, volumes, distances et monnaies de la Bible', kw: 'coudée poids volumes monnaies chékel', run: homeTool('measures') },
+    daily: { he: 'אתגר', fr: 'Défi du jour', desc: 'Cinq questions sur la date du jour : paracha, Daf Yomi, mois, fête, Téhilim', kw: 'jeu défi quotidien jour date paracha daf yomi mois fête téhilim', run: () => openDailyGame('screen-main') },
     review: { he: 'חזרה', fr: 'À réviser aujourd\'hui', desc: 'Mots du Tanakh et de la Guémara à revoir aujourd\'hui, en une seule séance', kw: 'réviser révision répétition espacée rappel mémoire jeu', run: () => openReview('screen-main') },
     purgame: { he: 'טהור', fr: 'Pur ou impur ?', desc: 'Triez les animaux, vite : pur (permis) ou impur (interdit), avec les signes à connaître', kw: 'jeu cacherout casher kasher animaux poissons oiseaux quadrupèdes tahor tame', run: () => openPurityGame('screen-main') },
     mitsvagame: { he: 'מצוות', fr: 'Mitsva express', desc: 'De quelle paracha le Rambam tire-t-il ce commandement ? Vite, parmi les 613', kw: 'jeu mitsvot commandements 613 rambam paracha parachiot torah livre', run: () => openMitsvaGame('screen-main') },
@@ -76,7 +77,7 @@ const HOME_LAYOUT = {
     // Les jeux sont rangés par thème (Hébreu, Tanakh, Sages, Halakha, Histoire) : un jeu de plus = un id dans la bonne section. Une section sans jeu n'est
     // pas affichée (homeSection).
     jouer: [
-        { title: 'Révision', as: 'rows', ids: ['review'], subs: () => ({ review: homeReviewDesc() }) },
+        { title: 'Chaque jour', as: 'rows', ids: ['daily', 'review'], subs: () => ({ daily: homeDailyDesc(), review: homeReviewDesc() }) },
         { title: 'Hébreu et araméen', as: 'rows', ids: ['lexgame', 'gemgame'] },
         { title: 'Tanakh', as: 'rows', ids: ['parashagame', 'mitsvagame'] },
         { title: 'Géographie', as: 'rows', ids: ['mapgame'] },
@@ -223,6 +224,14 @@ function homeRows(entries, subs) {
         box.appendChild(b);
     });
     return box;
+}
+
+// Ce que la ligne « Défi du jour » annonce : le résultat du jour, ou qu'il n'y a pas de défi le Chabbat et les jours de fête.
+function homeDailyDesc() {
+    if (typeof dailygameResult !== 'function') return HOME_ENTRIES.daily.desc;
+    if (dailygameIsRestDay()) return t('dailygame.row_rest');
+    const done = dailygameResult();
+    return done ? t('dailygame.row_done', { score: done.score, max: done.total * DailyGameCore.POINTS }) : t('dailygame.row_desc');
 }
 
 // Ce que la ligne « À réviser aujourd'hui » annonce : le nombre d'éléments à revoir (js/app/review.js), ou qu'il n'y a rien.
@@ -537,6 +546,17 @@ function homeRenderToday(content) {
             feast.ongoing ? 'Aujourd\'hui' : (feast.days === 1 ? 'demain' : 'dans ' + feast.days + ' jours'), () => hcalOpenFeast(feast.id, feast.year, feast.israel)));
     }
     content.appendChild(cards);
+
+    // Le défi du jour : une carte pleine largeur ; rien le Chabbat ni les jours de fête.
+    if (typeof dailygameIsRestDay === 'function' && !dailygameIsRestDay()) {
+        const doneToday = dailygameResult();
+        const row = hEl('div', 'home-cards');
+        const card = homeInfoCard('Défi du jour', doneToday ? t('dailygame.card_done', { score: doneToday.score, max: doneToday.total * DailyGameCore.POINTS }) : t('dailygame.card_value'),
+            t(doneToday ? 'dailygame.card_sub_done' : 'dailygame.card_sub'), () => openDailyGame('screen-main'));
+        card.classList.add('home-card-wide');
+        row.appendChild(card);
+        content.appendChild(row);
+    }
 
     // L'étude du jour : le Daf Yomi et les Téhilim
     const study = hEl('div', 'home-cards');
