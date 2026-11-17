@@ -93,8 +93,16 @@ const QuizUI = (function () {
         const best = arcadeRecord(bestKey, g.score);
         phase(p, 'over');
         $(p + '-over-text').textContent = t(p + '.found', { found: g.found, total: g.questions.length, score: g.score }) + ' ' + t('arcade.best', { score: best[bestKey] });
-        const prog = $(p + '-over-progress');
-        if (prog) prog.textContent = progressText || '';
+        // Le résumé de la progression (points d'expérience, série, badges) : js/app/progress.js enregistre la partie, qui est terminée. L'écran de fin de certains jeux n'a pas de ligne
+        // pour lui : elle est créée.
+        const gain = typeof progressRecord === 'function' ? progressRecord(p, g.score, g.questions.length * 100) : '';
+        let prog = $(p + '-over-progress');
+        if (!prog) {
+            prog = document.createElement('p');
+            prog.id = p + '-over-progress';
+            $(p + '-over-text').insertAdjacentElement('afterend', prog);
+        }
+        prog.textContent = [progressText, gain].filter(Boolean).join(' · ');
     }
 
     // La barre de progression des jeux à mémoire (« 47 mots sur 107 maîtrisés »).

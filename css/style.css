@@ -16734,6 +16734,24 @@ body[data-view-profile="religieux"] .league-btn {
 :root[data-theme="dark"] .mapgame-label { fill: #9cc1de; }
 :root[data-theme="dark"] .mapgame-pin { fill: #7aa2ff; }
 :root[data-theme="dark"] .mapgame-line { stroke: #ddd; }
+/* « Ma progression » : la série, les niveaux par domaine, les badges. */
+.progress-body { display: flex; flex-direction: column; gap: 10px; padding-bottom: 24px; }
+.progress-card { border: 1px solid var(--border-soft); border-radius: 14px; background: var(--surface); padding: 14px; }
+.progress-card small { display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted-text); }
+.progress-big { display: block; font-size: 34px; line-height: 1.15; margin: 2px 0 6px; color: var(--text-dark); }
+.progress-streak.is-frozen { border-color: #7fa9c9; background: rgba(127, 169, 201, 0.12); }
+.progress-streak.is-active { border-color: var(--progress-green); }
+.progress-card p { margin: 4px 0 0; }
+.progress-rule { color: var(--muted-text); }
+.progress-level-head { display: flex; align-items: baseline; gap: 8px; margin-bottom: 8px; }
+.progress-level-head .he { color: var(--muted-text); font-size: 14px; }
+.progress-level-n { margin-left: auto; font-weight: 700; }
+.progress-badges { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.progress-badge { display: flex; flex-direction: column; gap: 3px; padding: 10px; border-radius: 12px; border: 1px dashed var(--border-soft); background: var(--surface-2); opacity: 0.7; }
+.progress-badge.is-earned { opacity: 1; border-style: solid; border-color: var(--progress-green); background: var(--surface); }
+.progress-badge strong { font-size: 14px; }
+.progress-badge em { font-style: normal; font-weight: 700; font-size: 13px; color: var(--muted-text); }
+.progress-badge.is-earned em { color: var(--progress-green); }
 .parashagame-he { margin: 0; font-size: 24px; line-height: 1.7; text-align: right; color: var(--text-dark); }
 .parashagame-fr { margin: 8px 0 0; font-size: 14px; line-height: 1.45; color: var(--muted-text); }
 .parashagame-points { margin: 0 0 8px; text-align: center; font-weight: 700; }

@@ -802,6 +802,7 @@
     <script src="js/orderGameCore.js"></script>
     <script src="js/mapGameCore.js"></script>
     <script src="js/dailyGameCore.js"></script>
+    <script src="js/progressCore.js"></script>
     <script src="js/app/quiz-ui.js"></script>
     <script src="js/app/lexicon-game.js"></script>
     <script src="js/app/gemara-game.js"></script>
@@ -814,6 +815,7 @@
     <script src="js/app/order-game.js"></script>
     <script src="js/app/map-game.js"></script>
     <script src="js/app/daily-game.js"></script>
+    <script src="js/app/progress.js"></script>
     <script src="js/app/tools.js"></script>
     <script src="js/app/navigation.js"></script>
     <script src="js/app/settings.js"></script>
@@ -1201,6 +1203,12 @@
             <p id="dailygame-over-text"></p>
             <p id="dailygame-over-progress"></p>
         </div>
+    </div>
+
+<div id="screen-progress" class="list-screen hidden">
+        <button class="back-btn" onclick="progressBack()" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title" data-i18n="progress.title">Ma progression</h2>
+        <div id="progress-body" class="progress-body"></div>
     </div>
 
 <div id="screen-gemgame" class="list-screen hidden">

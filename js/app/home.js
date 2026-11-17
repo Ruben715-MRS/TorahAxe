@@ -41,6 +41,7 @@ const HOME_ENTRIES = {
     foodlaws: { he: 'כשרות', fr: 'Cacherout', desc: 'Les animaux purs et impurs, les mélanges interdits', kw: 'casher kasher aliments sauterelles oiseaux poissons', run: homeTool('foodlaws') },
     benedictions: { he: 'ברכות', fr: 'Bénédictions', desc: 'Quelle bénédiction dire sur quel aliment : 290 aliments, avec les notes (Beth Loubavitch)', kw: 'bracha berakha brakha berakhot aliment manger boire haets haadama mezonot chehakol hamotsi haguafen fruit légume pain vin birkhot hanehenin', run: homeTool('benedictions') },
     measures: { he: 'מידות', fr: 'Mesures', desc: 'Poids, volumes, distances et monnaies de la Bible', kw: 'coudée poids volumes monnaies chékel', run: homeTool('measures') },
+    progress: { he: 'התקדמות', fr: 'Ma progression', desc: 'Série de jours, niveaux par domaine et badges', kw: 'progression série jours niveaux badges statistiques succès', run: () => openProgress('screen-main') },
     daily: { he: 'אתגר', fr: 'Défi du jour', desc: 'Cinq questions sur la date du jour : paracha, Daf Yomi, mois, fête, Téhilim', kw: 'jeu défi quotidien jour date paracha daf yomi mois fête téhilim', run: () => openDailyGame('screen-main') },
     review: { he: 'חזרה', fr: 'À réviser aujourd\'hui', desc: 'Mots du Tanakh et de la Guémara à revoir aujourd\'hui, en une seule séance', kw: 'réviser révision répétition espacée rappel mémoire jeu', run: () => openReview('screen-main') },
     purgame: { he: 'טהור', fr: 'Pur ou impur ?', desc: 'Triez les animaux, vite : pur (permis) ou impur (interdit), avec les signes à connaître', kw: 'jeu cacherout casher kasher animaux poissons oiseaux quadrupèdes tahor tame', run: () => openPurityGame('screen-main') },
@@ -77,7 +78,7 @@ const HOME_LAYOUT = {
     // Les jeux sont rangés par thème (Hébreu, Tanakh, Sages, Halakha, Histoire) : un jeu de plus = un id dans la bonne section. Une section sans jeu n'est
     // pas affichée (homeSection).
     jouer: [
-        { title: 'Chaque jour', as: 'rows', ids: ['daily', 'review'], subs: () => ({ daily: homeDailyDesc(), review: homeReviewDesc() }) },
+        { title: 'Chaque jour', as: 'rows', ids: ['daily', 'review', 'progress'], subs: () => ({ daily: homeDailyDesc(), review: homeReviewDesc(), progress: homeProgressDesc() }) },
         { title: 'Hébreu et araméen', as: 'rows', ids: ['lexgame', 'gemgame'] },
         { title: 'Tanakh', as: 'rows', ids: ['parashagame', 'mitsvagame'] },
         { title: 'Géographie', as: 'rows', ids: ['mapgame'] },
@@ -232,6 +233,13 @@ function homeDailyDesc() {
     if (dailygameIsRestDay()) return t('dailygame.row_rest');
     const done = dailygameResult();
     return done ? t('dailygame.row_done', { score: done.score, max: done.total * DailyGameCore.POINTS }) : t('dailygame.row_desc');
+}
+
+// Ce que la ligne « Ma progression » annonce : la série en cours.
+function homeProgressDesc() {
+    if (typeof progressStreak !== 'function') return HOME_ENTRIES.progress.desc;
+    const st = progressStreak();
+    return st.current > 0 ? t('progress.streak_title') + ' : ' + progressStreakText(st.current) + ' · ' + t('progress.row_desc') : t('progress.row_desc');
 }
 
 // Ce que la ligne « À réviser aujourd'hui » annonce : le nombre d'éléments à revoir (js/app/review.js), ou qu'il n'y a rien.
@@ -547,15 +555,22 @@ function homeRenderToday(content) {
     }
     content.appendChild(cards);
 
-    // Le défi du jour : une carte pleine largeur ; rien le Chabbat ni les jours de fête.
-    if (typeof dailygameIsRestDay === 'function' && !dailygameIsRestDay()) {
-        const doneToday = dailygameResult();
+    // Le défi du jour et la série : deux cartes côte à côte ; le Chabbat et les jours de fête, il n'y a pas de défi et la série seule s'affiche (gelée, si elle existe).
+    if (typeof dailygameIsRestDay === 'function') {
         const row = hEl('div', 'home-cards');
-        const card = homeInfoCard('Défi du jour', doneToday ? t('dailygame.card_done', { score: doneToday.score, max: doneToday.total * DailyGameCore.POINTS }) : t('dailygame.card_value'),
-            t(doneToday ? 'dailygame.card_sub_done' : 'dailygame.card_sub'), () => openDailyGame('screen-main'));
-        card.classList.add('home-card-wide');
-        row.appendChild(card);
-        content.appendChild(row);
+        if (!dailygameIsRestDay()) {
+            const doneToday = dailygameResult();
+            row.appendChild(homeInfoCard('Défi du jour', doneToday ? t('dailygame.card_done', { score: doneToday.score, max: doneToday.total * DailyGameCore.POINTS }) : t('dailygame.card_value'),
+                t(doneToday ? 'dailygame.card_sub_done' : 'dailygame.card_sub'), () => openDailyGame('screen-main')));
+        }
+        if (typeof progressStreak === 'function') {
+            const st = progressStreak();
+            const sub = st.status === 'active' ? t('progress.card_sub_active', { best: st.longest }) : st.status === 'pending' ? t('progress.card_sub_pending')
+                : st.status === 'frozen' ? t('progress.card_sub_frozen') : t('progress.card_sub_none');
+            row.appendChild(homeInfoCard(t('progress.card_label'), st.current > 0 ? progressStreakText(st.current) : t('progress.card_none'), sub, () => openProgress('screen-main')));
+        }
+        if (row.childElementCount === 1) row.firstChild.classList.add('home-card-wide');
+        if (row.childElementCount) content.appendChild(row);
     }
 
     // L'étude du jour : le Daf Yomi et les Téhilim
