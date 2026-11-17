@@ -173,7 +173,7 @@ function datesCalcRun() {
     datesCalc.result = { birth: birth, b: b, sex: datesCalc.sex, civil: civil, after: datesCalc.after, parasha: undefined };
     datesRender();
     datesLoadParasha(() => {
-        const idx = PersonalDatesCore.parashaOfShabbat(datesData.calendar, b.shabbat);
+        const idx = PersonalDatesCore.parashaOfShabbat(b.shabbat, typeof zmStoredIsrael === 'function' && zmStoredIsrael());
         datesCalc.result.parasha = idx && datesData.parashot ? idx.map(k => datesData.parashot.parashot[k].fr).join(' – ') : null;
         if (document.getElementById('screen-dates') && !document.getElementById('screen-dates').classList.contains('hidden')) datesRender();
     });

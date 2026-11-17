@@ -456,7 +456,7 @@ function homeNextFeast(day) {
 
 function homeParashaName(day) {
     if (!homeParasha) return null;
-    const indices = TorahCore.parashaForDate(homeParasha.calendar, new Date(day.civil.year, day.civil.month - 1, day.civil.day));
+    const indices = TorahCore.parashaForDate(homeParasha.calendar, new Date(day.civil.year, day.civil.month - 1, day.civil.day), day.israel);
     if (!indices || !indices.length) return null;
     return { index: indices[0], name: indices.map(k => homeParasha.parashot.parashot[k].fr).join(' – ') };
 }

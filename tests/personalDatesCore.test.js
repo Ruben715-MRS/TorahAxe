@@ -144,7 +144,7 @@ test('toute date, toute année : un jour qui existe (jamais d\'erreur), dans la 
 test('bar-mitsva : né le 6 Kislev 5774, 13 ans le 6 Kislev 5787 (lundi 16 novembre 2026), le Chabbat suivant le 21 novembre, paracha Vayétsé', () => {
     const b = P.barBatMitsva({ day: 6, month: 'Kislev', year: 5774 }, 'm', 'sefarade');
     assert.deepStrictEqual([b.age, b.year, b.civil, b.weekday, b.shabbatCivil], [13, 5787, { year: 2026, month: 11, day: 16 }, 1, { year: 2026, month: 11, day: 21 }]);
-    const idx = P.parashaOfShabbat(CAL, b.shabbat);
+    const idx = P.parashaOfShabbat(b.shabbat);
     assert.strictEqual(PAR.parashot[idx[0]].fr, 'Vayétsé');
 });
 
@@ -163,10 +163,14 @@ test('bar-mitsva : une naissance en Adar d\'une année simple, bar-mitsva en ann
     assert.strictEqual(HC.hebrewFromFixed(b.fixed).month, 'AdarII');
 });
 
-test('parashaOfShabbat : hors des années du calendrier, null', () => {
-    assert.strictEqual(P.parashaOfShabbat(CAL, CY.gregorianToFixed(2045, 3, 3)), null);
-    assert.strictEqual(P.parashaOfShabbat(null, CY.gregorianToFixed(2026, 11, 21)), null);
+test('parashaOfShabbat : toute date du calendrier de l\'application a sa paracha (1900, 2045, 2399), Israël compris ; hors du calendrier, ou un Chabbat de fête : null', () => {
+    assert.strictEqual(PAR.parashot[P.parashaOfShabbat(CY.gregorianToFixed(2045, 3, 4))[0]].fr.length > 0, true);       // samedi 4 mars 2045
+    assert.ok(P.parashaOfShabbat(CY.gregorianToFixed(1900, 1, 6)));
+    assert.ok(P.parashaOfShabbat(CY.gregorianToFixed(2399, 6, 5)));               // samedi 5 juin 2399
+    assert.strictEqual(P.parashaOfShabbat(CY.gregorianToFixed(2401, 6, 5)), null);                                      // hors du calendrier
+    assert.strictEqual(P.parashaOfShabbat(CY.gregorianToFixed(2026, 9, 12)), null);                                     // Roch Hachana, un Chabbat de fête
 });
+
 
 test('upcoming : les dates des 30 prochains jours, triées, avec le nombre de jours et d\'années', () => {
     const items = [hz(10, 'Kislev', 5780, { name: 'A' }), ev(6, 'Kislev', 5774, { name: 'B' }), ev(4, 'Tevet', 5774, { name: 'C' })];

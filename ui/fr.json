@@ -7455,7 +7455,7 @@
     "kindshort_f": "bat-mitsva",
     "calc_is_shabbat": "La date tombe un Chabbat.",
     "calc_parasha": "Paracha de ce Chabbat : {name}.",
-    "calc_parasha_none": "Paracha non disponible : le calendrier des Chabbats couvre 2025 à 2036, et un Chabbat de fête n'a pas de paracha ordinaire.",
+    "calc_parasha_none": "Pas de paracha ordinaire ce Chabbat-là : c'est un Chabbat de fête (ou la date est hors du calendrier de l'application, de 1583 à 2400).",
     "calc_add": "Ajouter l'anniversaire à mes dates",
     "calc_invalid": "Entrez une date de naissance.",
     "rem_title": "Rappels",

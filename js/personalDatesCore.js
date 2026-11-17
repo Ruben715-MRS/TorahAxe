@@ -19,7 +19,7 @@
 //  - HAZKARA d'un décès en Adar II : Adar II dans une année embolismique, l'Adar unique dans une année simple.
 //  - ANNIVERSAIRE de naissance ou de mariage (et bar ou bat-mitsva, qui suit la même règle) : né en Adar d'une année simple, c'est Adar II dans une année embolismique (« toujours le dernier mois ») ; né en
 //    Adar I, Adar I dans une année embolismique et l'Adar unique dans une année simple ; né un 30 'Hechvan, 30 Kislev ou 30 Adar I, le 1er du mois suivant les années où ce jour n'existe pas.
-// Le nombre de jours de 'Hechvan et de Kislev (29 ou 30) vient de js/hebrewCalendarCore.js ; la paracha d'un Chabbat, de js/torahCore.js (data/torah/calendar.json : 2025 à 2036).
+// Le nombre de jours de 'Hechvan et de Kislev (29 ou 30) vient de js/hebrewCalendarCore.js ; la paracha d'un Chabbat, de js/sedraCore.js (toute date de 1583 à 2400, diaspora et Israël).
 (function (root, factory) {
     if (typeof module === 'object' && module.exports) module.exports = factory(require('./hebrewCalendarCore.js'), require('./calendarYearCore.js'), require('./zmanimCore.js'), require('./torahCore.js'));
     else root.PersonalDatesCore = factory(root.HebrewCalendarCore, root.CalendarYearCore, root.ZmanimCore, root.TorahCore);
@@ -149,11 +149,11 @@
         return { age: age, year: year, fixed: fixed, hebrew: HC.hebrewFromFixed(fixed), civil: civilOfFixed(fixed), weekday: weekday, shabbat: shabbat, shabbatCivil: civilOfFixed(shabbat) };
     }
 
-    // La paracha lue à un Chabbat (jour fixe) : l'indice dans parashot.json (un tableau si deux parachiot), ou null (hors des années du calendrier, ou Chabbat de fête).
-    function parashaOfShabbat(calendar, fixedShabbat) {
-        if (!calendar) return null;
+    // La paracha lue à un Chabbat (jour fixe) : les indices dans parashot.json (deux si deux parachiot réunies), ou null (Chabbat de fête, ou date hors du calendrier de l'application, 1583 à 2400).
+    // `israel` : le calendrier d'Israël (la paracha diffère parfois de la diaspora) ; faux par défaut.
+    function parashaOfShabbat(fixedShabbat, israel) {
         var c = civilOfFixed(fixedShabbat);
-        var idx = Torah.parashaForDate(calendar, new Date(c.year, c.month - 1, c.day));
+        var idx = Torah.parashaForDate(null, new Date(c.year, c.month - 1, c.day), !!israel);
         return idx && idx.length ? idx : null;
     }
 

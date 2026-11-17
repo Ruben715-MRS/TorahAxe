@@ -68,7 +68,7 @@
 
     function tehilimText(r) { return r.length === 3 ? r[0] + ' (' + r[1] + '–' + r[2] + ')' : r[0] + '–' + r[1]; }
 
-    // ctx : { civil, israel, calendar (data/torah/calendar.json), parashot (data/torah/parashot.json), names }
+    // ctx : { civil, israel, parashot (data/torah/parashot.json), names }  (la paracha se calcule : js/sedraCore.js)
     // names : { month(annéeHébraïque, idDuMois) → nom français, feast(idDeFête, jourFixe, israel) → nom français } — les noms sont dans ui/fr.json, que ce module ne lit pas.
     function facts(ctx) {
         var fixed = fixedOf(ctx.civil), israel = !!ctx.israel;
@@ -91,7 +91,7 @@
         out.feasts = feasts;
         out.feast = upcoming.length ? { f: upcoming[0], ongoing: upcoming[0].fixed <= fixed, days: upcoming[0].fixed - fixed } : null;
         // La paracha de la semaine : une seule (les semaines à deux parachiot sont écartées de la question « laquelle ? », pas de la suivante).
-        var idx = ctx.calendar && ctx.parashot ? Torah.parashaForDate(ctx.calendar, new Date(ctx.civil.year, ctx.civil.month - 1, ctx.civil.day)) : null;
+        var idx = ctx.parashot ? Torah.parashaForDate(null, new Date(ctx.civil.year, ctx.civil.month - 1, ctx.civil.day), israel) : null;
         out.parashaIdx = idx && idx.length ? idx : null;
         return out;
     }

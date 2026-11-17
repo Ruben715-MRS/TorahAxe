@@ -101,11 +101,13 @@ test('sur toute une année : toujours cinq questions valides, les bonnes répons
     }
 });
 
-test('hors des années de data/torah/calendar.json : pas de question de paracha, mais toujours cinq questions', () => {
-    const qs = D.questionsFor(ctx(2040, 6, 10));
+test('la paracha se calcule pour toute date du calendrier (2040, 1900) ; hors du calendrier de l\'application (2401), pas de question de paracha mais toujours cinq questions', () => {
+    ['2040', '1900'].forEach(y => assert.ok(D.questionsFor(ctx(Number(y), 6, 10)).some(q => q.type === 'parasha' || q.type === 'parasha_next') || D.facts(ctx(Number(y), 6, 10)).parashaIdx, y));
+    const qs = D.questionsFor(ctx(2401, 6, 10));
     assert.strictEqual(qs.length, 5);
     assert.ok(!qs.some(q => q.type === 'parasha' || q.type === 'parasha_next'));
 });
+
 
 test('une semaine à deux parachiot : pas de « quelle paracha cette semaine ? » (deux bonnes réponses), mais « après celle de cette semaine » reste', () => {
     const doubles = [];

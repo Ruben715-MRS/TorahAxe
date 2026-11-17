@@ -680,6 +680,11 @@ function zmCalendar(body) {
 }
 
 // --- Les informations du jour ---------------------------------------------------------------------------------------------------------------
+// Le lieu enregistré est-il en Israël ? (la paracha de la semaine diffère parfois de la diaspora : js/sedraCore.js)
+function zmStoredIsrael() {
+    try { const p = ZmanimCore.normalizePlace(JSON.parse(localStorage.getItem('zmanimPlace') || 'null')); return !!p && ZmanimCore.inIsrael(p); } catch (e) { return false; }
+}
+
 function zmTehilimText(h) {
     const months = HebrewCalendarCore.monthsOf(h.year);
     const month = months.filter(m => m.id === h.month)[0];
@@ -699,7 +704,7 @@ function zmTehilimStart(h) {
 
 function zmParashaText(date) {
     if (!zmParasha) return null;
-    const indices = TorahCore.parashaForDate(zmParasha.calendar, new Date(date.year, date.month - 1, date.day));
+    const indices = TorahCore.parashaForDate(zmParasha.calendar, new Date(date.year, date.month - 1, date.day), zmStoredIsrael());
     if (!indices || !indices.length) return null;
     return indices.map(k => zmParasha.parashot.parashot[k][zmHe ? 'he' : 'fr']).join(' – ');
 }
@@ -831,7 +836,7 @@ function zmTimesList(body, z, state) {
 // La paracha d'une date : { index, name } ou null (calendrier non chargé).
 function zmParashaOf(date) {
     if (!zmParasha) return null;
-    const indices = TorahCore.parashaForDate(zmParasha.calendar, new Date(date.year, date.month - 1, date.day));
+    const indices = TorahCore.parashaForDate(zmParasha.calendar, new Date(date.year, date.month - 1, date.day), zmStoredIsrael());
     if (!indices || !indices.length) return null;
     return { index: indices[0], name: indices.map(k => zmParasha.parashot.parashot[k][zmHe ? 'he' : 'fr']).join(' – ') };
 }

@@ -683,7 +683,7 @@ function torahReaderLoadWeek() {
 function torahReaderShowWeek() {
     const btn = toolEl('torah-reader-week');
     if (!btn || !torahReaderData) return;
-    const indices = TorahCore.parashaForDate(torahReaderWeek, new Date());
+    const indices = TorahCore.parashaForDate(torahReaderWeek, new Date(), typeof zmStoredIsrael === 'function' && zmStoredIsrael());
     if (!indices || !indices.length) { btn.classList.add('hidden'); return; }
     const names = indices.map(k => torahReaderData.parashot[k].he);
     btn.textContent = names.join(' – ');
