@@ -15791,7 +15791,6 @@ body[data-view-profile="religieux"] .league-btn {
 .tr-key.is-c-sighet { background: #e7e5e4; }
 .tr-key.is-c-spinka { background: #d1fae5; }
 .tr-key.is-c-vizhnitz { background: #fbcfe8; }
-#screen-tool-hassidout .tr-bar { margin-top: 8px; }
 .tr-line.is-far { stroke-dasharray: 6 4; }
 .gen-screen .gen-view { cursor: grab; user-select: none; -webkit-user-select: none; touch-action: none; }
 .gen-screen .gen-view.is-dragging, .gen-screen .gen-view.is-dragging .gen-card, .gen-screen .gen-view.is-dragging .gen-toggle { cursor: grabbing; }
