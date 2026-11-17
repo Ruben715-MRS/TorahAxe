@@ -1220,6 +1220,9 @@ function zmReminders(body) {
         [['off', t('tools.zm_rem_off')], ['tzeit', t('tools.zm_rem_omer_tzeit')], ['shkia', t('tools.zm_rem_omer_shkia')]],
         zmRem.omer.on ? zmRem.omer.at : 'off',
         v => { if (v === 'off') zmRem.omer.on = false; else { zmRem.omer.on = true; zmRem.omer.at = v; } });
+    zmRemSelect(details, 'zm-r-omer-morning', t('tools.zm_rem_omer_morning'),
+        [['off', t('tools.zm_rem_off')], ['on', t('tools.zm_rem_omer_morning_on')]],
+        zmRem.omer.morning ? 'on' : 'off', v => { zmRem.omer.morning = v === 'on'; });
     if (zmRem.omer.on) {
         zmRemSelect(details, 'zm-r-omer-text', t('tools.zm_rem_omer_text'),
             [['count', t('tools.zm_rem_omer_text_count')], ['simple', t('tools.zm_rem_omer_text_simple')]],

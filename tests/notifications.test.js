@@ -106,3 +106,18 @@ test('dates personnelles : sans lieu ou sans registre, aucun rappel de plus ; ho
     const web = build({ plugin: null }, OFF, { datesCore: () => Dates, dates: () => HAZKARA });
     assert.strictEqual(await web.api.scheduleZmanim(), 0);
 });
+
+test('l\'Omer : le soir est actif par défaut, le matin non ; le matin se lit sans bénédiction', () => {
+    const d = Reminder.defaults();
+    assert.strictEqual(d.omer.on, true);
+    assert.strictEqual(d.omer.morning, false);
+    assert.strictEqual(Reminder.normalize({ on: true, omer: { on: true } }).omer.morning, false);
+    const s = Object.assign({}, ON, { candles: { on: false }, omer: { on: true, at: 'tzeit', text: 'count', morning: true } });
+    const items = Reminder.plan(s, ZmanimCore.normalizePlace(place), {}, Date.parse('2027-04-25T10:00:00+02:00'), 7).filter(i => i.kind === 'omer');
+    const mornings = items.filter(i => i.when === 'morning'), evenings = items.filter(i => i.when !== 'morning');
+    assert.ok(mornings.length >= 5 && evenings.length >= 5);
+    const m = mornings[0], e = evenings.find(x => x.day === m.day);
+    assert.ok(e && e.at < m.at, 'la veille au soir précède le matin du même numéro');
+    const tr = (k, p) => k + JSON.stringify(p || {});
+    assert.ok(/morning_body/.test(Reminder.describe(m, tr, ZmanimCore.normalizePlace(place), 'fr').body));
+});

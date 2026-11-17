@@ -32,7 +32,7 @@
         return {
             on: false,
             candles: { on: false, before: 60 },
-            omer: { on: false, at: 'tzeit', text: 'count' },      // at : 'tzeit' | 'shkia' ; text : 'count' (le compte) | 'simple'
+            omer: { on: true, at: 'tzeit', text: 'count', morning: false },   // at : 'tzeit' | 'shkia' (la veille au soir, avec bénédiction) ; text : 'count' (le compte) | 'simple' ; morning : rappel du matin (sans bénédiction)
             roshChodesh: { on: false, when: 'eve' },              // when : 'eve' (la veille au soir) | 'morning'
             levana: { on: false },
             days: [0, 1, 2, 3, 4, 5, 6],                          // jours de la semaine des rappels personnalisés (0 = dimanche)
@@ -52,6 +52,7 @@
         }
         if (raw.omer && typeof raw.omer === 'object') {
             out.omer.on = raw.omer.on === true;
+            out.omer.morning = raw.omer.morning === true;
             out.omer.at = raw.omer.at === 'shkia' ? 'shkia' : 'tzeit';
             out.omer.text = raw.omer.text === 'simple' ? 'simple' : 'count';
         }
@@ -75,7 +76,7 @@
 
     // Y a-t-il quelque chose à programmer ? (le réglage général, puis au moins un rappel choisi)
     function anyEnabled(s) {
-        return s.on && (s.candles.on || s.omer.on || s.roshChodesh.on || s.levana.on || (s.days.length > 0 && Object.keys(s.custom).length > 0));
+        return s.on && (s.candles.on || s.omer.on || s.omer.morning || s.roshChodesh.on || s.levana.on || (s.days.length > 0 && Object.keys(s.custom).length > 0));
     }
 
     function addDays(date, n) {
@@ -120,6 +121,11 @@
             if (s.omer.on && ctxNext.omer >= 1 && ctxNext.omer <= 49) {
                 var evening = Z.rounded(z, s.omer.at);
                 if (evening !== null) push({ at: evening, kind: 'omer', day: ctxNext.omer, time: evening, simple: s.omer.text === 'simple' });
+            }
+            // L'Omer, le matin (au lever du soleil) : le jour hébraïque N a commencé la veille au soir ; si on a oublié, on compte sans bénédiction
+            if (s.omer.morning && ctxToday.omer >= 1 && ctxToday.omer <= 49) {
+                var sunrise = Z.rounded(z, 'netz');
+                if (sunrise !== null) push({ at: sunrise, kind: 'omer', when: 'morning', day: ctxToday.omer, time: sunrise, simple: false });
             }
             // Roch 'Hodesh
             if (s.roshChodesh.on) {
@@ -183,6 +189,9 @@
                 title: tr(item.yomTov ? 'tools.zmr_candles_yt_title' : 'tools.zmr_candles_title'),
                 body: tr('tools.zmr_candles_body', { n: item.before, time: time })
             };
+        }
+        if (item.kind === 'omer' && item.when === 'morning') {
+            return { title: tr('tools.zmr_omer_title', { n: item.day }), body: tr('tools.zmr_omer_morning_body', { text: omerCount(item.day, tr) }) };
         }
         if (item.kind === 'omer') {
             return {
