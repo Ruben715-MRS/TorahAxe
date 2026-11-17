@@ -144,3 +144,17 @@ test('toucher une notification : le rappel de l\'Omer porte de quoi ouvrir le co
     assert.deepStrictEqual(got, [{ route: 'omer', mode: 'evening', day: 8 }]);
     assert.strictEqual(create({ plugin: () => null, core: () => Reminder, tr: k => k, now: () => now, locale: 'fr' }).onOpen(() => {}), false);
 });
+
+test('Birkat haLévana : un rappel chaque soir de la fenêtre, avec les nuits restantes', () => {
+    const base = { on: true, candles: { on: false }, omer: { on: false }, roshChodesh: { on: false }, days: [], custom: {} };
+    const P = ZmanimCore.normalizePlace(place);
+    const from = Date.parse('2026-11-17T10:00:00+01:00');
+    const every = Reminder.plan(Object.assign({}, base, { levana: { on: true, every: true } }), P, {}, from, 7).filter(i => i.kind === 'levana');
+    assert.ok(every.length >= 5, 'plusieurs soirs');
+    for (let i = 1; i < every.length; i++) assert.strictEqual(every[i].left, every[i - 1].left - 1);
+    const tr = (k, p) => k + JSON.stringify(p || {});
+    assert.ok(/levana_(left|first)/.test(Reminder.describe(every[0], tr, P, 'fr').body));
+    const ends = Reminder.plan(Object.assign({}, base, { levana: { on: true, every: false } }), P, {}, from, 7).filter(i => i.kind === 'levana');
+    assert.ok(ends.length < every.length);
+    assert.deepStrictEqual(Reminder.normalize({ on: true, levana: { on: true } }).levana, { on: true, every: true });
+});

@@ -1235,8 +1235,8 @@ function zmReminders(body) {
         v => { if (v === 'off') zmRem.roshChodesh.on = false; else { zmRem.roshChodesh.on = true; zmRem.roshChodesh.when = v; } });
     // Birkat haLévana
     zmRemSelect(details, 'zm-r-levana', t('tools.zm_rem_levana'),
-        [['off', t('tools.zm_rem_no')], ['on', t('tools.zm_rem_yes')]],
-        zmRem.levana.on ? 'on' : 'off', v => { zmRem.levana.on = v === 'on'; });
+        [['off', t('tools.zm_rem_no')], ['every', t('tools.zm_rem_levana_every')], ['ends', t('tools.zm_rem_levana_ends')]],
+        zmRem.levana.on ? (zmRem.levana.every ? 'every' : 'ends') : 'off', v => { zmRem.levana.on = v !== 'off'; zmRem.levana.every = v !== 'ends'; });
 
     // Rappels personnalisés : les jours de la semaine, puis chaque horaire avec son décalage
     details.appendChild(zmEl('h3', 'tool-h', t('tools.zm_rem_custom_title')));

@@ -34,7 +34,7 @@
             candles: { on: false, before: 60 },
             omer: { on: true, at: 'tzeit', text: 'count', morning: false },   // at : 'tzeit' | 'shkia' (la veille au soir, avec bénédiction) ; text : 'count' (le compte) | 'simple' ; morning : rappel du matin (sans bénédiction)
             roshChodesh: { on: false, when: 'eve' },              // when : 'eve' (la veille au soir) | 'morning'
-            levana: { on: false },
+            levana: { on: false, every: true },     // every : un rappel chaque soir de la fenêtre (sinon, seulement le premier et le dernier soir)
             days: [0, 1, 2, 3, 4, 5, 6],                          // jours de la semaine des rappels personnalisés (0 = dimanche)
             custom: {}                                            // { clé d'horaire: décalage en minutes avant (0 à l'heure) }
         };
@@ -60,7 +60,7 @@
             out.roshChodesh.on = raw.roshChodesh.on === true;
             out.roshChodesh.when = raw.roshChodesh.when === 'morning' ? 'morning' : 'eve';
         }
-        if (raw.levana && typeof raw.levana === 'object') out.levana.on = raw.levana.on === true;
+        if (raw.levana && typeof raw.levana === 'object') { out.levana.on = raw.levana.on === true; out.levana.every = raw.levana.every !== false; }
         if (Array.isArray(raw.days)) {
             var days = raw.days.filter(function (x, i, a) { return Number.isInteger(x) && x >= 0 && x <= 6 && a.indexOf(x) === i; });
             out.days = days.sort();
@@ -154,8 +154,11 @@
                     var same = function (a) { return a.year === date.year && a.month === date.month && a.day === date.day; };
                     var tzeit = Z.rounded(z, 'tzeit');
                     if (tzeit === null) return;
-                    if (same(ev.first)) push({ at: tzeit, kind: 'levana', last: false, time: tzeit, until: ev.last });
-                    else if (same(ev.last)) push({ at: tzeit, kind: 'levana', last: true, time: tzeit });
+                    var dn = function (a) { return Date.UTC(a.year, a.month - 1, a.day) / DAY; };
+                    var left = dn(ev.last) - dn(date) + 1;          // les soirées restantes, celle-ci comprise
+                    if (same(ev.last)) push({ at: tzeit, kind: 'levana', last: true, left: 1, time: tzeit });
+                    else if (same(ev.first)) push({ at: tzeit, kind: 'levana', last: false, first: true, left: left, time: tzeit, until: ev.last });
+                    else if (s.levana.every && left > 1 && dn(date) > dn(ev.first)) push({ at: tzeit, kind: 'levana', last: false, first: false, left: left, time: tzeit });
                 });
             }
         }
@@ -205,9 +208,9 @@
                 : { title: tr('tools.zmr_rc_morning_title'), body: tr('tools.zmr_rc_morning_body') };
         }
         if (item.kind === 'levana') {
-            return item.last
-                ? { title: tr('tools.zmr_levana_title'), body: tr('tools.zmr_levana_last') }
-                : { title: tr('tools.zmr_levana_title'), body: tr('tools.zmr_levana_first') };
+            if (item.last) return { title: tr('tools.zmr_levana_title'), body: tr('tools.zmr_levana_last') };
+            if (item.first) return { title: tr('tools.zmr_levana_title'), body: tr('tools.zmr_levana_first', { n: item.left }) };
+            return { title: tr('tools.zmr_levana_title'), body: tr('tools.zmr_levana_left', { n: item.left }) };
         }
         var name = tr('tools.zmr_n_' + item.key);
         return {
