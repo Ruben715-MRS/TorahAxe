@@ -169,3 +169,16 @@ test('les fleuves du cadre « monde » : dans le cadre, de l\'amont à l\'aval, 
     const near = (city, river) => Math.min(...river.pts.map(c => M.distanceKm(c, by(city).c)));
     assert.ok(near('babylone', euphrate) < 35 && near('ninive', tigre) < 35 && near('memphis', nil) < 35 && near('thebes', nil) < 35, 'villes sur leur fleuve');
 });
+
+test('repères : les lieux d une vue, points pour les villes et montagnes, contours pour les tribus et mers', () => {
+    const terre = M.places('terre'), monde = M.places('monde');
+    // Tous les points ont des coordonnées, tous les contours un anneau
+    terre.concat(monde).forEach(p => assert.ok(p.c ? p.c.length === 2 : Array.isArray(p.ring) && p.ring.length > 2, p.id));
+    // La vue terre compte les 12 tribus et les 2 mers en contours
+    assert.strictEqual(terre.filter(p => p.ring).length, 14);
+    // La vue monde ne compte que des points, et Babylone en fait partie
+    assert.ok(monde.every(p => p.c && !p.ring) && monde.some(p => p.id === 'babylone'));
+    // Les identifiants d'une vue sont uniques
+    const ids = terre.map(p => p.id);
+    assert.strictEqual(new Set(ids).size, ids.length);
+});

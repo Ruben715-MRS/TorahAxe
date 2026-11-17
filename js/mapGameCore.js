@@ -159,6 +159,14 @@
         return best;
     }
 
+    // Les lieux d'une vue, pour les repères : { id, fr, kind, c } pour un point (ville, montagne), { id, fr, kind, ring } pour un contour (tribu, mer).
+    // Dans la vue « terre », les villes, montagnes, tribus et mers ; dans la vue « monde », les villes et montagnes du reste du monde biblique.
+    function places(view) {
+        var out = GAZETTEER.filter(function (g) { return g.view === view; }).map(function (g) { return { id: g.id, fr: g.fr, kind: g.kind, c: g.c }; });
+        if (view === 'terre') out = out.concat(zones().filter(function (z) { return z.view === 'terre'; }).map(function (z) { return { id: z.id, fr: z.fr, kind: z.kind, ring: z.ring }; }));
+        return out;
+    }
+
     // Le passage de coordonnées géographiques à un dessin de `width` unités de large (projection plate, longitudes resserrées selon la latitude du milieu).
     function projection(bounds, width) {
         var west = bounds[0][0], south = bounds[0][1], east = bounds[1][0], north = bounds[1][1];
@@ -238,7 +246,7 @@
 
     return {
         ROUNDS: ROUNDS, SECTIONS: SECTIONS, VIEWS: VIEWS, TOLERANCE: TOLERANCE, GAZETTEER: GAZETTEER, RIVERS: RIVERS, TRIBES: TRIBES, zones: zones, items: items,
-        distanceKm: distanceKm, inRing: inRing, distanceToRingKm: distanceToRingKm, projection: projection, makeQuestion: makeQuestion, pick: pick, score: score,
+        distanceKm: distanceKm, inRing: inRing, places: places, distanceToRingKm: distanceToRingKm, projection: projection, makeQuestion: makeQuestion, pick: pick, score: score,
         createGame: createGame, question: question, submit: submit, next: next
     };
 }));
