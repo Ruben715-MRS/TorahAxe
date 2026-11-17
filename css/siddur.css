@@ -244,3 +244,16 @@
 .sd-jx-h strong { font-family: inherit; font-weight: 700; }
 .sd-jx-f { font-family: var(--font-main); font-size: 10.5px; line-height: 1.15; color: var(--muted-text); text-align: center; max-width: 7.5em; direction: ltr; }
 .sd-jx .sd-name::after { top: -0.5em; }
+
+/* =========================================================================
+   Refonte, étape 4 : barre des parties de l'office (js/app/siddur.js, sdPartsNav) et intertitres.
+   ========================================================================= */
+.sd-parts { grid-column: 1 / -1; margin: 2px -16px 0 -66px; padding: 0 12px; display: flex; gap: 2px; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none; -webkit-overflow-scrolling: touch; border-top: 1px solid var(--border-soft); }
+.sd-parts::-webkit-scrollbar { display: none; }
+.sd-part { flex: none; min-height: 40px; padding: 8px 10px 9px; border: 0; background: transparent; color: var(--muted-text); font: inherit; font-size: 13.5px; font-weight: 500; white-space: nowrap; cursor: pointer; }
+.sd-part[aria-current="true"] { color: var(--text-dark); font-weight: 700; box-shadow: inset 0 -2.5px 0 var(--favorite-yellow, #d4a017); }
+.sd-part:focus-visible { outline: 2px solid var(--home-gold, #96621a); outline-offset: -2px; border-radius: 8px; }
+.sd-readbar:has(.sd-parts) .sd-read-prog { margin-top: 0; }
+#screen-tool-siddur .sd-section-box { scroll-margin-top: calc(env(safe-area-inset-top, 0px) + 116px); }
+/* Un intertitre du livre, en français : plus appuyé qu'une consigne. */
+.sd-rub.sd-rub-head { margin-top: 20px; color: var(--text-dark); font-weight: 600; font-size: max(14px, calc(var(--sd-size) * 0.64)); }

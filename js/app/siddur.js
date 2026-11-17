@@ -787,6 +787,7 @@ function sdUpdateReadBar() {
     let cur = boxes[0];
     boxes.forEach(b => { if (b.getBoundingClientRect().top <= limit) cur = b; });
     const id = cur.id.replace('sd-sec-', '');
+    if (sdView.ids.length > 1) { const nav = toolEl('sd-parts'); if (nav && nav.dataset.cur !== id) { nav.dataset.cur = id; sdShowPart(nav, id); } }
     const found = sdFindSection(id);
     const name = toolEl('sd-read-name'), sub = toolEl('sd-read-sub');
     if (!found || !name || !sub) return;
@@ -796,6 +797,49 @@ function sdUpdateReadBar() {
         const list = found.group.sections;
         sub.textContent = sdCleanTitle(found.group.fr) + (list.length > 1 ? ' · ' + (list.findIndex(s => s.id === id) + 1) + ' sur ' + list.length : '');
     }
+}
+
+// --- Barre des parties (refonte, étape 4) ---------------------------------------------------------------------------------------------
+// Sous le titre du lecteur, les parties de l'office (Pethi'hat Eliyahou… Amida… Alénou), comme les onglets des applis de siddour : celle qu'on
+// lit est soulignée et reste visible (la barre défile avec la lecture). En lecture d'un trait, toucher une partie y saute ; en lecture d'une
+// seule partie, toucher en ouvre une autre.
+function sdShortName(fr) { return String(fr).replace(/\s*\([^)]*\)\s*$/, '').trim(); }
+function sdPartsList() {
+    if (!sdIndex) return null;
+    if (sdView.ids.length > 1) return sdView.ids.map(id => { const f = sdFindSection(id); return { id, fr: f ? f.section.fr : id }; });
+    const found = sdFindSection(sdView.ids[0]);
+    if (!found || found.group.sections.length < 2 || found.group.id === 'zemirot-chabbat') return null;
+    return found.group.sections.map(s => ({ id: s.id, fr: s.fr }));
+}
+function sdPartsNav() {
+    const list = sdPartsList();
+    if (!list) return null;
+    const nav = sdEl('nav', 'sd-parts');
+    nav.id = 'sd-parts';
+    nav.setAttribute('aria-label', 'Parties de l\'office');
+    const multi = sdView.ids.length > 1;
+    list.forEach(it => {
+        const b = sdEl('button', 'sd-part', sdShortName(it.fr));
+        b.type = 'button';
+        b.dataset.id = it.id;
+        if (!multi && it.id === sdView.ids[0]) b.setAttribute('aria-current', 'true');
+        b.onclick = () => {
+            if (multi) { const target = document.getElementById('sd-sec-' + it.id); if (target) target.scrollIntoView({ block: 'start' }); }
+            else if (it.id !== sdView.ids[0]) sdOpen([it.id], it.fr);
+        };
+        nav.appendChild(b);
+    });
+    // la partie ouverte, visible dès l'ouverture
+    requestAnimationFrame(() => sdShowPart(nav, multi ? list[0].id : sdView.ids[0]));
+    return nav;
+}
+function sdShowPart(nav, id) {
+    const b = nav && nav.querySelector('.sd-part[data-id="' + id + '"]');
+    if (!b) return;
+    nav.querySelectorAll('.sd-part[aria-current]').forEach(o => { if (o !== b) o.removeAttribute('aria-current'); });
+    b.setAttribute('aria-current', 'true');
+    const left = b.offsetLeft - (nav.clientWidth - b.offsetWidth) / 2;
+    if (Math.abs(nav.scrollLeft - left) > 4) nav.scrollTo({ left: Math.max(0, left), behavior: 'auto' });
 }
 
 function sdSwitch(label, on, onToggle) {
@@ -972,6 +1016,8 @@ function sdRenderReader(body) {
     aa.onclick = sdOpenDisplay;
     bar.appendChild(titleBtn);
     bar.appendChild(aa);
+    const tabs = sdPartsNav();
+    if (tabs) bar.appendChild(tabs);
     const prog = sdEl('div', 'sd-read-prog');
     prog.appendChild(sdEl('i'));
     bar.appendChild(prog);
@@ -989,6 +1035,7 @@ function sdRenderReader(body) {
         if (sdPrefs.fr) content.appendChild(sdEl('p', 'sd-fr-note', t('tools.sd_fr_note')));
         sections.forEach(section => content.appendChild(sdRenderSection(section)));
         sdAddNav(wrap);
+        if (!bar.querySelector('.sd-parts')) { const tabs = sdPartsNav(); if (tabs) bar.insertBefore(tabs, bar.querySelector('.sd-read-prog')); }
         const screen = toolEl('screen-tool-siddur');
         if (sdRestoreTop !== null) { screen.scrollTop = sdRestoreTop; sdRestoreTop = null; }
         else { const mark = content.querySelector('.sd-omer-today'); if (mark) mark.scrollIntoView({ block: 'center' }); }
@@ -1164,6 +1211,13 @@ function sdRenderSegment(tree, index, fr) {
     const kids = tree.c.filter(k => !sdBlank(k));
     const isTitle = index === 0 && kids[0] && kids[0].t === 'tag' && kids[0].n === 'big';
     if (!isTitle && kids.length && kids.every(k => k.t === 'tag' && k.n === 'small') && !SD_HAS_NIQQUD.test(SiddurCore.plain(tree))) return sdRubricEl(tree, fr);
+    // Un intertitre du livre (« מודים דרבנן » suivi de sa consigne, « קריאה ליום הראשון ») : sans voyelles, un titre court en gras ;
+    // montré en français comme une consigne, en plus appuyé. Les chants non vocalisés (araméen) ont un texte long : ils ne sont pas concernés.
+    if (!isTitle && fr && !sdPrefs.heRub && index > 0 && !SD_HAS_NIQQUD.test(SiddurCore.plain(tree))) {
+        const outside = SiddurCore.plain(tree.c.filter(k => !(k.t === 'tag' && k.n === 'small'))).trim();
+        const marked = tree.c.some(k => k.t === 'tag' && (k.n === 'b' || k.n === 'big' || k.n === 'small'));
+        if (outside && outside.length <= 30 && marked) { const h = sdRubricEl(tree, fr); h.classList.add('sd-rub-head'); return h; }
+    }
     const newP = () => { const p = sdEl(isTitle ? 'h4' : 'p', isTitle ? 'sd-title' : 'sd-seg'); p.lang = 'he'; p.dir = 'rtl'; return p; };
     // les variantes de premier niveau : marqueur + corps
     const vars = {};
