@@ -20,7 +20,7 @@ const QuizUI = (function () {
         $(p + '-status').textContent = t(p + '.status', { n: g.index + 1, total: g.questions.length, score: g.score });
     }
 
-    // Les boutons de réponse. `describe(option)` renvoie { label, lang } : lang 'he' (hébreu, de droite à gauche) ou 'num' (nombre) ; rien pour du français.
+    // Les boutons de réponse. `describe(option)` renvoie { label, he?, lang } : `he` est le nom en lettres hébraïques, affiché sous le nom latin ; lang 'he' (hébreu, de droite à gauche) ou 'num' (nombre) ; rien pour du français.
     // `onPick(i)` est appelé avec l'indice de la proposition choisie.
     function options(p, q, describe, onPick) {
         $(p + '-feedback').classList.add('hidden');
@@ -34,7 +34,15 @@ const QuizUI = (function () {
             if (d.lang === 'he') { btn.lang = 'he'; btn.dir = 'rtl'; btn.classList.add('lexgame-option-he'); }
             if (d.lang === 'num') btn.classList.add('lexgame-option-num');
             btn.dataset.choice = String(i);
-            btn.textContent = d.label;
+            btn.appendChild(document.createTextNode(d.label));
+            // Le nom en lettres hébraïques sous le nom latin (quand la réponse en a un qui ne trahit pas la question).
+            if (d.he) {
+                const he = document.createElement('span');
+                he.className = 'he';
+                he.lang = 'he'; he.dir = 'rtl';
+                he.textContent = d.he;
+                btn.appendChild(he);
+            }
             btn.setAttribute('aria-label', t(p + '.option_aria', { n: i + 1, label: d.label }));
             btn.onclick = () => onPick(i);
             box.appendChild(btn);
@@ -98,7 +106,7 @@ const QuizUI = (function () {
         $(p + '-bar-fill').style.width = (total ? Math.round(100 * mastered / total) : 0) + '%';
     }
 
-    // Une rangée de boutons (sections) : `items` = [{ id, label }], `current` l'identifiant choisi, `onPick(id)`.
+    // Une rangée de boutons (sections) : `items` = [{ id, label, he? }], `current` l'identifiant choisi, `onPick(id)` ; `he` : le nom en lettres hébraïques, après le nom latin.
     function chips(p, items, current, onPick) {
         const holder = $(p + '-sections');
         toolClear(holder);
@@ -108,7 +116,14 @@ const QuizUI = (function () {
             btn.className = 'tool-history-chip';
             btn.id = p + '-section-' + item.id;
             btn.setAttribute('aria-pressed', item.id === current ? 'true' : 'false');
-            btn.textContent = item.label;
+            btn.appendChild(document.createTextNode(item.label));
+            if (item.he) {
+                const he = document.createElement('span');
+                he.className = 'he';
+                he.lang = 'he'; he.dir = 'rtl';
+                he.textContent = ' ' + item.he;
+                btn.appendChild(he);
+            }
             btn.onclick = () => onPick(item.id);
             holder.appendChild(btn);
         });

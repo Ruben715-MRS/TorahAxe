@@ -94,6 +94,7 @@ test('makeQuestion : quatre noms distincts, la bonne réponse incluse, des fauss
             assert.strictEqual(q.options.length, 4);
             assert.strictEqual(new Set(q.options.map(o => o.id)).size, 4);
             assert.strictEqual(q.options[q.answer].id, p.id);
+            q.options.forEach(o => assert.ok(/[א-ת]/.test(o.he), 'nom hébreu de ' + o.label));
             q.options.forEach(o => assert.strictEqual(person(o.id).section, p.section));
             if (p.section === 'bible') q.options.forEach(o => assert.strictEqual(person(o.id).sex, p.sex, p.fr + ' / ' + o.label));
         });

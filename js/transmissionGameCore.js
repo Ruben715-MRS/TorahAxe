@@ -79,7 +79,7 @@
         var all = Quiz.shuffle([right].concat(wrong), rng);
         return {
             type: 'who', id: 'who:' + student.id, subject: student, shown: student.fr, shownHe: student.he,
-            options: all.map(function (p) { return { label: p.fr, id: p.id }; }), answer: all.indexOf(right),
+            options: all.map(function (p) { return { label: p.fr, id: p.id, he: p.he }; }), answer: all.indexOf(right),
             masters: masters.map(function (e) { return { id: e.from, fr: T.byId(e.from).fr, kind: e.kind, doubt: e.doubt, src: e.src }; })
         };
     }
@@ -98,7 +98,7 @@
         var all = Quiz.shuffle(sureStudents.concat([intrus]), rng);
         return {
             type: 'intrus', id: 'intrus:' + master.id, subject: master, shown: master.fr, shownHe: master.he,
-            options: all.map(function (p) { return { label: p.fr, id: p.id }; }), answer: all.indexOf(intrus),
+            options: all.map(function (p) { return { label: p.fr, id: p.id, he: p.he }; }), answer: all.indexOf(intrus),
             students: students.map(function (e) { return { id: e.to, fr: T.byId(e.to).fr, kind: e.kind, doubt: e.doubt, src: e.src }; }),
             intrus: intrus.fr
         };

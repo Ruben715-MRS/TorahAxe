@@ -48,7 +48,7 @@ function whogameRender() {
     QuizUI.status('whogame', g);
     document.getElementById('whogame-feedback').classList.add('hidden');
     document.getElementById('whogame-ask').textContent = t('whogame.ask');
-    QuizUI.options('whogame', q, option => ({ label: option.label }), whogameGuess);
+    QuizUI.options('whogame', q, option => ({ label: option.label, he: option.he }), whogameGuess);
     whogameDrawClues(false);
     whogameDrawControls();
 }

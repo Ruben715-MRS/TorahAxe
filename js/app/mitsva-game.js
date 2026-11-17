@@ -51,7 +51,7 @@ function mitsvagameRender() {
     document.getElementById('mitsvagame-question').textContent = t('mitsvagame.ask_' + q.type);
     QuizUI.word('mitsvagame', q.shown, true);
     // Les livres et les parachiot ont leur nom propre ; « positif » et « négatif » sont des clés de traduction.
-    QuizUI.options('mitsvagame', q, option => ({ label: q.type === 'kind' ? t('mitsvagame.' + option.label) : option.label }), mitsvagameAnswer);
+    QuizUI.options('mitsvagame', q, option => ({ label: q.type === 'kind' ? t('mitsvagame.' + option.label) : option.label, he: option.he }), mitsvagameAnswer);
     QuizUI.timerStart('mitsvagame', q.timeMs, 'screen-mitsvagame', mitsvagameTimeout);
 }
 
@@ -60,7 +60,8 @@ function mitsvagameInfo(q, timedOut) {
     const it = q.item;
     const p = mitsvagameParashot.parashot[it.parasha];
     const line = (timedOut ? t('mitsvagame.timeout') + ' ' : '') + t('mitsvagame.fb_' + it.kind, { n: it.n, text: it.text });
-    const source = t('mitsvagame.fb_source', { ref: it.ref, parasha: p.fr, book: it.bookFr });
+    const iso = x => '\u2068' + x + '\u2069';
+    const source = t('mitsvagame.fb_source', { ref: it.ref, parasha: p.fr + ' ' + iso(p.he), book: it.bookFr + ' ' + iso(mitsvagameParashot.books[it.book - 1]) });
     return { line: line, note: it.trap ? t('mitsvagame.fb_trap') + ' ' + source : source };
 }
 

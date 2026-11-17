@@ -16684,6 +16684,9 @@ body[data-view-profile="religieux"] .league-btn {
 .quiz-timer i { width: 100%; }
 .quiz-timer.is-low i { background: var(--danger-red-text); }
 .quiz-time { margin: 0 0 12px; text-align: center; }
+/* Une réponse en deux écritures : le nom latin, puis le nom hébreu en dessous, plus discret ; dans une rangée de boutons (livres), à la suite. */
+.lexgame-option .he { display: block; margin-top: 2px; font-size: 15px; font-weight: 400; color: var(--muted-text); }
+.tool-history-chip .he { font-size: 0.95em; font-weight: 400; color: var(--muted-text); }
 #screen-mitsvagame .lexgame-word.mitsvagame-text { font-size: 22px; line-height: 1.35; margin-bottom: 14px; }   /* l'énoncé d'un commandement : une phrase, pas un mot */
 
 /* « Dans quelle paracha ? » : les versets montrés (le premier, puis un de plus par indice), les points en jeu, puis le choix du livre et de la paracha. */

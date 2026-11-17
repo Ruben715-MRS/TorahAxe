@@ -159,7 +159,13 @@ function ordergameCheck() {
     q.order.forEach((id, i) => {
         const li = document.createElement('li');
         const d = q.details[id];
-        li.appendChild(document.createTextNode((i + 1) + '. ' + d.label));
+        li.appendChild(document.createTextNode((i + 1) + '. ' + d.label + ' '));
+        if (d.he) {
+            const he = document.createElement('span');
+            he.lang = 'he'; he.dir = 'rtl';
+            he.textContent = d.he;
+            li.appendChild(he);
+        }
         if (d.note) {
             const small = document.createElement('small');
             small.textContent = ' · ' + d.note;

@@ -124,7 +124,7 @@ function versegameDrawParashot() {
     const holder = document.getElementById('parashagame-sections');
     holder.classList.toggle('hidden', resolved);
     if (!resolved) {
-        QuizUI.chips('parashagame', TorahRefs.BOOK_NAMES.map((name, i) => ({ id: String(i + 1), label: name })), versegameBook ? String(versegameBook) : '', id => { versegameBook = Number(id); versegameDrawParashot(); });
+        QuizUI.chips('parashagame', TorahRefs.BOOK_NAMES.map((name, i) => ({ id: String(i + 1), label: name, he: versegameData.parashot.books[i] })), versegameBook ? String(versegameBook) : '', id => { versegameBook = Number(id); versegameDrawParashot(); });
     }
     const grid = document.getElementById('parashagame-parashot');
     toolClear(grid);
@@ -189,7 +189,7 @@ function versegameResolve(guessed) {
     document.getElementById('parashagame-feedback').classList.toggle('is-wrong', !right);
     document.getElementById('parashagame-feedback-title').textContent = right ? t('parashagame.right', { n: g.points }) : t('parashagame.revealed');
     document.getElementById('parashagame-feedback-text').textContent = t('parashagame.answer_is', {
-        fr: '⁨' + q.parashaFr + '⁩', he: '⁨' + q.parashaHe + '⁩', book: TorahRefs.BOOK_NAMES[q.book - 1], ref: q.label
+        fr: '⁨' + q.parashaFr + '⁩', he: '⁨' + q.parashaHe + '⁩', book: TorahRefs.BOOK_NAMES[q.book - 1] + ' ⁨' + versegameData.parashot.books[q.book - 1] + '⁩', ref: q.label
     });
     const note = document.getElementById('parashagame-feedback-note');
     note.textContent = '';

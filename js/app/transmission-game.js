@@ -66,7 +66,7 @@ function trgameRender() {
     document.getElementById('trgame-question').textContent = t('trgame.ask_' + q.type);
     document.getElementById('trgame-word').textContent = q.shown;
     document.getElementById('trgame-he').textContent = q.shownHe;
-    QuizUI.options('trgame', q, option => ({ label: option.label }), trgameAnswer);
+    QuizUI.options('trgame', q, option => ({ label: option.label, he: option.he }), trgameAnswer);
 }
 
 // « Rabbi Meïr (son père, discuté), Rabbi Akiva » : les noms d'une liste de liens, avec la nature du lien quand ce n'est pas un simple maître,
