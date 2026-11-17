@@ -283,3 +283,8 @@ div.home-card:active { background: var(--surface); }
     .home-content { animation: homeFade 0.18s ease-out; }
     @keyframes homeFade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
 }
+
+/* Suivi d'étude : les cases « étudié » sous l'étude du jour */
+.study-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 2px 0 6px; }
+.study-chip { padding: 8px 12px; border-radius: 999px; border: 1px solid currentColor; background: transparent; color: inherit; font: inherit; font-size: .9rem; opacity: .75; }
+.study-chip.is-done { opacity: 1; font-weight: 700; background: rgba(46,160,67,.18); border-color: rgba(46,160,67,.9); }

@@ -60,6 +60,7 @@ function apRender() {
         body.appendChild(group);
     });
     ritRender(body);
+    if (typeof stRender === 'function') stRender(body);
     rdRender(body);
     fbRender(body);
     dtRender(body);

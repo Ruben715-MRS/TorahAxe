@@ -627,6 +627,15 @@ function homeRenderToday(content) {
         study.appendChild(card);
     }
     if (study.childElementCount) content.appendChild(study);
+    // « Étudié » (facultatif, désactivé par défaut) : une case par étude qui existe aujourd'hui.
+    if (typeof studyChips === 'function') {
+        const kinds = [];
+        if (daf) kinds.push('daf');
+        if (tehilim) kinds.push('tehilim');
+        if (my) kinds.push('mishna');
+        const chips = studyChips(kinds, day.fixed);
+        if (chips) content.appendChild(chips);
+    }
 
     // La révision du jour : la carte n'apparaît que s'il y a quelque chose à revoir.
     const due = typeof reviewSummary === 'function' ? reviewSummary() : null;

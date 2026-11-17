@@ -7384,6 +7384,16 @@
     "card_label": "Michna Yomit",
     "card_sub": "Deux michnayot par jour · il reste {n} jours avant la fin du cycle"
   },
+  "study": {
+    "group": "Étude du jour",
+    "kind_daf": "Daf Yomi",
+    "kind_tehilim": "Téhilim",
+    "kind_mishna": "Michna Yomit",
+    "setting_label": "Suivi d'étude",
+    "off": "Désactivé",
+    "on": "Cases « étudié »",
+    "setting_note": "Affiche, sous le Daf Yomi, les Téhilim et la Michna Yomit du jour, une case à cocher quand vous avez étudié. Simple repère personnel, gardé sur cet appareil : il ne compte pas dans la série."
+  },
   "omer": {
     "title": "Compte de l'Omer",
     "day": "Jour {n}",
