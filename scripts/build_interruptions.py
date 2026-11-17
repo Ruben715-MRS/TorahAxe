@@ -87,7 +87,7 @@ ROWS = [
         ['On met la main sur les yeux', 'c'], I, IDEM, I, ['Interdit, mais on le pense', 'c'], ['Interdit ; on le dira après la Amida', 'n'], I, REP, I, I,
         ['Si ceci ne le troublera pas', 'c'], ['Comme au milieu d\'un paragraphe', 'n'], ['Ne les dit plus après avoir dit « Ahavat ôlam »', 'n']]),
     ('amida', 'Au milieu de la Amida', [
-        I, I, ['On se contente de les penser', 'c'], I, I, I, I, ['Le penser', 'c'], ['Le penser', 'c'], I, I,
+        I, I, ['On se contente de les penser', 'c'], I, I, I, I, ['Penser', 'c'], ['Penser', 'c'], I, I,
         I, I, ['S\'incliner au milieu d\'une berakha', 'c'], I, I, I, I, I, I, I, I, I, I]),
     ('netsor', 'Au milieu d\'« Élokaï nétsor »', [
         I, I, OB, I, REP, I, I, YIT, QB, I, I,

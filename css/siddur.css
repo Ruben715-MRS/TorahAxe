@@ -305,3 +305,12 @@
 .sd-ix-grid td.is-n { background: var(--ix-non-bg); color: var(--ix-non); }
 .sd-ix-grid td.is-nil { color: var(--muted-text); }
 .sd-ix-grid tr.is-here th { box-shadow: inset 4px 0 0 var(--favorite-yellow, #d4a017); }
+/* Repris du Maguen Avot : depuis quand vaut la variante, et la règle longue repliée. */
+.sd-var-since { flex-basis: 100%; font-size: 11.5px; color: var(--muted-text); }
+.sd-var-more > summary { cursor: pointer; font-weight: 600; min-height: 32px; display: flex; align-items: center; color: var(--text-dark); }
+.sd-var-more > p { margin: 2px 0 4px; }
+.sd-segbox > .sd-var-note { margin: -2px 0 8px; }
+.sd-var-more > summary { list-style: none; gap: 6px; }
+.sd-var-more > summary::-webkit-details-marker { display: none; }
+.sd-var-more > summary::after { content: "›"; font-size: 16px; color: var(--muted-text); }
+.sd-var-more[open] > summary::after { transform: rotate(90deg); }

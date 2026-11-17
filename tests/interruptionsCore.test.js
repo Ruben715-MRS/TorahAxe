@@ -17,7 +17,7 @@ test('le tableau : 13 moments × 24 cas, cases bien formées', () => {
 test('quelques cases repères du livre', () => {
     const row = id => data.rows.find(r => r.id === id);
     const col = id => data.cols.findIndex(c => c.id === id);
-    assert.strictEqual(row('amida').cells[col('yehe')].t, 'Le penser');
+    assert.strictEqual(row('amida').cells[col('yehe')].t, 'Penser');
     assert.strictEqual(row('chema').cells[col('barekhou')].c, 'o');
     assert.strictEqual(row('amida').cells[col('talit')].c, 'n');
     // « Idem » reprend la case du dessus

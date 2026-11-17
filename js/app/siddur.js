@@ -1269,21 +1269,48 @@ function sdFirstWords(text, n) {
     const words = String(text).replace(/[:.,]/g, ' ').trim().split(/\s+/).filter(Boolean);
     return words.slice(0, n || 3).join(' ') + (words.length > (n || 3) ? '…' : '');
 }
-// Ce qu'on fait si l'on s'est trompé : repris des notes du siddour Maguen Avot (règles séfarades, rav 'Ovadia Yossef).
-// Contenu halakhique écrit à la main : **à relire par une personne compétente**.
-const SD_ERR_NOTES = {
-    dewWinter: 'En hiver, si l\'on a dit « Morid hatal » à la place, on ne se reprend pas.',
-    dewSummer: 'En été, si l\'on a dit « Machiv haroua\'h » à la place, on se reprend.',
-    barechWinter: 'En hiver, si l\'on a dit « Barékhénou » à la place, on se reprend.',
-    barechSummer: 'En été, si l\'on a dit « Barekh alénou » à la place, on se reprend.'
+// Ce qu'on fait si l'on s'est trompé, et depuis quand vaut une variante : texte du siddour Maguen Avot (Min'ha p. 136-147, commentaires
+// p. 163 et 544), repris tel quel. Contenu halakhique : **à relire sur le livre**.
+const SD_VAR_SINCE = {
+    dewWinter: 'depuis Moussaf de Chémini Atséret',
+    dewSummer: 'depuis Moussaf du 1er jour de Pessa\'h',
+    barechSummer: 'depuis \'Hol hamoèd Pessa\'h jusqu\'au 7 \'Hechvan ; hors d\'Israël, jusqu\'au 60e jour après la Tekoufa de Tichri (nuit du 4 au 5, ou du 5 au 6 décembre)',
+    barechWinter: 'depuis la nuit du 7 \'Hechvan ; hors d\'Israël, depuis le 60e jour après la Tekoufa de Tichri (nuit du 4 au 5, ou du 5 au 6 décembre) ; jusqu\'à Min\'ha de la veille de Pessa\'h'
 };
-const SD_ASERET_INSERT = /זכרנו לחיים|מי כמוך אב הרחמן|וכתוב לחיים|בספר חיים/;
+const SD_ERR_NOTES = {
+    dewSummer: 'Si, en été, on a dit « morid haguéchem », mais qu\'on s\'en rende compte avant d\'avoir dit « baroukh ata Adonaï », on reprend « Ata guibor ». Si l\'on s\'en rend compte au moment où l\'on a dit « baroukh ata Adonaï », on ajoute « lamedéni \'houkékha » puis on reprend « Ata guibor ». Si l\'on a déjà dit « mé\'hayé hamétim », on reprend au début de la Amida. Si l\'on est dans le doute, pendant les trente jours qui suivent le premier jour de Pessa\'h, on reprend au début de la Amida.',
+    dewWinter: 'Si, en hiver, on a dit « morid hatal », mais qu\'on s\'en rende compte avant d\'avoir dit « baroukh ata Adonaï », il convient de reprendre à « Ata guibor ». Si l\'on s\'en rend compte au moment où l\'on a dit « baroukh ata Adonaï », on continue « mé\'hayé hamétim », et non « lamedéni \'houkékha ». On ne l\'intercalera pas non plus entre deux bénédictions.',
+    barechSummer: 'Si l\'on s\'est trompé en disant « Barekh \'alénou » en été et qu\'on s\'en rende compte au milieu de la bénédiction, on reprendra « Barékhénou ». Si l\'on s\'en rend compte après avoir dit « baroukh ata Adonaï » mais avant « mévarekh hachanim », on dira « lamedéni \'houkékha » et on dira à nouveau « Barékhénou ». Si l\'on a déjà dit « mévarekh hachanim », ou si l\'on s\'en rend compte plus tard, on reprendra dans l\'ordre depuis « Barékhénou ». Si l\'on ne s\'en rend compte qu\'après avoir dit le « Yihyou leratson » qui suit « Elohaï netsor », même si l\'on n\'a pas fait les trois pas en arrière, on reprendra au début de la Amida. Si l\'on a dit « Barekh \'alénou » pendant les jours qui suivent Souccot mais avant le 7 \'Hechvan, selon la loi stricte on n\'aurait pas besoin de se reprendre ; cependant il conviendrait de réciter à nouveau la Amida à titre d\'offrande volontaire, en disant : « Si j\'ai l\'obligation de répéter la Amida, je le fais pour m\'acquitter de mon devoir, et sinon que ce soit à titre d\'offrande volontaire. »',
+    barechWinter: 'Si l\'on s\'est trompé en disant « Barékhénou » en hiver, et qu\'on s\'en rende compte au milieu de la bénédiction, on reprendra « Barekh \'alénou ». Si l\'on s\'en rend compte après avoir dit « mévarekh hachanim », mais avant de commencer « Téka\' », on dira alors « véten tal oumatar liverakha » puis « Téka\' béchofar gadol ». Si l\'on ne s\'en rend compte qu\'après avoir commencé « Téka\' », on continuera la prière jusqu\'à « Chéma\' kolénou » ; là, avant de dire « ki ata choméa\' téfilat kol pé », on ajoutera « véten tal oumatar liverakha ». Si, là aussi, on a oublié de le dire et qu\'on s\'en rende compte entre « baroukh ata Adonaï » et « choméa\' téfila », on dira « lamedéni \'houkékha » et on reprendra « Chéma\' kolénou » en ajoutant « véten tal oumatar liverakha ». Si l\'on s\'en rend compte après avoir dit « choméa\' téfila » mais avant de commencer « Retsé », on ajoutera alors « véten tal oumatar liverakha ». Si l\'on a déjà commencé « Retsé », ou si l\'on s\'en rend compte par la suite, on reprendra dans l\'ordre à partir de « Barekh \'alénou ». Si l\'on ne s\'en rend compte qu\'après avoir dit le « Yihyou leratson » qui suit « Elohaï netsor », même si l\'on n\'a pas encore fait trois pas en arrière, on reprendra au début de la Amida.'
+};
+// Les autres ajouts : reconnus par leurs mots (sans voyelles) et leur condition.
+const SD_TEXT_NOTES = [
+    { atom: 'aseret', re: /זכרנו לחיים/, t: 'Si l\'on n\'a pas dit « zokhrénou le\'hayim » et que l\'on s\'en aperçoive avant de prononcer le Nom divin, on se reprend, mais si on l\'a déjà prononcé, on ne se reprend pas.' },
+    { atom: 'aseret', re: /מי כמוך אב הרחמן|וכתוב לחיים|ובספר חיים/, t: 'Si on a omis de le dire et que l\'on s\'en aperçoive avant de prononcer le Nom divin de la bénédiction suivante, on se reprend, sinon on ne se reprend pas.' },
+    { atom: 'aseret', re: /המלך הקדוש/, t: 'Pendant les dix jours de pénitence, si on oublie et on dit « hael hakadoch », ou que l\'on soit dans le doute, et que l\'on ne s\'en souvienne pas tout de suite, on reprend la Amida à son début. Si l\'officiant se trompe, il reprend à « Atta kadoch » et continue normalement.' },
+    { atom: 'aseret', re: /המלך המשפט/, t: 'Si l\'on se trompe et que l\'on se rend compte tout de suite (le temps de dire « chalom \'alékha rabi »), on reprendra « hamélekh hamichpat ». Si l\'on s\'en souvient avant le verset « yihyou lératson », on reprend à « Hachiva chofeténou », mais si c\'est après, on reprend la Amida à son début. Il conviendra de la réciter à titre d\'offrande volontaire.' },
+    { atom: 'rc', re: /יעלה ויבא/, t: 'Si on a omis de dire « Ya\'alé véyavo », on se reprend, sauf pour la prière du soir de Roch \'Hodech.' },
+    { atom: 'hanukkah', re: /על הנסים|על הניסים/, t: 'Si on a omis de dire « Véal hanissim » et que l\'on s\'en aperçoive avant de prononcer le Nom divin de la prochaine bénédiction, on se reprend, sinon on ne se reprend pas.' },
+    { atom: 'tishaBav', re: /נחם/, t: 'Si le 9 Av, on n\'a pas dit « Na\'hem » et qu\'on ne s\'en rende compte qu\'après avoir dit « baroukh atta Adonaï », on ne se reprend pas.' },
+    { atom: 'fastPublic', re: /עננו/, t: 'Celui qui jeûne récite « \'Anénou ». L\'officiant qui a oublié de dire « \'Anénou » entre « Goël » et « Rofé » le dira comme le particulier, sans le Nom divin.' }
+];
+const SD_ATOM_FAMILY = { ch: 'rc', chPesach: 'rc', chSukkot: 'rc', purim: 'hanukkah', fastIndividual: 'fastPublic' };
 function sdErrNote(atoms, bodyText) {
     for (const a of atoms) if (SD_ERR_NOTES[a]) return SD_ERR_NOTES[a];
-    if (atoms.indexOf('aseret') !== -1 && SD_ASERET_INSERT.test(SiddurCore.stripNiqqud(bodyText))) {
-        return 'Oublié : si l\'on s\'en aperçoit avant de prononcer le Nom divin qui conclut la bénédiction, on se reprend ; si on l\'a déjà prononcé, on ne se reprend pas.';
-    }
-    return '';
+    const fam = atoms.map(a => SD_ATOM_FAMILY[a] || a);
+    const bare = SiddurCore.stripNiqqud(bodyText);
+    const hit = SD_TEXT_NOTES.find(n => fam.indexOf(n.atom) !== -1 && n.re.test(bare));
+    return hit ? hit.t : '';
+}
+// Une règle courte s'affiche telle quelle ; une longue se replie sous « Si l'on s'est trompé ».
+function sdNoteEl(text) {
+    if (text.length <= 170) { const p = sdEl('p', 'sd-var-note', text); p.lang = 'fr'; return p; }
+    const d = sdEl('details', 'sd-var-note sd-var-more');
+    d.appendChild(sdEl('summary', '', 'Si l\'on s\'est trompé'));
+    const p = sdEl('p', '', text);
+    p.lang = 'fr';
+    d.appendChild(p);
+    return d;
 }
 
 // Un bloc de variante. fill(host) y met le texte ; label : le nom en français ; bodyText : le texte (pour les premiers mots et la règle).
@@ -1301,7 +1328,7 @@ function sdVarBlock(atoms, label, bodyText, fill) {
         sum.appendChild(he);
         fold.appendChild(sum);
         fill(fold);
-        if (note) fold.appendChild(sdEl('p', 'sd-var-note', note));
+        if (note) fold.appendChild(sdNoteEl(note));
         return fold;
     }
     const box = sdEl('div', 'sd-var' + (state === 'on' ? ' is-on' : state === 'unknown' ? ' is-unknown' : ''));
@@ -1309,9 +1336,11 @@ function sdVarBlock(atoms, label, bodyText, fill) {
     if (state === 'on') head.appendChild(sdEl('span', 'sd-chip', 'Aujourd\'hui'));
     else if (state === 'unknown') head.appendChild(sdEl('span', 'sd-chip is-unknown', 'Selon le cas'));
     head.appendChild(sdEl('span', '', name));
+    const since = atoms.map(a => SD_VAR_SINCE[a]).filter(Boolean)[0];
+    if (since) head.appendChild(sdEl('span', 'sd-var-since', '(' + since + ')'));
     box.appendChild(head);
     fill(box);
-    if (note) box.appendChild(sdEl('p', 'sd-var-note', note));
+    if (note) box.appendChild(sdNoteEl(note));
     return box;
 }
 
@@ -1365,7 +1394,14 @@ function sdRenderSegment(tree, index, fr) {
         const el = newP();
         if (kids.length && kids.every(k => k.t === 'tag' && k.n === 'small')) el.classList.add('sd-seg-small');
         sdRenderNodes(tree.c, el);
-        return el;
+        const inl = [];
+        (function walk(n) { (n.c || []).forEach(k => { if (k.m && (k.m.role === 'marker' || k.m.role === 'self') && SiddurCore.evaluate(k.m.atoms, sdCtx) === 'on') inl.push(k.m.atoms); if (k.t === 'tag') walk(k); }); })(tree);
+        const note = inl.length ? sdErrNote(inl[0], SiddurCore.plain(tree)) : '';
+        if (!note) return el;
+        const wrap = sdEl('div', 'sd-segbox');
+        wrap.appendChild(el);
+        wrap.appendChild(sdNoteEl(note));
+        return wrap;
     }
     const wrap = sdEl('div', 'sd-segbox');
     let cur = null;
@@ -1394,24 +1430,24 @@ function sdRenderSegment(tree, index, fr) {
 // Repérage par les premiers mots (sans voyelles) de chaque segment. Traductions et noms écrits pour l'application : **à relire**.
 const SD_BERAKHOT = [
     { id: 'avot', he: 'ברכת אבות', fr: 'Les Patriarches', start: /^ברוך אתה .*אלהינו ואלהי אבותינו/, end: /מגן אברהם/, hat: 'bouclier d\'Avraham' },
-    { id: 'gevourot', he: 'ברכת גבורות', fr: 'La puissance divine', start: /^אתה גבור/, end: /מחיה המתים/, hat: 'qui fait revivre les morts' },
-    { id: 'kedoucha', he: 'קדושת השם', fr: 'La sainteté du Nom', start: /^אתה קדוש/, end: /האל הקדוש|המלך הקדוש/, hat: 'le D. saint' },
-    { id: 'bina', he: 'ברכת בינה', fr: 'L\'intelligence', start: /^אתה חונן/, end: /חונן הדעת/, hat: 'qui accorde la connaissance' },
-    { id: 'techouva', he: 'ברכת תשובה', fr: 'Le retour', start: /^השיבנו/, end: /הרוצה בתשובה/, hat: 'qui désire le repentir' },
-    { id: 'selikha', he: 'ברכת סליחה', fr: 'Le pardon', start: /^סלח לנו/, end: /המרבה לסל/, hat: 'qui multiplie Son pardon' },
-    { id: 'gueoula', he: 'ברכת גאולה', fr: 'La délivrance', start: /^ראה נא/, end: /גואל ישראל/, hat: 'qui délivre Israël' },
-    { id: 'refoua', he: 'ברכת רפואה', fr: 'La guérison', start: /^רפאנו/, end: /רופא חולי/, hat: 'qui guérit les malades de Son peuple Israël' },
+    { id: 'gevourot', he: 'ברכת גבורות', fr: 'La puissance divine', start: /^אתה גבור/, end: /מחיה המתים/, hat: 'qui ressuscite les morts' },
+    { id: 'kedoucha', he: 'ברכת הקדושה', fr: 'La sainteté du Nom', start: /^אתה קדוש/, end: /האל הקדוש|המלך הקדוש/, hat: 'le D. qui est Saint', hatAseret: 'le Roi qui est Saint' },
+    { id: 'bina', he: 'ברכת הדעת', fr: 'L\'intelligence', start: /^אתה חונן/, end: /חונן הדעת/, hat: 'qui gratifie d\'intelligence' },
+    { id: 'techouva', he: 'ברכת התשובה', fr: 'Le retour', start: /^השיבנו/, end: /הרוצה בתשובה/, hat: 'qui veut la pénitence' },
+    { id: 'selikha', he: 'ברכת הסליחה', fr: 'Le pardon', start: /^סלח לנו/, end: /המרבה לסל/, hat: 'qui multiplie Son pardon' },
+    { id: 'gueoula', he: 'ברכת הגאולה', fr: 'La délivrance', start: /^ראה נא/, end: /גואל ישראל/, hat: 'qui sauve Israël' },
+    { id: 'refoua', he: 'ברכת הרפואה', fr: 'La guérison', start: /^רפאנו/, end: /רופא חולי/, hat: 'qui guérit les malades de Son peuple Israël' },
     { id: 'chanim', he: 'ברכת השנים', fr: 'Les récoltes de l\'année', start: /^(ברכנו|ברך עלינו)/, end: /מברך השנים/, hat: 'qui bénit les années' },
-    { id: 'kibouts', he: 'קיבוץ גלויות', fr: 'Le rassemblement des exilés', start: /^תקע בשופר/, end: /מקבץ נדחי/, hat: 'qui rassemble les dispersés de Son peuple Israël' },
-    { id: 'din', he: 'ברכת המשפט', fr: 'La justice', start: /^השיבה שופטינו/, end: /אוהב צדקה ומשפט|המלך המשפט/, hat: 'Roi qui aime la justice et le droit' },
-    { id: 'minim', he: 'ברכת המינים', fr: 'Contre les calomniateurs', start: /^ולמלשינים|^למינים/, end: /שובר אויבים/, hat: 'qui brise les ennemis et abaisse les arrogants' },
-    { id: 'tsadikim', he: 'ברכת הצדיקים', fr: 'Les justes', start: /^על הצדיקים/, end: /ומבטח לצדיקים/, hat: 'appui et confiance des justes' },
-    { id: 'yerouchalayim', he: 'בניין ירושלים', fr: 'Jérusalem', start: /^תשכון בתוך ירושלים|^ולירושלים/, end: /בונה ירושלים/, hat: 'qui bâtit Jérusalem' },
-    { id: 'david', he: 'מלכות בית דוד', fr: 'Le règne de David', start: /^את צמח דוד/, end: /קרן ישועה/, hat: 'qui fait germer la force du salut' },
-    { id: 'tefila', he: 'שומע תפלה', fr: 'L\'écoute de la prière', start: /^שמע קולנו/, end: /שומע תפלה/, hat: 'qui écoute la prière' },
-    { id: 'avoda', he: 'ברכת העבודה', fr: 'Le service divin', start: /^רצה /, end: /שכינתו לציון/, hat: 'qui ramène Sa Présence à Sion' },
-    { id: 'hodaa', he: 'ברכת הודאה', fr: 'La reconnaissance', start: /^מודים אנחנו/, end: /הטוב שמך/, hat: 'dont le Nom est « Bonté », et à qui il convient de rendre grâce' },
-    { id: 'chalom', he: 'ברכת השלום', fr: 'La paix', start: /^שים שלום/, end: /עמו ישראל בשלום/, hat: 'qui bénit Son peuple Israël par la paix' },
+    { id: 'kibouts', he: 'ברכת קבוץ גלויות', fr: 'Le rassemblement des exilés', start: /^תקע בשופר/, end: /מקבץ נדחי/, hat: 'qui rassemble les exilés de Son peuple Israël' },
+    { id: 'din', he: 'ברכת השבת המשפט', fr: 'La justice', start: /^השיבה שופטינו/, end: /אוהב צדקה ומשפט|המלך המשפט/, hat: 'Roi qui aime charité et justice', hatAseret: 'le Roi de la justice' },
+    { id: 'minim', he: 'ברכת המינים', fr: 'Contre les calomniateurs', start: /^ולמלשינים|^למינים/, end: /שובר אויבים/, hat: 'qui brise les ennemis et soumet les scélérats' },
+    { id: 'tsadikim', he: 'ברכת הצדיקים', fr: 'Les justes', start: /^על הצדיקים/, end: /ומבטח לצדיקים/, hat: 'appui et abri pour les justes' },
+    { id: 'yerouchalayim', he: 'ברכת בנין ירושלים', fr: 'Jérusalem', start: /^תשכון בתוך ירושלים|^ולירושלים/, end: /בונה ירושלים|מנחם ציון/, hat: 'qui construit Jérusalem', hatTishaBav: 'qui console Sion et réédifie Jérusalem' },
+    { id: 'david', he: 'ברכת מלכות בית דוד', fr: 'Le règne de David', start: /^את צמח דוד/, end: /קרן ישועה/, hat: 'qui fait croître la corne du salut' },
+    { id: 'tefila', he: 'ברכת קבלת התפלה', fr: 'L\'écoute de la prière', start: /^שמע קולנו/, end: /שומע תפלה/, hat: 'qui écoute la prière' },
+    { id: 'avoda', he: 'ברכת העבודה', fr: 'Le service divin', start: /^רצה /, end: /שכינתו לציון/, hat: 'qui ramène Sa présence divine à Tsion' },
+    { id: 'hodaa', he: 'ברכת ההודאה', fr: 'La reconnaissance', start: /^מודים אנחנו/, end: /הטוב שמך/, hat: 'dont le Nom est bon et à Toi il convient de rendre grâce' },
+    { id: 'chalom', he: 'ברכת השלום', fr: 'La paix', start: /^שים שלום/, end: /עמו ישראל בשלום/, hat: 'qui bénit Son peuple Israël par la paix. Amen' },
     { id: 'netsor', he: 'אלהי נצור', fr: 'Prière personnelle', start: /^יהיו לרצון|^אלהי נצור/ }
 ];
 function sdIsAmida(id) { return /amida|moussaf/.test(id); }
@@ -1494,11 +1530,11 @@ function sdSpecialNode(node) {
 
 // Le mot à mot (Maguen Avot) : chaque mot sur sa traduction, en lignes justifiées. Les mots sont repérés sans voyelles.
 const SD_GLOSS = {
-    'אדני': 'Seigneur', 'שפתי': 'mes lèvres', 'תפתח': 'Tu ouvriras', 'ופי': 'et ma bouche', 'יגיד': 'dira', 'תהלתך': 'Ta louange',
+    'אדני': 'Éternel', 'שפתי': 'mes lèvres', 'תפתח': 'Tu ouvriras', 'ופי': 'et ma bouche', 'יגיד': 'dira', 'תהלתך': 'Ta louange',
     'ברוך': 'Source de bénédictions', 'אתה': 'Tu es', 'יהוה': 'Éternel', 'אלהינו': 'notre D.', 'ואלהי': 'et le D.', 'אבותינו': 'de nos pères',
-    'אלהי': 'le D.', 'אברהם': 'd\'Avraham', 'יצחק': 'd\'Its\'hak', 'יעקב': 'de Yaakov', 'האל': 'le D.', 'הגדול': 'grand', 'הגבור': 'puissant',
+    'אלהי': 'le D.', 'אברהם': 'd\'Avraham', 'יצחק': 'd\'Yts\'hak', 'יעקב': 'de Yaâkov', 'האל': 'le D.', 'הגדול': 'grand', 'הגבור': 'puissant',
     'והנורא': 'et redoutable', 'אל': 'D.', 'עליון': 'Suprême', 'גומל': 'qui prodigue', 'חסדים': 'des bontés', 'טובים': 'bienfaisantes',
-    'קונה': 'possède', 'הכל': 'tout', 'וזוכר': 'et se rappelle', 'חסדי': 'les bontés', 'אבות': 'des Pères', 'ומביא': 'et amène', 'גואל': 'un sauveur',
+    'קונה': 'possède', 'הכל': 'tout', 'וזוכר': 'et se rappelle', 'חסדי': 'des bontés', 'אבות': 'des Pères', 'ומביא': 'et amène', 'גואל': 'un sauveur',
     'לבני': 'aux enfants', 'בניהם': 'de leurs enfants', 'למען': 'en faveur', 'שמו': 'de Son Nom', 'באהבה': 'avec amour',
     'מלך': 'Roi', 'עוזר': 'qui aide', 'ומושיע': 'et sauve', 'ומגן': 'et protège', 'מגן': 'bouclier',
     'זכרנו': 'souviens-Toi de nous', 'לחיים': 'pour la vie', 'חפץ': 'qui désire', 'בחיים': 'la vie', 'כתבנו': 'inscris-nous', 'בספר': 'dans le livre',
@@ -1622,7 +1658,7 @@ function sdRenderSection(section) {
                 lg.lang = 'fr';
                 const ic = sdSpecialNode({ k: 'bow' });
                 lg.appendChild(ic);
-                lg.appendChild(document.createTextNode('Ce signe marque où l\'on s\'incline : à « Baroukh », on se courbe ; à « Atta », on baisse la tête ; au Nom divin, on se redresse.'));
+                lg.appendChild(document.createTextNode('On s\'incline au début et à la fin de la première bénédiction, et au début et à la fin de Modim, aux endroits marqués de ce signe ; pas pour les autres bénédictions. Façon de s\'incliner selon les Séfaradim : quand on dit « Baroukh », on se courbe sans fléchir les genoux ; quand on dit « Atta », on baisse la tête ; quand on prononce le Nom divin, on se redresse.'));
                 box.appendChild(lg);
             }
             const h = sdEl('p', 'sd-bk');
@@ -1641,7 +1677,9 @@ function sdRenderSection(section) {
         let hit = false;
         for (let k = from; k <= to; k++) if (/ברוך אתה/.test(bares[k]) && open.end.test(bares[k])) hit = true;
         if (!hit || deferIfNextGroup) return;
-        const p = sdEl('p', 'sd-hat', '[… ' + open.hat + '.]');
+        const on = (atom) => SiddurCore.evaluate([atom], sdCtx) === 'on';
+        const hat = open.hatAseret && on('aseret') ? open.hatAseret : open.hatTishaBav && on('tishaBav') ? open.hatTishaBav : open.hat;
+        const p = sdEl('p', 'sd-hat', '[… ' + hat + '.]');
         p.lang = 'fr';
         box.appendChild(p);
         open = null;
