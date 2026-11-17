@@ -1,5 +1,5 @@
 // =========================================================================
-// === HISTORIAXE — TORAH EN HÉBREU (décodage et chargement à la demande, sans DOM) ===
+// === TORAHAXE — TORAH EN HÉBREU (décodage et chargement à la demande, sans DOM) ===
 // =========================================================================
 // Lit data/torah/torah.json, produit par scripts/build_torah.js (format v1 : voir ce fichier).
 // Le texte n'est téléchargé que lorsqu'un écran le demande : `load()` lance le téléchargement une

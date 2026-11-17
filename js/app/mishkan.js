@@ -878,6 +878,10 @@ function mknMikdashTab(body) {
             block.appendChild(mknEl('p', 'tool-small', row[col]));
             content.appendChild(block);
         });
+        const chr = mknEl('div', 'gen-actions');
+        content.appendChild(chr);
+        // Chaque colonne se situe sur la frise : le Michkan dans le désert, le Premier Temple, le Second Temple, le Temple d'Hérode.
+        chrAddItemButton(chr, { mishkan: 'michkan_desert', first: 'temple1', second: 'temple2', herod: 'e_herode_temple' }[col], 'screen-tool-mishkan');
         details.appendChild(content);
         list.appendChild(details);
     });

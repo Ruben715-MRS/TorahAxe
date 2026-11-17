@@ -1,5 +1,5 @@
 // =========================================================================
-// === HISTORIAXE — STATUTS PERSONNELS : LE CALCULATEUR PÈRE + MÈRE → UNION ET ENFANT (sans DOM) ===
+// === TORAHAXE — STATUTS PERSONNELS : LE CALCULATEUR PÈRE + MÈRE → UNION ET ENFANT (sans DOM) ===
 // =========================================================================
 // Les données sont dans js/statutsData.js ; l'écran viendra dans js/app/. Ici, ce qui se calcule, testé dans tests/statutsCore.test.js :
 //  - evaluate(père, mère) : l'union est-elle permise, à quel niveau d'interdit, les kidouchin prennent-ils, quel est le statut de l'enfant ;

@@ -1,5 +1,5 @@
 // =========================================================================
-// === HISTORIAXE — LES 613 COMMANDEMENTS, SELON LE DÉCOMPTE DU RAMBAM (données) ===
+// === TORAHAXE — LES 613 COMMANDEMENTS, SELON LE DÉCOMPTE DU RAMBAM (données) ===
 // =========================================================================
 // Les 248 commandements positifs et les 365 commandements négatifs, dans l'ordre de la liste de Maïmonide (le Rambam) en tête du Mishné Torah,
 // que le Séfer ha-Mitsvot suit à quelques détails près (par exemple, les deux commandements d'écrire un rouleau de la Torah y sont intervertis).

@@ -337,6 +337,14 @@ function genRender() {
         card.style.top = b.top + 'px';
         card.style.width = GEN_CARD_W + 'px';
         if (id === genFocus) card.classList.add('is-focus');
+        // Toucher une carte la sélectionne : la barre d'au-dessus propose alors de la situer dans la chronologie (sans changer la taille des cartes).
+        card.onclick = e => {
+            if (e.target.closest && e.target.closest('.gen-toggle')) return;
+            genFocus = genFocus === id ? '' : id;
+            stage.querySelectorAll('.gen-card.is-focus').forEach(c => c.classList.remove('is-focus'));
+            if (genFocus) card.classList.add('is-focus');
+            genUpdateFocusBar();
+        };
         if (genCatSet[id]) { card.classList.add('is-cat'); card.style.setProperty('--cat-color', genCatColor); }
         const kids = GenealogyCore.childrenOf(id);
         if (kids.length) {
@@ -433,6 +441,27 @@ function genOnSearch() {
     });
 }
 
+// La barre « personne choisie » : son nom, et le bouton qui la situe dans la chronologie quand la frise la connaît.
+function genUpdateFocusBar() {
+    const bar = document.getElementById('gen-focus');
+    if (!bar) return;
+    const id = genFocus;
+    while (bar.firstChild) bar.removeChild(bar.firstChild);
+    bar.classList.add('hidden');
+    if (!id || typeof ChronologieCore === 'undefined' || typeof chrLoadModel !== 'function') return;
+    chrLoadModel().then(model => {
+        if (id !== genFocus) return;
+        const button = chrButton(ChronologieCore.forGen(model, id), 'screen-tool-genealogy');
+        if (!button) return;
+        const p = GenealogyCore.byId(id);
+        const name = document.createElement('strong');
+        name.textContent = genName(p);
+        bar.appendChild(name);
+        bar.appendChild(button);
+        bar.classList.remove('hidden');
+    }).catch(() => {});
+}
+
 // Va à une personne : déplie ses ancêtres (une femme sans père : son conjoint), la centre et la met en valeur.
 function genGoTo(id) {
     let target = id;
@@ -444,6 +473,7 @@ function genGoTo(id) {
     GenealogyCore.ancestorsOf(target).forEach(a => { delete genCollapsed[a]; });
     delete genCollapsed[target];
     genFocus = target;
+    genUpdateFocusBar();
     document.getElementById('gen-search').value = '';
     genOnSearch();
     genRender();

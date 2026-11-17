@@ -1,5 +1,5 @@
 /* =========================================================================
-   ACCUEIL DE TORAHAXE : quatre onglets (Aujourd'hui, Étude, Explorer, Réviser)
+   ACCUEIL DE TORAHAXE : quatre onglets (Aujourd'hui, Étude, Explorer, Jouer)
    Construit par js/app/home.js. Reprend les variables de style.css (clair et sombre).
    ========================================================================= */
 :root {
@@ -178,6 +178,7 @@ body > #screen-main {
 
 /* --- Cartes d'information --- */
 .home-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.home-card-wide { grid-column: 1 / -1; }   /* une carte seule sur sa rangée (« À réviser ») */
 .home-card {
     border: 1px solid var(--border-soft);
     background: var(--surface);
@@ -245,8 +246,8 @@ div.home-card:active { background: var(--surface); }
 /* --- Hilloulot (repris des Zmanim) --- */
 .home-content .zm-hil { margin: 0; }
 
-/* --- Encadrés HistoriAxe --- */
-.home-content .historiaxe-promo-card { margin: 0; }
+/* --- Encart HistoriAxe --- */
+.home-content .promo-card { margin: 0; }
 
 /* --- Barre d'onglets --- */
 .home-tabs {

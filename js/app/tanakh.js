@@ -359,6 +359,15 @@ function tanakhRenderBooks() {
         select.appendChild(og);
     });
     box.appendChild(select);
+    // « Situer dans la chronologie » : l'époque que raconte le livre.
+    if (tanakhState.book && typeof ChronologieCore !== 'undefined') {
+        const id = tanakhState.book;
+        const entry = tanakhIndex.books.find(b => b.id === id);
+        const row = document.createElement('div');
+        row.className = 'gen-actions';
+        box.appendChild(row);
+        chrAddTargetButton(row, model => ChronologieCore.forBook(model, id, entry ? entry.fr : id), 'screen-tool-tanakh', () => tanakhState.book === id);
+    }
 }
 
 // Charge (une fois) la liste des parachiot ; puis réaffiche, car le choix par paracha n'existe qu'une fois la liste là.

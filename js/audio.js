@@ -1,5 +1,5 @@
 // =========================================================================
-// === HISTORIAXE — MODULE AUDIO IMMERSIF & RETOUR HAPTIQUE (GAME FEEL) ===
+// === TORAHAXE — MODULE AUDIO IMMERSIF & RETOUR HAPTIQUE (GAME FEEL) ===
 // =========================================================================
 
 let audioCtx = null;

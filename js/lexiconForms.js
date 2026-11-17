@@ -1,5 +1,5 @@
 // =========================================================================
-// === HISTORIAXE — DICTIONNAIRE HÉBREU : L'INDEX DES FORMES (données) ===
+// === TORAHAXE — DICTIONNAIRE HÉBREU : L'INDEX DES FORMES (données) ===
 // =========================================================================
 // FICHIER GÉNÉRÉ par scripts/lexicon/forms.py : ne pas le modifier à la main (voir scripts/lexicon/README.md).
 //

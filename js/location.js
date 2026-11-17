@@ -1,5 +1,5 @@
 // =========================================================================
-// === HISTORIAXE — LOCALISATION (se placer sur la carte de l'Atlas) ===
+// === TORAHAXE — LOCALISATION (se placer sur la carte de l'Atlas) ===
 // =========================================================================
 // Un seul usage : montrer au joueur où il se trouve sur la carte. La position reste
 // dans la mémoire de l'app : elle n'est ni enregistrée ni envoyée au serveur. Sur iPhone,
@@ -10,7 +10,7 @@
 // n'est jamais redemandé. Le bouton « Me localiser » reste disponible ensuite.
 // Best-effort, comme js/notifications.js : une erreur de GPS ne bloque jamais la carte.
 
-var HistoriAxeLocation = (function () {
+var TorahAxeLocation = (function () {
     'use strict';
 
     var LOCATE_OPTIONS = { enableHighAccuracy: false, timeout: 10000 };

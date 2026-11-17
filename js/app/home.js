@@ -2,16 +2,14 @@
 // === L'ACCUEIL DE TORAHAXE : quatre onglets ===
 // =========================================================================
 // Aujourd'hui (la prière de l'heure, les horaires, la paracha, l'étude du jour), Étude (les textes et les dictionnaires),
-// Explorer (les maîtres, les lieux, les lois) et Réviser (jeux, frises, récits). Tout part d'un seul catalogue, HOME_ENTRIES :
+// Explorer (les maîtres, les lieux, les lois) et Jouer (jeux par thème, frises, récits). Tout part d'un seul catalogue, HOME_ENTRIES :
 // les onglets, la recherche et les raccourcis lisent la même liste. Les mots hébreux des tuiles sont ceux du catalogue.
 // Rien n'est construit avec du HTML : seulement des nœuds DOM (createElement, textContent).
 
 const HOME_PROMO_URL = 'https://apps.apple.com/fr/app/historiaxe/id6827736918';
 const HOME_PROMOS = {
     tools: 'Vous aimez ces outils ? Retrouvez le même esprit pour toute l\'Histoire (convertisseurs, calendriers, cartes…) en téléchargeant HistoriAxe !',
-    games: 'Vous aimez ce type de jeux ? Découvrez notre Salle de jeux complète avec tous nos autres jeux en téléchargeant HistoriAxe !',
-    frises: 'Vous aimez les frises et vous voulez approfondir votre culture générale dans tous les domaines ? Téléchargez HistoriAxe !',
-    recits: 'Vous aimez (ou vous avez aimé) les récits ? Découvrez-en bien d\'autres dans tous les domaines et de toutes les époques en téléchargeant HistoriAxe !'
+    jouer: 'Vous aimez ces jeux, ces frises et ces récits ? Découvrez-en bien d\'autres, dans tous les domaines et de toutes les époques, en téléchargeant HistoriAxe !'
 };
 
 const homeTool = (id) => () => openTool(id, 'screen-main');
@@ -34,6 +32,7 @@ const HOME_ENTRIES = {
     transmission: { he: 'חכמים', fr: 'Sages', desc: 'De Moïse à nos jours : qui a reçu la Torah de qui', kw: 'maîtres chaîne transmission michna gueonim richonim', run: homeTool('transmission') },
     hassidout: { he: 'חסידות', fr: 'Hassidout', desc: 'Du Baal Chem Tov à nos jours : les maîtres et les dynasties', kw: 'hassidisme baal chem tov rabbi', run: homeTool('hassidout') },
     biblical: { he: 'מפות', fr: 'Cartes', desc: 'Six cartes du Levant biblique : Abraham, le désert, les tribus', kw: 'cartes géographie levant désert tribus', run: homeTool('biblical') },
+    chronologie: { he: 'סדר עולם', fr: 'Chronologie', desc: 'Époques, prophètes, juges et rois, Michkan et Temple, sur une seule frise', kw: 'frise temps dates histoire seder olam juges rois prophètes années hébraïques civiles michkan temple', run: homeTool('chronologie') },
     mishkan: { he: 'משכן', fr: 'Temple', desc: 'Le Tabernacle, ses ustensiles, les vêtements des prêtres et les Temples', kw: 'michkan mikdash tabernacle temple jérusalem', run: homeTool('mishkan') },
     hebrewCalendar: { he: 'לוח', fr: 'Calendrier', desc: 'Convertir une date, les fêtes de l\'année, les mois et la règle du calendrier', kw: 'fêtes dates conversion mois année hébraïque', run: homeTool('hebrewCalendar') },
     korbanot: { he: 'קרבנות', fr: 'Sacrifices', desc: 'Les korbanot : qui offre quoi, quand et combien', kw: 'offrandes korbanot temple', run: homeTool('korbanot') },
@@ -42,6 +41,12 @@ const HOME_ENTRIES = {
     foodlaws: { he: 'כשרות', fr: 'Cacherout', desc: 'Les animaux purs et impurs, les mélanges interdits', kw: 'casher kasher aliments sauterelles oiseaux poissons', run: homeTool('foodlaws') },
     benedictions: { he: 'ברכות', fr: 'Bénédictions', desc: 'Quelle bénédiction dire sur quel aliment : 290 aliments, avec les notes (Beth Loubavitch)', kw: 'bracha berakha brakha berakhot aliment manger boire haets haadama mezonot chehakol hamotsi haguafen fruit légume pain vin birkhot hanehenin', run: homeTool('benedictions') },
     measures: { he: 'מידות', fr: 'Mesures', desc: 'Poids, volumes, distances et monnaies de la Bible', kw: 'coudée poids volumes monnaies chékel', run: homeTool('measures') },
+    review: { he: 'חזרה', fr: 'À réviser aujourd\'hui', desc: 'Mots du Tanakh et de la Guémara à revoir aujourd\'hui, en une seule séance', kw: 'réviser révision répétition espacée rappel mémoire jeu', run: () => openReview('screen-main') },
+    purgame: { he: 'טהור', fr: 'Pur ou impur ?', desc: 'Triez les animaux, vite : pur (permis) ou impur (interdit), avec les signes à connaître', kw: 'jeu cacherout casher kasher animaux poissons oiseaux quadrupèdes tahor tame', run: () => openPurityGame('screen-main') },
+    mitsvagame: { he: 'מצוות', fr: 'Mitsva express', desc: 'De quelle paracha le Rambam tire-t-il ce commandement ? Vite, parmi les 613', kw: 'jeu mitsvot commandements 613 rambam paracha parachiot torah livre', run: () => openMitsvaGame('screen-main') },
+    parashagame: { he: 'פרשה', fr: 'Dans quelle paracha ?', desc: 'Un verset tiré au hasard dans la Torah : retrouvez sa paracha, avec des indices qui coûtent des points', kw: 'jeu paracha parachiot verset torah indice deviner', run: () => openVerseGame('screen-main') },
+    whogame: { he: 'מי אני', fr: 'Qui suis-je ?', desc: 'Un personnage de la Bible ou un sage du Talmud parle : devinez qui, avec des indices qui coûtent des points', kw: 'jeu devinette personnages bible sages talmud indices', run: () => openWhoGame('screen-main') },
+    ordergame: { he: 'סדר', fr: 'Le bon ordre', desc: 'Remettez dans l\'ordre des parachiot, des livres, des traités, des générations ou des rois', kw: 'jeu classer ordre parachiot tanakh michna talmud traités générations rois fils jacob', run: () => openOrderGame('screen-main') },
     lexgame: { he: 'מילים', fr: 'Mots du Tanakh', desc: 'Le vocabulaire hébreu de la Bible, du plus fréquent au plus rare', kw: 'jeu hébreu vocabulaire', run: () => openLexiconGame('screen-main') },
     gemgame: { he: 'גמרא', fr: 'Mots de la Guémara', desc: 'Les mots, les abréviations et les sages de la Guémara', kw: 'jeu araméen guemara', run: () => openGemaraGame('screen-main') },
     trgame: { he: 'מסורה', fr: 'Maîtres et élèves', desc: 'Qui a reçu la Torah de qui ? Retrouvez le maître d\'un sage', kw: 'jeu sages transmission', run: () => openTransmissionGame('screen-main') },
@@ -63,17 +68,22 @@ const HOME_LAYOUT = {
     ],
     explorer: [
         { title: 'Maîtres et lignées', as: 'tiles', cols: 3, ids: ['genealogy', 'transmission', 'hassidout'] },
-        { title: 'Lieux et temps', as: 'tiles', cols: 3, ids: ['biblical', 'mishkan', 'hebrewCalendar'] },
+        { title: 'Lieux et temps', as: 'tiles', cols: 2, ids: ['chronologie', 'biblical', 'mishkan', 'hebrewCalendar'] },
         { title: 'Lois et pratique', as: 'tiles', cols: 3, ids: ['korbanot', 'tsaraat', 'statuts', 'foodlaws', 'benedictions', 'measures', 'kotel'] },
         { promo: 'tools' }
     ],
-    reviser: [
-        { title: 'Jeux', as: 'rows', ids: ['lexgame', 'gemgame', 'trgame', 'wheel'] },
-        { promo: 'games' },
-        { title: 'Frises', as: 'rows', ids: ['frCivile', 'frHebraique', 'frHassidisme', 'frIsrael'] },
-        { promo: 'frises' },
-        { title: 'Récits', as: 'rows', ids: ['reDreyfus', 're1948', 'reBarKokhba'] },
-        { promo: 'recits' }
+    // Les jeux sont rangés par thème (Hébreu, Tanakh, Sages, Halakha, Histoire) : un jeu de plus = un id dans la bonne section. Une section sans jeu n'est
+    // pas affichée (homeSection).
+    jouer: [
+        { title: 'Révision', as: 'rows', ids: ['review'], subs: () => ({ review: homeReviewDesc() }) },
+        { title: 'Hébreu et araméen', as: 'rows', ids: ['lexgame', 'gemgame'] },
+        { title: 'Tanakh', as: 'rows', ids: ['parashagame', 'mitsvagame'] },
+        { title: 'Mettre dans l\'ordre', as: 'rows', ids: ['ordergame'] },
+        { title: 'Personnages et sages', as: 'rows', ids: ['whogame', 'trgame'] },
+        { title: 'Halakha et fêtes', as: 'rows', ids: ['purgame', 'wheel'] },
+        { title: 'Histoire : frises', as: 'rows', ids: ['frCivile', 'frHebraique', 'frHassidisme', 'frIsrael'] },
+        { title: 'Histoire : récits', as: 'rows', ids: ['reDreyfus', 're1948', 'reBarKokhba'] },
+        { promo: 'jouer' }   // le seul encart de l'onglet, tout en bas
     ]
 };
 
@@ -81,13 +91,13 @@ const HOME_ICONS = {
     today: '<path d="M4 17h16M7 17a5 5 0 0 1 10 0M12 5v3M4.5 9.5l2 2M19.5 9.5l-2 2M2 21h20"/>',
     etude: '<path d="M12 6c-2-1.5-5-2-8-1.5v13c3-.5 6 0 8 1.5 2-1.5 5-2 8-1.5v-13c-3-.5-6 0-8 1.5zM12 6v13"/>',
     explorer: '<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/>',
-    reviser: '<rect x="3.5" y="8" width="12.5" height="12.5" rx="2"/><path d="M8 8V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2"/>'
+    jouer: '<rect x="4" y="4" width="16" height="16" rx="3.5"/><circle cx="9" cy="9" r="0.9"/><circle cx="15" cy="9" r="0.9"/><circle cx="12" cy="12" r="0.9"/><circle cx="9" cy="15" r="0.9"/><circle cx="15" cy="15" r="0.9"/>'
 };
 const HOME_TABS = [
     { id: 'today', label: 'Aujourd\'hui' },
     { id: 'etude', label: 'Étude' },
     { id: 'explorer', label: 'Explorer' },
-    { id: 'reviser', label: 'Réviser' }
+    { id: 'jouer', label: 'Jouer' }
 ];
 
 let homeTab = 'today';
@@ -213,18 +223,26 @@ function homeRows(entries, subs) {
     return box;
 }
 
+// Ce que la ligne « À réviser aujourd'hui » annonce : le nombre d'éléments à revoir (js/app/review.js), ou qu'il n'y a rien.
+function homeReviewDesc() {
+    if (typeof reviewSummary !== 'function') return HOME_ENTRIES.review.desc;
+    const s = reviewSummary();
+    return s.total ? t('review.row_due', { total: s.total }) : t('review.row_none');
+}
+
 function homeSection(content, section) {
     if (section.promo) { content.appendChild(homePromo(section.promo)); return; }
+    if (!section.ids.length) return;   // un thème sans jeu pour l'instant : pas de titre vide
     content.appendChild(hEl('h2', 'home-section-title', section.title));
     const entries = section.ids.map(id => Object.assign({ id: id }, HOME_ENTRIES[id]));
-    if (section.as === 'rows') { content.appendChild(homeRows(entries)); return; }
+    if (section.as === 'rows') { content.appendChild(homeRows(entries, section.subs && section.subs())); return; }
     const grid = hEl('div', 'home-tiles c' + (section.cols || 3));
     entries.forEach(entry => grid.appendChild(homeTile(entry)));
     content.appendChild(grid);
 }
 
 function homePromo(kind) {
-    const a = hEl('a', 'historiaxe-promo-card');
+    const a = hEl('a', 'promo-card');
     a.href = HOME_PROMO_URL;
     a.target = '_blank';
     a.rel = 'noopener';
@@ -236,7 +254,7 @@ function homePromo(kind) {
     return a;
 }
 
-// --- Étude, Explorer, Réviser ----------------------------------------------------------------------------------------------------------------
+// --- Étude, Explorer, Jouer ----------------------------------------------------------------------------------------------------------------
 function homeNormalize(s) {
     return String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/['’‑-]/g, ' ');
 }
@@ -250,10 +268,29 @@ function homeSearchResults(query) {
     });
 }
 
+// Les résultats « Dans la chronologie » d'une recherche. `alone` : aucun outil ne correspond, donc « Aucun résultat » si la frise non plus.
+function homeChronoResults(query, holder, alone) {
+    const none = () => { if (alone) holder.appendChild(hEl('p', 'home-empty', 'Aucun résultat pour « ' + query.trim() + ' ».')); };
+    if (typeof chrLoadModel !== 'function' || typeof ChronologieCore === 'undefined') { none(); return; }
+    chrLoadModel().then(model => {
+        if (homeQuery !== query || !holder.isConnected) return;
+        const hits = ChronologieCore.search(model, query).slice(0, 8);
+        if (!hits.length) { none(); return; }
+        holder.appendChild(hEl('h2', 'home-section-title', t('tools.chronologie_in_search')));
+        const voies = {};
+        model.voies.forEach(v => { voies[v.id] = v.fr; });
+        holder.appendChild(homeRows(hits.map(x => ({
+            id: x.id, he: x.he || '⏳', fr: x.fr,
+            desc: ChronologieCore.dating(x, 'am') + ' · ' + ChronologieCore.dating(x, 'civil') + ' · ' + voies[x.voie],
+            run: () => openChronologie('screen-main', { item: x })
+        }))));
+    }).catch(() => none());
+}
+
 function homeRenderBrowse(content) {
-    const titles = { etude: 'Étude', explorer: 'Explorer', reviser: 'Réviser' };
+    const titles = { etude: 'Étude', explorer: 'Explorer', jouer: 'Jouer' };
     homeHeader(content, titles[homeTab]);
-    if (homeTab !== 'reviser') {
+    if (homeTab !== 'jouer') {
         const wrap = hEl('div', 'search-bar-wrap home-search');
         const bar = hEl('div', 'search-bar');
         bar.appendChild(hEl('span', 'search-bar-icon', '🔍'));
@@ -269,10 +306,13 @@ function homeRenderBrowse(content) {
         wrap.appendChild(bar);
         content.appendChild(wrap);
     }
-    if (homeTab !== 'reviser' && homeQuery.trim()) {
+    if (homeTab !== 'jouer' && homeQuery.trim()) {
         const found = homeSearchResults(homeQuery);
-        if (!found.length) { content.appendChild(hEl('p', 'home-empty', 'Aucun résultat pour « ' + homeQuery.trim() + ' ».')); return; }
-        content.appendChild(homeRows(found));
+        if (found.length) content.appendChild(homeRows(found));
+        // Les éléments de la chronologie (rois, sages, événements…) : une fois la frise chargée, on les ajoute sous les outils.
+        const holder = hEl('div');
+        content.appendChild(holder);
+        homeChronoResults(homeQuery, holder, !found.length);
         return;
     }
     HOME_LAYOUT[homeTab].forEach(section => homeSection(content, section));
@@ -510,6 +550,16 @@ function homeRenderToday(content) {
     if (tehilim) study.appendChild(homeInfoCard('Téhilim du jour', tehilim, t('tools.zm_tehilim_day', { n: h.day }), () => { toolReturns.tanakh = 'screen-main'; tanakhOpenAt('psaumes', zmTehilimStart(h) - 1, 'he'); }));
     if (study.childElementCount) content.appendChild(study);
 
+    // La révision du jour : la carte n'apparaît que s'il y a quelque chose à revoir.
+    const due = typeof reviewSummary === 'function' ? reviewSummary() : null;
+    if (due && due.total) {
+        const review = hEl('div', 'home-cards');
+        const card = homeInfoCard('À réviser', t('review.progress_due', { total: due.total }), 'Une séance de ' + due.session + ' questions', () => openReview('screen-main'));
+        card.classList.add('home-card-wide');
+        review.appendChild(card);
+        content.appendChild(review);
+    }
+
     homeHilloulot(content, day);
 
     const resume = homeResume();
@@ -531,11 +581,8 @@ function closeSettings() {
     closeModal('modal-settings');
 }
 
-// Charge les traductions et textes (ui/fr.json) dont les outils migrés d'HistoriAxe ont besoin pour
-// leur contenu généré dynamiquement (dates, tableaux…) : voir js/i18n.js. TorahAxe est en français
-// uniquement ; la tentative de téléchargement du contenu de jeu d'HistoriAxe (data/fr.json) que fait
-// i18n.js échoue silencieusement (voir sa gestion d'erreur), ce qui est normal : TorahAxe n'embarque
-// pas ce contenu. L'accueil se construit une fois les textes chargés.
+// Charge les textes de l'interface (ui/fr.json, voir js/i18n.js), puis construit l'accueil : les outils en ont besoin pour leur contenu généré
+// dynamiquement (dates, tableaux…).
 window.onload = async () => {
     if (typeof i18n !== 'undefined') await i18n.init();
     homeInit();

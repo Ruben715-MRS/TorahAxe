@@ -226,6 +226,10 @@ function hcalDescribeDay(out, fixed) {
         hcalPara(out, t('tools.hcal_no_feast'));
     }
     hcalPara(out, t('tools.hcal_night_note'));
+    // L'année hébraïque de ce jour, sur la grande frise (les années comptent depuis la création du monde).
+    const chr = hcalEl('div', 'gen-actions');
+    out.appendChild(chr);
+    if (typeof chrAddYearButton === 'function') chrAddYearButton(chr, h.year, 'screen-tool-hebrew-calendar');
 }
 
 function hcalHebrewPanel() {
@@ -451,6 +455,10 @@ function hcalFeastRow(f, isNext) {
     }
     hcalPara(content, t('tools.hcal_f_' + f.id + '_what'));
     hcalPara(content, t('tools.hcal_source', { src: t('tools.hcal_f_' + f.id + '_src') }), 'tool-small hcal-source');
+    // L'événement que la fête rappelle (la sortie d'Égypte, le don de la Torah, la destruction du Temple…), sur la grande frise.
+    const chr = hcalEl('div', 'gen-actions');
+    content.appendChild(chr);
+    if (typeof chrAddTargetButton === 'function' && typeof ChronologieCore !== 'undefined') chrAddTargetButton(chr, model => ChronologieCore.forFeast(model, f.id), 'screen-tool-hebrew-calendar');
     details.appendChild(content);
     return details;
 }

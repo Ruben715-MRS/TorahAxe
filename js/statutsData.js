@@ -1,5 +1,5 @@
 // =========================================================================
-// === HISTORIAXE — STATUTS PERSONNELS ET UNIONS INTERDITES : DONNÉES ===
+// === TORAHAXE — STATUTS PERSONNELS ET UNIONS INTERDITES : DONNÉES ===
 // =========================================================================
 // Le contenu de l'écran « Statuts et unions » (Atelier, groupe « Bible et tradition ») : le catalogue des statuts (cohen, lévi, israël, 'halal,
 // mamzer, guer, divorcée, veuve…), puis les raisons et les sources de chaque règle du calculateur « père + mère → union et enfant ». Les calculs

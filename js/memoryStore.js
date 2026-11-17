@@ -1,10 +1,8 @@
 // =========================================================================
-// === TORAHAXE — MÉMOIRE LOCALE DES JEUX « MOTS DU TANAKH » ET « MOTS DE LA GUÉMARA » ===
+// === TORAHAXE — MÉMOIRE LOCALE DES JEUX (progression, meilleurs scores, sons) ===
 // =========================================================================
-// Reprend telles quelles les six fonctions dont js/app/lexicon-game.js et js/app/gemara-game.js ont
-// besoin dans js/storage.js d'HistoriAxe — sans le reste de ce fichier (1145 lignes, tout le compte et
-// la synchronisation cloud) : TorahAxe n'a ni compte ni progression à distance (voir js/srs.js, pur,
-// pour l'algorithme de répétition espacée). La mémoire reste 100% locale à l'appareil.
+// La progression des jeux à mémoire (mots du Tanakh, cartes de la Guémara), les meilleurs scores, le son d'une réponse. Tout est local à l'appareil :
+// TorahAxe n'a ni compte ni synchronisation (l'algorithme de répétition espacée est dans js/srs.js, pur).
 const LEXICON_KEY = 'torahaxe_lexicon_v1';
 const GEMARA_KEY = 'torahaxe_gemara_v1';
 
@@ -46,7 +44,7 @@ function gemaraRecord(id, isSuccess) {
     gemaraSave(data);
 }
 
-// Son et haptique d'une réponse (reprise réduite de js/app/arcade.js d'HistoriAxe) : js/audio.js gère le réglage « Sons » / « Vibrations ».
+// Son et haptique d'une réponse : js/audio.js gère le réglage « Sons » / « Vibrations ».
 function arcadeSound(kind) {
     try {
         if (kind === 'good') {
@@ -59,7 +57,7 @@ function arcadeSound(kind) {
     } catch (e) { /* un son manquant ne doit jamais bloquer le jeu */ }
 }
 
-// Meilleurs scores des trois jeux (`lexicon`, `gemara`, `transmission`), gardés sur l'appareil. Renvoie tous les meilleurs scores après enregistrement.
+// Meilleurs scores (`lexicon`, `gemara`, `transmission`, `review`…), gardés sur l'appareil. Renvoie tous les meilleurs scores après enregistrement.
 const ARCADE_BEST_KEY = 'torahaxe_best_v1';
 
 function arcadeRecord(game, score) {

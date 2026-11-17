@@ -13,10 +13,13 @@
     <meta property="og:title" content="TorahAxe">
     <meta property="og:description"
         content="Siddour, Zmanim, calendrier hébraïque et tout un ensemble d'informations et d'utilitaires sur le judaïsme et la Torah, pour la pratique quotidienne.">
-    <meta property="og:image" content="splash_ipad_landscape.jpg">
+    <meta property="og:url" content="https://torahaxe.vercel.app/">
+    <meta property="og:image" content="https://torahaxe.vercel.app/apple_icon.jpg">
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="1024">
     <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="splash_ipad_landscape.jpg">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:image" content="https://torahaxe.vercel.app/apple_icon.jpg">
 
     <!-- Icône pour l'écran d'accueil iPhone / iPad, et favicon navigateur -->
     <link rel="icon" href="apple_icon.jpg">
@@ -38,6 +41,11 @@
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="manifest" href="manifest.webmanifest">
     <script src="js/appearanceCore.js"></script>
+    <script src="js/dataCore.js"></script>
+    <script>
+        /* Anciennes clés historiaxe_* copiées vers torahaxe_* avant que quoi que ce soit ne lise le stockage. */
+        try { DataCore.migrateStorage(localStorage); } catch (e) { }
+    </script>
     <script>
         /* Thème, fond et motif posés avant le premier affichage : pas de flash clair en mode sombre. */
         try { AppearanceCore.apply(document.documentElement, JSON.parse(localStorage.getItem(AppearanceCore.KEY) || "null"), window.matchMedia("(prefers-color-scheme: dark)").matches); } catch (e) { }
@@ -50,7 +58,7 @@
 
 <body>
     <!-- ÉCRAN : ACCUEIL
-         Quatre onglets (Aujourd'hui, Étude, Explorer, Réviser). Le contenu et la barre d'onglets sont construits par
+         Quatre onglets (Aujourd'hui, Étude, Explorer, Jouer). Le contenu et la barre d'onglets sont construits par
          js/app/home.js ; la barre est dans cet écran : elle disparaît avec lui quand un outil s'ouvre. -->
     <div id="screen-main" class="home-screen">
         <div class="home-pane" id="home-pane" role="tabpanel">
@@ -70,7 +78,7 @@
         </div>
     </div>
 
-    <!-- Écrans des 21 outils "Bible et tradition" migrés depuis HistoriAxe -->
+    <!-- Écrans des outils (Étude et Explorer) -->
 <div id="screen-tool-genealogy" class="list-screen gen-screen hidden">
         <button class="back-btn" onclick="toolBack('genealogy')" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
         <div class="gen-tools">
@@ -92,6 +100,7 @@
                 <button type="button" class="btn" onclick="genCollapseAll()" data-i18n="tools.genealogy_collapse_all">Tout replier</button>
                 <button type="button" class="btn" onclick="genExpandAll()" data-i18n="tools.genealogy_expand_all">Tout déplier</button>
             </div>
+            <div class="gen-focus hidden" id="gen-focus" aria-live="polite"></div>
             <p class="gen-legend"><span class="gen-key is-man" data-i18n="tools.genealogy_men">Hommes</span> <span class="gen-key is-woman" data-i18n="tools.genealogy_women">Femmes</span><button type="button" class="gen-cat-toggle" id="gen-cat-toggle" aria-expanded="false" aria-controls="gen-cat-menu" onclick="genCatToggleMenu()"><span id="gen-cat-dot" class="gen-cat-dot hidden"></span><span id="gen-cat-toggle-label" data-i18n="tools.genealogy_cat_button">Catégories</span> ▾</button></p>
             <div class="gen-cat-menu hidden" id="gen-cat-menu" role="group" aria-label="Catégories" data-i18n-attr="aria-label:tools.genealogy_cat_button"></div>
             <section class="gen-cat-panel hidden" id="gen-cat-panel" aria-live="polite"></section>
@@ -222,6 +231,38 @@
             <p class="tool-small" id="tool-lib-count" aria-live="polite"></p>
             <div id="tool-lib-list" class="lib-list"></div>
         </div>
+    </div>
+
+<div id="screen-tool-chronologie" class="list-screen gen-screen chr-screen hidden">
+        <button class="back-btn" onclick="toolBack('chronologie')" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title sr-only" data-i18n="tools.chronologie_title">Chronologie</h2>
+        <p class="modes-header-subtitle sr-only" data-i18n="tools.chronologie_intro">Une grande frise de l'histoire juive : ce qui se passe en même temps, l'un au-dessus de l'autre. Faites-la défiler vers la droite ; touchez un élément pour sa fiche. Dates de la tradition (Séder Olam).</p>
+        <div class="gen-bar chr-bar">
+            <!-- Une seule ligne, à la hauteur du bouton retour : recherche, années, zoom, époques. Le reste se déplie à la demande. -->
+            <div class="chr-toolbar" id="tool-chr-toolbar">
+                <button type="button" class="tool-history-chip chr-tb-search" id="tool-chr-search-btn" onclick="chrOpenSearch()" aria-label="Chercher un roi, un prophète, un événement" data-i18n-attr="aria-label:tools.chronologie_search">🔍</button>
+                <div class="chr-seg" id="tool-chr-modes" role="group" aria-label="Années de la règle" data-i18n-attr="aria-label:tools.chronologie_modes_aria"></div>
+                <div class="chr-seg" id="tool-chr-zoom" role="group" aria-label="Zoom" data-i18n-attr="aria-label:tools.chronologie_zoom_aria"></div>
+                <button type="button" class="tool-history-chip chr-tb-menu" id="tool-chr-menu-btn" onclick="chrToggleMenu()" aria-expanded="false" aria-controls="tool-chr-menu" data-i18n="tools.chronologie_menu">Époques ▾</button>
+            </div>
+            <div class="chr-searchrow hidden" id="tool-chr-searchrow">
+                <input type="search" id="tool-chr-search" class="tool-input" autocomplete="off" placeholder="Chercher un roi, un prophète, un événement" aria-label="Chercher un roi, un prophète, un événement" data-i18n-attr="placeholder:tools.chronologie_search;aria-label:tools.chronologie_search">
+                <button type="button" class="tool-history-chip" onclick="chrCloseSearch()" aria-label="Fermer la recherche" data-i18n-attr="aria-label:tools.chronologie_search_close">✕</button>
+            </div>
+            <div class="chr-drop hidden" id="tool-chr-results" role="group" aria-label="Résultats" data-i18n-attr="aria-label:tools.chronologie_results_aria"></div>
+            <div class="chr-drop hidden" id="tool-chr-menu">
+                <p class="tool-small chr-menu-title" data-i18n="tools.chronologie_jumps_aria">Aller à une époque</p>
+                <div class="tool-history-chips chr-jumps" id="tool-chr-jumps" role="group" aria-label="Aller à une époque" data-i18n-attr="aria-label:tools.chronologie_jumps_aria"></div>
+                <details class="chr-about">
+                    <summary data-i18n="tools.chronologie_sources">Sources et méthode</summary>
+                    <p class="tool-small" data-i18n="tools.chronologie_intro">Une grande frise de l'histoire juive : ce qui se passe en même temps, l'un au-dessus de l'autre. Faites-la défiler vers la droite ; touchez un élément pour sa fiche. Dates de la tradition (Séder Olam).</p>
+                    <p class="tool-small" id="tool-chr-source"></p>
+                </details>
+            </div>
+            <div class="chr-markerrow hidden" id="tool-chr-markerrow"></div>
+        </div>
+        <div class="chr-view" id="tool-chr-view" tabindex="0" role="region" aria-label="Chronologie" data-i18n-attr="aria-label:tools.chronologie_title"></div>
+        <div class="tr-info hidden" id="tool-chr-info" aria-live="polite"></div>
     </div>
 
 <div id="screen-tool-foodlaws" class="list-screen hidden">
@@ -572,6 +613,7 @@
             <button type="button" class="tool-history-chip tanakh-nav-label" id="tool-michna-nav-label" onclick="michnaScrollTop()" aria-label="Remonter au début du texte" data-i18n-attr="aria-label:tools.tanakh_top"></button>
             <button type="button" class="tool-history-chip" id="tool-michna-next2" onclick="michnaGo(1)" aria-label="Chapitre suivant" data-i18n-attr="aria-label:tools.torah_next">›</button>
         </div>
+        <div class="gen-actions" id="tool-michna-chrono"></div>
         <p class="tool-small" id="tool-michna-source"></p>
     </div>
 
@@ -606,6 +648,7 @@
             <button type="button" class="tool-history-chip tanakh-nav-label" id="tool-talmud-nav-label" onclick="talmudScrollTop()" aria-label="Remonter au début du texte" data-i18n-attr="aria-label:tools.tanakh_top"></button>
             <button type="button" class="tool-history-chip" id="tool-talmud-next2" onclick="talmudGo(1)" aria-label="Amoud suivant" data-i18n-attr="aria-label:tools.talmud_next">›</button>
         </div>
+        <div class="gen-actions" id="tool-talmud-chrono"></div>
         <p class="tool-small" id="tool-talmud-source"></p>
         <div class="talmud-lookup" id="tool-talmud-lookup" role="dialog" aria-labelledby="tool-talmud-lookup-word" hidden>
             <button type="button" class="talmud-lookup-close" onclick="talmudLookupClose()" aria-label="Fermer" data-i18n-attr="aria-label:tools.talmud_lookup_close">✕</button>
@@ -670,6 +713,8 @@
     <script src="js/geomagCore.js"></script>
     <script src="js/genealogyCore.js"></script>
     <script src="js/genealogyChronology.js"></script>
+    <script src="js/chronologieCore.js"></script>
+    <script src="js/app/chronologie.js"></script>
     <script src="js/app/genealogy.js"></script>
     <script src="js/hassidoutData.js"></script>
     <script src="js/transmissionMedievalData.js"></script>
@@ -742,21 +787,35 @@
     <script src="js/calendarWheel.js"></script>
     <script src="js/app/wheel.js"></script>
     <script src="js/srs.js"></script>
-    <script src="js/arcadeShuffle.js"></script>
+    <script src="js/quizCore.js"></script>
     <script src="js/memoryStore.js"></script>
     <script src="js/lexiconGameCore.js"></script>
     <script src="js/gemaraGameCore.js"></script>
     <script src="js/transmissionGameCore.js"></script>
+    <script src="js/reviewCore.js"></script>
+    <script src="js/purityGameCore.js"></script>
+    <script src="js/torahRefs.js"></script>
+    <script src="js/mitsvaGameCore.js"></script>
+    <script src="js/verseGameCore.js"></script>
+    <script src="js/whoData.js"></script>
+    <script src="js/whoGameCore.js"></script>
+    <script src="js/orderGameCore.js"></script>
+    <script src="js/app/quiz-ui.js"></script>
     <script src="js/app/lexicon-game.js"></script>
     <script src="js/app/gemara-game.js"></script>
     <script src="js/app/transmission-game.js"></script>
+    <script src="js/app/review.js"></script>
+    <script src="js/app/purity-game.js"></script>
+    <script src="js/app/mitsva-game.js"></script>
+    <script src="js/app/verse-game.js"></script>
+    <script src="js/app/who-game.js"></script>
+    <script src="js/app/order-game.js"></script>
     <script src="js/app/tools.js"></script>
     <script src="js/app/navigation.js"></script>
-    <script src="js/dataCore.js"></script>
     <script src="js/app/settings.js"></script>
     <script src="js/app/home.js"></script>
 
-    <!-- Écrans des récits migrés depuis HistoriAxe -->
+    <!-- Écrans des récits -->
 <div id="screen-recits" class="list-screen hidden">
         <button class="back-btn" onclick="recitsListBack()" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
         <h2 class="header-title" data-i18n="recits.title">Récits</h2>
@@ -831,7 +890,7 @@
     </div>
 
 
-    <!-- Écrans des 3 jeux exclusifs migrés depuis HistoriAxe -->
+    <!-- Écrans des jeux et de la révision -->
 <div id="screen-lexgame" class="list-screen hidden">
         <button class="back-btn" onclick="lexgameBack()" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
         <h2 class="header-title" data-i18n="lexgame.title">Mots du Tanakh</h2>
@@ -872,6 +931,206 @@
             <p id="lexgame-over-text"></p>
             <p id="lexgame-over-progress"></p>
             <button type="button" class="btn" onclick="lexgameStart()" data-i18n="arcade.replay">Rejouer</button>
+        </div>
+    </div>
+
+<div id="screen-review" class="list-screen hidden">
+        <button class="back-btn" onclick="reviewBack()" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title" data-i18n="review.title">À réviser aujourd'hui</h2>
+        <p class="modes-header-subtitle" id="review-status" role="status"></p>
+        <div id="review-setup" class="lexgame-setup">
+            <p class="lexgame-progress-text" id="review-progress-text"></p>
+            <div class="lexgame-bar" id="review-bar" role="progressbar" aria-valuemin="0" aria-valuemax="1" aria-valuenow="0" aria-labelledby="review-progress-text"><i id="review-bar-fill"></i></div>
+            <p class="tool-small" id="review-today"></p>
+            <button type="button" class="btn" id="review-start" onclick="reviewStart()" data-i18n="review.start">Lancer la révision</button>
+            <p class="tool-small" data-i18n="review.how">Une seule séance pour tout ce qui arrive à échéance aujourd'hui, dans « Mots du Tanakh » comme dans « Mots de la Guémara » : les éléments les plus fragiles d'abord. Rien de nouveau n'y est appris. Chaque réponse met à jour la progression du jeu concerné.</p>
+        </div>
+        <div id="review-play" class="hidden">
+            <p class="cause-question" id="review-question"></p>
+            <p class="lexgame-word" id="review-word" lang="he" dir="rtl"></p>
+            <div class="cause-cards" id="review-options"></div>
+            <div class="wheel-feedback hidden" id="review-feedback" role="status">
+                <strong id="review-feedback-title"></strong>
+                <p id="review-feedback-text"></p>
+                <p class="tool-small hidden" id="review-feedback-extra"></p>
+                <p class="tool-small hidden" id="review-feedback-note"></p>
+                <div class="lexgame-actions">
+                    <button type="button" class="btn" id="review-next" onclick="reviewContinue()"></button>
+                </div>
+            </div>
+        </div>
+        <div class="arcade-over hidden" id="review-over">
+            <h3 data-i18n="arcade.over">Partie terminée</h3>
+            <p id="review-over-text"></p>
+            <p id="review-over-progress"></p>
+            <button type="button" class="btn" id="review-again" onclick="reviewStart()" data-i18n="review.again">Encore une séance</button>
+        </div>
+    </div>
+
+<div id="screen-purgame" class="list-screen hidden">
+        <button class="back-btn" onclick="purgameBack()" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title" data-i18n="purgame.title">Pur ou impur ?</h2>
+        <p class="modes-header-subtitle" id="purgame-status" role="status"></p>
+        <div id="purgame-setup" class="lexgame-setup">
+            <div class="lexgame-levels" id="purgame-sections" role="group" aria-label="Animaux joués" data-i18n-attr="aria-label:purgame.section_aria"></div>
+            <button type="button" class="btn" onclick="purgameStart()" data-i18n="arcade.play">Jouer</button>
+            <p class="tool-small" data-i18n="purgame.how">Dix animaux, 100 points chacun, huit secondes pour répondre : pur (permis) ou impur (interdit) ? Une fois le temps écoulé, la question est comptée fausse.</p>
+            <p class="tool-small" data-i18n="purgame.how_sure">Seuls les cas sans discussion sont posés : les animaux dont l'identification est perdue ou discutée (le zémer, le tétras, la girafe…) ne sont jamais demandés. Outil d'étude, pas une décision de halakha.</p>
+        </div>
+        <div id="purgame-play" class="hidden">
+            <p class="cause-question" id="purgame-question"></p>
+            <p class="lexgame-word is-french" id="purgame-word"></p>
+            <p class="tool-small trgame-he" id="purgame-he" lang="he" dir="rtl"></p>
+            <div class="lexgame-bar quiz-timer" id="purgame-timer" role="progressbar" aria-valuemin="0" aria-valuemax="8" aria-valuenow="8" aria-label="Temps restant" data-i18n-attr="aria-label:purgame.time_aria"><i id="purgame-timer-fill"></i></div>
+            <p class="tool-small quiz-time" id="purgame-time"></p>
+            <div class="cause-cards purgame-options" id="purgame-options"></div>
+            <div class="wheel-feedback hidden" id="purgame-feedback" role="status">
+                <strong id="purgame-feedback-title"></strong>
+                <p id="purgame-feedback-text"></p>
+                <p class="tool-small hidden" id="purgame-feedback-note"></p>
+                <div class="lexgame-actions">
+                    <button type="button" class="btn" id="purgame-next" onclick="purgameContinue()"></button>
+                </div>
+            </div>
+        </div>
+        <div class="arcade-over hidden" id="purgame-over">
+            <h3 data-i18n="arcade.over">Partie terminée</h3>
+            <p id="purgame-over-text"></p>
+            <button type="button" class="btn" onclick="purgameStart()" data-i18n="arcade.replay">Rejouer</button>
+        </div>
+    </div>
+
+<div id="screen-mitsvagame" class="list-screen hidden">
+        <button class="back-btn" onclick="mitsvagameBack()" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title" data-i18n="mitsvagame.title">Mitsva express</h2>
+        <p class="modes-header-subtitle" id="mitsvagame-status" role="status"></p>
+        <div id="mitsvagame-setup" class="lexgame-setup">
+            <p class="tool-small" id="mitsvagame-load" role="status"></p>
+            <button type="button" class="btn" id="mitsvagame-start" onclick="mitsvagameStart()" data-i18n="arcade.play">Jouer</button>
+            <p class="tool-small" data-i18n="mitsvagame.how">Dix commandements de la liste du Rambam, 100 points chacun, quelques secondes pour répondre : de quelle paracha, ou de quel livre de la Torah, le Rambam tire-t-il le commandement ? Une fois le temps écoulé, la question est comptée fausse.</p>
+            <p class="tool-small" data-i18n="mitsvagame.how_sure">La question porte toujours sur le verset que le Rambam cite à l'appui, pas sur tous les endroits où la loi apparaît. De temps en temps : « positif ou négatif ? » sur un commandement positif formulé à la forme négative.</p>
+        </div>
+        <div id="mitsvagame-play" class="hidden">
+            <p class="cause-question" id="mitsvagame-question"></p>
+            <p class="lexgame-word is-french mitsvagame-text" id="mitsvagame-word"></p>
+            <div class="lexgame-bar quiz-timer" id="mitsvagame-timer" role="progressbar" aria-valuemin="0" aria-valuemax="12" aria-valuenow="12" aria-label="Temps restant" data-i18n-attr="aria-label:mitsvagame.time_aria"><i id="mitsvagame-timer-fill"></i></div>
+            <p class="tool-small quiz-time" id="mitsvagame-time"></p>
+            <div class="cause-cards" id="mitsvagame-options"></div>
+            <div class="wheel-feedback hidden" id="mitsvagame-feedback" role="status">
+                <strong id="mitsvagame-feedback-title"></strong>
+                <p id="mitsvagame-feedback-text"></p>
+                <p class="tool-small hidden" id="mitsvagame-feedback-note"></p>
+                <div class="lexgame-actions">
+                    <button type="button" class="btn" id="mitsvagame-next" onclick="mitsvagameContinue()"></button>
+                </div>
+            </div>
+        </div>
+        <div class="arcade-over hidden" id="mitsvagame-over">
+            <h3 data-i18n="arcade.over">Partie terminée</h3>
+            <p id="mitsvagame-over-text"></p>
+            <button type="button" class="btn" onclick="mitsvagameStart()" data-i18n="arcade.replay">Rejouer</button>
+        </div>
+    </div>
+
+<div id="screen-parashagame" class="list-screen hidden">
+        <button class="back-btn" onclick="parashagameBack()" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title" data-i18n="parashagame.title">Dans quelle paracha ?</h2>
+        <p class="modes-header-subtitle" id="parashagame-status" role="status"></p>
+        <div id="parashagame-setup" class="lexgame-setup">
+            <p class="tool-small" id="parashagame-load" role="status"></p>
+            <label class="gem-reduce"><input type="checkbox" id="parashagame-fr" onchange="parashagameToggleFr()"> <span data-i18n="parashagame.with_fr">Afficher aussi la traduction française (Bible du Rabbinat)</span></label>
+            <button type="button" class="btn" id="parashagame-start" onclick="parashagameStart()" data-i18n="arcade.play">Jouer</button>
+            <p class="tool-small" data-i18n="parashagame.how">Cinq versets tirés au hasard dans toute la Torah : de quelle paracha vient chacun ? Chaque verset vaut 100 points. Un indice montre le verset suivant et coûte 20 points ; une mauvaise réponse en coûte 20 aussi. À zéro point, la paracha est dévoilée.</p>
+            <p class="tool-small" data-i18n="parashagame.how_formula">Les versets qui ne sont que « L'Éternel parla à Moïse en disant » ne sont jamais tirés : on les trouve partout. Ils peuvent en revanche apparaître en indice.</p>
+        </div>
+        <div id="parashagame-play" class="hidden">
+            <div class="parashagame-verses" id="parashagame-verses" aria-live="polite"></div>
+            <p class="parashagame-points" id="parashagame-points"></p>
+            <button type="button" class="btn btn-secondary" id="parashagame-hint" onclick="parashagameHint()"></button>
+            <p class="cause-question parashagame-ask" id="parashagame-ask"></p>
+            <div class="lexgame-levels" id="parashagame-sections" role="group" aria-label="Livre de la Torah" data-i18n-attr="aria-label:parashagame.books_aria"></div>
+            <div class="parashagame-grid" id="parashagame-parashot"></div>
+            <div class="wheel-feedback hidden" id="parashagame-feedback" role="status">
+                <strong id="parashagame-feedback-title"></strong>
+                <p id="parashagame-feedback-text"></p>
+                <p class="tool-small hidden" id="parashagame-feedback-note"></p>
+                <div class="lexgame-actions">
+                    <button type="button" class="btn" id="parashagame-next" onclick="parashagameContinue()"></button>
+                    <button type="button" class="btn lexgame-dict-btn" onclick="parashagameOpenParasha()" data-i18n="parashagame.read">Lire la paracha</button>
+                </div>
+            </div>
+        </div>
+        <div class="arcade-over hidden" id="parashagame-over">
+            <h3 data-i18n="arcade.over">Partie terminée</h3>
+            <p id="parashagame-over-text"></p>
+            <button type="button" class="btn" onclick="parashagameStart()" data-i18n="arcade.replay">Rejouer</button>
+        </div>
+    </div>
+
+<div id="screen-whogame" class="list-screen hidden">
+        <button class="back-btn" onclick="whogameBack()" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title" data-i18n="whogame.title">Qui suis-je ?</h2>
+        <p class="modes-header-subtitle" id="whogame-status" role="status"></p>
+        <div id="whogame-setup" class="lexgame-setup">
+            <div class="lexgame-levels" id="whogame-sections" role="group" aria-label="Personnages joués" data-i18n-attr="aria-label:whogame.section_aria"></div>
+            <button type="button" class="btn" onclick="whogameStart()" data-i18n="arcade.play">Jouer</button>
+            <p class="tool-small" data-i18n="whogame.how">Un personnage parle à la première personne : qui est-ce ? Cinq personnages par partie, 100 points chacun. Chaque indice de plus, du plus vague au plus précis, coûte 20 points. Vous n'avez qu'une réponse : une erreur vaut 0 point et dévoile la réponse.</p>
+            <p class="tool-small" data-i18n="whogame.how_sources">Les personnages de la Bible ont des indices écrits à la main d'après le texte biblique. Pour les sages du Talmud, les indices viennent de leur fiche dans le dictionnaire araméen : l'époque, leurs maîtres, leurs disciples, puis ce que l'on dit d'eux.</p>
+        </div>
+        <div id="whogame-play" class="hidden">
+            <div class="parashagame-verses" id="whogame-clues" aria-live="polite"></div>
+            <p class="parashagame-points" id="whogame-points"></p>
+            <button type="button" class="btn btn-secondary" id="whogame-hint" onclick="whogameHint()"></button>
+            <p class="cause-question parashagame-ask" id="whogame-ask"></p>
+            <div class="cause-cards" id="whogame-options"></div>
+            <div class="wheel-feedback hidden" id="whogame-feedback" role="status">
+                <strong id="whogame-feedback-title"></strong>
+                <p id="whogame-feedback-text"></p>
+                <p class="tool-small hidden" id="whogame-feedback-note"></p>
+                <div class="lexgame-actions">
+                    <button type="button" class="btn" id="whogame-next" onclick="whogameContinue()"></button>
+                </div>
+            </div>
+        </div>
+        <div class="arcade-over hidden" id="whogame-over">
+            <h3 data-i18n="arcade.over">Partie terminée</h3>
+            <p id="whogame-over-text"></p>
+            <button type="button" class="btn" onclick="whogameStart()" data-i18n="arcade.replay">Rejouer</button>
+        </div>
+    </div>
+
+<div id="screen-ordergame" class="list-screen hidden">
+        <button class="back-btn" onclick="ordergameBack()" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title" data-i18n="ordergame.title">Le bon ordre</h2>
+        <p class="modes-header-subtitle" id="ordergame-status" role="status"></p>
+        <div id="ordergame-setup" class="lexgame-setup">
+            <p class="tool-small" id="ordergame-load" role="status"></p>
+            <div class="lexgame-levels" id="ordergame-sections" role="group" aria-label="Listes jouées" data-i18n-attr="aria-label:ordergame.section_aria"></div>
+            <button type="button" class="btn" id="ordergame-start" onclick="ordergameStart()" data-i18n="arcade.play">Jouer</button>
+            <p class="tool-small" data-i18n="ordergame.how">Cinq éléments d'une liste connue (les parachiot, les livres du Tanakh, les traités de la Michna ou du Talmud, les générations, les fils de Jacob, les rois) sont donnés en désordre : touchez-les dans l'ordre, le premier d'abord. 20 points par élément à la bonne place, soit 100 pour un classement parfait ; cinq classements par partie.</p>
+        </div>
+        <div id="ordergame-play" class="hidden">
+            <p class="cause-question" id="ordergame-question"></p>
+            <p class="tool-small ordergame-help" data-i18n="ordergame.help">Touchez un élément pour le placer à la première place libre ; touchez un élément placé pour le retirer.</p>
+            <ol class="ordergame-slots" id="ordergame-slots"></ol>
+            <div class="ordergame-pool" id="ordergame-pool" role="group" aria-label="Éléments à classer" data-i18n-attr="aria-label:ordergame.pool_aria"></div>
+            <div class="lexgame-actions ordergame-actions" id="ordergame-actions">
+                <button type="button" class="btn" id="ordergame-check" onclick="ordergameCheck()" data-i18n="ordergame.check">Vérifier</button>
+                <button type="button" class="btn btn-secondary" id="ordergame-clear" onclick="ordergameClear()" data-i18n="ordergame.clear">Tout effacer</button>
+            </div>
+            <div class="wheel-feedback hidden" id="ordergame-feedback" role="status">
+                <strong id="ordergame-feedback-title"></strong>
+                <ol class="ordergame-answer" id="ordergame-answer"></ol>
+                <p class="tool-small hidden" id="ordergame-feedback-note"></p>
+                <div class="lexgame-actions">
+                    <button type="button" class="btn" id="ordergame-next" onclick="ordergameContinue()"></button>
+                </div>
+            </div>
+        </div>
+        <div class="arcade-over hidden" id="ordergame-over">
+            <h3 data-i18n="arcade.over">Partie terminée</h3>
+            <p id="ordergame-over-text"></p>
+            <button type="button" class="btn" onclick="ordergameStart()" data-i18n="arcade.replay">Rejouer</button>
         </div>
     </div>
 

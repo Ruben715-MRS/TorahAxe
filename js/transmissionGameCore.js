@@ -1,5 +1,5 @@
 // =========================================================================
-// === HISTORIAXE — « MAÎTRES ET ÉLÈVES » : LES RÈGLES DU JEU (sans DOM) ===
+// === TORAHAXE — « MAÎTRES ET ÉLÈVES » : LES RÈGLES DU JEU (sans DOM) ===
 // =========================================================================
 // Un jeu de réflexion, sans minuteur, sur la chaîne de transmission (js/transmissionCore.js) : qui a reçu la Torah de qui. Ici, seulement les règles (états
 // purs, sans DOM ni stockage) ; l'écran est dans js/app/transmission-game.js. Testé dans tests/transmissionGameCore.test.js.
@@ -18,14 +18,13 @@
 // ou « Tout » (avec les amoraïm).
 
 (function (root, factory) {
-    if (typeof module === 'object' && module.exports) module.exports = factory(require('./transmissionCore.js'), require('./arcadeCore.js'));
-    else root.TransmissionGameCore = factory(root.TransmissionCore, root.ArcadeCore);
-}(typeof self !== 'undefined' ? self : this, function (T, Arcade) {
+    if (typeof module === 'object' && module.exports) module.exports = factory(require('./transmissionCore.js'), require('./quizCore.js'));
+    else root.TransmissionGameCore = factory(root.TransmissionCore, root.QuizCore);
+}(typeof self !== 'undefined' ? self : this, function (T, Quiz) {
     'use strict';
 
-    var ROUNDS = 10;
-    var CHOICES = 4;
-    var POINTS = 100;
+    var ROUNDS = Quiz.ROUNDS;
+    var CHOICES = Quiz.CHOICES;
     var MAX_INTRUS = 4;       // questions « intrus » au plus par partie (le reste : « qui est le maître de… ? »)
     var SECTIONS = ['avot', 'tannaim', 'all'];
     var SURE_KINDS = { maitre: 1, second: 1, pere: 1, beaupere: 1 };
@@ -72,12 +71,12 @@
     function makeWho(section, student, rng) {
         var masters = T.mastersOf(student.id);
         var sureMasters = masters.filter(function (e) { return sure(e) && inSection(section, T.byId(e.from)); });
-        var right = T.byId(Arcade.shuffle(sureMasters, rng)[0].from);
-        var far = Arcade.shuffle(laterSages(section, student, 2), rng);
-        var near = Arcade.shuffle(laterSages(section, student, 1).filter(function (p) { return p.row < student.row + 2; }), rng);
+        var right = T.byId(Quiz.shuffle(sureMasters, rng)[0].from);
+        var far = Quiz.shuffle(laterSages(section, student, 2), rng);
+        var near = Quiz.shuffle(laterSages(section, student, 1).filter(function (p) { return p.row < student.row + 2; }), rng);
         var wrong = [];
         far.concat(near).forEach(function (p) { if (wrong.length < CHOICES - 1 && wrong.every(function (w) { return w.fr !== p.fr; }) && p.fr !== right.fr) wrong.push(p); });
-        var all = Arcade.shuffle([right].concat(wrong), rng);
+        var all = Quiz.shuffle([right].concat(wrong), rng);
         return {
             type: 'who', id: 'who:' + student.id, subject: student, shown: student.fr, shownHe: student.he,
             options: all.map(function (p) { return { label: p.fr, id: p.id }; }), answer: all.indexOf(right),
@@ -89,14 +88,14 @@
     // (il ne se devine pas à son époque), sinon n'importe quel ancien.
     function makeIntrus(section, master, rng) {
         var students = T.studentsOf(master.id);
-        var sureStudents = Arcade.shuffle(students.filter(function (e) { return sure(e) && inSection(section, T.byId(e.to)); }), rng)
+        var sureStudents = Quiz.shuffle(students.filter(function (e) { return sure(e) && inSection(section, T.byId(e.to)); }), rng)
             .slice(0, CHOICES - 1).map(function (e) { return T.byId(e.to); });
         var taken = {};
         sureStudents.forEach(function (p) { taken[p.fr] = true; });
         var earlier = earlierSages(section, master).filter(function (p) { return !taken[p.fr]; });
-        var close = Arcade.shuffle(earlier.filter(function (p) { return p.row >= master.row - 1; }), rng);
-        var intrus = (close.length ? close : Arcade.shuffle(earlier, rng))[0];
-        var all = Arcade.shuffle(sureStudents.concat([intrus]), rng);
+        var close = Quiz.shuffle(earlier.filter(function (p) { return p.row >= master.row - 1; }), rng);
+        var intrus = (close.length ? close : Quiz.shuffle(earlier, rng))[0];
+        var all = Quiz.shuffle(sureStudents.concat([intrus]), rng);
         return {
             type: 'intrus', id: 'intrus:' + master.id, subject: master, shown: master.fr, shownHe: master.he,
             options: all.map(function (p) { return { label: p.fr, id: p.id }; }), answer: all.indexOf(intrus),
@@ -110,13 +109,13 @@
     function makeQuestions(section, rng, rounds) {
         var random = rng || Math.random;
         var total = rounds || ROUNDS;
-        var intrusPool = Arcade.shuffle(intrusSubjects(section), random);
-        var whoPool = Arcade.shuffle(whoSubjects(section), random);
+        var intrusPool = Quiz.shuffle(intrusSubjects(section), random);
+        var whoPool = Quiz.shuffle(whoSubjects(section), random);
         var nIntrus = Math.min(MAX_INTRUS, intrusPool.length, Math.floor(total / 2));
         nIntrus = Math.max(nIntrus, Math.min(intrusPool.length, total - whoPool.length));
         var list = intrusPool.slice(0, nIntrus).map(function (m) { return makeIntrus(section, m, random); })
             .concat(whoPool.slice(0, total - nIntrus).map(function (s) { return makeWho(section, s, random); }));
-        return Arcade.shuffle(list, random).slice(0, total);
+        return Quiz.shuffle(list, random).slice(0, total);
     }
 
     // --- La partie --------------------------------------------------------------------------------------------------------
@@ -125,35 +124,17 @@
         var o = options || {};
         var section = SECTIONS.indexOf(o.section) >= 0 ? o.section : 'all';
         var questions = o.questions || makeQuestions(section, o.rng, o.rounds);
-        return { section: section, questions: questions, index: 0, score: 0, found: 0, results: [], resolved: null, picked: null, over: !questions.length, empty: !questions.length };
+        return Quiz.createState(questions, { section: section });
     }
 
-    function question(state) { return state.questions[state.index] || null; }
-
-    // Répond en choisissant une proposition. Renvoie ['right'] ou ['wrong'] ; vide si rien ne se passe.
-    function answer(state, choice) {
-        var q = question(state);
-        if (state.over || !q || state.resolved || !(choice >= 0 && choice < q.options.length)) return [];
-        var right = choice === q.answer;
-        state.resolved = right ? 'right' : 'wrong';
-        state.picked = choice;
-        if (right) { state.score += POINTS; state.found += 1; }
-        state.results.push({ id: q.id, right: right, type: q.type });
-        return [state.resolved];
-    }
-
-    // Passe à la question suivante. Renvoie ['done'] à la fin de la partie, [] si elle continue.
-    function next(state) {
-        if (state.over || !state.resolved) return [];
-        state.resolved = null;
-        state.picked = null;
-        state.index += 1;
-        if (state.index >= state.questions.length) { state.over = true; return ['done']; }
-        return [];
-    }
+    function question(state) { return Quiz.question(state); }
+    // Répond en choisissant une proposition : ['right'], ['wrong'], ou [] si rien ne se passe.
+    function answer(state, choice) { return Quiz.answer(state, choice); }
+    // Question suivante : ['done'] à la fin de la partie, [] sinon.
+    function next(state) { return Quiz.next(state); }
 
     return {
-        ROUNDS: ROUNDS, CHOICES: CHOICES, POINTS: POINTS, SECTIONS: SECTIONS,
+        ROUNDS: ROUNDS, CHOICES: CHOICES, POINTS: Quiz.POINTS, SECTIONS: SECTIONS,
         sagesOf: sagesOf, whoSubjects: whoSubjects, intrusSubjects: intrusSubjects, makeWho: makeWho, makeIntrus: makeIntrus, makeQuestions: makeQuestions,
         createGame: createGame, question: question, answer: answer, next: next
     };

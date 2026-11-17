@@ -6771,130 +6771,6 @@ textarea.form-input {
 }
 
 
-/* --- PACKS DE LANGUE (I18N SETTINGS) --- */
-.lang-packs-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 10px;
-}
-
-.lang-pack-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: var(--surface);
-    border: 1px solid var(--border-soft);
-    border-radius: 12px;
-    padding: 10px 14px;
-    gap: 10px;
-}
-
-.lang-pack-left {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    min-width: 0;
-}
-
-.lang-pack-flag {
-    font-size: 24px;
-    line-height: 1;
-}
-
-.lang-pack-info {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    min-width: 0;
-}
-
-.lang-pack-name {
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--text-dark);
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.lang-pack-status-badge {
-    font-size: 10px;
-    font-weight: 800;
-    padding: 2px 6px;
-    border-radius: 9999px;
-}
-
-.lang-pack-status-badge.active {
-    background: #d4edda;
-    color: #155724;
-}
-
-:root[data-theme="dark"] .lang-pack-status-badge.active {
-    background: rgba(46, 204, 113, 0.2);
-    color: #2ecc71;
-}
-
-.lang-pack-status-badge.installed {
-    background: #e2e3e5;
-    color: #383d41;
-}
-
-:root[data-theme="dark"] .lang-pack-status-badge.installed {
-    background: rgba(255, 255, 255, 0.1);
-    color: #ced4da;
-}
-
-.lang-pack-details {
-    font-size: 11.5px;
-    color: var(--muted-text);
-}
-
-.lang-pack-content-hint {
-    font-size: 11px;
-    font-style: italic;
-    color: var(--muted-text);
-    opacity: 0.85;
-}
-
-.lang-pack-actions {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    flex-shrink: 0;
-}
-
-.btn-pack-action {
-    font-size: 12px;
-    font-weight: 600;
-    padding: 6px 12px;
-    border-radius: 8px;
-    border: 1px solid var(--border-soft);
-    background: var(--surface-2);
-    color: var(--text-dark);
-    cursor: pointer;
-    transition: all 0.15s ease;
-}
-
-.btn-pack-action:hover {
-    background: var(--surface);
-    border-color: var(--primary-blue);
-}
-
-.btn-pack-action.btn-primary {
-    background: var(--primary-blue);
-    color: white;
-    border-color: transparent;
-}
-
-.btn-pack-action.btn-danger {
-    background: rgba(231, 76, 60, 0.1);
-    color: var(--danger-red-text);
-    border-color: rgba(231, 76, 60, 0.3);
-}
-
-
-
 /* --- ADAPTATIONS NATIVES IOS (SAFE AREA, DYNAMIC ISLAND, STATUS BAR) --- */
 :root {
     --sat: env(safe-area-inset-top, 0px);
@@ -16803,6 +16679,49 @@ body[data-view-profile="religieux"] .league-btn {
 .lexgame-progress-text { margin: 0; font-size: 18px; font-weight: 700; color: var(--text-dark); }
 .lexgame-bar { width: 100%; height: 12px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--border-soft); overflow: hidden; }
 .lexgame-bar i { display: block; height: 100%; width: 0; background: var(--progress-green); }
+/* Jeux chronométrés (« Pur ou impur ? », « Mitsva express ») : la barre de temps se vide ; rouge sur la fin. Pas de transition : elle suit l'horloge par pas de 100 ms. */
+.quiz-timer { margin-bottom: 4px; }
+.quiz-timer i { width: 100%; }
+.quiz-timer.is-low i { background: var(--danger-red-text); }
+.quiz-time { margin: 0 0 12px; text-align: center; }
+#screen-mitsvagame .lexgame-word.mitsvagame-text { font-size: 22px; line-height: 1.35; margin-bottom: 14px; }   /* l'énoncé d'un commandement : une phrase, pas un mot */
+
+/* « Dans quelle paracha ? » : les versets montrés (le premier, puis un de plus par indice), les points en jeu, puis le choix du livre et de la paracha. */
+.parashagame-verses { display: flex; flex-direction: column; gap: 10px; margin: 0 0 12px; }
+.parashagame-verse, .whogame-clue { border: 1px solid var(--border-soft); border-radius: 12px; background: var(--surface); padding: 12px 14px; }
+.parashagame-verse small, .whogame-clue small { display: block; margin-bottom: 6px; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted-text); }
+.whogame-clue p { margin: 0; font-size: 17px; line-height: 1.5; color: var(--text-dark); }
+.whogame-clue.is-unseen { opacity: 0.6; border-style: dashed; }
+/* « Le bon ordre » : les places (une liste numérotée), puis les éléments encore à placer. */
+.ordergame-help { margin: 0 0 8px; text-align: center; }
+.ordergame-slots, .ordergame-answer { list-style: none; margin: 0 0 12px; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.ordergame-slot { display: flex; align-items: center; gap: 10px; min-height: 52px; padding: 6px 10px; border-radius: 12px; border: 1px dashed var(--border-soft); background: var(--surface-2); }
+.ordergame-slot.is-filled { border-style: solid; background: var(--surface); }
+.ordergame-slot.correct { background: var(--selected-tint); border-color: var(--progress-green); }
+.ordergame-slot.wrong { border-color: var(--danger-red-text); }
+.ordergame-n { flex: 0 0 26px; height: 26px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--surface-2); border: 1px solid var(--border-soft); font-size: 13px; font-weight: 700; color: var(--muted-text); }
+.ordergame-empty { color: var(--muted-text); font-size: 13px; }
+.ordergame-chip { display: inline-flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; min-height: 44px; padding: 8px 12px; border-radius: 12px; border: 1px solid var(--border-soft); background: var(--surface); color: var(--text-dark); font: inherit; font-weight: 600; cursor: pointer; }
+.ordergame-slot .ordergame-chip { flex: 1; flex-direction: row; justify-content: space-between; border: 0; background: transparent; padding: 4px 6px; text-align: left; }
+.ordergame-chip .he { font-size: 14px; font-weight: 400; color: var(--muted-text); }
+.ordergame-chip:disabled { cursor: default; }
+.ordergame-pool { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 0 0 12px; min-height: 12px; }
+.ordergame-actions { margin-bottom: 12px; }
+.ordergame-answer { counter-reset: none; margin: 8px 0; }
+.ordergame-answer li { font-size: 15px; }
+.ordergame-answer small { color: var(--muted-text); }
+.parashagame-he { margin: 0; font-size: 24px; line-height: 1.7; text-align: right; color: var(--text-dark); }
+.parashagame-fr { margin: 8px 0 0; font-size: 14px; line-height: 1.45; color: var(--muted-text); }
+.parashagame-points { margin: 0 0 8px; text-align: center; font-weight: 700; }
+#parashagame-hint, #whogame-hint { width: 100%; margin-bottom: 14px; }
+.parashagame-ask { margin-bottom: 8px; }
+.parashagame-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 10px 0 12px; }
+.parashagame-par { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 52px; padding: 8px; border-radius: 12px; border: 1px solid var(--border-soft); background: var(--surface); color: var(--text-dark); font: inherit; font-weight: 600; cursor: pointer; }
+.parashagame-par .he { font-size: 15px; font-weight: 400; color: var(--muted-text); }
+.parashagame-par.correct { background: var(--selected-tint); border-color: var(--progress-green); }
+.parashagame-par.wrong { opacity: 0.55; border-color: var(--danger-red-text); }
+.parashagame-par:disabled { cursor: default; }
+.purgame-options { display: grid; grid-template-columns: 1fr 1fr; }   /* Pur à gauche, Impur à droite : toujours au même endroit */
 .lex-train-btn { display: inline-flex; flex-direction: column; align-items: flex-start; gap: 2px; text-align: left; }
 .lex-train-btn small { font-size: 12px; font-weight: 400; opacity: .85; }
 .lex-mastered { flex-basis: 100%; font-size: 12px; font-weight: 700; color: var(--progress-green); }
@@ -17170,6 +17089,16 @@ body[data-view-profile="religieux"] .league-btn {
 .tanakh-nav-bottom { margin: 18px 0 8px; }
 .tanakh-nav-bottom .tanakh-nav-label { flex: 1; min-width: 0; font-size: 15px; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 #screen-tool-tanakh .torah-nav { scroll-margin-top: 64px; }
+/* Barre de défilement du Tanakh : l'écran défile lui-même (.list-screen). Sans style, la barre native est invisible (iOS : masquée au repos)
+   ou se confond avec le fond. Ici : une barre fine, toujours visible, qui reprend la couleur du texte (donc juste en clair comme en sombre). */
+#screen-tool-tanakh { --tk-sb-thumb: color-mix(in srgb, var(--text-dark) 38%, transparent); --tk-sb-thumb-hover: color-mix(in srgb, var(--text-dark) 60%, transparent); --tk-sb-track: color-mix(in srgb, var(--text-dark) 8%, transparent); }
+#screen-tool-tanakh::-webkit-scrollbar { width: 10px; -webkit-appearance: none; }
+#screen-tool-tanakh::-webkit-scrollbar-track { background: var(--tk-sb-track); border-radius: 10px; margin: 4px 0; }
+#screen-tool-tanakh::-webkit-scrollbar-thumb { background-color: var(--tk-sb-thumb); border: 2px solid transparent; background-clip: content-box; border-radius: 10px; min-height: 44px; }
+#screen-tool-tanakh::-webkit-scrollbar-thumb:hover, #screen-tool-tanakh::-webkit-scrollbar-thumb:active { background-color: var(--tk-sb-thumb-hover); }
+@supports not selector(::-webkit-scrollbar) {
+    #screen-tool-tanakh { scrollbar-width: auto; scrollbar-color: var(--tk-sb-thumb-hover) var(--tk-sb-track); }
+}
 .tanakh-nav-flash { animation: tanakhNavFlash 1s ease-out; border-radius: 28px; }
 @keyframes tanakhNavFlash { 0% { box-shadow: 0 0 0 0 rgba(47, 111, 237, 0.55); } 60% { box-shadow: 0 0 0 10px rgba(47, 111, 237, 0); } 100% { box-shadow: 0 0 0 0 rgba(47, 111, 237, 0); } }
 .torah-chapter { width: auto; min-width: 150px; }
@@ -18221,7 +18150,7 @@ button.zm-study-link:focus-visible { outline: 2px solid var(--primary-blue); out
 
 /* Encadré de renvoi vers HistoriAxe (frises, récits, jeux : voir js/app/frises.js et la tâche
    "encadrés promotionnels"). Un seul style partagé par tous ces emplacements. */
-.historiaxe-promo-card {
+.promo-card {
     display: flex;
     align-items: center;
     gap: 14px;
@@ -18233,13 +18162,13 @@ button.zm-study-link:focus-visible { outline: 2px solid var(--primary-blue); out
     text-decoration: none;
     box-shadow: var(--card-shadow);
 }
-.historiaxe-promo-card img {
+.promo-card img {
     width: 48px;
     height: 48px;
     border-radius: 12px;
     flex-shrink: 0;
 }
-.historiaxe-promo-card span {
+.promo-card span {
     font-size: 14px;
     line-height: 1.4;
     font-weight: 600;
@@ -18401,3 +18330,155 @@ body:has(#screen-recit:not(.hidden))::after {
 .ben-shiur, .ben-final-none { margin: 0; }
 .ben-finals-rule { font-style: italic; }
 .ben-finals { margin-top: 4px; }
+
+/* === La chronologie (écran « Explorer ») === */
+/* Même principe que la chaîne de transmission : l'écran est une colonne, la frise prend toute la place restante, une fiche ouverte réserve sa hauteur en bas. */
+.list-screen.chr-screen { padding-top: 0; padding-bottom: 0; }
+/* La barre tient sur une ligne, à la hauteur du bouton retour (fixe, 42 px à 14 px du haut) : la frise gagne le reste de l'écran. */
+.list-screen.chr-screen .chr-bar { position: relative; z-index: 20; margin-top: calc(env(safe-area-inset-top, 0px) + 14px); gap: 6px; max-width: 720px; align-items: stretch; }
+.chr-toolbar { display: flex; align-items: center; gap: 6px; min-height: 42px; }
+@media (max-width: 560px) { .chr-toolbar, .chr-searchrow { margin-left: 50px; } }
+.chr-toolbar.hidden, .chr-searchrow.hidden { display: none; }
+.chr-seg { display: flex; flex: none; border: 1px solid var(--border-soft); border-radius: 18px; background: var(--surface); overflow: hidden; }
+.chr-bar .chr-seg .tool-history-chip { min-height: 34px; min-width: 34px; padding: 2px 9px; border: 0; border-radius: 0; font-size: 13px; box-shadow: none; }
+.chr-bar .chr-seg .tool-history-chip + .tool-history-chip { border-left: 1px solid var(--border-soft); }
+.chr-bar .chr-seg .tool-history-chip[aria-pressed="true"] { background: var(--selected-tint); font-weight: 800; }
+.chr-bar .chr-seg .tool-history-chip.is-date { font-size: 18px; padding: 0 10px; }
+.chr-bar .chr-seg .tool-history-chip:disabled { opacity: 0.35; }
+.chr-bar .chr-tb-search { flex: none; min-width: 40px; min-height: 36px; padding: 0 8px; font-size: 16px; }
+.chr-bar .chr-tb-menu { flex: none; margin-left: auto; min-height: 36px; padding: 0 12px; font-size: 13px; font-weight: 700; white-space: nowrap; }
+.chr-searchrow { display: flex; align-items: center; gap: 6px; min-height: 42px; }
+.chr-searchrow #tool-chr-search { flex: 1 1 auto; min-width: 0; width: auto; height: 40px; margin: 0; }
+.chr-searchrow .tool-history-chip { flex: none; min-width: 40px; min-height: 40px; padding: 0; }
+.chr-markerrow { display: flex; }
+.chr-markerrow.hidden { display: none; }
+/* Les menus s'ouvrent par-dessus la frise : ils ne la déplacent pas. */
+.chr-drop { position: absolute; left: 0; right: 0; top: calc(100% + 4px); z-index: 30; display: flex; flex-wrap: wrap; gap: 6px; padding: 10px; border: 1px solid var(--border-soft); border-radius: 16px; background: var(--surface); box-shadow: var(--card-shadow); max-height: 60vh; overflow: auto; }
+.chr-drop.hidden { display: none; }
+.chr-drop .chr-menu-title { flex: 1 1 100%; margin: 0; font-weight: 700; }
+.chr-drop .chr-jumps { flex-wrap: wrap; overflow: visible; }
+.chr-drop .chr-about { flex: 1 1 100%; }
+.chr-about { font-size: 12px; color: var(--muted-text); }
+.chr-about summary { cursor: pointer; padding: 2px 0; }
+.chr-about p { margin: 4px 0; }
+.chr-view {
+    --chr-ruler-h: 46px;
+    position: relative;
+    flex: 1 1 auto;
+    min-height: 0;
+    width: 100%;
+    margin-top: 6px;
+    overflow: auto;
+    border-top: 1px solid var(--border-soft);
+    background: var(--surface);
+    direction: ltr;
+    overscroll-behavior: contain;
+}
+.chr-view.has-info { margin-bottom: calc(var(--tr-sheet) + env(safe-area-inset-bottom, 0px) + 12px); }
+.chr-stage {
+    position: relative;
+    padding-bottom: 24px;
+}
+.chr-grid { position: absolute; left: 0; right: 0; top: var(--chr-ruler-h); bottom: 0; pointer-events: none; }
+.chr-gridline { position: absolute; top: 0; bottom: 0; width: 1px; background: var(--border-soft); }
+.chr-ruler {
+    position: sticky;
+    top: 0;
+    z-index: 4;
+    height: var(--chr-ruler-h);
+    background: var(--surface);
+    border-bottom: 1px solid var(--border-soft);
+}
+.chr-tick { position: absolute; top: 0; height: 100%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 11px; line-height: 1.25; color: var(--muted-text); white-space: nowrap; }
+.chr-tick b { font-size: 13px; color: var(--text-dark); }
+.chr-lane { position: relative; padding: 0 0 6px; border-bottom: 1px solid var(--border-soft); }
+.chr-lane-head { margin: 0; font: inherit; }
+.chr-lane-title {
+    border: 0;
+    cursor: pointer;
+    position: sticky;
+    left: 0;
+    z-index: 3;
+    display: inline-block;
+    margin: 6px 0 4px 6px;
+    padding: 2px 10px;
+    border-radius: 12px;
+    background: var(--chr-c, #e2e8f0);
+    color: #0f172a;
+    font-size: 12px;
+    font-weight: 700;
+}
+.chr-lane-body { position: relative; }
+.chr-lane-body.is-folded, .chr-lane-body.is-idle { overflow: hidden; }
+.chr-lane-body { transition: height 0.15s ease; }
+.chr-lane.is-idle .chr-lane-title { opacity: 0.55; }
+.chr-item {
+    position: absolute;
+    height: 30px;
+    min-width: 12px;
+    box-sizing: border-box;
+    padding: 0 6px;
+    border: 1px solid color-mix(in srgb, var(--chr-c, #94a3b8) 70%, #000);
+    border-radius: 8px;
+    background: var(--chr-c, #e2e8f0);
+    color: #0f172a;
+    font: inherit;
+    font-size: 12px;
+    line-height: 28px;
+    text-align: left;
+    white-space: nowrap;
+    cursor: pointer;
+}
+.chr-item .chr-label { display: block; overflow: hidden; text-overflow: ellipsis; pointer-events: none; }
+.chr-item .chr-label.is-out { position: absolute; left: 100%; top: 0; margin-left: 4px; overflow: visible; color: var(--text-dark); }
+.chr-item.is-point { padding: 0; border-radius: 50%; width: 12px !important; height: 12px; margin-top: 9px; }
+.chr-item.is-point .chr-label.is-out { margin-left: 6px; top: -9px; }
+.chr-item.is-approx { border-style: dashed; }
+.chr-item.is-detail { height: 22px; line-height: 20px; margin-top: 4px; opacity: 0.85; }
+.chr-item.is-oppression { --chr-c: #fca5a5; }
+.chr-item.is-cut-left { border-top-left-radius: 0; border-bottom-left-radius: 0; border-left-width: 3px; }
+.chr-item.is-cut-right { border-top-right-radius: 0; border-bottom-right-radius: 0; border-right-width: 3px; }
+.chr-item.is-selected { outline: 3px solid #f59e0b; outline-offset: 1px; z-index: 2; }
+.chr-item:focus-visible { outline: 3px solid #2563eb; outline-offset: 1px; z-index: 2; }
+.chr-lane-eres { --chr-c: #fde68a; }
+.chr-lane-lieu { --chr-c: #fdba74; }
+.chr-lane-prophetie { --chr-c: #c4b5fd; }
+.chr-lane-chefs { --chr-c: #86efac; }
+.chr-lane-juda { --chr-c: #93c5fd; }
+.chr-lane-israel { --chr-c: #f9a8d4; }
+.chr-lane-evenements { --chr-c: #cbd5e1; }
+.chr-lane-empires { --chr-c: #a5f3fc; }
+.chr-lane-judee { --chr-c: #d9f99d; }
+.chr-lane-sages { --chr-c: #99f6e4; }
+.chr-lane-bavel { --chr-c: #bae6fd; }
+.chr-lane-babylonie { --chr-c: #fbcfe8; }
+.chr-lane-oeuvres { --chr-c: #fde68a; }
+.chr-lane-evenements .chr-item.is-point { background: #475569; border-color: #475569; }
+.chr-marker { position: absolute; top: var(--chr-ruler-h); bottom: 0; z-index: 1; pointer-events: none; background: rgba(245, 158, 11, 0.18); border-left: 2px solid #f59e0b; border-right: 2px solid #f59e0b; box-sizing: border-box; }
+.chr-bar .tool-history-chip.is-marker { background: #fef3c7; border-color: #f59e0b; color: #78350f; white-space: nowrap; }
+.gen-focus { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 10px; margin: 6px 0; font-size: 14px; }
+.gen-focus.hidden { display: none; }
+.gen-focus strong { font-weight: 700; }
+.gen-focus .btn { width: auto; min-width: 44px; min-height: 36px; padding: 6px 12px; font-size: 13px; }
+.gen-card { cursor: pointer; }
+.chr-lane-maitres { --chr-c: #a7f3d0; }
+.chr-lane-hassidim { --chr-c: #fecdd3; }
+
+/* Défilement automatique (js/app/autoscroll.js) : le bandeau est ajouté à <body> (une colonne flex) ; sans position fixe il devenait un simple
+   bloc d'étiquettes en bas à gauche. Ici : un bandeau opaque collé au bord bas, au-dessus de la zone de l'indicateur d'accueil, deux lignes
+   (état, puis commandes). Pendant qu'il est ouvert, l'écran garde de la marge pour que le dernier texte remonte au-dessus. */
+.autoscroll-bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 10px 14px calc(var(--sab, env(safe-area-inset-bottom, 0px)) + 10px); background: var(--surface); color: var(--text-dark); border-top: 1px solid var(--border-soft); box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.12); }
+.autoscroll-bar[hidden] { display: none; }
+.autoscroll-status { margin: 0; max-width: 520px; font: 600 14px/1.3 system-ui, sans-serif; text-align: center; color: var(--muted-text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.autoscroll-count { font-variant-numeric: tabular-nums; }
+.autoscroll-row { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; max-width: 520px; }
+.autoscroll-btn { flex: none; min-width: 48px; height: 48px; padding: 0 14px; border: 1px solid var(--border-soft); border-radius: 24px; background: var(--surface-2); color: var(--text-dark); font: 700 20px/1 system-ui, sans-serif; cursor: pointer; touch-action: manipulation; }
+.autoscroll-btn:active { transform: scale(0.96); }
+.autoscroll-btn:focus-visible, .autoscroll-level:focus-visible { outline: 2px solid var(--primary-blue); outline-offset: 2px; }
+:root[data-theme="dark"] .autoscroll-btn:focus-visible, :root[data-theme="dark"] .autoscroll-level:focus-visible { outline-color: var(--text-dark); }
+.autoscroll-play { min-width: 56px; background: var(--primary-blue); border-color: var(--primary-blue); color: #fff; }
+:root[data-theme="dark"] .autoscroll-play { background: var(--text-dark); border-color: var(--text-dark); color: var(--bg-color); }
+.autoscroll-level { flex: 1 1 auto; min-width: 0; max-width: 200px; text-align: center; font: 700 16px/1 system-ui, sans-serif; font-variant-numeric: tabular-nums; color: var(--text-dark); white-space: nowrap; }
+button.autoscroll-mode { height: 48px; padding: 0 12px; border: 1px dashed var(--border-soft); border-radius: 24px; background: transparent; cursor: pointer; }
+.autoscroll-close { color: var(--muted-text); font-size: 18px; }
+.has-autoscroll { padding-bottom: calc(var(--sab, env(safe-area-inset-bottom, 0px)) + 130px) !important; }

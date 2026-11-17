@@ -1,5 +1,5 @@
 // =========================================================================
-// === HISTORIAXE — COMMANDEMENTS BIBLIQUES (données, sans DOM) ===
+// === TORAHAXE — COMMANDEMENTS BIBLIQUES (données, sans DOM) ===
 // =========================================================================
 // Quatre listes, présentées selon la tradition juive et rabbinique, dans cet ordre : les sept lois de Noé (pour toute l'humanité), les dix
 // commandements (le Décalogue), les trente-neuf travaux interdits le Chabbat, et les 613 commandements selon le décompte du Rambam (Maïmonide),

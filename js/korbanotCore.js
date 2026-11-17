@@ -1,5 +1,5 @@
 // =========================================================================
-// === HISTORIAXE — LES KORBANOT : FILTRES ET CALCULS (sans DOM) ===
+// === TORAHAXE — LES KORBANOT : FILTRES ET CALCULS (sans DOM) ===
 // =========================================================================
 // Les données sont dans js/korbanotData.js ; l'écran dans js/app/korbanot.js. Ici, ce qui se calcule, testé dans tests/korbanotCore.test.js :
 //  - le tableau des offrandes, filtré par type, collectif ou individuel, animal, sexe, caractère (obligatoire ou volontaire), sainteté, texte ;

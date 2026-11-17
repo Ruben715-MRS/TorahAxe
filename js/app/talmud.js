@@ -405,7 +405,15 @@ function talmudCommParagraphs(page, seg, inSegment) {
 
 // --- L'écran ------------------------------------------------------------------------------------------
 
+// « Situer dans la chronologie » : l'époque des maîtres de ce texte (une seule fois par ouverture de l'écran).
+function talmudChrono() {
+    const box = toolEl('tool-talmud-chrono');
+    if (!box || box.firstChild || typeof chrAddTargetButton !== 'function' || typeof ChronologieCore === 'undefined') return;
+    chrAddTargetButton(box, model => ChronologieCore.forText(model, 'talmud'), 'screen-tool-talmud');
+}
+
 function talmudRender() {
+    talmudChrono();
     if (!talmudIndex) return;
     const tr = TalmudCore.find(talmudIndex, talmudState.id);
     const page = talmudState.page;

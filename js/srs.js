@@ -1,5 +1,5 @@
 // =========================================================================
-// === HISTORIAXE — RÉPÉTITION ESPACÉE (boîtes de Leitner à échéances) ===
+// === TORAHAXE — RÉPÉTITION ESPACÉE (boîtes de Leitner à échéances) ===
 // =========================================================================
 // Cinq boîtes, chacune avec son intervalle : un événement réussi monte d'une
 // boîte et ne revient qu'à l'échéance ; un événement raté retombe en boîte 1

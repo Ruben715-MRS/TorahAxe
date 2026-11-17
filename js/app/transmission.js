@@ -396,6 +396,10 @@ function trRenderInfo() {
     meta.className = 'lex-bio';
     meta.textContent = facts.join(' · ');
     card.appendChild(meta);
+    // Le bouton « Situer dans la chronologie » se met juste sous les faits : la feuille est courte, un bouton tout en bas passerait inaperçu.
+    const chrSlot = document.createElement('div');
+    chrSlot.className = 'gen-actions';
+    card.appendChild(chrSlot);
 
     const masters = TransmissionCore.mastersOf(p.id);
     const students = TransmissionCore.studentsOf(p.id);
@@ -485,6 +489,15 @@ function trRenderInfo() {
     actions.appendChild(clear);
     card.appendChild(actions);
     box.appendChild(card);
+    // « Situer dans la chronologie » : le maître sur la frise (son élément, sa vie, ou son époque).
+    if (typeof ChronologieCore !== 'undefined' && typeof chrLoadModel === 'function') {
+        const id = p.id;
+        chrLoadModel().then(model => {
+            if (trSelected !== id) return;
+            const button = chrButton(ChronologieCore.forSage(model, p), 'screen-tool-transmission');
+            if (button) chrSlot.appendChild(button);
+        }).catch(() => {});
+    }
 }
 
 // L'aide « ? » : ce que veulent dire les signes des cartes (♛ ⚖︎), les lignes et les groupes. `open` force l'état ; sans lui, elle bascule.

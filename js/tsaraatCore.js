@@ -1,5 +1,5 @@
 // =========================================================================
-// === HISTORIAXE — TSARAAT : LES PARCOURS ET LE MODE « COHEN » (sans DOM) ===
+// === TORAHAXE — TSARAAT : LES PARCOURS ET LE MODE « COHEN » (sans DOM) ===
 // =========================================================================
 // Les données sont dans js/tsaraatData.js ; l'écran est dans js/app/tsaraat.js. Ici, ce qui se calcule, testé dans tests/tsaraatCore.test.js :
 //  - walk(support, choix) : rejouer un parcours (une suite de numéros d'options) et dire où il en est : question suivante ou verdict ;

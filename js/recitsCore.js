@@ -1,5 +1,5 @@
 // =========================================================================
-// === HISTORIAXE — RÉCITS : LE FORMAT D'UN RÉCIT ET SES RÈGLES (PUR) ===
+// === TORAHAXE — RÉCITS : LE FORMAT D'UN RÉCIT ET SES RÈGLES (PUR) ===
 // =========================================================================
 // Un récit est un long article d'histoire (25 à 35 minutes de lecture), découpé en chapitres, avec des cartes, des encadrés
 // et des mots soulignés qui ouvrent une fiche. Les fichiers sont dans assets/recits/ (catalogue : index.json ; un récit :

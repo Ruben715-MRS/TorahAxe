@@ -90,7 +90,7 @@ function rdSpeed() {
 
 function rdSetFont(id) {
     if (!rdFonts().some(function (f) { return f.id === id; })) return;
-    try { localStorage.setItem('historiaxe_torah_reader_font_v2', id); } catch (e) { /* valable pour cette séance */ }
+    try { localStorage.setItem('torahaxe_torah_reader_font_v2', id); } catch (e) { /* valable pour cette séance */ }
     const p = rdReadJson('siddurPrefs');
     p.font = id;
     try { localStorage.setItem('siddurPrefs', JSON.stringify(p)); } catch (e) { /* idem */ }

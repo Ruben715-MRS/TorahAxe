@@ -2,7 +2,7 @@
 // Découpage mécanique : les fichiers se chargent dans l'ordre d'index.html, qui est celui du fichier d'origine
 // (tout reste global ; une fonction ou un `let` d'un fichier est visible des suivants).
 // =========================================================================
-// === HISTORIAXE — CONTRÔLEUR PRINCIPAL & MOTEURS DE JEU (APP.JS) ===
+// === TORAHAXE — CONTRÔLEUR PRINCIPAL & MOTEURS DE JEU (APP.JS) ===
 // =========================================================================
 
 // =========================================================================
