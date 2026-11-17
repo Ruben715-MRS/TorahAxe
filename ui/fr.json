@@ -2998,7 +2998,7 @@
     "sd_controls": "Réglages de lecture",
     "sd_font_aria": "Choisir la police de l'hébreu",
     "sd_fr_aria": "Afficher ou masquer la traduction française",
-    "sd_fr_note": "Traduction française facultative, en cours : seuls les passages traduits (sous le texte hébreu) l'affichent. Elle est à relire par une personne compétente et ne remplace pas le texte hébreu.",
+    "sd_fr_note": "Traduction française facultative, sous le texte hébreu, pour toutes les sections. Rédigée pour l'application à partir de l'hébreu (aucune traduction sous droits n'est reprise ; les versets s'appuient sur la Bible du Rabbinat de 1899, domaine public). Elle n'a pas encore été relue par une personne compétente : elle ne remplace pas le texte hébreu, et certains passages difficiles (piyoutim, araméen, termes techniques) restent à vérifier.",
     "sd_fr_missing": "Pas encore de traduction française pour cette section.",
     "sd_smaller": "Texte plus petit",
     "sd_bigger": "Texte plus grand",
