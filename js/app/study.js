@@ -22,9 +22,17 @@ function studyToggle(kind, fixed) {
     if (typeof homeRefresh === 'function') homeRefresh();
 }
 
+// Les cartes d'étude affichées dans l'onglet Aujourd'hui (Réglages › Cartes d'étude).
+function studyCardOn(kind) { return StudyCore.cardOn(studyStore(), kind); }
+function studySetCard(kind, on) {
+    studySave(StudyCore.setCard(studyStore(), kind, on));
+    if (typeof apRender === 'function') apRender();
+}
+
 // Les cases de l'onglet Aujourd'hui : [{ kind, label }] ; `kinds` : celles dont l'étude existe aujourd'hui.
 function studyChips(kinds, fixed) {
     const store = studyStore();
+    kinds = kinds.filter(k => StudyCore.cardOn(store, k));
     if (!store.on || !kinds.length) return null;
     const row = document.createElement('div');
     row.className = 'study-chips';
@@ -68,5 +76,32 @@ function stRender(body) {
     note.className = 'modal-desc';
     note.textContent = t('study.setting_note');
     group.append(label, seg, note);
+    body.appendChild(group);
+}
+
+// Le réglage des cartes (Réglages) : une case par carte.
+function stCardsRender(body) {
+    const group = document.createElement('div');
+    group.className = 'settings-group';
+    const label = document.createElement('div');
+    label.className = 'settings-label';
+    label.textContent = t('study.cards_label');
+    group.appendChild(label);
+    StudyCore.KINDS.forEach(kind => {
+        const row = document.createElement('label');
+        row.className = 'settings-check';
+        const box = document.createElement('input');
+        box.type = 'checkbox';
+        box.checked = studyCardOn(kind);
+        box.onchange = () => studySetCard(kind, box.checked);
+        const text = document.createElement('span');
+        text.textContent = ' ' + t('study.card_' + kind);
+        row.append(box, text);
+        group.appendChild(row);
+    });
+    const note = document.createElement('p');
+    note.className = 'modal-desc';
+    note.textContent = t('study.cards_note');
+    group.appendChild(note);
     body.appendChild(group);
 }

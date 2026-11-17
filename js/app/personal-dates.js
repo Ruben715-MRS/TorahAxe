@@ -70,10 +70,7 @@ function datesBack() { datesCloseForm(); gamesBackTo(datesReturn); }
 function datesLoadParasha(then) {
     if (datesData) { then(); return; }
     if (typeof homeParasha !== 'undefined' && homeParasha) { datesData = homeParasha; then(); return; }
-    Promise.all([
-        fetch('data/torah/calendar.json').then(r => (r.ok ? r.json() : null)),
-        fetch('data/torah/parashot.json').then(r => (r.ok ? r.json() : null))
-    ]).then(([calendar, parashot]) => { datesData = { calendar: calendar, parashot: parashot }; then(); })
+    fetch('data/torah/parashot.json').then(r => (r.ok ? r.json() : null)).then(parashot => { datesData = { calendar: null, parashot: parashot }; then(); })
         .catch(() => { datesData = { calendar: null, parashot: null }; then(); });
 }
 

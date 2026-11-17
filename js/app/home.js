@@ -464,11 +464,9 @@ function homeParashaName(day) {
 function homeLoadParasha() {
     if (homeParasha || homeParashaLoading) return;
     homeParashaLoading = true;
-    Promise.all([
-        fetch('data/torah/calendar.json').then(r => (r.ok ? r.json() : null)),
-        fetch('data/torah/parashot.json').then(r => (r.ok ? r.json() : null))
-    ]).then(([calendar, parashot]) => {
-        if (calendar && parashot) { homeParasha = { calendar: calendar, parashot: parashot }; if (homeVisible() && homeTab === 'today') homeRender(true); }
+    // Le calendrier des paracha est calculé (js/sedraCore.js) : seuls les noms viennent d'un fichier.
+    fetch('data/torah/parashot.json').then(r => (r.ok ? r.json() : null)).then(parashot => {
+        if (parashot) { homeParasha = { calendar: null, parashot: parashot }; if (homeVisible() && homeTab === 'today') homeRender(true); }
     }).catch(() => { /* sans paracha : le reste fonctionne */ }).then(() => { homeParashaLoading = false; });
 }
 
@@ -478,6 +476,20 @@ function homeLoadHilloulot() {
     fetch('data/hilloulot/hilloulot.json').then(r => (r.ok ? r.json() : null)).then(json => {
         if (json && Array.isArray(json.entries)) { homeHil = json.entries; if (homeVisible() && homeTab === 'today') homeRender(true); }
     }).catch(() => { /* sans hilloulot : le reste fonctionne */ }).then(() => { homeHilLoading = false; });
+}
+
+// Ouvre la liste des 613 à la mitsva donnée : on déplie ses ancêtres repliables, on la montre et on la fait clignoter un instant.
+function homeOpenMitsva(c) {
+    openTool('commandments', 'screen-main');
+    if (typeof toolCommandmentsPick === 'function') toolCommandmentsPick('mitzvot');
+    setTimeout(() => {
+        const li = document.getElementById('cmd-613-' + c.kind + '-' + c.n);
+        if (!li) return;
+        for (let el = li.parentElement; el; el = el.parentElement) if (el.tagName === 'DETAILS') el.open = true;
+        li.scrollIntoView({ block: 'center' });
+        li.classList.add('cmd-flash');
+        setTimeout(() => li.classList.remove('cmd-flash'), 2500);
+    }, 150);
 }
 
 function homeInfoCard(label, value, detail, onclick) {
@@ -574,6 +586,69 @@ function homeRenderToday(content) {
         }
     }
 
+    // Les dates personnelles des sept prochains jours (Hazkara, anniversaires) : une carte pleine largeur chacune, qui ouvre l'écran des dates.
+    if (typeof datesTodayCards === 'function') {
+        const personal = datesTodayCards();
+        if (personal.length) {
+            const rowDates = hEl('div', 'home-cards');
+            personal.forEach(c => {
+                const card = homeInfoCard(c.label, c.value, c.sub, () => openDates('screen-main'));
+                card.classList.add('home-card-wide');
+                rowDates.appendChild(card);
+            });
+            content.appendChild(rowDates);
+        }
+    }
+
+    // L'étude du jour : Daf Yomi, Téhilim, Michna Yomit, montée du jour, mitsva du jour (chaque carte se masque dans Réglages › Cartes d'étude du jour).
+    const cardOn = kind => (typeof studyCardOn === 'function' ? studyCardOn(kind) : kind !== 'mitsva');
+    const study = hEl('div', 'home-cards');
+    const wide = card => { card.classList.add('home-card-wide'); return card; };
+    const daf = cardOn('daf') ? ZmanimCore.dafYomi(day.fixed) : null;
+    if (daf) {
+        // La carte ouvre le Talmud à l'amoud du jour (le premier du daf) ; sans Guémara ici (Chekalim, Kinnim, Midot), elle reste une simple information.
+        const dafTarget = TalmudCore.dafYomiTarget(null, daf);
+        study.appendChild(homeInfoCard('Daf Yomi', daf.masechet + ' ' + daf.daf, daf.daysLeft === 0 ? t('tools.zm_daf_siyum_today') : t('tools.zm_daf_siyum', { n: daf.daysLeft }),
+            dafTarget ? () => { openTool('talmud', 'screen-main'); talmudOpenAt(dafTarget.id, dafTarget.label); } : null));
+    }
+    const h = day.ctx.hebrew;
+    const tehilim = cardOn('tehilim') ? zmTehilimText(h) : null;
+    if (tehilim) study.appendChild(homeInfoCard('Téhilim du jour', tehilim, t('tools.zm_tehilim_day', { n: h.day }), () => { toolReturns.tanakh = 'screen-main'; tanakhOpenAt('psaumes', zmTehilimStart(h) - 1, 'he'); }));
+    if (study.childElementCount === 1) study.firstChild.classList.add('home-card-wide');
+    // La Michna Yomit : deux michnayot par jour ; la carte ouvre la première dans la Michna.
+    const my = cardOn('mishna') && typeof MishnaYomiCore !== 'undefined' ? MishnaYomiCore.forFixed(day.fixed) : null;
+    if (my) {
+        study.appendChild(wide(homeInfoCard(t('mishnayomi.card_label'), MishnaYomiCore.label(my), t('mishnayomi.card_sub', { n: my.daysLeft }),
+            () => michnaOpenAt(my.first.id, my.first.chapter, my.first.mishna, 'screen-main'))));
+    }
+    // La montée du jour : un morceau de la paracha de la semaine chaque jour (dimanche : 1re montée … vendredi : 6e) ; le Chabbat, la paracha entière.
+    const aliyahDay = new Date(day.civil.year, day.civil.month - 1, day.civil.day).getDay() + 1;   // 1 (dimanche) à 7 (samedi)
+    const aliyah = cardOn('aliyah') && par ? { par: par, n: aliyahDay } : null;
+    if (aliyah) {
+        const sat = aliyahDay === 7;
+        study.appendChild(wide(homeInfoCard(t('study.kind_aliyah'), aliyah.par.name + ' · ' + (sat ? t('study.aliyah_sat') : t('tools.tanakh_aliyah_n', { n: aliyahDay })), t('study.aliyah_sub'),
+            () => tanakhOpenParasha(aliyah.par.index, sat ? 1 : aliyahDay))));
+    }
+    // La mitsva du jour (facultative, désactivée par défaut) : l'une des 613, une par jour.
+    const mitsva = cardOn('mitsva') && typeof MitsvaOfDayCore !== 'undefined' && typeof CommandmentsCore !== 'undefined' ? MitsvaOfDayCore.of(day.fixed, CommandmentsCore.list613('all')) : null;
+    if (mitsva) {
+        const c = mitsva.item;
+        study.appendChild(wide(homeInfoCard(t('study.mitsva_label'), c.text, t(c.kind === 'pos' ? 'study.mitsva_pos' : 'study.mitsva_neg', { n: c.n }) + ' · ' + c.ref,
+            () => homeOpenMitsva(c))));
+    }
+    if (study.childElementCount) content.appendChild(study);
+    // « Étudié » (facultatif, désactivé par défaut) : une case par étude qui existe aujourd'hui.
+    if (typeof studyChips === 'function') {
+        const kinds = [];
+        if (daf) kinds.push('daf');
+        if (tehilim) kinds.push('tehilim');
+        if (my) kinds.push('mishna');
+        if (aliyah) kinds.push('aliyah');
+        if (mitsva) kinds.push('mitsva');
+        const chips = studyChips(kinds, day.fixed);
+        if (chips) content.appendChild(chips);
+    }
+
     // Le défi du jour et la série : deux cartes côte à côte ; le Chabbat et les jours de fête, il n'y a pas de défi et la série seule s'affiche (gelée, si elle existe).
     if (typeof dailygameIsRestDay === 'function') {
         const row = hEl('div', 'home-cards');
@@ -590,51 +665,6 @@ function homeRenderToday(content) {
         }
         if (row.childElementCount === 1) row.firstChild.classList.add('home-card-wide');
         if (row.childElementCount) content.appendChild(row);
-    }
-
-    // Les dates personnelles des sept prochains jours (Hazkara, anniversaires) : une carte pleine largeur chacune, qui ouvre l'écran des dates.
-    if (typeof datesTodayCards === 'function') {
-        const personal = datesTodayCards();
-        if (personal.length) {
-            const rowDates = hEl('div', 'home-cards');
-            personal.forEach(c => {
-                const card = homeInfoCard(c.label, c.value, c.sub, () => openDates('screen-main'));
-                card.classList.add('home-card-wide');
-                rowDates.appendChild(card);
-            });
-            content.appendChild(rowDates);
-        }
-    }
-
-    // L'étude du jour : le Daf Yomi et les Téhilim
-    const study = hEl('div', 'home-cards');
-    const daf = ZmanimCore.dafYomi(day.fixed);
-    if (daf) {
-        // La carte ouvre le Talmud à l'amoud du jour (le premier du daf) ; sans Guémara ici (Chekalim, Kinnim, Midot), elle reste une simple information.
-        const dafTarget = TalmudCore.dafYomiTarget(null, daf);
-        study.appendChild(homeInfoCard('Daf Yomi', daf.masechet + ' ' + daf.daf, daf.daysLeft === 0 ? t('tools.zm_daf_siyum_today') : t('tools.zm_daf_siyum', { n: daf.daysLeft }),
-            dafTarget ? () => { openTool('talmud', 'screen-main'); talmudOpenAt(dafTarget.id, dafTarget.label); } : null));
-    }
-    const h = day.ctx.hebrew;
-    const tehilim = zmTehilimText(h);
-    if (tehilim) study.appendChild(homeInfoCard('Téhilim du jour', tehilim, t('tools.zm_tehilim_day', { n: h.day }), () => { toolReturns.tanakh = 'screen-main'; tanakhOpenAt('psaumes', zmTehilimStart(h) - 1, 'he'); }));
-    // La Michna Yomit : deux michnayot par jour ; la carte ouvre la première dans la Michna.
-    const my = typeof MishnaYomiCore !== 'undefined' ? MishnaYomiCore.forFixed(day.fixed) : null;
-    if (my) {
-        const card = homeInfoCard(t('mishnayomi.card_label'), MishnaYomiCore.label(my), t('mishnayomi.card_sub', { n: my.daysLeft }),
-            () => michnaOpenAt(my.first.id, my.first.chapter, my.first.mishna, 'screen-main'));
-        card.classList.add('home-card-wide');
-        study.appendChild(card);
-    }
-    if (study.childElementCount) content.appendChild(study);
-    // « Étudié » (facultatif, désactivé par défaut) : une case par étude qui existe aujourd'hui.
-    if (typeof studyChips === 'function') {
-        const kinds = [];
-        if (daf) kinds.push('daf');
-        if (tehilim) kinds.push('tehilim');
-        if (my) kinds.push('mishna');
-        const chips = studyChips(kinds, day.fixed);
-        if (chips) content.appendChild(chips);
     }
 
     // La révision du jour : la carte n'apparaît que s'il y a quelque chose à revoir.

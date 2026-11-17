@@ -53,13 +53,10 @@ function dailygameLoad(then) {
     if (dailygameLoading) return;
     dailygameLoading = true;
     document.getElementById('dailygame-today').textContent = t('dailygame.loading');
-    Promise.all([
-        fetch('data/torah/calendar.json').then(r => (r.ok ? r.json() : null)),
-        fetch('data/torah/parashot.json').then(r => (r.ok ? r.json() : null))
-    ]).then(([calendar, parashot]) => {
+    fetch('data/torah/parashot.json').then(r => (r.ok ? r.json() : null)).then(parashot => {
         dailygameLoading = false;
         // Sans paracha, le défi se fait quand même : il lui reste cinq autres questions.
-        dailygameData = { calendar: calendar, parashot: parashot };
+        dailygameData = { calendar: null, parashot: parashot };
         then();
     }).catch(() => { dailygameLoading = false; dailygameData = { calendar: null, parashot: null }; then(); });
 }

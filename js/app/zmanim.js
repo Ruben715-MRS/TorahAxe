@@ -176,11 +176,8 @@ function toolZmanimInit() {
 function zmLoadParasha() {
     if (zmParasha || zmParashaLoading) return;
     zmParashaLoading = true;
-    Promise.all([
-        fetch('data/torah/calendar.json').then(r => (r.ok ? r.json() : null)),
-        fetch('data/torah/parashot.json').then(r => (r.ok ? r.json() : null))
-    ]).then(([calendar, parashot]) => {
-        if (calendar && parashot) { zmParasha = { calendar, parashot }; zmRender(true); }
+    fetch('data/torah/parashot.json').then(r => (r.ok ? r.json() : null)).then(parashot => {
+        if (parashot) { zmParasha = { calendar: null, parashot }; zmRender(true); }
     }).catch(() => { /* sans paracha : le reste fonctionne */ }).then(() => { zmParashaLoading = false; });
 }
 
@@ -892,7 +889,7 @@ function zmShabbatView(body) {
     }
     // la haftara du chabbat, selon le rite séfarade quand il diffère
     if (zmParasha && zmHaftarot) {
-        const sab = HaftarotCore.sabbathInfo(zmParasha.calendar, zmHaftarot, new Date(s.saturday.year, s.saturday.month - 1, s.saturday.day));
+        const sab = HaftarotCore.sabbathInfo(TorahCore.parashaForDate(null, new Date(s.saturday.year, s.saturday.month - 1, s.saturday.day), zmStoredIsrael()), zmHaftarot, new Date(s.saturday.year, s.saturday.month - 1, s.saturday.day));
         const refs = sab && sab.haftara ? (sab.haftara.s || sab.haftara.a) : null;
         if (refs && refs.length) {
             const row = zmEl('div', 'home-row zm-haftara');

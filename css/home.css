@@ -288,3 +288,6 @@ div.home-card:active { background: var(--surface); }
 .study-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 2px 0 6px; }
 .study-chip { padding: 8px 12px; border-radius: 999px; border: 1px solid currentColor; background: transparent; color: inherit; font: inherit; font-size: .9rem; opacity: .75; }
 .study-chip.is-done { opacity: 1; font-weight: 700; background: rgba(46,160,67,.18); border-color: rgba(46,160,67,.9); }
+
+.cmd-flash { animation: cmd-flash 2.5s ease-out; }
+@keyframes cmd-flash { 0%, 40% { background: rgba(255, 200, 0, .35); } 100% { background: transparent; } }

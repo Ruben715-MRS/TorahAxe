@@ -35,3 +35,17 @@ test('les jours anciens sont oubliés, les récents comptés', () => {
     s = S.toggle(s, 'mishna', 740499);
     assert.strictEqual(S.recent(s, 740500, 7).mishna, 2);
 });
+
+test('les cartes d\'étude : par défaut tout sauf la mitsva du jour ; on peut les masquer', () => {
+    let s = S.normalize(null);
+    ['daf', 'tehilim', 'mishna', 'aliyah'].forEach(k => assert.strictEqual(S.cardOn(s, k), true));
+    assert.strictEqual(S.cardOn(s, 'mitsva'), false);
+    s = S.setCard(s, 'mishna', false);
+    s = S.setCard(s, 'mitsva', true);
+    assert.strictEqual(S.cardOn(s, 'mishna'), false);
+    assert.strictEqual(S.cardOn(s, 'mitsva'), true);
+    const again = S.normalize(JSON.parse(JSON.stringify(s)));
+    assert.strictEqual(S.cardOn(again, 'mishna'), false);
+    assert.strictEqual(S.cardOn(S.normalize({ cards: { daf: 'non', inconnue: true } }), 'daf'), true);
+    assert.strictEqual(S.setCard(s, 'rambam', true), s);
+});
