@@ -16727,6 +16727,9 @@ body[data-view-profile="religieux"] .league-btn {
 .mapgame-line { stroke: #444; stroke-width: 1; stroke-dasharray: 3 2; pointer-events: none; }
 .mapgame-legend { margin: 0 0 8px; text-align: center; }
 .mapgame-actions { margin-bottom: 12px; }
+/* La fiche après la réponse : la légende et le bouton « Lieu suivant » ne se touchent pas. */
+#mapgame-feedback-note { margin: 8px 0 0; }
+#mapgame-feedback .lexgame-actions { margin-top: 12px; }
 :root[data-theme="dark"] .mapgame-map, :root[data-theme="dark"] .mapgame-sea, :root[data-theme="dark"] .mapgame-water { background: #2c4a63; fill: #2c4a63; }
 :root[data-theme="dark"] .mapgame-land { fill: #46433a; stroke: #6d675a; }
 :root[data-theme="dark"] .mapgame-water { stroke: #567a99; }

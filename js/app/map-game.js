@@ -114,8 +114,9 @@ function mapgameDraw(q) {
     // Les grands fleuves du cadre « monde » (Nil, Euphrate, Tigre) et leur nom, pour s'orienter.
     ((MapGameCore.RIVERS || {})[q.view] || []).forEach(r => {
         svg.appendChild(svgEl('path', { d: 'M' + r.pts.map(c => proj.toXY(c[0], c[1]).map(v => v.toFixed(1)).join(' ')).join('L'), class: 'mapgame-river' }));
-        const mid = r.pts[Math.floor(r.pts.length / 2)], [lx, ly] = proj.toXY(mid[0], mid[1]);
-        const name = svgEl('text', { x: (lx + 4).toFixed(1), y: ly.toFixed(1), class: 'mapgame-label' });
+        // Le nom est posé sur son point d'ancrage (quand le fleuve en a un), sinon à côté du milieu du tracé.
+        const at = r.label || r.pts[Math.floor(r.pts.length / 2)], [lx, ly] = proj.toXY(at[0], at[1]);
+        const name = svgEl('text', { x: (lx + (r.label ? 0 : 4)).toFixed(1), y: ly.toFixed(1), 'text-anchor': r.anchor || 'start', class: 'mapgame-label' });
         name.textContent = r.fr;
         svg.appendChild(name);
     });
