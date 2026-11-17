@@ -41,6 +41,7 @@ const HOME_ENTRIES = {
     foodlaws: { he: 'כשרות', fr: 'Cacherout', desc: 'Les animaux purs et impurs, les mélanges interdits', kw: 'casher kasher aliments sauterelles oiseaux poissons', run: homeTool('foodlaws') },
     benedictions: { he: 'ברכות', fr: 'Bénédictions', desc: 'Quelle bénédiction dire sur quel aliment : 290 aliments, avec les notes (Beth Loubavitch)', kw: 'bracha berakha brakha berakhot aliment manger boire haets haadama mezonot chehakol hamotsi haguafen fruit légume pain vin birkhot hanehenin', run: homeTool('benedictions') },
     measures: { he: 'מידות', fr: 'Mesures', desc: 'Poids, volumes, distances et monnaies de la Bible', kw: 'coudée poids volumes monnaies chékel', run: homeTool('measures') },
+    personalDates: { he: 'תאריכים', fr: 'Dates personnelles', desc: 'Hazkara, anniversaires hébraïques, bar et bat-mitsva, avec rappels', kw: 'hazkara azkara yahrzeit yartzeit yahrtzeit anniversaire décès naissance bar mitsva bat mitsva date hébraïque rappel notification', run: () => openDates('screen-main') },
     progress: { he: 'התקדמות', fr: 'Ma progression', desc: 'Série de jours, niveaux par domaine et badges', kw: 'progression série jours niveaux badges statistiques succès', run: () => openProgress('screen-main') },
     daily: { he: 'אתגר', fr: 'Défi du jour', desc: 'Cinq questions sur la date du jour : paracha, Daf Yomi, mois, fête, Téhilim', kw: 'jeu défi quotidien jour date paracha daf yomi mois fête téhilim', run: () => openDailyGame('screen-main') },
     review: { he: 'חזרה', fr: 'À réviser aujourd\'hui', desc: 'Mots du Tanakh et de la Guémara à revoir aujourd\'hui, en une seule séance', kw: 'réviser révision répétition espacée rappel mémoire jeu', run: () => openReview('screen-main') },
@@ -72,7 +73,7 @@ const HOME_LAYOUT = {
     explorer: [
         { title: 'Maîtres et lignées', as: 'tiles', cols: 3, ids: ['genealogy', 'transmission', 'hassidout'] },
         { title: 'Lieux et temps', as: 'tiles', cols: 2, ids: ['chronologie', 'biblical', 'mishkan', 'hebrewCalendar'] },
-        { title: 'Lois et pratique', as: 'tiles', cols: 3, ids: ['korbanot', 'tsaraat', 'statuts', 'foodlaws', 'benedictions', 'measures', 'kotel'] },
+        { title: 'Lois et pratique', as: 'tiles', cols: 3, ids: ['korbanot', 'tsaraat', 'statuts', 'foodlaws', 'benedictions', 'measures', 'kotel', 'personalDates'] },
         { promo: 'tools' }
     ],
     // Les jeux sont rangés par thème (Hébreu, Tanakh, Sages, Halakha, Histoire) : un jeu de plus = un id dans la bonne section. Une section sans jeu n'est
@@ -225,6 +226,13 @@ function homeRows(entries, subs) {
         box.appendChild(b);
     });
     return box;
+}
+
+// Ce que la ligne « Dates personnelles » annonce : la prochaine date des sept jours à venir, ou sa description.
+function datesTodaySub() {
+    if (typeof datesTodayCards !== 'function') return HOME_ENTRIES.personalDates.desc;
+    const c = datesTodayCards()[0];
+    return c ? c.label + ' · ' + c.value + ' · ' + c.sub : HOME_ENTRIES.personalDates.desc;
 }
 
 // Ce que la ligne « Défi du jour » annonce : le résultat du jour, ou qu'il n'y a pas de défi le Chabbat et les jours de fête.
@@ -573,6 +581,20 @@ function homeRenderToday(content) {
         if (row.childElementCount) content.appendChild(row);
     }
 
+    // Les dates personnelles des sept prochains jours (Hazkara, anniversaires) : une carte pleine largeur chacune, qui ouvre l'écran des dates.
+    if (typeof datesTodayCards === 'function') {
+        const personal = datesTodayCards();
+        if (personal.length) {
+            const rowDates = hEl('div', 'home-cards');
+            personal.forEach(c => {
+                const card = homeInfoCard(c.label, c.value, c.sub, () => openDates('screen-main'));
+                card.classList.add('home-card-wide');
+                rowDates.appendChild(card);
+            });
+            content.appendChild(rowDates);
+        }
+    }
+
     // L'étude du jour : le Daf Yomi et les Téhilim
     const study = hEl('div', 'home-cards');
     const daf = ZmanimCore.dafYomi(day.fixed);
@@ -605,7 +627,7 @@ function homeRenderToday(content) {
         content.appendChild(homeRows(resume));
     }
     content.appendChild(hEl('h2', 'home-section-title', 'Pratique'));
-    content.appendChild(homeRows([Object.assign({ id: 'kotel' }, HOME_ENTRIES.kotel)]));
+    content.appendChild(homeRows([Object.assign({ id: 'kotel' }, HOME_ENTRIES.kotel), Object.assign({ id: 'personalDates' }, HOME_ENTRIES.personalDates)], { personalDates: datesTodaySub() }));
 }
 
 // --- Réglages --------------------------------------------------------------------------------------------------------------------------------------

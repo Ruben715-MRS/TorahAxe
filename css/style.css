@@ -16760,6 +16760,24 @@ body[data-view-profile="religieux"] .league-btn {
 .progress-badge strong { font-size: 14px; }
 .progress-badge em { font-style: normal; font-weight: 700; font-size: 13px; color: var(--muted-text); }
 .progress-badge.is-earned em { color: var(--progress-green); }
+/* « Dates personnelles » : les lignes (à venir, mes dates), le calculateur, le formulaire. */
+.dates-body { display: flex; flex-direction: column; gap: 10px; padding-bottom: 28px; }
+.dates-card { display: flex; flex-direction: column; gap: 3px; text-align: left; width: 100%; padding: 12px 14px; border-radius: 14px; border: 1px solid var(--border-soft); background: var(--surface); color: var(--text-dark); font: inherit; cursor: pointer; }
+.dates-card-head { display: flex; align-items: baseline; gap: 8px; }
+.dates-card-head strong { font-size: 16px; }
+.dates-card-type { margin-left: auto; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted-text); }
+.dates-card-date { font-size: 14px; }
+.dates-card-meta { color: var(--muted-text); }
+.dates-calc { display: flex; flex-direction: column; gap: 10px; border: 1px solid var(--border-soft); border-radius: 14px; background: var(--surface); padding: 14px; }
+.dates-result { display: flex; flex-direction: column; gap: 6px; padding-top: 8px; border-top: 1px solid var(--border-soft); }
+.dates-result p { margin: 0; }
+.dates-field { display: flex; flex-direction: column; gap: 4px; font-size: 13px; font-weight: 600; color: var(--muted-text); }
+.dates-input { width: 100%; box-sizing: border-box; padding: 10px; border-radius: 10px; border: 1px solid var(--border-soft); background: var(--surface-2); color: var(--text-dark); font: inherit; font-weight: 400; }
+.dates-check { display: flex; align-items: center; gap: 8px; font-size: 14px; }
+.dates-form { display: flex; flex-direction: column; gap: 12px; padding-bottom: 20px; }
+.dates-row3 { display: grid; grid-template-columns: 1fr 1.6fr 1.3fr; gap: 8px; }
+.dates-error { margin: 0; color: var(--danger-red-text); font-weight: 600; }
+.dates-rules { margin-top: 6px; color: var(--muted-text); }
 .parashagame-he { margin: 0; font-size: 24px; line-height: 1.7; text-align: right; color: var(--text-dark); }
 .parashagame-fr { margin: 8px 0 0; font-size: 14px; line-height: 1.45; color: var(--muted-text); }
 .parashagame-points { margin: 0 0 8px; text-align: center; font-weight: 700; }

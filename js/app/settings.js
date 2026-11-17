@@ -59,10 +59,61 @@ function apRender() {
         group.append(label, seg, note);
         body.appendChild(group);
     });
+    ritRender(body);
     rdRender(body);
     fbRender(body);
     dtRender(body);
     abRender(body);
+}
+
+// --- Rite : séfarade ou ashkénaze -------------------------------------------------------------------------------------------------------------------------
+// Un réglage global, gardé sur l'appareil. Il choisit le vocabulaire (« Hazkara » chez les séfarades, « Yahrzeit » chez les ashkénazes) et, pour les dates personnelles, la règle de l'Adar
+// (js/personalDatesCore.js). Les écrans Bénédictions et Siddour gardent leur propre choix de rite ; s'il n'a jamais été fait, Bénédictions prend celui-ci. Sans choix enregistré : séfarade.
+const RITE_KEY = 'torahaxe_rite_v1';
+const RITE_NAMES = { sefarade: 'dates.rite_sefarade', ashkenaze: 'dates.rite_ashkenaze' };
+
+// Le rite que l'utilisateur a choisi, ou null s'il n'en a jamais choisi.
+function riteStored() {
+    try { const v = localStorage.getItem(RITE_KEY); return RITE_NAMES[v] ? v : null; } catch (e) { return null; }
+}
+function riteGet() { return riteStored() || 'sefarade'; }
+
+// Le mot du jour anniversaire d'un décès : « Hazkara » (séfarade) ou « Yahrzeit » (ashkénaze).
+function datesTerm() { return t(riteGet() === 'ashkenaze' ? 'dates.term_yahrzeit' : 'dates.term_hazkara'); }
+
+function riteSet(rite) {
+    if (!RITE_NAMES[rite]) return;
+    try { localStorage.setItem(RITE_KEY, rite); } catch (e) { /* valable pour cette séance */ }
+    // Le rite change la règle de l'Adar : les rappels des dates personnelles sont recalculés.
+    if (typeof TorahAxeNotifications !== 'undefined' && TorahAxeNotifications.isSupported()) TorahAxeNotifications.scheduleZmanim();
+    apRender();
+}
+
+function ritRender(body) {
+    const group = document.createElement('div');
+    group.className = 'settings-group';
+    const label = document.createElement('div');
+    label.className = 'settings-label';
+    label.textContent = t('dates.rite_label');
+    const seg = document.createElement('div');
+    seg.className = 'segmented';
+    seg.setAttribute('role', 'group');
+    seg.setAttribute('aria-label', t('dates.rite_label'));
+    Object.keys(RITE_NAMES).forEach(function (id) {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.textContent = t(RITE_NAMES[id]);
+        const on = riteGet() === id;
+        b.className = on ? 'active' : '';
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+        b.onclick = function () { riteSet(id); };
+        seg.appendChild(b);
+    });
+    const note = document.createElement('p');
+    note.className = 'modal-desc';
+    note.textContent = t('dates.rite_note');
+    group.append(label, seg, note);
+    body.appendChild(group);
 }
 
 // --- Lecture : police hébraïque, voyelles, vitesse du défilement, lieu et rappels ------------------------------------------------------------------
