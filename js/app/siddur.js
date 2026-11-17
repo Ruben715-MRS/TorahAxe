@@ -17,7 +17,7 @@ let sdIndex = null;
 const sdCache = {};
 // v : version des réglages. En v2, la police par défaut passe de Noto Serif à Frank Ruhl Libre (la seule à avoir un vrai gras) ;
 // un « noto-serif » enregistré avant la v2 n'était que l'ancien défaut, pas un choix : il est remplacé.
-let sdPrefs = { v: 2, size: 2, niqqud: true, all: false, fr: false, font: 'frank' };
+let sdPrefs = { v: 2, size: 2, niqqud: true, all: false, fr: false, font: 'frank', heRub: false };
 // Polices livrées avec leurs vraies graisses (fonts.css) : le gras y est dessiné par la police, pas simulé par un contour.
 const SD_REAL_BOLD = ['frank'];
 let sdView = { mode: 'home', ids: [], title: '' };
@@ -57,6 +57,7 @@ function sdLoadPrefs() {
         if (typeof p.niqqud === 'boolean') sdPrefs.niqqud = p.niqqud;
         if (typeof p.all === 'boolean') sdPrefs.all = p.all;
         if (typeof p.fr === 'boolean') sdPrefs.fr = p.fr;
+        if (typeof p.heRub === 'boolean') sdPrefs.heRub = p.heRub;
         if (typeof p.font === 'string' && sdFontById(p.font) && (p.v >= 2 || p.font !== 'noto-serif')) sdPrefs.font = p.font;
     } catch (e) { /* stockage indisponible : réglages par défaut */ }
 }
@@ -865,6 +866,9 @@ function sdOpenDisplay() {
         const fr = sdSwitch('Traduction française', sdPrefs.fr, (on) => { sdPrefs.fr = on; sdSavePrefs(); sdRerender(); });
         fr.querySelector('button').id = 'sd-fr';
         body.appendChild(fr);
+        const heRub = sdSwitch('Consignes en hébreu (comme le livre)', sdPrefs.heRub, (on) => { sdPrefs.heRub = on; sdSavePrefs(); sdRerender(); });
+        heRub.querySelector('button').id = 'sd-herub';
+        body.appendChild(heRub);
         const all = sdSwitch('Tout afficher, sans estomper', sdPrefs.all, (on) => { sdPrefs.all = on; sdSavePrefs(); sdRerender(); });
         all.querySelector('button').id = 'sd-all';
         body.appendChild(all);
@@ -970,7 +974,7 @@ function sdRenderReader(body) {
     wrap.appendChild(content);
     body.appendChild(wrap);
     content.appendChild(sdEl('p', 'tool-small', t('tools.sd_loading')));
-    Promise.all(sdView.ids.map(id => Promise.all([sdLoadSection(id), sdPrefs.fr ? sdLoadFr(id) : null]).then(r => { r[0].fr_t = r[1]; return r[0]; }))).then(sections => {
+    Promise.all(sdView.ids.map(id => Promise.all([sdLoadSection(id), sdLoadFr(id)]).then(r => { r[0].fr_t = r[1]; return r[0]; }))).then(sections => {
         if (sdView.mode !== 'reader') return;
         toolClear(content);
         if (sdShabbatNote) content.appendChild(sdEl('p', 'sd-fr-note', sdShabbatNote));
@@ -1023,41 +1027,174 @@ function sdVariantClass(mark) {
     return 'sd-v is-unknown';
 }
 
-function sdRenderNodes(nodes, parent) {
+// skipMark : les nœuds de premier niveau sont le corps d'une variante déjà mise en bloc (sdVarBlock) : on ne les estompe pas une seconde fois.
+function sdRenderNodes(nodes, parent, skipMark) {
     nodes.forEach(node => {
+        const m = skipMark ? null : node.m;
+        // Une variante courte restée dans la ligne : sa consigne hébraïque (« בעשרת ימי תשובה: ») devient une petite étiquette française.
+        if (m && (m.role === 'marker' || m.role === 'self')) {
+            const state = SiddurCore.evaluate(m.atoms, sdCtx);
+            const full = SiddurCore.plain(node);
+            const lab = sdEl('span', 'sd-v-lab' + (state === 'on' ? ' is-on' : state === 'off' && !sdPrefs.all ? ' is-off' : ''), sdCap(sdAtomsLabel(m.atoms)) + ' :');
+            lab.lang = 'fr';
+            lab.dir = 'ltr';
+            lab.title = full.split(':')[0].trim();
+            parent.appendChild(lab);
+            if (m.role === 'self') {
+                const body = sdEl('span', sdVariantClass(m));
+                body.appendChild(sdTextNode(full.slice(full.indexOf(':') + 1).replace(/^\s+/, ' ')));
+                parent.appendChild(body);
+            }
+            return;
+        }
         let el;
         if (node.t === 'text') {
-            const text = document.createTextNode(sdText(node.v));
-            sdOrigText.set(text, node.v);
-            if (node.m) { el = sdEl('span', sdVariantClass(node.m)); el.appendChild(text); } else { parent.appendChild(text); return; }
+            const text = sdTextNode(node.v);
+            if (m) { el = sdEl('span', sdVariantClass(m)); el.appendChild(text); } else { parent.appendChild(text); return; }
         } else if (node.n === 'br') {
             parent.appendChild(document.createElement('br'));
             return;
         } else {
-            el = sdEl(node.n === 'b' ? 'strong' : 'span', node.n === 'small' ? 'sd-small' : node.n === 'big' ? 'sd-big' : '');
-            if (node.m) el.className = (el.className + ' ' + sdVariantClass(node.m)).trim();
+            // <small> : une consigne (sans voyelles) passe en police d'interface ; un texte de prière en <small> (vocalisé) garde presque sa taille.
+            const smallCls = SD_HAS_NIQQUD.test(SiddurCore.plain(node)) ? 'sd-small sd-small-text' : 'sd-small sd-small-rub';
+            el = sdEl(node.n === 'b' ? 'strong' : 'span', node.n === 'small' ? smallCls : node.n === 'big' ? 'sd-big' : '');
+            if (m) el.className = (el.className + ' ' + sdVariantClass(m)).trim();
             sdRenderNodes(node.c, el);
         }
-        if (node.m) {
-            const state = SiddurCore.evaluate(node.m.atoms, sdCtx);
-            if (state === 'off' && node.m.role !== 'rubric' && !sdPrefs.all) el.title = t('tools.sd_variant_off_title', { what: sdAtomsLabel(node.m.atoms) });
-            if (state === 'on' && node.m.role !== 'rubric') el.title = t('tools.sd_variant_on_title', { what: sdAtomsLabel(node.m.atoms) });
+        if (m) {
+            const state = SiddurCore.evaluate(m.atoms, sdCtx);
+            if (state === 'off' && m.role !== 'rubric' && !sdPrefs.all) el.title = t('tools.sd_variant_off_title', { what: sdAtomsLabel(m.atoms) });
+            if (state === 'on' && m.role !== 'rubric') el.title = t('tools.sd_variant_on_title', { what: sdAtomsLabel(m.atoms) });
         }
         parent.appendChild(el);
     });
 }
 
-function sdRenderSegment(tree, index) {
-    const first = tree.c.filter(k => !(k.t === 'text' && !k.v.trim()))[0];
-    const isTitle = index === 0 && first && first.t === 'tag' && first.n === 'big';
-    const el = sdEl(isTitle ? 'h4' : 'p', isTitle ? 'sd-title' : 'sd-seg');
-    el.lang = 'he';
-    el.dir = 'rtl';
-    // un segment tout en petits caractères (une consigne, un texte facultatif) : interligne resserré
-    const kids = tree.c.filter(k => !(k.t === 'text' && !k.v.trim()));
-    if (kids.length && kids.every(k => k.t === 'tag' && k.n === 'small')) el.classList.add('sd-seg-small');
-    sdRenderNodes(tree.c, el);
+// --- Variantes et consignes (refonte, étape 2) ------------------------------------------------------------------------------------------
+// La variante du jour est en taille normale dans un bloc doré ; une variante qui ne s'applique pas est repliée sur une ligne (son nom en
+// français et ses premiers mots), avec, s'il y en a une, la règle en cas d'erreur. Les consignes du livre (hébreu sans voyelles) sont montrées
+// par leur traduction française (data/siddur/fr/). Rien n'est supprimé : tout se déplie, et « Tout afficher » montre tout comme le livre.
+const SD_HAS_NIQQUD = /[ְ-ׇ]/;
+function sdTextNode(v) {
+    const n = document.createTextNode(sdText(v));
+    sdOrigText.set(n, v);
+    return n;
+}
+function sdBlank(k) { return k.t === 'text' && !k.v.trim(); }
+function sdCap(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : s; }
+function sdFirstWords(text, n) {
+    const words = String(text).replace(/[:.,]/g, ' ').trim().split(/\s+/).filter(Boolean);
+    return words.slice(0, n || 3).join(' ') + (words.length > (n || 3) ? '…' : '');
+}
+// Ce qu'on fait si l'on s'est trompé : repris des notes du siddour Maguen Avot (règles séfarades, rav 'Ovadia Yossef).
+// Contenu halakhique écrit à la main : **à relire par une personne compétente**.
+const SD_ERR_NOTES = {
+    dewWinter: 'En hiver, si l\'on a dit « Morid hatal » à la place, on ne se reprend pas.',
+    dewSummer: 'En été, si l\'on a dit « Machiv haroua\'h » à la place, on se reprend.',
+    barechWinter: 'En hiver, si l\'on a dit « Barékhénou » à la place, on se reprend.',
+    barechSummer: 'En été, si l\'on a dit « Barekh alénou » à la place, on se reprend.'
+};
+const SD_ASERET_INSERT = /זכרנו לחיים|מי כמוך אב הרחמן|וכתוב לחיים|בספר חיים/;
+function sdErrNote(atoms, bodyText) {
+    for (const a of atoms) if (SD_ERR_NOTES[a]) return SD_ERR_NOTES[a];
+    if (atoms.indexOf('aseret') !== -1 && SD_ASERET_INSERT.test(SiddurCore.stripNiqqud(bodyText))) {
+        return 'Oublié : si l\'on s\'en aperçoit avant de prononcer le Nom divin qui conclut la bénédiction, on se reprend ; si on l\'a déjà prononcé, on ne se reprend pas.';
+    }
+    return '';
+}
+
+// Un bloc de variante. fill(host) y met le texte ; label : le nom en français ; bodyText : le texte (pour les premiers mots et la règle).
+function sdVarBlock(atoms, label, bodyText, fill) {
+    const state = SiddurCore.evaluate(atoms, sdCtx);
+    const name = label || sdCap(sdAtomsLabel(atoms));
+    const note = sdErrNote(atoms, bodyText);
+    if (state === 'off' && !sdPrefs.all) {
+        const fold = sdEl('details', 'sd-fold');
+        const sum = sdEl('summary');
+        sum.appendChild(sdEl('span', 'sd-fold-lab', name + ' · pas aujourd\'hui'));
+        const he = sdEl('span', 'sd-fold-he');
+        he.lang = 'he'; he.dir = 'rtl';
+        he.appendChild(sdTextNode(sdFirstWords(bodyText)));
+        sum.appendChild(he);
+        fold.appendChild(sum);
+        fill(fold);
+        if (note) fold.appendChild(sdEl('p', 'sd-var-note', note));
+        return fold;
+    }
+    const box = sdEl('div', 'sd-var' + (state === 'on' ? ' is-on' : state === 'unknown' ? ' is-unknown' : ''));
+    const head = sdEl('p', 'sd-var-head');
+    if (state === 'on') head.appendChild(sdEl('span', 'sd-chip', 'Aujourd\'hui'));
+    else if (state === 'unknown') head.appendChild(sdEl('span', 'sd-chip is-unknown', 'Selon le cas'));
+    head.appendChild(sdEl('span', '', name));
+    box.appendChild(head);
+    fill(box);
+    if (note) box.appendChild(sdEl('p', 'sd-var-note', note));
+    return box;
+}
+
+// Une consigne seule dans son segment : sa traduction française (ou l'hébreu si on l'a demandé, ou s'il n'y a pas de traduction).
+function sdRubricEl(tree, fr) {
+    const kids = tree.c.filter(k => !sdBlank(k));
+    const mark = kids.length === 1 && kids[0].m && kids[0].m.role === 'rubric' ? kids[0].m : null;
+    const state = mark ? SiddurCore.evaluate(mark.atoms, sdCtx) : null;
+    const el = sdEl('p', 'sd-rub' + (state === 'on' ? ' is-on' : state === 'off' && !sdPrefs.all ? ' is-off' : ''));
+    if (state === 'on') el.appendChild(sdEl('span', 'sd-chip', 'Aujourd\'hui'));
+    if (fr && !sdPrefs.heRub) {
+        el.lang = 'fr';
+        el.appendChild(document.createTextNode(fr));
+    } else {
+        el.lang = 'he'; el.dir = 'rtl';
+        el.appendChild(sdTextNode(SiddurCore.plain(tree).replace(/\s+/g, ' ').trim()));
+    }
     return el;
+}
+
+// Le segment : un titre, une consigne seule, ou du texte. Une variante assez longue (une phrase) ou un segment fait seulement de variantes
+// (été / hiver) passe en blocs ; les variantes d'un mot ou deux (« הַשָּׁלוֹם ») restent dans la ligne.
+function sdRenderSegment(tree, index, fr) {
+    const kids = tree.c.filter(k => !sdBlank(k));
+    const isTitle = index === 0 && kids[0] && kids[0].t === 'tag' && kids[0].n === 'big';
+    if (!isTitle && kids.length && kids.every(k => k.t === 'tag' && k.n === 'small') && !SD_HAS_NIQQUD.test(SiddurCore.plain(tree))) return sdRubricEl(tree, fr);
+    const newP = () => { const p = sdEl(isTitle ? 'h4' : 'p', isTitle ? 'sd-title' : 'sd-seg'); p.lang = 'he'; p.dir = 'rtl'; return p; };
+    // les variantes de premier niveau : marqueur + corps
+    const vars = {};
+    tree.c.forEach(k => {
+        if (!k.m || (k.m.role !== 'marker' && k.m.role !== 'body')) return;
+        const v = vars[k.m.id] || (vars[k.m.id] = { m: k.m, bodies: [] });
+        if (k.m.role === 'body') v.bodies.push(k);
+    });
+    const outside = SiddurCore.stripNiqqud(SiddurCore.plain(tree.c.filter(k => !(k.m && vars[k.m.id]))));
+    const onlyVars = !/[א-ת]/.test(outside);
+    const block = {};
+    Object.keys(vars).forEach(id => {
+        const v = vars[id];
+        const len = SiddurCore.stripNiqqud(SiddurCore.plain(v.bodies)).replace(/\s+/g, ' ').trim().length;
+        if (v.bodies.length && (onlyVars || len >= 25)) block[id] = v;
+    });
+    if (!Object.keys(block).length) {
+        const el = newP();
+        if (kids.length && kids.every(k => k.t === 'tag' && k.n === 'small')) el.classList.add('sd-seg-small');
+        sdRenderNodes(tree.c, el);
+        return el;
+    }
+    const wrap = sdEl('div', 'sd-segbox');
+    let cur = null;
+    const flush = () => { if (cur && cur.textContent.trim()) wrap.appendChild(cur); cur = null; };
+    tree.c.forEach(k => {
+        const v = k.m && block[k.m.id];
+        if (!v) { if (!cur) cur = newP(); sdRenderNodes([k], cur); return; }
+        if (k.m.role !== 'marker') return;                       // le corps est rendu avec son marqueur
+        flush();
+        const bodyText = SiddurCore.plain(v.bodies);
+        wrap.appendChild(sdVarBlock(v.m.atoms, '', bodyText, host => {
+            const p = newP();
+            // un corps en <small> est rendu à taille normale : c'est le texte à dire
+            v.bodies.forEach(b => { if (b.t === 'tag' && b.n === 'small') sdRenderNodes(b.c, p); else sdRenderNodes([b], p, true); });
+            host.appendChild(p);
+        }));
+    });
+    flush();
+    return wrap;
 }
 
 // Le paratexte d'un chant : qui l'a écrit, dans quel contexte, ce qu'il veut dire ; et le bouton de la traduction française.
@@ -1101,39 +1238,31 @@ function sdRenderSection(section) {
     let omerAt = -1;
     if (section.id === 'omer' && sdCtx.omer > 0) omerAt = SiddurCore.omerSegment(section.segments, sdCtx.omer);
     if (section.id === 'omer' && sdCtx.omer > 0) box.appendChild(sdEl('p', 'sd-omer-note', t('tools.sd_omer_today', { n: sdCtx.omer })));
-    const frT = sdPrefs.fr ? section.fr_t : null;
-    if (sdPrefs.fr && !frT) box.appendChild(sdEl('p', 'sd-fr-missing', t('tools.sd_fr_missing')));
+    // Les traductions servent toujours aux consignes ; sous chaque segment, seulement si on les a demandées.
+    const frAll = section.fr_t || null;
+    const frOf = (i) => { const tr = frAll && frAll[i]; return tr && tr[0] === SiddurCore.fingerprint(section.segments[i]) ? tr[1] : null; };
+    if (sdPrefs.fr && !frAll) box.appendChild(sdEl('p', 'sd-fr-missing', t('tools.sd_fr_missing')));
     const seg = (i) => {
-        const el = sdRenderSegment(trees[i], i);
+        const fr = frOf(i);
+        const el = sdRenderSegment(trees[i], i, fr);
         if (i === omerAt) el.classList.add('sd-omer-today');
-        const tr = frT && frT[i];
-        if (!tr || tr[0] !== SiddurCore.fingerprint(section.segments[i])) {
-            return el;
-        }
+        if (!sdPrefs.fr || !fr || el.classList.contains('sd-rub')) return el;
         const wrap = document.createDocumentFragment();
         wrap.appendChild(el);
-        const fr = sdEl('p', 'sd-fr-seg', tr[1]);
-        fr.lang = 'fr';
-        wrap.appendChild(fr);
+        const frEl = sdEl('p', 'sd-fr-seg', fr);
+        frEl.lang = 'fr';
+        wrap.appendChild(frEl);
         return wrap;
     };
     let i = 0;
     while (i < trees.length) {
         const g = byHeader[i];
         if (!g) { box.appendChild(seg(i)); i++; continue; }
-        const state = SiddurCore.evaluate(g.atoms, sdCtx);
-        const label = sdAtomsLabel(g.atoms);
-        let host;
-        if (state === 'off' && !sdPrefs.all) {
-            host = sdEl('details', 'sd-group is-off');
-            host.appendChild(sdEl('summary', '', t('tools.sd_group_off', { what: label })));
-        } else {
-            host = sdEl(state === 'on' ? 'details' : 'div', 'sd-group ' + (state === 'on' ? 'is-on' : 'is-unknown'));
-            if (state === 'on') { host.open = true; host.appendChild(sdEl('summary', 'sd-group-badge', t('tools.sd_group_on', { what: label }))); }
-            else if (state === 'unknown') host.appendChild(sdEl('p', 'sd-group-badge', t('tools.sd_group_unknown', { what: label })));
-        }
-        for (let k = g.header; k <= g.to; k++) host.appendChild(seg(k));
-        box.appendChild(host);
+        // la consigne d'en-tête (« בראש חודש מוסיפים: ») devient le nom du bloc, en français si on l'a
+        const headFr = !sdPrefs.heRub && frOf(g.header);
+        const label = headFr ? headFr.replace(/[\s:.]+$/, '') : sdCap(sdAtomsLabel(g.atoms));
+        const bodyText = SiddurCore.plain(trees.slice(g.from, g.to + 1));
+        box.appendChild(sdVarBlock(g.atoms, label, bodyText, host => { for (let k = g.from; k <= g.to; k++) host.appendChild(seg(k)); }));
         i = g.to + 1;
     }
     return box;
