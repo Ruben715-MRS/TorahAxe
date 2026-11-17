@@ -7377,6 +7377,24 @@
     "card_sub_none": "Terminez une partie",
     "row_desc": "Série de jours, niveaux par domaine et badges"
   },
+  "omer": {
+    "title": "Compte de l'Omer",
+    "day": "Jour {n}",
+    "none": "Ce n'est pas la période de l'Omer (du deuxième soir de Pessah à la veille de Chavouot).",
+    "mode_evening": "Le soir (avec bénédiction)",
+    "mode_morning": "Le matin (sans bénédiction)",
+    "note_evening": "On compte debout, à la sortie des étoiles, après avoir dit la bénédiction. Si l'on a oublié, on compte le lendemain sans bénédiction, puis on continue chaque soir avec bénédiction.",
+    "note_morning": "Si l'on a oublié de compter hier soir, on compte dans la journée, sans bénédiction, puis on continue ce soir avec bénédiction. Règle à faire confirmer auprès de votre rabbin.",
+    "blessing_fr": "Béni sois-Tu, Éternel, notre Dieu, Roi de l'univers, qui nous as sanctifiés par Ses commandements et nous as ordonné de compter l'Omer.",
+    "blessing_translit": "Baroukh Ata Adonaï, Élohénou Mélekh ha'olam, achèr kidéchanou bémitsvotav vétsivanou al sfirat ha'Omer.",
+    "open_siddur": "Ouvrir le texte complet dans le Siddour",
+    "siddur_title": "Compte de l'Omer",
+    "load_error": "Le texte n'a pas pu être chargé.",
+    "card_label": "Omer",
+    "card_value": "Jour {n}",
+    "card_sub": "Compter aujourd'hui",
+    "card_sub_tonight": "À compter ce soir"
+  },
   "dates": {
     "title": "Dates personnelles",
     "desc": "Hazkara, anniversaires hébraïques, bar et bat-mitsva, avec rappels.",

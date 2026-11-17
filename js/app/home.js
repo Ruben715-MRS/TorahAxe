@@ -563,6 +563,17 @@ function homeRenderToday(content) {
     }
     content.appendChild(cards);
 
+    // L'Omer : une carte seule pendant les 49 jours, qui ouvre le compte du jour.
+    if (typeof omerTodayCard === 'function') {
+        const oc = omerTodayCard();
+        if (oc) {
+            const orow = hEl('div', 'home-cards');
+            orow.appendChild(homeInfoCard(t('omer.card_label'), t('omer.card_value', { n: oc.n }), t(oc.tonight ? 'omer.card_sub_tonight' : 'omer.card_sub'), () => openOmer('screen-main')));
+            orow.firstChild.classList.add('home-card-wide');
+            content.appendChild(orow);
+        }
+    }
+
     // Le défi du jour et la série : deux cartes côte à côte ; le Chabbat et les jours de fête, il n'y a pas de défi et la série seule s'affiche (gelée, si elle existe).
     if (typeof dailygameIsRestDay === 'function') {
         const row = hEl('div', 'home-cards');
@@ -653,6 +664,11 @@ window.onload = async () => {
 function remindersStart() {
     if (typeof TorahAxeNotifications === 'undefined' || !TorahAxeNotifications.isSupported()) return;
     TorahAxeNotifications.scheduleZmanim();
+    // Toucher une notification ouvre directement l'écran concerné : le compte de l'Omer, ou les dates personnelles.
+    TorahAxeNotifications.onOpen(extra => {
+        if (extra.route === 'omer' && typeof openOmer === 'function') openOmer('screen-main', { day: extra.day, mode: extra.mode });
+        else if (extra.route === 'dates' && typeof openDates === 'function') openDates('screen-main');
+    });
     try {
         window.Capacitor.Plugins.App.addListener('appStateChange', (state) => { if (state && state.isActive) TorahAxeNotifications.scheduleZmanim(); });
     } catch (e) { /* sans l'événement de l'app : on se rabat sur la visibilité de la page */ }

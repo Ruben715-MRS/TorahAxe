@@ -83,7 +83,11 @@
                 if (state !== 'granted') return 0;
                 var list = items.map(function (item, i) {
                     var text = item.kind === 'personal' ? dates.describe(item, deps.tr, term) : core.describe(item, deps.tr, place, deps.locale);
-                    return { id: ID_BASE + i, title: text.title, body: text.body, schedule: { at: new Date(item.at), allowWhileIdle: true } };
+                    var n = { id: ID_BASE + i, title: text.title, body: text.body, schedule: { at: new Date(item.at), allowWhileIdle: true } };
+                    // Ce qu'on ouvre en touchant la notification (voir onOpen)
+                    if (item.kind === 'omer') n.extra = { route: 'omer', mode: item.when === 'morning' ? 'morning' : 'evening', day: item.day };
+                    else if (item.kind === 'personal') n.extra = { route: 'dates' };
+                    return n;
                 });
                 return p.schedule({ notifications: list }).then(function () { return list.length; });
             });
@@ -96,6 +100,19 @@
         return chain;
     }
 
+    // Quand on touche une de nos notifications : handler(extra) avec { route: 'omer', mode, day } ou { route: 'dates' }. Sans plugin : rien.
+    function onOpen(handler) {
+        var p = deps.plugin();
+        if (!p || typeof p.addListener !== 'function') return false;
+        try {
+            p.addListener('localNotificationActionPerformed', function (ev) {
+                var n = ev && ev.notification;
+                if (n && n.extra && n.extra.route) handler(n.extra);
+            });
+        } catch (e) { return false; }
+        return true;
+    }
+
     // Un rappel d'essai dans quelques secondes, pour vérifier que les notifications arrivent bien.
     function sendTest(seconds) {
         var p = deps.plugin();
@@ -106,5 +123,5 @@
         }).catch(function () { return false; });
     }
 
-    return { ID_BASE: ID_BASE, isSupported: isSupported, permission: permission, enableZmanim: enableZmanim, scheduleZmanim: scheduleZmanim, sendTest: sendTest };
+    return { ID_BASE: ID_BASE, isSupported: isSupported, permission: permission, enableZmanim: enableZmanim, scheduleZmanim: scheduleZmanim, onOpen: onOpen, sendTest: sendTest };
 }));

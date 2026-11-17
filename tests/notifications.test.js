@@ -121,3 +121,26 @@ test('l\'Omer : le soir est actif par défaut, le matin non ; le matin se lit sa
     const tr = (k, p) => k + JSON.stringify(p || {});
     assert.ok(/morning_body/.test(Reminder.describe(m, tr, ZmanimCore.normalizePlace(place), 'fr').body));
 });
+
+test('toucher une notification : le rappel de l\'Omer porte de quoi ouvrir le compte du jour', async () => {
+    const state = { permission: 'granted', pending: [] };
+    const settings = { on: true, candles: { on: false }, omer: { on: true, at: 'tzeit', text: 'count', morning: true }, roshChodesh: { on: false }, levana: { on: false }, days: [], custom: {} };
+    const now = Date.parse('2027-04-25T10:00:00+02:00');
+    const { api, plugin } = build(state, settings, { now: () => now });
+    await api.scheduleZmanim();
+    const list = plugin.calls.schedule[0].notifications.filter(n => n.extra && n.extra.route === 'omer');
+    assert.ok(list.length >= 6);
+    assert.ok(list.some(n => n.extra.mode === 'morning') && list.some(n => n.extra.mode === 'evening'));
+    assert.ok(list.every(n => Number.isInteger(n.extra.day)));
+    // l'écoute du toucher
+    let registered = null;
+    const plugin2 = Object.assign(fakePlugin(state), { addListener: (name, fn) => { registered = { name, fn }; return Promise.resolve({}); } });
+    const api2 = create({ plugin: () => plugin2, core: () => Reminder, settings: () => settings, place: () => null, tr: k => k, now: () => now, locale: 'fr' });
+    const got = [];
+    assert.strictEqual(api2.onOpen(e => got.push(e)), true);
+    assert.strictEqual(registered.name, 'localNotificationActionPerformed');
+    registered.fn({ notification: { extra: { route: 'omer', mode: 'evening', day: 8 } } });
+    registered.fn({ notification: { extra: null } });
+    assert.deepStrictEqual(got, [{ route: 'omer', mode: 'evening', day: 8 }]);
+    assert.strictEqual(create({ plugin: () => null, core: () => Reminder, tr: k => k, now: () => now, locale: 'fr' }).onOpen(() => {}), false);
+});
