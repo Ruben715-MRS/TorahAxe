@@ -257,3 +257,51 @@
 #screen-tool-siddur .sd-section-box { scroll-margin-top: calc(env(safe-area-inset-top, 0px) + 116px); }
 /* Un intertitre du livre, en français : plus appuyé qu'une consigne. */
 .sd-rub.sd-rub-head { margin-top: 20px; color: var(--text-dark); font-weight: 600; font-size: max(14px, calc(var(--sd-size) * 0.64)); }
+
+/* =========================================================================
+   Refonte, étape 5 : le tableau des interruptions (js/app/siddur.js, sdOpenInterruptions ; js/interruptionsCore.js).
+   ========================================================================= */
+:root { --ix-oui: #1d7448; --ix-oui-bg: #e2f3e9; --ix-cond: #8a5600; --ix-cond-bg: #fbedd0; --ix-non: #ad2a20; --ix-non-bg: #fbe3e0; }
+:root[data-theme="dark"] { --ix-oui: #67cf98; --ix-oui-bg: #173527; --ix-cond: #eab14a; --ix-cond-bg: #3b2c10; --ix-non: #f28479; --ix-non-bg: #3d1c19; }
+/* Le bouton flottant, à portée de pouce. */
+.sd-fab { position: fixed; z-index: 55; left: 50%; transform: translateX(-50%); bottom: calc(env(safe-area-inset-bottom, 0px) + 18px); display: inline-flex; align-items: center; gap: 8px; min-height: 46px; padding: 10px 18px; border: 0; border-radius: 99px; background: var(--primary-blue, #1d3566); color: #fff; font: inherit; font-size: 14px; font-weight: 600; white-space: nowrap; box-shadow: 0 8px 22px rgba(0, 0, 0, 0.28); cursor: pointer; }
+:root[data-theme="dark"] .sd-fab { background: #2a5db0; }
+.sd-fab svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; }
+.sd-fab:focus-visible { outline: 3px solid var(--favorite-yellow, #d4a017); outline-offset: 2px; }
+#screen-tool-siddur.is-reading .sd-nav { padding-bottom: 96px; }
+#screen-tool-siddur.is-reading .sd-content { padding-bottom: 80px; }
+/* La feuille. */
+.sd-ix-where { display: flex; flex-direction: column; gap: 6px; }
+.sd-ix-label { font-size: 13px; font-weight: 700; color: var(--muted-text); }
+.sd-ix-select { width: 100%; min-height: 46px; padding: 10px 12px; border: 1px solid var(--border-soft); border-radius: 12px; background: var(--surface); color: var(--text-dark); font: inherit; font-size: 15px; font-weight: 600; }
+.sd-ix-hint { margin: 0; font-size: 12.5px; color: var(--muted-text); }
+.sd-ix-hint:empty { display: none; }
+.sd-ix-views button { flex: 1; padding: 0 12px; }
+.sd-ix-views button[aria-pressed="true"] { background: var(--selected-tint); border-color: var(--primary-blue); }
+.sd-ix-out { display: flex; flex-direction: column; gap: 8px; }
+.sd-ix-empty { margin: 8px 4px; font-size: 14px; color: var(--muted-text); }
+.sd-ix-sum { margin: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.sd-ix-list { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--border-soft); border-radius: 14px; padding: 0 12px; }
+.sd-ix-row { display: grid; grid-template-columns: 1fr auto; gap: 2px 10px; align-items: center; padding: 10px 0; border-top: 1px solid var(--border-soft); }
+.sd-ix-row:first-child { border-top: 0; }
+.sd-ix-act { font-size: 14.5px; font-weight: 500; color: var(--text-dark); }
+.sd-ix-det { grid-column: 1 / -1; font-size: 13px; line-height: 1.4; color: var(--muted-text); }
+.sd-ix-pill { flex: none; font-size: 11.5px; font-weight: 700; padding: 3px 9px; border-radius: 99px; white-space: nowrap; }
+.sd-ix-pill.is-oui { background: var(--ix-oui-bg); color: var(--ix-oui); }
+.sd-ix-pill.is-cond { background: var(--ix-cond-bg); color: var(--ix-cond); }
+.sd-ix-pill.is-non { background: var(--ix-non-bg); color: var(--ix-non); }
+.sd-ix-pill.is-nil { background: var(--border-soft); color: var(--muted-text); }
+.sd-ix-note { margin: 4px 2px 0; font-size: 12px; line-height: 1.45; color: var(--muted-text); }
+/* La vue tableau : défile dans les deux sens, en-têtes et première colonne fixes. */
+.sd-ix-gridwrap { overflow: auto; max-height: 60vh; max-height: 60dvh; border: 1px solid var(--border-soft); border-radius: 12px; background: var(--surface); touch-action: pan-x pan-y; }
+.sd-ix-grid { border-collapse: separate; border-spacing: 0; font-size: 11.5px; line-height: 1.3; }
+.sd-ix-grid th, .sd-ix-grid td { padding: 6px 7px; border-right: 1px solid var(--border-soft); border-bottom: 1px solid var(--border-soft); vertical-align: top; text-align: left; color: var(--text-dark); }
+.sd-ix-grid thead th { position: sticky; top: 0; z-index: 2; background: var(--surface); font-weight: 700; }
+.sd-ix-grid td, .sd-ix-grid thead th { min-width: 96px; max-width: 120px; }
+.sd-ix-grid tbody th { position: sticky; left: 0; z-index: 1; background: var(--surface); font-weight: 700; min-width: 130px; max-width: 150px; }
+.sd-ix-grid .sd-ix-corner { left: 0; z-index: 3; }
+.sd-ix-grid td.is-o { background: var(--ix-oui-bg); color: var(--ix-oui); }
+.sd-ix-grid td.is-c { background: var(--ix-cond-bg); color: var(--ix-cond); }
+.sd-ix-grid td.is-n { background: var(--ix-non-bg); color: var(--ix-non); }
+.sd-ix-grid td.is-nil { color: var(--muted-text); }
+.sd-ix-grid tr.is-here th { box-shadow: inset 4px 0 0 var(--favorite-yellow, #d4a017); }

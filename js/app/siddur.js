@@ -149,7 +149,7 @@ function sdPrecache() {
     const ids = [];
     sdIndex.groups.forEach(g => g.sections.forEach(s => ids.push(s.id)));
     const next = () => {
-        if (!ids.length) return sdFetchJson(SD_DATA + 'fr/index.json').then(idx => Promise.all(Object.keys(idx.sections || {}).map(sdLoadFr)));
+        if (!ids.length) return sdLoadInter().then(() => sdFetchJson(SD_DATA + 'fr/index.json')).then(idx => Promise.all(Object.keys(idx.sections || {}).map(sdLoadFr)));
         return sdLoadSection(ids.shift()).then(next);
     };
     next().then(() => {
@@ -731,6 +731,14 @@ function sdRenderHome(body) {
     });
     body.appendChild(shelves);
 
+    // Outils de la prière
+    body.appendChild(sdEl('h3', 'home-section-title', 'Outils'));
+    const tools = sdEl('div', 'home-rows');
+    const ix = sdRowButton({ he: 'הפסקות', title: 'Tableau des interruptions', desc: 'Ce qu\'on peut répondre à chaque moment de la prière (rav Yits\'haq Yossef)' }, () => sdOpenInterruptions(null, false));
+    ix.id = 'sd-ix-home';
+    tools.appendChild(ix);
+    body.appendChild(tools);
+
     // Source
     const foot = sdEl('section', 'sd-foot');
     foot.appendChild(sdEl('p', 'tool-small', t('tools.sd_source', { edition: sdIndex.edition })));
@@ -840,6 +848,124 @@ function sdShowPart(nav, id) {
     b.setAttribute('aria-current', 'true');
     const left = b.offsetLeft - (nav.clientWidth - b.offsetWidth) / 2;
     if (Math.abs(nav.scrollLeft - left) > 4) nav.scrollTo({ left: Math.max(0, left), behavior: 'auto' });
+}
+
+// --- Le tableau des interruptions (refonte, étape 5) -------------------------------------------------------------------------------------
+// « Puis-je répondre ? » : où l'on est dans la prière (détecté depuis la lecture, ou choisi) → tout ce qu'on peut dire, en trois couleurs.
+// Données : data/siddur/interruptions.json (js/interruptionsCore.js). Contenu halakhique transcrit du Maguen Avot : **à relire**.
+let sdInter = null;
+const SD_IX_PILL = { o: ['Oui', 'is-oui'], c: ['Avec limite', 'is-cond'], n: ['Non', 'is-non'] };
+function sdLoadInter() {
+    if (sdInter) return Promise.resolve(sdInter);
+    return sdFetchJson(SD_DATA + 'interruptions.json').then(d => { sdInter = d; return d; });
+}
+// La partie lue et, dans la Amida, la bénédiction en cours (le dernier nom de bénédiction passé sous la barre).
+function sdReadingPlace() {
+    const screen = toolEl('screen-tool-siddur');
+    const bar = toolEl('sd-readbar');
+    if (!screen || !bar) return { id: sdView.ids[0], bk: null };
+    const limit = bar.getBoundingClientRect().bottom + 8;
+    let sec = sdView.ids[0];
+    screen.querySelectorAll('.sd-section-box').forEach(b => { if (b.getBoundingClientRect().top <= limit) sec = b.id.replace('sd-sec-', ''); });
+    let bk = null;
+    screen.querySelectorAll('#sd-sec-' + sec + ' .sd-bk').forEach(h => { if (h.getBoundingClientRect().top <= limit + 40) bk = h.dataset.bk; });
+    return { id: sec, bk };
+}
+function sdAddInterFab(wrap) {
+    if (typeof InterruptionsCore === 'undefined') return;
+    const prayer = sdView.ids.some(id => { const f = sdFindSection(id); return f && ['reveil', 'chacharit', 'minha', 'arvit'].indexOf(f.group.id) !== -1; })
+        || sdView.ids.some(id => InterruptionsCore.rowForPlace(id));
+    if (!prayer || wrap.querySelector('.sd-fab')) return;
+    const fab = sdEl('button', 'sd-fab');
+    fab.type = 'button';
+    fab.id = 'sd-fab';
+    fab.setAttribute('aria-haspopup', 'dialog');
+    fab.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 9v6M14 9v6"/></svg>';   // icône fixe
+    fab.appendChild(document.createTextNode('Puis-je répondre ?'));
+    fab.onclick = () => { const pl = sdReadingPlace(); sdOpenInterruptions(InterruptionsCore.rowForPlace(pl.id, pl.bk), true); };
+    wrap.appendChild(fab);
+}
+function sdIxPill(cell) {
+    const p = cell ? SD_IX_PILL[cell.c] : ['Non précisé', 'is-nil'];
+    return sdEl('span', 'sd-ix-pill ' + p[1], p[0]);
+}
+function sdOpenInterruptions(rowId, detected) {
+    sdLoadInter().then(data => {
+        let cur = data.rows.find(r => r.id === rowId) || null;
+        let view = 'list';
+        sdSheet('Puis-je répondre ?', (body) => {
+            const where = sdEl('div', 'sd-ix-where');
+            const lab = sdEl('label', 'sd-ix-label', 'Où en êtes-vous dans la prière ?');
+            lab.setAttribute('for', 'sd-ix-row');
+            where.appendChild(lab);
+            const sel = sdEl('select', 'sd-ix-select');
+            sel.id = 'sd-ix-row';
+            if (!cur) { const o = sdEl('option', '', 'Choisir un moment…'); o.value = ''; sel.appendChild(o); }
+            data.rows.forEach(r => { const o = sdEl('option', '', r.fr); o.value = r.id; if (cur && r.id === cur.id) o.selected = true; sel.appendChild(o); });
+            where.appendChild(sel);
+            const hint = sdEl('p', 'sd-ix-hint', cur && detected ? 'Détecté d\'après votre lecture : changez-le si besoin.' : '');
+            where.appendChild(hint);
+            body.appendChild(where);
+            const tabs = sdEl('div', 'sd-seg-btns sd-ix-views');
+            tabs.setAttribute('role', 'group');
+            tabs.setAttribute('aria-label', 'Affichage');
+            const mk = (id, label) => { const b = sdEl('button', '', label); b.type = 'button'; b.dataset.view = id; b.setAttribute('aria-pressed', view === id ? 'true' : 'false'); b.onclick = () => { view = id; draw(); }; tabs.appendChild(b); };
+            mk('list', 'Ce moment');
+            mk('grid', 'Tout le tableau');
+            body.appendChild(tabs);
+            const out = sdEl('div', 'sd-ix-out');
+            out.setAttribute('aria-live', 'polite');
+            body.appendChild(out);
+            const note = sdEl('p', 'sd-ix-note', 'Tableau écrit par le rav Yits\'haq Yossef chalita, tel qu\'imprimé dans le siddour Maguen Avot ; transcrit pour l\'application, à vérifier sur le livre. « Idem » : comme la case du dessus. En cas de doute, demandez à votre rabbin.');
+            body.appendChild(note);
+            sel.onchange = () => { cur = data.rows.find(r => r.id === sel.value) || null; hint.textContent = ''; const blank = sel.querySelector('option[value=""]'); if (blank && cur) blank.remove(); draw(); };
+            function draw() {
+                tabs.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b.dataset.view === view ? 'true' : 'false'));
+                toolClear(out);
+                if (view === 'grid') { out.appendChild(sdIxGrid(data, cur)); return; }
+                if (!cur) { out.appendChild(sdEl('p', 'sd-ix-empty', 'Choisissez le moment de la prière où vous êtes : la liste de ce que vous pouvez dire s\'affiche ici.')); return; }
+                const n = InterruptionsCore.tally(cur);
+                const sum = sdEl('p', 'sd-ix-sum');
+                [['o', n.o + ' oui'], ['c', n.c + ' avec limite'], ['n', n.n + ' non']].forEach(([c, txt]) => sum.appendChild(sdEl('span', 'sd-ix-pill ' + SD_IX_PILL[c][1], txt)));
+                out.appendChild(sum);
+                InterruptionsCore.byGroup(data, cur).forEach(g => {
+                    out.appendChild(sdEl('h4', 'sd-sheet-sub', g.group.fr));
+                    const list = sdEl('div', 'sd-ix-list');
+                    g.items.forEach(it => {
+                        const row = sdEl('div', 'sd-ix-row');
+                        row.appendChild(sdEl('span', 'sd-ix-act', it.col.fr));
+                        row.appendChild(sdIxPill(it.cell));
+                        const showText = it.cell ? !/^(Interdit|Obligatoire|Autorisé)$/.test(it.cell.t) || it.cell.idem : true;
+                        if (showText) row.appendChild(sdEl('span', 'sd-ix-det', it.cell ? it.cell.t + (it.cell.idem ? ' (« Idem » dans le livre)' : '') : 'Case vide dans le tableau'));
+                        list.appendChild(row);
+                    });
+                    out.appendChild(list);
+                });
+            }
+            draw();
+        });
+    }).catch(() => sdSheet('Puis-je répondre ?', (body) => body.appendChild(sdEl('p', 'sd-info', 'Le tableau n\'a pas pu être chargé. Vérifiez votre connexion.'))));
+}
+// La vue « comme dans le livre » : moments en lignes, cas en colonnes, première colonne et en-têtes fixes, cases en couleur.
+function sdIxGrid(data, cur) {
+    const wrap = sdEl('div', 'sd-ix-gridwrap');
+    const table = sdEl('table', 'sd-ix-grid');
+    const thead = sdEl('thead');
+    const hr = sdEl('tr');
+    hr.appendChild(sdEl('th', 'sd-ix-corner', 'Moment ↓ · Cas →'));
+    data.cols.forEach(c => hr.appendChild(sdEl('th', '', c.fr)));
+    thead.appendChild(hr);
+    table.appendChild(thead);
+    const tb = sdEl('tbody');
+    data.rows.forEach(r => {
+        const tr = sdEl('tr', cur && r.id === cur.id ? 'is-here' : '');
+        tr.appendChild(sdEl('th', '', r.fr));
+        r.cells.forEach(cell => tr.appendChild(sdEl('td', cell ? 'is-' + cell.c : 'is-nil', cell ? cell.t + (cell.idem ? ' (idem)' : '') : '—')));
+        tb.appendChild(tr);
+    });
+    table.appendChild(tb);
+    wrap.appendChild(table);
+    return wrap;
 }
 
 function sdSwitch(label, on, onToggle) {
@@ -1035,6 +1161,7 @@ function sdRenderReader(body) {
         if (sdPrefs.fr) content.appendChild(sdEl('p', 'sd-fr-note', t('tools.sd_fr_note')));
         sections.forEach(section => content.appendChild(sdRenderSection(section)));
         sdAddNav(wrap);
+        sdAddInterFab(wrap);
         if (!bar.querySelector('.sd-parts')) { const tabs = sdPartsNav(); if (tabs) bar.insertBefore(tabs, bar.querySelector('.sd-read-prog')); }
         const screen = toolEl('screen-tool-siddur');
         if (sdRestoreTop !== null) { screen.scrollTop = sdRestoreTop; sdRestoreTop = null; }
@@ -1349,7 +1476,7 @@ function sdMarkNames(node) {
     });
     node.c = out;
 }
-const SD_BOW_SVG = '<svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M2 1.5v4A4.5 4.5 0 0 0 6.5 10H10M7.6 7.4 10 10l-2.4 2.4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const SD_BOW_SVG = '<svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M11 2H7A4 4 0 0 0 3.2 5.8V10.6M1.3 8.7l1.9 2.1 1.9-2.1" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 function sdSpecialNode(node) {
     if (node.k === 'bow') {
         const b = sdEl('span', 'sd-bow');
@@ -1499,6 +1626,7 @@ function sdRenderSection(section) {
                 box.appendChild(lg);
             }
             const h = sdEl('p', 'sd-bk');
+            h.dataset.bk = b.id;
             h.appendChild(sdEl('span', 'sd-bk-fr', b.fr));
             const he = sdEl('span', 'sd-bk-he', b.he);
             he.lang = 'he'; he.dir = 'rtl';

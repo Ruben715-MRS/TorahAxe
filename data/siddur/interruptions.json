@@ -1,0 +1,1456 @@
+{
+ "v": 1,
+ "source": "Tableau des interruptions dans la prière, écrit par le rav Yits'haq Yossef chalita (siddour Maguen Avot, Zmanim Diffusion).",
+ "note": "Transcrit pour l'application depuis le livre imprimé ; à relire sur le livre.",
+ "groups": [
+  {
+   "id": "qaddich",
+   "fr": "Qaddich"
+  },
+  {
+   "id": "qedoucha",
+   "fr": "Qédoucha"
+  },
+  {
+   "id": "repondre",
+   "fr": "Répondre à l'officiant et à l'assemblée"
+  },
+  {
+   "id": "tefilot",
+   "fr": "Mes propres bénédictions"
+  },
+  {
+   "id": "tora",
+   "fr": "Lecture de la Tora"
+  },
+  {
+   "id": "autres",
+   "fr": "Autres cas"
+  }
+ ],
+ "cols": [
+  {
+   "id": "talit",
+   "group": "tefilot",
+   "fr": "Bénédiction du talit et des téfilin"
+  },
+  {
+   "id": "baroukhHou",
+   "group": "repondre",
+   "fr": "« Baroukh hou ouvaroukh chemo »"
+  },
+  {
+   "id": "amenQaddich",
+   "group": "qaddich",
+   "fr": "Les cinq « Amen » du Qaddich"
+  },
+  {
+   "id": "amenTitqabal",
+   "group": "qaddich",
+   "fr": "« Amen » de « Titqabal » et « Al Israël »"
+  },
+  {
+   "id": "amenViqarev",
+   "group": "qaddich",
+   "fr": "« Amen » de « Viqarev méchi'hé »"
+  },
+  {
+   "id": "amenBerakha",
+   "group": "repondre",
+   "fr": "« Amen » après une bénédiction"
+  },
+  {
+   "id": "amenChomea",
+   "group": "repondre",
+   "fr": "« Amen » de « Choméa téfila » et « HaEl haqadoch »"
+  },
+  {
+   "id": "yehe",
+   "group": "qaddich",
+   "fr": "« Yéhé chémé rabba »"
+  },
+  {
+   "id": "qedoucha",
+   "group": "qedoucha",
+   "fr": "Répondre à la Qédoucha"
+  },
+  {
+   "id": "naqdichakh",
+   "group": "qedoucha",
+   "fr": "« Naqdichakh » (dans la Qédoucha)"
+  },
+  {
+   "id": "qedouchaYotser",
+   "group": "qedoucha",
+   "fr": "Qédoucha du Yotser et de Ouva léTsion"
+  },
+  {
+   "id": "chemaVerset",
+   "group": "repondre",
+   "fr": "1er verset du Chéma avec l'assemblée"
+  },
+  {
+   "id": "treize",
+   "group": "repondre",
+   "fr": "Les treize attributs de miséricorde"
+  },
+  {
+   "id": "modim",
+   "group": "repondre",
+   "fr": "Modim dérabanan"
+  },
+  {
+   "id": "berikh",
+   "group": "tora",
+   "fr": "Bérikh Chémé"
+  },
+  {
+   "id": "vezot",
+   "group": "tora",
+   "fr": "Vézot haTora"
+  },
+  {
+   "id": "acherYatsar",
+   "group": "tefilot",
+   "fr": "Acher yatsar"
+  },
+  {
+   "id": "tonnerre",
+   "group": "tefilot",
+   "fr": "Bénédiction du tonnerre et des éclairs"
+  },
+  {
+   "id": "barekhou",
+   "group": "repondre",
+   "fr": "Répondre à Barékhou"
+  },
+  {
+   "id": "monter",
+   "group": "tora",
+   "fr": "Monter à la Tora"
+  },
+  {
+   "id": "piyoutim",
+   "group": "autres",
+   "fr": "Réciter des piyoutim"
+  },
+  {
+   "id": "officiant",
+   "group": "autres",
+   "fr": "L'officiant doit-il répondre ?"
+  },
+  {
+   "id": "penser",
+   "group": "autres",
+   "fr": "Penser à des paroles de Tora, regarder un compte"
+  },
+  {
+   "id": "birkhotTora",
+   "group": "tefilot",
+   "fr": "Bénédictions de la Tora"
+  }
+ ],
+ "rows": [
+  {
+   "id": "avantTora",
+   "fr": "Avant les bénédictions de la Tora",
+   "cells": [
+    {
+     "t": "Autorisé",
+     "c": "o"
+    },
+    {
+     "t": "Autorisé",
+     "c": "o"
+    },
+    {
+     "t": "Obligatoire",
+     "c": "o"
+    },
+    {
+     "t": "Obligatoire",
+     "c": "o"
+    },
+    {
+     "t": "Obligatoire",
+     "c": "o"
+    },
+    {
+     "t": "Obligatoire",
+     "c": "o"
+    },
+    {
+     "t": "Obligatoire",
+     "c": "o"
+    },
+    {
+     "t": "Jusqu'à « daamiran béalma »",
+     "c": "c"
+    },
+    {
+     "t": "« Qadoch » et « baroukh » uniquement",
+     "c": "c"
+    },
+    {
+     "t": "Autorisé",
+     "c": "o"
+    },
+    null,
+    {
+     "t": "Obligatoire",
+     "c": "o"
+    },
+    {
+     "t": "Obligatoire",
+     "c": "o"
+    },
+    {
+     "t": "Obligatoire",
+     "c": "o"
+    },
+    {
+     "t": "Autorisé",
+     "c": "o"
+    },
+    {
+     "t": "Autorisé",
+     "c": "o"
+    },
+    {
+     "t": "Autorisé",
+     "c": "o"
+    },
+    {
+     "t": "Obligatoire",
+     "c": "o"
+    },
+    {
+     "t": "Obligatoire",
+     "c": "o"
+    },
+    {
+     "t": "On en a le droit",
+     "c": "o"
+    },
+    {
+     "t": "Autorisé si on ne dit pas de verset",
+     "c": "c"
+    },
+    {
+     "t": "Autorisé",
+     "c": "o"
+    },
+    {
+     "t": "A le droit, mais il vaut mieux éviter",
+     "c": "c"
+    },
+    null
+   ]
+  },
+  {
+   "id": "birkhot",
+   "fr": "Au milieu d'une bénédiction longue des Birkhot hacha'har",
+   "cells": [
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Obligatoire",
+     "c": "o"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "S'abstenir",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Jusqu'à « Yitbarakh » seulement",
+     "c": "c"
+    },
+    {
+     "t": "« Qadoch » et « baroukh » uniquement",
+     "c": "c"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "On ne le dit pas",
+     "c": "n"
+    },
+    {
+     "t": "Les trois premiers mots uniquement",
+     "c": "c"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "On le pense uniquement",
+     "c": "c"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "On répond",
+     "c": "o"
+    },
+    {
+     "t": "On termine d'abord la berakha",
+     "c": "c"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    null,
+    {
+     "t": "Divré Tora : interdit · compte : éviter",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    }
+   ]
+  },
+  {
+   "id": "elokenou",
+   "fr": "Depuis « Élokénou » jusqu'à « Baroukh chéamar »",
+   "cells": [
+    {
+     "t": "Autorisé",
+     "c": "o"
+    },
+    {
+     "t": "On en a le droit",
+     "c": "o"
+    },
+    {
+     "t": "Obligatoire",
+     "c": "o"
+    },
+    {
+     "t": "Obligatoire",
+     "c": "o"
+    },
+    {
+     "t": "Obligatoire",
+     "c": "o"
+    },
+    {
+     "t": "Obligatoire",
+     "c": "o"
+    },
+    {
+     "t": "Obligatoire",
+     "c": "o"
+    },
+    {
+     "t": "Obligation de répondre entièrement",
+     "c": "o"
+    },
+    {
+     "t": "On a l'obligation de répondre entièrement",
+     "c": "o"
+    },
+    {
+     "t": "On en a le droit",
+     "c": "o"
+    },
+    {
+     "t": "On en a le droit",
+     "c": "o"
+    },
+    {
+     "t": "Obligatoire",
+     "c": "o"
+    },
+    {
+     "t": "Obligatoire",
+     "c": "o"
+    },
+    {
+     "t": "Les trois premiers mots uniquement",
+     "c": "c",
+     "idem": true
+    },
+    {
+     "t": "On en a le droit",
+     "c": "o"
+    },
+    {
+     "t": "On en a le droit",
+     "c": "o"
+    },
+    {
+     "t": "On peut le dire",
+     "c": "o"
+    },
+    {
+     "t": "Obligatoire",
+     "c": "o"
+    },
+    {
+     "t": "Obligatoire",
+     "c": "o"
+    },
+    {
+     "t": "On en a le droit",
+     "c": "o"
+    },
+    {
+     "t": "On en a le droit",
+     "c": "o"
+    },
+    {
+     "t": "Il en a le droit",
+     "c": "o"
+    },
+    null,
+    {
+     "t": "Autorisé",
+     "c": "o"
+    }
+   ]
+  },
+  {
+   "id": "baroukhCheamar",
+   "fr": "Au milieu de « Baroukh chéamar »",
+   "cells": [
+    {
+     "t": "On les met entre « Yichtaba'h » et le « Yotser »",
+     "c": "c"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Obligatoire",
+     "c": "o"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "S'abstenir",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Jusqu'à « Yitbarakh »",
+     "c": "c"
+    },
+    {
+     "t": "« Qadoch » et « baroukh » uniquement",
+     "c": "c"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "S'incliner uniquement",
+     "c": "c"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "On le pense uniquement",
+     "c": "c"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "On répond",
+     "c": "o"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "A le droit si ceci ne le trouble pas",
+     "c": "c"
+    },
+    {
+     "t": "Divré Tora : interdit · compte : éviter",
+     "c": "n"
+    },
+    {
+     "t": "Pendant les « psouké dézimra »",
+     "c": "c"
+    }
+   ]
+  },
+  {
+   "id": "pdz",
+   "fr": "Au milieu des Psouké dézimra (de « Mizmor létoda » à « Yichtaba'h »)",
+   "cells": [
+    {
+     "t": "Permis entre les mizmorim ; mieux vaut les mettre entre « Yichtaba'h » et le « Yotser »",
+     "c": "c"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Obligatoire",
+     "c": "o"
+    },
+    {
+     "t": "Autorisé",
+     "c": "o"
+    },
+    {
+     "t": "On répond",
+     "c": "o"
+    },
+    {
+     "t": "Autorisé",
+     "c": "o"
+    },
+    {
+     "t": "On en a le droit",
+     "c": "o"
+    },
+    {
+     "t": "Jusqu'à « daamiran béalma »",
+     "c": "c"
+    },
+    {
+     "t": "« Qadoch », « baroukh » et « Yimlokh »",
+     "c": "c"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit, mais chanter les « psouké dézimra » comme si l'on disait le Chéma",
+     "c": "n"
+    },
+    {
+     "t": "Il est interdit de le dire",
+     "c": "n"
+    },
+    {
+     "t": "Les trois premiers mots uniquement",
+     "c": "c"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "On le pense uniquement",
+     "c": "c"
+    },
+    {
+     "t": "On le dira entre « Yichtaba'h » et le « Yotser »",
+     "c": "n"
+    },
+    {
+     "t": "Obligatoire",
+     "c": "o"
+    },
+    {
+     "t": "Obligatoire",
+     "c": "o"
+    },
+    {
+     "t": "On peut monter et lire à voix basse",
+     "c": "c"
+    },
+    {
+     "t": "Ce n'est pas une bonne habitude",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "On dit « Ba'har banou », et les autres entre « Yichtaba'h » et le « Yotser »",
+     "c": "c"
+    }
+   ]
+  },
+  {
+   "id": "yichtabah",
+   "fr": "Au milieu de « Yichtaba'h », après avoir commencé la berakha et dit le Nom divin",
+   "cells": [
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Autorisé",
+     "c": "o"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Autorisé",
+     "c": "o"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Obligatoire jusqu'à « daamiran béalma »",
+     "c": "c"
+    },
+    {
+     "t": "« Qadoch » et « baroukh » uniquement",
+     "c": "c"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    null,
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    }
+   ]
+  },
+  {
+   "id": "yichtabahYotser",
+   "fr": "Entre « Yichtaba'h » et le « Yotser »",
+   "cells": [
+    {
+     "t": "On en a le droit",
+     "c": "o"
+    },
+    {
+     "t": "On en a le droit",
+     "c": "o"
+    },
+    {
+     "t": "Obligatoire",
+     "c": "o"
+    },
+    {
+     "t": "On en a le droit",
+     "c": "o"
+    },
+    {
+     "t": "On répond",
+     "c": "o"
+    },
+    {
+     "t": "Obligatoire",
+     "c": "o"
+    },
+    {
+     "t": "Obligatoire",
+     "c": "o"
+    },
+    {
+     "t": "Obligatoire jusqu'à « daamiran béalma »",
+     "c": "c",
+     "idem": true
+    },
+    {
+     "t": "« Qadoch », « baroukh » et « Yimlokh »",
+     "c": "c"
+    },
+    {
+     "t": "On en a le droit",
+     "c": "o"
+    },
+    null,
+    {
+     "t": "On le récite avec l'assemblée",
+     "c": "o"
+    },
+    {
+     "t": "Obligatoire",
+     "c": "o"
+    },
+    {
+     "t": "On le dit entièrement",
+     "c": "o"
+    },
+    {
+     "t": "On en a le droit",
+     "c": "o"
+    },
+    {
+     "t": "On en a le droit",
+     "c": "o"
+    },
+    {
+     "t": "Autorisé",
+     "c": "o"
+    },
+    {
+     "t": "Obligatoire",
+     "c": "o"
+    },
+    {
+     "t": "Obligatoire",
+     "c": "o"
+    },
+    {
+     "t": "On en a le droit",
+     "c": "o"
+    },
+    {
+     "t": "Il vaut mieux ne pas suivre cette habitude",
+     "c": "n"
+    },
+    {
+     "t": "Il en a le droit",
+     "c": "o"
+    },
+    {
+     "t": "Autorisé",
+     "c": "o"
+    },
+    {
+     "t": "On en a le droit",
+     "c": "o"
+    }
+   ]
+  },
+  {
+   "id": "barekhouYotser",
+   "fr": "Entre « Barékhou » et le « Yotser »",
+   "cells": [
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Autorisé",
+     "c": "o"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "S'abstenir",
+     "c": "n"
+    },
+    {
+     "t": "On peut le faire",
+     "c": "o"
+    },
+    null,
+    {
+     "t": "Jusqu'à « Yitbarakh »",
+     "c": "c"
+    },
+    {
+     "t": "« Qadoch » et « baroukh » uniquement",
+     "c": "c"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "On met la main sur les yeux",
+     "c": "c"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "On s'incline",
+     "c": "c"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    null,
+    {
+     "t": "Obligatoire",
+     "c": "o"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Autorisé",
+     "c": "o"
+    },
+    null
+   ]
+  },
+  {
+   "id": "chemaParagraphe",
+   "fr": "Au milieu d'un paragraphe du Chéma et de ses bénédictions",
+   "cells": [
+    {
+     "t": "Attendre d'être entre deux paragraphes",
+     "c": "c"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Obligatoire",
+     "c": "o"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "S'abstenir de préférence",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Jusqu'à « Yitbarakh » seulement",
+     "c": "c"
+    },
+    {
+     "t": "« Qadoch » et « baroukh » uniquement",
+     "c": "c"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Les trois premiers mots uniquement",
+     "c": "c"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "On le pense uniquement",
+     "c": "c"
+    },
+    {
+     "t": "Le dire après la Amida, moins de 72 minutes plus tard",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "On répond",
+     "c": "o"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "S'il est certain que ceci ne le troublera pas",
+     "c": "c"
+    },
+    {
+     "t": "Divré Tora : interdit · compte : mieux vaut éviter",
+     "c": "n"
+    },
+    {
+     "t": "On attend de les dire entre les paragraphes",
+     "c": "c"
+    }
+   ]
+  },
+  {
+   "id": "chemaEntre",
+   "fr": "Entre les paragraphes du Chéma",
+   "cells": [
+    {
+     "t": "Mettre avec la berakha",
+     "c": "o"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Obligatoire",
+     "c": "o"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Autorisé",
+     "c": "o"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Jusqu'à « daamiran béalma »",
+     "c": "c"
+    },
+    {
+     "t": "« Qadoch » et « baroukh » uniquement",
+     "c": "c",
+     "idem": true
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Pas nécessaire de les dire",
+     "c": "n"
+    },
+    {
+     "t": "Les trois premiers mots uniquement",
+     "c": "c",
+     "idem": true
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "On le pense uniquement",
+     "c": "c",
+     "idem": true
+    },
+    {
+     "t": "Le dire après la Amida, moins de 72 minutes plus tard",
+     "c": "n",
+     "idem": true
+    },
+    {
+     "t": "Obligatoire",
+     "c": "o"
+    },
+    {
+     "t": "On répond",
+     "c": "o"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Autorisé",
+     "c": "o"
+    },
+    {
+     "t": "Avant « Ahavat ôlam », avec le paragraphe des Kohanim",
+     "c": "c"
+    }
+   ]
+  },
+  {
+   "id": "chema",
+   "fr": "Au milieu du Chéma",
+   "cells": [
+    {
+     "t": "Les mettre, et dire la berakha après la Amida",
+     "c": "c"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Obligatoire si cela ne dérange pas le Chéma",
+     "c": "c"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "S'abstenir, mais on peut répondre",
+     "c": "c"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Jusqu'à « Yitbarakh »",
+     "c": "c"
+    },
+    {
+     "t": "« Qadoch » et « baroukh » uniquement",
+     "c": "c",
+     "idem": true
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "On met la main sur les yeux",
+     "c": "c"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Les trois premiers mots uniquement",
+     "c": "c",
+     "idem": true
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit, mais on le pense",
+     "c": "c"
+    },
+    {
+     "t": "Interdit ; on le dira après la Amida",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "On répond",
+     "c": "o"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Si ceci ne le troublera pas",
+     "c": "c"
+    },
+    {
+     "t": "Comme au milieu d'un paragraphe",
+     "c": "n"
+    },
+    {
+     "t": "Ne les dit plus après avoir dit « Ahavat ôlam »",
+     "c": "n"
+    }
+   ]
+  },
+  {
+   "id": "amida",
+   "fr": "Au milieu de la Amida",
+   "cells": [
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "On se contente de les penser",
+     "c": "c"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Le penser",
+     "c": "c"
+    },
+    {
+     "t": "Le penser",
+     "c": "c"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "S'incliner au milieu d'une berakha",
+     "c": "c"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    }
+   ]
+  },
+  {
+   "id": "netsor",
+   "fr": "Au milieu d'« Élokaï nétsor »",
+   "cells": [
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Obligatoire",
+     "c": "o"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "On répond",
+     "c": "o"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Jusqu'à « Yitbarakh »",
+     "c": "c"
+    },
+    {
+     "t": "« Qadoch » et « baroukh » uniquement",
+     "c": "c"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "On répond",
+     "c": "o"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    {
+     "t": "Interdit",
+     "c": "n"
+    },
+    null,
+    {
+     "t": "Autorisé",
+     "c": "o"
+    },
+    null
+   ]
+  }
+ ]
+}
