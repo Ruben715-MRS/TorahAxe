@@ -1147,6 +1147,8 @@
         <div id="mapgame-setup" class="lexgame-setup">
             <p class="tool-small" id="mapgame-load" role="status"></p>
             <div class="lexgame-levels" id="mapgame-sections" role="group" aria-label="Lieux joués" data-i18n-attr="aria-label:mapgame.section_aria"></div>
+            <button type="button" class="tool-history-chip" id="mapgame-hints" aria-pressed="false" onclick="mapgameToggleHints()" data-i18n="mapgame.hints">Repères</button>
+            <p class="tool-small" data-i18n="mapgame.hints_how">Repères : les points et les contours de la carte sont dessinés. Touchez-en un : il s'illumine, puis validez.</p>
             <button type="button" class="btn" id="mapgame-start" onclick="mapgameStart()" data-i18n="arcade.play">Jouer</button>
             <p class="tool-small" data-i18n="mapgame.how">Un nom s'affiche : touchez la carte à l'endroit voulu, puis validez. Cent points si vous êtes dans la tolérance de la carte (8 km pour une ville de la terre d'Israël), de moins en moins au-delà ; une tribu ou une mer se touche à l'intérieur de son contour. Cinq lieux par partie.</p>
             <p class="tool-small" data-i18n="mapgame.how_sure">Les villes et les montagnes sont placées d'après leurs coordonnées réelles. Les contours des tribus sont ceux de la carte « Le partage de la terre d'Israël » : ils sont approximatifs.</p>

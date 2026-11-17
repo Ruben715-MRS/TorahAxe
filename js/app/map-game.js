@@ -12,9 +12,12 @@ let mapgameLand = null;          // les terres (GeoJSON), une fois chargées
 let mapgameLoading = false;
 let mapgameProj = null;          // la projection de la carte affichée
 let mapgameTouched = null;       // le point touché [lon, lat], avant validation
+let mapgameHints = false;        // le réglage « Repères » : les points et contours de la carte sont dessinés, et un toucher les illumine
+let mapgameDrawn = [];           // les lieux dessinés comme repères sur la carte affichée (MapGameCore.places)
 
 const MAPGAME_PREFS_KEY = 'torahaxe_mapgame_prefs_v1';
 const MAPGAME_WIDTH = 360;       // largeur du dessin, en unités SVG
+const MAPGAME_SNAP = 12;         // un toucher à moins de 12 unités d'un repère-point s'accroche à ce point
 const SVG_NS = 'http://www.w3.org/2000/svg';
 
 // Les noms de mers posés sur la carte pour s'orienter, par vue : [clé de traduction, [lon, lat], ancrage]. Les lacs (mer Morte, mer de Galilée) ne sont pas nommés : on peut
@@ -29,16 +32,26 @@ function openMapGame(fromScreen) {
     showScreen('screen-mapgame', 'forward');
     const raw = QuizUI.loadPrefs(MAPGAME_PREFS_KEY);
     mapgameSection = raw && MapGameCore.SECTIONS.indexOf(raw.section) >= 0 ? raw.section : 'all';
+    mapgameHints = !!(raw && raw.hints);
     mapgameSetup();
 }
 
 function mapgameBack() { gamesBackTo(mapgameReturn); }
 
+function mapgameSavePrefs() { QuizUI.savePrefs(MAPGAME_PREFS_KEY, { section: mapgameSection, hints: mapgameHints }); }
+
 function mapgameSetSection(section) {
     if (MapGameCore.SECTIONS.indexOf(section) < 0) return;
     mapgameSection = section;
-    QuizUI.savePrefs(MAPGAME_PREFS_KEY, { section: mapgameSection });
+    mapgameSavePrefs();
     mapgameSetup();
+}
+
+// Le réglage « Repères » : à l'écran de préparation, il se mémorise et s'applique à la partie suivante.
+function mapgameToggleHints() {
+    mapgameHints = !mapgameHints;
+    mapgameSavePrefs();
+    document.getElementById('mapgame-hints').setAttribute('aria-pressed', mapgameHints ? 'true' : 'false');
 }
 
 function mapgameLoad(then) {
@@ -57,6 +70,7 @@ function mapgameSetup() {
     mapgame = null;
     QuizUI.phase('mapgame', 'setup');
     QuizUI.chips('mapgame', MapGameCore.SECTIONS.map(section => ({ id: section, label: t('mapgame.section_' + section) })), mapgameSection, mapgameSetSection);
+    document.getElementById('mapgame-hints').setAttribute('aria-pressed', mapgameHints ? 'true' : 'false');
     const start = document.getElementById('mapgame-start');
     if (mapgameLand) { document.getElementById('mapgame-load').textContent = ''; start.classList.remove('hidden'); return; }
     start.classList.add('hidden');
@@ -126,6 +140,16 @@ function mapgameDraw(q) {
         text.textContent = t(key);
         svg.appendChild(text);
     });
+    // Les repères : tous les points (villes, montagnes) et contours (tribus, mers) de la vue, à toucher ; un nom ne s'affiche pas.
+    mapgameDrawn = mapgameHints ? MapGameCore.places(q.view) : [];
+    mapgameDrawn.forEach(p => {
+        if (p.ring) svg.appendChild(svgEl('path', { d: mapgameRingPath(p.ring, proj), class: 'mapgame-region', 'data-place': p.id }));
+    });
+    mapgameDrawn.forEach(p => {
+        if (!p.c) return;
+        const [x, y] = proj.toXY(p.c[0], p.c[1]);
+        svg.appendChild(svgEl('circle', { cx: x.toFixed(1), cy: y.toFixed(1), r: 3.2, class: 'mapgame-spot', 'data-place': p.id }));
+    });
     svg.addEventListener('click', ev => mapgameTouch(ev, svg));
     const box = document.getElementById('mapgame-map');
     toolClear(box);
@@ -167,10 +191,49 @@ function mapgameTouch(ev, svg) {
     if (!rect.width) return;
     const x = (ev.clientX - rect.left) * (MAPGAME_WIDTH / rect.width);
     const y = (ev.clientY - rect.top) * (MAPGAME_WIDTH / rect.width);
-    mapgameTouched = mapgameProj.toLonLat(x, y);
+    const lonlat = mapgameProj.toLonLat(x, y);
+    // Avec les repères, le toucher s'accroche au point ou au contour touché : il s'illumine, et « Valider » le compte.
+    const hit = mapgameHints ? mapgameHitPlace(x, y, lonlat) : null;
+    mapgameTouched = hit ? hit.at : lonlat;
+    mapgameHighlight(svg, hit ? hit.place.id : null);
     svg.querySelectorAll('.mapgame-pin').forEach(n => n.remove());
-    mapgameMark(svg, mapgameTouched, 'mapgame-pin');
+    // Un repère touché s'illumine à la place de la pastille, pour rester visible.
+    if (!hit) mapgameMark(svg, mapgameTouched, 'mapgame-pin');
     mapgameUpdateCheck();
+}
+
+// Le repère touché : le point le plus proche (à MAPGAME_SNAP unités près), sinon le contour qui contient le toucher. null si rien.
+function mapgameHitPlace(x, y, lonlat) {
+    let best = null, bestD = MAPGAME_SNAP;
+    mapgameDrawn.forEach(p => {
+        if (!p.c) return;
+        const [px, py] = mapgameProj.toXY(p.c[0], p.c[1]);
+        const d = Math.hypot(px - x, py - y);
+        if (d <= bestD) { bestD = d; best = { place: p, at: p.c }; }
+    });
+    if (best) return best;
+    // Un contour peut en contenir un autre (la mer de Galilée est dans le territoire d'une tribu) : c'est le plus petit, donc le plus précis.
+    let zone = null, zoneArea = Infinity;
+    mapgameDrawn.forEach(p => {
+        if (!p.ring || !MapGameCore.inRing(lonlat, p.ring)) return;
+        const area = mapgameBoxArea(p.ring);
+        if (area < zoneArea) { zoneArea = area; zone = p; }
+    });
+    return zone ? { place: zone, at: lonlat } : null;
+}
+
+// L'aire de la boîte englobante d'un anneau, en degrés carrés : suffit pour départager deux contours.
+function mapgameBoxArea(ring) {
+    let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+    for (const c of ring) { if (c[0] < minX) minX = c[0]; if (c[0] > maxX) maxX = c[0]; if (c[1] < minY) minY = c[1]; if (c[1] > maxY) maxY = c[1]; }
+    return (maxX - minX) * (maxY - minY);
+}
+
+// Illumine le repère touché (et lui seul) ; id null, rien.
+function mapgameHighlight(svg, id) {
+    svg.querySelectorAll('.is-picked').forEach(n => n.classList.remove('is-picked'));
+    if (!id) return;
+    svg.querySelectorAll('[data-place]').forEach(n => { if (n.getAttribute('data-place') === id) n.classList.add('is-picked'); });
 }
 
 function mapgameCheck() {
