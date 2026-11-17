@@ -16713,6 +16713,27 @@ body[data-view-profile="religieux"] .league-btn {
 .ordergame-answer { counter-reset: none; margin: 8px 0; }
 .ordergame-answer li { font-size: 15px; }
 .ordergame-answer small { color: var(--muted-text); }
+/* « Sur la carte » : un dessin SVG de la carte, la mer et la terre aux couleurs du jour ou de la nuit, le point touché et le bon endroit. */
+.mapgame-map { margin: 0 0 10px; border-radius: 14px; overflow: hidden; border: 1px solid var(--border-soft); background: #a9cde8; touch-action: manipulation; line-height: 0; }
+.mapgame-map svg { width: 100%; height: auto; display: block; cursor: crosshair; }
+.mapgame-sea { fill: #a9cde8; }
+.mapgame-land { fill: #f3ecd9; stroke: #b9ad8c; stroke-width: 0.5; fill-rule: evenodd; }
+.mapgame-water { fill: #a9cde8; stroke: #7fa9c9; stroke-width: 0.4; }
+.mapgame-river { fill: none; stroke: #7fa9c9; stroke-width: 1; stroke-linecap: round; stroke-linejoin: round; }
+.mapgame-label { fill: #4d7595; font-size: 8px; font-style: italic; pointer-events: none; }
+.mapgame-zone { fill: rgba(231, 76, 60, 0.28); stroke: #c0392b; stroke-width: 1.2; pointer-events: none; }
+.mapgame-pin { fill: #1f3a8a; stroke: #fff; stroke-width: 1.5; pointer-events: none; }
+.mapgame-goal { fill: #1e8e3e; stroke: #fff; stroke-width: 1.5; pointer-events: none; }
+.mapgame-line { stroke: #444; stroke-width: 1; stroke-dasharray: 3 2; pointer-events: none; }
+.mapgame-legend { margin: 0 0 8px; text-align: center; }
+.mapgame-actions { margin-bottom: 12px; }
+:root[data-theme="dark"] .mapgame-map, :root[data-theme="dark"] .mapgame-sea, :root[data-theme="dark"] .mapgame-water { background: #2c4a63; fill: #2c4a63; }
+:root[data-theme="dark"] .mapgame-land { fill: #46433a; stroke: #6d675a; }
+:root[data-theme="dark"] .mapgame-water { stroke: #567a99; }
+:root[data-theme="dark"] .mapgame-river { stroke: #567a99; }
+:root[data-theme="dark"] .mapgame-label { fill: #9cc1de; }
+:root[data-theme="dark"] .mapgame-pin { fill: #7aa2ff; }
+:root[data-theme="dark"] .mapgame-line { stroke: #ddd; }
 .parashagame-he { margin: 0; font-size: 24px; line-height: 1.7; text-align: right; color: var(--text-dark); }
 .parashagame-fr { margin: 8px 0 0; font-size: 14px; line-height: 1.45; color: var(--muted-text); }
 .parashagame-points { margin: 0 0 8px; text-align: center; font-weight: 700; }
