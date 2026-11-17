@@ -17,7 +17,7 @@ let sdIndex = null;
 const sdCache = {};
 // v : version des réglages. En v2, la police par défaut passe de Noto Serif à Frank Ruhl Libre (la seule à avoir un vrai gras) ;
 // un « noto-serif » enregistré avant la v2 n'était que l'ancien défaut, pas un choix : il est remplacé.
-let sdPrefs = { v: 2, size: 2, niqqud: true, all: false, fr: false, font: 'frank', heRub: false };
+let sdPrefs = { v: 2, size: 2, niqqud: true, all: false, fr: false, font: 'frank', heRub: false, jx: true, name: 'adonai' };
 // Polices livrées avec leurs vraies graisses (fonts.css) : le gras y est dessiné par la police, pas simulé par un contour.
 const SD_REAL_BOLD = ['frank'];
 let sdView = { mode: 'home', ids: [], title: '' };
@@ -58,6 +58,8 @@ function sdLoadPrefs() {
         if (typeof p.all === 'boolean') sdPrefs.all = p.all;
         if (typeof p.fr === 'boolean') sdPrefs.fr = p.fr;
         if (typeof p.heRub === 'boolean') sdPrefs.heRub = p.heRub;
+        if (typeof p.jx === 'boolean') sdPrefs.jx = p.jx;
+        if (p.name === 'source' || p.name === 'adonai') sdPrefs.name = p.name;
         if (typeof p.font === 'string' && sdFontById(p.font) && (p.v >= 2 || p.font !== 'noto-serif')) sdPrefs.font = p.font;
     } catch (e) { /* stockage indisponible : réglages par défaut */ }
 }
@@ -866,6 +868,12 @@ function sdOpenDisplay() {
         const fr = sdSwitch('Traduction française', sdPrefs.fr, (on) => { sdPrefs.fr = on; sdSavePrefs(); sdRerender(); });
         fr.querySelector('button').id = 'sd-fr';
         body.appendChild(fr);
+        const jx = sdSwitch('Mot à mot (début de la Amida)', sdPrefs.jx, (on) => { sdPrefs.jx = on; sdSavePrefs(); sdRerender(); });
+        jx.querySelector('button').id = 'sd-jx';
+        body.appendChild(jx);
+        const nm = sdSwitch('Nom divin écrit יְהֹוָה avec « אדני »', sdPrefs.name !== 'source', (on) => { sdPrefs.name = on ? 'adonai' : 'source'; sdSavePrefs(); sdRerender(); });
+        nm.querySelector('button').id = 'sd-name';
+        body.appendChild(nm);
         const heRub = sdSwitch('Consignes en hébreu (comme le livre)', sdPrefs.heRub, (on) => { sdPrefs.heRub = on; sdSavePrefs(); sdRerender(); });
         heRub.querySelector('button').id = 'sd-herub';
         body.appendChild(heRub);
@@ -1048,6 +1056,7 @@ function sdRenderNodes(nodes, parent, skipMark) {
             return;
         }
         let el;
+        if (node.k) { const sp = sdSpecialNode(node); if (m && node.k === 'name') { const w = sdEl('span', sdVariantClass(m)); w.appendChild(sp); parent.appendChild(w); } else parent.appendChild(sp); return; }
         if (node.t === 'text') {
             const text = sdTextNode(node.v);
             if (m) { el = sdEl('span', sdVariantClass(m)); el.appendChild(text); } else { parent.appendChild(text); return; }
@@ -1197,6 +1206,162 @@ function sdRenderSegment(tree, index, fr) {
     return wrap;
 }
 
+// --- Repères de prière (refonte, étape 3) ------------------------------------------------------------------------------------------
+// Dans la Amida : le nom de chaque bénédiction au-dessus d'elle, la traduction de sa conclusion après elle (« [… bouclier d'Avraham.] »),
+// le signe des inclinaisons, et le mot à mot du début. Partout : le Nom divin écrit יְהֹוָה avec « אדני » au-dessus (réglage), comme dans le
+// Maguen Avot ; la vocalisation de kavana de la source (יַהַוַהַ…) reste dans l'infobulle et revient avec le réglage « comme la source ».
+// Repérage par les premiers mots (sans voyelles) de chaque segment. Traductions et noms écrits pour l'application : **à relire**.
+const SD_BERAKHOT = [
+    { id: 'avot', he: 'ברכת אבות', fr: 'Les Patriarches', start: /^ברוך אתה .*אלהינו ואלהי אבותינו/, end: /מגן אברהם/, hat: 'bouclier d\'Avraham' },
+    { id: 'gevourot', he: 'ברכת גבורות', fr: 'La puissance divine', start: /^אתה גבור/, end: /מחיה המתים/, hat: 'qui fait revivre les morts' },
+    { id: 'kedoucha', he: 'קדושת השם', fr: 'La sainteté du Nom', start: /^אתה קדוש/, end: /האל הקדוש|המלך הקדוש/, hat: 'le D. saint' },
+    { id: 'bina', he: 'ברכת בינה', fr: 'L\'intelligence', start: /^אתה חונן/, end: /חונן הדעת/, hat: 'qui accorde la connaissance' },
+    { id: 'techouva', he: 'ברכת תשובה', fr: 'Le retour', start: /^השיבנו/, end: /הרוצה בתשובה/, hat: 'qui désire le repentir' },
+    { id: 'selikha', he: 'ברכת סליחה', fr: 'Le pardon', start: /^סלח לנו/, end: /המרבה לסל/, hat: 'qui multiplie Son pardon' },
+    { id: 'gueoula', he: 'ברכת גאולה', fr: 'La délivrance', start: /^ראה נא/, end: /גואל ישראל/, hat: 'qui délivre Israël' },
+    { id: 'refoua', he: 'ברכת רפואה', fr: 'La guérison', start: /^רפאנו/, end: /רופא חולי/, hat: 'qui guérit les malades de Son peuple Israël' },
+    { id: 'chanim', he: 'ברכת השנים', fr: 'Les récoltes de l\'année', start: /^(ברכנו|ברך עלינו)/, end: /מברך השנים/, hat: 'qui bénit les années' },
+    { id: 'kibouts', he: 'קיבוץ גלויות', fr: 'Le rassemblement des exilés', start: /^תקע בשופר/, end: /מקבץ נדחי/, hat: 'qui rassemble les dispersés de Son peuple Israël' },
+    { id: 'din', he: 'ברכת המשפט', fr: 'La justice', start: /^השיבה שופטינו/, end: /אוהב צדקה ומשפט|המלך המשפט/, hat: 'Roi qui aime la justice et le droit' },
+    { id: 'minim', he: 'ברכת המינים', fr: 'Contre les calomniateurs', start: /^ולמלשינים|^למינים/, end: /שובר אויבים/, hat: 'qui brise les ennemis et abaisse les arrogants' },
+    { id: 'tsadikim', he: 'ברכת הצדיקים', fr: 'Les justes', start: /^על הצדיקים/, end: /ומבטח לצדיקים/, hat: 'appui et confiance des justes' },
+    { id: 'yerouchalayim', he: 'בניין ירושלים', fr: 'Jérusalem', start: /^תשכון בתוך ירושלים|^ולירושלים/, end: /בונה ירושלים/, hat: 'qui bâtit Jérusalem' },
+    { id: 'david', he: 'מלכות בית דוד', fr: 'Le règne de David', start: /^את צמח דוד/, end: /קרן ישועה/, hat: 'qui fait germer la force du salut' },
+    { id: 'tefila', he: 'שומע תפלה', fr: 'L\'écoute de la prière', start: /^שמע קולנו/, end: /שומע תפלה/, hat: 'qui écoute la prière' },
+    { id: 'avoda', he: 'ברכת העבודה', fr: 'Le service divin', start: /^רצה /, end: /שכינתו לציון/, hat: 'qui ramène Sa Présence à Sion' },
+    { id: 'hodaa', he: 'ברכת הודאה', fr: 'La reconnaissance', start: /^מודים אנחנו/, end: /הטוב שמך/, hat: 'dont le Nom est « Bonté », et à qui il convient de rendre grâce' },
+    { id: 'chalom', he: 'ברכת השלום', fr: 'La paix', start: /^שים שלום/, end: /עמו ישראל בשלום/, hat: 'qui bénit Son peuple Israël par la paix' },
+    { id: 'netsor', he: 'אלהי נצור', fr: 'Prière personnelle', start: /^יהיו לרצון|^אלהי נצור/ }
+];
+function sdIsAmida(id) { return /amida|moussaf/.test(id); }
+function sdBare(tree) { return SiddurCore.stripNiqqud(SiddurCore.plain(tree)).replace(/[,.:;־\-–]/g, ' ').replace(/\s+/g, ' ').trim(); }
+function sdBerakhaStart(bare) { return SD_BERAKHOT.find(b => b.start.test(bare)) || null; }
+
+// Les inclinaisons (usage séfarade) : au début et à la conclusion de la 1re bénédiction, et de la bénédiction de reconnaissance (Modim).
+// Le signe est un nœud { t: 'text', v: '', k: 'bow' } glissé dans l'arbre avant le mot (le texte, lui, n'est pas modifié).
+function sdWordAt(str, word, last) {
+    let bare = '';
+    const map = [];
+    for (let i = 0; i < str.length; i++) if (!/[֑-ׇ]/.test(str[i])) { map.push(i); bare += str[i]; }
+    const re = new RegExp('(^|[^א-ת])(' + word + ')(?![א-ת])', 'g');
+    let m, at = -1;
+    while ((m = re.exec(bare))) { at = m.index + m[1].length; if (!last) break; }
+    return at < 0 ? -1 : map[at];
+}
+function sdInsertBow(tree, word, last) {
+    const spots = [];
+    (function walk(node) { (node.c || []).forEach((k, idx) => { if (k.t === 'text' && !k.k) spots.push({ list: node.c, k }); else if (k.t === 'tag') walk(k); }); })(tree);
+    const order = last ? spots.slice().reverse() : spots;
+    for (const sp of order) {
+        const at = sdWordAt(sp.k.v, word, last);
+        if (at < 0) continue;
+        const idx = sp.list.indexOf(sp.k);
+        sp.list.splice(idx, 1, { t: 'text', v: sp.k.v.slice(0, at) }, { t: 'text', v: '', k: 'bow' }, { t: 'text', v: sp.k.v.slice(at) });
+        return true;
+    }
+    return false;
+}
+function sdAddBows(tree, bare) {
+    let n = 0;
+    if (/^ברוך אתה .*אלהינו ואלהי אבותינו/.test(bare)) n += sdInsertBow(tree, 'ברוך', false);
+    if (/מגן אברהם/.test(bare) && /^ברוך אתה|^מלך עוזר/.test(bare)) n += sdInsertBow(tree, 'ברוך', true);
+    if (/^מודים אנחנו/.test(bare)) n += sdInsertBow(tree, 'מודים', false);
+    if (/הטוב שמך/.test(bare)) n += sdInsertBow(tree, 'ברוך', true);
+    return n;
+}
+
+// Le Nom divin : יהוה (toutes vocalisations, avec ou sans préfixe ו ב ל כ מ ש) et la graphie de kavana יוהוווהו.
+const SD_NQ = '[֑-ׇ]*';
+const SD_NAME_RE = new RegExp('(^|[^א-ת֑-ׇ])([ובלכמש]' + SD_NQ + ')?(' + ['י', 'ה', 'ו', 'ה'].join(SD_NQ) + SD_NQ + '|' + ['י', 'ו', 'ה', 'ו', 'ו', 'ו', 'ה', 'ו'].join(SD_NQ) + SD_NQ + ')(?![א-ת])', 'g');
+function sdMarkNames(node) {
+    if (sdPrefs.name === 'source' || !node.c) return;
+    const out = [];
+    node.c.forEach(k => {
+        if (k.t === 'tag') { sdMarkNames(k); out.push(k); return; }
+        if (k.k || k.t !== 'text') { out.push(k); return; }
+        let last = 0, m;
+        SD_NAME_RE.lastIndex = 0;
+        const parts = [];
+        while ((m = SD_NAME_RE.exec(k.v))) {
+            const start = m.index + m[1].length;
+            const nameAt = start + (m[2] ? m[2].length : 0);
+            parts.push({ t: 'text', v: k.v.slice(last, nameAt), m: k.m });
+            parts.push({ t: 'text', v: m[3], k: 'name', pre: !!m[2], m: k.m });
+            last = nameAt + m[3].length;
+        }
+        if (!parts.length) { out.push(k); return; }
+        parts.push({ t: 'text', v: k.v.slice(last), m: k.m });
+        parts.forEach(x => { if (x.v || x.k) out.push(x); });
+    });
+    node.c = out;
+}
+const SD_BOW_SVG = '<svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M2 1.5v4A4.5 4.5 0 0 0 6.5 10H10M7.6 7.4 10 10l-2.4 2.4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+function sdSpecialNode(node) {
+    if (node.k === 'bow') {
+        const b = sdEl('span', 'sd-bow');
+        b.setAttribute('role', 'img');
+        b.setAttribute('aria-label', 'On s\'incline');
+        b.title = 'On s\'incline';
+        b.innerHTML = SD_BOW_SVG;      // dessin fixe de l'application, pas une donnée
+        return b;
+    }
+    const el = sdEl('span', 'sd-name');
+    el.title = node.v === 'יְהֹוָה' || node.v === 'יְהוָֹה' ? 'Nom divin : on prononce « Adonaï »' : 'Nom divin : on prononce « Adonaï » (dans la source : ' + node.v + ')';
+    el.appendChild(sdTextNode(node.pre ? 'יהֹוָה' : 'יְהֹוָה'));
+    return el;
+}
+
+// Le mot à mot (Maguen Avot) : chaque mot sur sa traduction, en lignes justifiées. Les mots sont repérés sans voyelles.
+const SD_GLOSS = {
+    'אדני': 'Seigneur', 'שפתי': 'mes lèvres', 'תפתח': 'Tu ouvriras', 'ופי': 'et ma bouche', 'יגיד': 'dira', 'תהלתך': 'Ta louange',
+    'ברוך': 'Source de bénédictions', 'אתה': 'Tu es', 'יהוה': 'Éternel', 'אלהינו': 'notre D.', 'ואלהי': 'et le D.', 'אבותינו': 'de nos pères',
+    'אלהי': 'le D.', 'אברהם': 'd\'Avraham', 'יצחק': 'd\'Its\'hak', 'יעקב': 'de Yaakov', 'האל': 'le D.', 'הגדול': 'grand', 'הגבור': 'puissant',
+    'והנורא': 'et redoutable', 'אל': 'D.', 'עליון': 'Suprême', 'גומל': 'qui prodigue', 'חסדים': 'des bontés', 'טובים': 'bienfaisantes',
+    'קונה': 'possède', 'הכל': 'tout', 'וזוכר': 'et se rappelle', 'חסדי': 'les bontés', 'אבות': 'des Pères', 'ומביא': 'et amène', 'גואל': 'un sauveur',
+    'לבני': 'aux enfants', 'בניהם': 'de leurs enfants', 'למען': 'en faveur', 'שמו': 'de Son Nom', 'באהבה': 'avec amour',
+    'מלך': 'Roi', 'עוזר': 'qui aide', 'ומושיע': 'et sauve', 'ומגן': 'et protège', 'מגן': 'bouclier',
+    'זכרנו': 'souviens-Toi de nous', 'לחיים': 'pour la vie', 'חפץ': 'qui désire', 'בחיים': 'la vie', 'כתבנו': 'inscris-nous', 'בספר': 'dans le livre',
+    'חיים': 'de vie', 'למענך': 'pour Toi', 'אלהים': 'D.'
+};
+function sdGloss(word) { return SD_GLOSS[SiddurCore.stripNiqqud(word).replace(/[^א-ת]/g, '')] || ''; }
+function sdJuxta(p) {
+    const tokens = [];
+    let bow = null;
+    (function walk(parent, bold) {
+        Array.prototype.slice.call(parent.childNodes).forEach(n => {
+            if (n.nodeType === 3) {
+                const orig = sdOrigText.has(n) ? sdOrigText.get(n) : n.nodeValue;
+                orig.split(/\s+/).filter(w => w.trim()).forEach(w => {
+                    // une ponctuation seule (« , » après un mot en gras ou le Nom divin) se colle au mot d'avant
+                    const prev = tokens[tokens.length - 1];
+                    if (!/[\u05D0-\u05EA]/.test(w) && prev && !/^\s/.test(orig)) { (prev.tail = (prev.tail || '') + w); return; }
+                    tokens.push({ w, bold, bow }); bow = null;
+                });
+            } else if (n.classList && n.classList.contains('sd-bow')) bow = n;
+            else if (n.classList && n.classList.contains('sd-name')) { tokens.push({ el: n, bold, bow, gloss: 'Éternel' }); bow = null; }
+            else if (n.tagName === 'STRONG') walk(n, true);
+            else { tokens.push({ el: n, bold, bow, gloss: '' }); bow = null; }
+        });
+    })(p, false);
+    const box = sdEl('div', 'sd-jx');
+    box.lang = 'he'; box.dir = 'rtl';
+    tokens.forEach(tk => {
+        const w = sdEl('span', 'sd-jx-w');
+        const h = sdEl('span', 'sd-jx-h');
+        if (tk.bow) h.appendChild(tk.bow);
+        const inner = tk.bold ? sdEl('strong') : h;
+        if (tk.el) inner.appendChild(tk.el); else inner.appendChild(sdTextNode(tk.w));
+        if (tk.bold) h.appendChild(inner);
+        if (tk.tail) h.appendChild(document.createTextNode(tk.tail));
+        const g = sdEl('span', 'sd-jx-f', tk.el ? tk.gloss : sdGloss(tk.w));
+        g.lang = 'fr';
+        w.appendChild(h);
+        w.appendChild(g);
+        box.appendChild(w);
+    });
+    p.replaceWith(box);
+}
+
 // Le paratexte d'un chant : qui l'a écrit, dans quel contexte, ce qu'il veut dire ; et le bouton de la traduction française.
 function sdAboutCard(about) {
     const card = sdEl('details', 'sd-about');
@@ -1232,6 +1397,10 @@ function sdRenderSection(section) {
     if (section.about) box.appendChild(sdAboutCard(section.about));
     const counter = { n: 1 };
     const trees = section.segments.map(html => SiddurCore.analyseSegment(html, counter));
+    const amida = sdIsAmida(section.id);
+    const bares = trees.map(sdBare);
+    let bows = 0;
+    trees.forEach((tr, k) => { if (amida) bows += sdAddBows(tr, bares[k]); sdMarkNames(tr); });
     const groups = SiddurCore.groups(section.segments);
     const byHeader = {};
     groups.forEach(g => { byHeader[g.header] = g; });
@@ -1244,7 +1413,11 @@ function sdRenderSection(section) {
     if (sdPrefs.fr && !frAll) box.appendChild(sdEl('p', 'sd-fr-missing', t('tools.sd_fr_missing')));
     const seg = (i) => {
         const fr = frOf(i);
-        const el = sdRenderSegment(trees[i], i, fr);
+        let el = sdRenderSegment(trees[i], i, fr);
+        if (amida && sdPrefs.jx && /^(אדני שפתי|ברוך אתה .*אלהינו ואלהי אבותינו)/.test(bares[i])) {
+            if (el.matches('.sd-seg')) { const holder = sdEl('div', 'sd-segbox'); holder.appendChild(el); el = holder; }
+            Array.prototype.slice.call(el.querySelectorAll('.sd-seg')).forEach(sdJuxta);
+        }
         if (i === omerAt) el.classList.add('sd-omer-today');
         if (!sdPrefs.fr || !fr || el.classList.contains('sd-rub')) return el;
         const wrap = document.createDocumentFragment();
@@ -1254,15 +1427,56 @@ function sdRenderSection(section) {
         wrap.appendChild(frEl);
         return wrap;
     };
+    // Amida : le nom de la bénédiction avant elle, la traduction de sa conclusion après le segment qui la contient.
+    const seen = {};
+    let open = null;
+    const headFor = (from, to) => {
+        if (!amida) return;
+        for (let k = from; k <= to; k++) {
+            const b = sdBerakhaStart(bares[k]);
+            if (!b || seen[b.id]) continue;
+            seen[b.id] = true;
+            if (b.id === 'avot' && bows) {
+                const lg = sdEl('p', 'sd-rub sd-bow-legend');
+                lg.lang = 'fr';
+                const ic = sdSpecialNode({ k: 'bow' });
+                lg.appendChild(ic);
+                lg.appendChild(document.createTextNode('Ce signe marque où l\'on s\'incline : à « Baroukh », on se courbe ; à « Atta », on baisse la tête ; au Nom divin, on se redresse.'));
+                box.appendChild(lg);
+            }
+            const h = sdEl('p', 'sd-bk');
+            h.appendChild(sdEl('span', 'sd-bk-fr', b.fr));
+            const he = sdEl('span', 'sd-bk-he', b.he);
+            he.lang = 'he'; he.dir = 'rtl';
+            h.appendChild(he);
+            box.appendChild(h);
+            open = b.hat ? b : null;
+            return;
+        }
+    };
+    const hatAfter = (from, to, deferIfNextGroup) => {
+        if (!open || sdPrefs.fr) return;
+        let hit = false;
+        for (let k = from; k <= to; k++) if (/ברוך אתה/.test(bares[k]) && open.end.test(bares[k])) hit = true;
+        if (!hit || deferIfNextGroup) return;
+        const p = sdEl('p', 'sd-hat', '[… ' + open.hat + '.]');
+        p.lang = 'fr';
+        box.appendChild(p);
+        open = null;
+    };
     let i = 0;
     while (i < trees.length) {
         const g = byHeader[i];
-        if (!g) { box.appendChild(seg(i)); i++; continue; }
+        if (!g) { headFor(i, i); box.appendChild(seg(i)); hatAfter(i, i); i++; continue; }
+        headFor(g.from, g.to);
         // la consigne d'en-tête (« בראש חודש מוסיפים: ») devient le nom du bloc, en français si on l'a
         const headFr = !sdPrefs.heRub && frOf(g.header);
         const label = headFr ? headFr.replace(/[\s:.]+$/, '') : sdCap(sdAtomsLabel(g.atoms));
         const bodyText = SiddurCore.plain(trees.slice(g.from, g.to + 1));
         box.appendChild(sdVarBlock(g.atoms, label, bodyText, host => { for (let k = g.from; k <= g.to; k++) host.appendChild(seg(k)); }));
+        // été / hiver de Barekh alénou : deux blocs de suite, la conclusion vient après le second
+        const nextG = byHeader[g.to + 1];
+        hatAfter(g.from, g.to, !!(nextG && sdBerakhaStart(bares[nextG.from]) && open && sdBerakhaStart(bares[nextG.from]).id === open.id));
         i = g.to + 1;
     }
     return box;

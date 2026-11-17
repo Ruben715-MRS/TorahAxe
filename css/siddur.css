@@ -217,3 +217,30 @@
 .sd-seg .sd-v-lab { font-family: var(--font-main); font-size: max(11px, 0.5em); font-weight: 600; color: var(--muted-text); padding: 1px 6px; margin: 0 2px; border-radius: 99px; background: var(--surface); border: 1px solid var(--border-soft); white-space: nowrap; vertical-align: 0.15em; display: inline-block; line-height: 1.4; }
 .sd-seg .sd-v-lab.is-on { color: #1d1500; background: #d4a017; border-color: transparent; }
 .sd-seg .sd-v-lab.is-off { opacity: 0.6; }
+
+/* =========================================================================
+   Refonte, étape 3 : repères de prière (js/app/siddur.js, SD_BERAKHOT, sdAddBows, sdMarkNames, sdJuxta).
+   ========================================================================= */
+/* Le nom de la bénédiction : français à gauche en petites capitales, hébreu à droite, sur un filet. */
+.sd-bk { margin: 20px 0 4px; padding-bottom: 3px; border-bottom: 1px solid var(--border-soft); display: flex; align-items: baseline; justify-content: space-between; gap: 12px; font-family: var(--font-main); font-size: 11.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--home-gold, #96621a); }
+:root[data-theme="dark"] .sd-bk { color: #dcaa4c; }
+.sd-bk-he { font-family: var(--sd-font, 'HX Frank', serif); font-size: 16px; font-weight: 500; letter-spacing: 0; text-transform: none; }
+/* La traduction de la conclusion, comme dans le Maguen Avot : entre crochets, en italique, sous la bénédiction. */
+.sd-hat { margin: -2px 0 4px; font-family: var(--font-main); font-size: 12.5px; font-style: italic; color: var(--muted-text); text-align: left; }
+/* Le signe d'inclinaison. */
+.sd-bow { display: inline-block; width: 0.6em; height: 0.6em; margin-inline-end: 0.1em; vertical-align: 0.55em; color: var(--home-gold, #96621a); }
+:root[data-theme="dark"] .sd-bow { color: #dcaa4c; }
+.sd-bow svg { display: block; width: 100%; height: 100%; }
+.sd-bow-legend { display: block; }
+.sd-bow-legend .sd-bow { width: 14px; height: 14px; vertical-align: -1px; }
+/* Le Nom divin : « אדני » en petit au-dessus, sans changer la hauteur de la ligne. */
+.sd-name { position: relative; display: inline-block; }
+.sd-name::after { content: "אדני"; position: absolute; left: 0; right: 0; top: -0.66em; text-align: center; font-size: 0.42em; line-height: 1; font-weight: 400; color: var(--muted-text); pointer-events: none; }
+/* Le mot à mot : lignes pleines d'un bord à l'autre (justifiées), la dernière calée à droite. */
+.sd-jx { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 10px; padding: 6px 0 4px; font-family: var(--sd-font, 'HX Frank', 'HX Torah', serif); font-size: var(--sd-size); color: var(--text-dark); }
+.sd-jx::after { content: ""; flex: auto; }
+.sd-jx-w { display: inline-flex; flex-direction: column; align-items: center; gap: 1px; }
+.sd-jx-h { line-height: 1.35; white-space: nowrap; }
+.sd-jx-h strong { font-family: inherit; font-weight: 700; }
+.sd-jx-f { font-family: var(--font-main); font-size: 10.5px; line-height: 1.15; color: var(--muted-text); text-align: center; max-width: 7.5em; direction: ltr; }
+.sd-jx .sd-name::after { top: -0.5em; }
