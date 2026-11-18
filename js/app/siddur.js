@@ -1730,8 +1730,13 @@ const SD_DAY_RULES = [
     { id: 'chacharit-tora', head: /^ביום שאין בו תחנון/, label: 'Jours sans Tahanoun : « Yehi Adonaï élohénou imanou »', on: c => !!c.flags.noTachanun },
     { id: /^(chacharit|minha)-amida$/, head: /^בימים שאין בהם תחנון יש אומרים/, label: 'Jours sans Tahanoun : « Yehi chem » (selon l\'usage)', on: c => !!c.flags.noTachanun },
     { id: 'tikoun-lea', head: /^בימים שאין אומרים תחנון לא יאמר מזמור/, usual: true, label: 'Lamnatséa\'h ya\'ankha (jours avec Tahanoun)', on: c => !c.flags.noTachanun },
+    // Birkat hamazon ashkénaze et 'Habad (Michna Beroura 1, 11, d'après le Chelah) : « Al naharot Bavel » les jours où l'on dit Tahanoun,
+    // « Chir hamaalot » les jours sans Tahanoun (Chabbat, fêtes, Roch 'Hodech, Hanouka…). Le rite séfarade dit le psaume 67 tous les jours.
+    { id: /^birkat-hamazon-(ashkenaze|habad)$/, head: /^בחול קודם ברכת המזון/, label: 'Jours avec Tahanoun : « Al naharot Bavel »', on: c => !sdNoTachanun(c) },
+    { id: /^birkat-hamazon-(ashkenaze|habad)$/, head: /^בשבת קודם ברכת המזון/, label: 'Jours sans Tahanoun (Chabbat, fêtes, Roch \'Hodech…) : « Chir hamaalot »', on: c => sdNoTachanun(c) },
     { id: 'tikoun-lea', head: /^בימים שאין אומרים תחנון לא יאמר פסוק/, usual: true, label: 'Verset « Ad ana bekhiya » (jours avec Tahanoun)', on: c => !c.flags.noTachanun }
 ];
+function sdNoTachanun(c) { return !!(c.flags.noTachanun || c.flags.shabbat || c.flags.yomTov); }
 function sdPrevYomTov(c) { try { return !!SiddurCore.contextFor(c.fixed - 1, c.israel).flags.yomTov; } catch (e) { return false; } }
 function sdMonThuBlock(sectionId, bares, i) {
     const r = SD_DAY_RULES.find(x => (x.id instanceof RegExp ? x.id.test(sectionId) : x.id === sectionId) && x.head.test(bares[i]));
