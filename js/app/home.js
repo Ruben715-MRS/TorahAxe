@@ -614,50 +614,58 @@ function homeRenderToday(content) {
         }
     }
 
-    // L'étude du jour : Daf Yomi, Téhilim, Michna Yomit, montée du jour, mitsva du jour (chaque carte se masque dans Réglages › Cartes d'étude du jour).
+    // L'étude du jour, en deux rangées de deux cases : Daf Yomi et Téhilim ; puis Michna Yomit (à gauche) et mitsva du jour (à droite), réduites.
+    // Chaque case se masque dans Réglages › Cartes d'étude du jour ; une rangée qui n'a plus qu'une case la prend en pleine largeur.
     const cardOn = kind => (typeof studyCardOn === 'function' ? studyCardOn(kind) : kind !== 'mitsva');
-    const study = hEl('div', 'home-cards');
-    const wide = card => { card.classList.add('home-card-wide'); return card; };
+    const studyRow = cards => {
+        if (!cards.length) return null;
+        const row = hEl('div', 'home-cards');
+        cards.forEach(c => row.appendChild(c));
+        if (cards.length === 1) row.firstChild.classList.add('home-card-wide');
+        return row;
+    };
+    const firstRow = [];
     const daf = cardOn('daf') ? ZmanimCore.dafYomi(day.fixed) : null;
     if (daf) {
         // La carte ouvre le Talmud à l'amoud du jour (le premier du daf) ; sans Guémara ici (Chekalim, Kinnim, Midot), elle reste une simple information.
         const dafTarget = TalmudCore.dafYomiTarget(null, daf);
-        study.appendChild(homeInfoCard('Daf Yomi', daf.masechet + ' ' + daf.daf, daf.daysLeft === 0 ? t('tools.zm_daf_siyum_today') : t('tools.zm_daf_siyum', { n: daf.daysLeft }),
+        firstRow.push(homeInfoCard('Daf Yomi', daf.masechet + ' ' + daf.daf, daf.daysLeft === 0 ? t('tools.zm_daf_siyum_today') : t('tools.zm_daf_siyum', { n: daf.daysLeft }),
             dafTarget ? () => { openTool('talmud', 'screen-main'); talmudOpenAt(dafTarget.id, dafTarget.label); } : null));
     }
     const h = day.ctx.hebrew;
     const tehilim = cardOn('tehilim') ? zmTehilimText(h) : null;
-    if (tehilim) study.appendChild(homeInfoCard('Téhilim du jour', tehilim, t('tools.zm_tehilim_day', { n: h.day }), () => { toolReturns.tanakh = 'screen-main'; tanakhOpenAt('psaumes', zmTehilimStart(h) - 1, 'he'); }));
-    if (study.childElementCount === 1) study.firstChild.classList.add('home-card-wide');
+    if (tehilim) firstRow.push(homeInfoCard('Téhilim du jour', tehilim, t('tools.zm_tehilim_day', { n: h.day }), () => { toolReturns.tanakh = 'screen-main'; tanakhOpenAt('psaumes', zmTehilimStart(h) - 1, 'he'); }));
+
+    const secondRow = [];
     // La Michna Yomit : deux michnayot par jour ; la carte ouvre la première dans la Michna.
     const my = cardOn('mishna') && typeof MishnaYomiCore !== 'undefined' ? MishnaYomiCore.forFixed(day.fixed) : null;
     if (my) {
-        study.appendChild(wide(homeInfoCard(t('mishnayomi.card_label'), MishnaYomiCore.label(my), t('mishnayomi.card_sub', { n: my.daysLeft }),
-            () => michnaOpenAt(my.first.id, my.first.chapter, my.first.mishna, 'screen-main'))));
+        const card = homeInfoCard(t('mishnayomi.card_label'), MishnaYomiCore.label(my), t('mishnayomi.card_sub_short', { n: my.daysLeft }),
+            () => michnaOpenAt(my.first.id, my.first.chapter, my.first.mishna, 'screen-main'));
+        card.classList.add('home-card-compact');
+        secondRow.push(card);
     }
-    // La montée du jour : un morceau de la paracha de la semaine chaque jour (dimanche : 1re montée … vendredi : 6e) ; le Chabbat, la paracha entière.
-    const aliyahDay = new Date(day.civil.year, day.civil.month - 1, day.civil.day).getDay() + 1;   // 1 (dimanche) à 7 (samedi)
-    const aliyah = cardOn('aliyah') && par ? { par: par, n: aliyahDay } : null;
-    if (aliyah) {
-        const sat = aliyahDay === 7;
-        study.appendChild(wide(homeInfoCard(t('study.kind_aliyah'), aliyah.par.name + ' · ' + (sat ? t('study.aliyah_sat') : t('tools.tanakh_aliyah_n', { n: aliyahDay })), t('study.aliyah_sub'),
-            () => tanakhOpenParasha(aliyah.par.index, sat ? 1 : aliyahDay))));
-    }
-    // La mitsva du jour (facultative, désactivée par défaut) : l'une des 613, une par jour.
-    const mitsva = cardOn('mitsva') && typeof MitsvaOfDayCore !== 'undefined' && typeof CommandmentsCore !== 'undefined' ? MitsvaOfDayCore.of(day.fixed, CommandmentsCore.list613('all')) : null;
+    // La mitsva du jour : le cycle annuel du Séfer ha-Mitsvot (Chabad.org), leçon 1 le 16 Chevat (voir js/mitsvaOfDayCore.js). Pas de carte hors du cycle ou sans commandement.
+    const mitsva = cardOn('mitsva') && typeof MitsvaOfDayCore !== 'undefined' && typeof CommandmentsCore !== 'undefined'
+        ? MitsvaOfDayCore.of(day.fixed, { yearOf: f => HebrewCalendarCore.hebrewFromFixed(f).year, shevat16: y => HebrewCalendarCore.hebrewToGregorian(y, 'Shevat', 16).fixed },
+            CommandmentsCore.list613('pos'), CommandmentsCore.list613('neg'))
+        : null;
     if (mitsva) {
-        const c = mitsva.item;
-        study.appendChild(wide(homeInfoCard(t('study.mitsva_label'), c.text, t(c.kind === 'pos' ? 'study.mitsva_pos' : 'study.mitsva_neg', { n: c.n }) + ' · ' + c.ref,
-            () => homeOpenMitsva(c))));
+        const c = mitsva.items[0];
+        const others = mitsva.items.length - 1;
+        const more = others > 0 ? ' · ' + (others === 1 ? t('study.mitsva_more_one') : t('study.mitsva_more_many', { n: others })) : '';
+        const card = homeInfoCard(t('study.mitsva_label'), c.text, t(c.kind === 'pos' ? 'study.mitsva_pos' : 'study.mitsva_neg', { n: c.n }) + ' · ' + c.ref + more,
+            () => homeOpenMitsva(c));
+        card.classList.add('home-card-compact');
+        secondRow.push(card);
     }
-    if (study.childElementCount) content.appendChild(study);
+    [studyRow(firstRow), studyRow(secondRow)].forEach(row => { if (row) content.appendChild(row); });
     // « Étudié » (facultatif, désactivé par défaut) : une case par étude qui existe aujourd'hui.
     if (typeof studyChips === 'function') {
         const kinds = [];
         if (daf) kinds.push('daf');
         if (tehilim) kinds.push('tehilim');
         if (my) kinds.push('mishna');
-        if (aliyah) kinds.push('aliyah');
         if (mitsva) kinds.push('mitsva');
         const chips = studyChips(kinds, day.fixed);
         if (chips) content.appendChild(chips);
