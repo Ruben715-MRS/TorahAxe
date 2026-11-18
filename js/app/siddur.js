@@ -61,6 +61,7 @@ function sdLoadPrefs() {
         if (typeof p.jx === 'boolean') sdPrefs.jx = p.jx;
         if (typeof p.fab === 'boolean') sdPrefs.fab = p.fab;
         if (typeof p.hideOff === 'boolean') sdPrefs.hideOff = p.hideOff;
+        if (p.guest && typeof p.guest === 'object') sdPrefs.guest = p.guest;
         if (p.name === 'source' || p.name === 'adonai') sdPrefs.name = p.name;
         if (typeof p.font === 'string' && sdFontById(p.font) && (p.v >= 2 || p.font !== 'noto-serif')) sdPrefs.font = p.font;
     } catch (e) { /* stockage indisponible : réglages par défaut */ }
@@ -126,7 +127,7 @@ function sdFetchJson(url) {
 }
 function sdLoadIndex() {
     if (sdIndex) return Promise.resolve(sdIndex);
-    return sdFetchJson(SD_DATA + 'index.json').then(index => { sdIndex = index; return index; });
+    return sdFetchJson(SD_DATA + 'index.json').then(index => { sdIndex = index; sdApplyRite(); return index; });
 }
 function sdLoadSection(id) {
     if (sdCache[id]) return Promise.resolve(sdCache[id]);
@@ -140,7 +141,46 @@ function sdLoadFr(id) {
 }
 function sdFindSection(id) {
     for (const g of sdIndex.groups) for (const s of g.sections) if (s.id === id) return { group: g, section: s };
+    for (const h of sdRiteHidden) if (h.section.id === id) return h;      // la version d'un autre rite (ouverte depuis l'écran Bénédictions)
     return null;
+}
+
+// --- Un seul Birkat haMazon et une seule Méeïn chalosh : ceux du rite choisi dans les Réglages (js/app/settings.js, riteFull) ----------
+// Le livre en a trois versions (séfarade, ashkénaze, nusach Sefard de 'Habad) : on n'en montre qu'une, sous un nom simple. Les autres restent
+// ouvrables par leur identifiant (sdFindSection), sans apparaître dans les listes.
+const SD_RITE_FAMILIES = [
+    { fr: 'Birkat haMazon', ids: { sefarade: 'birkat-hamazon', ashkenaze: 'birkat-hamazon-ashkenaze', habad: 'birkat-hamazon-habad' } },
+    { fr: 'Bérakha Méeïn chalosh (Al haMih\'ya, Al haGuéfen, Al haEts)', ids: { sefarade: 'al-hamihya', ashkenaze: 'al-hamihya-ashkenaze', habad: 'al-hamihya-ashkenaze' } }
+];
+let sdRiteHidden = [];
+let sdRiteOrig = null;            // les sections d'origine des groupes concernés : { groupId: [sections] }
+function sdRite() { return typeof riteFull === 'function' ? riteFull() : 'sefarade'; }
+function sdRiteFamily(id) { return SD_RITE_FAMILIES.find(f => Object.keys(f.ids).some(r => f.ids[r] === id)) || null; }
+// L'identifiant à ouvrir dans le rite choisi (un texte sans versions : lui-même).
+function sdRiteId(id) { const f = sdRiteFamily(id); return f ? f.ids[sdRite()] || id : id; }
+function sdApplyRite() {
+    if (!sdIndex) return;
+    if (!sdRiteOrig) {
+        sdRiteOrig = {};
+        sdIndex.groups.forEach(g => { if (g.sections.some(x => sdRiteFamily(x.id))) sdRiteOrig[g.id] = g.sections.map(x => Object.assign({}, x)); });
+    }
+    sdRiteHidden = [];
+    sdIndex.groups.forEach(g => {
+        const orig = sdRiteOrig[g.id];
+        if (!orig) return;
+        const seen = new Set();
+        g.sections = [];
+        orig.forEach(sec => {
+            const f = sdRiteFamily(sec.id);
+            if (!f) { g.sections.push(sec); return; }
+            const want = f.ids[sdRite()];
+            if (sec.id === want && !seen.has(f)) { seen.add(f); g.sections.push(Object.assign({}, sec, { fr: f.fr })); }
+            else if (sec.id !== want) sdRiteHidden.push({ group: g, section: sec });
+        });
+        // une famille dont la version du rite vient plus loin dans le livre : à la place de la première
+        SD_RITE_FAMILIES.forEach(f => { if (!seen.has(f)) { const sec = orig.find(x => x.id === f.ids[sdRite()]); if (sec) g.sections.push(Object.assign({}, sec, { fr: f.fr })); } });
+    });
+    if (typeof sdView !== 'undefined' && sdView.mode === 'home' && toolEl('screen-tool-siddur') && !toolEl('screen-tool-siddur').classList.contains('hidden')) sdRender();
 }
 
 // Garde tout le siddour (et ses traductions) pour prier sans réseau, sans rien demander : au premier affichage, en arrière-plan, une seule fois
@@ -204,10 +244,7 @@ const SD_RAYONS = [
     ] },
     { id: 'benedictions', he: 'ברכות', fr: 'Bénédictions', rows: [
         { key: 's:birkat-hamazon', he: 'ברכת המזון', ids: ['birkat-hamazon'] },
-        { key: 's:birkat-hamazon-ashkenaze', he: 'ברכת המזון · אשכנז', ids: ['birkat-hamazon-ashkenaze'] },
-        { key: 's:birkat-hamazon-habad', he: 'ברכת המזון · ספרד (חב״ד)', ids: ['birkat-hamazon-habad'] },
         { key: 's:al-hamihya', he: 'מעין שלוש', ids: ['al-hamihya'] },
-        { key: 's:al-hamihya-ashkenaze', he: 'מעין שלוש · אשכנז', ids: ['al-hamihya-ashkenaze'] },
         { key: 's:birkhot-hanehenin', he: 'ברכות הנהנין', ids: ['birkhot-hanehenin'] },
         { key: 's:birkat-halevana', he: 'קידוש לבנה', ids: ['birkat-halevana'] },
         { key: 's:tefilat-haderekh', he: 'תפילת הדרך', ids: ['tefilat-haderekh'] },
@@ -290,10 +327,11 @@ function sdRowInfo(row) {
         if (!g) return null;
         return { key: row.key, he: row.he, title: sdCleanTitle(g.fr), ids: g.sections.map(x => x.id), recueil: !!row.recueil, desc: row.unit ? g.sections.length + ' ' + row.unit : g.sections.length > 1 ? g.sections.length + ' parties : tout lire d\'un trait, ou partie par partie' : '', group: g.id };
     }
-    const found = row.ids.map(sdFindSection).filter(Boolean);
+    const ids = row.ids.map(sdRiteId);
+    const found = ids.map(sdFindSection).filter(Boolean);
     if (!found.length) return null;
     const title = row.title || found[0].section.fr;
-    return { key: row.key, he: row.he, title: title, ids: row.ids.slice(), desc: row.ids.length > 1 ? row.ids.length + ' textes' : '' };
+    return { key: row.key, he: row.he, title: title, ids: ids, desc: row.ids.length > 1 ? row.ids.length + ' textes' : '' };
 }
 function sdAllRows() {
     const out = [];
@@ -1039,6 +1077,97 @@ function sdOpenReading() {
             });
         }).catch(() => { toolClear(body); body.appendChild(sdEl('p', 'sd-info', 'La lecture n\'a pas pu être chargée. Vérifiez votre connexion.')); });
     });
+}
+
+// --- La bénédiction de l'invité (Birkat haMazon séfarade) ---------------------------------------------------------------------------------
+// Texte du Consistoire (« L'invité dira »), accordé selon qui reçoit : un homme, une femme ou un couple, marié(e) ou non, avec ou sans enfants.
+// Les accords sont faits pour l'application, d'après la grammaire du texte : **à relire**.
+const SD_GUEST_TABLE = '<b>הָרַחֲמָן</b> הוּא יְבָרֵךְ אֶת הַשֻּׁלְחָן הַזֶּה שֶׁאָכַלְנוּ עָלָיו, וִיסַדֵּר בּוֹ כָּל מַעֲדַנֵּי עוֹלָם, וְיִהְיֶה כְּשֻׁלְחָנוֹ שֶׁל אַבְרָהָם אָבִינוּ, כָּל רָעֵב מִמֶּנּוּ יֹאכַל וְכָל צָמֵא מִמֶּנּוּ יִשְׁתֶּה, וְאַל יֶחְסַר מִמֶּנּוּ כָּל טוּב לָעַד וּלְעוֹלְמֵי עוֹלָמִים, אָמֵן:';
+const SD_GUEST_HE = {
+    m: { host: 'בַּעַל הַבַּיִת הַזֶּה וּבַעַל הַסְּעֻדָּה הַזֹּאת', pron: 'הוּא', kids: 'וּבָנָיו', spouse: 'וְאִשְׁתּוֹ', all: 'וְכָל אֲשֶׁר לוֹ', hail: 'בָּרֵךְ יְהֹוָה חֵילוֹ וּפֹעַל יָדָיו תִּרְצֶה', nekh: 'וְיִהְיוּ נְכָסָיו וּנְכָסֵינוּ', lif: 'לְפָנָיו', sas: 'שָׂשׂ וְשָׂמֵחַ', bosh: 'לֹא יֵבוֹשׁ בָּעוֹלָם הַזֶּה וְלֹא יִכָּלֵם לָעוֹלָם הַבָּא' },
+    f: { host: 'בַּעֲלַת הַבַּיִת הַזֶּה וּבַעֲלַת הַסְּעֻדָּה הַזֹּאת', pron: 'הִיא', kids: 'וּבָנֶיהָ', spouse: 'וּבַעְלָהּ', all: 'וְכָל אֲשֶׁר לָהּ', hail: 'בָּרֵךְ יְהֹוָה חֵילָהּ וּפֹעַל יָדֶיהָ תִּרְצֶה', nekh: 'וְיִהְיוּ נְכָסֶיהָ וּנְכָסֵינוּ', lif: 'לְפָנֶיהָ', sas: 'שָׂשָׂה וּשְׂמֵחָה', bosh: 'לֹא תֵבוֹשׁ בָּעוֹלָם הַזֶּה וְלֹא תִכָּלֵם לָעוֹלָם הַבָּא' },
+    c: { host: 'בַּעַל הַבַּיִת הַזֶּה וּבַעֲלַת הַבַּיִת הַזֶּה, בַּעֲלֵי הַסְּעֻדָּה הַזֹּאת', pron: 'הֵם', kids: 'וּבְנֵיהֶם', spouse: '', all: 'וְכָל אֲשֶׁר לָהֶם', hail: 'בָּרֵךְ יְהֹוָה חֵילָם וּפֹעַל יְדֵיהֶם תִּרְצֶה', nekh: 'וְיִהְיוּ נִכְסֵיהֶם וּנְכָסֵינוּ', lif: 'לִפְנֵיהֶם', sas: 'שָׂשִׂים וּשְׂמֵחִים', bosh: 'לֹא יֵבוֹשׁוּ בָּעוֹלָם הַזֶּה וְלֹא יִכָּלְמוּ לָעוֹלָם הַבָּא' }
+};
+const SD_GUEST_FR = {
+    m: { host: 'le maître de cette maison et de ce repas', who: 'lui', kids: 'ses enfants', spouse: 'son épouse', his: 'à lui', s: 'il', poss: 'sa', poss2: 'ses', obj: 'lui', joy: 'joyeux et heureux', shame: 'qu\'il n\'ait pas honte dans ce monde ni ne soit confus dans le monde à venir' },
+    f: { host: 'la maîtresse de cette maison et de ce repas', who: 'elle', kids: 'ses enfants', spouse: 'son mari', his: 'à elle', s: 'elle', poss: 'sa', poss2: 'ses', obj: 'elle', joy: 'joyeuse et heureuse', shame: 'qu\'elle n\'ait pas honte dans ce monde ni ne soit confuse dans le monde à venir' },
+    c: { host: 'le maître et la maîtresse de cette maison, qui nous offrent ce repas', who: 'eux', kids: 'leurs enfants', spouse: '', his: 'à eux', s: 'ils', poss: 'leur', poss2: 'leurs', obj: 'eux', joy: 'joyeux et heureux', shame: 'qu\'ils n\'aient pas honte dans ce monde ni ne soient confus dans le monde à venir' }
+};
+function sdGuestState() { const g = sdPrefs.guest || {}; return { who: SD_GUEST_HE[g.who] ? g.who : 'm', married: g.married !== false, kids: g.kids !== false }; }
+function sdGuestHe(st) {
+    const x = SD_GUEST_HE[st.who];
+    const people = [x.pron, st.kids ? x.kids : '', st.married && x.spouse ? x.spouse : '', x.all].filter(Boolean).join(' ');
+    return '<b>הָרַחֲמָן</b> הוּא יְבָרֵךְ ' + x.host + '. ' + people + '. ' + (st.kids ? 'בְּבָנִים שֶׁיִּחְיוּ. וּבִנְכָסִים שֶׁיִּרְבּוּ. ' : 'בִּנְכָסִים שֶׁיִּרְבּוּ. ')
+        + x.hail + '. ' + x.nekh + ' מֻצְלָחִים וּקְרוֹבִים לָעִיר. וְאַל יִזְדַּקֵּק ' + x.lif + ' וְלֹא לְפָנֵינוּ שׁוּם דְּבַר חֵטְא וְהִרְהוּר עָוֹן. '
+        + x.sas + ' כָּל הַיָּמִים בְּעֹשֶׁר וְכָבוֹד מֵעַתָּה וְעַד עוֹלָם. ' + x.bosh + '. אָמֵן כֵּן יְהִי רָצוֹן:';
+}
+function sdGuestFr(st) {
+    const x = SD_GUEST_FR[st.who];
+    const people = [x.who, st.kids ? x.kids : '', st.married && x.spouse ? x.spouse : ''].filter(Boolean);
+    const list = people.length > 1 ? people.slice(0, -1).join(', ') + ', ' + people[people.length - 1] : people[0];
+    return 'Que le Miséricordieux bénisse ' + x.host + ' : ' + list + ' et tout ce qui est ' + x.his + ', ' + (st.kids ? 'par des enfants qui vivent et des biens qui se multiplient' : 'par des biens qui se multiplient')
+        + '. Bénis, Éternel, ' + x.poss + ' force, et agrée l\'œuvre de ' + x.poss2 + ' mains. Que ' + x.poss2 + ' biens et les nôtres prospèrent et soient proches de la ville ; que ne se présente ni devant ' + x.obj
+        + ' ni devant nous aucune occasion de faute ni pensée de péché. Qu\'' + (x.s === 'il' ? 'il soit ' : x.s === 'elle' ? 'elle soit ' : 'ils soient ') + x.joy + ' tous les jours, dans la richesse et l\'honneur, dès maintenant et pour toujours ; '
+        + x.shame + '. Amen, qu\'il en soit ainsi.';
+}
+function sdGuestPara(html, fr, host) {
+    const tree = SiddurCore.parse(html);
+    sdMarkNames(tree);
+    const p = sdEl('p', 'sd-seg');
+    p.lang = 'he'; p.dir = 'rtl';
+    sdRenderNodes(tree.c, p);
+    host.appendChild(p);
+    if (sdPrefs.fr) { const f = sdEl('p', 'sd-fr-seg', fr); f.lang = 'fr'; host.appendChild(f); }
+}
+function sdGuestBlock() {
+    const fold = sdEl('details', 'sd-fold sd-guest');
+    const sum = sdEl('summary');
+    sum.appendChild(sdEl('span', 'sd-fold-lab', 'Si l\'on est invité : bénédiction de l\'hôte'));
+    const he = sdEl('span', 'sd-fold-he', 'הָרַחֲמָן הוּא יְבָרֵךְ…');
+    he.lang = 'he'; he.dir = 'rtl';
+    sum.appendChild(he);
+    fold.appendChild(sum);
+    const ctrls = sdEl('div', 'sd-guest-ctrls');
+    const text = sdEl('div', 'sd-guest-text');
+    const draw = () => {
+        const st = sdGuestState();
+        toolClear(text);
+        sdGuestPara(SD_GUEST_TABLE, 'Que le Miséricordieux bénisse cette table sur laquelle nous avons mangé, qu\'Il y dispose tous les délices du monde, et qu\'elle soit comme la table d\'Abraham notre père : que tout affamé en mange et tout assoiffé en boive, et qu\'aucun bien n\'y manque jamais, à tout jamais. Amen.', text);
+        sdGuestPara(sdGuestHe(st), sdGuestFr(st), text);
+        ctrls.querySelectorAll('button[data-k]').forEach(b => b.setAttribute('aria-pressed', String(st[b.dataset.k]) === b.dataset.v ? 'true' : 'false'));
+        const mar = ctrls.querySelector('.sd-guest-married');
+        if (mar) mar.hidden = st.who === 'c';
+    };
+    const row = (label, key, opts, cls) => {
+        const r = sdEl('div', 'sd-guest-row' + (cls ? ' ' + cls : ''));
+        r.appendChild(sdEl('span', 'sd-guest-lab', label));
+        const seg = sdEl('div', 'sd-seg-btns');
+        seg.setAttribute('role', 'group');
+        seg.setAttribute('aria-label', label);
+        opts.forEach(([v, txt]) => {
+            const b = sdEl('button', '', txt);
+            b.type = 'button';
+            b.dataset.k = key; b.dataset.v = v;
+            b.onclick = () => {
+                const st = sdGuestState();
+                st[key] = v === 'true' ? true : v === 'false' ? false : v;
+                sdPrefs.guest = st;
+                sdSavePrefs();
+                draw();
+            };
+            seg.appendChild(b);
+        });
+        r.appendChild(seg);
+        ctrls.appendChild(r);
+    };
+    row('Qui nous reçoit ?', 'who', [['m', 'Un homme'], ['f', 'Une femme'], ['c', 'Un couple']]);
+    row('Marié(e) ?', 'married', [['true', 'Oui'], ['false', 'Non']], 'sd-guest-married');
+    row('Des enfants ?', 'kids', [['true', 'Oui'], ['false', 'Non']]);
+    fold.appendChild(ctrls);
+    fold.appendChild(text);
+    fold.appendChild(sdEl('p', 'sd-var-note', 'Texte du Consistoire ; les accords (femme, couple, sans enfants, non marié) sont faits par l\'application : à vérifier.'));
+    draw();
+    return fold;
 }
 
 function sdSwitch(label, on, onToggle) {
@@ -1968,6 +2097,7 @@ function sdRenderSection(section) {
         const g = byHeader[i];
         if (!g) {
             headFor(i, i); out.appendChild(seg(i)); hatAfter(i, i);
+            if (section.id === 'birkat-hamazon' && /^הרחמן הוא יטע תורתו/.test(bares[i])) out.appendChild(sdGuestBlock());
             if (section.id === 'chacharit-tora' && /אשר בחר בנו מכל העמים/.test(bares[i])) out.appendChild(sdReadingButton());
             i++; continue;
         }

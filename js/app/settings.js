@@ -72,20 +72,25 @@ function apRender() {
 // Un réglage global, gardé sur l'appareil. Il choisit le vocabulaire (« Hazkara » chez les séfarades, « Yahrzeit » chez les ashkénazes) et, pour les dates personnelles, la règle de l'Adar
 // (js/personalDatesCore.js). Les écrans Bénédictions et Siddour gardent leur propre choix de rite ; s'il n'a jamais été fait, Bénédictions prend celui-ci. Sans choix enregistré : séfarade.
 const RITE_KEY = 'torahaxe_rite_v1';
-const RITE_NAMES = { sefarade: 'dates.rite_sefarade', ashkenaze: 'dates.rite_ashkenaze' };
+const RITE_NAMES = { sefarade: 'dates.rite_sefarade', ashkenaze: 'dates.rite_ashkenaze', habad: 'dates.rite_habad' };
 
 // Le rite que l'utilisateur a choisi, ou null s'il n'en a jamais choisi.
 function riteStored() {
     try { const v = localStorage.getItem(RITE_KEY); return RITE_NAMES[v] ? v : null; } catch (e) { return null; }
 }
-function riteGet() { return riteStored() || 'sefarade'; }
+// Le rite choisi tel quel (séfarade, ashkénaze, 'Habad) : le Siddour et les Bénédictions s'y règlent.
+function riteFull() { return riteStored() || 'sefarade'; }
+// Pour les dates (mot du jour anniversaire, règle de l'Adar), 'Habad suit l'usage ashkénaze.
+function riteGet() { const r = riteFull(); return r === 'habad' ? 'ashkenaze' : r; }
 
 // Le mot du jour anniversaire d'un décès : « Hazkara » (séfarade) ou « Yahrzeit » (ashkénaze).
 function datesTerm() { return t(riteGet() === 'ashkenaze' ? 'dates.term_yahrzeit' : 'dates.term_hazkara'); }
 
 function riteSet(rite) {
     if (!RITE_NAMES[rite]) return;
-    try { localStorage.setItem(RITE_KEY, rite); } catch (e) { /* valable pour cette séance */ }
+    try { localStorage.setItem(RITE_KEY, rite); localStorage.removeItem('benediction-rite'); } catch (e) { /* valable pour cette séance */ }
+    // Le Siddour (Birkat haMazon, Méeïn chalosh) et l'écran Bénédictions suivent le nouveau rite.
+    if (typeof sdApplyRite === 'function') sdApplyRite();
     // Le rite change la règle de l'Adar : les rappels des dates personnelles sont recalculés.
     if (typeof TorahAxeNotifications !== 'undefined' && TorahAxeNotifications.isSupported()) TorahAxeNotifications.scheduleZmanim();
     apRender();

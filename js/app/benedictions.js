@@ -15,8 +15,8 @@ function benLoadRite() {
         const saved = localStorage.getItem(BEN_RITE_KEY);
         if (saved && BenedictionsData.RITES[saved]) return saved;
     } catch (e) { /* stockage indisponible */ }
-    // Aucun choix fait sur cet écran : le rite global des Réglages, s'il en a un (js/app/settings.js) ; sinon celui du guide.
-    const global = typeof riteStored === 'function' ? riteStored() : null;
+    // Aucun choix fait sur cet écran : le rite du profil (Réglages, js/app/settings.js ; séfarade par défaut). Changer le rite du profil efface le choix fait ici.
+    const global = typeof riteFull === 'function' ? riteFull() : null;
     return global && BenedictionsData.RITES[global] ? global : BenedictionsData.DEFAULT_RITE;
 }
 function benSaveRite(rite) {
