@@ -1326,8 +1326,9 @@ function sdNoteEl(text) {
 }
 
 // Un bloc de variante. fill(host) y met le texte ; label : le nom en français ; bodyText : le texte (pour les premiers mots et la règle).
-function sdVarBlock(atoms, label, bodyText, fill) {
-    const state = SiddurCore.evaluate(atoms, sdCtx);
+// forced : l'état déjà calculé ('on' / 'off' / 'unknown'), quand la condition n'est pas une consigne du livre (le psaume du jour).
+function sdVarBlock(atoms, label, bodyText, fill, forced) {
+    const state = forced || SiddurCore.evaluate(atoms, sdCtx);
     const name = label || sdCap(sdAtomsLabel(atoms));
     const note = sdErrNote(atoms, bodyText);
     if (state === 'off' && !sdPrefs.all) {
@@ -1696,8 +1697,19 @@ function sdRenderSection(section) {
         box.appendChild(p);
         open = null;
     };
+    // Le psaume du jour : celui du jour (et ceux des jours particuliers) en bloc « Aujourd'hui », les autres repliés.
+    const psalmDay = /chir-chel-yom/.test(section.id);
     let i = 0;
     while (i < trees.length) {
+        const ps = psalmDay && i + 1 < trees.length ? SiddurCore.dayPsalm(SiddurCore.plain(trees[i]), sdCtx) : null;
+        if (ps) {
+            const fr = frOf(i);
+            const label = fr ? fr.split(/\s*:/)[0].replace(/,?\s*on dit$/, '').trim() : SiddurCore.plain(trees[i]).trim();
+            const h = i;
+            box.appendChild(sdVarBlock([], label, SiddurCore.plain(trees[h + 1]), host => { host.appendChild(seg(h)); host.appendChild(seg(h + 1)); }, ps));
+            i += 2;
+            continue;
+        }
         const g = byHeader[i];
         if (!g) { headFor(i, i); box.appendChild(seg(i)); hatAfter(i, i); i++; continue; }
         headFor(g.from, g.to);

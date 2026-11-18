@@ -349,8 +349,27 @@
         return h.toString(36);
     }
 
+
+    // Le psaume du jour (Chir chel yom) : chaque en-tête du livre dit à quel jour vaut le psaume qui le suit. 'on', 'off', 'unknown'
+    // (la maison d'un deuil : l'application ne le sait pas), ou null si le texte n'est pas un de ces en-têtes.
+    var WEEKDAYS = ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'ששי'];
+    function dayPsalm(text, ctx) {
+        var t = norm(text);
+        var m = /מזמור ליום (ראשון|שני|שלישי|רביעי|חמישי|ששי)/.exec(t);
+        if (m) return ctx.weekday === WEEKDAYS.indexOf(m[1]) ? 'on' : 'off';
+        var yes = null;
+        if (/בצום גדליה|בעשרה בטבת/.test(t)) yes = ctx.fast === 'guedalia' || ctx.fast === 'tevet10';
+        else if (/למחרת יום הכי?פורים/.test(t)) yes = ctx.hebrew.month === 'Tishri' && ctx.hebrew.day === 11;
+        else if (/בחנוכה/.test(t)) yes = !!ctx.flags.hanukkah;
+        else if (/בתענית אסתר|בפורים/.test(t)) yes = ctx.fast === 'esther' || !!ctx.flags.purim;
+        else if (/בשבעה עשר בתמוז/.test(t)) yes = ctx.fast === 'tamouz17';
+        else if (/בבית האבל/.test(t)) return 'unknown';
+        else return null;
+        return yes ? 'on' : 'off';
+    }
+
     return {
         fingerprint: fingerprint, parse: parse, plain: plain, stripNiqqud: stripNiqqud, conditionOf: conditionOf, analyseSegment: analyseSegment, groups: groups,
-        contextFor: contextFor, mevarchim: mevarchim, evaluate: evaluate, hebrewDayFixed: hebrewDayFixed, notesFor: notesFor, omerSegment: omerSegment, decemberStart: decemberStart
+        contextFor: contextFor, mevarchim: mevarchim, evaluate: evaluate, hebrewDayFixed: hebrewDayFixed, notesFor: notesFor, omerSegment: omerSegment, decemberStart: decemberStart, dayPsalm: dayPsalm
     };
 }));
