@@ -5,9 +5,9 @@ const C = require('../js/benedictionsCore.js');
 
 const find = (name) => D.FOODS.filter(f => f.n === name)[0];
 
-test('les données : 387 entrées, 36 notes, toutes les bénédictions connues', () => {
-    assert.strictEqual(D.FOODS.length, 387);
-    assert.strictEqual(Object.keys(D.NOTES).length, 36);
+test('les données : 471 entrées, 37 notes, toutes les bénédictions connues', () => {
+    assert.strictEqual(D.FOODS.length, 471);
+    assert.strictEqual(Object.keys(D.NOTES).length, 37);
     D.FOODS.forEach(f => {
         C.blessingsOf(f).forEach(b => assert.ok(D.BLESSINGS[b] || b === 'aucune', f.n + ' : ' + b));
         C.notesOf(f).forEach(n => assert.ok(D.NOTES[n], f.n + ' : note ' + n));
@@ -45,8 +45,8 @@ test('la recherche ignore accents et majuscules, et cherche chaque mot', () => {
     assert.deepStrictEqual(C.filterFoods({ query: 'tarte pomme' }).map(f => f.n), ['Tarte aux pommes']);
     assert.strictEqual(C.filterFoods({ query: 'cotelette veau' }).length, 1);
     assert.strictEqual(C.filterFoods({ query: 'zzzz' }).length, 0);
-    assert.strictEqual(C.filterFoods({}).length, 387);
-    assert.strictEqual(C.filterFoods({ b: 'all', query: '' }).length, 387);
+    assert.strictEqual(C.filterFoods({}).length, 471);
+    assert.strictEqual(C.filterFoods({ b: 'all', query: '' }).length, 471);
 });
 
 test('les fruits et légumes : on retrouve un aliment par son nom usuel', () => {
@@ -67,7 +67,7 @@ test('les fruits et légumes : on retrouve un aliment par son nom usuel', () => 
 test('les fruits et légumes ajoutés : chaque ajout porte la note de classement', () => {
     D.FOODS.filter(f => f.id >= 292).forEach(f => {
         assert.ok(C.notesOf(f).indexOf(34) !== -1, f.n);
-        assert.ok(['haets', 'haadama', 'chehakol'].indexOf(f.b) !== -1, f.n);
+        assert.ok(D.ORDER.indexOf(f.b) !== -1, f.n);
     });
 });
 
@@ -77,14 +77,14 @@ test('le filtre par bénédiction : un aliment à deux cas apparaît sous chacun
     assert.ok(mez.indexOf('Glace dans un cornet sucré') !== -1);
     assert.ok(che.indexOf('Glace dans un cornet sucré') !== -1);
     assert.ok(mez.indexOf('Gâteau') !== -1 && che.indexOf('Gâteau') === -1);
-    assert.deepStrictEqual(C.filterFoods({ b: 'aucune' }).map(f => f.n), ["Aspirine n'ayant pas de goût"]);
+    assert.deepStrictEqual(C.filterFoods({ b: 'aucune' }).map(f => f.n), ["Aspirine n'ayant pas de goût", 'Chewing-gum']);
 });
 
 test('les compteurs : chaque aliment est compté au moins une fois', () => {
     const counts = C.countByBlessing();
     const total = Object.keys(counts).reduce((s, k) => s + counts[k], 0);
     assert.ok(total >= D.FOODS.length);
-    assert.strictEqual(counts.aucune, 1);
+    assert.strictEqual(counts.aucune, 2);
 });
 
 test('les rites : \'Habad est la liste telle quelle, les autres ont leurs écarts', () => {
