@@ -5,9 +5,9 @@ const C = require('../js/benedictionsCore.js');
 
 const find = (name) => D.FOODS.filter(f => f.n === name)[0];
 
-test('les données : 471 entrées, 37 notes, toutes les bénédictions connues', () => {
-    assert.strictEqual(D.FOODS.length, 471);
-    assert.strictEqual(Object.keys(D.NOTES).length, 37);
+test('les données : 468 entrées, 36 notes, toutes les bénédictions connues', () => {
+    assert.strictEqual(D.FOODS.length, 468);
+    assert.strictEqual(Object.keys(D.NOTES).length, 36);
     D.FOODS.forEach(f => {
         C.blessingsOf(f).forEach(b => assert.ok(D.BLESSINGS[b] || b === 'aucune', f.n + ' : ' + b));
         C.notesOf(f).forEach(n => assert.ok(D.NOTES[n], f.n + ' : note ' + n));
@@ -45,8 +45,8 @@ test('la recherche ignore accents et majuscules, et cherche chaque mot', () => {
     assert.deepStrictEqual(C.filterFoods({ query: 'tarte pomme' }).map(f => f.n), ['Tarte aux pommes']);
     assert.strictEqual(C.filterFoods({ query: 'cotelette veau' }).length, 1);
     assert.strictEqual(C.filterFoods({ query: 'zzzz' }).length, 0);
-    assert.strictEqual(C.filterFoods({}).length, 471);
-    assert.strictEqual(C.filterFoods({ b: 'all', query: '' }).length, 471);
+    assert.strictEqual(C.filterFoods({}).length, 468);
+    assert.strictEqual(C.filterFoods({ b: 'all', query: '' }).length, 468);
 });
 
 test('les fruits et légumes : on retrouve un aliment par son nom usuel', () => {
@@ -61,12 +61,14 @@ test('les fruits et légumes : on retrouve un aliment par son nom usuel', () => 
     assert.ok(names('poivron').indexOf('Poivron rouge') !== -1);
     assert.deepStrictEqual(C.blessingsOf(find('Kaki')), ['haets']);
     assert.deepStrictEqual(C.blessingsOf(find('Fruit du dragon')), ['haadama']);
-    assert.deepStrictEqual(C.notesOf(find('Kaki')), [34]);
+    assert.deepStrictEqual(C.notesOf(find('Kaki')), []);
+    assert.deepStrictEqual(C.notesOf(find('Papaye')), [34]);
+    assert.strictEqual(find('Sushi').b, 'mezonot');
+    assert.deepStrictEqual(C.finalsOf(find('Sushi'), 'habad'), ['nefachot']);
 });
 
-test('les fruits et légumes ajoutés : chaque ajout porte la note de classement', () => {
+test('les aliments ajoutés : une bénédiction valide, et seules les notes qui les concernent', () => {
     D.FOODS.filter(f => f.id >= 292).forEach(f => {
-        assert.ok(C.notesOf(f).indexOf(34) !== -1, f.n);
         assert.ok(D.ORDER.indexOf(f.b) !== -1, f.n);
     });
 });

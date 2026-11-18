@@ -373,15 +373,17 @@ function benRenderRows() {
             box.appendChild(benNode('p', 'tool-small', view.note));
             card.appendChild(box);
         }
-        const notes = BenedictionsCore.notesOf(food);
-        if (notes.length) {
+        // Les notes 1 à 33 sont celles du guide 'Habad ; les suivantes (D.GUIDE_NOTES) sont des précisions de l'application, présentées à part.
+        const allNotes = BenedictionsCore.notesOf(food);
+        [[allNotes.filter(n => n <= D.GUIDE_NOTES), true], [allNotes.filter(n => n > D.GUIDE_NOTES), false]].forEach(([notes, fromGuide]) => {
+            if (!notes.length) return;
             const habad = benState.rite === 'habad';
             const details = benNode('details', 'kor-details ben-notes');
-            const key = 'tools.ben_notes_' + (notes.length > 1 ? 'n' : '1') + (habad ? '' : '_habad');
+            const key = fromGuide ? 'tools.ben_notes_' + (notes.length > 1 ? 'n' : '1') + (habad ? '' : '_habad') : 'tools.ben_app_notes_' + (notes.length > 1 ? 'n' : '1');
             details.appendChild(benNode('summary', '', t(key, { n: notes.join(', ') })));
             notes.forEach(n => details.appendChild(benNode('p', 'tool-small', (notes.length > 1 ? '(' + n + ') ' : '') + D.NOTES[n])));
             card.appendChild(details);
-        }
+        });
         list.appendChild(card);
     });
     toolEl('ben-msg').textContent = rows.length ? t('tools.ben_count', { n: rows.length, total: D.FOODS.length }) : t('tools.ben_none');
