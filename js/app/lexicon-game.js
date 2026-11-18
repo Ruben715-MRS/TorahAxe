@@ -152,7 +152,7 @@ function lexgameAnswer(choice) {
     if (!LexiconGameCore.answer(g, choice).length) return;
     const q = LexiconGameCore.question(g);
     // Enregistrée aussitôt : une partie quittée en route n'est pas perdue.
-    lexiconRecord(q.strong, g.resolved === 'right');
+    if (!g.multi) lexiconRecord(q.strong, g.resolved === 'right');
     // La fiche du mot : toutes ses traductions, sa remarque ; jamais sa transcription.
     QuizUI.resolve('lexgame', g, q, choice, { line: q.word.he + ' : ' + q.word.fr.join(' ; '), extra: lexgameExtra(q), note: q.word.note });
 }

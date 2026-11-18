@@ -1,98 +1,7 @@
-// Extrait de l'ancien js/app.js — Multijoueur et lancement d'une partie de frise.
+// Extrait de l'ancien js/app.js — Lancement d'une partie de frise. (Le multijoueur de la frise, sans écran depuis longtemps, a été retiré : les jeux à questions se jouent à
+// plusieurs par js/quizCore.js et js/app/quiz-ui.js.)
 // Découpage mécanique : les fichiers se chargent dans l'ordre d'index.html, qui est celui du fichier d'origine
 // (tout reste global ; une fonction ou un `let` d'un fichier est visible des suivants).
-// --- MULTIPLAYER LOGIC ---
-function showMultiplayerSetup() {
-    showScreen('screen-multiplayer-setup');
-    renderMultiplayerNameInputs();
-}
-
-function renderMultiplayerNameInputs() {
-    const count = parseInt(document.getElementById('multi-player-count').value);
-    const container = document.getElementById('multi-player-names');
-    container.innerHTML = '';
-    for (let i = 1; i <= count; i++) {
-        const existingInput = document.getElementById(`multi-name-${i}`);
-        const defaultVal = existingInput ? existingInput.value : (multiPlayers && multiPlayers[i - 1] ? multiPlayers[i - 1].name : t('multiplayer.player_default_name', { n: i }));
-        container.innerHTML += `<input type="text" id="multi-name-${i}" placeholder="${t('multiplayer.player_name_placeholder', { n: i })}" value="${escapeHtml(defaultVal)}">`;
-    }
-}
-
-function startMultiplayerGame() {
-    const count = parseInt(document.getElementById('multi-player-count').value);
-    multiPlayers = [];
-    for (let i = 1; i <= count; i++) {
-        let name = document.getElementById(`multi-name-${i}`).value.trim();
-        if (!name) name = t('multiplayer.player_default_name', { n: i });
-        multiPlayers.push({ name: name, score: 0, lives: 2, comboMultiplier: 1.0, eliminated: false });
-    }
-    multiGameActive = true;
-    currentMultiPlayerIndex = 0;
-
-    startActualGame('multi');
-
-    document.getElementById('screen-game').classList.add('hidden');
-    document.getElementById('screen-multi-turn').classList.remove('hidden');
-    document.getElementById('multi-turn-text').innerText = t('multiplayer.turn_banner', { name: multiPlayers[currentMultiPlayerIndex].name });
-}
-
-function resumeMultiplayerTurn() {
-    document.getElementById('screen-multi-turn').classList.add('hidden');
-    document.getElementById('screen-game').classList.remove('hidden');
-    if (typeof syncOrientationLock === 'function') syncOrientationLock('screen-game');
-    pickNextEvent();
-    updateHUD();
-}
-
-function nextMultiPlayerTurn() {
-    if (!multiGameActive) return;
-
-    let alivePlayers = multiPlayers.filter(p => !p.eliminated);
-    if (alivePlayers.length === 0) {
-        setTimeout(() => endMultiplayerGame(), 1000);
-        return;
-    }
-    if (currentPool.length === 0) {
-        setTimeout(() => endMultiplayerGame(), 1000);
-        return;
-    }
-
-    // Next player
-    let attempts = 0;
-    do {
-        currentMultiPlayerIndex = (currentMultiPlayerIndex + 1) % multiPlayers.length;
-        attempts++;
-    } while (multiPlayers[currentMultiPlayerIndex].eliminated && attempts <= multiPlayers.length);
-
-    document.getElementById('screen-game').classList.add('hidden');
-    document.getElementById('screen-multi-turn').classList.remove('hidden');
-    document.getElementById('multi-turn-text').innerText = t('multiplayer.turn_banner', { name: multiPlayers[currentMultiPlayerIndex].name });
-}
-
-function endMultiplayerGame() {
-    multiGameActive = false;
-    showScreen('screen-multiplayer-end');
-
-    const sorted = [...multiPlayers].sort((a, b) => b.score - a.score);
-    const container = document.getElementById('multi-podium');
-    container.innerHTML = '';
-
-    const medals = ['🥇', '🥈', '🥉', ''];
-    const classes = ['gold', 'silver', 'bronze', ''];
-
-    sorted.forEach((p, index) => {
-        const medal = index < 3 ? medals[index] : `${index + 1}.`;
-        const cls = index < 3 ? classes[index] : '';
-        const eliminatedText = p.eliminated ? ` <em>(${escapeHtml(t('multiplayer.eliminated'))})</em>` : '';
-        container.innerHTML += `
-                    <div class="podium-row ${cls}">
-                        <span>${medal} ${escapeHtml(p.name)} ${eliminatedText}</span>
-                        <span>${p.score} pts</span>
-                    </div>
-                `;
-    });
-}
-
 // LANCEMENT DU JEU
 // Annule un éventuel délai de révélation de mauvaise réponse encore en
 // attente (voir checkPlacement) et réarme `isAnimating` à `false` : à
@@ -174,7 +83,6 @@ function startActualGame(mode) {
 
     if (mode === 'training' || mode === 'discovery' || mode === 'class') lives = Infinity; // la classe ne s'élimine pas
     else if (mode === 'expert') lives = 1;
-    else if (mode === 'multi') lives = 2; // unused directly, but for safety
     else lives = startingLives(); // classic, chrono, daily, weekly (3, ou ce qu'il reste en Expédition)
 
     score = 0;
@@ -217,7 +125,7 @@ function startActualGame(mode) {
 
     updateHUD();
 
-    if (mode === 'discovery' || mode === 'multi') {
+    if (mode === 'discovery') {
         renderTimeline();
     } else {
         pickNextEvent();

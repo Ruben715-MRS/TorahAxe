@@ -678,18 +678,6 @@
     "confirm_delete_event": "Voulez-vous vraiment supprimer cet événement ?",
     "empty": "Aucun événement dans ce thème."
   },
-  "multiplayer": {
-    "title": "Mode Multijoueurs",
-    "player_count_label": "Nombre de joueurs :",
-    "player_count_option": "{n} Joueurs",
-    "player_name_placeholder": "Nom du joueur {n}",
-    "player_default_name": "Joueur {n}",
-    "start_btn": "Commencer la partie",
-    "turn_banner": "À {name} de jouer !",
-    "ready_btn": "Prêt ?",
-    "results_title": "Résultats Multijoueurs",
-    "eliminated": "Éliminé"
-  },
   "mastery": {
     "tested_meta": "{tested}/{total} événements testés",
     "weak_badge": "⚠︎ {count} points faibles",
@@ -7260,6 +7248,27 @@
     "how": "Cinq éléments d'une liste connue (les parachiot, les livres du Tanakh, les traités de la Michna ou du Talmud, les générations, les fils de Jacob, les rois) sont donnés en désordre : touchez-les dans l'ordre, le premier d'abord. 20 points par élément à la bonne place, soit 100 pour un classement parfait ; cinq classements par partie.",
     "loading": "Chargement des listes…",
     "load_error": "Les listes n'ont pas pu être chargées : vérifiez la connexion, puis rouvrez le jeu."
+  },
+  "multi": {
+    "button": "Jouer à plusieurs",
+    "help": "Chacun répond à tour de rôle : on se passe le téléphone. Les parties à plusieurs ne comptent pas dans votre progression personnelle.",
+    "count_aria": "Nombre de joueurs",
+    "name_placeholder": "Joueur {n}",
+    "name_aria": "Nom du joueur {n}",
+    "go": "Commencer",
+    "status": "Au tour de {name} · Question {n} sur {total}",
+    "pass_to": "Passez le téléphone à",
+    "turn_info": "Question {n} sur {total}",
+    "scoreboard": "{name} : {score}",
+    "ready": "Je suis prêt",
+    "stop": "Arrêter la partie",
+    "winner": "{name} gagne !",
+    "tie": "Égalité entre {names}.",
+    "ranking_aria": "Classement",
+    "ranking_line": "{rank}. {name} : {score} points ({found})",
+    "found_one": "{n} bonne réponse",
+    "found_many": "{n} bonnes réponses",
+    "replay": "Rejouer à plusieurs"
   },
   "scrgame": {
     "title": "Le verset en désordre",

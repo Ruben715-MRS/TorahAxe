@@ -173,7 +173,7 @@
     function createGame(options) {
         var o = options || {};
         var section = SECTIONS.indexOf(o.section) >= 0 ? o.section : 'all';
-        var state = Quiz.createState(o.questions || pick(section, o.rng, o.rounds || ROUNDS), { section: section });
+        var state = Quiz.createState(o.questions || pick(section, o.rng, o.rounds || Quiz.roundsFor(ROUNDS)), { section: section });
         if (state.questions.length) Quiz.resetRound(state, cfgOf(state));
         return state;
     }

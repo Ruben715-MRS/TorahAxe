@@ -41,7 +41,7 @@ function pickNextEvent() {
     if (currentPool.length === 0) {
         if (pendingPlacementAnnouncement) A11y.announce(pendingPlacementAnnouncement);
         pendingPlacementAnnouncement = '';
-        const finish = () => (currentMode === 'multi' ? endMultiplayerGame() : endGame(true));
+        const finish = () => endGame(true);
         // La dernière carte atterrit sous les yeux du joueur avant que l'écran de fin ne la recouvre.
         if (pendingEntryFx && !motionReduced()) {
             renderTimeline();
@@ -167,28 +167,16 @@ function replayAnimClass(el, className) {
 }
 
 function updateHUD() {
-    if (currentMode === 'multi') {
-        const cp = multiPlayers[currentMultiPlayerIndex];
-        document.getElementById('hud-score').innerText = cp.score;
-        renderComboChip(document.getElementById('hud-combo'), cp.comboMultiplier);
+    document.getElementById('hud-score').innerText = score;
+    renderComboChip(document.getElementById('hud-combo'), comboMultiplier);
 
-        let pips = `<span class="multi-player-hud">${escapeHtml(cp.name)}</span> `;
-        for (let i = 0; i < 2; i++) {
-            pips += `<span class="pip${i < cp.lives ? '' : ' spent'}"></span>`;
+    if (currentMode !== 'training' && currentMode !== 'discovery') {
+        const maxLives = (currentMode === 'expert') ? 1 : 3;
+        let pips = '';
+        for (let i = 0; i < maxLives; i++) {
+            pips += `<span class="pip${i < lives ? '' : ' spent'}"></span>`;
         }
         document.getElementById('hud-lives').innerHTML = pips;
-    } else {
-        document.getElementById('hud-score').innerText = score;
-        renderComboChip(document.getElementById('hud-combo'), comboMultiplier);
-
-        if (currentMode !== 'training' && currentMode !== 'discovery') {
-            const maxLives = (currentMode === 'expert') ? 1 : 3;
-            let pips = '';
-            for (let i = 0; i < maxLives; i++) {
-                pips += `<span class="pip${i < lives ? '' : ' spent'}"></span>`;
-            }
-            document.getElementById('hud-lives').innerHTML = pips;
-        }
     }
 
     if (currentMode !== 'discovery') {
@@ -455,12 +443,7 @@ function awardPoints(gap, isPerfect, opts = {}) {
     if (opts.noPartial && !isPerfect) pts = 0;
     if (opts.speedBonus) pts += opts.speedBonus;
     if (opts.halved) pts = Math.round(pts / 2);
-    if (currentMode === 'multi') {
-        multiPlayers[currentMultiPlayerIndex].score += pts;
-        multiPlayers[currentMultiPlayerIndex].comboMultiplier = isPerfect ? Math.round((multiPlayers[currentMultiPlayerIndex].comboMultiplier + 0.1) * 10) / 10 : 1.0;
-    } else {
-        score += pts;
-    }
+    score += pts;
     comboMultiplier = isPerfect ? Math.round((comboMultiplier + 0.1) * 10) / 10 : 1.0;
     return pts;
 }
@@ -516,15 +499,9 @@ function checkPlacement(index, slotElement) {
         placedEvents.splice(index, 0, eventToPlace);
         updateHUD();
         queueEntryFx(placedId, 'entry-new entry-correct-pulse');
-        if (currentMode === 'multi') {
-            renderTimeline();
-            A11y.announce(correctText);
-            setTimeout(() => nextMultiPlayerTurn(), 1000);
-        } else {
-            // Une seule phrase : le résultat, puis la carte suivante (voir pickNextEvent).
-            pendingPlacementAnnouncement = correctText;
-            pickNextEvent();
-        }
+        // Une seule phrase : le résultat, puis la carte suivante (voir pickNextEvent).
+        pendingPlacementAnnouncement = correctText;
+        pickNextEvent();
     } else {
         isAnimating = true;
         awardPoints(gap, false, { noPartial: true });
@@ -539,13 +516,7 @@ function checkPlacement(index, slotElement) {
         srsRecord(eventToPlace.id, false);
         recordSessionStep(eventToPlace, false, false);
 
-        if (currentMode === 'multi') {
-            let cp = multiPlayers[currentMultiPlayerIndex];
-            cp.lives -= 1;
-            if (cp.lives <= 0) cp.eliminated = true;
-        } else if (currentMode !== 'training') {
-            lives -= 1;
-        }
+        if (currentMode !== 'training') lives -= 1;
         updateHUD();
 
         // Position réelle de l'événement dans la colonne
@@ -565,7 +536,7 @@ function checkPlacement(index, slotElement) {
             date: formatYear(dateToPlace),
             direction: t(correctIndex < index ? 'game.announce_higher' : 'game.announce_lower')
         });
-        const livesLeft = currentMode === 'multi' ? multiPlayers[currentMultiPlayerIndex].lives : lives;
+        const livesLeft = lives;
         if (isFinite(livesLeft)) {
             wrongText += ' ' + (livesLeft <= 0 ? t('game.announce_no_lives')
                 : t(livesLeft === 1 ? 'game.announce_lives_one' : 'game.announce_lives', { count: livesLeft }));
@@ -596,10 +567,7 @@ function checkPlacement(index, slotElement) {
             updateHUD();
 
             queueEntryFx(missedId, 'entry-reveal');
-            if (currentMode === 'multi') {
-                renderTimeline();
-                setTimeout(() => nextMultiPlayerTurn(), 900);
-            } else if (lives <= 0 && currentMode !== 'training') {
+            if (lives <= 0 && currentMode !== 'training') {
                 renderTimeline();
                 setTimeout(() => endGame(false), 900);
             } else {

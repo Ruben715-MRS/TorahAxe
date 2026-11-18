@@ -81,7 +81,7 @@
     function createGame(options) {
         var o = options || {};
         var level = LEVEL_IDS.indexOf(o.level) >= 0 ? o.level : 'all';
-        var indices = o.indices || pick(o.books, level, o.rng, o.rounds || ROUNDS);
+        var indices = o.indices || pick(o.books, level, o.rng, o.rounds || Quiz.roundsFor(ROUNDS));
         var state = Quiz.createState(indices.map(function (i) { return makeQuestion(o.books, i, o.rng); }), { level: level });
         startRound(state);
         return state;

@@ -82,7 +82,7 @@
     // options : { books, parashot, rng, rounds, indices } ; `indices`, s'il est donné, fixe les versets de départ (tests).
     function createGame(options) {
         var o = options || {};
-        var indices = o.indices || pick(o.books, o.rng, o.rounds || ROUNDS);
+        var indices = o.indices || pick(o.books, o.rng, o.rounds || Quiz.roundsFor(ROUNDS));
         var state = Quiz.createState(indices.map(function (i) { return makeQuestion(o.parashot, i); }), {});
         Quiz.resetRound(state, CFG);
         return state;

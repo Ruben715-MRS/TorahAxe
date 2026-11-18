@@ -146,3 +146,14 @@ test('mots en double : le tas retire la bonne pièce, et l\'ordre exact est exig
     assert.ok(S.remainingPool(g).filter(x => x === dup).length >= 2);
     assert.deepStrictEqual(S.check(g, w), ['right']);
 });
+
+test('à plusieurs : assez de versets pour que chacun en ait trois', () => {
+    const Q = require('../js/quizCore.js');
+    Q.setPendingPlayers(['Anna', 'Ben']);
+    const g = S.createGame({ books: BOOKS, rng: seeded(3) });
+    assert.strictEqual(g.questions.length, 6);
+    assert.strictEqual(g.multi.players.length, 2);
+    const solo = S.createGame({ books: BOOKS, rng: seeded(3) });
+    assert.strictEqual(solo.questions.length, 5);
+    assert.strictEqual(solo.multi, undefined);
+});
