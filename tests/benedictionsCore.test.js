@@ -5,9 +5,9 @@ const C = require('../js/benedictionsCore.js');
 
 const find = (name) => D.FOODS.filter(f => f.n === name)[0];
 
-test('les données : 291 entrées, 33 notes, toutes les bénédictions connues', () => {
-    assert.strictEqual(D.FOODS.length, 291);
-    assert.strictEqual(Object.keys(D.NOTES).length, 33);
+test('les données : 387 entrées, 36 notes, toutes les bénédictions connues', () => {
+    assert.strictEqual(D.FOODS.length, 387);
+    assert.strictEqual(Object.keys(D.NOTES).length, 36);
     D.FOODS.forEach(f => {
         C.blessingsOf(f).forEach(b => assert.ok(D.BLESSINGS[b] || b === 'aucune', f.n + ' : ' + b));
         C.notesOf(f).forEach(n => assert.ok(D.NOTES[n], f.n + ' : note ' + n));
@@ -45,8 +45,30 @@ test('la recherche ignore accents et majuscules, et cherche chaque mot', () => {
     assert.deepStrictEqual(C.filterFoods({ query: 'tarte pomme' }).map(f => f.n), ['Tarte aux pommes']);
     assert.strictEqual(C.filterFoods({ query: 'cotelette veau' }).length, 1);
     assert.strictEqual(C.filterFoods({ query: 'zzzz' }).length, 0);
-    assert.strictEqual(C.filterFoods({}).length, 291);
-    assert.strictEqual(C.filterFoods({ b: 'all', query: '' }).length, 291);
+    assert.strictEqual(C.filterFoods({}).length, 387);
+    assert.strictEqual(C.filterFoods({ b: 'all', query: '' }).length, 387);
+});
+
+test('les fruits et légumes : on retrouve un aliment par son nom usuel', () => {
+    const names = (q) => C.filterFoods({ query: q }).map(f => f.n);
+    assert.strictEqual(names('kaki')[0], 'Kaki');
+    assert.strictEqual(names('plaqueminier')[0], 'Kaki');
+    assert.strictEqual(names('fruit du dragon')[0], 'Fruit du dragon');
+    assert.strictEqual(names('pitaya')[0], 'Fruit du dragon');
+    assert.ok(names('patate').indexOf('Pomme de terre cuite, écrasée ou frite') !== -1);
+    assert.strictEqual(names('batate')[0], 'Patate douce');
+    assert.strictEqual(names('chou-fleur')[0], 'Chou fleur');
+    assert.ok(names('poivron').indexOf('Poivron rouge') !== -1);
+    assert.deepStrictEqual(C.blessingsOf(find('Kaki')), ['haets']);
+    assert.deepStrictEqual(C.blessingsOf(find('Fruit du dragon')), ['haadama']);
+    assert.deepStrictEqual(C.notesOf(find('Kaki')), [34]);
+});
+
+test('les fruits et légumes ajoutés : chaque ajout porte la note de classement', () => {
+    D.FOODS.filter(f => f.id >= 292).forEach(f => {
+        assert.ok(C.notesOf(f).indexOf(34) !== -1, f.n);
+        assert.ok(['haets', 'haadama', 'chehakol'].indexOf(f.b) !== -1, f.n);
+    });
 });
 
 test('le filtre par bénédiction : un aliment à deux cas apparaît sous chacune', () => {
