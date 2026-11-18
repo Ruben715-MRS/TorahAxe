@@ -2,7 +2,7 @@
 // === GUIDE DES BÉNÉDICTIONS — RECHERCHE ET FILTRES (sans DOM) ===
 // =========================================================================
 // Les données sont dans js/benedictionsData.js ; l'écran dans js/app/benedictions.js. Ici, ce qui se calcule, testé dans tests/benedictionsCore.test.js :
-//  - la recherche d'un aliment (sans accents ni majuscules, sur son nom, le détail de ses cas et le nom de sa bénédiction) ;
+//  - la recherche d'un aliment (sans accents ni majuscules, sur son nom, ses autres noms `alt` (kaki = plaqueminier, pitaya = fruit du dragon…), le détail de ses cas et le nom de sa bénédiction) ;
 //  - le rite (Séfarade, Ashkénaze, 'Habad) : la liste est celle de 'Habad ; `view` donne l'aliment tel qu'un autre rite le lit (bénédiction et note propres) ;
 //  - la bénédiction finale (Birkat Hamazon, Al Hamihya, Al Haguéfen, Al Haets, Boré Nefachot) d'un aliment, et la quantité qui l'exige, selon le rite ;
 //  - le filtre par bénédiction (un aliment à plusieurs bénédictions apparaît sous chacune d'elles) ;
@@ -69,7 +69,7 @@
     }
 
     function searchText(food, rite) {
-        var parts = [food.n];
+        var parts = [food.n].concat(food.alt || []);
         (view(food, rite).steps || []).forEach(function (s) { parts.push(s.t); });
         blessingsOf(food, rite).forEach(function (b) { parts.push(label(b)); });
         return stemmed(parts.join(' '));
