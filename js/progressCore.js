@@ -10,19 +10,13 @@
 // Les niveaux : chaque partie terminée rapporte de 20 à 100 points d'expérience (20 pour avoir terminé, jusqu'à 80 de plus selon le score), versés au domaine du jeu (hébreu, Tanakh,
 // sages, halakha, histoire, géographie). Dix niveaux par domaine. Les badges se calculent sur le registre, sans rien stocker de plus.
 (function (root, factory) {
-    if (typeof module === 'object' && module.exports) module.exports = factory(require('./calendarYearCore.js'), require('./siddurCore.js'));
-    else root.ProgressCore = factory(root.CalendarYearCore, root.SiddurCore);
-}(typeof self !== 'undefined' ? self : this, function (CY, Siddur) {
+    if (typeof module === 'object' && module.exports) module.exports = factory(require('./calendarYearCore.js'), require('./siddurCore.js'), require('./gamesCatalog.js'));
+    else root.ProgressCore = factory(root.CalendarYearCore, root.SiddurCore, root.GamesCatalog);
+}(typeof self !== 'undefined' ? self : this, function (CY, Siddur, Catalog) {
     'use strict';
 
-    // Les jeux et leur domaine. Les identifiants sont ceux de l'écran (préfixe de QuizUI), plus « wheel » (la roue des fêtes) et « frise ».
-    var GAMES = {
-        lexgame: 'hebreu', gemgame: 'hebreu', review: 'hebreu',
-        parashagame: 'tanakh', mitsvagame: 'tanakh', ordergame: 'tanakh', scrgame: 'tanakh',
-        whogame: 'sages', trgame: 'sages',
-        purgame: 'halakha', wheel: 'halakha', dailygame: 'halakha',
-        mapgame: 'geographie', frise: 'histoire'
-    };
+    // Les jeux et leur domaine : ceux du catalogue (js/gamesCatalog.js), dont les frises (`frise`) et la roue des fêtes (`wheel`).
+    var GAMES = Catalog.domains();
     var DOMAINS = [
         { id: 'hebreu', he: 'עברית' }, { id: 'tanakh', he: 'תנ״ך' }, { id: 'sages', he: 'חכמים' },
         { id: 'halakha', he: 'הלכה' }, { id: 'histoire', he: 'היסטוריה' }, { id: 'geographie', he: 'גאוגרפיה' }

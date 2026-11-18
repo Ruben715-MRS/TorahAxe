@@ -43,19 +43,6 @@ const HOME_ENTRIES = {
     measures: { he: 'מידות', fr: 'Mesures', desc: 'Poids, volumes, distances et monnaies de la Bible', kw: 'coudée poids volumes monnaies chékel', run: homeTool('measures') },
     personalDates: { he: 'תאריכים', fr: 'Dates personnelles', desc: 'Hazkara, anniversaires hébraïques, bar et bat-mitsva, avec rappels', kw: 'hazkara azkara yahrzeit yartzeit yahrtzeit anniversaire décès naissance bar mitsva bat mitsva date hébraïque rappel notification', run: () => openDates('screen-main') },
     progress: { he: 'התקדמות', fr: 'Ma progression', desc: 'Série de jours, niveaux par domaine et badges', kw: 'progression série jours niveaux badges statistiques succès', run: () => openProgress('screen-main') },
-    daily: { he: 'אתגר', fr: 'Défi du jour', desc: 'Cinq questions sur la date du jour : paracha, Daf Yomi, mois, fête, Téhilim', kw: 'jeu défi quotidien jour date paracha daf yomi mois fête téhilim', run: () => openDailyGame('screen-main') },
-    review: { he: 'חזרה', fr: 'À réviser aujourd\'hui', desc: 'Mots du Tanakh et de la Guémara à revoir aujourd\'hui, en une seule séance', kw: 'réviser révision répétition espacée rappel mémoire jeu', run: () => openReview('screen-main') },
-    purgame: { he: 'טהור', fr: 'Pur ou impur ?', desc: 'Triez les animaux, vite : pur (permis) ou impur (interdit), avec les signes à connaître', kw: 'jeu cacherout casher kasher animaux poissons oiseaux quadrupèdes tahor tame', run: () => openPurityGame('screen-main') },
-    mitsvagame: { he: 'מצוות', fr: 'Mitsva express', desc: 'De quelle paracha le Rambam tire-t-il ce commandement ? Vite, parmi les 613', kw: 'jeu mitsvot commandements 613 rambam paracha parachiot torah livre', run: () => openMitsvaGame('screen-main') },
-    scrgame: { he: 'פסוק', fr: 'Le verset en désordre', desc: 'Un verset de la Torah coupé en mots : remettez-les dans l\'ordre', kw: 'jeu verset mots ordre torah désordre puzzle', run: () => openScrambleGame('screen-main') },
-    parashagame: { he: 'פרשה', fr: 'Dans quelle paracha ?', desc: 'Un verset tiré au hasard dans la Torah : retrouvez sa paracha, avec des indices qui coûtent des points', kw: 'jeu paracha parachiot verset torah indice deviner', run: () => openVerseGame('screen-main') },
-    whogame: { he: 'מי אני', fr: 'Qui suis-je ?', desc: 'Un personnage de la Bible ou un sage du Talmud parle : devinez qui, avec des indices qui coûtent des points', kw: 'jeu devinette personnages bible sages talmud indices', run: () => openWhoGame('screen-main') },
-    ordergame: { he: 'סדר', fr: 'Le bon ordre', desc: 'Remettez dans l\'ordre des parachiot, des livres, des traités, des générations ou des rois', kw: 'jeu classer ordre parachiot tanakh michna talmud traités générations rois fils jacob', run: () => openOrderGame('screen-main') },
-    mapgame: { he: 'מפה', fr: 'Sur la carte', desc: 'Touchez la carte à l\'endroit d\'une ville, d\'une montagne, d\'une mer ou d\'une tribu', kw: 'jeu carte géographie villes tribus montagnes mers lieux terre israël', run: () => openMapGame('screen-main') },
-    lexgame: { he: 'מילים', fr: 'Mots du Tanakh', desc: 'Le vocabulaire hébreu de la Bible, du plus fréquent au plus rare', kw: 'jeu hébreu vocabulaire', run: () => openLexiconGame('screen-main') },
-    gemgame: { he: 'גמרא', fr: 'Mots de la Guémara', desc: 'Les mots, les abréviations et les sages de la Guémara', kw: 'jeu araméen guemara', run: () => openGemaraGame('screen-main') },
-    trgame: { he: 'מסורה', fr: 'Maîtres et élèves', desc: 'Qui a reçu la Torah de qui ? Retrouvez le maître d\'un sage', kw: 'jeu sages transmission', run: () => openTransmissionGame('screen-main') },
-    wheel: { he: 'מועדים', fr: 'La roue des fêtes', desc: 'Placez les fêtes juives dans le bon mois du calendrier hébraïque', kw: 'jeu fêtes calendrier mois', run: () => openWheel('screen-main', 'juif') },
     frCivile: { he: 'דורות', fr: 'Peuple juif, années civiles', desc: 'Placez les événements sur la frise, en années civiles', kw: 'frise histoire chronologie', run: () => playFriseTheme('thm_histoire_juive_civile') },
     frHebraique: { he: 'דורות', fr: 'Peuple juif, années hébraïques', desc: 'Les mêmes événements, datés selon le calendrier hébraïque', kw: 'frise histoire chronologie', run: () => playFriseTheme('thm_histoire_juive_hebraique') },
     frHassidisme: { he: 'חסידים', fr: 'Histoire du hassidisme', desc: 'Du Baal Chem Tov à nos jours : maîtres, dynasties, grandes dates', kw: 'frise hassidisme chronologie', run: () => playFriseTheme('thm_histoire_hassidisme') },
@@ -64,6 +51,15 @@ const HOME_ENTRIES = {
     re1948: { he: 'תש״ח', fr: 'Création de l\'État d\'Israël', desc: 'Deux peuples, une terre, une guerre (1881-1949)', kw: 'récit histoire 1948', run: () => openRecit('israel-1948', 'screen-main') },
     reBarKokhba: { he: 'בר כוכבא', fr: 'Révolte de Bar Kokhba', desc: 'La dernière guerre des Juifs contre Rome (132-135)', kw: 'récit histoire rome', run: () => openRecit('bar-kokhba', 'screen-main') }
 };
+
+// Les jeux viennent du catalogue (js/gamesCatalog.js) : une ligne là-bas = une entrée ici (accueil, recherche, raccourcis). La fonction d'ouverture est cherchée au moment du clic.
+function homeOpenGame(game) {
+    const open = typeof globalThis[game.open] === 'function' ? globalThis[game.open] : null;
+    if (open) open.apply(null, ['screen-main'].concat(game.args || []));
+}
+GamesCatalog.GAMES.forEach(game => {
+    if (game.home !== false) HOME_ENTRIES[game.id] = { he: game.he, fr: game.fr, desc: game.desc, kw: game.kw, run: () => homeOpenGame(game) };
+});
 
 // Les sections de chaque onglet (sauf Aujourd'hui, qui est calculé). `as` : « tiles » (tuiles à mot hébreu) ou « rows » (lignes avec description).
 const HOME_LAYOUT = {
@@ -80,13 +76,12 @@ const HOME_LAYOUT = {
     // Les jeux sont rangés par thème (Hébreu, Tanakh, Sages, Halakha, Histoire) : un jeu de plus = un id dans la bonne section. Une section sans jeu n'est
     // pas affichée (homeSection).
     jouer: [
-        { title: 'Chaque jour', as: 'rows', ids: ['daily', 'review', 'progress'], subs: () => ({ daily: homeDailyDesc(), review: homeReviewDesc(), progress: homeProgressDesc() }) },
-        { title: 'Hébreu et araméen', as: 'rows', ids: ['lexgame', 'gemgame'] },
-        { title: 'Tanakh', as: 'rows', ids: ['parashagame', 'scrgame', 'mitsvagame'] },
-        { title: 'Géographie', as: 'rows', ids: ['mapgame'] },
-        { title: 'Mettre dans l\'ordre', as: 'rows', ids: ['ordergame'] },
-        { title: 'Personnages et sages', as: 'rows', ids: ['whogame', 'trgame'] },
-        { title: 'Halakha et fêtes', as: 'rows', ids: ['purgame', 'wheel'] },
+        // Les rayons de jeux viennent du catalogue (GamesCatalog.SECTIONS) ; « Chaque jour » y ajoute la progression, qui n'est pas un jeu.
+        ...GamesCatalog.SECTIONS.map(sec => {
+            const ids = GamesCatalog.inSection(sec.id).map(g => g.id);
+            if (sec.id !== 'daily') return { title: sec.title, as: 'rows', ids: ids };
+            return { title: sec.title, as: 'rows', ids: ids.concat('progress'), subs: () => ({ dailygame: homeDailyDesc(), review: homeReviewDesc(), progress: homeProgressDesc() }) };
+        }),
         { title: 'Histoire : frises', as: 'rows', ids: ['frCivile', 'frHebraique', 'frHassidisme', 'frIsrael'] },
         { title: 'Histoire : récits', as: 'rows', ids: ['reDreyfus', 're1948', 'reBarKokhba'] },
         { promo: 'jouer' }   // le seul encart de l'onglet, tout en bas
