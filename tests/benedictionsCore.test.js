@@ -217,3 +217,17 @@ test('la recherche : les noms les plus courts d\'abord, puis les plus longs', ()
     assert.strictEqual(C.filterFoods({})[0].n, D.FOODS[0].n);
     assert.strictEqual(C.filterFoods({ b: 'haets' })[0].n, D.FOODS.filter(f => f.b === 'haets')[0].n);
 });
+
+test('la halakha générale : sections complètes, bénédictions connues, tableau du dessert', () => {
+    const H = D.HALAKHA;
+    assert.ok(H.note.length > 0);
+    assert.strictEqual(H.sections.length, 5);
+    H.sections.forEach(sec => {
+        assert.ok(sec.id && sec.title, sec.id);
+        assert.ok((sec.paras || []).length + (sec.bullets || []).length > 0, sec.id);
+        (sec.list || []).forEach(it => assert.ok(D.ORDER.indexOf(it.b) !== -1, it.b));
+    });
+    assert.deepStrictEqual(H.sections[0].list.map(it => it.b), ['hamotsi', 'mezonot', 'haguafen', 'haets', 'haadama', 'chehakol']);
+    const dessert = H.sections.filter(sec => sec.id === 'dessert')[0];
+    assert.strictEqual(dessert.table.length, 6);
+});

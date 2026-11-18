@@ -97,6 +97,8 @@ function benRender() {
     body.appendChild(chips);
     benRenderChips();
 
+    body.appendChild(benHalakhaPanel());
+
     const msg = benNode('p', 'tool-msg', '');
     msg.id = 'ben-msg';
     msg.setAttribute('role', 'status');
@@ -110,6 +112,49 @@ function benRender() {
     body.appendChild(benOtherPanel());
     body.appendChild(benSourceCard());
     benRenderRows();
+}
+
+// La halakha générale, repliée par défaut, au-dessus de la liste : ordre des bénédictions, plat mélangé, dessert. Données : BenedictionsData.HALAKHA.
+function benHalakhaPanel() {
+    const H = BenedictionsData.HALAKHA;
+    const panel = benNode('details', 'ben-halakha');
+    panel.id = 'ben-halakha';
+    panel.appendChild(benNode('summary', 'ben-halakha-title', 'Halakha : ordre des bénédictions, plats mélangés, desserts'));
+    panel.appendChild(benNode('p', 'tool-small ben-halakha-note', H.note));
+    H.sections.forEach(sec => {
+        const part = benNode('section', 'ben-halakha-sec');
+        part.appendChild(benNode('h3', 'ben-halakha-h', sec.title));
+        (sec.paras || []).forEach(text => part.appendChild(benNode('p', 'tool-small', text)));
+        if (sec.list) {
+            const ol = benNode('ol', 'ben-halakha-list');
+            sec.list.forEach(item => ol.appendChild(benNode('li', 'tool-small', item.t)));
+            part.appendChild(ol);
+        }
+        if (sec.table) {
+            const wrap = benNode('div', 'ben-halakha-table');
+            const table = benNode('table', '');
+            const head = benNode('tr', '');
+            ['Type de dessert', 'Bénédiction avant ?', 'Remarque'].forEach(h => head.appendChild(benNode('th', '', h)));
+            table.appendChild(head);
+            sec.table.forEach(row => {
+                const tr = benNode('tr', '');
+                tr.appendChild(benNode('td', '', row.type));
+                tr.appendChild(benNode('td', '', row.before));
+                tr.appendChild(benNode('td', '', row.note || '—'));
+                table.appendChild(tr);
+            });
+            wrap.appendChild(table);
+            part.appendChild(wrap);
+        }
+        [['examples', 'ben-halakha-ex'], ['bullets', 'ben-halakha-list']].forEach(([key, cls]) => {
+            if (!sec[key]) return;
+            const ul = benNode('ul', cls);
+            sec[key].forEach(text => ul.appendChild(benNode('li', 'tool-small', text)));
+            part.appendChild(ul);
+        });
+        panel.appendChild(part);
+    });
+    return panel;
 }
 
 function benRenderRiteInfo() {

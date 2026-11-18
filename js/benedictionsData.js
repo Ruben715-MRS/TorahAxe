@@ -587,6 +587,79 @@
     var FINAL_NOTES = {
         'Matsa': { sefarade: 'À Pessa\'h, où la matsa devient Hamotsi : Birkat Hamazon.' }
     };
+    // --- La halakha générale (avant la liste des aliments) -----------------------------------------------------------------------------
+    // Synthèse des règles de l'ordre des bénédictions, du plat mélangé (Ikar veTafel) et du dessert après un repas. Ce texte n'est PAS du guide du Beth Loubavitch :
+    // il est repris des notes fournies pour l'app et doit être relu par un rav. Les points qui ne concordent pas avec la liste (riz, gâteaux) sont signalés, pas corrigés.
+    var HALAKHA = {
+        note: 'Synthèse pour l\'étude, à vérifier auprès d\'un rav. Elle n\'est pas du guide du Beth Loubavitch, et la liste des aliments ci-dessous n\'a pas été modifiée pour s\'y conformer.',
+        sections: [
+            { id: 'ordre', title: 'Plusieurs aliments devant soi : l\'ordre des bénédictions',
+              paras: ['Quand plusieurs aliments ont des bénédictions différentes, on suit l\'ordre Maga Esh (מג״ע א״ש) :'],
+              list: [
+                  { b: 'hamotsi', t: 'Hamotsi (pain) : prime toujours sur tout le reste et acquitte les autres aliments, sauf le vin et les desserts.' },
+                  { b: 'mezonot', t: 'Mezonot (gâteaux, biscuits, pâtes, riz… à base des cinq céréales).' },
+                  { b: 'haguafen', t: 'Haguafen (vin, jus de raisin).' },
+                  { b: 'haets', t: 'Haets (fruits d\'arbre).' },
+                  { b: 'haadama', t: 'Haadama (légumes, fruits de la terre).' },
+                  { b: 'chehakol', t: 'Chéhakol (viande, poisson, œufs, boissons, chocolat…).' }
+              ],
+              bullets: [
+                  'Même bénédiction : on bénit sur le plus important, d\'abord les Shiv\'at haMinim, puis l\'aliment entier (shalem), puis celui qu\'on préfère (\'chaviv).',
+                  'Parmi les Shiv\'at haMinim (blé, orge, raisin, figue, grenade, olive, datte), l\'ordre suit le verset de la Torah (Devarim 8:8).',
+                  'Entre Haets et Haadama : si l\'un est clairement préféré, on le choisit. Sinon, beaucoup d\'avis permettent de commencer par Haets.',
+                  'On mange un peu de l\'aliment sur lequel on a béni avant de passer à la bénédiction suivante.'
+              ] },
+            { id: 'ikar', title: 'Plat mélangé : Ikar veTafel (principal et secondaire)',
+              paras: ['Pour un mélange (casserole, salade, ragoût, plat composé…), on ne dit qu\'une seule bénédiction, sur le plat entier : celle de l\'Ikar, l\'élément principal.'],
+              bullets: [
+                  'Les cinq céréales (blé, orge, épeautre, seigle, avoine) qui donnent du goût ou de la satiété : en général Mezonot, même minoritaires. Exception : une céréale qui n\'est là que comme liant (farine dans une farce de viande pure) est ignorée.',
+                  'Sinon, on regarde ce qui est clairement le principal, c\'est-à-dire ce pour quoi on mange le plat. À défaut d\'un principal évident, on suit la majorité, en volume ou en quantité.'
+              ],
+              examples: [
+                  'Quiche aux légumes et aux œufs : majoritairement légumes, Haadama ; majoritairement œufs, Chéhakol.',
+                  'Riz avec un peu de légumes ou de viande : Mezonot.',
+                  'Salade de fruits : la bénédiction du fruit majoritaire, ou du plus important en cas d\'égalité.',
+                  'Spaghetti bolognaise : Mezonot, les pâtes dominent.',
+                  'Poulet pané : Chéhakol, la panure n\'est que secondaire.',
+                  'Yaourt aux fruits : Chéhakol, le yaourt est l\'Ikar.'
+              ],
+              bullets: [
+                  'Si les aliments sont clairement séparés et mangés indépendamment (riz d\'un côté, légumes de l\'autre), on bénit séparément, selon l\'ordre Maga Esh.'
+              ] },
+            { id: 'dessert', title: 'Dessert après un repas avec Hamotsi',
+              paras: ['Après un repas avec Hamotsi, tout ce qui fait partie du repas (viande, poisson, légumes, riz, pâtes…, ce qui nourrit et rassasie) est couvert par Hamotsi : on ne bénit pas dessus.',
+                  'Le dessert, qu\'on mange pour le plaisir alors qu\'on est déjà rassasié, ne fait pas partie du repas. Il demande donc une bénédiction avant (beracha rishona), mais pas de bénédiction après : Birkat Hamazon le couvre.'],
+              table: [
+                  { type: 'Fruits (pomme, raisin, etc.)', before: 'Oui (Haets ou Haadama)', note: 'Très clair.' },
+                  { type: 'Noix, amandes, graines', before: 'Oui', note: '' },
+                  { type: 'Bonbons, chocolat, gâteaux secs', before: 'Oui (Chéhakol)', note: '' },
+                  { type: 'Glace', before: 'Oui (Chéhakol)', note: 'Mieux de la manger après Birkat Hamazon si possible.' },
+                  { type: 'Gâteaux et pâtisseries ordinaires (gâteau moelleux, cookies simples)', before: 'Généralement non', note: 'On s\'appuie sur Hamotsi : ils sont considérés comme pat haba\'ah bekisnin.' },
+                  { type: 'Gâteaux clairement Mezonot (croustillants, sucrés et fourrés : baklava, wafers, sandwich cookies…)', before: 'Oui (Mezonot)', note: 'Seulement s\'ils remplissent les trois critères.' }
+              ],
+              bullets: [
+                  'Shabbat et Yom Tov : certains disent Birkat Hamazon avant le dessert, pour pouvoir bénir le dessert après (beracha rishona et acharona). C\'est permis Shabbat et Yom Tov, pas en semaine, où l\'on atteint facilement les cent bénédictions.',
+                  'Shabbat, après le Kiddouch sur le vin : certains avis, surtout séfarades, préfèrent manger la glace après Birkat Hamazon.',
+                  'Résumé : fruits, noix, chocolat et glace se bénissent toujours avant. Un gâteau ordinaire ne se bénit en général pas. Birkat Hamazon couvre tout le dessert.'
+              ] },
+            { id: 'rites', title: 'Ashkénazes et séfarades : les différences',
+              paras: ['Les principes sont les mêmes (Maga Esh et Ikar veTafel viennent du Choul\'han Arou\'h). Dans la plupart des situations du quotidien, les deux traditions font la même chose. Les différences portent sur quelques cas.'],
+              bullets: [
+                  'Vin, olives et dattes : chez les Ashkénazes, Haguafen précède presque toujours Haets, y compris pour les olives et les dattes. Selon beaucoup de séfarades (le Kaf haHaïm), le vin ne précède pas les olives et les dattes, qu\'on peut donc bénir d\'abord.',
+                  'Haets et Haadama : les deux traditions suivent le \'chaviv. Sans préférence claire, les Ashkénazes (Mishna Beroura) penchent souvent vers Haets. Les séfarades suivent davantage le \'chaviv actuel, ou un Shiv\'at haMinim plus strict selon les poskim (Ben Ish \'Haï).',
+                  'Riz : la plupart des Ashkénazes disent Mezonot. Beaucoup de séfarades disent Haadama (ou Chéhakol), surtout si le riz n\'est pas collant. Voir le point à trancher ci-dessous.',
+                  'Cas limites du plat mélangé (farce, panure, quantités proches) : les Ashkénazes s\'appuient sur le Mishna Beroura et l\'Arou\'h haChoul\'han, les séfarades sur le Kaf haHaïm, le Ben Ish \'Haï et le Yalkout Yossef, parfois plus stricts sur la notion de majorité.'
+              ] },
+            { id: 'a-trancher', title: 'Points à faire trancher par un rav',
+              paras: ['Ces points ne concordent pas encore avec les données de l\'écran. Ils sont signalés ici, mais la liste n\'a pas été modifiée.'],
+              bullets: [
+                  'Riz (rite séfarade) : cette synthèse dit souvent Haadama ; la fiche du riz dans la liste, pour le rite séfarade, dit Mezonot quand le riz est cuit et collant.',
+                  'Gâteau : la liste donne Mezonot pour « Gâteau », hors d\'un repas. Le tableau du dessert dit généralement pas de bénédiction après un repas avec Hamotsi. Les deux peuvent se lire ensemble (hors repas, ou en dessert), mais c\'est à confirmer.',
+                  'Les trois critères des gâteaux « clairement Mezonot » (croustillants, sucrés, fourrés) : leur source reste à préciser.'
+              ] }
+        ]
+    };
+
     // La quantité qui oblige à la bénédiction finale. Les mesures de 'Habad sont celles des notes 4 et 7 du guide ; pour les autres rites, on n'a pas de mesure
     // sourcée : l'écran renvoie au rav.
     var SHIUR = {
@@ -601,5 +674,5 @@
     };
 
     return { FINALS: FINALS, FINAL_ORDER: FINAL_ORDER, FINAL_NONE: FINAL_NONE, SEVEN_SPECIES: SEVEN_SPECIES, FINAL_OVERRIDES: FINAL_OVERRIDES, LIQUIDS: LIQUIDS,
-        FINAL_NOTES: FINAL_NOTES, SHIUR: SHIUR, SHIUR_HINT: SHIUR_HINT, SOURCE: SOURCE, BLESSINGS: BLESSINGS, ORDER: ORDER, NONE: NONE, FOODS: FOODS, NOTES: NOTES, RITES: RITES, RITE_ORDER: RITE_ORDER, DEFAULT_RITE: DEFAULT_RITE, RITE_OVERRIDES: RITE_OVERRIDES };
+        FINAL_NOTES: FINAL_NOTES, HALAKHA: HALAKHA, SHIUR: SHIUR, SHIUR_HINT: SHIUR_HINT, SOURCE: SOURCE, BLESSINGS: BLESSINGS, ORDER: ORDER, NONE: NONE, FOODS: FOODS, NOTES: NOTES, RITES: RITES, RITE_ORDER: RITE_ORDER, DEFAULT_RITE: DEFAULT_RITE, RITE_OVERRIDES: RITE_OVERRIDES };
 }));

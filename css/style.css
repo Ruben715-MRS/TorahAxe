@@ -18401,6 +18401,16 @@ body:has(#screen-recit:not(.hidden))::after {
 .ben-rite[aria-pressed="true"] { background: var(--surface); box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18); font-weight: 800; }
 .ben-rite-info { margin: 0; }
 .ben-card.is-diff { border-left: 4px solid #d97706; }
+.ben-halakha { margin: 12px 0; padding: 10px 12px; border: 1px solid var(--border-soft); border-radius: 12px; }
+.ben-halakha-title { cursor: pointer; font-weight: 600; font-size: 15px; }
+.ben-halakha-note { margin: 8px 0; font-style: italic; }
+.ben-halakha-sec { margin-top: 14px; display: flex; flex-direction: column; gap: 6px; }
+.ben-halakha-h { font-size: 14px; font-weight: 600; margin: 0; }
+.ben-halakha-list, .ben-halakha-ex { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 4px; }
+.ben-halakha-table { overflow-x: auto; }
+.ben-halakha-table table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.ben-halakha-table th, .ben-halakha-table td { text-align: left; vertical-align: top; padding: 6px 8px; border-bottom: 1px solid var(--border-soft); }
+.ben-halakha-table th { font-weight: 600; }
 .ben-diff { background: #fef3c7; color: #78350f; border-color: transparent; font-weight: 700; }
 .ben-was { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 0; }
 .ben-rite-note { display: flex; flex-direction: column; gap: 2px; padding: 8px 10px; border-radius: 10px; background: var(--surface-2); }
