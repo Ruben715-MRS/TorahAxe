@@ -763,6 +763,161 @@
         return PEOPLE.filter(function (p) { return childrenOf(p.id).length > 0; }).map(function (p) { return p.id; });
     }
 
+    // --- La famille proche d'une personne (vue « Fiche ») -----------------------------------------------
+    // Les conjoints sont vus des deux côtés : Isaac a pour épouse Rébecca, et Rébecca a pour époux Isaac. La mère d'un enfant n'est
+    // connue que si les données la donnent (`mother`) : elle n'est jamais devinée, car l'unique épouse nommée d'un homme n'est pas
+    // toujours la mère de ses enfants (Er et Onan sont fils de Bat-Choua, non de Tamar).
+    var SPOUSES = {};
+    var MOTHER_OF = {};
+    PEOPLE.forEach(function (p) {
+        p.unions.forEach(function (u) {
+            (SPOUSES[p.id] = SPOUSES[p.id] || []).push([u[0], u[1]]);
+            var back = SPOUSES[u[0]] = SPOUSES[u[0]] || [];
+            if (!back.some(function (b) { return b[0] === p.id; })) back.push([p.id, u[1]]);
+        });
+        if (p.mother) (MOTHER_OF[p.mother] = MOTHER_OF[p.mother] || []).push(p.id);
+    });
+
+    // Les conjoints : [[id, 'mariage' | 'concubinage' | 'interdite']].
+    function spousesOf(id) {
+        return (SPOUSES[id] || []).map(function (u) { return u.slice(); });
+    }
+
+    // Une personne a sa place dans l'arbre si elle a un père, ou si c'est Adam.
+    function inTree(id) {
+        var p = BY[id];
+        return !!p && (!!p.father || id === PEOPLE[0].id);
+    }
+
+    // Où trouver une personne dans l'arbre : elle-même, ou pour une épouse sans père (Ève, Tamar, Bilha…) son premier conjoint
+    // qui y figure. Null si aucun.
+    function anchorOf(id) {
+        if (inTree(id)) return id;
+        var s = (SPOUSES[id] || []).filter(function (u) { return inTree(u[0]); })[0];
+        return s ? s[0] : null;
+    }
+
+    // Les enfants d'une personne : ceux rangés sous elle dans l'arbre, puis ceux dont elle est la mère.
+    function childrenAll(id) {
+        var out = childrenOf(id).slice();
+        (MOTHER_OF[id] || []).forEach(function (k) { if (out.indexOf(k) < 0) out.push(k); });
+        return out;
+    }
+
+    // Les frères et sœurs, la personne comprise, dans l'ordre de l'arbre ([] sans père).
+    function siblingsOf(id) {
+        var p = BY[id];
+        return p && p.father ? childrenOf(p.father).slice() : [];
+    }
+
+    // La lignée d'Adam jusqu'à la personne (elle exclue). Pour une épouse sans père : la lignée de son conjoint, puis le conjoint.
+    function lineageOf(id) {
+        var a = anchorOf(id);
+        if (!a) return [];
+        var out = ancestorsOf(a).reverse();
+        if (a !== id) out.push(a);
+        return out;
+    }
+
+    // La génération, comptée à partir d'Adam (1). Une épouse sans père prend celle de son conjoint ; 0 si inconnue.
+    function generationOf(id) {
+        var a = anchorOf(id);
+        return a ? ancestorsOf(a).length + 1 : 0;
+    }
+
+    // --- Les lignées : l'arbre en sommaire (vue « Lignées ») ------------------------------------------
+    // Une ligne par suite « père → fils unique » : on y ajoute l'enfant tant que la personne a un seul enfant et aucune union nommée
+    // (sinon ses épouses seraient cachées), dans la limite de `maxRun` noms. Le décalage (`level`) n'augmente qu'aux embranchements
+    // (un père qui a plusieurs enfants). `collapsed` : { id: true } des personnes dont on cache les enfants.
+    // Renvoie [{ ids: [...], level }] dans l'ordre de lecture.
+    function outline(collapsed, opts) {
+        var hidden = collapsed || {};
+        var maxRun = (opts && opts.maxRun) || 8;
+        var rows = [];
+        (function walk(id, level) {
+            var ids = [id];
+            var cur = id;
+            while (ids.length < maxRun && !hidden[cur] && childrenOf(cur).length === 1 && !(SPOUSES[cur] || []).length) {
+                cur = childrenOf(cur)[0];
+                ids.push(cur);
+            }
+            rows.push({ ids: ids, level: level });
+            if (hidden[cur]) return;
+            var kids = childrenOf(cur);
+            kids.forEach(function (k) { walk(k, level + (kids.length > 1 ? 1 : 0)); });
+        })(PEOPLE[0].id, 0);
+        return rows;
+    }
+
+    // --- La mise en page compacte : un arbre vertical, Adam en haut ---------------------------------------
+    // Chaque génération est une rangée. Les sous-arbres s'emboîtent : chacun est poussé contre le précédent rangée par rangée
+    // (contours gauche et droit), au lieu de réserver toute sa largeur sur toute la hauteur. Les enfants sans descendance visible
+    // d'un même père (aucun enfant dans les données), dès qu'ils sont `pileMin` ou plus, se rangent en une colonne (une « pile ») après leurs frères qui ont des enfants :
+    // le premier sur la rangée des enfants, les suivants sur les rangées d'en dessous.
+    // `opts` : { cardWidth, gap, pileIndent (décalage de la pile vers la droite, pour le trait qui la longe), pileMin }.
+    // Renvoie { nodes: { id: { x (centre), row } }, edges: [{ from, to, far } | { from, pile: [ids] }], width, rows }.
+    function compactLayout(collapsed, opts) {
+        var o = opts || {};
+        var W = o.cardWidth || 132;
+        var gap = o.gap === undefined ? 12 : o.gap;
+        var indent = o.pileIndent === undefined ? 12 : o.pileIndent;
+        var pileMin = o.pileMin || 2;
+        var hidden = collapsed || {};
+        function kidsOf(id) { return hidden[id] ? [] : childrenOf(id); }
+
+        // Un sous-arbre, sa racine en x = 0 et en rangée 0 : { items: [{ id, x, row }], edges, L: [], R: [] } (contours par rangée).
+        function lay(id) {
+            var items = [{ id: id, x: 0, row: 0 }];
+            var edges = [];
+            var kids = kidsOf(id);
+            if (!kids.length) return { items: items, edges: edges, L: [-W / 2], R: [W / 2] };
+            // Seuls les enfants sans aucune descendance s'empilent : une branche repliée garde sa place dans la rangée.
+            var leaves = kids.filter(function (k) { return !childrenOf(k).length; });
+            var units = [];
+            kids.forEach(function (k) { if (childrenOf(k).length || leaves.length < pileMin) units.push(lay(k)); });
+            if (leaves.length >= pileMin) {
+                var pile = { items: [], edges: [], L: [], R: [], pile: leaves };
+                leaves.forEach(function (k, i) {
+                    pile.items.push({ id: k, x: indent, row: i });
+                    pile.L.push(-W / 2);
+                    pile.R.push(indent + W / 2);
+                });
+                units.push(pile);
+            }
+            var accL = [], accR = [], offs = [];
+            units.forEach(function (u, n) {
+                var off = 0;
+                if (n) {
+                    off = -Infinity;
+                    for (var r = 0; r < u.L.length && r < accR.length; r++) off = Math.max(off, accR[r] - u.L[r] + gap);
+                    if (off === -Infinity) off = accR[0] - u.L[0] + gap;
+                }
+                offs.push(off);
+                u.L.forEach(function (v, r) { accL[r] = accL[r] === undefined ? v + off : Math.min(accL[r], v + off); });
+                u.R.forEach(function (v, r) { accR[r] = accR[r] === undefined ? v + off : Math.max(accR[r], v + off); });
+            });
+            // Le parent se place au milieu de ses premier et dernier enfants (pour une pile : sa première carte).
+            var anchor = function (n) { return offs[n] + (units[n].pile ? indent : 0); };
+            var mid = (anchor(0) + anchor(units.length - 1)) / 2;
+            units.forEach(function (u, n) {
+                var dx = offs[n] - mid;
+                u.items.forEach(function (it) { items.push({ id: it.id, x: it.x + dx, row: it.row + 1 }); });
+                u.edges.forEach(function (e) { edges.push(e); });
+                if (u.pile) edges.push({ from: id, pile: u.pile.slice() });
+                else edges.push({ from: id, to: u.items[0].id, far: !!BY[u.items[0].id].far });
+            });
+            var L = [-W / 2].concat(accL.map(function (v) { return v - mid; }));
+            var R = [W / 2].concat(accR.map(function (v) { return v - mid; }));
+            return { items: items, edges: edges, L: L, R: R };
+        }
+
+        var t = lay(PEOPLE[0].id);
+        var minX = Math.min.apply(null, t.L), maxX = Math.max.apply(null, t.R);
+        var nodes = {};
+        t.items.forEach(function (it) { nodes[it.id] = { x: it.x - minX, row: it.row }; });
+        return { nodes: nodes, edges: t.edges, width: maxX - minX, rows: t.L.length };
+    }
+
     // --- La mise en page : un arbre horizontal, la racine à gauche ---------------------------------------
     // `collapsed` : { id: true } des personnes dont on cache les enfants. `heightOf(id)` : la hauteur de la carte. `opts` : { colStep, gap }.
     // Renvoie { nodes: { id: { x, cy, top, h, depth } }, edges: [{ from, to, far }], width, height }. Une feuille occupe sa hauteur ; un
@@ -885,6 +1040,8 @@
     return {
         ROLES: ROLES, ROLE_ORDER: ROLE_ORDER, CATEGORIES: CATEGORIES, category: category,
         PEOPLE: PEOPLE, byId: function (id) { return BY[id] || null; }, childrenOf: childrenOf, ancestorsOf: ancestorsOf,
-        descendantsCount: descendantsCount, parentsIds: parentsIds, layout: layout, normalize: normalize, search: search
+        descendantsCount: descendantsCount, parentsIds: parentsIds, layout: layout, normalize: normalize, search: search,
+        spousesOf: spousesOf, inTree: inTree, anchorOf: anchorOf, childrenAll: childrenAll, siblingsOf: siblingsOf, lineageOf: lineageOf,
+        generationOf: generationOf, outline: outline, compactLayout: compactLayout
     };
 }));

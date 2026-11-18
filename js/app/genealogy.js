@@ -1,18 +1,30 @@
 // =========================================================================
 // === LA GÉNÉALOGIE BIBLIQUE (écran de la boîte à outils) ===
 // =========================================================================
-// Un seul arbre, d'Adam aux enfants de Jacob (vertical par défaut, Adam centré en haut ; le bouton 🔄 passe à l'horizontal) : une carte par personne (fond bleu clair pour les hommes, rose clair pour les
-// femmes), des traits coudés entre parents et enfants, des pointillés pour les descendants lointains. Deux boutons collés en haut à droite
-// choisissent la langue des noms : « A » (français, par défaut) ou « א » (hébreu). Les données et la mise en page sont dans
-// js/genealogyCore.js (testé). Tout le texte passe par textContent.
+// Trois présentations du même arbre, d'Adam à Jésus, au choix (sélecteur « Fiche · Lignées · Arbre », choix mémorisé) :
+// - la fiche (par défaut) : une personne au centre, avec sa lignée depuis Adam, ses parents, ses conjoints, ses frères et sœurs et ses enfants
+//   rangés par mère ; toucher un nom ouvre sa fiche ;
+// - les lignées : l'arbre en sommaire, qu'on lit de haut en bas ; une suite père → fils unique tient sur une ligne, et un bandeau rappelle la
+//   branche où l'on se trouve ;
+// - l'arbre : une carte par personne (fond bleu clair pour les hommes, rose clair pour les femmes), des traits coudés entre parents et enfants,
+//   des pointillés pour les descendants lointains. En hauteur (par défaut), la mise en page est compacte : les branches s'emboîtent et les
+//   frères sans descendance s'empilent en colonne ; le bouton 🔄 passe à l'arbre en largeur (Adam à gauche).
+// Toucher une personne dans les lignées ou l'arbre la sélectionne (sa lignée jusqu'à Adam est soulignée) et propose d'ouvrir sa fiche ;
+// changer de présentation garde la personne choisie. Deux boutons collés en haut à droite choisissent la langue des noms : « A » (français,
+// par défaut) ou « א » (hébreu). Les données et les mises en page sont dans js/genealogyCore.js (testé). Tout le texte passe par textContent.
 
 const GEN_CARD_W = 132;
 const GEN_COL_STEP = 166;
 const GEN_GAP = 10;
 const GEN_ROW_GAP = 26;
+const GEN_PILE_INDENT = 12;
 const GEN_ZOOMS = [0.4, 0.55, 0.7, 0.85, 1, 1.25];
+const GEN_VIEWS = ['family', 'lines', 'tree'];
 let genLang = 'fr';
 let genDir = 'v';
+let genView = 'family';
+let genLinesCollapsed = {};   // les branches repliées dans les lignées (indépendantes de celles de l'arbre)
+let genLineRows = [];         // les lignes affichées : { el, ids }, pour le bandeau de position
 let genBoxes = {};
 let genZoomIdx = 4;
 let genCollapsed = {};
@@ -24,20 +36,19 @@ let genCatSet = {};           // ses personnes, entourées de sa couleur dans l'
 let genCatColor = '';
 let genChronoScholar = 'thiele';
 
-// Un choix déjà fait par le joueur (bouton 🔄) est mémorisé ; sans choix, le sens dépend de l'écran : sur un téléphone
-// en portrait, l'arbre s'ouvre à l'horizontale (Adam à gauche, on lit de gauche à droite).
+// Un choix déjà fait par le joueur (bouton 🔄, sélecteur de présentation) est mémorisé. Sans choix, l'arbre s'ouvre en hauteur,
+// dans sa mise en page compacte, et la présentation est la fiche.
 let genDirChosen = false;
 try {
     if (localStorage.getItem('genealogyLang') === 'he') genLang = 'he';
     const savedDir = localStorage.getItem('genealogyDir');
     if (savedDir === 'h' || savedDir === 'v') { genDir = savedDir; genDirChosen = true; }
+    const savedView = localStorage.getItem('genealogyView');
+    if (GEN_VIEWS.includes(savedView)) genView = savedView;
 } catch (e) { /* stockage indisponible */ }
 
 function genDefaultDir() {
-    if (genDirChosen) return genDir;
-    const phonePortrait = typeof window.matchMedia === 'function'
-        && window.matchMedia('(max-width: 600px) and (orientation: portrait)').matches;
-    return phonePortrait ? 'h' : 'v';
+    return genDirChosen ? genDir : 'v';
 }
 
 function genName(p) { return genLang === 'he' ? p.he : p.fr; }
@@ -152,14 +163,58 @@ function toolGenealogyInit() {
         genBuilt = true;
         document.getElementById('gen-search').addEventListener('input', genOnSearch);
         enableViewGestures(document.getElementById('gen-view'), genZoom);
+        const lines = document.getElementById('gen-lines-scroll');
+        let raf = 0;
+        lines.addEventListener('scroll', () => {
+            if (!raf) raf = requestAnimationFrame(() => { raf = 0; genLinesUpdatePath(); });
+        });
     }
     genDir = genDefaultDir();
     genApplyLangButtons();
     genApplyDirButton();
     genCatInit();
-    // À l'ouverture : Adam et ses trois fils, les autres branches repliées.
-    genCollapseAll();
-    genScrollTo('adam');
+    // À l'ouverture : la fiche d'Adam ; l'arbre montre Adam et ses trois fils (les autres branches repliées), les lignées sont dépliées.
+    genFocus = '';
+    genUpdateFocusBar();
+    genCollapsed = {};
+    GenealogyCore.parentsIds().forEach(id => { if (id !== 'adam') genCollapsed[id] = true; });
+    genLinesCollapsed = {};
+    genApplyView();
+    genRender();
+    genShowFocus('adam');
+}
+
+// --- Le choix de la présentation ----------------------------------------------------------------------------------------------------
+function genApplyView() {
+    GEN_VIEWS.forEach(v => {
+        const btn = document.getElementById('gen-view-' + v);
+        if (btn) btn.setAttribute('aria-pressed', v === genView ? 'true' : 'false');
+    });
+    document.getElementById('gen-family').classList.toggle('hidden', genView !== 'family');
+    document.getElementById('gen-lines').classList.toggle('hidden', genView !== 'lines');
+    document.getElementById('gen-view').classList.toggle('hidden', genView !== 'tree');
+    document.getElementById('screen-tool-genealogy').dataset.view = genView;
+}
+
+// Change de présentation en gardant la personne choisie (sinon Adam) en vue.
+function genSetView(v) {
+    if (!GEN_VIEWS.includes(v) || v === genView) return;
+    genView = v;
+    try { localStorage.setItem('genealogyView', v); } catch (e) { /* stockage indisponible */ }
+    genApplyView();
+    if (genFocus) {
+        genGoTo(genFocus);
+    } else {
+        genRender();
+        genShowFocus('adam');
+    }
+}
+
+// Montre une personne dans la présentation en cours, sans changer ce qui est replié.
+function genShowFocus(id) {
+    if (genView === 'tree') genScrollTo(GenealogyCore.anchorOf(id) || 'adam');
+    else if (genView === 'lines') genLinesScrollTo(GenealogyCore.anchorOf(id) || 'adam');
+    else document.getElementById('screen-tool-genealogy').scrollTo({ top: 0 });
 }
 
 function genApplyDirButton() {
@@ -176,7 +231,7 @@ function genToggleDir() {
     try { localStorage.setItem('genealogyDir', genDir); } catch (e) { /* stockage indisponible */ }
     genApplyDirButton();
     genRender();
-    genScrollTo('adam');
+    genScrollTo(genFocus ? (GenealogyCore.anchorOf(genFocus) || 'adam') : 'adam');
 }
 
 function genApplyLangButtons() {
@@ -192,6 +247,7 @@ function genSetLang(lang) {
     genApplyLangButtons();
     genRender();
     genCatRender();
+    genUpdateFocusBar();
 }
 
 // Les mentions de la carte (mère, concubine…) suivent la langue choisie.
@@ -267,33 +323,63 @@ function genMeasure() {
     probe.remove();
 }
 
+// Redessine la présentation en cours.
 function genRender() {
+    if (genView === 'family') genRenderFamily();
+    else if (genView === 'lines') genRenderLines();
+    else genRenderTree();
+}
+
+// La personne choisie et sa lignée jusqu'à Adam ({ id: true }) : soulignées dans l'arbre et les lignées.
+function genLineageSet() {
+    const set = {};
+    if (!genFocus) return set;
+    const anchor = GenealogyCore.anchorOf(genFocus);
+    if (!anchor) return set;
+    GenealogyCore.ancestorsOf(anchor).forEach(a => { set[a] = true; });
+    set[anchor] = true;
+    return set;
+}
+
+// Toucher une personne dans l'arbre ou les lignées la choisit (un second toucher la retire).
+function genPick(id) {
+    genFocus = genFocus === id ? '' : id;
+    genUpdateFocusBar();
+    genRender();
+}
+
+// --- L'arbre ---------------------------------------------------------------------------------------------------------------------------
+function genRenderTree() {
     genMeasure();
     const vertical = genDir === 'v';
-    const L = GenealogyCore.layout(genCollapsed, id => (vertical ? GEN_CARD_W + GEN_GAP : genHeights[id]),
-        { colStep: GEN_COL_STEP, cardWidth: GEN_CARD_W, gap: GEN_GAP });
-    let maxDepth = 0;
-    Object.keys(L.nodes).forEach(id => { maxDepth = Math.max(maxDepth, L.nodes[id].depth); });
-    // En vertical, chaque génération a la hauteur de sa plus haute carte : pas de vide entre deux générations.
-    const rowTop = [];
-    let rowsHeight = 0;
-    if (vertical) {
-        const rowH = [];
-        Object.keys(L.nodes).forEach(id => { const d = L.nodes[id].depth; rowH[d] = Math.max(rowH[d] || 0, genHeights[id]); });
-        for (let d = 0; d <= maxDepth; d++) { rowTop[d] = rowsHeight; rowsHeight += rowH[d] + GEN_ROW_GAP; }
-        rowsHeight -= GEN_ROW_GAP;
-    }
-
-    // Une boîte par personne, dans le sens choisi : en vertical, la génération descend et les frères se rangent à côté.
+    let width, height, edges;
     genBoxes = {};
-    Object.keys(L.nodes).forEach(id => {
-        const n = L.nodes[id];
-        genBoxes[id] = vertical
-            ? { left: n.cy - GEN_CARD_W / 2, top: rowTop[n.depth], w: GEN_CARD_W, h: genHeights[id] }
-            : { left: n.x, top: n.top, w: GEN_CARD_W, h: genHeights[id] };
-    });
-    const width = vertical ? L.height : L.width;
-    const height = vertical ? rowsHeight : L.height;
+    if (vertical) {
+        // En hauteur : la mise en page compacte. Chaque rangée (une génération) a la hauteur de sa plus haute carte.
+        const L = GenealogyCore.compactLayout(genCollapsed, { cardWidth: GEN_CARD_W, gap: GEN_GAP + 4, pileIndent: GEN_PILE_INDENT });
+        const rowH = [];
+        Object.keys(L.nodes).forEach(id => { const r = L.nodes[id].row; rowH[r] = Math.max(rowH[r] || 0, genHeights[id]); });
+        const rowTop = [];
+        let y = 0;
+        for (let r = 0; r < L.rows; r++) { rowTop[r] = y; y += (rowH[r] || 0) + GEN_ROW_GAP; }
+        Object.keys(L.nodes).forEach(id => {
+            const n = L.nodes[id];
+            genBoxes[id] = { left: n.x - GEN_CARD_W / 2, top: rowTop[n.row], w: GEN_CARD_W, h: genHeights[id] };
+        });
+        width = L.width;
+        height = y - GEN_ROW_GAP;
+        edges = L.edges;
+    } else {
+        // En largeur : la mise en page d'origine, Adam à gauche.
+        const L = GenealogyCore.layout(genCollapsed, id => genHeights[id], { colStep: GEN_COL_STEP, cardWidth: GEN_CARD_W, gap: GEN_GAP });
+        Object.keys(L.nodes).forEach(id => {
+            const n = L.nodes[id];
+            genBoxes[id] = { left: n.x, top: n.top, w: GEN_CARD_W, h: genHeights[id] };
+        });
+        width = L.width;
+        height = L.height;
+        edges = L.edges;
+    }
 
     const scale = GEN_ZOOMS[genZoomIdx];
     const sizer = document.getElementById('gen-sizer');
@@ -306,44 +392,64 @@ function genRender() {
     stage.classList.toggle('is-vertical', vertical);
     while (stage.firstChild) stage.removeChild(stage.firstChild);
 
+    const lineage = genLineageSet();
     const NS = 'http://www.w3.org/2000/svg';
     const svg = document.createElementNS(NS, 'svg');
     svg.setAttribute('class', 'gen-lines');
     svg.setAttribute('width', String(width));
     svg.setAttribute('height', String(height));
     svg.setAttribute('aria-hidden', 'true');
-    L.edges.forEach(e => {
-        const a = genBoxes[e.from], b = genBoxes[e.to];
+    const lit = [];
+    const addPath = (d, cls, on) => {
+        const path = document.createElementNS(NS, 'path');
+        path.setAttribute('d', d);
+        path.setAttribute('class', cls + (on ? ' is-lineage' : ''));
+        if (on) lit.push(path); else svg.appendChild(path);
+    };
+    edges.forEach(e => {
+        const a = genBoxes[e.from];
+        if (e.pile) {
+            // Une pile : un trait descend le long des cartes, une petite branche va à chacune.
+            const first = genBoxes[e.pile[0]], last = genBoxes[e.pile[e.pile.length - 1]];
+            const x1 = a.left + a.w / 2, y1 = a.top + a.h, mid = y1 + GEN_ROW_GAP / 2, sx = first.left - GEN_PILE_INDENT / 2;
+            let d = 'M' + x1 + ' ' + y1 + ' V' + mid + ' H' + sx + ' V' + (last.top + last.h / 2);
+            e.pile.forEach(k => { const b = genBoxes[k]; d += ' M' + sx + ' ' + (b.top + b.h / 2) + ' H' + b.left; });
+            addPath(d, 'gen-line', false);
+            const hit = lineage[e.from] && e.pile.find(k => lineage[k]);
+            if (hit) {
+                const b = genBoxes[hit];
+                addPath('M' + x1 + ' ' + y1 + ' V' + mid + ' H' + sx + ' V' + (b.top + b.h / 2) + ' H' + b.left, 'gen-line', true);
+            }
+            return;
+        }
+        const b = genBoxes[e.to];
         let d;
         if (vertical) {
-            const x1 = a.left + a.w / 2, y1 = a.top + a.h, x2 = b.left + b.w / 2, y2 = b.top, mid = y1 + (y2 - y1) / 2;
+            const x1 = a.left + a.w / 2, y1 = a.top + a.h, x2 = b.left + b.w / 2, y2 = b.top, mid = y1 + GEN_ROW_GAP / 2;
             d = 'M' + x1 + ' ' + y1 + ' V' + mid + ' H' + x2 + ' V' + y2;
         } else {
             const x1 = a.left + a.w, y1 = a.top + a.h / 2, x2 = b.left, y2 = b.top + b.h / 2, mid = x1 + (x2 - x1) / 2;
             d = 'M' + x1 + ' ' + y1 + ' H' + mid + ' V' + y2 + ' H' + x2;
         }
-        const path = document.createElementNS(NS, 'path');
-        path.setAttribute('d', d);
-        path.setAttribute('class', 'gen-line' + (e.far ? ' is-far' : ''));
-        svg.appendChild(path);
+        addPath(d, 'gen-line' + (e.far ? ' is-far' : ''), !!(lineage[e.from] && lineage[e.to]));
     });
+    lit.forEach(p => svg.appendChild(p));
     stage.appendChild(svg);
 
-    Object.keys(L.nodes).forEach(id => {
+    const focusAnchor = genFocus ? GenealogyCore.anchorOf(genFocus) : '';
+    Object.keys(genBoxes).forEach(id => {
         const b = genBoxes[id];
         const p = GenealogyCore.byId(id);
         const card = genBuildCard(p);
         card.style.left = b.left + 'px';
         card.style.top = b.top + 'px';
         card.style.width = GEN_CARD_W + 'px';
-        if (id === genFocus) card.classList.add('is-focus');
-        // Toucher une carte la sélectionne : la barre d'au-dessus propose alors de la situer dans la chronologie (sans changer la taille des cartes).
+        if (id === focusAnchor) card.classList.add('is-focus');
+        else if (lineage[id]) card.classList.add('is-lineage');
+        // Toucher une carte la choisit : sa lignée est soulignée, et la barre d'au-dessus propose sa fiche et la chronologie.
         card.onclick = e => {
             if (e.target.closest && e.target.closest('.gen-toggle')) return;
-            genFocus = genFocus === id ? '' : id;
-            stage.querySelectorAll('.gen-card.is-focus').forEach(c => c.classList.remove('is-focus'));
-            if (genFocus) card.classList.add('is-focus');
-            genUpdateFocusBar();
+            genPick(id);
         };
         if (genCatSet[id]) { card.classList.add('is-cat'); card.style.setProperty('--cat-color', genCatColor); }
         const kids = GenealogyCore.childrenOf(id);
@@ -365,6 +471,304 @@ function genRender() {
         }
         stage.appendChild(card);
     });
+}
+
+// --- Les lignées -------------------------------------------------------------------------------------------------------------------
+const GEN_LINE_INDENT = 14;
+
+function genGenLabel(a, b) {
+    return a === b ? t('tools.genealogy_gen_short', { n: a }) : t('tools.genealogy_gen_range', { a: a, b: b });
+}
+
+// Un nom qu'on peut toucher (lignées, bandeau) : couleur de son sexe, contour de la catégorie choisie, mis en valeur s'il est choisi.
+function genNameButton(id, cls, onclick) {
+    const p = GenealogyCore.byId(id);
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = cls + ' ' + (p.sex === 'f' ? 'is-woman' : 'is-man');
+    b.dataset.id = id;
+    b.setAttribute('lang', genLang);
+    b.textContent = genName(p);
+    if (genCatSet[id]) { b.classList.add('is-cat'); b.style.setProperty('--cat-color', genCatColor); }
+    b.onclick = onclick;
+    return b;
+}
+
+function genRenderLines() {
+    const box = document.getElementById('gen-lines-list');
+    while (box.firstChild) box.removeChild(box.firstChild);
+    box.setAttribute('lang', genLang);
+    box.dir = genLang === 'he' ? 'rtl' : 'ltr';
+    const lineage = genLineageSet();
+    const focus = genFocus;
+    genLineRows = [];
+    const frag = document.createDocumentFragment();
+    GenealogyCore.outline(genLinesCollapsed).forEach(r => {
+        const last = r.ids[r.ids.length - 1];
+        const kids = GenealogyCore.childrenOf(last);
+        const row = document.createElement('div');
+        row.className = 'gen-ln-row';
+        row.style.paddingInlineStart = (r.level * GEN_LINE_INDENT) + 'px';
+        row.style.backgroundSize = (r.level * GEN_LINE_INDENT) + 'px 100%';
+        if (kids.length) {
+            const open = !genLinesCollapsed[last];
+            const tg = document.createElement('button');
+            tg.type = 'button';
+            tg.className = 'gen-ln-toggle';
+            tg.textContent = open ? '▾' : '▸';
+            tg.setAttribute('aria-expanded', open ? 'true' : 'false');
+            tg.setAttribute('aria-label', t(open ? 'tools.genealogy_fold' : 'tools.genealogy_unfold', { name: genName(GenealogyCore.byId(last)) }));
+            tg.onclick = () => { genLinesCollapsed[last] = open; genRenderLines(); };
+            row.appendChild(tg);
+        } else {
+            row.appendChild(genEl('span', 'gen-ln-space'));
+        }
+        const body = genEl('div', 'gen-ln-body');
+        r.ids.forEach((id, i) => {
+            if (i) body.appendChild(genEl('span', 'gen-ln-arrow', genLang === 'he' ? '‹' : '›'));
+            const b = genNameButton(id, 'gen-ln-name' + (r.ids.length > 1 ? ' is-chain' : ''), () => genPick(id));
+            if (id === focus) b.classList.add('is-focus');
+            else if (lineage[id]) b.classList.add('is-lineage');
+            body.appendChild(b);
+        });
+        body.appendChild(genEl('span', 'gen-ln-meta', genGenLabel(GenealogyCore.generationOf(r.ids[0]), GenealogyCore.generationOf(last))));
+        if (kids.length && genLinesCollapsed[last]) body.appendChild(genEl('span', 'gen-ln-badge', '+' + GenealogyCore.descendantsCount(last)));
+        const spouses = genSpouses(GenealogyCore.byId(last));
+        if (spouses.length) {
+            const sp = genEl('div', 'gen-ln-spouses', '⚭ ');
+            spouses.forEach((u, i) => {
+                if (i) sp.appendChild(document.createTextNode(', '));
+                const b = genNameButton(u[0], 'gen-ln-spouse', () => genPick(u[0]));
+                if (u[0] === focus) b.classList.add('is-focus');
+                sp.appendChild(b);
+            });
+            body.appendChild(sp);
+        }
+        row.appendChild(body);
+        frag.appendChild(row);
+        genLineRows.push({ el: row, ids: r.ids });
+    });
+    box.appendChild(frag);
+    genLinesUpdatePath();
+}
+
+// Le bandeau des lignées : la branche de la première ligne visible, depuis Adam (le début est abrégé quand elle est longue).
+function genLinesUpdatePath() {
+    const bar = document.getElementById('gen-lines-path');
+    const scroller = document.getElementById('gen-lines-scroll');
+    if (!bar || !genLineRows.length) return;
+    const top = scroller.scrollTop + 2;
+    let lo = 0, hi = genLineRows.length - 1;
+    while (lo < hi) {
+        const mid = (lo + hi + 1) >> 1;
+        if (genLineRows[mid].el.offsetTop <= top) lo = mid; else hi = mid - 1;
+    }
+    const ids = genLineRows[lo].ids;
+    let trail = GenealogyCore.ancestorsOf(ids[0]).reverse().concat(ids);
+    const cut = trail.length > 6;
+    if (cut) trail = [trail[0]].concat(trail.slice(-5));
+    while (bar.firstChild) bar.removeChild(bar.firstChild);
+    bar.setAttribute('lang', genLang);
+    bar.dir = genLang === 'he' ? 'rtl' : 'ltr';
+    const arrow = genLang === 'he' ? '‹' : '›';
+    trail.forEach((id, i) => {
+        if (i) bar.appendChild(genEl('span', 'gen-ln-sep', i === 1 && cut ? arrow + ' … ' + arrow : arrow));
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.textContent = genName(GenealogyCore.byId(id));
+        b.onclick = () => genLinesScrollTo(id);
+        bar.appendChild(b);
+    });
+    genScrollToEnd(bar);
+}
+
+// Fait défiler un bandeau jusqu'à son dernier élément (à gauche en hébreu, le bandeau allant de droite à gauche).
+function genScrollToEnd(el) {
+    el.scrollLeft = el.dir === 'rtl' ? -el.scrollWidth : el.scrollWidth;
+}
+
+// Fait défiler les lignées jusqu'à la ligne d'une personne (si elle est affichée).
+function genLinesScrollTo(id) {
+    const scroller = document.getElementById('gen-lines-scroll');
+    const row = genLineRows.find(r => r.ids.includes(id));
+    if (!row) return;
+    scroller.scrollTop = Math.max(0, row.el.offsetTop - scroller.clientHeight / 3);
+    genLinesUpdatePath();
+}
+
+// --- La fiche ----------------------------------------------------------------------------------------------------------------------
+// Une personne de la fiche : un bouton qui ouvre sa propre fiche.
+function genFamilyCard(id, sub) {
+    const p = GenealogyCore.byId(id);
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'gen-fam-card ' + (p.sex === 'f' ? 'is-woman' : 'is-man') + (p.far ? ' is-far' : '');
+    if (genCatSet[id]) { b.classList.add('is-cat'); b.style.setProperty('--cat-color', genCatColor); }
+    const name = genEl('span', 'gen-fam-name', genName(p));
+    name.setAttribute('lang', genLang);
+    b.appendChild(name);
+    if (sub) b.appendChild(genEl('span', 'gen-fam-sub', sub));
+    b.onclick = () => genOpenFamily(id);
+    return b;
+}
+
+function genOpenFamily(id) {
+    genFocus = id;
+    genUpdateFocusBar();
+    genRenderFamily();
+    const box = document.getElementById('gen-family');
+    const screen = document.getElementById('screen-tool-genealogy');
+    // La fiche se montre depuis son haut (le fil de la lignée), sans remonter jusqu'à la recherche si elle est déjà en vue.
+    if (box.getBoundingClientRect().top < 0) screen.scrollTo({ top: screen.scrollTop + box.getBoundingClientRect().top - 8 });
+}
+
+function genFamilySection(title, count) {
+    const sec = genEl('section', 'gen-fam-sec');
+    const h = genEl('h3', 'gen-fam-h');
+    h.appendChild(genEl('span', '', title));
+    if (count !== undefined) h.appendChild(genEl('span', 'gen-fam-count', String(count)));
+    sec.appendChild(h);
+    return sec;
+}
+
+function genRenderFamily() {
+    const box = document.getElementById('gen-family');
+    while (box.firstChild) box.removeChild(box.firstChild);
+    const id = genFocus || 'adam';
+    const p = GenealogyCore.byId(id);
+
+    // Le fil de la lignée, d'Adam à la personne : chaque maillon ouvre sa fiche.
+    const lineage = GenealogyCore.lineageOf(id);
+    if (lineage.length) {
+        const path = genEl('nav', 'gen-fam-path');
+        path.dir = genLang === 'he' ? 'rtl' : 'ltr';
+        path.setAttribute('aria-label', t('tools.genealogy_lineage_aria'));
+        lineage.concat([id]).forEach((a, i, all) => {
+            const b = document.createElement('button');
+            b.type = 'button';
+            b.textContent = genName(GenealogyCore.byId(a));
+            b.setAttribute('lang', genLang);
+            if (i === all.length - 1) b.setAttribute('aria-current', 'true');
+            b.onclick = () => genOpenFamily(a);
+            path.appendChild(b);
+        });
+        box.appendChild(path);
+        requestAnimationFrame(() => genScrollToEnd(path));
+    }
+
+    // Les parents.
+    const parents = genFamilySection(t('tools.genealogy_parents'));
+    if (p.father) {
+        const grid = genEl('div', 'gen-fam-grid');
+        grid.appendChild(genFamilyCard(p.father, p.far ? t('tools.genealogy_far') : t('tools.genealogy_father')));
+        if (p.mother) grid.appendChild(genFamilyCard(p.mother, t('tools.genealogy_mother_label')));
+        else grid.appendChild(genEl('p', 'gen-fam-none', t('tools.genealogy_no_mother')));
+        parents.appendChild(grid);
+    } else {
+        parents.appendChild(genEl('p', 'gen-fam-none', t(id === 'adam' ? 'tools.genealogy_adam_origin' : 'tools.genealogy_no_parents')));
+    }
+    box.appendChild(parents);
+
+    // La personne.
+    const main = genEl('article', 'gen-fam-main ' + (p.sex === 'f' ? 'is-woman' : 'is-man'));
+    if (genCatSet[id]) { main.classList.add('is-cat'); main.style.setProperty('--cat-color', genCatColor); }
+    const gen = GenealogyCore.generationOf(id);
+    if (gen) main.appendChild(genEl('p', 'gen-fam-gen', t('tools.genealogy_generation', { n: gen })));
+    const name = genEl('h3', 'gen-fam-big', genName(p));
+    name.setAttribute('lang', genLang);
+    main.appendChild(name);
+    const alt = genEl('p', 'gen-fam-alt', genLang === 'he' ? p.fr : p.he);
+    alt.setAttribute('lang', genLang === 'he' ? 'fr' : 'he');
+    alt.dir = genLang === 'he' ? 'ltr' : 'rtl';
+    main.appendChild(alt);
+    const spouses = genSpouses(p);
+    if (spouses.length) {
+        const chips = genEl('div', 'gen-fam-chips');
+        spouses.forEach(u => {
+            const q = GenealogyCore.byId(u[0]);
+            const label = genUnionLabel(u[1]);
+            const c = genEl('button', 'gen-fam-chip ' + (q.sex === 'f' ? 'is-woman' : 'is-man'), '⚭ ' + genName(q) + (label ? ' (' + label + ')' : ''));
+            c.type = 'button';
+            c.setAttribute('lang', genLang);
+            c.onclick = () => genOpenFamily(q.id);
+            chips.appendChild(c);
+        });
+        main.appendChild(chips);
+    }
+    // Les catégories de la personne (leur couleur est celle du menu « Catégories »), sa nation (Genèse 10), une mention particulière.
+    const tags = genEl('div', 'gen-fam-chips');
+    GenealogyCore.CATEGORIES.filter(c => !c.special && c.ids.includes(id)).forEach(c => {
+        const tag = genEl('span', 'gen-fam-tag');
+        const dot = genEl('span', 'gen-cat-dot');
+        dot.style.background = c.color;
+        tag.appendChild(dot);
+        tag.appendChild(document.createTextNode(t('tools.genealogy_cat_' + c.id)));
+        tags.appendChild(tag);
+    });
+    if (p.nation) tags.appendChild(genEl('span', 'gen-fam-tag', t('tools.genealogy_nation', { n: p.nation })));
+    if (p.ex) tags.appendChild(genEl('span', 'gen-fam-tag', t('tools.genealogy_ex')));
+    if (tags.childNodes.length) main.appendChild(tags);
+    // Situer dans la chronologie, quand la frise connaît la personne.
+    const actions = genEl('div', 'gen-fam-actions');
+    main.appendChild(actions);
+    if (typeof ChronologieCore !== 'undefined' && typeof chrLoadModel === 'function') {
+        chrLoadModel().then(model => {
+            if (!actions.isConnected || (genFocus || 'adam') !== id) return;
+            const button = chrButton(ChronologieCore.forGen(model, id), 'screen-tool-genealogy');
+            if (button) actions.appendChild(button);
+        }).catch(() => {});
+    }
+    box.appendChild(main);
+
+    // Les frères et sœurs (la personne comprise, mise en valeur).
+    const sibs = GenealogyCore.siblingsOf(id);
+    if (sibs.length > 1) {
+        const sec = genFamilySection(t('tools.genealogy_siblings'), sibs.length - 1);
+        const row = genEl('div', 'gen-fam-sibs');
+        sibs.forEach(k => {
+            const q = GenealogyCore.byId(k);
+            const c = genEl('button', 'gen-fam-chip ' + (q.sex === 'f' ? 'is-woman' : 'is-man') + (k === id ? ' is-self' : ''), genName(q));
+            c.type = 'button';
+            c.setAttribute('lang', genLang);
+            if (k === id) c.setAttribute('aria-current', 'true');
+            c.onclick = () => genOpenFamily(k);
+            row.appendChild(c);
+        });
+        sec.appendChild(row);
+        box.appendChild(sec);
+        requestAnimationFrame(() => {
+            const self = row.querySelector('.is-self');
+            if (self) row.scrollLeft = self.offsetLeft - row.clientWidth / 2 + self.offsetWidth / 2;
+        });
+    }
+
+    // Les enfants, rangés par mère quand le père en a plusieurs.
+    const kids = GenealogyCore.childrenAll(id);
+    const sec = genFamilySection(t('tools.genealogy_children'), kids.length);
+    if (!kids.length) {
+        sec.appendChild(genEl('p', 'gen-fam-none', t('tools.genealogy_no_children')));
+    } else {
+        const grid = genEl('div', 'gen-fam-grid');
+        const groups = [];
+        const byMother = {};
+        kids.forEach(k => {
+            const m = p.sex === 'm' ? (GenealogyCore.byId(k).mother || '') : '';
+            if (!(m in byMother)) { byMother[m] = []; groups.push(m); }
+            byMother[m].push(k);
+        });
+        groups.forEach(m => {
+            if (groups.length > 1) {
+                const label = genEl('p', 'gen-fam-mother', m ? t('tools.genealogy_with_mother', { name: genName(GenealogyCore.byId(m)) }) : t('tools.genealogy_no_mother'));
+                grid.appendChild(label);
+            }
+            byMother[m].forEach(k => {
+                const n = GenealogyCore.descendantsCount(k);
+                grid.appendChild(genFamilyCard(k, n ? t(n > 1 ? 'tools.genealogy_descendants' : 'tools.genealogy_descendants_one', { n: n }) : ''));
+            });
+        });
+        sec.appendChild(grid);
+    }
+    box.appendChild(sec);
 }
 
 // Fait défiler la vue pour centrer une personne (Adam au départ, la personne cherchée ensuite).
@@ -414,14 +818,16 @@ function genZoom(delta, clientX, clientY) {
 }
 
 // Replie toutes les branches sauf celle d'Adam, pour que l'arbre s'ouvre sur Adam et ses fils.
+// « Tout replier » : il ne reste qu'Adam et ses fils ; « Tout déplier » : tout l'arbre. Dans l'arbre ou dans les lignées, selon la présentation.
 function genCollapseAll() {
-    genCollapsed = {};
-    GenealogyCore.parentsIds().forEach(id => { if (id !== 'adam') genCollapsed[id] = true; });
+    const folded = {};
+    GenealogyCore.parentsIds().forEach(id => { if (id !== 'adam') folded[id] = true; });
+    if (genView === 'lines') genLinesCollapsed = folded; else genCollapsed = folded;
     genRender();
 }
 
 function genExpandAll() {
-    genCollapsed = {};
+    if (genView === 'lines') genLinesCollapsed = {}; else genCollapsed = {};
     genRender();
 }
 
@@ -441,43 +847,53 @@ function genOnSearch() {
     });
 }
 
-// La barre « personne choisie » : son nom, et le bouton qui la situe dans la chronologie quand la frise la connaît.
+// La barre « personne choisie » (arbre et lignées) : son nom, le bouton qui ouvre sa fiche, et celui qui la situe dans la chronologie
+// quand la frise la connaît. Dans la fiche, la personne est déjà au centre : la barre reste cachée.
+let genFocusBarToken = 0;   // une mise à jour plus récente de la barre annule l'ajout tardif du bouton de la chronologie
 function genUpdateFocusBar() {
     const bar = document.getElementById('gen-focus');
     if (!bar) return;
     const id = genFocus;
+    const token = ++genFocusBarToken;
     while (bar.firstChild) bar.removeChild(bar.firstChild);
     bar.classList.add('hidden');
-    if (!id || typeof ChronologieCore === 'undefined' || typeof chrLoadModel !== 'function') return;
+    if (!id || genView === 'family') return;
+    const name = document.createElement('strong');
+    name.textContent = genName(GenealogyCore.byId(id));
+    name.setAttribute('lang', genLang);
+    bar.appendChild(name);
+    const open = document.createElement('button');
+    open.type = 'button';
+    open.className = 'btn';
+    open.textContent = t('tools.genealogy_open_family');
+    open.onclick = () => genSetView('family');
+    bar.appendChild(open);
+    bar.classList.remove('hidden');
+    if (typeof ChronologieCore === 'undefined' || typeof chrLoadModel !== 'function') return;
     chrLoadModel().then(model => {
-        if (id !== genFocus) return;
+        if (token !== genFocusBarToken) return;
         const button = chrButton(ChronologieCore.forGen(model, id), 'screen-tool-genealogy');
-        if (!button) return;
-        const p = GenealogyCore.byId(id);
-        const name = document.createElement('strong');
-        name.textContent = genName(p);
-        bar.appendChild(name);
-        bar.appendChild(button);
-        bar.classList.remove('hidden');
+        if (button) bar.appendChild(button);
     }).catch(() => {});
 }
 
-// Va à une personne : déplie ses ancêtres (une femme sans père : son conjoint), la centre et la met en valeur.
+// Va à une personne (recherche, catégories, chronologie, changement de présentation) : dans la fiche, l'ouvre ; dans l'arbre et les
+// lignées, déplie ses ancêtres (une femme sans père : ceux de son conjoint), la centre et la met en valeur.
 function genGoTo(id) {
-    let target = id;
-    const p = GenealogyCore.byId(target);
-    if (p && !p.father && p.id !== 'adam') {
-        const husband = GenealogyCore.PEOPLE.find(q => q.unions.some(u => u[0] === p.id));
-        if (husband) target = husband.id;
-    }
-    GenealogyCore.ancestorsOf(target).forEach(a => { delete genCollapsed[a]; });
-    delete genCollapsed[target];
-    genFocus = target;
-    genUpdateFocusBar();
+    if (!GenealogyCore.byId(id)) return;
+    genFocus = id;
     document.getElementById('gen-search').value = '';
     genOnSearch();
+    genUpdateFocusBar();
+    if (genView === 'family') {
+        genOpenFamily(id);
+        return;
+    }
+    const target = GenealogyCore.anchorOf(id) || 'adam';
+    const folded = genView === 'lines' ? genLinesCollapsed : genCollapsed;
+    GenealogyCore.ancestorsOf(target).forEach(a => { delete folded[a]; });
     genRender();
-    genScrollTo(target);
+    genShowFocus(target);
 }
 
 // --- Les catégories ---------------------------------------------------------------------------------------------------------------------
