@@ -242,3 +242,18 @@ test('la halakha : les exemples renvoient à un aliment de la liste, les sources
     const links = H.sections.reduce((all, sec) => all.concat(sec.links || []), []);
     links.forEach(l => assert.ok(['ben-texts', 'ben-other'].indexOf(l.panel) !== -1, l.label));
 });
+
+test('mon plat : l\'Ikar selon les règles (céréale, pain, principal, majorité, liant, égalité)', () => {
+    assert.strictEqual(C.ikarOf([{ b: 'haadama', pct: 60 }, { b: 'chehakol', pct: 40 }]).b, 'haadama');
+    assert.strictEqual(C.ikarOf([{ b: 'haadama', pct: 60 }, { b: 'chehakol', pct: 40 }]).rule, 'majorite');
+    assert.strictEqual(C.ikarOf([{ b: 'mezonot', pct: 70 }, { b: 'haadama', pct: 30 }]).b, 'mezonot');
+    assert.strictEqual(C.ikarOf([{ b: 'mezonot', pct: 10 }, { b: 'chehakol', pct: 90 }]).b, 'mezonot');
+    assert.strictEqual(C.ikarOf([{ b: 'chehakol', pct: 90 }, { b: 'mezonot', pct: 10, liant: true }]).b, 'chehakol');
+    assert.strictEqual(C.ikarOf([{ b: 'haadama', pct: 80 }, { b: 'hamotsi', pct: 20 }]).b, 'hamotsi');
+    assert.strictEqual(C.ikarOf([{ b: 'haets', pct: 30, principal: true }, { b: 'haadama', pct: 70 }]).rule, 'principal');
+    const tie = C.ikarOf([{ b: 'haadama', pct: 50 }, { b: 'haets', pct: 50 }]);
+    assert.strictEqual(tie.rule, 'egalite');
+    assert.strictEqual(tie.b, 'haets');
+    assert.strictEqual(C.ikarOf([]).rule, 'none');
+    assert.strictEqual(C.ikarOf([{ b: 'aucune', pct: 100 }]).rule, 'none');
+});

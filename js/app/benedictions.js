@@ -98,6 +98,7 @@ function benRender() {
     benRenderChips();
 
     body.appendChild(benHalakhaPanel());
+    body.appendChild(benIkarPanel());
 
     const msg = benNode('p', 'tool-msg', '');
     msg.id = 'ben-msg';
@@ -112,6 +113,91 @@ function benRender() {
     body.appendChild(benOtherPanel());
     body.appendChild(benSourceCard());
     benRenderRows();
+}
+
+// « Mon plat » : on compose un plat (ingrédients, poids ou pourcentages) et l'outil donne la bénédiction de l'Ikar. Calcul : BenedictionsCore.ikarOf.
+const IKAR_MAX = 6;
+let ikarRows = [{ b: 'haadama', pct: 60, principal: false, liant: false }, { b: 'chehakol', pct: 40, principal: false, liant: false }];
+const IKAR_MSG = {
+    none: 'Ajoutez au moins un ingrédient.',
+    mezonot: 'Une des cinq céréales donne du goût ou de la satiété : Mezonot, même en petite quantité. Un ingrédient ne servant qu\'à lier n\'est pas compté.',
+    hamotsi: 'Il y a du pain : Hamotsi prime sur les autres bénédictions du plat.',
+    principal: 'Un seul ingrédient est marqué principal : c\'est lui qui donne la bénédiction.',
+    majorite: 'C\'est la bénédiction la plus présente en quantité (l\'Ikar).',
+    egalite: 'Égalité entre plusieurs bénédictions : on suit l\'ordre Maga Esh (la première de la liste l\'emporte). À demander à votre rav.'
+};
+
+function benIkarPanel() {
+    const D = BenedictionsData;
+    const panel = benNode('details', 'kor-details ben-ikar');
+    panel.id = 'ben-ikar';
+    panel.appendChild(benNode('summary', '', 'Mon plat : quelle bénédiction pour mon plat ?'));
+    panel.appendChild(benNode('p', 'tool-small', 'Ajoutez les ingrédients avec leur poids ou leur pourcentage. Cochez « principal » pour l\'ingrédient qui fait le plat, et « liant » pour une farine ou une panure qui ne sert qu\'à lier.'));
+    const list = benNode('div', 'ben-ikar-rows');
+    panel.appendChild(list);
+    const result = benNode('div', 'ben-ikar-result');
+    result.setAttribute('role', 'status');
+    panel.appendChild(result);
+
+    function refresh() {
+        const r = BenedictionsCore.ikarOf(ikarRows);
+        toolClear(result);
+        if (!r.b) { result.appendChild(benNode('p', 'tool-small', IKAR_MSG.none)); return; }
+        const line = benNode('div', 'kor-tags');
+        line.appendChild(benNode('span', 'tool-small', 'Bénédiction de l\'Ikar :'));
+        line.appendChild(benBlessingTag(r.b));
+        result.appendChild(line);
+        result.appendChild(benNode('p', 'tool-small', IKAR_MSG[r.rule]));
+        if (r.ignored) result.appendChild(benNode('p', 'tool-small', r.ignored + ' ingrédient(s) ignoré(s) comme liant.'));
+    }
+
+    function draw() {
+        toolClear(list);
+        ikarRows.forEach((row, i) => {
+            const line = benNode('div', 'ben-ikar-row');
+            const sel = benNode('select', 'tool-input ben-ikar-sel');
+            sel.setAttribute('aria-label', 'Bénédiction de l\'ingrédient ' + (i + 1));
+            D.ORDER.filter(b => b !== 'aucune').forEach(b => {
+                const o = benNode('option', '', BenedictionsCore.label(b));
+                o.value = b;
+                if (b === row.b) o.selected = true;
+                sel.appendChild(o);
+            });
+            sel.onchange = () => { row.b = sel.value; refresh(); };
+            const pct = benNode('input', 'tool-input ben-ikar-pct');
+            pct.type = 'number'; pct.min = '0'; pct.step = '1';
+            pct.value = String(row.pct);
+            pct.setAttribute('aria-label', 'Part de l\'ingrédient ' + (i + 1));
+            pct.oninput = () => { row.pct = Math.max(0, Number(pct.value) || 0); refresh(); };
+            line.appendChild(sel);
+            line.appendChild(pct);
+            [['principal', 'Principal'], ['liant', 'Liant']].forEach(([key, text]) => {
+                const lab = benNode('label', 'ben-ikar-check');
+                const cb = benNode('input', '');
+                cb.type = 'checkbox';
+                cb.checked = !!row[key];
+                cb.onchange = () => { row[key] = cb.checked; refresh(); };
+                lab.appendChild(cb);
+                lab.appendChild(document.createTextNode(' ' + text));
+                line.appendChild(lab);
+            });
+            const del = benNode('button', 'tool-history-chip', 'Retirer');
+            del.type = 'button';
+            del.setAttribute('aria-label', 'Retirer l\'ingrédient ' + (i + 1));
+            del.onclick = () => { ikarRows.splice(i, 1); draw(); refresh(); };
+            line.appendChild(del);
+            list.appendChild(line);
+        });
+        const add = benNode('button', 'tool-history-chip', '+ Ajouter un ingrédient');
+        add.type = 'button';
+        add.disabled = ikarRows.length >= IKAR_MAX;
+        add.onclick = () => { ikarRows.push({ b: 'haadama', pct: 0, principal: false, liant: false }); draw(); refresh(); };
+        list.appendChild(add);
+    }
+
+    draw();
+    refresh();
+    return panel;
 }
 
 // Cherche un aliment dans la liste, puis fait voir la liste.

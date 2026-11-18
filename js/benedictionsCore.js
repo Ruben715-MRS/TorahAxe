@@ -139,5 +139,27 @@
         return counts;
     }
 
-    return { normalize: normalize, riteOf: riteOf, override: override, view: view, blessingsOf: blessingsOf, notesOf: notesOf, label: label, finalOf: finalOf, finalOpen: finalOpen, finalsOf: finalsOf, isLiquid: isLiquid, shiur: shiur, finalNote: finalNote, filterFoods: filterFoods, countByBlessing: countByBlessing };
+    // « Mon plat » : la bénédiction de l'Ikar (le principal) d'un plat composé. `parts` : [{ b (une clé de Data.ORDER), pct (poids ou pourcentage), principal?, liant? }].
+    // Règles (Ikar veTafel, Halakha) : un ingrédient « liant » (ex. farine qui ne sert qu'à lier) est ignoré ; une des cinq céréales (Mezonot), même minoritaire, l'emporte ;
+    // puis le pain (Hamotsi) ; puis l'unique ingrédient marqué principal ; sinon la bénédiction la plus présente en quantité (égalité : ordre Maga Esh).
+    // Retour : { b, rule ('none' | 'mezonot' | 'hamotsi' | 'principal' | 'majorite' | 'egalite'), ignored (nombre d'ingrédients ignorés comme liants) }.
+    function ikarOf(parts) {
+        var all = (parts || []).filter(function (p) { return p && Data.ORDER.indexOf(p.b) !== -1 && p.b !== 'aucune'; });
+        var active = all.filter(function (p) { return !p.liant; });
+        var ignored = all.length - active.length;
+        if (!active.length) return { b: null, rule: 'none', ignored: ignored };
+        if (active.some(function (p) { return p.b === 'mezonot'; })) return { b: 'mezonot', rule: 'mezonot', ignored: ignored };
+        if (active.some(function (p) { return p.b === 'hamotsi'; })) return { b: 'hamotsi', rule: 'hamotsi', ignored: ignored };
+        var principal = active.filter(function (p) { return p.principal; });
+        if (principal.length === 1) return { b: principal[0].b, rule: 'principal', ignored: ignored };
+        var pool = principal.length > 1 ? principal : active;
+        var sums = {};
+        pool.forEach(function (p) { sums[p.b] = (sums[p.b] || 0) + (Number(p.pct) || 0); });
+        var best = Math.max.apply(null, Data.ORDER.filter(function (b) { return sums[b] !== undefined; }).map(function (b) { return sums[b]; }));
+        var tops = Data.ORDER.filter(function (b) { return sums[b] !== undefined && sums[b] === best; });
+        if (tops.length === 1) return { b: tops[0], rule: 'majorite', ignored: ignored };
+        return { b: tops[0], rule: 'egalite', tie: tops, ignored: ignored };
+    }
+
+    return { ikarOf: ikarOf, normalize: normalize, riteOf: riteOf, override: override, view: view, blessingsOf: blessingsOf, notesOf: notesOf, label: label, finalOf: finalOf, finalOpen: finalOpen, finalsOf: finalsOf, isLiquid: isLiquid, shiur: shiur, finalNote: finalNote, filterFoods: filterFoods, countByBlessing: countByBlessing };
 }));

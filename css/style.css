@@ -18277,6 +18277,13 @@ body:has(#screen-recit:not(.hidden))::after {
 .ben-halakha-links { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
 .ben-halakha-sources { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 3px; }
 .ben-halakha-unverified { font-size: 11px; opacity: 0.75; border: 1px dashed currentColor; border-radius: 6px; padding: 0 5px; margin-left: 4px; }
+.ben-ikar { margin: 12px 0; }
+.ben-ikar-rows { display: flex; flex-direction: column; gap: 8px; margin: 8px 0; }
+.ben-ikar-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.ben-ikar-sel { flex: 1 1 140px; min-width: 0; }
+.ben-ikar-pct { width: 72px; }
+.ben-ikar-check { font-size: 13px; display: inline-flex; align-items: center; gap: 2px; }
+.ben-ikar-result { display: flex; flex-direction: column; gap: 6px; margin-top: 6px; }
 .ben-diff { background: #fef3c7; color: #78350f; border-color: transparent; font-weight: 700; }
 .ben-was { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 0; }
 .ben-rite-note { display: flex; flex-direction: column; gap: 2px; padding: 8px 10px; border-radius: 10px; background: var(--surface-2); }
