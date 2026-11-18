@@ -1453,7 +1453,7 @@ function sdRubricEl(tree, fr) {
 
 // Le segment : un titre, une consigne seule, ou du texte. Une variante assez longue (une phrase) ou un segment fait seulement de variantes
 // (été / hiver) passe en blocs ; les variantes d'un mot ou deux (« הַשָּׁלוֹם ») restent dans la ligne.
-function sdRenderSegment(tree, index, fr) {
+function sdRenderSegment(tree, index, fr) {   // tree peut être remplacé par son contenu (segment tout en gras)
     const kids = tree.c.filter(k => !sdBlank(k));
     const isTitle = index === 0 && kids[0] && kids[0].t === 'tag' && kids[0].n === 'big';
     if (!isTitle && kids.length && kids.every(k => k.t === 'tag' && k.n === 'small') && !SD_HAS_NIQQUD.test(SiddurCore.plain(tree))) return sdRubricEl(tree, fr);
@@ -1465,10 +1465,14 @@ function sdRenderSegment(tree, index, fr) {
         if (outside && outside.length <= 30 && marked) { const h = sdRubricEl(tree, fr); h.classList.add('sd-rub-head'); return h; }
     }
     const newP = () => { const p = sdEl(isTitle ? 'h4' : 'p', isTitle ? 'sd-title' : 'sd-seg'); p.lang = 'he'; p.dir = 'rtl'; return p; };
-    // les variantes de premier niveau : marqueur + corps
+    // Un segment entièrement en gras dans la source (une seule balise <b> autour de tout) : on cherche ses variantes à l'intérieur.
+    if (!isTitle && kids.length === 1 && kids[0].t === 'tag' && kids[0].n === 'b' && !kids[0].m && kids[0].c.some(k => k.m)) tree = { t: 'tag', n: 'root', c: kids[0].c };
+    // les variantes de premier niveau : marqueur + corps, ou consigne et corps dans la même balise (« self » : « בחוה"מ פסח: חג המצות… »)
     const vars = {};
     tree.c.forEach(k => {
-        if (!k.m || (k.m.role !== 'marker' && k.m.role !== 'body')) return;
+        if (!k.m) return;
+        if (k.m.role === 'self') { const after = sdAfterColon([k]); if (after.found) vars[k.m.id] = { m: k.m, bodies: after.nodes, self: k }; return; }
+        if (k.m.role !== 'marker' && k.m.role !== 'body') return;
         const v = vars[k.m.id] || (vars[k.m.id] = { m: k.m, bodies: [] });
         if (k.m.role === 'body') v.bodies.push(k);
     });
@@ -1499,13 +1503,14 @@ function sdRenderSegment(tree, index, fr) {
     tree.c.forEach(k => {
         const v = k.m && block[k.m.id];
         if (!v) { if (!cur) cur = newP(); sdRenderNodes([k], cur); return; }
-        if (k.m.role !== 'marker') return;                       // le corps est rendu avec son marqueur
+        if (k.m.role !== 'marker' && k.m.role !== 'self') return;   // le corps est rendu avec son marqueur
         flush();
         const bodyText = SiddurCore.plain(v.bodies);
         wrap.appendChild(sdVarBlock(v.m.atoms, '', bodyText, host => {
             const p = newP();
             // un corps en <small> est rendu à taille normale : c'est le texte à dire
-            v.bodies.forEach(b => { if (b.t === 'tag' && b.n === 'small') sdRenderNodes(b.c, p); else sdRenderNodes([b], p, true); });
+            const flat = (list) => list.forEach(b => { if (b.t === 'tag' && b.n === 'small') flat(b.c); else sdRenderNodes([b], p, true); });
+            flat(v.bodies);
             host.appendChild(p);
         }));
     });
@@ -1669,6 +1674,35 @@ function sdJuxta(p) {
     p.replaceWith(box);
 }
 
+function sdAfterColon(nodes) {
+    let found = false;
+    const walk = (list) => {
+        const out = [];
+        list.forEach(k => {
+            if (found) { out.push(k); return; }
+            if (k.t === 'text' && !k.k) {
+                const i = k.v.indexOf(':');
+                if (i >= 0) { found = true; const rest = k.v.slice(i + 1); if (rest.trim()) out.push(Object.assign({}, k, { v: rest, m: undefined })); }
+                return;
+            }
+            if (k.t === 'tag') { const c = walk(k.c); if (found && c.length) out.push(Object.assign({}, k, { c, m: undefined })); }
+        });
+        return out;
+    };
+    const out = walk(nodes.map(k => k.m && k.m.role === 'self' ? Object.assign({}, k, { m: undefined }) : k));
+    return { nodes: out, found };
+}
+// Une variante enveloppée dans une seule balise avec sa consigne (« <small><small>בתשעה באב מוסיפים:</small> <small>נַחֵם…</small></small> ») :
+// { m, body } si elle est assez longue pour un bloc, sinon null (les variantes d'un mot restent dans la ligne).
+function sdSelfBlock(tree) {
+    const kids = tree.c.filter(k => !sdBlank(k));
+    if (kids.length !== 1 || !kids[0].m || kids[0].m.role !== 'self' || kids[0].t !== 'tag') return null;
+    const inner = kids[0].c.filter(k => !sdBlank(k));
+    const body = inner[0] && inner[0].t === 'tag' && inner[0].n === 'small' && SiddurCore.conditionOf(SiddurCore.plain(inner[0])) ? inner.slice(1) : null;
+    if (!body || SiddurCore.stripNiqqud(SiddurCore.plain(body)).trim().length < 25) return null;
+    return { m: kids[0].m, body };
+}
+
 // Le paratexte d'un chant : qui l'a écrit, dans quel contexte, ce qu'il veut dire ; et le bouton de la traduction française.
 function sdAboutCard(about) {
     const card = sdEl('details', 'sd-about');
@@ -1797,6 +1831,29 @@ function sdRenderSection(section) {
             i += 2;
             continue;
         }
+        // Variante enveloppée (9 Av : « Na'hem ») : un bloc, avec sa conclusion propre (« … מְנַחֵם צִיּוֹן ») ; ce jour-là, la conclusion
+        // ordinaire (« … בּוֹנֵה יְרוּשָׁלָיִם ») est repliée.
+        const selfB = sdSelfBlock(trees[i]);
+        if (selfB) {
+            const to = i + 1 < trees.length && /^ברוך אתה .*מנחם ציון/.test(bares[i + 1]) ? i + 1 : i;
+            const from = i;
+            headFor(i, i);
+            const bodyText = SiddurCore.plain(selfB.body);
+            out.appendChild(sdVarBlock(selfB.m.atoms, '', bodyText, host => {
+                const p = sdEl('p', 'sd-seg'); p.lang = 'he'; p.dir = 'rtl';
+                selfB.body.forEach(b => { if (b.t === 'tag' && b.n === 'small') sdRenderNodes(b.c, p); else sdRenderNodes([b], p, true); });
+                host.appendChild(p);
+                for (let k = from + 1; k <= to; k++) host.appendChild(seg(k));
+            }));
+            if (to > from && to + 1 < trees.length && /^ברוך אתה .*בונה ירושלים/.test(bares[to + 1]) && SiddurCore.evaluate(selfB.m.atoms, sdCtx) === 'on') {
+                const k = to + 1;
+                out.appendChild(sdVarBlock([], 'Conclusion des autres jours', SiddurCore.plain(trees[k]), host => host.appendChild(seg(k)), 'off'));
+                i = k + 1;
+                continue;
+            }
+            i = to + 1;
+            continue;
+        }
         const g = byHeader[i];
         if (!g) {
             headFor(i, i); out.appendChild(seg(i)); hatAfter(i, i);
@@ -1806,9 +1863,17 @@ function sdRenderSection(section) {
         headFor(g.from, g.to);
         // la consigne d'en-tête (« בראש חודש מוסיפים: ») devient le nom du bloc, en français si on l'a
         const headFr = !sdPrefs.heRub && frOf(g.header);
-        const label = headFr ? headFr.replace(/[\s:.]+$/, '') : sdCap(sdAtomsLabel(g.atoms));
+        // une consigne longue (plus d'une ligne) : le nom court de la condition suffit sur la ligne repliée
+        const label = headFr && headFr.length <= 60 ? headFr.replace(/[\s:.]+$/, '') : sdCap(sdAtomsLabel(g.atoms));
         const bodyText = SiddurCore.plain(trees.slice(g.from, g.to + 1));
         out.appendChild(sdVarBlock(g.atoms, label, bodyText, host => { for (let k = g.from; k <= g.to; k++) host.appendChild(seg(k)); }));
+        // 9 Av (Min'ha) : ce jour-là, la conclusion ordinaire qui suit est repliée.
+        if (g.atoms.indexOf('tishaBav') !== -1 && SiddurCore.evaluate(g.atoms, sdCtx) === 'on' && g.to + 1 < trees.length && /^ברוך אתה .*בונה ירושלים/.test(bares[g.to + 1])) {
+            const k = g.to + 1;
+            out.appendChild(sdVarBlock([], 'Conclusion des autres jours', SiddurCore.plain(trees[k]), host => host.appendChild(seg(k)), 'off'));
+            i = k + 1;
+            continue;
+        }
         // été / hiver de Barekh alénou : deux blocs de suite, la conclusion vient après le second
         const nextG = byHeader[g.to + 1];
         hatAfter(g.from, g.to, !!(nextG && sdBerakhaStart(bares[nextG.from]) && open && sdBerakhaStart(bares[nextG.from]).id === open.id));
