@@ -1,5 +1,5 @@
 // =========================================================================
-// === LA LECTURE DE LA TORA EN SEMAINE : QUELLES MONTÉES LIT-ON AUJOURD'HUI ? (calculs purs, sans DOM) ===
+// === LA LECTURE DE LA TORAH EN SEMAINE : QUELLES MONTÉES LIT-ON AUJOURD'HUI ? (calculs purs, sans DOM) ===
 // =========================================================================
 // Données : data/torah/weekday.json (scripts/build_weekday_readings.py, d'après Hebcal) : les trois montées du lundi et du jeudi pour
 // chaque paracha, et les lectures des jours particuliers (Roch 'Hodech, jeûne public, Pourim, 9 Av). Le lundi et le jeudi, on lit le début
@@ -23,7 +23,7 @@
     }
 
     // La lecture du jour hébraïque `fixed` : { kind, parasha?, special? }. kind : 'parasha' (lundi, jeudi), 'rc', 'fast', 'purim', 'tishaBav'
-    // (lectures de la Tora du matin), 'hanukkah', 'cholHamoed' (lectures propres, pas encore dans l'application) ou 'none'.
+    // (lectures de la Torah du matin), 'hanukkah', 'cholHamoed' (lectures propres, pas encore dans l'application) ou 'none'.
     function readingFor(fixed, israel) {
         var ctx = S.contextFor(fixed, israel), f = ctx.flags;
         if (f.shabbat || f.yomTov) return { kind: 'none' };

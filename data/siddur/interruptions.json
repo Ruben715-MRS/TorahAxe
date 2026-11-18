@@ -21,7 +21,7 @@
   },
   {
    "id": "tora",
-   "fr": "Lecture de la Tora"
+   "fr": "Lecture de la Torah"
   },
   {
    "id": "autres",
@@ -127,7 +127,7 @@
   {
    "id": "monter",
    "group": "tora",
-   "fr": "Monter à la Tora"
+   "fr": "Monter à la Torah"
   },
   {
    "id": "piyoutim",
@@ -142,18 +142,18 @@
   {
    "id": "penser",
    "group": "autres",
-   "fr": "Penser à des paroles de Tora, regarder un compte"
+   "fr": "Penser à des paroles de Torah, regarder un compte"
   },
   {
    "id": "birkhotTora",
    "group": "tefilot",
-   "fr": "Bénédictions de la Tora"
+   "fr": "Bénédictions de la Torah"
   }
  ],
  "rows": [
   {
    "id": "avantTora",
-   "fr": "Avant les bénédictions de la Tora",
+   "fr": "Avant les bénédictions de la Torah",
    "cells": [
     {
      "t": "Autorisé",
@@ -337,7 +337,7 @@
     },
     null,
     {
-     "t": "Divré Tora : interdit · compte : éviter",
+     "t": "Divré Torah : interdit · compte : éviter",
      "c": "n"
     },
     {
@@ -539,7 +539,7 @@
      "c": "c"
     },
     {
-     "t": "Divré Tora : interdit · compte : éviter",
+     "t": "Divré Torah : interdit · compte : éviter",
      "c": "n"
     },
     {
@@ -1035,7 +1035,7 @@
      "c": "c"
     },
     {
-     "t": "Divré Tora : interdit · compte : mieux vaut éviter",
+     "t": "Divré Torah : interdit · compte : mieux vaut éviter",
      "c": "n"
     },
     {

@@ -970,7 +970,7 @@ function sdIxGrid(data, cur) {
     return wrap;
 }
 
-// --- La lecture de la Tora du jour (lundi, jeudi, jours particuliers) -------------------------------------------------------------------
+// --- La lecture de la Torah du jour (lundi, jeudi, jours particuliers) -------------------------------------------------------------------
 // Le texte vient du Tanakh de l'application (data/tanakh/<livre>.json, voyelles et cantillation) ; les montées de data/torah/weekday.json
 // (js/torahReadingCore.js). Seulement les montées du jour : la lecture de toute l'année n'est pas affichée.
 const SD_TORAH_BOOKS = ['genesis', 'exode', 'levitique', 'nombres', 'deuteronome'];
@@ -985,7 +985,7 @@ function sdLoadBook(n) {
     return sdBookCache[id];
 }
 function sdReadingButton() {
-    const b = sdEl('button', 'sd-reading-btn', 'Lecture de la Tora');
+    const b = sdEl('button', 'sd-reading-btn', 'Lecture de la Torah');
     b.type = 'button';
     b.id = 'sd-reading-btn';
     b.setAttribute('aria-haspopup', 'dialog');
@@ -998,14 +998,14 @@ function sdCivilLabel(fixed) {
 }
 function sdOpenReading() {
     if (typeof TorahReadingCore === 'undefined') return;
-    sdSheet('Lecture de la Tora', (body) => {
+    sdSheet('Lecture de la Torah', (body) => {
         body.appendChild(sdEl('p', 'tool-small', t('tools.sd_loading')));
         const load = sdWeekday ? Promise.resolve(sdWeekday) : Promise.all([sdFetchJson('data/torah/weekday.json'), sdFetchJson('data/torah/parashot.json')]).then(([w, p]) => { sdParashot = p; return (sdWeekday = w); });
         load.then(data => {
             const israel = !!(sdCtx && sdCtx.israel);
             const next = TorahReadingCore.nextReading(sdCtx.fixed, israel);
             toolClear(body);
-            if (!next) { body.appendChild(sdEl('p', 'sd-info', 'Pas de lecture de la Tora dans les jours qui viennent.')); return; }
+            if (!next) { body.appendChild(sdEl('p', 'sd-info', 'Pas de lecture de la Torah dans les jours qui viennent.')); return; }
             const r = next.reading;
             const parasha = r.kind === 'parasha' && sdParashot ? sdParashot.parashot[r.parasha] : null;
             const head = sdEl('div', 'sd-reading-head');

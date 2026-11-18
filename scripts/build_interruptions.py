@@ -25,15 +25,15 @@ COLS = [
     ('acherYatsar', 'tefilot', 'Acher yatsar'),
     ('tonnerre', 'tefilot', 'Bénédiction du tonnerre et des éclairs'),
     ('barekhou', 'repondre', 'Répondre à Barékhou'),
-    ('monter', 'tora', 'Monter à la Tora'),
+    ('monter', 'tora', 'Monter à la Torah'),
     ('piyoutim', 'autres', 'Réciter des piyoutim'),
     ('officiant', 'autres', 'L\'officiant doit-il répondre ?'),
-    ('penser', 'autres', 'Penser à des paroles de Tora, regarder un compte'),
-    ('birkhotTora', 'tefilot', 'Bénédictions de la Tora'),
+    ('penser', 'autres', 'Penser à des paroles de Torah, regarder un compte'),
+    ('birkhotTora', 'tefilot', 'Bénédictions de la Torah'),
 ]
 GROUPS = [
     ('qaddich', 'Qaddich'), ('qedoucha', 'Qédoucha'), ('repondre', 'Répondre à l\'officiant et à l\'assemblée'),
-    ('tefilot', 'Mes propres bénédictions'), ('tora', 'Lecture de la Tora'), ('autres', 'Autres cas'),
+    ('tefilot', 'Mes propres bénédictions'), ('tora', 'Lecture de la Torah'), ('autres', 'Autres cas'),
 ]
 I = ['Interdit', 'n']
 OB = ['Obligatoire', 'o']
@@ -49,18 +49,18 @@ PENSE = ['On le pense uniquement', 'c']
 IDEM = 'IDEM'
 
 ROWS = [
-    ('avantTora', 'Avant les bénédictions de la Tora', [
+    ('avantTora', 'Avant les bénédictions de la Torah', [
         AU, AU, OB, OB, OB, OB, OB, DAA, QB, AU, None,
         OB, OB, OB, AU, AU, AU, OB, OB, DR, ['Autorisé si on ne dit pas de verset', 'c'], AU, ['A le droit, mais il vaut mieux éviter', 'c'], None]),
     ('birkhot', 'Au milieu d\'une bénédiction longue des Birkhot hacha\'har', [
         I, I, OB, I, ['S\'abstenir', 'n'], I, I, ['Jusqu\'à « Yitbarakh » seulement', 'c'], QB, I, I,
-        I, ['On ne le dit pas', 'n'], TROIS, I, PENSE, I, I, REP, ['On termine d\'abord la berakha', 'c'], I, None, ['Divré Tora : interdit · compte : éviter', 'n'], I]),
+        I, ['On ne le dit pas', 'n'], TROIS, I, PENSE, I, I, REP, ['On termine d\'abord la berakha', 'c'], I, None, ['Divré Torah : interdit · compte : éviter', 'n'], I]),
     ('elokenou', 'Depuis « Élokénou » jusqu\'à « Baroukh chéamar »', [
         AU, DR, OB, OB, OB, OB, OB, ['Obligation de répondre entièrement', 'o'], ['On a l\'obligation de répondre entièrement', 'o'], DR, DR,
         OB, OB, IDEM, DR, DR, ['On peut le dire', 'o'], OB, OB, DR, DR, ['Il en a le droit', 'o'], None, AU]),
     ('baroukhCheamar', 'Au milieu de « Baroukh chéamar »', [
         ['On les met entre « Yichtaba\'h » et le « Yotser »', 'c'], I, OB, I, ['S\'abstenir', 'n'], I, I, YIT, QB, I, I,
-        I, I, ['S\'incliner uniquement', 'c'], I, PENSE, I, I, REP, I, I, ['A le droit si ceci ne le trouble pas', 'c'], ['Divré Tora : interdit · compte : éviter', 'n'], ['Pendant les « psouké dézimra »', 'c']]),
+        I, I, ['S\'incliner uniquement', 'c'], I, PENSE, I, I, REP, I, I, ['A le droit si ceci ne le trouble pas', 'c'], ['Divré Torah : interdit · compte : éviter', 'n'], ['Pendant les « psouké dézimra »', 'c']]),
     ('pdz', 'Au milieu des Psouké dézimra (de « Mizmor létoda » à « Yichtaba\'h »)', [
         ['Permis entre les mizmorim ; mieux vaut les mettre entre « Yichtaba\'h » et le « Yotser »', 'c'], I, OB, AU, REP, AU, DR, DAA, QBY, I, I,
         ['Interdit, mais chanter les « psouké dézimra » comme si l\'on disait le Chéma', 'n'], ['Il est interdit de le dire', 'n'], TROIS, I, PENSE,
@@ -78,7 +78,7 @@ ROWS = [
     ('chemaParagraphe', 'Au milieu d\'un paragraphe du Chéma et de ses bénédictions', [
         ['Attendre d\'être entre deux paragraphes', 'c'], I, OB, I, ['S\'abstenir de préférence', 'n'], I, I, ['Jusqu\'à « Yitbarakh » seulement', 'c'], QB, I, I,
         I, I, TROIS, I, PENSE, ['Le dire après la Amida, moins de 72 minutes plus tard', 'n'], I, REP, I, I, ['S\'il est certain que ceci ne le troublera pas', 'c'],
-        ['Divré Tora : interdit · compte : mieux vaut éviter', 'n'], ['On attend de les dire entre les paragraphes', 'c']]),
+        ['Divré Torah : interdit · compte : mieux vaut éviter', 'n'], ['On attend de les dire entre les paragraphes', 'c']]),
     ('chemaEntre', 'Entre les paragraphes du Chéma', [
         ['Mettre avec la berakha', 'o'], I, OB, I, AU, I, I, DAA, IDEM, I, I,
         I, ['Pas nécessaire de les dire', 'n'], IDEM, I, IDEM, IDEM, OB, REP, I, I, I, AU, ['Avant « Ahavat ôlam », avec le paragraphe des Kohanim', 'c']]),

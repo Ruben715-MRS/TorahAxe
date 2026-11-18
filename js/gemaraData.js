@@ -1388,7 +1388,7 @@
         ["ע״כ", "עַד כָּאן", "ʿad kan", ["jusqu’ici"], "texte", null, "Marque la fin d’une citation.", []],
         ["ה״ג", "הָכִי גָּרְסִינַן", "hakhi garsinan", ["ainsi nous lisons"], "texte", null, "Dans un commentaire, l’auteur indique la leçon du texte qu’il retient.", []],
         ["ד״א", "דָּבָר אַחֵר", "davar aḥer", ["autre explication", "autre chose"], "texte", null, "Introduit une seconde explication.", []],
-        ["ס״ת", "סֵפֶר תּוֹרָה", "séfer tora", ["rouleau de la Torah"], "texte", null, null, []],
+        ["ס״ת", "סֵפֶר תּוֹרָה", "séfer torah", ["rouleau de la Torah"], "texte", null, null, []],
         ["וכו׳", "וְכוּלֵּי", "vékoulé", ["et le reste", "et ainsi de suite"], "texte", null, "On cite le début d’un passage et on abrège la suite.", []],
         ["ב״ד", "בֵּית דִּין", "beit din", ["tribunal rabbinique", "cour de justice"], "droit", null, null, []],
         ["מ״ע", "מִצְוַת עֲשֵׂה", "mitsvat ʿassé", ["commandement positif"], "droit", null, "Un « tu feras ». Son contraire : ל״ת.", []],
