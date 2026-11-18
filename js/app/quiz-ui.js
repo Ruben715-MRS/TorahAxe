@@ -106,8 +106,8 @@ const QuizUI = (function () {
         phase(p, 'over');
         $(p + '-over-text').textContent = t(p + '.found', { found: g.found, total: g.questions.length, score: g.score }) + ' ' + t('arcade.best', { score: best[bestKey] });
         // Le résumé de la progression (points d'expérience, série, badges) : js/app/progress.js enregistre la partie, qui est terminée. L'écran de fin de certains jeux n'a pas de ligne
-        // pour lui : elle est créée.
-        const gain = typeof progressRecord === 'function' ? progressRecord(p, g.score, g.questions.length * 100) : '';
+        // pour lui : elle est créée. `g.maxScore` : le total possible quand les points varient (le Quiz de la paracha : 100, 200 ou 300 selon le niveau choisi).
+        const gain = typeof progressRecord === 'function' ? progressRecord(p, g.score, g.maxScore || g.questions.length * 100) : '';
         let prog = $(p + '-over-progress');
         if (!prog) {
             prog = document.createElement('p');

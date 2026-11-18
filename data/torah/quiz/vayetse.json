@@ -1,0 +1,233 @@
+{
+ "v": 1,
+ "parasha": "Vayétsé",
+ "levels": {
+  "1": [
+   {
+    "q": "Quel nom Jacob donne-t-il à l'endroit où il a rêvé de l'échelle ?",
+    "a": "Béthel",
+    "w": [
+     "Mahanayim",
+     "Galed",
+     "Miçpa"
+    ],
+    "ref": "28:19",
+    "proof": [
+     "Béthel"
+    ],
+    "x": "Jacob appelle cet endroit Béthel, « maison de Dieu » ; la ville s'appelait d'abord Louz."
+   },
+   {
+    "q": "Qui vient abreuver son troupeau au puits pendant que Jacob parle avec les bergers ?",
+    "a": "Rachel",
+    "w": [
+     "Léa",
+     "Rébecca",
+     "Dina"
+    ],
+    "ref": "29:9",
+    "proof": [
+     "Rachel",
+     "bergère"
+    ],
+    "x": "Rachel, fille de Laban, vient avec le troupeau de son père : elle était bergère."
+   },
+   {
+    "q": "Pendant combien de temps Jacob s'engage-t-il à servir Laban pour obtenir Rachel ?",
+    "a": "Sept ans",
+    "w": [
+     "Trois ans",
+     "Dix ans",
+     "Quarante ans"
+    ],
+    "ref": "29:18",
+    "proof": [
+     "sept ans"
+    ],
+    "x": "« Je te servirai sept ans pour Rachel, ta plus jeune fille. »"
+   },
+   {
+    "q": "Quelle fille de Laban est amenée à Jacob le soir du mariage ?",
+    "a": "Léa",
+    "w": [
+     "Rachel",
+     "Dina",
+     "Bilha"
+    ],
+    "ref": "29:23",
+    "proof": [
+     "Léa"
+    ],
+    "x": "Le soir venu, Laban prit Léa sa fille et la lui amena ; le matin, Jacob découvrit que c'était Léa."
+   },
+   {
+    "q": "Comment s'appelle le premier fils que Léa met au monde ?",
+    "a": "Ruben",
+    "w": [
+     "Siméon",
+     "Lévi",
+     "Juda"
+    ],
+    "ref": "29:32",
+    "proof": [
+     "Ruben"
+    ],
+    "x": "Léa le nomma Ruben : « le Seigneur a vu mon humiliation »."
+   }
+  ],
+  "2": [
+   {
+    "q": "Que place Jacob dans les rigoles où boivent les brebis pour qu'elles mettent bas des agneaux rayés ou tachetés ?",
+    "a": "Des rameaux écorcés de peuplier, d'amandier et de platane",
+    "w": [
+     "Des pierres blanches ramassées au bord du puits",
+     "Des mandragores séchées",
+     "Des branches d'olivier trempées dans l'huile"
+    ],
+    "ref": "30:37-38",
+    "proof": [
+     "rameaux",
+     "amandier",
+     "platane"
+    ],
+    "x": "Jacob y pratique des entailles blanches et fixe les rameaux dans les rigoles et les auges."
+   },
+   {
+    "q": "Qu'est-ce que Ruben rapporte des champs à sa mère Léa, au moment de la récolte du froment ?",
+    "a": "Des mandragores",
+    "w": [
+     "Des épis de froment",
+     "Des figues",
+     "Un agneau"
+    ],
+    "ref": "30:14",
+    "proof": [
+     "mandragores",
+     "Ruben"
+    ],
+    "x": "Rachel les lui demande ; elle obtiendra en échange que Jacob passe la nuit avec Léa."
+   },
+   {
+    "q": "Combien de journées Laban met-il entre lui et Jacob en confiant les bêtes tachetées à ses fils ?",
+    "a": "Trois journées",
+    "w": [
+     "Sept journées",
+     "Dix journées",
+     "Une seule journée"
+    ],
+    "ref": "30:35-36",
+    "proof": [
+     "trois journées"
+    ],
+    "x": "Il mit une distance de trois journées entre lui et Jacob, qui conduisit paître le reste du troupeau."
+   },
+   {
+    "q": "Pendant combien de journées Laban poursuit-il Jacob avant de le rejoindre sur le mont Galaad ?",
+    "a": "Sept journées",
+    "w": [
+     "Trois journées",
+     "Dix journées",
+     "Quarante journées"
+    ],
+    "ref": "31:23",
+    "proof": [
+     "sept journées",
+     "Galaad"
+    ],
+    "x": "Laban prit ses frères avec lui, le poursuivit l'espace de sept journées et le joignit au mont Galaad."
+   },
+   {
+    "q": "Où Rachel cache-t-elle les pénates de son père pour que Laban ne les trouve pas ?",
+    "a": "Dans la selle du chameau, où elle s'assoit dessus",
+    "w": [
+     "Dans un sac de grains près de la tente",
+     "Sous la couche de Léa",
+     "Dans le puits de Galaad"
+    ],
+    "ref": "31:34",
+    "proof": [
+     "selle du chameau",
+     "pénates"
+    ],
+    "x": "Rachel prend les pénates, les cache dans la selle du chameau et s'assoit dessus ; Laban fouille toute la tente sans les trouver."
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, pourquoi Jacob n'a-t-il plus qu'une seule pierre sous la tête au matin ?",
+    "a": "Les pierres se disputaient pour porter la tête du juste, et Dieu n'en a fait qu'une seule",
+    "w": [
+     "Jacob avait assemblé lui-même les pierres pour s'en faire un oreiller",
+     "Les pierres s'étaient fondues dans le sol pendant la nuit",
+     "Un ange avait pris les autres pierres pour les rendre à la terre"
+    ],
+    "ref": "28:11",
+    "proof": [
+     "אבן אחת",
+     "הקב\"ה"
+    ],
+    "x": "Rachi sur Genèse 28:11 : chacune disait « c'est sur moi que le juste posera sa tête » ; Dieu en fit une seule pierre."
+   },
+   {
+    "q": "Selon Rachi, pourquoi les messagers divins de l'échelle « montent » d'abord et « descendent » ensuite ?",
+    "a": "Ceux qui l'accompagnaient en terre d'Israël n'en sortent pas : ils montent, et d'autres descendent pour l'accompagner hors du pays",
+    "w": [
+     "Ils montaient porter ses prières avant de redescendre lui apporter la réponse",
+     "Les premiers veillaient sur lui la nuit, les seconds le jour",
+     "Ils montaient chercher l'ordre de Dieu avant de venir le protéger"
+    ],
+    "ref": "28:12",
+    "proof": [
+     "חוצה לארץ",
+     "מלאכים"
+    ],
+    "x": "Rachi sur Genèse 28:12 : les anges de la terre d'Israël montent au ciel, et ceux de l'extérieur du pays descendent l'accompagner."
+   },
+   {
+    "q": "Selon Rachi, pourquoi Laban court-il au-devant de Jacob, l'embrasse et le couvre de baisers ?",
+    "a": "Il croyait que Jacob apportait de l'argent, puis des pierres précieuses cachées dans sa bouche",
+    "w": [
+     "Il avait reconnu en lui l'homme choisi par Dieu pour sa maison",
+     "Il voulait se faire pardonner d'avoir longtemps négligé sa sœur Rébecca",
+     "Éliézer lui avait annoncé l'arrivée de Jacob"
+    ],
+    "ref": "29:13",
+    "proof": [
+     "ממון",
+     "מרגליות"
+    ],
+    "x": "Rachi sur Genèse 29:13 : Laban se souvenait des dix chameaux chargés qu'Éliézer avait amenés ; ne voyant rien, il pensa à de l'or dans son sein, puis à des perles dans sa bouche."
+   },
+   {
+    "q": "Selon Rachi, pourquoi Dieu « se souvient »-il de Rachel au moment de lui donner un enfant ?",
+    "a": "Elle avait transmis à sa sœur Léa les signes convenus avec Jacob, pour lui épargner la honte",
+    "w": [
+     "Elle avait cédé sa servante Bilha à Jacob sans jalousie",
+     "Elle avait pleuré sans cesse près du tombeau de ses parents",
+     "Elle avait donné à Léa les mandragores de Ruben"
+    ],
+    "ref": "30:22",
+    "proof": [
+     "סימניה",
+     "לאחותה"
+    ],
+    "x": "Rachi sur Genèse 30:22 : Dieu lui tint compte d'avoir remis ses signes à sa sœur, pour que Léa ne soit pas humiliée."
+   },
+   {
+    "q": "Selon Rachi, quelle intention Rachel avait-elle en dérobant les pénates de son père ?",
+    "a": "Détourner son père de l'idolâtrie",
+    "w": [
+     "Les offrir en cadeau à Jacob pour le voyage",
+     "Emporter un souvenir de la maison de son père",
+     "Empêcher Laban de rattraper Jacob"
+    ],
+    "ref": "31:19",
+    "proof": [
+     "להפריש",
+     "אביה"
+    ],
+    "x": "Rachi sur Genèse 31:19 : elle voulait éloigner son père du culte des idoles."
+   }
+  ]
+ }
+}

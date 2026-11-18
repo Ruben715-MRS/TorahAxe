@@ -475,6 +475,17 @@ function homeParashaName(day) {
     return { index: indices[0], name: indices.map(k => homeParasha.parashot.parashot[k].fr).join(' – ') };
 }
 
+// L'index des quiz de paracha (data/torah/quiz/index.json) : la carte « Quiz de la paracha » de l'onglet « Aujourd'hui » n'apparaît que si la paracha de la semaine a un quiz.
+let homeQuizIndex = null;
+let homeQuizLoading = false;
+function homeLoadQuizIndex() {
+    if (homeQuizIndex || homeQuizLoading) return;
+    homeQuizLoading = true;
+    fetch('data/torah/quiz/index.json').then(r => (r.ok ? r.json() : null)).then(json => {
+        if (json) { homeQuizIndex = json; if (homeVisible() && homeTab === 'today') homeRender(true); }
+    }).catch(() => { /* hors réseau, sans copie rangée : pas de carte */ }).then(() => { homeQuizLoading = false; });
+}
+
 function homeLoadParasha() {
     if (homeParasha || homeParashaLoading) return;
     homeParashaLoading = true;
@@ -560,6 +571,7 @@ function homeResume() {
 function homeRenderToday(content) {
     homeLoadParasha();
     homeLoadHilloulot();
+    homeLoadQuizIndex();
     const day = homeDay();
     const C = HebrewCalendarCore;
     let kicker = '';
@@ -697,6 +709,18 @@ function homeRenderToday(content) {
         card.classList.add('home-card-wide');
         review.appendChild(card);
         content.appendChild(review);
+    }
+
+    // Le quiz de la paracha de la semaine, s'il existe : trois niveaux, un clic.
+    const weekPar = homeQuizIndex ? homeParashaName(day) : null;
+    const weekSlug = weekPar ? Object.keys(homeQuizIndex.parashot).find(k => homeQuizIndex.parashot[k].index === weekPar.index) : null;
+    if (weekSlug) {
+        const counts = homeQuizIndex.parashot[weekSlug].counts;
+        const quiz = hEl('div', 'home-cards');
+        const card = homeInfoCard(t('pquiz.card_label'), weekPar.name, t('pquiz.card_sub', { n: counts[1] + counts[2] + counts[3] }), () => openParashaQuiz('screen-main', weekSlug));
+        card.classList.add('home-card-wide');
+        quiz.appendChild(card);
+        content.appendChild(quiz);
     }
 
     homeHilloulot(content, day);

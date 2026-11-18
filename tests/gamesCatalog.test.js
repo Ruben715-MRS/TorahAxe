@@ -50,7 +50,7 @@ test('catalogue : rayons de l\'accueil, dans l\'ordre, sans jeu en double', () =
     const seen = [];
     C.SECTIONS.forEach(s => C.inSection(s.id).forEach(g => seen.push(g.id)));
     assert.strictEqual(new Set(seen).size, seen.length);
-    assert.deepStrictEqual(C.inSection('tanakh').map(g => g.id), ['parashagame', 'scrgame', 'mitsvagame']);
+    assert.deepStrictEqual(C.inSection('tanakh').map(g => g.id), ['pquiz', 'parashagame', 'scrgame', 'mitsvagame']);
     assert.ok(!seen.includes('frise'));
 });
 
