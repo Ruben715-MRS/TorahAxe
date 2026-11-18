@@ -1704,6 +1704,16 @@ function sdSelfBlock(tree) {
     return { m: kids[0].m, body };
 }
 
+// Vidouï de Cha'harit : le Kaddich des autres jours, et les supplications propres au lundi et au jeudi (« אל מלך… » jusqu'au Kaddich final).
+// Les consignes du livre sont négatives ou couvrent plusieurs segments : on les lit ici, section par section, d'après le jour de la semaine.
+function sdMonThuBlock(sectionId, bares, i) {
+    if (sectionId !== 'chacharit-vidoui') return null;
+    const monThu = sdCtx.weekday === 1 || sdCtx.weekday === 4;
+    if (/^בימים שני וחמישי אין אומרים/.test(bares[i]) && i + 1 < bares.length) return { from: i + 1, to: i + 1, label: 'Kaddich des autres jours (ni lundi ni jeudi)', state: monThu ? 'off' : 'on' };
+    if (/^בימי שני וחמישי מוסיפים/.test(bares[i]) && i + 1 < bares.length) return { from: i + 1, to: bares.length - 1, label: 'Lundi et jeudi : supplications ajoutées', state: monThu ? 'on' : 'off' };
+    return null;
+}
+
 // Le paratexte d'un chant : qui l'a écrit, dans quel contexte, ce qu'il veut dire ; et le bouton de la traduction française.
 function sdAboutCard(about) {
     const card = sdEl('details', 'sd-about');
@@ -1853,6 +1863,12 @@ function sdRenderSection(section) {
                 continue;
             }
             i = to + 1;
+            continue;
+        }
+        const mt = sdMonThuBlock(section.id, bares, i);
+        if (mt) {
+            out.appendChild(sdVarBlock([], mt.label, SiddurCore.plain(trees.slice(mt.from, mt.to + 1)), host => { for (let k = mt.from; k <= mt.to; k++) host.appendChild(seg(k)); }, mt.state));
+            i = mt.to + 1;
             continue;
         }
         const g = byHeader[i];
