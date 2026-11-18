@@ -6223,136 +6223,6 @@ textarea.form-input {
     text-align: center;
 }
 
-/* Mode Multijoueurs */
-.multi-card {
-    background-color: #8e44ad !important;
-}
-
-.multiplayer-setup-container {
-    max-width: 500px;
-    margin: 40px auto;
-    background: #fff;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: var(--card-shadow);
-    color: #333;
-    text-align: center;
-}
-
-.multiplayer-setup-container h2 {
-    color: #2c3e50;
-    margin-bottom: 20px;
-}
-
-.multiplayer-setup-container select,
-.multiplayer-setup-container input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 16px;
-    background: #ffffff !important;
-    color: #141d23 !important;
-}
-
-/* « Nombre de joueurs : » et son choix sur une seule ligne, pour ne pas confondre ce choix avec les champs de noms. */
-.multi-count-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    margin: 0 0 18px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid var(--border-soft);
-}
-
-.multi-count-row label {
-    text-align: left;
-    font-weight: 600;
-}
-
-.multiplayer-setup-container .multi-count-row select {
-    width: auto;
-    min-width: 130px;
-    margin: 0;
-}
-
-.multiplayer-setup-container input::placeholder {
-    color: #8B93A0 !important;
-    opacity: 1;
-}
-
-.multi-turn-banner {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: #2c3e50;
-    color: white;
-    padding: 40px;
-    border-radius: 12px;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0, 26, 75, 0.5);
-    z-index: 1000;
-    width: 90%;
-    max-width: 400px;
-}
-
-:root[data-theme="dark"] .multi-turn-banner {
-    background: var(--surface);
-    border: 1px solid var(--border-soft);
-}
-
-.multi-turn-banner h2 {
-    margin-bottom: 20px;
-    font-size: 24px;
-}
-
-.multi-end-podium {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin: 30px 0;
-}
-
-.podium-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 15px;
-    background: #f8f9fa;
-    border-radius: 9999px;
-    align-items: center;
-    font-weight: bold;
-    border-left: 5px solid #ccc;
-}
-
-.podium-row.gold {
-    border-left-color: #FFD700;
-    background: #fff9e6;
-}
-
-.podium-row.silver {
-    border-left-color: #C0C0C0;
-    background: #f2f2f2;
-}
-
-.podium-row.bronze {
-    border-left-color: #CD7F32;
-    background: #faf0e6;
-}
-
-.multi-player-hud {
-    font-weight: bold;
-    color: white;
-    background: #8e44ad;
-    padding: 2px 8px;
-    border-radius: 12px;
-    margin-right: 10px;
-    font-size: 0.9em;
-}
-
-
 /* --- Overrides for Tailored Executive UI --- */
 .game-bar {
     background: rgba(255, 255, 255, 0.8) !important;
@@ -6539,36 +6409,16 @@ textarea.form-input {
     color: var(--text-dark) !important;
 }
 
-:root[data-theme="dark"] .multiplayer-setup-container {
-    background: var(--surface);
-    color: var(--text-dark);
-}
-
-:root[data-theme="dark"] .podium-row {
-    background: var(--surface-2);
-}
-
-:root[data-theme="dark"] .podium-row.gold { background: rgba(255, 215, 0, 0.14); }
-:root[data-theme="dark"] .podium-row.silver { background: rgba(192, 192, 192, 0.14); }
-:root[data-theme="dark"] .podium-row.bronze { background: rgba(205, 127, 50, 0.16); }
-
-:root[data-theme="dark"] .multiplayer-setup-container h2 {
-    color: var(--text-dark);
-}
-
 /* Champs de formulaire dans les modales et écrans de configuration (pseudo défi du jour, mode du bouton « Jouer »,
            etc.) : en mode sombre, même fond marine que la barre de recherche, avec le texte clair du thème. */
 :root[data-theme="dark"] .form-input,
-:root[data-theme="dark"] #daily-pseudo-input,
-:root[data-theme="dark"] .multiplayer-setup-container input,
-:root[data-theme="dark"] .multiplayer-setup-container select {
+:root[data-theme="dark"] #daily-pseudo-input {
     background: #17233A !important;
     border-color: #2A3B5C !important;
     color: var(--text-dark) !important;
 }
 
-:root[data-theme="dark"] .form-input::placeholder,
-:root[data-theme="dark"] .multiplayer-setup-container input::placeholder {
+:root[data-theme="dark"] .form-input::placeholder {
     color: #8B93A0 !important;
 }
 
@@ -6804,7 +6654,6 @@ body > .list-screen {
 /* Écrans qui occupent tout l'écran (accueil, carte, cadre des rapports) : aucune marge. */
 #screen-home,
 #screen-atlas,
-#screen-multi-turn,
 #screen-rapport {
     padding-top: 0;
     padding-bottom: 0;

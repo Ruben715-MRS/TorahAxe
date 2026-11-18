@@ -678,18 +678,6 @@
     "confirm_delete_event": "Voulez-vous vraiment supprimer cet événement ?",
     "empty": "Aucun événement dans ce thème."
   },
-  "multiplayer": {
-    "title": "Mode Multijoueurs",
-    "player_count_label": "Nombre de joueurs :",
-    "player_count_option": "{n} Joueurs",
-    "player_name_placeholder": "Nom du joueur {n}",
-    "player_default_name": "Joueur {n}",
-    "start_btn": "Commencer la partie",
-    "turn_banner": "À {name} de jouer !",
-    "ready_btn": "Prêt ?",
-    "results_title": "Résultats Multijoueurs",
-    "eliminated": "Éliminé"
-  },
   "mastery": {
     "tested_meta": "{tested}/{total} événements testés",
     "weak_badge": "⚠︎ {count} points faibles",
