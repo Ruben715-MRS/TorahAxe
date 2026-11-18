@@ -18,7 +18,7 @@
     // Les jeux et leur domaine. Les identifiants sont ceux de l'écran (préfixe de QuizUI), plus « wheel » (la roue des fêtes) et « frise ».
     var GAMES = {
         lexgame: 'hebreu', gemgame: 'hebreu', review: 'hebreu',
-        parashagame: 'tanakh', mitsvagame: 'tanakh', ordergame: 'tanakh',
+        parashagame: 'tanakh', mitsvagame: 'tanakh', ordergame: 'tanakh', scrgame: 'tanakh',
         whogame: 'sages', trgame: 'sages',
         purgame: 'halakha', wheel: 'halakha', dailygame: 'halakha',
         mapgame: 'geographie', frise: 'histoire'
