@@ -4526,6 +4526,7 @@
     "ben_rite_note": "Précision, rite {rite}",
     "ben_texts_title": "Les six bénédictions : texte, phonétique, traduction",
     "ben_open_siddur": "Ouvrir dans le Siddour",
+    "ben_text_open": "Voir le texte de {name}",
     "ben_after": "Après :",
     "ben_if": "Quantité : {shiur}.",
     "ben_final_open": "Ouvrir {name} dans le Siddour",

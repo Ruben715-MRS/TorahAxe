@@ -212,19 +212,19 @@ function benRenderRows() {
             view.steps.forEach(s => {
                 const li = benNode('li', 'ben-step');
                 li.appendChild(benNode('span', 'tool-small', s.t));
-                li.appendChild(benTag(s.b));
+                li.appendChild(benBlessingTag(s.b));
                 steps.appendChild(li);
             });
             card.appendChild(steps);
         } else {
             const tags = benNode('div', 'kor-tags');
-            tags.appendChild(benTag(view.b));
+            tags.appendChild(benBlessingTag(view.b));
             if (view.diff) tags.appendChild(benNode('span', 'kor-tag ben-diff', t('tools.ben_diff', { rite: D.RITES.habad.short })));
             card.appendChild(tags);
             if (view.diff) {
                 const was = benNode('p', 'tool-small ben-was');
                 was.appendChild(document.createTextNode(t('tools.ben_habad_says', { rite: D.RITES.habad.short }) + ' '));
-                was.appendChild(benTag(view.habad));
+                was.appendChild(benBlessingTag(view.habad));
                 card.appendChild(was);
             }
         }
@@ -259,6 +259,7 @@ function benTextsPanel() {
     ['hamotsi', 'mezonot', 'haguafen', 'haets', 'haadama', 'chehakol'].forEach(b => {
         const def = D.BLESSINGS[b];
         const card = benNode('article', 'tool-result kor-type');
+        card.id = 'ben-text-' + b;
         const head = benNode('div', 'kor-type-head');
         head.appendChild(benHebrew('strong', def.he, 'kor-he kor-he-inline'));
         head.appendChild(benNode('span', 'kor-type-name', def.fr));
@@ -275,6 +276,31 @@ function benTextsPanel() {
     open.onclick = () => benOpenSiddur(['birkhot-hanehenin'], 'Birkhot haNéhénin');
     panel.appendChild(open);
     return panel;
+}
+
+// La puce d'une bénédiction dans une fiche (avant consommation) : elle ouvre le texte de cette bénédiction dans le bloc des six textes, comme les puces après consommation ouvrent leur texte.
+function benBlessingTag(b) {
+    const D = BenedictionsData;
+    if (!D.BLESSINGS[b]) return benTag(b);
+    const tag = benNode('button', 'kor-tag ben-tag ben-tag-' + b + ' ben-tag-btn');
+    tag.type = 'button';
+    tag.dataset.blessing = b;
+    tag.setAttribute('aria-label', t('tools.ben_text_open', { name: D.BLESSINGS[b].fr }));
+    tag.appendChild(benHebrew('span', D.BLESSINGS[b].he, 'ben-tag-he'));
+    tag.appendChild(document.createTextNode(' ' + D.BLESSINGS[b].fr));
+    tag.onclick = () => benShowText(b);
+    return tag;
+}
+
+// Ouvre le bloc des six textes, puis fait voir le texte de la bénédiction `b`.
+function benShowText(b) {
+    const panel = document.getElementById('ben-texts');
+    const card = document.getElementById('ben-text-' + b);
+    if (!panel || !card) return;
+    panel.open = true;
+    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    card.classList.add('is-focus');
+    setTimeout(() => card.classList.remove('is-focus'), 1600);
 }
 
 // Ouvre le Siddour sur des sections ; le retour ramène ici.

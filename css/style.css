@@ -18286,6 +18286,8 @@ body:has(#screen-recit:not(.hidden))::after {
 .ben-final { display: flex; flex-direction: column; gap: 2px; padding-top: 6px; border-top: 1px dashed var(--border-soft); }
 .ben-final-tags { align-items: center; }
 .ben-final-btn { font: inherit; font-size: 12px; cursor: pointer; }
+.ben-tag-btn { font: inherit; font-size: 12px; cursor: pointer; }
+.kor-type.is-focus { outline: 2px solid #d97706; outline-offset: 2px; }
 .ben-shiur, .ben-final-none { margin: 0; }
 .ben-finals-rule { font-style: italic; }
 .ben-finals { margin-top: 4px; }
