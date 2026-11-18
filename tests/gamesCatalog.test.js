@@ -59,3 +59,31 @@ test('catalogue : chaque jeu a ses chaînes de traduction (clé = identifiant), 
         assert.ok(ui[g.id] && typeof ui[g.id] === 'object', g.id + ' : bloc « ' + g.id + ' » absent de ui/fr.json');
     });
 });
+
+const SETUP_PARTS = ['load', 'sections', 'toggle', 'how', 'start', 'el'];
+const PLAY_PARTS = ['question', 'word', 'he', 'timer', 'options', 'feedback', 'el'];
+
+test('plans d\'écran : pièces connues, fonctions appelées par les boutons définies, clés de traduction présentes', () => {
+    const withScreen = C.GAMES.filter(g => g.screen);
+    assert.ok(withScreen.length >= 8);
+    withScreen.forEach(g => {
+        const plan = g.screen;
+        (plan.setup || []).forEach(o => assert.ok(SETUP_PARTS.includes(o.part), g.id + ' : pièce de réglages « ' + o.part + ' » inconnue'));
+        (plan.play || []).forEach(o => assert.ok(PLAY_PARTS.includes(o.part), g.id + ' : pièce de partie « ' + o.part + ' » inconnue'));
+        // Les fonctions que le gabarit branche toujours, et celles que le plan nomme.
+        const fns = [g.id + 'Back', g.id + 'Start', g.id + 'Continue'];
+        const named = JSON.stringify(plan).match(/"(?:fn|on|onclick)":"([A-Za-z0-9_]+)\(\)"/g) || [];
+        named.forEach(m => fns.push(m.match(/:"([A-Za-z0-9_]+)\(/)[1]));
+        fns.forEach(f => assert.match(appSource, new RegExp('function ' + f + '\\('), g.id + ' : la fonction ' + f + ' n\'existe pas'));
+        // Les clés de traduction que le gabarit pose : titre, explications, cases, boutons.
+        const block = ui[g.id];
+        const keys = ['title'];
+        (plan.setup || []).forEach(o => { if (o.part === 'how') keys.push(...o.keys); if (o.part === 'toggle') keys.push(o.label); if (o.part === 'sections') keys.push(o.aria || 'section_aria'); });
+        (plan.play || []).forEach(o => { if (o.part === 'timer') keys.push('time_aria'); if (o.part === 'feedback') (o.actions || []).forEach(a => keys.push(a.key)); });
+        keys.forEach(k => assert.ok(block && typeof block[k] === 'string', g.id + ' : clé « ' + g.id + '.' + k + ' » absente de ui/fr.json'));
+    });
+});
+
+test('plans d\'écran : plus aucun de ces écrans n\'est écrit à la main dans index.html', () => {
+    C.GAMES.filter(g => g.screen).forEach(g => assert.ok(!html.includes('id="screen-' + g.id + '"'), g.id + ' : écran en double dans index.html'));
+});
