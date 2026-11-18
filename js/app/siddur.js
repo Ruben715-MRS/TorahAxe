@@ -183,20 +183,23 @@ function sdApplyRite() {
     if (typeof sdView !== 'undefined' && sdView.mode === 'home' && toolEl('screen-tool-siddur') && !toolEl('screen-tool-siddur').classList.contains('hidden')) sdRender();
 }
 
-// Garde tout le siddour (et ses traductions) pour prier sans réseau, sans rien demander : au premier affichage, en arrière-plan, une seule fois
-// (le service worker garde les fichiers lus). Un échec est sans conséquence : on réessaiera à la prochaine ouverture.
+// Garde tout le siddour (et ses traductions) pour prier sans réseau, sans rien demander : au premier affichage de la séance, en arrière-plan. Le service worker (sw.js)
+// range déjà chaque fichier lu ; il range ici ceux qu'on n'a pas lus, et seulement ceux-là. Rien n'est noté de plus : c'est lui qui sait ce qu'il garde. Sans service
+// worker (iOS : tout est dans le paquet ; navigateur qui n'en a pas), il n'y a rien à faire et rien n'est promis.
+let sdPrecacheStarted = false;
 function sdPrecache() {
-    try { if (localStorage.getItem('siddurOffline') === '1') return; } catch (e) { /* stockage indisponible : on essaie quand même */ }
+    if (sdPrecacheStarted || typeof TorahOffline === 'undefined' || !TorahOffline.enabled()) return;
     if (typeof navigator !== 'undefined' && navigator.onLine === false) return;
-    const ids = [];
-    sdIndex.groups.forEach(g => g.sections.forEach(s => ids.push(s.id)));
-    const next = () => {
-        if (!ids.length) return sdLoadInter().then(() => Promise.all([sdFetchJson('data/torah/weekday.json'), sdFetchJson('data/torah/parashot.json')])).then(() => sdFetchJson(SD_DATA + 'fr/index.json')).then(idx => Promise.all(Object.keys(idx.sections || {}).map(sdLoadFr)));
-        return sdLoadSection(ids.shift()).then(next);
-    };
-    next().then(() => {
-        try { localStorage.setItem('siddurOffline', '1'); } catch (e) { /* idem */ }
-    }).catch(() => { /* hors réseau ou interrompu : à la prochaine ouverture */ });
+    sdPrecacheStarted = true;
+    try { localStorage.removeItem('siddurOffline'); } catch (e) { /* l'ancien drapeau « prêt hors-ligne », qui ne prouvait rien */ }
+    // Toutes les sections, y compris les versions des autres rites (ouvertes depuis l'écran Bénédictions), et les petits fichiers dont le lecteur a besoin.
+    const urls = [SD_DATA + 'index.json', SD_DATA + 'fr/index.json', SD_DATA + 'interruptions.json', 'data/torah/weekday.json', 'data/torah/parashot.json'];
+    sdIndex.groups.forEach(g => g.sections.forEach(s => urls.push(SD_DATA + s.id + '.json')));
+    sdRiteHidden.forEach(h => urls.push(SD_DATA + h.section.id + '.json'));
+    sdFetchJson(SD_DATA + 'fr/index.json').catch(() => ({}))
+        .then(idx => Object.keys((idx && idx.sections) || {}).forEach(id => urls.push(SD_DATA + 'fr/' + id + '.json')))
+        .then(() => TorahOffline.precache(urls))
+        .then(r => { if (!r || r.failed) sdPrecacheStarted = false; });   // interrompu ou hors réseau : on réessaiera à la prochaine ouverture
 }
 
 // --- Les rayons ----------------------------------------------------------------------------------------------------------------------------------

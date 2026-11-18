@@ -16,3 +16,6 @@ ios/App/DerivedData/
 # Generated web build folder (css/tailwind.generated.css est commité, comme dans HistoriAxe :
 # le déploiement Vercel ne relance pas `build:css`)
 www/
+
+# Version de la coquille hors-ligne, générée par scripts/build.js (voir sw.js)
+sw-version.js

@@ -47,6 +47,7 @@ const HOME_ENTRIES = {
     review: { he: 'חזרה', fr: 'À réviser aujourd\'hui', desc: 'Mots du Tanakh et de la Guémara à revoir aujourd\'hui, en une seule séance', kw: 'réviser révision répétition espacée rappel mémoire jeu', run: () => openReview('screen-main') },
     purgame: { he: 'טהור', fr: 'Pur ou impur ?', desc: 'Triez les animaux, vite : pur (permis) ou impur (interdit), avec les signes à connaître', kw: 'jeu cacherout casher kasher animaux poissons oiseaux quadrupèdes tahor tame', run: () => openPurityGame('screen-main') },
     mitsvagame: { he: 'מצוות', fr: 'Mitsva express', desc: 'De quelle paracha le Rambam tire-t-il ce commandement ? Vite, parmi les 613', kw: 'jeu mitsvot commandements 613 rambam paracha parachiot torah livre', run: () => openMitsvaGame('screen-main') },
+    scrgame: { he: 'פסוק', fr: 'Le verset en désordre', desc: 'Un verset de la Torah coupé en mots : remettez-les dans l\'ordre', kw: 'jeu verset mots ordre torah désordre puzzle', run: () => openScrambleGame('screen-main') },
     parashagame: { he: 'פרשה', fr: 'Dans quelle paracha ?', desc: 'Un verset tiré au hasard dans la Torah : retrouvez sa paracha, avec des indices qui coûtent des points', kw: 'jeu paracha parachiot verset torah indice deviner', run: () => openVerseGame('screen-main') },
     whogame: { he: 'מי אני', fr: 'Qui suis-je ?', desc: 'Un personnage de la Bible ou un sage du Talmud parle : devinez qui, avec des indices qui coûtent des points', kw: 'jeu devinette personnages bible sages talmud indices', run: () => openWhoGame('screen-main') },
     ordergame: { he: 'סדר', fr: 'Le bon ordre', desc: 'Remettez dans l\'ordre des parachiot, des livres, des traités, des générations ou des rois', kw: 'jeu classer ordre parachiot tanakh michna talmud traités générations rois fils jacob', run: () => openOrderGame('screen-main') },
@@ -81,7 +82,7 @@ const HOME_LAYOUT = {
     jouer: [
         { title: 'Chaque jour', as: 'rows', ids: ['daily', 'review', 'progress'], subs: () => ({ daily: homeDailyDesc(), review: homeReviewDesc(), progress: homeProgressDesc() }) },
         { title: 'Hébreu et araméen', as: 'rows', ids: ['lexgame', 'gemgame'] },
-        { title: 'Tanakh', as: 'rows', ids: ['parashagame', 'mitsvagame'] },
+        { title: 'Tanakh', as: 'rows', ids: ['parashagame', 'scrgame', 'mitsvagame'] },
         { title: 'Géographie', as: 'rows', ids: ['mapgame'] },
         { title: 'Mettre dans l\'ordre', as: 'rows', ids: ['ordergame'] },
         { title: 'Personnages et sages', as: 'rows', ids: ['whogame', 'trgame'] },

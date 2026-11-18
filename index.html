@@ -816,6 +816,7 @@
     <script src="js/torahRefs.js"></script>
     <script src="js/mitsvaGameCore.js"></script>
     <script src="js/verseGameCore.js"></script>
+    <script src="js/scrambleGameCore.js"></script>
     <script src="js/whoData.js"></script>
     <script src="js/whoGameCore.js"></script>
     <script src="js/orderGameCore.js"></script>
@@ -831,6 +832,7 @@
     <script src="js/app/purity-game.js"></script>
     <script src="js/app/mitsva-game.js"></script>
     <script src="js/app/verse-game.js"></script>
+    <script src="js/app/scramble-game.js"></script>
     <script src="js/app/who-game.js"></script>
     <script src="js/app/order-game.js"></script>
     <script src="js/app/map-game.js"></script>
@@ -843,6 +845,7 @@
     <script src="js/app/navigation.js"></script>
     <script src="js/app/settings.js"></script>
     <script src="js/app/home.js"></script>
+    <script src="js/app/offline.js"></script>
 
     <!-- Écrans des récits -->
 <div id="screen-recits" class="list-screen hidden">
@@ -1160,6 +1163,45 @@
             <h3 data-i18n="arcade.over">Partie terminée</h3>
             <p id="ordergame-over-text"></p>
             <button type="button" class="btn" onclick="ordergameStart()" data-i18n="arcade.replay">Rejouer</button>
+        </div>
+    </div>
+
+<div id="screen-scrgame" class="list-screen hidden">
+        <button class="back-btn" onclick="scrgameBack()" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title" data-i18n="scrgame.title">Le verset en désordre</h2>
+        <p class="modes-header-subtitle" id="scrgame-status" role="status"></p>
+        <div id="scrgame-setup" class="lexgame-setup">
+            <p class="tool-small" id="scrgame-load" role="status"></p>
+            <div class="lexgame-levels" id="scrgame-sections" role="group" aria-label="Longueur des versets" data-i18n-attr="aria-label:scrgame.level_aria"></div>
+            <label class="mapgame-hints-toggle"><input type="checkbox" id="scrgame-fr" onchange="scrgameToggleFr()" checked> <span data-i18n="scrgame.fr">Montrer la traduction</span></label>
+            <button type="button" class="btn" id="scrgame-start" onclick="scrgameStart()" data-i18n="arcade.play">Jouer</button>
+            <p class="tool-small" data-i18n="scrgame.how">Un verset de la Torah est coupé en mots, donnés en désordre : remettez-les dans l'ordre. Cent points par verset ; un indice place un mot pour vous (20 points) et chaque vérification fausse coûte 20 points, mais les mots bien placés restent fixés. La traduction (Bible du Rabbinat) aide à retrouver le sens ; décochez-la pour jouer sans.</p>
+        </div>
+        <div id="scrgame-play" class="hidden">
+            <p class="scrgame-fr" id="scrgame-translation"></p>
+            <p class="tool-small ordergame-help" data-i18n="scrgame.help">Touchez un mot pour le poser à la première place libre (la première place est à droite) ; touchez un mot posé pour le reprendre.</p>
+            <div class="scrgame-slots" id="scrgame-slots" dir="rtl" role="group" aria-label="Le verset" data-i18n-attr="aria-label:scrgame.slots_aria"></div>
+            <div class="scrgame-pool" id="scrgame-pool" dir="rtl" role="group" aria-label="Mots à placer" data-i18n-attr="aria-label:scrgame.pool_aria"></div>
+            <p class="parashagame-points" id="scrgame-points"></p>
+            <div class="lexgame-actions ordergame-actions" id="scrgame-actions">
+                <button type="button" class="btn" id="scrgame-check" onclick="scrgameCheck()" data-i18n="scrgame.check">Vérifier</button>
+                <button type="button" class="btn btn-secondary" id="scrgame-hint" onclick="scrgameHint()"></button>
+                <button type="button" class="btn btn-secondary" id="scrgame-clear" onclick="scrgameClear()" data-i18n="scrgame.clear">Tout effacer</button>
+            </div>
+            <p class="tool-small scrgame-refline" id="scrgame-ref"></p>
+            <div class="wheel-feedback hidden" id="scrgame-feedback" role="status">
+                <strong id="scrgame-feedback-title"></strong>
+                <p class="parashagame-he" id="scrgame-answer" lang="he" dir="rtl"></p>
+                <p class="parashagame-fr" id="scrgame-answer-fr"></p>
+                <div class="lexgame-actions">
+                    <button type="button" class="btn" id="scrgame-next" onclick="scrgameContinue()"></button>
+                </div>
+            </div>
+        </div>
+        <div class="arcade-over hidden" id="scrgame-over">
+            <h3 data-i18n="arcade.over">Partie terminée</h3>
+            <p id="scrgame-over-text"></p>
+            <button type="button" class="btn" onclick="scrgameStart()" data-i18n="arcade.replay">Rejouer</button>
         </div>
     </div>
 
