@@ -1407,11 +1407,12 @@ function sdVarBlock(atoms, label, bodyText, fill, forced) {
     const name = label || sdCap(sdAtomsLabel(atoms));
     const note = sdErrNote(atoms, bodyText);
     // forced 'fold-unknown' : un passage « selon le cas » replié par défaut (le psaume de la maison d'un deuil).
-    if ((state === 'off' && !sdPrefs.all) || state === 'fold-unknown') {
+    // 'fold-ind' : un jeûne individuel reste possible (l'application ne le sait pas) : replié « pas aujourd'hui », jamais masqué.
+    if ((state === 'off' && !sdPrefs.all) || state === 'fold-unknown' || (state === 'fold-ind' && !sdPrefs.all)) {
         if (state === 'off' && sdPrefs.hideOff) return document.createDocumentFragment();
         const fold = sdEl('details', 'sd-fold');
         const sum = sdEl('summary');
-        sum.appendChild(sdEl('span', 'sd-fold-lab', name + (state === 'off' ? ' · pas aujourd\'hui' : ' · selon le cas')));
+        sum.appendChild(sdEl('span', 'sd-fold-lab', name + (state === 'off' ? ' · pas aujourd\'hui' : state === 'fold-ind' ? ' · pas aujourd\'hui (sauf jeûne individuel)' : ' · selon le cas')));
         const he = sdEl('span', 'sd-fold-he');
         he.lang = 'he'; he.dir = 'rtl';
         he.appendChild(sdTextNode(sdFirstWords(bodyText)));
@@ -1866,7 +1867,11 @@ function sdRenderSection(section) {
         // une consigne longue (plus d'une ligne) : le nom court de la condition suffit sur la ligne repliée
         const label = headFr && headFr.length <= 60 ? headFr.replace(/[\s:.]+$/, '') : sdCap(sdAtomsLabel(g.atoms));
         const bodyText = SiddurCore.plain(trees.slice(g.from, g.to + 1));
-        out.appendChild(sdVarBlock(g.atoms, label, bodyText, host => { for (let k = g.from; k <= g.to; k++) host.appendChild(seg(k)); }));
+        const indFast = g.atoms.indexOf('fastIndividual') !== -1 && SiddurCore.evaluate(g.atoms, sdCtx) === 'unknown';
+        // 'Anénou : deux passages, à distinguer (celui de l'officiant dans la répétition, celui de chacun dans Chéma' kolénou)
+        const anenou = /^עננו/.test(bares[g.from]) && g.atoms.some(x => /fast/.test(x));
+        const name = anenou ? (indFast ? '\'Anénou (jour de jeûne)' : g.atoms.indexOf('fastPublic') !== -1 && g.atoms.length === 1 ? '\'Anénou de l\'officiant (jeûne public)' : label) : label;
+        out.appendChild(sdVarBlock(g.atoms, name, bodyText, host => { for (let k = g.from; k <= g.to; k++) host.appendChild(seg(k)); }, indFast ? 'fold-ind' : undefined));
         // 9 Av (Min'ha) : ce jour-là, la conclusion ordinaire qui suit est repliée.
         if (g.atoms.indexOf('tishaBav') !== -1 && SiddurCore.evaluate(g.atoms, sdCtx) === 'on' && g.to + 1 < trees.length && /^ברוך אתה .*בונה ירושלים/.test(bares[g.to + 1])) {
             const k = g.to + 1;

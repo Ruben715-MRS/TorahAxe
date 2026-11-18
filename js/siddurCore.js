@@ -113,7 +113,8 @@
         // Une consigne s'écrit sans voyelles ; un texte vocalisé (le corps d'une variante) n'en est pas une.
         var rawHead = text.indexOf(':') >= 0 ? text.slice(0, text.indexOf(':')) : text;
         if ((rawHead.match(/[\u05B0-\u05C7]/g) || []).length > 1) return null;
-        if (/^אם /.test(r.head) || /שכח/.test(r.head)) return null;          // « si l'on a oublié… » : ce n'est pas une variante du jour
+        // « si l'on a oublié… » n'est pas une variante du jour ; mais « בתענית… אומר כאן…, וכן שליח ציבור ששכח… » en est une (elle commence par sa condition)
+        if (/^אם /.test(r.head) || (/שכח/.test(r.head) && !/^ב(תענית|תשעה באב)/.test(r.head))) return null;          // « si l'on a oublié… » : ce n'est pas une variante du jour
         var atoms = [];
         ATOMS.forEach(function (a) { if (a[1].test(r.head) && atoms.indexOf(a[0]) === -1) atoms.push(a[0]); });
         // « רק בשבת שובה » etc. : « שבת » seul reste « shabbat » ; « חול המועד פסח » ne doit pas aussi compter comme « ch » générique
