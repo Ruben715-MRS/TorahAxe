@@ -649,11 +649,16 @@ function homeRenderToday(content) {
         card.classList.add('home-card-compact');
         secondRow.push(card);
     }
-    // La mitsva du jour : l'une des 613 dans l'ordre de la liste du Rambam, une par jour (voir js/mitsvaOfDayCore.js).
-    const mitsva = cardOn('mitsva') && typeof MitsvaOfDayCore !== 'undefined' && typeof CommandmentsCore !== 'undefined' ? MitsvaOfDayCore.of(day.fixed, CommandmentsCore.list613('all')) : null;
+    // La mitsva du jour : le cycle annuel du Séfer ha-Mitsvot (Chabad.org), leçon 1 le 16 Chevat (voir js/mitsvaOfDayCore.js). Pas de carte hors du cycle ou sans commandement.
+    const mitsva = cardOn('mitsva') && typeof MitsvaOfDayCore !== 'undefined' && typeof CommandmentsCore !== 'undefined'
+        ? MitsvaOfDayCore.of(day.fixed, { yearOf: f => HebrewCalendarCore.hebrewFromFixed(f).year, shevat16: y => HebrewCalendarCore.hebrewToGregorian(y, 'Shevat', 16).fixed },
+            CommandmentsCore.list613('pos'), CommandmentsCore.list613('neg'))
+        : null;
     if (mitsva) {
-        const c = mitsva.item;
-        const card = homeInfoCard(t('study.mitsva_label'), c.text, t(c.kind === 'pos' ? 'study.mitsva_pos' : 'study.mitsva_neg', { n: c.n }) + ' · ' + c.ref,
+        const c = mitsva.items[0];
+        const others = mitsva.items.length - 1;
+        const more = others > 0 ? ' · ' + (others === 1 ? t('study.mitsva_more_one') : t('study.mitsva_more_many', { n: others })) : '';
+        const card = homeInfoCard(t('study.mitsva_label'), c.text, t(c.kind === 'pos' ? 'study.mitsva_pos' : 'study.mitsva_neg', { n: c.n }) + ' · ' + c.ref + more,
             () => homeOpenMitsva(c));
         card.classList.add('home-card-compact');
         secondRow.push(card);
