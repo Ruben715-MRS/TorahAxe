@@ -346,3 +346,5 @@
 .sd-minyan > .sd-rub:nth-child(2) { margin-top: 6px; color: var(--text-dark); font-weight: 700; }
 .sd-qed > .sd-rub:first-child { margin-top: 10px; }
 .sd-var .sd-minyan, .sd-fold .sd-minyan { margin-inline: 0; }
+.sd-minyan-tag { display: flex; align-items: center; gap: 8px; }
+.sd-minyan-name { font-family: var(--font-main); font-size: 13px; font-weight: 600; color: var(--text-dark); }

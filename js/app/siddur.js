@@ -1717,12 +1717,32 @@ function sdMonThuBlock(sectionId, bares, i) {
 // Ce qui se dit avec un minyan (Kaddich, Qédoucha) : dans un bloc gris, marqué « Avec minyan ».
 const SD_KADDICH_START = /^(.{0,45} )?יתגדל ויתקדש/;
 const SD_KADDICH_NEXT = /^(תתקבל|יהא שלמא|על ישראל ועל רבנן|עושה שלום)/;
-function sdMinyanBox() {
+function sdMinyanBox(name) {
     const b = sdEl('div', 'sd-qed sd-minyan');
     const tag = sdEl('p', 'sd-minyan-tag');
     tag.appendChild(sdEl('span', 'sd-chip is-minyan', 'Avec minyan'));
+    if (name) tag.appendChild(sdEl('span', 'sd-minyan-name', name));
     b.appendChild(tag);
     return b;
+}
+// Les autres passages qui demandent un minyan : Barékhou (et la réponse), Modim dérabbanan et la Birkat Kohanim de la répétition.
+// { from, to, name, atoms? } ; atoms : la Birkat Kohanim de Min'ha, qui ne se dit qu'un jour de jeûne public.
+function sdMinyanRange(bares, i) {
+    const b = bares[i];
+    if (/ברכו את יהוה המברך$/.test(b)) {
+        let j = i;
+        while (j + 1 < bares.length && /^\S+( \S+)? ברוך יהוה המברך לעולם ועד/.test(bares[j + 1])) j++;
+        return { from: i, to: j, name: 'Barékhou' };
+    }
+    if (/^מודים דרבנן/.test(b)) return { from: i, to: i, name: 'Modim dérabbanan' };
+    const bk = /^ברכת כהנים ?(בחזרת|בתענית)/.test(b);
+    if (bk) {
+        let j = i;
+        while (j + 1 < bares.length && j - i < 25 && !/^שים שלום/.test(bares[j + 1])) j++;
+        if (/^ברכת כהנים ?בתענית/.test(b)) return { from: i + 1, to: j, name: 'Birkat Kohanim', atoms: ['fastPublic'], label: 'Birkat Kohanim (jeûne public, Min\'ha proche du coucher du soleil)' };
+        return { from: i, to: j, name: 'Birkat Kohanim' };
+    }
+    return null;
 }
 // Le dernier segment du Kaddich qui commence en i (ses paragraphes suivants : Titqabal, Yehé chlama, Al Israël…), ou -1.
 function sdKaddichEnd(bares, i, byHeader) {
@@ -1736,7 +1756,7 @@ function sdAppendSegs(host, from, to, bares, byHeader, seg) {
     for (let k = from; k <= to; k++) {
         const e = sdKaddichEnd(bares, k, byHeader);
         if (e < 0) { host.appendChild(seg(k)); continue; }
-        const box = sdMinyanBox();
+        const box = sdMinyanBox('Kaddich');
         const last = Math.min(e, to);
         for (let m = k; m <= last; m++) box.appendChild(seg(m));
         host.appendChild(box);
@@ -1856,7 +1876,7 @@ function sdRenderSection(section) {
     const psalmDay = /chir-chel-yom/.test(section.id);
     let i = 0;
     while (i < trees.length) {
-        if (amida && out === box && /^קדושה/.test(bares[i])) { out = sdMinyanBox(); box.appendChild(out); }
+        if (amida && out === box && /^קדושה/.test(bares[i])) { out = sdMinyanBox('Qédoucha'); box.appendChild(out); }
         const ps = psalmDay && i + 1 < trees.length ? SiddurCore.dayPsalm(SiddurCore.plain(trees[i]), sdCtx) : null;
         if (ps) {
             const fr = frOf(i);
@@ -1895,8 +1915,16 @@ function sdRenderSection(section) {
             i = to + 1;
             continue;
         }
+        const mr = out === box ? sdMinyanRange(bares, i) : null;
+        if (mr) {
+            const fill = host => { const mb = sdMinyanBox(mr.name); for (let k = mr.from; k <= mr.to; k++) mb.appendChild(seg(k)); host.appendChild(mb); };
+            if (mr.atoms) out.appendChild(sdVarBlock(mr.atoms, mr.label, SiddurCore.plain(trees.slice(mr.from, mr.to + 1)), fill));
+            else fill(out);
+            i = mr.to + 1;
+            continue;
+        }
         const kEnd = !byHeader[i] && out === box ? sdKaddichEnd(bares, i, byHeader) : -1;
-        if (kEnd >= 0) { const kb = sdMinyanBox(); for (let k = i; k <= kEnd; k++) kb.appendChild(seg(k)); out.appendChild(kb); i = kEnd + 1; continue; }
+        if (kEnd >= 0) { const kb = sdMinyanBox('Kaddich'); for (let k = i; k <= kEnd; k++) kb.appendChild(seg(k)); out.appendChild(kb); i = kEnd + 1; continue; }
         const mt = sdMonThuBlock(section.id, bares, i);
         if (mt) {
             out.appendChild(sdVarBlock([], mt.label, SiddurCore.plain(trees.slice(mt.from, mt.to + 1)), host => sdAppendSegs(host, mt.from, mt.to, bares, byHeader, seg), mt.state));
