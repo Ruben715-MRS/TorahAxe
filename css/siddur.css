@@ -339,3 +339,10 @@
 .sd-jx-h, .sd-jx-h *, .sd-reading-aliya, .sd-reading-aliya *:not(.sd-reading-ref):not(.sd-reading-mark) { font-family: var(--sd-font, 'HX Frank', 'HX Torah', serif); }
 .sd-jx-h strong { font-weight: 700; font-synthesis: none; }
 .sd-content:not([data-bold="real"]) .sd-jx-h strong { font-weight: 400; text-shadow: 0.35px 0 0 currentColor, -0.35px 0 0 currentColor, 0 0.2px 0 currentColor; }
+
+/* Avec minyan (Kaddich, Qédoucha) : le bloc gris porte une étiquette ; le texte reste en couleur pleine (il se dit, avec un minyan). */
+.sd-minyan-tag { margin: 8px 0 2px; }
+.sd-chip.is-minyan { background: color-mix(in srgb, var(--muted-text) 30%, var(--bg-color)); color: var(--text-dark); }
+.sd-minyan > .sd-rub:nth-child(2) { margin-top: 6px; color: var(--text-dark); font-weight: 700; }
+.sd-qed > .sd-rub:first-child { margin-top: 10px; }
+.sd-var .sd-minyan, .sd-fold .sd-minyan { margin-inline: 0; }

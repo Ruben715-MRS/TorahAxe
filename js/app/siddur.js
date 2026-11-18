@@ -1714,6 +1714,36 @@ function sdMonThuBlock(sectionId, bares, i) {
     return null;
 }
 
+// Ce qui se dit avec un minyan (Kaddich, Qédoucha) : dans un bloc gris, marqué « Avec minyan ».
+const SD_KADDICH_START = /^(.{0,45} )?יתגדל ויתקדש/;
+const SD_KADDICH_NEXT = /^(תתקבל|יהא שלמא|על ישראל ועל רבנן|עושה שלום)/;
+function sdMinyanBox() {
+    const b = sdEl('div', 'sd-qed sd-minyan');
+    const tag = sdEl('p', 'sd-minyan-tag');
+    tag.appendChild(sdEl('span', 'sd-chip is-minyan', 'Avec minyan'));
+    b.appendChild(tag);
+    return b;
+}
+// Le dernier segment du Kaddich qui commence en i (ses paragraphes suivants : Titqabal, Yehé chlama, Al Israël…), ou -1.
+function sdKaddichEnd(bares, i, byHeader) {
+    if (!SD_KADDICH_START.test(bares[i])) return -1;
+    let j = i;
+    while (j + 1 < bares.length && !byHeader[j + 1] && SD_KADDICH_NEXT.test(bares[j + 1])) j++;
+    return j;
+}
+// Des segments dans un hôte (bloc de variante), les Kaddich en bloc gris.
+function sdAppendSegs(host, from, to, bares, byHeader, seg) {
+    for (let k = from; k <= to; k++) {
+        const e = sdKaddichEnd(bares, k, byHeader);
+        if (e < 0) { host.appendChild(seg(k)); continue; }
+        const box = sdMinyanBox();
+        const last = Math.min(e, to);
+        for (let m = k; m <= last; m++) box.appendChild(seg(m));
+        host.appendChild(box);
+        k = last;
+    }
+}
+
 // Le paratexte d'un chant : qui l'a écrit, dans quel contexte, ce qu'il veut dire ; et le bouton de la traduction française.
 function sdAboutCard(about) {
     const card = sdEl('details', 'sd-about');
@@ -1826,7 +1856,7 @@ function sdRenderSection(section) {
     const psalmDay = /chir-chel-yom/.test(section.id);
     let i = 0;
     while (i < trees.length) {
-        if (amida && out === box && /^קדושה/.test(bares[i])) { out = sdEl('div', 'sd-qed'); box.appendChild(out); }
+        if (amida && out === box && /^קדושה/.test(bares[i])) { out = sdMinyanBox(); box.appendChild(out); }
         const ps = psalmDay && i + 1 < trees.length ? SiddurCore.dayPsalm(SiddurCore.plain(trees[i]), sdCtx) : null;
         if (ps) {
             const fr = frOf(i);
@@ -1865,9 +1895,11 @@ function sdRenderSection(section) {
             i = to + 1;
             continue;
         }
+        const kEnd = !byHeader[i] && out === box ? sdKaddichEnd(bares, i, byHeader) : -1;
+        if (kEnd >= 0) { const kb = sdMinyanBox(); for (let k = i; k <= kEnd; k++) kb.appendChild(seg(k)); out.appendChild(kb); i = kEnd + 1; continue; }
         const mt = sdMonThuBlock(section.id, bares, i);
         if (mt) {
-            out.appendChild(sdVarBlock([], mt.label, SiddurCore.plain(trees.slice(mt.from, mt.to + 1)), host => { for (let k = mt.from; k <= mt.to; k++) host.appendChild(seg(k)); }, mt.state));
+            out.appendChild(sdVarBlock([], mt.label, SiddurCore.plain(trees.slice(mt.from, mt.to + 1)), host => sdAppendSegs(host, mt.from, mt.to, bares, byHeader, seg), mt.state));
             i = mt.to + 1;
             continue;
         }
@@ -1887,7 +1919,7 @@ function sdRenderSection(section) {
         // 'Anénou : deux passages, à distinguer (celui de l'officiant dans la répétition, celui de chacun dans Chéma' kolénou)
         const anenou = /^עננו/.test(bares[g.from]) && g.atoms.some(x => /fast/.test(x));
         const name = anenou ? (indFast ? '\'Anénou (jour de jeûne)' : g.atoms.indexOf('fastPublic') !== -1 && g.atoms.length === 1 ? '\'Anénou de l\'officiant (jeûne public)' : label) : label;
-        out.appendChild(sdVarBlock(g.atoms, name, bodyText, host => { for (let k = g.from; k <= g.to; k++) host.appendChild(seg(k)); }, indFast ? 'fold-ind' : undefined));
+        out.appendChild(sdVarBlock(g.atoms, name, bodyText, host => sdAppendSegs(host, g.from, g.to, bares, byHeader, seg), indFast ? 'fold-ind' : undefined));
         // 9 Av (Min'ha) : ce jour-là, la conclusion ordinaire qui suit est repliée.
         if (g.atoms.indexOf('tishaBav') !== -1 && SiddurCore.evaluate(g.atoms, sdCtx) === 'on' && g.to + 1 < trees.length && /^ברוך אתה .*בונה ירושלים/.test(bares[g.to + 1])) {
             const k = g.to + 1;
