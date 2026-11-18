@@ -121,3 +121,8 @@ const GameScreen = (function () {
     return { build: build, mountAll: mountAll };
 })();
 GameScreen.mountAll(GamesCatalog.GAMES);
+// Les jeux jouables à plusieurs (catalogue : `multi: true`) reçoivent le bouton « Jouer à plusieurs » dans leurs réglages (écran généré ou écrit à la main).
+// Les écrans écrits à la main (Mots du Tanakh, Mots de la Guémara) sont dans le HTML qui suit les scripts : on attend que la page soit lue.
+const gameScreenMountMulti = () => GamesCatalog.GAMES.forEach(game => { if (game.multi) QuizUI.multiMount(game.id); });
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', gameScreenMountMulti);
+else gameScreenMountMulti();

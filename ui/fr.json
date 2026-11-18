@@ -7261,6 +7261,27 @@
     "loading": "Chargement des listes…",
     "load_error": "Les listes n'ont pas pu être chargées : vérifiez la connexion, puis rouvrez le jeu."
   },
+  "multi": {
+    "button": "Jouer à plusieurs",
+    "help": "Chacun répond à tour de rôle : on se passe le téléphone. Les parties à plusieurs ne comptent pas dans votre progression personnelle.",
+    "count_aria": "Nombre de joueurs",
+    "name_placeholder": "Joueur {n}",
+    "name_aria": "Nom du joueur {n}",
+    "go": "Commencer",
+    "status": "Au tour de {name} · Question {n} sur {total}",
+    "pass_to": "Passez le téléphone à",
+    "turn_info": "Question {n} sur {total}",
+    "scoreboard": "{name} : {score}",
+    "ready": "Je suis prêt",
+    "stop": "Arrêter la partie",
+    "winner": "{name} gagne !",
+    "tie": "Égalité entre {names}.",
+    "ranking_aria": "Classement",
+    "ranking_line": "{rank}. {name} : {score} points ({found})",
+    "found_one": "{n} bonne réponse",
+    "found_many": "{n} bonnes réponses",
+    "replay": "Rejouer à plusieurs"
+  },
   "scrgame": {
     "title": "Le verset en désordre",
     "desc": "Un verset de la Torah est coupé en mots : remettez-les dans l'ordre.",

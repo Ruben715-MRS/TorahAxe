@@ -129,7 +129,7 @@ function gemgameAnswer(choice) {
     if (!GemaraGameCore.answer(g, choice).length) return;
     const q = GemaraGameCore.question(g);
     // Enregistrée aussitôt : une partie quittée en route n'est pas perdue.
-    gemaraRecord(q.id, g.resolved === 'right');
+    if (!g.multi) gemaraRecord(q.id, g.resolved === 'right');
     QuizUI.resolve('gemgame', g, q, choice, gemgameCardInfo(q.card));
 }
 
