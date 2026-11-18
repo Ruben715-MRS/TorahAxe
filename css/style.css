@@ -16707,6 +16707,16 @@ body[data-view-profile="religieux"] .league-btn {
 .ordergame-slot .ordergame-chip { flex: 1; flex-direction: row; justify-content: space-between; border: 0; background: transparent; padding: 4px 6px; text-align: left; }
 .ordergame-chip .he { font-size: 14px; font-weight: 400; color: var(--muted-text); }
 .ordergame-chip:disabled { cursor: default; }
+
+/* Le verset en désordre : les places et les mots, de droite à gauche (l'attribut dir="rtl" est sur les conteneurs). */
+.scrgame-fr { margin: 0 0 10px; text-align: center; font-size: 15px; line-height: 1.45; color: var(--muted-text); }
+.scrgame-slots, .scrgame-pool { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 0 0 12px; }
+.scrgame-slot, .scrgame-chip { display: inline-flex; align-items: center; justify-content: center; min-width: 48px; min-height: 48px; padding: 6px 10px; border-radius: 12px; border: 1px dashed var(--border-soft); background: var(--surface-2); color: var(--muted-text); font: inherit; font-size: 22px; line-height: 1.4; }
+.scrgame-slot.is-filled { border-style: solid; background: var(--surface); color: var(--text-dark); cursor: pointer; }
+.scrgame-slot.is-locked { background: var(--selected-tint); border-color: var(--progress-green); cursor: default; }
+.scrgame-slot:not(.is-filled) { font-size: 13px; font-weight: 700; }
+.scrgame-chip { border-style: solid; background: var(--surface); color: var(--text-dark); cursor: pointer; }
+.scrgame-refline { margin: 0 0 8px; text-align: center; min-height: 1em; }
 .ordergame-pool { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 0 0 12px; min-height: 12px; }
 .ordergame-actions { margin-bottom: 12px; }
 .ordergame-answer { counter-reset: none; margin: 8px 0; }

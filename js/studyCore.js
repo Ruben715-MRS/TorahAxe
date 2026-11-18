@@ -4,9 +4,9 @@
 // Facultatif (désactivé par défaut) et volontairement minimal : une case par étude du jour, sur l'appareil, rien d'envoyé. Cela ne compte ni dans la série
 // ni dans les niveaux (qui récompensent les jeux) : c'est un simple repère personnel. On ne garde que les derniers jours.
 // Pur, sans DOM : testé dans tests/studyCore.test.js.
-// Magasin : { v: 1, on: false, cards: { daf: true, … }, done: { daf: [jours fixes], tehilim: [...], mishna: [...], aliyah: [...], mitsva: [...] } }
-//  `on` : les cases « étudié » ; `cards` : les cartes d'étude affichées dans l'onglet Aujourd'hui (Daf Yomi, Téhilim, Michna Yomit, montée du jour : affichées par défaut ;
-//  mitsva du jour : désactivée par défaut).
+// Magasin : { v: 1, on: false, cards: { daf: true, … }, done: { daf: [jours fixes], tehilim: [...], mishna: [...], mitsva: [...] } }
+//  `on` : les cases « étudié » ; `cards` : les cartes d'étude affichées dans l'onglet Aujourd'hui (Daf Yomi, Téhilim, Michna Yomit, mitsva du jour : affichées par défaut).
+//  La montée du jour (une part de la paracha de la semaine) n'est plus une carte d'étude : elle faisait double emploi avec la paracha.
 
 (function (root, factory) {
     if (typeof module === 'object' && module.exports) module.exports = factory();
@@ -14,8 +14,8 @@
 }(typeof self !== 'undefined' ? self : this, function () {
     'use strict';
 
-    var KINDS = ['daf', 'tehilim', 'mishna', 'aliyah', 'mitsva'];
-    var CARD_DEFAULTS = { daf: true, tehilim: true, mishna: true, aliyah: true, mitsva: false };
+    var KINDS = ['daf', 'tehilim', 'mishna', 'mitsva'];
+    var CARD_DEFAULTS = { daf: true, tehilim: true, mishna: true, mitsva: true };
     var KEEP_DAYS = 400;
 
     function normalize(raw) {

@@ -43,18 +43,6 @@ const HOME_ENTRIES = {
     measures: { he: 'מידות', fr: 'Mesures', desc: 'Poids, volumes, distances et monnaies de la Bible', kw: 'coudée poids volumes monnaies chékel', run: homeTool('measures') },
     personalDates: { he: 'תאריכים', fr: 'Dates personnelles', desc: 'Hazkara, anniversaires hébraïques, bar et bat-mitsva, avec rappels', kw: 'hazkara azkara yahrzeit yartzeit yahrtzeit anniversaire décès naissance bar mitsva bat mitsva date hébraïque rappel notification', run: () => openDates('screen-main') },
     progress: { he: 'התקדמות', fr: 'Ma progression', desc: 'Série de jours, niveaux par domaine et badges', kw: 'progression série jours niveaux badges statistiques succès', run: () => openProgress('screen-main') },
-    daily: { he: 'אתגר', fr: 'Défi du jour', desc: 'Cinq questions sur la date du jour : paracha, Daf Yomi, mois, fête, Téhilim', kw: 'jeu défi quotidien jour date paracha daf yomi mois fête téhilim', run: () => openDailyGame('screen-main') },
-    review: { he: 'חזרה', fr: 'À réviser aujourd\'hui', desc: 'Mots du Tanakh et de la Guémara à revoir aujourd\'hui, en une seule séance', kw: 'réviser révision répétition espacée rappel mémoire jeu', run: () => openReview('screen-main') },
-    purgame: { he: 'טהור', fr: 'Pur ou impur ?', desc: 'Triez les animaux, vite : pur (permis) ou impur (interdit), avec les signes à connaître', kw: 'jeu cacherout casher kasher animaux poissons oiseaux quadrupèdes tahor tame', run: () => openPurityGame('screen-main') },
-    mitsvagame: { he: 'מצוות', fr: 'Mitsva express', desc: 'De quelle paracha le Rambam tire-t-il ce commandement ? Vite, parmi les 613', kw: 'jeu mitsvot commandements 613 rambam paracha parachiot torah livre', run: () => openMitsvaGame('screen-main') },
-    parashagame: { he: 'פרשה', fr: 'Dans quelle paracha ?', desc: 'Un verset tiré au hasard dans la Torah : retrouvez sa paracha, avec des indices qui coûtent des points', kw: 'jeu paracha parachiot verset torah indice deviner', run: () => openVerseGame('screen-main') },
-    whogame: { he: 'מי אני', fr: 'Qui suis-je ?', desc: 'Un personnage de la Bible ou un sage du Talmud parle : devinez qui, avec des indices qui coûtent des points', kw: 'jeu devinette personnages bible sages talmud indices', run: () => openWhoGame('screen-main') },
-    ordergame: { he: 'סדר', fr: 'Le bon ordre', desc: 'Remettez dans l\'ordre des parachiot, des livres, des traités, des générations ou des rois', kw: 'jeu classer ordre parachiot tanakh michna talmud traités générations rois fils jacob', run: () => openOrderGame('screen-main') },
-    mapgame: { he: 'מפה', fr: 'Sur la carte', desc: 'Touchez la carte à l\'endroit d\'une ville, d\'une montagne, d\'une mer ou d\'une tribu', kw: 'jeu carte géographie villes tribus montagnes mers lieux terre israël', run: () => openMapGame('screen-main') },
-    lexgame: { he: 'מילים', fr: 'Mots du Tanakh', desc: 'Le vocabulaire hébreu de la Bible, du plus fréquent au plus rare', kw: 'jeu hébreu vocabulaire', run: () => openLexiconGame('screen-main') },
-    gemgame: { he: 'גמרא', fr: 'Mots de la Guémara', desc: 'Les mots, les abréviations et les sages de la Guémara', kw: 'jeu araméen guemara', run: () => openGemaraGame('screen-main') },
-    trgame: { he: 'מסורה', fr: 'Maîtres et élèves', desc: 'Qui a reçu la Torah de qui ? Retrouvez le maître d\'un sage', kw: 'jeu sages transmission', run: () => openTransmissionGame('screen-main') },
-    wheel: { he: 'מועדים', fr: 'La roue des fêtes', desc: 'Placez les fêtes juives dans le bon mois du calendrier hébraïque', kw: 'jeu fêtes calendrier mois', run: () => openWheel('screen-main', 'juif') },
     frCivile: { he: 'דורות', fr: 'Peuple juif, années civiles', desc: 'Placez les événements sur la frise, en années civiles', kw: 'frise histoire chronologie', run: () => playFriseTheme('thm_histoire_juive_civile') },
     frHebraique: { he: 'דורות', fr: 'Peuple juif, années hébraïques', desc: 'Les mêmes événements, datés selon le calendrier hébraïque', kw: 'frise histoire chronologie', run: () => playFriseTheme('thm_histoire_juive_hebraique') },
     frHassidisme: { he: 'חסידים', fr: 'Histoire du hassidisme', desc: 'Du Baal Chem Tov à nos jours : maîtres, dynasties, grandes dates', kw: 'frise hassidisme chronologie', run: () => playFriseTheme('thm_histoire_hassidisme') },
@@ -63,6 +51,15 @@ const HOME_ENTRIES = {
     re1948: { he: 'תש״ח', fr: 'Création de l\'État d\'Israël', desc: 'Deux peuples, une terre, une guerre (1881-1949)', kw: 'récit histoire 1948', run: () => openRecit('israel-1948', 'screen-main') },
     reBarKokhba: { he: 'בר כוכבא', fr: 'Révolte de Bar Kokhba', desc: 'La dernière guerre des Juifs contre Rome (132-135)', kw: 'récit histoire rome', run: () => openRecit('bar-kokhba', 'screen-main') }
 };
+
+// Les jeux viennent du catalogue (js/gamesCatalog.js) : une ligne là-bas = une entrée ici (accueil, recherche, raccourcis). La fonction d'ouverture est cherchée au moment du clic.
+function homeOpenGame(game) {
+    const open = typeof globalThis[game.open] === 'function' ? globalThis[game.open] : null;
+    if (open) open.apply(null, ['screen-main'].concat(game.args || []));
+}
+GamesCatalog.GAMES.forEach(game => {
+    if (game.home !== false) HOME_ENTRIES[game.id] = { he: game.he, fr: game.fr, desc: game.desc, kw: game.kw, run: () => homeOpenGame(game) };
+});
 
 // Les sections de chaque onglet (sauf Aujourd'hui, qui est calculé). `as` : « tiles » (tuiles à mot hébreu) ou « rows » (lignes avec description).
 const HOME_LAYOUT = {
@@ -79,13 +76,12 @@ const HOME_LAYOUT = {
     // Les jeux sont rangés par thème (Hébreu, Tanakh, Sages, Halakha, Histoire) : un jeu de plus = un id dans la bonne section. Une section sans jeu n'est
     // pas affichée (homeSection).
     jouer: [
-        { title: 'Chaque jour', as: 'rows', ids: ['daily', 'review', 'progress'], subs: () => ({ daily: homeDailyDesc(), review: homeReviewDesc(), progress: homeProgressDesc() }) },
-        { title: 'Hébreu et araméen', as: 'rows', ids: ['lexgame', 'gemgame'] },
-        { title: 'Tanakh', as: 'rows', ids: ['parashagame', 'mitsvagame'] },
-        { title: 'Géographie', as: 'rows', ids: ['mapgame'] },
-        { title: 'Mettre dans l\'ordre', as: 'rows', ids: ['ordergame'] },
-        { title: 'Personnages et sages', as: 'rows', ids: ['whogame', 'trgame'] },
-        { title: 'Halakha et fêtes', as: 'rows', ids: ['purgame', 'wheel'] },
+        // Les rayons de jeux viennent du catalogue (GamesCatalog.SECTIONS) ; « Chaque jour » y ajoute la progression, qui n'est pas un jeu.
+        ...GamesCatalog.SECTIONS.map(sec => {
+            const ids = GamesCatalog.inSection(sec.id).map(g => g.id);
+            if (sec.id !== 'daily') return { title: sec.title, as: 'rows', ids: ids };
+            return { title: sec.title, as: 'rows', ids: ids.concat('progress'), subs: () => ({ dailygame: homeDailyDesc(), review: homeReviewDesc(), progress: homeProgressDesc() }) };
+        }),
         { title: 'Histoire : frises', as: 'rows', ids: ['frCivile', 'frHebraique', 'frHassidisme', 'frIsrael'] },
         { title: 'Histoire : récits', as: 'rows', ids: ['reDreyfus', 're1948', 'reBarKokhba'] },
         { promo: 'jouer' }   // le seul encart de l'onglet, tout en bas
@@ -618,50 +614,58 @@ function homeRenderToday(content) {
         }
     }
 
-    // L'étude du jour : Daf Yomi, Téhilim, Michna Yomit, montée du jour, mitsva du jour (chaque carte se masque dans Réglages › Cartes d'étude du jour).
+    // L'étude du jour, en deux rangées de deux cases : Daf Yomi et Téhilim ; puis Michna Yomit (à gauche) et mitsva du jour (à droite), réduites.
+    // Chaque case se masque dans Réglages › Cartes d'étude du jour ; une rangée qui n'a plus qu'une case la prend en pleine largeur.
     const cardOn = kind => (typeof studyCardOn === 'function' ? studyCardOn(kind) : kind !== 'mitsva');
-    const study = hEl('div', 'home-cards');
-    const wide = card => { card.classList.add('home-card-wide'); return card; };
+    const studyRow = cards => {
+        if (!cards.length) return null;
+        const row = hEl('div', 'home-cards');
+        cards.forEach(c => row.appendChild(c));
+        if (cards.length === 1) row.firstChild.classList.add('home-card-wide');
+        return row;
+    };
+    const firstRow = [];
     const daf = cardOn('daf') ? ZmanimCore.dafYomi(day.fixed) : null;
     if (daf) {
         // La carte ouvre le Talmud à l'amoud du jour (le premier du daf) ; sans Guémara ici (Chekalim, Kinnim, Midot), elle reste une simple information.
         const dafTarget = TalmudCore.dafYomiTarget(null, daf);
-        study.appendChild(homeInfoCard('Daf Yomi', daf.masechet + ' ' + daf.daf, daf.daysLeft === 0 ? t('tools.zm_daf_siyum_today') : t('tools.zm_daf_siyum', { n: daf.daysLeft }),
+        firstRow.push(homeInfoCard('Daf Yomi', daf.masechet + ' ' + daf.daf, daf.daysLeft === 0 ? t('tools.zm_daf_siyum_today') : t('tools.zm_daf_siyum', { n: daf.daysLeft }),
             dafTarget ? () => { openTool('talmud', 'screen-main'); talmudOpenAt(dafTarget.id, dafTarget.label); } : null));
     }
     const h = day.ctx.hebrew;
     const tehilim = cardOn('tehilim') ? zmTehilimText(h) : null;
-    if (tehilim) study.appendChild(homeInfoCard('Téhilim du jour', tehilim, t('tools.zm_tehilim_day', { n: h.day }), () => { toolReturns.tanakh = 'screen-main'; tanakhOpenAt('psaumes', zmTehilimStart(h) - 1, 'he'); }));
-    if (study.childElementCount === 1) study.firstChild.classList.add('home-card-wide');
+    if (tehilim) firstRow.push(homeInfoCard('Téhilim du jour', tehilim, t('tools.zm_tehilim_day', { n: h.day }), () => { toolReturns.tanakh = 'screen-main'; tanakhOpenAt('psaumes', zmTehilimStart(h) - 1, 'he'); }));
+
+    const secondRow = [];
     // La Michna Yomit : deux michnayot par jour ; la carte ouvre la première dans la Michna.
     const my = cardOn('mishna') && typeof MishnaYomiCore !== 'undefined' ? MishnaYomiCore.forFixed(day.fixed) : null;
     if (my) {
-        study.appendChild(wide(homeInfoCard(t('mishnayomi.card_label'), MishnaYomiCore.label(my), t('mishnayomi.card_sub', { n: my.daysLeft }),
-            () => michnaOpenAt(my.first.id, my.first.chapter, my.first.mishna, 'screen-main'))));
+        const card = homeInfoCard(t('mishnayomi.card_label'), MishnaYomiCore.label(my), t('mishnayomi.card_sub_short', { n: my.daysLeft }),
+            () => michnaOpenAt(my.first.id, my.first.chapter, my.first.mishna, 'screen-main'));
+        card.classList.add('home-card-compact');
+        secondRow.push(card);
     }
-    // La montée du jour : un morceau de la paracha de la semaine chaque jour (dimanche : 1re montée … vendredi : 6e) ; le Chabbat, la paracha entière.
-    const aliyahDay = new Date(day.civil.year, day.civil.month - 1, day.civil.day).getDay() + 1;   // 1 (dimanche) à 7 (samedi)
-    const aliyah = cardOn('aliyah') && par ? { par: par, n: aliyahDay } : null;
-    if (aliyah) {
-        const sat = aliyahDay === 7;
-        study.appendChild(wide(homeInfoCard(t('study.kind_aliyah'), aliyah.par.name + ' · ' + (sat ? t('study.aliyah_sat') : t('tools.tanakh_aliyah_n', { n: aliyahDay })), t('study.aliyah_sub'),
-            () => tanakhOpenParasha(aliyah.par.index, sat ? 1 : aliyahDay))));
-    }
-    // La mitsva du jour (facultative, désactivée par défaut) : l'une des 613, une par jour.
-    const mitsva = cardOn('mitsva') && typeof MitsvaOfDayCore !== 'undefined' && typeof CommandmentsCore !== 'undefined' ? MitsvaOfDayCore.of(day.fixed, CommandmentsCore.list613('all')) : null;
+    // La mitsva du jour : le cycle annuel du Séfer ha-Mitsvot (Chabad.org), leçon 1 le 16 Chevat (voir js/mitsvaOfDayCore.js). Pas de carte hors du cycle ou sans commandement.
+    const mitsva = cardOn('mitsva') && typeof MitsvaOfDayCore !== 'undefined' && typeof CommandmentsCore !== 'undefined'
+        ? MitsvaOfDayCore.of(day.fixed, { yearOf: f => HebrewCalendarCore.hebrewFromFixed(f).year, shevat16: y => HebrewCalendarCore.hebrewToGregorian(y, 'Shevat', 16).fixed },
+            CommandmentsCore.list613('pos'), CommandmentsCore.list613('neg'))
+        : null;
     if (mitsva) {
-        const c = mitsva.item;
-        study.appendChild(wide(homeInfoCard(t('study.mitsva_label'), c.text, t(c.kind === 'pos' ? 'study.mitsva_pos' : 'study.mitsva_neg', { n: c.n }) + ' · ' + c.ref,
-            () => homeOpenMitsva(c))));
+        const c = mitsva.items[0];
+        const others = mitsva.items.length - 1;
+        const more = others > 0 ? ' · ' + (others === 1 ? t('study.mitsva_more_one') : t('study.mitsva_more_many', { n: others })) : '';
+        const card = homeInfoCard(t('study.mitsva_label'), c.text, t(c.kind === 'pos' ? 'study.mitsva_pos' : 'study.mitsva_neg', { n: c.n }) + ' · ' + c.ref + more,
+            () => homeOpenMitsva(c));
+        card.classList.add('home-card-compact');
+        secondRow.push(card);
     }
-    if (study.childElementCount) content.appendChild(study);
+    [studyRow(firstRow), studyRow(secondRow)].forEach(row => { if (row) content.appendChild(row); });
     // « Étudié » (facultatif, désactivé par défaut) : une case par étude qui existe aujourd'hui.
     if (typeof studyChips === 'function') {
         const kinds = [];
         if (daf) kinds.push('daf');
         if (tehilim) kinds.push('tehilim');
         if (my) kinds.push('mishna');
-        if (aliyah) kinds.push('aliyah');
         if (mitsva) kinds.push('mitsva');
         const chips = studyChips(kinds, day.fixed);
         if (chips) content.appendChild(chips);
