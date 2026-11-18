@@ -7405,25 +7405,21 @@
   },
   "mishnayomi": {
     "card_label": "Michna Yomit",
-    "card_sub": "Deux michnayot par jour · il reste {n} jours avant la fin du cycle"
+    "card_sub": "Deux michnayot par jour · il reste {n} jours avant la fin du cycle",
+    "card_sub_short": "{n} jours avant la fin du cycle"
   },
   "study": {
     "group": "Étude du jour",
     "kind_daf": "Daf Yomi",
     "kind_tehilim": "Téhilim",
     "kind_mishna": "Michna Yomit",
-    "kind_aliyah": "Montée du jour",
     "kind_mitsva": "Mitsva du jour",
     "cards_label": "Cartes d'étude du jour",
     "card_daf": "Daf Yomi",
     "card_tehilim": "Téhilim du jour",
     "card_mishna": "Michna Yomit (deux michnayot par jour)",
-    "card_aliyah": "Montée du jour (un morceau de la paracha de la semaine, chaque jour)",
     "card_mitsva": "Mitsva du jour (l'une des 613, en boucle dans l'ordre de Maïmonide)",
-    "cards_note": "Choisissez celles qui s'affichent dans l'onglet Aujourd'hui. La mitsva du jour est désactivée par défaut.",
-    "aliyah_value": "{name} · {n}",
-    "aliyah_sub": "Lire dans le Tanakh",
-    "aliyah_sat": "Chabbat : la paracha entière",
+    "cards_note": "Choisissez celles qui s'affichent dans l'onglet Aujourd'hui. La mitsva du jour est affichée par défaut.",
     "mitsva_label": "Mitsva du jour",
     "mitsva_pos": "Mitsva positive n° {n}",
     "mitsva_neg": "Mitsva négative n° {n}",
