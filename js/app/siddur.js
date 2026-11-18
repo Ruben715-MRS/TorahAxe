@@ -17,7 +17,7 @@ let sdIndex = null;
 const sdCache = {};
 // v : version des réglages. En v2, la police par défaut passe de Noto Serif à Frank Ruhl Libre (la seule à avoir un vrai gras) ;
 // un « noto-serif » enregistré avant la v2 n'était que l'ancien défaut, pas un choix : il est remplacé.
-let sdPrefs = { v: 2, size: 2, niqqud: true, all: false, fr: false, font: 'frank', heRub: false, jx: true, name: 'adonai' };
+let sdPrefs = { v: 2, size: 2, niqqud: true, all: false, fr: false, font: 'frank', heRub: false, jx: true, name: 'adonai', fab: true };
 // Polices livrées avec leurs vraies graisses (fonts.css) : le gras y est dessiné par la police, pas simulé par un contour.
 const SD_REAL_BOLD = ['frank'];
 let sdView = { mode: 'home', ids: [], title: '' };
@@ -59,6 +59,7 @@ function sdLoadPrefs() {
         if (typeof p.fr === 'boolean') sdPrefs.fr = p.fr;
         if (typeof p.heRub === 'boolean') sdPrefs.heRub = p.heRub;
         if (typeof p.jx === 'boolean') sdPrefs.jx = p.jx;
+        if (typeof p.fab === 'boolean') sdPrefs.fab = p.fab;
         if (p.name === 'source' || p.name === 'adonai') sdPrefs.name = p.name;
         if (typeof p.font === 'string' && sdFontById(p.font) && (p.v >= 2 || p.font !== 'noto-serif')) sdPrefs.font = p.font;
     } catch (e) { /* stockage indisponible : réglages par défaut */ }
@@ -838,7 +839,7 @@ function sdPartsNav() {
         nav.appendChild(b);
     });
     // la partie ouverte, visible dès l'ouverture
-    requestAnimationFrame(() => sdShowPart(nav, multi ? list[0].id : sdView.ids[0]));
+    requestAnimationFrame(() => sdShowPart(nav, multi ? (nav.dataset.cur || list[0].id) : sdView.ids[0]));
     return nav;
 }
 function sdShowPart(nav, id) {
@@ -875,7 +876,7 @@ function sdAddInterFab(wrap) {
     if (typeof InterruptionsCore === 'undefined') return;
     const prayer = sdView.ids.some(id => { const f = sdFindSection(id); return f && ['reveil', 'chacharit', 'minha', 'arvit'].indexOf(f.group.id) !== -1; })
         || sdView.ids.some(id => InterruptionsCore.rowForPlace(id));
-    if (!prayer || wrap.querySelector('.sd-fab')) return;
+    if (!sdPrefs.fab || !prayer || wrap.querySelector('.sd-fab')) return;
     const fab = sdEl('button', 'sd-fab');
     fab.type = 'button';
     fab.id = 'sd-fab';
@@ -1044,6 +1045,17 @@ function sdOpenDisplay() {
         const nm = sdSwitch('Nom divin écrit יְהֹוָה avec « אדני »', sdPrefs.name !== 'source', (on) => { sdPrefs.name = on ? 'adonai' : 'source'; sdSavePrefs(); sdRerender(); });
         nm.querySelector('button').id = 'sd-name';
         body.appendChild(nm);
+        const fabSw = sdSwitch('Bouton « Puis-je répondre ? »', sdPrefs.fab, (on) => {
+            sdPrefs.fab = on;
+            sdSavePrefs();
+            const wrap = toolEl('sd-reader');
+            const fab = toolEl('sd-fab');
+            if (!on && fab) fab.remove();
+            if (on && wrap) sdAddInterFab(wrap);
+        });
+        fabSw.querySelector('button').id = 'sd-fab-pref';
+        body.appendChild(fabSw);
+        body.appendChild(sdEl('p', 'sd-sheet-note sd-opt-hint', 'Masqué, le tableau des interruptions reste dans l\'accueil du Siddour, rubrique « Outils ».'));
         const heRub = sdSwitch('Consignes en hébreu (comme le livre)', sdPrefs.heRub, (on) => { sdPrefs.heRub = on; sdSavePrefs(); sdRerender(); });
         heRub.querySelector('button').id = 'sd-herub';
         body.appendChild(heRub);
