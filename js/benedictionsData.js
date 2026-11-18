@@ -572,7 +572,7 @@
         34: "Classement discuté : la plante (arbuste, liane, cactus, papayer) n'est pas un arbre au sens strict, et les autorités ne sont pas unanimes. Demandez à votre rav avant de dire la bénédiction.",
         35: "Herbe aromatique : par analogie avec la menthe et la ciboulette du guide, on dit Chéhakol quand on la consomme pour son goût, en petite quantité. Si on la mange en quantité, comme un légume, la bénédiction est Haadama. Demandez à votre rav.",
         38: "Condiment : ajouté à un autre aliment pour son goût (par exemple du ketchup sur des frites), il n'a pas de bénédiction séparée : la bénédiction porte sur l'aliment principal. Si on en mange une quantité notable pour lui-même, on dit Chéhakol. Quantité : au moins un kezayit. À faire relire par un rav.",
-        39: "Citron vert : classé Haets comme le citron ou l'orange. Attention, le guide classe le citron cru (s'il est mangeable) en Chéhakol. À trancher avec un rav.",
+        39: "Citron vert : Haets lorsqu'il est mangé comme fruit. Chéhakol peut être dit, selon certains avis, s'il est très acide et consommé seul sans plaisir ; le guide Habad mentionne cette règle pour le citron cru, mais ne tranche pas explicitement le cas du citron vert. Pressé en jus : Chéhakol. Utilisé comme condiment : pas de bénédiction séparée. À faire trancher par un rav selon la manière de consommer et la coutume.",
         36: "Plat composé : la bénédiction dépend de ce qui domine entre l'enveloppe (pâte, galette, riz) et la garniture. Voir la section Halakha (« Plat mélangé : Ikar veTafel ») ou l'outil « Mon plat ». Le classement indiqué est indicatif, à faire relire par un rav."
     };
 
