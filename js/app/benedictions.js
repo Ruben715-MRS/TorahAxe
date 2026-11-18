@@ -114,6 +114,24 @@ function benRender() {
     benRenderRows();
 }
 
+// Cherche un aliment dans la liste, puis fait voir la liste.
+function benSearchFor(query) {
+    benState.query = query;
+    const input = document.getElementById('ben-query');
+    if (input) input.value = query;
+    benRenderRows();
+    const rows = document.getElementById('ben-rows');
+    if (rows) rows.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// Ouvre un bloc de l'écran (par son id) et y va ; ou ouvre une bénédiction dans le Siddour (ids).
+function benGoTo(target) {
+    const el = document.getElementById(target);
+    if (!el) return;
+    el.open = true;
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
 // La halakha générale, repliée par défaut, au-dessus de la liste : ordre des bénédictions, plat mélangé, dessert. Données : BenedictionsData.HALAKHA.
 function benHalakhaPanel() {
     const H = BenedictionsData.HALAKHA;
@@ -146,12 +164,46 @@ function benHalakhaPanel() {
             wrap.appendChild(table);
             part.appendChild(wrap);
         }
-        [['examples', 'ben-halakha-ex'], ['bullets', 'ben-halakha-list']].forEach(([key, cls]) => {
-            if (!sec[key]) return;
-            const ul = benNode('ul', cls);
-            sec[key].forEach(text => ul.appendChild(benNode('li', 'tool-small', text)));
+        if (sec.examples) {
+            const ul = benNode('ul', 'ben-halakha-ex');
+            sec.examples.forEach(ex => {
+                const li = benNode('li', 'tool-small', ex.t);
+                if (ex.q && BenedictionsCore.filterFoods({ query: ex.q }).length) {
+                    const link = benNode('button', 'ben-halakha-link', 'Voir « ' + ex.q + ' » dans la liste');
+                    link.type = 'button';
+                    link.onclick = () => benSearchFor(ex.q);
+                    li.appendChild(link);
+                }
+                ul.appendChild(li);
+            });
             part.appendChild(ul);
-        });
+        }
+        if (sec.links) {
+            const row = benNode('div', 'ben-halakha-links');
+            sec.links.forEach(l => {
+                const btn = benNode('button', 'tool-history-chip', l.label);
+                btn.type = 'button';
+                btn.onclick = () => benGoTo(l.panel);
+                row.appendChild(btn);
+            });
+            part.appendChild(row);
+        }
+        if (sec.sources) {
+            const ul = benNode('ul', 'ben-halakha-sources');
+            sec.sources.forEach(src => {
+                const li = benNode('li', 'tool-small');
+                li.appendChild(benNode('strong', '', src.ref));
+                li.appendChild(document.createTextNode(' : ' + src.for + ' '));
+                li.appendChild(benNode('span', 'ben-halakha-unverified', 'non vérifiée'));
+                ul.appendChild(li);
+            });
+            part.appendChild(ul);
+        }
+        if (sec.bullets) {
+            const ul = benNode('ul', 'ben-halakha-list');
+            sec.bullets.forEach(text => ul.appendChild(benNode('li', 'tool-small', text)));
+            part.appendChild(ul);
+        }
         panel.appendChild(part);
     });
     return panel;
@@ -390,6 +442,7 @@ const BEN_OTHER = [
     { he: 'קשת', fr: 'Arc-en-ciel', desc: 'Celui qui se souvient de l\'alliance', ids: ['arc-en-ciel'], title: 'Arc-en-ciel' },
     { he: 'ברקים', fr: 'Éclairs et tonnerre', desc: 'Œuvre de la Création ; Sa force remplit le monde', ids: ['eclairs-tonnerre'], title: 'Éclairs et tonnerre' },
     { he: 'שהחיינו', fr: 'Chéhé\'héyanou', desc: 'Vêtement neuf, fruit de saison, nouvelle maison', ids: ['chehehyanou'], title: 'Chéhé\'héyanou' },
+    { he: 'ברכת האילנות', fr: 'Birkat haIlanot', desc: 'Les arbres en fleurs, au printemps (Nissan)', ids: ['nissan-ilanot'], title: 'Birkat haIlanot' },
     { he: 'דיין האמת', fr: 'Dayan haEmet, Hatov véhaMétiv', desc: 'Un décès ; une bonne nouvelle partagée', ids: ['dayan-haemet'], title: 'Dayan haEmet et Hatov véhaMétiv' }
 ];
 

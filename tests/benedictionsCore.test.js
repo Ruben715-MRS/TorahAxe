@@ -231,3 +231,14 @@ test('la halakha générale : sections complètes, bénédictions connues, table
     const dessert = H.sections.filter(sec => sec.id === 'dessert')[0];
     assert.strictEqual(dessert.table.length, 6);
 });
+
+test('la halakha : les exemples renvoient à un aliment de la liste, les sources et liens sont bien formés', () => {
+    const H = D.HALAKHA;
+    const ikar = H.sections.filter(sec => sec.id === 'ikar')[0];
+    ikar.examples.filter(ex => ex.q).forEach(ex => assert.ok(C.filterFoods({ query: ex.q }).length > 0, ex.q));
+    H.sections.forEach(sec => (sec.sources || []).forEach(src => {
+        assert.ok(src.ref && src.for, sec.id);
+    }));
+    const links = H.sections.reduce((all, sec) => all.concat(sec.links || []), []);
+    links.forEach(l => assert.ok(['ben-texts', 'ben-other'].indexOf(l.panel) !== -1, l.label));
+});

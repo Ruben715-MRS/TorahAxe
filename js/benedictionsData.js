@@ -603,6 +603,11 @@
                   { b: 'haadama', t: 'Haadama (légumes, fruits de la terre).' },
                   { b: 'chehakol', t: 'Chéhakol (viande, poisson, œufs, boissons, chocolat…).' }
               ],
+              links: [
+                  { label: 'Les six bénédictions (Birkhot haNéhénin)', panel: 'ben-texts' },
+                  { label: 'Les bénédictions de circonstance (Chéhé\'héyanou, Birkat haRéa\'h…)', panel: 'ben-other' }
+              ],
+              sources: [{ ref: 'Devarim 8:8', for: 'Ordre des Shiv\'at haMinim' }],
               bullets: [
                   'Même bénédiction : on bénit sur le plus important, d\'abord les Shiv\'at haMinim, puis l\'aliment entier (shalem), puis celui qu\'on préfère (\'chaviv).',
                   'Parmi les Shiv\'at haMinim (blé, orge, raisin, figue, grenade, olive, datte), l\'ordre suit le verset de la Torah (Devarim 8:8).',
@@ -615,13 +620,14 @@
                   'Les cinq céréales (blé, orge, épeautre, seigle, avoine) qui donnent du goût ou de la satiété : en général Mezonot, même minoritaires. Exception : une céréale qui n\'est là que comme liant (farine dans une farce de viande pure) est ignorée.',
                   'Sinon, on regarde ce qui est clairement le principal, c\'est-à-dire ce pour quoi on mange le plat. À défaut d\'un principal évident, on suit la majorité, en volume ou en quantité.'
               ],
+              // q : la recherche qui montre l'aliment dans la liste (absent : pas de lien).
               examples: [
-                  'Quiche aux légumes et aux œufs : majoritairement légumes, Haadama ; majoritairement œufs, Chéhakol.',
-                  'Riz avec un peu de légumes ou de viande : Mezonot.',
-                  'Salade de fruits : la bénédiction du fruit majoritaire, ou du plus important en cas d\'égalité.',
-                  'Spaghetti bolognaise : Mezonot, les pâtes dominent.',
-                  'Poulet pané : Chéhakol, la panure n\'est que secondaire.',
-                  'Yaourt aux fruits : Chéhakol, le yaourt est l\'Ikar.'
+                  { t: 'Quiche aux légumes et aux œufs : majoritairement légumes, Haadama ; majoritairement œufs, Chéhakol.' },
+                  { t: 'Riz avec un peu de légumes ou de viande : Mezonot.', q: 'Riz' },
+                  { t: 'Salade de fruits : la bénédiction du fruit majoritaire, ou du plus important en cas d\'égalité.', q: 'Macédoine de fruits' },
+                  { t: 'Spaghetti bolognaise : Mezonot, les pâtes dominent.', q: 'Spaghetti' },
+                  { t: 'Poulet pané : Chéhakol, la panure n\'est que secondaire.', q: 'Poulet' },
+                  { t: 'Yaourt aux fruits : Chéhakol, le yaourt est l\'Ikar.', q: 'Yaourt' }
               ],
               bullets: [
                   'Si les aliments sont clairement séparés et mangés indépendamment (riz d\'un côté, légumes de l\'autre), on bénit séparément, selon l\'ordre Maga Esh.'
@@ -644,6 +650,13 @@
               ] },
             { id: 'rites', title: 'Ashkénazes et séfarades : les différences',
               paras: ['Les principes sont les mêmes (Maga Esh et Ikar veTafel viennent du Choul\'han Arou\'h). Dans la plupart des situations du quotidien, les deux traditions font la même chose. Les différences portent sur quelques cas.'],
+              sources: [
+                  { ref: 'Kaf haHaïm', for: 'Vin, olives et dattes (séfarades)' },
+                  { ref: 'Ben Ish \'Haï', for: 'Haets et Haadama, Shiv\'at haMinim (séfarades)' },
+                  { ref: 'Yalkout Yossef', for: 'Cas limites du plat mélangé (séfarades)' },
+                  { ref: 'Mishna Beroura', for: 'Haets et Haadama, cas limites (ashkénazes)' },
+                  { ref: 'Arou\'h haChoul\'han', for: 'Cas limites du plat mélangé (ashkénazes)' }
+              ],
               bullets: [
                   'Vin, olives et dattes : chez les Ashkénazes, Haguafen précède presque toujours Haets, y compris pour les olives et les dattes. Selon beaucoup de séfarades (le Kaf haHaïm), le vin ne précède pas les olives et les dattes, qu\'on peut donc bénir d\'abord.',
                   'Haets et Haadama : les deux traditions suivent le \'chaviv. Sans préférence claire, les Ashkénazes (Mishna Beroura) penchent souvent vers Haets. Les séfarades suivent davantage le \'chaviv actuel, ou un Shiv\'at haMinim plus strict selon les poskim (Ben Ish \'Haï).',
@@ -651,11 +664,17 @@
                   'Cas limites du plat mélangé (farce, panure, quantités proches) : les Ashkénazes s\'appuient sur le Mishna Beroura et l\'Arou\'h haChoul\'han, les séfarades sur le Kaf haHaïm, le Ben Ish \'Haï et le Yalkout Yossef, parfois plus stricts sur la notion de majorité.'
               ] },
             { id: 'a-trancher', title: 'Points à faire trancher par un rav',
-              paras: ['Ces trois points se réconcilient en grande partie selon le cas : riz cuit ou cru, hors repas ou pendant un repas avec Hamotsi, gâteau ordinaire ou gâteau mézonot vadai. Il reste à trancher la formulation exacte et son application à chaque produit. Les sources citées ci-dessous n\'ont pas été vérifiées dans ce projet.'],
+              sources: [
+                  { ref: 'Choul\'han Arou\'h, Orah Haïm 208:7', for: 'Riz cuit' },
+                  { ref: 'Choul\'han Arou\'h, Orah Haïm 168', for: 'Gâteau et produits de farine' },
+                  { ref: 'Mishna Beroura, gâteaux servis en fin de repas', for: 'Gâteau en dessert' },
+                  { ref: 'Règles de la pat haba\'ah bekisnin', for: 'Gâteau en dessert' }
+              ],
+              paras: ['Ces trois points se réconcilient en grande partie selon le cas : riz cuit ou cru, hors repas ou pendant un repas avec Hamotsi, gâteau ordinaire ou gâteau mézonot vadai. Il reste à trancher la formulation exacte et son application à chaque produit. Les sources ci-dessous n\'ont pas été vérifiées dans ce projet.'],
               bullets: [
-                  'Riz cuit (rite séfarade). Statut le plus prudent : Mezonot avant, puis Boré Nefachot après. Le Haadama de certaines synthèses séfarades peut viser du riz cru, ou un riz dont la cuisson n\'a pas changé suffisamment sa nature. À confirmer : la fiche du riz vise-t-elle un riz non cuit ou une préparation particulière ? Sources citées : Choul\'han Arou\'h, Orah Haïm 208:7.',
-                  'Gâteau. Hors repas : Mezonot, puis Al Hamihya après si la mesure est atteinte. Pendant un repas avec Hamotsi, servi en dessert : en général couvert par Birkat Hamazon, sans bénédiction. Le cas à trancher est celui du dessert après Birkat Hamazon. Sources citées : Choul\'han Arou\'h, Orah Haïm 168 ; Mishna Beroura sur les gâteaux servis en fin de repas.',
-                  'Gâteau sucré, croustillant et fourré (mézonot vadai) : statut de la règle cumulative, et application à chaque produit (baklava, wafers, ma\'amoul, sandwich cookies). Les trois critères doivent être réunis ; ce n\'est pas une règle générale pour tout gâteau sucré, croustillant ou fourré. Source citée : règles de la pat haba\'ah bekisnin et Mishna Beroura sur les gâteaux de fin de repas.'
+                  'Riz cuit (rite séfarade). Statut le plus prudent : Mezonot avant, puis Boré Nefachot après. Le Haadama de certaines synthèses séfarades peut viser du riz cru, ou un riz dont la cuisson n\'a pas changé suffisamment sa nature. À confirmer : la fiche du riz vise-t-elle un riz non cuit ou une préparation particulière ?',
+                  'Gâteau. Hors repas : Mezonot, puis Al Hamihya après si la mesure est atteinte. Pendant un repas avec Hamotsi, servi en dessert : en général couvert par Birkat Hamazon, sans bénédiction. Le cas à trancher est celui du dessert après Birkat Hamazon.',
+                  'Gâteau sucré, croustillant et fourré (mézonot vadai) : statut de la règle cumulative, et application à chaque produit (baklava, wafers, ma\'amoul, sandwich cookies). Les trois critères doivent être réunis ; ce n\'est pas une règle générale pour tout gâteau sucré, croustillant ou fourré.'
               ] }
         ]
     };
