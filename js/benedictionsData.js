@@ -651,11 +651,11 @@
                   'Cas limites du plat mélangé (farce, panure, quantités proches) : les Ashkénazes s\'appuient sur le Mishna Beroura et l\'Arou\'h haChoul\'han, les séfarades sur le Kaf haHaïm, le Ben Ish \'Haï et le Yalkout Yossef, parfois plus stricts sur la notion de majorité.'
               ] },
             { id: 'a-trancher', title: 'Points à faire trancher par un rav',
-              paras: ['Ces points ne concordent pas encore avec les données de l\'écran. Ils sont signalés ici, mais la liste n\'a pas été modifiée.'],
+              paras: ['Ces trois points se réconcilient en grande partie selon le cas : riz cuit ou cru, hors repas ou pendant un repas avec Hamotsi, gâteau ordinaire ou gâteau mézonot vadai. Il reste à trancher la formulation exacte et son application à chaque produit. Les sources citées ci-dessous n\'ont pas été vérifiées dans ce projet.'],
               bullets: [
-                  'Riz (rite séfarade) : cette synthèse dit souvent Haadama ; la fiche du riz dans la liste, pour le rite séfarade, dit Mezonot quand le riz est cuit et collant.',
-                  'Gâteau : la liste donne Mezonot pour « Gâteau », hors d\'un repas. Le tableau du dessert dit généralement pas de bénédiction après un repas avec Hamotsi. Les deux peuvent se lire ensemble (hors repas, ou en dessert), mais c\'est à confirmer.',
-                  'Les trois critères des gâteaux « clairement Mezonot » (croustillants, sucrés, fourrés) : leur source reste à préciser.'
+                  'Riz cuit (rite séfarade). Statut le plus prudent : Mezonot avant, puis Boré Nefachot après. Le Haadama de certaines synthèses séfarades peut viser du riz cru, ou un riz dont la cuisson n\'a pas changé suffisamment sa nature. À confirmer : la fiche du riz vise-t-elle un riz non cuit ou une préparation particulière ? Sources citées : Choul\'han Arou\'h, Orah Haïm 208:7.',
+                  'Gâteau. Hors repas : Mezonot, puis Al Hamihya après si la mesure est atteinte. Pendant un repas avec Hamotsi, servi en dessert : en général couvert par Birkat Hamazon, sans bénédiction. Le cas à trancher est celui du dessert après Birkat Hamazon. Sources citées : Choul\'han Arou\'h, Orah Haïm 168 ; Mishna Beroura sur les gâteaux servis en fin de repas.',
+                  'Gâteau sucré, croustillant et fourré (mézonot vadai) : statut de la règle cumulative, et application à chaque produit (baklava, wafers, ma\'amoul, sandwich cookies). Les trois critères doivent être réunis ; ce n\'est pas une règle générale pour tout gâteau sucré, croustillant ou fourré. Source citée : règles de la pat haba\'ah bekisnin et Mishna Beroura sur les gâteaux de fin de repas.'
               ] }
         ]
     };
