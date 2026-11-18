@@ -127,6 +127,7 @@
         {"id": 45, "n": "Carotte crue", "b": "haadama", "notes": [9]},
         {"id": 46, "n": "Carotte cuite", "b": "haadama"},
         {"id": 294, "n": "Cassis", "b": "haets", "alt": ["groseille noire"]},
+        {"id": 472, "n": "Citron vert", "b": "haets", "alt": ["lime"], "notes": [34, 39]},
         {"id": 47, "n": "Céleri", "b": "haadama", "alt": ["céleri branche"]},
         {"id": 338, "n": "Céleri-rave", "b": "haadama", "alt": ["céleri rave","céleri-rave"]},
         {"id": 48, "n": "Céréales pour le petit déjeuner, y compris quand elles sont consommées avec du lait", "alt": ["muesli","granola","céréales"], "steps": [{"t":"Si les céréales sont à base de farine d'avoine","b":"mezonot","notes":[10]},{"t":"Si les céréales sont à base de farine de blé","b":"mezonot"},{"t":"Si les céréales sont à base de farine de maïs et d'avoine","b":"mezonot"},{"t":"Si les céréales sont à base de farine de riz","b":"chehakol","notes":[11]}]},
@@ -286,6 +287,7 @@
         {"id": 302, "n": "Kaki", "b": "haets", "alt": ["plaqueminier","sharon","persimmon"]},
         {"id": 391, "n": "Kebab en pain pita", "b": "hamotsi", "alt": ["shawarma","kebab","falafel en pita"]},
         {"id": 403, "n": "Kefta", "b": "chehakol", "alt": ["kefta de bœuf"]},
+        {"id": 473, "n": "Ketchup", "b": "chehakol", "alt": ["sauce tomate"], "notes": [38]},
         {"id": 327, "n": "Kiwano", "b": "haadama", "alt": ["melon à cornes","concombre à cornes"]},
         {"id": 322, "n": "Kiwi", "b": "haets", "alt": ["actinidia"], "notes": [34]},
         {"id": 303, "n": "Kumquat", "b": "haets", "alt": ["petit citron chinois"]},
@@ -345,6 +347,7 @@
         {"id": 310, "n": "Noix de macadamia", "b": "haets", "alt": ["macadamia"]},
         {"id": 311, "n": "Noix de pécan", "b": "haets", "alt": ["pécan"]},
         {"id": 312, "n": "Noix du Brésil", "b": "haets", "alt": ["noix du Pará"]},
+        {"id": 474, "n": "Nougat", "b": "chehakol", "alt": ["nougat blanc"]},
         {"id": 177, "n": "Nouille", "b": "mezonot"},
         {"id": 415, "n": "Nouilles de blé (udon, ramen)", "b": "mezonot", "alt": ["ramen","udon","nouilles chinoises"]},
         {"id": 414, "n": "Nouilles de riz", "b": "chehakol", "alt": ["vermicelles de riz","nouilles de riz sautées"]},
@@ -568,6 +571,8 @@
         33: "Il est préférable de ne pas consommer la quantité de tarte aux pommes permettant de se rassasier (Kedei Svya), soit plus de deux cent seize ou de deux cent vingt-quatre grammes. Si l'on souhaite atteindre cette quantité, on s'efforcera de le faire à l'intérieur d'un repas, introduit par la bénédiction Hamotsi. Ce principe s'applique, de la même façon, à tout aliment qui, une fois cuit, requiert la bénédiction Mezonot.",
         34: "Classement discuté : la plante (arbuste, liane, cactus, papayer) n'est pas un arbre au sens strict, et les autorités ne sont pas unanimes. Demandez à votre rav avant de dire la bénédiction.",
         35: "Herbe aromatique : par analogie avec la menthe et la ciboulette du guide, on dit Chéhakol quand on la consomme pour son goût, en petite quantité. Si on la mange en quantité, comme un légume, la bénédiction est Haadama. Demandez à votre rav.",
+        38: "Condiment : ajouté à un autre aliment pour son goût (par exemple du ketchup sur des frites), il n'a pas de bénédiction séparée : la bénédiction porte sur l'aliment principal. Si on en mange une quantité notable pour lui-même, on dit Chéhakol. Quantité : au moins un kezayit. À faire relire par un rav.",
+        39: "Citron vert : classé Haets comme le citron ou l'orange. Attention, le guide classe le citron cru (s'il est mangeable) en Chéhakol. À trancher avec un rav.",
         36: "Plat composé : la bénédiction dépend de ce qui domine entre l'enveloppe (pâte, galette, riz) et la garniture. Voir la section Halakha (« Plat mélangé : Ikar veTafel ») ou l'outil « Mon plat ». Le classement indiqué est indicatif, à faire relire par un rav."
     };
 
