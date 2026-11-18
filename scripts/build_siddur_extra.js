@@ -51,7 +51,7 @@ const GROUPS = [
         ['chabbat-ch-pessoukei', 'Pessoukei dézimra', ['Shabbat Shacharit', 'Pesukei D\'Zimra']],
         ['chabbat-ch-chema', 'Chéma et ses bénédictions', ['Shabbat Shacharit', 'The Shema']],
         ['chabbat-ch-amida', 'Amida', ['Shabbat Shacharit', 'Amidah']],
-        ['chabbat-ch-tora', 'Lecture de la Tora', ['Shabbat Shacharit', 'Torah Reading']],
+        ['chabbat-ch-tora', 'Lecture de la Torah', ['Shabbat Shacharit', 'Torah Reading']],
         ['chabbat-ch-gomel', 'Birkat haGomel', ['Shabbat Shacharit', 'HaGomel']],
         ['chabbat-ch-zeved-habat', 'Zéved haBat (nomination d\'une fille)', ['Shabbat Shacharit', 'Zeved HaBat']],
         ['chabbat-ch-hatan', "Chabbat 'Hatan", ['Shabbat Shacharit', 'Shabbat Chatan']],

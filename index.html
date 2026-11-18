@@ -90,13 +90,18 @@
         </div>
         <!-- Titre et consigne ne s'affichent plus (la place revient à l'arbre) ; ils restent lus par les lecteurs d'écran. -->
         <h2 class="header-title sr-only" data-i18n="tools.genealogy_title">Généalogie biblique</h2>
-        <p class="modes-header-subtitle sr-only" data-i18n="tools.genealogy_intro">Touchez « A » pour les noms en français, « א » pour l'hébreu. Faites glisser l'arbre ; repliez ou dépliez une branche avec son bouton.</p>
+        <p class="modes-header-subtitle sr-only" data-i18n="tools.genealogy_intro">Choisissez la présentation : la fiche d'une personne, les lignées ou l'arbre. Touchez « A » pour les noms en français, « א » pour l'hébreu.</p>
         <div class="gen-bar">
             <input type="search" id="gen-search" class="tool-input" autocomplete="off" placeholder="Chercher un nom" aria-label="Chercher un nom" data-i18n-attr="placeholder:tools.genealogy_search;aria-label:tools.genealogy_search">
             <ul class="gen-results" id="gen-results"></ul>
+            <div class="gen-views" role="group" aria-label="Présentation" data-i18n-attr="aria-label:tools.genealogy_views_aria">
+                <button type="button" class="gen-view-btn" id="gen-view-family" aria-pressed="true" onclick="genSetView('family')" data-i18n="tools.genealogy_view_family">Fiche</button>
+                <button type="button" class="gen-view-btn" id="gen-view-lines" aria-pressed="false" onclick="genSetView('lines')" data-i18n="tools.genealogy_view_lines">Lignées</button>
+                <button type="button" class="gen-view-btn" id="gen-view-tree" aria-pressed="false" onclick="genSetView('tree')" data-i18n="tools.genealogy_view_tree">Arbre</button>
+            </div>
             <div class="gen-actions">
-                <button type="button" class="btn" onclick="genZoom(-1)" aria-label="Rétrécir" data-i18n-attr="aria-label:tools.genealogy_zoom_out">−</button>
-                <button type="button" class="btn" onclick="genZoom(1)" aria-label="Agrandir" data-i18n-attr="aria-label:tools.genealogy_zoom_in">+</button>
+                <button type="button" class="btn gen-tree-only" onclick="genZoom(-1)" aria-label="Rétrécir" data-i18n-attr="aria-label:tools.genealogy_zoom_out">−</button>
+                <button type="button" class="btn gen-tree-only" onclick="genZoom(1)" aria-label="Agrandir" data-i18n-attr="aria-label:tools.genealogy_zoom_in">+</button>
                 <button type="button" class="btn" onclick="genCollapseAll()" data-i18n="tools.genealogy_collapse_all">Tout replier</button>
                 <button type="button" class="btn" onclick="genExpandAll()" data-i18n="tools.genealogy_expand_all">Tout déplier</button>
             </div>
@@ -105,7 +110,12 @@
             <div class="gen-cat-menu hidden" id="gen-cat-menu" role="group" aria-label="Catégories" data-i18n-attr="aria-label:tools.genealogy_cat_button"></div>
             <section class="gen-cat-panel hidden" id="gen-cat-panel" aria-live="polite"></section>
         </div>
-        <div class="gen-view" id="gen-view" tabindex="0" role="region" aria-label="Arbre généalogique" data-i18n-attr="aria-label:tools.genealogy_view_aria">
+        <div class="gen-family" id="gen-family" role="region" aria-label="Fiche de la personne" data-i18n-attr="aria-label:tools.genealogy_family_aria" aria-live="polite"></div>
+        <div class="gen-lines-box hidden" id="gen-lines" role="region" aria-label="Lignées" data-i18n-attr="aria-label:tools.genealogy_view_lines">
+            <div class="gen-lines-path" id="gen-lines-path"></div>
+            <div class="gen-lines-scroll" id="gen-lines-scroll" tabindex="0"><div class="gen-lines-list" id="gen-lines-list"></div></div>
+        </div>
+        <div class="gen-view hidden" id="gen-view" tabindex="0" role="region" aria-label="Arbre généalogique" data-i18n-attr="aria-label:tools.genealogy_view_aria">
             <div class="gen-sizer" id="gen-sizer"><div class="gen-stage" id="gen-stage"></div></div>
         </div>
     </div>
@@ -711,6 +721,8 @@
     <script src="js/torahCore.js"></script>
     <script src="js/zmanimCore.js"></script>
     <script src="js/siddurCore.js"></script>
+    <script src="js/interruptionsCore.js"></script>
+    <script src="js/torahReadingCore.js"></script>
     <script src="js/zmanimReminderCore.js"></script>
     <script src="js/notifications.js"></script>
     <script src="js/compassCore.js"></script>

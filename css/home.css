@@ -68,6 +68,18 @@ body > #screen-main {
 }
 .home-kicker::first-letter { text-transform: uppercase; }
 
+.home-night {
+    display: inline-block;
+    margin-top: 6px;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--primary-blue);
+    background: rgba(10, 31, 92, 0.08);
+}
+:root[data-theme="dark"] .home-night { color: var(--text-dark); background: rgba(255, 255, 255, 0.12); }
+
 .home-header .settings-btn {
     position: static;
     flex: none;

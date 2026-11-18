@@ -77,3 +77,16 @@ test('chaque chant du recueil a son paratexte et sa traduction, rattachée au bo
         assert.strictEqual(frIndex.sections[s.id], keys.length, s.id + ' : index des traductions');
     });
 });
+
+test('psaume du jour : celui du jour et ceux des jours particuliers', () => {
+    const ctx = (y, m, d) => S.contextFor(CY.gregorianToFixed(y, m, d), false);
+    const wed = ctx(2026, 11, 18);                       // mercredi
+    assert.strictEqual(S.dayPsalm('מזמור ליום רביעי', wed), 'on');
+    assert.strictEqual(S.dayPsalm('מִזְמוֹר לְיוֹם שְׁלִישִׁי', wed), 'off');
+    assert.strictEqual(S.dayPsalm('למחרת יום הכיפורים אומרים', wed), 'off');
+    assert.strictEqual(S.dayPsalm('בבית האבל אומרים', wed), 'unknown');
+    assert.strictEqual(S.dayPsalm('לדוד מזמור ליהוה הארץ', wed), null);
+    assert.strictEqual(S.dayPsalm('בחנוכה אומרים', ctx(2026, 12, 7)), 'on');
+    assert.strictEqual(S.dayPsalm('למחרת יום הכיפורים אומרים', ctx(2026, 9, 22)), 'on');   // 11 Tichri 5787
+    assert.strictEqual(S.dayPsalm('בצום גדליה ובעשרה בטבת אומרים', ctx(2026, 12, 20)), 'on'); // 10 Tevet 5787
+});

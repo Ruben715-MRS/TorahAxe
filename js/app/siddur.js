@@ -15,7 +15,11 @@ const SD_DATA = 'data/siddur/';
 
 let sdIndex = null;
 const sdCache = {};
-let sdPrefs = { size: 2, niqqud: true, all: false, fr: false, font: 'noto-serif' };
+// v : version des réglages. En v2, la police par défaut passe de Noto Serif à Frank Ruhl Libre (la seule à avoir un vrai gras) ;
+// un « noto-serif » enregistré avant la v2 n'était que l'ancien défaut, pas un choix : il est remplacé.
+let sdPrefs = { v: 2, size: 2, niqqud: true, all: false, fr: false, font: 'frank', heRub: false, jx: true, name: 'adonai', fab: true, hideOff: false };
+// Polices livrées avec leurs vraies graisses (fonts.css) : le gras y est dessiné par la police, pas simulé par un contour.
+const SD_REAL_BOLD = ['frank'];
 let sdView = { mode: 'home', ids: [], title: '' };
 let sdPlace = null;
 let sdCtx = null;
@@ -40,6 +44,11 @@ function sdFontStack() {
     const f = sdFontById(sdPrefs.font);
     return f ? f.stack : "'HX Torah', 'Noto Serif Hebrew', serif";
 }
+// Le contenu du lecteur reçoit la police, et dit si elle a un vrai gras (sinon style.css le simule).
+function sdSetFont(content) {
+    content.style.setProperty('--sd-font', sdFontStack());
+    content.dataset.bold = SD_REAL_BOLD.indexOf(sdPrefs.font) >= 0 ? 'real' : 'faux';
+}
 
 function sdLoadPrefs() {
     try {
@@ -48,7 +57,13 @@ function sdLoadPrefs() {
         if (typeof p.niqqud === 'boolean') sdPrefs.niqqud = p.niqqud;
         if (typeof p.all === 'boolean') sdPrefs.all = p.all;
         if (typeof p.fr === 'boolean') sdPrefs.fr = p.fr;
-        if (typeof p.font === 'string' && sdFontById(p.font)) sdPrefs.font = p.font;
+        if (typeof p.heRub === 'boolean') sdPrefs.heRub = p.heRub;
+        if (typeof p.jx === 'boolean') sdPrefs.jx = p.jx;
+        if (typeof p.fab === 'boolean') sdPrefs.fab = p.fab;
+        if (typeof p.hideOff === 'boolean') sdPrefs.hideOff = p.hideOff;
+        if (p.guest && typeof p.guest === 'object') sdPrefs.guest = p.guest;
+        if (p.name === 'source' || p.name === 'adonai') sdPrefs.name = p.name;
+        if (typeof p.font === 'string' && sdFontById(p.font) && (p.v >= 2 || p.font !== 'noto-serif')) sdPrefs.font = p.font;
     } catch (e) { /* stockage indisponible : réglages par défaut */ }
 }
 function sdSavePrefs() {
@@ -112,7 +127,7 @@ function sdFetchJson(url) {
 }
 function sdLoadIndex() {
     if (sdIndex) return Promise.resolve(sdIndex);
-    return sdFetchJson(SD_DATA + 'index.json').then(index => { sdIndex = index; return index; });
+    return sdFetchJson(SD_DATA + 'index.json').then(index => { sdIndex = index; sdApplyRite(); return index; });
 }
 function sdLoadSection(id) {
     if (sdCache[id]) return Promise.resolve(sdCache[id]);
@@ -126,7 +141,46 @@ function sdLoadFr(id) {
 }
 function sdFindSection(id) {
     for (const g of sdIndex.groups) for (const s of g.sections) if (s.id === id) return { group: g, section: s };
+    for (const h of sdRiteHidden) if (h.section.id === id) return h;      // la version d'un autre rite (ouverte depuis l'écran Bénédictions)
     return null;
+}
+
+// --- Un seul Birkat haMazon et une seule Méeïn chalosh : ceux du rite choisi dans les Réglages (js/app/settings.js, riteFull) ----------
+// Le livre en a trois versions (séfarade, ashkénaze, nusach Sefard de 'Habad) : on n'en montre qu'une, sous un nom simple. Les autres restent
+// ouvrables par leur identifiant (sdFindSection), sans apparaître dans les listes.
+const SD_RITE_FAMILIES = [
+    { fr: 'Birkat haMazon', ids: { sefarade: 'birkat-hamazon', ashkenaze: 'birkat-hamazon-ashkenaze', habad: 'birkat-hamazon-habad' } },
+    { fr: 'Bérakha Méeïn chalosh (Al haMih\'ya, Al haGuéfen, Al haEts)', ids: { sefarade: 'al-hamihya', ashkenaze: 'al-hamihya-ashkenaze', habad: 'al-hamihya-ashkenaze' } }
+];
+let sdRiteHidden = [];
+let sdRiteOrig = null;            // les sections d'origine des groupes concernés : { groupId: [sections] }
+function sdRite() { return typeof riteFull === 'function' ? riteFull() : 'sefarade'; }
+function sdRiteFamily(id) { return SD_RITE_FAMILIES.find(f => Object.keys(f.ids).some(r => f.ids[r] === id)) || null; }
+// L'identifiant à ouvrir dans le rite choisi (un texte sans versions : lui-même).
+function sdRiteId(id) { const f = sdRiteFamily(id); return f ? f.ids[sdRite()] || id : id; }
+function sdApplyRite() {
+    if (!sdIndex) return;
+    if (!sdRiteOrig) {
+        sdRiteOrig = {};
+        sdIndex.groups.forEach(g => { if (g.sections.some(x => sdRiteFamily(x.id))) sdRiteOrig[g.id] = g.sections.map(x => Object.assign({}, x)); });
+    }
+    sdRiteHidden = [];
+    sdIndex.groups.forEach(g => {
+        const orig = sdRiteOrig[g.id];
+        if (!orig) return;
+        const seen = new Set();
+        g.sections = [];
+        orig.forEach(sec => {
+            const f = sdRiteFamily(sec.id);
+            if (!f) { g.sections.push(sec); return; }
+            const want = f.ids[sdRite()];
+            if (sec.id === want && !seen.has(f)) { seen.add(f); g.sections.push(Object.assign({}, sec, { fr: f.fr })); }
+            else if (sec.id !== want) sdRiteHidden.push({ group: g, section: sec });
+        });
+        // une famille dont la version du rite vient plus loin dans le livre : à la place de la première
+        SD_RITE_FAMILIES.forEach(f => { if (!seen.has(f)) { const sec = orig.find(x => x.id === f.ids[sdRite()]); if (sec) g.sections.push(Object.assign({}, sec, { fr: f.fr })); } });
+    });
+    if (typeof sdView !== 'undefined' && sdView.mode === 'home' && toolEl('screen-tool-siddur') && !toolEl('screen-tool-siddur').classList.contains('hidden')) sdRender();
 }
 
 // Garde tout le siddour (et ses traductions) pour prier sans réseau, sans rien demander : au premier affichage de la séance, en arrière-plan. Le service worker (sw.js)
@@ -138,8 +192,10 @@ function sdPrecache() {
     if (typeof navigator !== 'undefined' && navigator.onLine === false) return;
     sdPrecacheStarted = true;
     try { localStorage.removeItem('siddurOffline'); } catch (e) { /* l'ancien drapeau « prêt hors-ligne », qui ne prouvait rien */ }
-    const urls = [SD_DATA + 'index.json', SD_DATA + 'fr/index.json'];
+    // Toutes les sections, y compris les versions des autres rites (ouvertes depuis l'écran Bénédictions), et les petits fichiers dont le lecteur a besoin.
+    const urls = [SD_DATA + 'index.json', SD_DATA + 'fr/index.json', SD_DATA + 'interruptions.json', 'data/torah/weekday.json', 'data/torah/parashot.json'];
     sdIndex.groups.forEach(g => g.sections.forEach(s => urls.push(SD_DATA + s.id + '.json')));
+    sdRiteHidden.forEach(h => urls.push(SD_DATA + h.section.id + '.json'));
     sdFetchJson(SD_DATA + 'fr/index.json').catch(() => ({}))
         .then(idx => Object.keys((idx && idx.sections) || {}).forEach(id => urls.push(SD_DATA + 'fr/' + id + '.json')))
         .then(() => TorahOffline.precache(urls))
@@ -191,10 +247,7 @@ const SD_RAYONS = [
     ] },
     { id: 'benedictions', he: 'ברכות', fr: 'Bénédictions', rows: [
         { key: 's:birkat-hamazon', he: 'ברכת המזון', ids: ['birkat-hamazon'] },
-        { key: 's:birkat-hamazon-ashkenaze', he: 'ברכת המזון · אשכנז', ids: ['birkat-hamazon-ashkenaze'] },
-        { key: 's:birkat-hamazon-habad', he: 'ברכת המזון · ספרד (חב״ד)', ids: ['birkat-hamazon-habad'] },
         { key: 's:al-hamihya', he: 'מעין שלוש', ids: ['al-hamihya'] },
-        { key: 's:al-hamihya-ashkenaze', he: 'מעין שלוש · אשכנז', ids: ['al-hamihya-ashkenaze'] },
         { key: 's:birkhot-hanehenin', he: 'ברכות הנהנין', ids: ['birkhot-hanehenin'] },
         { key: 's:birkat-halevana', he: 'קידוש לבנה', ids: ['birkat-halevana'] },
         { key: 's:tefilat-haderekh', he: 'תפילת הדרך', ids: ['tefilat-haderekh'] },
@@ -277,10 +330,11 @@ function sdRowInfo(row) {
         if (!g) return null;
         return { key: row.key, he: row.he, title: sdCleanTitle(g.fr), ids: g.sections.map(x => x.id), recueil: !!row.recueil, desc: row.unit ? g.sections.length + ' ' + row.unit : g.sections.length > 1 ? g.sections.length + ' parties : tout lire d\'un trait, ou partie par partie' : '', group: g.id };
     }
-    const found = row.ids.map(sdFindSection).filter(Boolean);
+    const ids = row.ids.map(sdRiteId);
+    const found = ids.map(sdFindSection).filter(Boolean);
     if (!found.length) return null;
     const title = row.title || found[0].section.fr;
-    return { key: row.key, he: row.he, title: title, ids: row.ids.slice(), desc: row.ids.length > 1 ? row.ids.length + ' textes' : '' };
+    return { key: row.key, he: row.he, title: title, ids: ids, desc: row.ids.length > 1 ? row.ids.length + ' textes' : '' };
 }
 function sdAllRows() {
     const out = [];
@@ -720,6 +774,14 @@ function sdRenderHome(body) {
     });
     body.appendChild(shelves);
 
+    // Outils de la prière
+    body.appendChild(sdEl('h3', 'home-section-title', 'Outils'));
+    const tools = sdEl('div', 'home-rows');
+    const ix = sdRowButton({ he: 'הפסקות', title: 'Tableau des interruptions', desc: 'Ce qu\'on peut répondre à chaque moment de la prière (rav Yits\'haq Yossef)' }, () => sdOpenInterruptions(null, false));
+    ix.id = 'sd-ix-home';
+    tools.appendChild(ix);
+    body.appendChild(tools);
+
     // Source
     const foot = sdEl('section', 'sd-foot');
     foot.appendChild(sdEl('p', 'tool-small', t('tools.sd_source', { edition: sdIndex.edition })));
@@ -776,6 +838,7 @@ function sdUpdateReadBar() {
     let cur = boxes[0];
     boxes.forEach(b => { if (b.getBoundingClientRect().top <= limit) cur = b; });
     const id = cur.id.replace('sd-sec-', '');
+    if (sdView.ids.length > 1) { const nav = toolEl('sd-parts'); if (nav && nav.dataset.cur !== id) { nav.dataset.cur = id; sdShowPart(nav, id); } }
     const found = sdFindSection(id);
     const name = toolEl('sd-read-name'), sub = toolEl('sd-read-sub');
     if (!found || !name || !sub) return;
@@ -785,6 +848,329 @@ function sdUpdateReadBar() {
         const list = found.group.sections;
         sub.textContent = sdCleanTitle(found.group.fr) + (list.length > 1 ? ' · ' + (list.findIndex(s => s.id === id) + 1) + ' sur ' + list.length : '');
     }
+}
+
+// --- Barre des parties (refonte, étape 4) ---------------------------------------------------------------------------------------------
+// Sous le titre du lecteur, les parties de l'office (Pethi'hat Eliyahou… Amida… Alénou), comme les onglets des applis de siddour : celle qu'on
+// lit est soulignée et reste visible (la barre défile avec la lecture). En lecture d'un trait, toucher une partie y saute ; en lecture d'une
+// seule partie, toucher en ouvre une autre.
+function sdShortName(fr) { return String(fr).replace(/\s*\([^)]*\)\s*$/, '').trim(); }
+function sdPartsList() {
+    if (!sdIndex) return null;
+    if (sdView.ids.length > 1) return sdView.ids.map(id => { const f = sdFindSection(id); return { id, fr: f ? f.section.fr : id }; });
+    const found = sdFindSection(sdView.ids[0]);
+    if (!found || found.group.sections.length < 2 || found.group.id === 'zemirot-chabbat') return null;
+    return found.group.sections.map(s => ({ id: s.id, fr: s.fr }));
+}
+function sdPartsNav() {
+    const list = sdPartsList();
+    if (!list) return null;
+    const nav = sdEl('nav', 'sd-parts');
+    nav.id = 'sd-parts';
+    nav.setAttribute('aria-label', 'Parties de l\'office');
+    const multi = sdView.ids.length > 1;
+    list.forEach(it => {
+        const b = sdEl('button', 'sd-part', sdShortName(it.fr));
+        b.type = 'button';
+        b.dataset.id = it.id;
+        if (!multi && it.id === sdView.ids[0]) b.setAttribute('aria-current', 'true');
+        b.onclick = () => {
+            if (multi) { const target = document.getElementById('sd-sec-' + it.id); if (target) target.scrollIntoView({ block: 'start' }); }
+            else if (it.id !== sdView.ids[0]) sdOpen([it.id], it.fr);
+        };
+        nav.appendChild(b);
+    });
+    // la partie ouverte, visible dès l'ouverture
+    requestAnimationFrame(() => sdShowPart(nav, multi ? (nav.dataset.cur || list[0].id) : sdView.ids[0]));
+    return nav;
+}
+function sdShowPart(nav, id) {
+    const b = nav && nav.querySelector('.sd-part[data-id="' + id + '"]');
+    if (!b) return;
+    nav.querySelectorAll('.sd-part[aria-current]').forEach(o => { if (o !== b) o.removeAttribute('aria-current'); });
+    b.setAttribute('aria-current', 'true');
+    const left = b.offsetLeft - (nav.clientWidth - b.offsetWidth) / 2;
+    if (Math.abs(nav.scrollLeft - left) > 4) nav.scrollTo({ left: Math.max(0, left), behavior: 'auto' });
+}
+
+// --- Le tableau des interruptions (refonte, étape 5) -------------------------------------------------------------------------------------
+// « Puis-je répondre ? » : où l'on est dans la prière (détecté depuis la lecture, ou choisi) → tout ce qu'on peut dire, en trois couleurs.
+// Données : data/siddur/interruptions.json (js/interruptionsCore.js). Contenu halakhique transcrit du Maguen Avot : **à relire**.
+let sdInter = null;
+const SD_IX_PILL = { o: ['Oui', 'is-oui'], c: ['Avec limite', 'is-cond'], n: ['Non', 'is-non'] };
+function sdLoadInter() {
+    if (sdInter) return Promise.resolve(sdInter);
+    return sdFetchJson(SD_DATA + 'interruptions.json').then(d => { sdInter = d; return d; });
+}
+// La partie lue et, dans la Amida, la bénédiction en cours (le dernier nom de bénédiction passé sous la barre).
+function sdReadingPlace() {
+    const screen = toolEl('screen-tool-siddur');
+    const bar = toolEl('sd-readbar');
+    if (!screen || !bar) return { id: sdView.ids[0], bk: null };
+    const limit = bar.getBoundingClientRect().bottom + 8;
+    let sec = sdView.ids[0];
+    screen.querySelectorAll('.sd-section-box').forEach(b => { if (b.getBoundingClientRect().top <= limit) sec = b.id.replace('sd-sec-', ''); });
+    let bk = null;
+    screen.querySelectorAll('#sd-sec-' + sec + ' .sd-bk').forEach(h => { if (h.getBoundingClientRect().top <= limit + 40) bk = h.dataset.bk; });
+    return { id: sec, bk };
+}
+function sdAddInterFab(wrap) {
+    if (typeof InterruptionsCore === 'undefined') return;
+    const prayer = sdView.ids.some(id => { const f = sdFindSection(id); return f && ['reveil', 'chacharit', 'minha', 'arvit'].indexOf(f.group.id) !== -1; })
+        || sdView.ids.some(id => InterruptionsCore.rowForPlace(id));
+    if (!sdPrefs.fab || !prayer || wrap.querySelector('.sd-fab')) return;
+    const fab = sdEl('button', 'sd-fab');
+    fab.type = 'button';
+    fab.id = 'sd-fab';
+    fab.setAttribute('aria-haspopup', 'dialog');
+    fab.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 9v6M14 9v6"/></svg>';   // icône fixe
+    fab.appendChild(document.createTextNode('Puis-je répondre ?'));
+    fab.onclick = () => { const pl = sdReadingPlace(); sdOpenInterruptions(InterruptionsCore.rowForPlace(pl.id, pl.bk), true); };
+    wrap.appendChild(fab);
+}
+function sdIxPill(cell) {
+    const p = cell ? SD_IX_PILL[cell.c] : ['Non précisé', 'is-nil'];
+    return sdEl('span', 'sd-ix-pill ' + p[1], p[0]);
+}
+function sdOpenInterruptions(rowId, detected) {
+    sdLoadInter().then(data => {
+        let cur = data.rows.find(r => r.id === rowId) || null;
+        let view = 'list';
+        sdSheet('Puis-je répondre ?', (body) => {
+            const where = sdEl('div', 'sd-ix-where');
+            const lab = sdEl('label', 'sd-ix-label', 'Où en êtes-vous dans la prière ?');
+            lab.setAttribute('for', 'sd-ix-row');
+            where.appendChild(lab);
+            const sel = sdEl('select', 'sd-ix-select');
+            sel.id = 'sd-ix-row';
+            if (!cur) { const o = sdEl('option', '', 'Choisir un moment…'); o.value = ''; sel.appendChild(o); }
+            data.rows.forEach(r => { const o = sdEl('option', '', r.fr); o.value = r.id; if (cur && r.id === cur.id) o.selected = true; sel.appendChild(o); });
+            where.appendChild(sel);
+            const hint = sdEl('p', 'sd-ix-hint', cur && detected ? 'Détecté d\'après votre lecture : changez-le si besoin.' : '');
+            where.appendChild(hint);
+            body.appendChild(where);
+            const tabs = sdEl('div', 'sd-seg-btns sd-ix-views');
+            tabs.setAttribute('role', 'group');
+            tabs.setAttribute('aria-label', 'Affichage');
+            const mk = (id, label) => { const b = sdEl('button', '', label); b.type = 'button'; b.dataset.view = id; b.setAttribute('aria-pressed', view === id ? 'true' : 'false'); b.onclick = () => { view = id; draw(); }; tabs.appendChild(b); };
+            mk('list', 'Ce moment');
+            mk('grid', 'Tout le tableau');
+            body.appendChild(tabs);
+            const out = sdEl('div', 'sd-ix-out');
+            out.setAttribute('aria-live', 'polite');
+            body.appendChild(out);
+            const note = sdEl('p', 'sd-ix-note', 'Tableau écrit par le rav Yits\'haq Yossef chalita, tel qu\'imprimé dans le siddour Maguen Avot ; transcrit pour l\'application, à vérifier sur le livre. « Idem » : comme la case du dessus. En cas de doute, demandez à votre rabbin.');
+            body.appendChild(note);
+            sel.onchange = () => { cur = data.rows.find(r => r.id === sel.value) || null; hint.textContent = ''; const blank = sel.querySelector('option[value=""]'); if (blank && cur) blank.remove(); draw(); };
+            function draw() {
+                tabs.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b.dataset.view === view ? 'true' : 'false'));
+                toolClear(out);
+                if (view === 'grid') { out.appendChild(sdIxGrid(data, cur)); return; }
+                if (!cur) { out.appendChild(sdEl('p', 'sd-ix-empty', 'Choisissez le moment de la prière où vous êtes : la liste de ce que vous pouvez dire s\'affiche ici.')); return; }
+                const n = InterruptionsCore.tally(cur);
+                const sum = sdEl('p', 'sd-ix-sum');
+                [['o', n.o + ' oui'], ['c', n.c + ' avec limite'], ['n', n.n + ' non']].forEach(([c, txt]) => sum.appendChild(sdEl('span', 'sd-ix-pill ' + SD_IX_PILL[c][1], txt)));
+                out.appendChild(sum);
+                InterruptionsCore.byGroup(data, cur).forEach(g => {
+                    out.appendChild(sdEl('h4', 'sd-sheet-sub', g.group.fr));
+                    const list = sdEl('div', 'sd-ix-list');
+                    g.items.forEach(it => {
+                        const row = sdEl('div', 'sd-ix-row');
+                        row.appendChild(sdEl('span', 'sd-ix-act', it.col.fr));
+                        row.appendChild(sdIxPill(it.cell));
+                        const showText = it.cell ? !/^(Interdit|Obligatoire|Autorisé)$/.test(it.cell.t) || it.cell.idem : true;
+                        if (showText) row.appendChild(sdEl('span', 'sd-ix-det', it.cell ? it.cell.t + (it.cell.idem ? ' (« Idem » dans le livre)' : '') : 'Case vide dans le tableau'));
+                        list.appendChild(row);
+                    });
+                    out.appendChild(list);
+                });
+            }
+            draw();
+        });
+    }).catch(() => sdSheet('Puis-je répondre ?', (body) => body.appendChild(sdEl('p', 'sd-info', 'Le tableau n\'a pas pu être chargé. Vérifiez votre connexion.'))));
+}
+// La vue « comme dans le livre » : moments en lignes, cas en colonnes, première colonne et en-têtes fixes, cases en couleur.
+function sdIxGrid(data, cur) {
+    const wrap = sdEl('div', 'sd-ix-gridwrap');
+    const table = sdEl('table', 'sd-ix-grid');
+    const thead = sdEl('thead');
+    const hr = sdEl('tr');
+    hr.appendChild(sdEl('th', 'sd-ix-corner', 'Moment ↓ · Cas →'));
+    data.cols.forEach(c => hr.appendChild(sdEl('th', '', c.fr)));
+    thead.appendChild(hr);
+    table.appendChild(thead);
+    const tb = sdEl('tbody');
+    data.rows.forEach(r => {
+        const tr = sdEl('tr', cur && r.id === cur.id ? 'is-here' : '');
+        tr.appendChild(sdEl('th', '', r.fr));
+        r.cells.forEach(cell => tr.appendChild(sdEl('td', cell ? 'is-' + cell.c : 'is-nil', cell ? cell.t + (cell.idem ? ' (idem)' : '') : '—')));
+        tb.appendChild(tr);
+    });
+    table.appendChild(tb);
+    wrap.appendChild(table);
+    return wrap;
+}
+
+// --- La lecture de la Torah du jour (lundi, jeudi, jours particuliers) -------------------------------------------------------------------
+// Le texte vient du Tanakh de l'application (data/tanakh/<livre>.json, voyelles et cantillation) ; les montées de data/torah/weekday.json
+// (js/torahReadingCore.js). Seulement les montées du jour : la lecture de toute l'année n'est pas affichée.
+const SD_TORAH_BOOKS = ['genesis', 'exode', 'levitique', 'nombres', 'deuteronome'];
+const SD_ALIYA_NAMES = ['כהן', 'לוי', 'ישראל', 'רביעי'];
+const SD_READING_NAMES = { rc: 'Roch \'Hodech', fast: 'Jeûne public (Vayé\'hal)', purim: 'Pourim', tishaBav: '9 Av', hanukkah: 'Hanouka', cholHamoed: '\'Hol hamoèd' };
+let sdWeekday = null;
+let sdParashot = null;     // data/torah/parashot.json : le nom des parachiot
+const sdBookCache = {};
+function sdLoadBook(n) {
+    const id = SD_TORAH_BOOKS[n - 1];
+    if (!sdBookCache[id]) sdBookCache[id] = fetch('data/tanakh/' + id + '.json').then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }).catch(e => { delete sdBookCache[id]; throw e; });
+    return sdBookCache[id];
+}
+function sdReadingButton() {
+    const b = sdEl('button', 'sd-reading-btn', 'Lecture de la Torah');
+    b.type = 'button';
+    b.id = 'sd-reading-btn';
+    b.setAttribute('aria-haspopup', 'dialog');
+    b.onclick = sdOpenReading;
+    return b;
+}
+function sdCivilLabel(fixed) {
+    const d = new Date((fixed - 719163) * 86400000);
+    return d.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', timeZone: 'UTC' });
+}
+function sdOpenReading() {
+    if (typeof TorahReadingCore === 'undefined') return;
+    sdSheet('Lecture de la Torah', (body) => {
+        body.appendChild(sdEl('p', 'tool-small', t('tools.sd_loading')));
+        const load = sdWeekday ? Promise.resolve(sdWeekday) : Promise.all([sdFetchJson('data/torah/weekday.json'), sdFetchJson('data/torah/parashot.json')]).then(([w, p]) => { sdParashot = p; return (sdWeekday = w); });
+        load.then(data => {
+            const israel = !!(sdCtx && sdCtx.israel);
+            const next = TorahReadingCore.nextReading(sdCtx.fixed, israel);
+            toolClear(body);
+            if (!next) { body.appendChild(sdEl('p', 'sd-info', 'Pas de lecture de la Torah dans les jours qui viennent.')); return; }
+            const r = next.reading;
+            const parasha = r.kind === 'parasha' && sdParashot ? sdParashot.parashot[r.parasha] : null;
+            const head = sdEl('div', 'sd-reading-head');
+            const title = r.kind === 'parasha' ? 'Paracha ' + (parasha ? parasha.fr : '') : SD_READING_NAMES[r.kind];
+            head.appendChild(sdEl('p', 'sd-reading-title', title));
+            if (parasha) { const he = sdEl('p', 'sd-reading-he', 'פרשת ' + parasha.he); he.lang = 'he'; he.dir = 'rtl'; head.appendChild(he); }
+            if (next.fixed !== sdCtx.fixed) head.appendChild(sdEl('p', 'sd-reading-when', 'Pas de lecture aujourd\'hui. Prochaine lecture : ' + sdCivilLabel(next.fixed) + '.'));
+            body.appendChild(head);
+            const list = TorahReadingCore.aliyot(r, data);
+            if (!list) { body.appendChild(sdEl('p', 'sd-info', 'La lecture de ' + SD_READING_NAMES[r.kind] + ' n\'est pas encore dans l\'application.')); return; }
+            return sdLoadBook(list[0].book).then(book => {
+                const text = sdEl('div', 'sd-reading-text');
+                text.lang = 'he'; text.dir = 'rtl';
+                text.style.setProperty('--sd-size', SD_SIZES[sdPrefs.size] + 'px');
+                text.style.setProperty('--sd-font', sdFontStack());
+                list.forEach((a, k) => {
+                    const p = sdEl('p', 'sd-reading-aliya');
+                    p.appendChild(sdEl('span', 'sd-reading-mark', '(' + SD_ALIYA_NAMES[k] + ')'));
+                    for (let c = a.c1; c <= a.c2; c++) {
+                        const ch = book.chapters[c - 1] || [];
+                        const from = c === a.c1 ? a.v1 : 1, to = c === a.c2 ? a.v2 : ch.length;
+                        for (let v = from; v <= to; v++) if (ch[v - 1]) { p.appendChild(sdTextNode(ch[v - 1])); p.appendChild(document.createTextNode(' ')); }
+                    }
+                    const ref = sdEl('span', 'sd-reading-ref', book.fr + ' ' + a.c1 + ', ' + a.v1 + (a.c2 !== a.c1 ? ' – ' + a.c2 + ', ' + a.v2 : '-' + a.v2));
+                    ref.lang = 'fr'; ref.dir = 'ltr';
+                    p.appendChild(ref);
+                    text.appendChild(p);
+                });
+                body.appendChild(text);
+                body.appendChild(sdEl('p', 'sd-ix-note', 'Montées d\'après Hebcal ; texte du Tanakh de l\'application (tanach.us). À vérifier sur un Houmach.'));
+            });
+        }).catch(() => { toolClear(body); body.appendChild(sdEl('p', 'sd-info', 'La lecture n\'a pas pu être chargée. Vérifiez votre connexion.')); });
+    });
+}
+
+// --- La bénédiction de l'invité (Birkat haMazon séfarade) ---------------------------------------------------------------------------------
+// Texte du Consistoire (« L'invité dira »), accordé selon qui reçoit : un homme, une femme ou un couple, marié(e) ou non, avec ou sans enfants.
+// Les accords sont faits pour l'application, d'après la grammaire du texte : **à relire**.
+const SD_GUEST_TABLE = '<b>הָרַחֲמָן</b> הוּא יְבָרֵךְ אֶת הַשֻּׁלְחָן הַזֶּה שֶׁאָכַלְנוּ עָלָיו, וִיסַדֵּר בּוֹ כָּל מַעֲדַנֵּי עוֹלָם, וְיִהְיֶה כְּשֻׁלְחָנוֹ שֶׁל אַבְרָהָם אָבִינוּ, כָּל רָעֵב מִמֶּנּוּ יֹאכַל וְכָל צָמֵא מִמֶּנּוּ יִשְׁתֶּה, וְאַל יֶחְסַר מִמֶּנּוּ כָּל טוּב לָעַד וּלְעוֹלְמֵי עוֹלָמִים, אָמֵן:';
+const SD_GUEST_HE = {
+    m: { host: 'בַּעַל הַבַּיִת הַזֶּה וּבַעַל הַסְּעֻדָּה הַזֹּאת', pron: 'הוּא', kids: 'וּבָנָיו', spouse: 'וְאִשְׁתּוֹ', all: 'וְכָל אֲשֶׁר לוֹ', hail: 'בָּרֵךְ יְהֹוָה חֵילוֹ וּפֹעַל יָדָיו תִּרְצֶה', nekh: 'וְיִהְיוּ נְכָסָיו וּנְכָסֵינוּ', lif: 'לְפָנָיו', sas: 'שָׂשׂ וְשָׂמֵחַ', bosh: 'לֹא יֵבוֹשׁ בָּעוֹלָם הַזֶּה וְלֹא יִכָּלֵם לָעוֹלָם הַבָּא' },
+    f: { host: 'בַּעֲלַת הַבַּיִת הַזֶּה וּבַעֲלַת הַסְּעֻדָּה הַזֹּאת', pron: 'הִיא', kids: 'וּבָנֶיהָ', spouse: 'וּבַעְלָהּ', all: 'וְכָל אֲשֶׁר לָהּ', hail: 'בָּרֵךְ יְהֹוָה חֵילָהּ וּפֹעַל יָדֶיהָ תִּרְצֶה', nekh: 'וְיִהְיוּ נְכָסֶיהָ וּנְכָסֵינוּ', lif: 'לְפָנֶיהָ', sas: 'שָׂשָׂה וּשְׂמֵחָה', bosh: 'לֹא תֵבוֹשׁ בָּעוֹלָם הַזֶּה וְלֹא תִכָּלֵם לָעוֹלָם הַבָּא' },
+    c: { host: 'בַּעַל הַבַּיִת הַזֶּה וּבַעֲלַת הַבַּיִת הַזֶּה, בַּעֲלֵי הַסְּעֻדָּה הַזֹּאת', pron: 'הֵם', kids: 'וּבְנֵיהֶם', spouse: '', all: 'וְכָל אֲשֶׁר לָהֶם', hail: 'בָּרֵךְ יְהֹוָה חֵילָם וּפֹעַל יְדֵיהֶם תִּרְצֶה', nekh: 'וְיִהְיוּ נִכְסֵיהֶם וּנְכָסֵינוּ', lif: 'לִפְנֵיהֶם', sas: 'שָׂשִׂים וּשְׂמֵחִים', bosh: 'לֹא יֵבוֹשׁוּ בָּעוֹלָם הַזֶּה וְלֹא יִכָּלְמוּ לָעוֹלָם הַבָּא' }
+};
+const SD_GUEST_FR = {
+    m: { host: 'le maître de cette maison et de ce repas', who: 'lui', kids: 'ses enfants', spouse: 'son épouse', his: 'à lui', s: 'il', poss: 'sa', poss2: 'ses', obj: 'lui', joy: 'joyeux et heureux', shame: 'qu\'il n\'ait pas honte dans ce monde ni ne soit confus dans le monde à venir' },
+    f: { host: 'la maîtresse de cette maison et de ce repas', who: 'elle', kids: 'ses enfants', spouse: 'son mari', his: 'à elle', s: 'elle', poss: 'sa', poss2: 'ses', obj: 'elle', joy: 'joyeuse et heureuse', shame: 'qu\'elle n\'ait pas honte dans ce monde ni ne soit confuse dans le monde à venir' },
+    c: { host: 'le maître et la maîtresse de cette maison, qui nous offrent ce repas', who: 'eux', kids: 'leurs enfants', spouse: '', his: 'à eux', s: 'ils', poss: 'leur', poss2: 'leurs', obj: 'eux', joy: 'joyeux et heureux', shame: 'qu\'ils n\'aient pas honte dans ce monde ni ne soient confus dans le monde à venir' }
+};
+function sdGuestState() { const g = sdPrefs.guest || {}; return { who: SD_GUEST_HE[g.who] ? g.who : 'm', married: g.married !== false, kids: g.kids !== false }; }
+function sdGuestHe(st) {
+    const x = SD_GUEST_HE[st.who];
+    const people = [x.pron, st.kids ? x.kids : '', st.married && x.spouse ? x.spouse : '', x.all].filter(Boolean).join(' ');
+    return '<b>הָרַחֲמָן</b> הוּא יְבָרֵךְ ' + x.host + '. ' + people + '. ' + (st.kids ? 'בְּבָנִים שֶׁיִּחְיוּ. וּבִנְכָסִים שֶׁיִּרְבּוּ. ' : 'בִּנְכָסִים שֶׁיִּרְבּוּ. ')
+        + x.hail + '. ' + x.nekh + ' מֻצְלָחִים וּקְרוֹבִים לָעִיר. וְאַל יִזְדַּקֵּק ' + x.lif + ' וְלֹא לְפָנֵינוּ שׁוּם דְּבַר חֵטְא וְהִרְהוּר עָוֹן. '
+        + x.sas + ' כָּל הַיָּמִים בְּעֹשֶׁר וְכָבוֹד מֵעַתָּה וְעַד עוֹלָם. ' + x.bosh + '. אָמֵן כֵּן יְהִי רָצוֹן:';
+}
+function sdGuestFr(st) {
+    const x = SD_GUEST_FR[st.who];
+    const people = [x.who, st.kids ? x.kids : '', st.married && x.spouse ? x.spouse : ''].filter(Boolean);
+    const list = people.length > 1 ? people.slice(0, -1).join(', ') + ', ' + people[people.length - 1] : people[0];
+    return 'Que le Miséricordieux bénisse ' + x.host + ' : ' + list + ' et tout ce qui est ' + x.his + ', ' + (st.kids ? 'par des enfants qui vivent et des biens qui se multiplient' : 'par des biens qui se multiplient')
+        + '. Bénis, Éternel, ' + x.poss + ' force, et agrée l\'œuvre de ' + x.poss2 + ' mains. Que ' + x.poss2 + ' biens et les nôtres prospèrent et soient proches de la ville ; que ne se présente ni devant ' + x.obj
+        + ' ni devant nous aucune occasion de faute ni pensée de péché. Qu\'' + (x.s === 'il' ? 'il soit ' : x.s === 'elle' ? 'elle soit ' : 'ils soient ') + x.joy + ' tous les jours, dans la richesse et l\'honneur, dès maintenant et pour toujours ; '
+        + x.shame + '. Amen, qu\'il en soit ainsi.';
+}
+function sdGuestPara(html, fr, host) {
+    const tree = SiddurCore.parse(html);
+    sdMarkNames(tree);
+    const p = sdEl('p', 'sd-seg');
+    p.lang = 'he'; p.dir = 'rtl';
+    sdRenderNodes(tree.c, p);
+    host.appendChild(p);
+    if (sdPrefs.fr) { const f = sdEl('p', 'sd-fr-seg', fr); f.lang = 'fr'; host.appendChild(f); }
+}
+function sdGuestBlock() {
+    const fold = sdEl('details', 'sd-fold sd-guest');
+    const sum = sdEl('summary');
+    sum.appendChild(sdEl('span', 'sd-fold-lab', 'Si l\'on est invité : bénédiction de l\'hôte'));
+    const he = sdEl('span', 'sd-fold-he', 'הָרַחֲמָן הוּא יְבָרֵךְ…');
+    he.lang = 'he'; he.dir = 'rtl';
+    sum.appendChild(he);
+    fold.appendChild(sum);
+    const ctrls = sdEl('div', 'sd-guest-ctrls');
+    const text = sdEl('div', 'sd-guest-text');
+    const draw = () => {
+        const st = sdGuestState();
+        toolClear(text);
+        sdGuestPara(SD_GUEST_TABLE, 'Que le Miséricordieux bénisse cette table sur laquelle nous avons mangé, qu\'Il y dispose tous les délices du monde, et qu\'elle soit comme la table d\'Abraham notre père : que tout affamé en mange et tout assoiffé en boive, et qu\'aucun bien n\'y manque jamais, à tout jamais. Amen.', text);
+        sdGuestPara(sdGuestHe(st), sdGuestFr(st), text);
+        ctrls.querySelectorAll('button[data-k]').forEach(b => b.setAttribute('aria-pressed', String(st[b.dataset.k]) === b.dataset.v ? 'true' : 'false'));
+        const mar = ctrls.querySelector('.sd-guest-married');
+        if (mar) mar.hidden = st.who === 'c';
+    };
+    const row = (label, key, opts, cls) => {
+        const r = sdEl('div', 'sd-guest-row' + (cls ? ' ' + cls : ''));
+        r.appendChild(sdEl('span', 'sd-guest-lab', label));
+        const seg = sdEl('div', 'sd-seg-btns');
+        seg.setAttribute('role', 'group');
+        seg.setAttribute('aria-label', label);
+        opts.forEach(([v, txt]) => {
+            const b = sdEl('button', '', txt);
+            b.type = 'button';
+            b.dataset.k = key; b.dataset.v = v;
+            b.onclick = () => {
+                const st = sdGuestState();
+                st[key] = v === 'true' ? true : v === 'false' ? false : v;
+                sdPrefs.guest = st;
+                sdSavePrefs();
+                draw();
+            };
+            seg.appendChild(b);
+        });
+        r.appendChild(seg);
+        ctrls.appendChild(r);
+    };
+    row('Qui nous reçoit ?', 'who', [['m', 'Un homme'], ['f', 'Une femme'], ['c', 'Un couple']]);
+    row('Marié(e) ?', 'married', [['true', 'Oui'], ['false', 'Non']], 'sd-guest-married');
+    row('Des enfants ?', 'kids', [['true', 'Oui'], ['false', 'Non']]);
+    fold.appendChild(ctrls);
+    fold.appendChild(text);
+    fold.appendChild(sdEl('p', 'sd-var-note', 'Texte du Consistoire ; les accords (femme, couple, sans enfants, non marié) sont faits par l\'application : à vérifier.'));
+    draw();
+    return fold;
 }
 
 function sdSwitch(label, on, onToggle) {
@@ -823,7 +1209,7 @@ function sdApplySizeAndFont() {
     const content = sdContentEl();
     if (!content) return;
     content.style.setProperty('--sd-size', SD_SIZES[sdPrefs.size] + 'px');
-    content.style.setProperty('--sd-font', sdFontStack());
+    sdSetFont(content);
 }
 
 function sdOpenDisplay() {
@@ -857,6 +1243,29 @@ function sdOpenDisplay() {
         const fr = sdSwitch('Traduction française', sdPrefs.fr, (on) => { sdPrefs.fr = on; sdSavePrefs(); sdRerender(); });
         fr.querySelector('button').id = 'sd-fr';
         body.appendChild(fr);
+        const jx = sdSwitch('Mot à mot (début de la Amida)', sdPrefs.jx, (on) => { sdPrefs.jx = on; sdSavePrefs(); sdRerender(); });
+        jx.querySelector('button').id = 'sd-jx';
+        body.appendChild(jx);
+        const nm = sdSwitch('Nom divin écrit יְהֹוָה avec « אדני »', sdPrefs.name !== 'source', (on) => { sdPrefs.name = on ? 'adonai' : 'source'; sdSavePrefs(); sdRerender(); });
+        nm.querySelector('button').id = 'sd-name';
+        body.appendChild(nm);
+        const fabSw = sdSwitch('Bouton « Puis-je répondre ? »', sdPrefs.fab, (on) => {
+            sdPrefs.fab = on;
+            sdSavePrefs();
+            const wrap = toolEl('sd-reader');
+            const fab = toolEl('sd-fab');
+            if (!on && fab) fab.remove();
+            if (on && wrap) sdAddInterFab(wrap);
+        });
+        fabSw.querySelector('button').id = 'sd-fab-pref';
+        body.appendChild(fabSw);
+        body.appendChild(sdEl('p', 'sd-sheet-note sd-opt-hint', 'Masqué, le tableau des interruptions reste dans l\'accueil du Siddour, rubrique « Outils ».'));
+        const heRub = sdSwitch('Consignes en hébreu (comme le livre)', sdPrefs.heRub, (on) => { sdPrefs.heRub = on; sdSavePrefs(); sdRerender(); });
+        heRub.querySelector('button').id = 'sd-herub';
+        body.appendChild(heRub);
+        const hide = sdSwitch('Masquer les passages « pas aujourd\'hui »', sdPrefs.hideOff, (on) => { sdPrefs.hideOff = on; sdSavePrefs(); sdRerender(); });
+        hide.querySelector('button').id = 'sd-hideoff';
+        body.appendChild(hide);
         const all = sdSwitch('Tout afficher, sans estomper', sdPrefs.all, (on) => { sdPrefs.all = on; sdSavePrefs(); sdRerender(); });
         all.querySelector('button').id = 'sd-all';
         body.appendChild(all);
@@ -952,23 +1361,27 @@ function sdRenderReader(body) {
     aa.onclick = sdOpenDisplay;
     bar.appendChild(titleBtn);
     bar.appendChild(aa);
+    const tabs = sdPartsNav();
+    if (tabs) bar.appendChild(tabs);
     const prog = sdEl('div', 'sd-read-prog');
     prog.appendChild(sdEl('i'));
     bar.appendChild(prog);
     wrap.appendChild(bar);
     const content = sdEl('div', 'sd-content');
     content.style.setProperty('--sd-size', SD_SIZES[sdPrefs.size] + 'px');
-    content.style.setProperty('--sd-font', sdFontStack());
+    sdSetFont(content);
     wrap.appendChild(content);
     body.appendChild(wrap);
     content.appendChild(sdEl('p', 'tool-small', t('tools.sd_loading')));
-    Promise.all(sdView.ids.map(id => Promise.all([sdLoadSection(id), sdPrefs.fr ? sdLoadFr(id) : null]).then(r => { r[0].fr_t = r[1]; return r[0]; }))).then(sections => {
+    Promise.all(sdView.ids.map(id => Promise.all([sdLoadSection(id), sdLoadFr(id)]).then(r => { r[0].fr_t = r[1]; return r[0]; }))).then(sections => {
         if (sdView.mode !== 'reader') return;
         toolClear(content);
         if (sdShabbatNote) content.appendChild(sdEl('p', 'sd-fr-note', sdShabbatNote));
         if (sdPrefs.fr) content.appendChild(sdEl('p', 'sd-fr-note', t('tools.sd_fr_note')));
         sections.forEach(section => content.appendChild(sdRenderSection(section)));
         sdAddNav(wrap);
+        sdAddInterFab(wrap);
+        if (!bar.querySelector('.sd-parts')) { const tabs = sdPartsNav(); if (tabs) bar.insertBefore(tabs, bar.querySelector('.sd-read-prog')); }
         const screen = toolEl('screen-tool-siddur');
         if (sdRestoreTop !== null) { screen.scrollTop = sdRestoreTop; sdRestoreTop = null; }
         else { const mark = content.querySelector('.sd-omer-today'); if (mark) mark.scrollIntoView({ block: 'center' }); }
@@ -1015,41 +1428,506 @@ function sdVariantClass(mark) {
     return 'sd-v is-unknown';
 }
 
-function sdRenderNodes(nodes, parent) {
+// skipMark : les nœuds de premier niveau sont le corps d'une variante déjà mise en bloc (sdVarBlock) : on ne les estompe pas une seconde fois.
+function sdRenderNodes(nodes, parent, skipMark) {
     nodes.forEach(node => {
+        const m = skipMark ? null : node.m;
+        // Une variante courte restée dans la ligne : sa consigne hébraïque (« בעשרת ימי תשובה: ») devient une petite étiquette française.
+        if (m && (m.role === 'marker' || m.role === 'self')) {
+            const state = SiddurCore.evaluate(m.atoms, sdCtx);
+            const full = SiddurCore.plain(node);
+            const lab = sdEl('span', 'sd-v-lab' + (state === 'on' ? ' is-on' : state === 'off' && !sdPrefs.all ? ' is-off' : ''), sdCap(sdAtomsLabel(m.atoms)) + ' :');
+            lab.lang = 'fr';
+            lab.dir = 'ltr';
+            lab.title = full.split(':')[0].trim();
+            parent.appendChild(lab);
+            if (m.role === 'self') {
+                const body = sdEl('span', sdVariantClass(m));
+                body.appendChild(sdTextNode(full.slice(full.indexOf(':') + 1).replace(/^\s+/, ' ')));
+                parent.appendChild(body);
+            }
+            return;
+        }
         let el;
+        if (node.k) { const sp = sdSpecialNode(node); if (m && node.k === 'name') { const w = sdEl('span', sdVariantClass(m)); w.appendChild(sp); parent.appendChild(w); } else parent.appendChild(sp); return; }
         if (node.t === 'text') {
-            const text = document.createTextNode(sdText(node.v));
-            sdOrigText.set(text, node.v);
-            if (node.m) { el = sdEl('span', sdVariantClass(node.m)); el.appendChild(text); } else { parent.appendChild(text); return; }
+            const text = sdTextNode(node.v);
+            if (m) { el = sdEl('span', sdVariantClass(m)); el.appendChild(text); } else { parent.appendChild(text); return; }
         } else if (node.n === 'br') {
             parent.appendChild(document.createElement('br'));
             return;
         } else {
-            el = sdEl(node.n === 'b' ? 'strong' : 'span', node.n === 'small' ? 'sd-small' : node.n === 'big' ? 'sd-big' : '');
-            if (node.m) el.className = (el.className + ' ' + sdVariantClass(node.m)).trim();
+            // <small> : une consigne (sans voyelles) passe en police d'interface ; un texte de prière en <small> (vocalisé) garde presque sa taille.
+            const smallCls = SD_HAS_NIQQUD.test(SiddurCore.plain(node)) ? 'sd-small sd-small-text' : 'sd-small sd-small-rub';
+            el = sdEl(node.n === 'b' ? 'strong' : 'span', node.n === 'small' ? smallCls : node.n === 'big' ? 'sd-big' : '');
+            if (m) el.className = (el.className + ' ' + sdVariantClass(m)).trim();
             sdRenderNodes(node.c, el);
         }
-        if (node.m) {
-            const state = SiddurCore.evaluate(node.m.atoms, sdCtx);
-            if (state === 'off' && node.m.role !== 'rubric' && !sdPrefs.all) el.title = t('tools.sd_variant_off_title', { what: sdAtomsLabel(node.m.atoms) });
-            if (state === 'on' && node.m.role !== 'rubric') el.title = t('tools.sd_variant_on_title', { what: sdAtomsLabel(node.m.atoms) });
+        if (m) {
+            const state = SiddurCore.evaluate(m.atoms, sdCtx);
+            if (state === 'off' && m.role !== 'rubric' && !sdPrefs.all) el.title = t('tools.sd_variant_off_title', { what: sdAtomsLabel(m.atoms) });
+            if (state === 'on' && m.role !== 'rubric') el.title = t('tools.sd_variant_on_title', { what: sdAtomsLabel(m.atoms) });
         }
         parent.appendChild(el);
     });
 }
 
-function sdRenderSegment(tree, index) {
-    const first = tree.c.filter(k => !(k.t === 'text' && !k.v.trim()))[0];
-    const isTitle = index === 0 && first && first.t === 'tag' && first.n === 'big';
-    const el = sdEl(isTitle ? 'h4' : 'p', isTitle ? 'sd-title' : 'sd-seg');
-    el.lang = 'he';
-    el.dir = 'rtl';
-    // un segment tout en petits caractères (une consigne, un texte facultatif) : interligne resserré
-    const kids = tree.c.filter(k => !(k.t === 'text' && !k.v.trim()));
-    if (kids.length && kids.every(k => k.t === 'tag' && k.n === 'small')) el.classList.add('sd-seg-small');
-    sdRenderNodes(tree.c, el);
+// --- Variantes et consignes (refonte, étape 2) ------------------------------------------------------------------------------------------
+// La variante du jour est en taille normale dans un bloc doré ; une variante qui ne s'applique pas est repliée sur une ligne (son nom en
+// français et ses premiers mots), avec, s'il y en a une, la règle en cas d'erreur. Les consignes du livre (hébreu sans voyelles) sont montrées
+// par leur traduction française (data/siddur/fr/). Rien n'est supprimé : tout se déplie, et « Tout afficher » montre tout comme le livre.
+const SD_HAS_NIQQUD = /[ְ-ׇ]/;
+function sdTextNode(v) {
+    const n = document.createTextNode(sdText(v));
+    sdOrigText.set(n, v);
+    return n;
+}
+function sdBlank(k) { return k.t === 'text' && !k.v.trim(); }
+function sdCap(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : s; }
+function sdFirstWords(text, n) {
+    const words = String(text).replace(/[:.,]/g, ' ').trim().split(/\s+/).filter(Boolean);
+    return words.slice(0, n || 3).join(' ') + (words.length > (n || 3) ? '…' : '');
+}
+// Ce qu'on fait si l'on s'est trompé, et depuis quand vaut une variante : texte du siddour Maguen Avot (Min'ha p. 136-147, commentaires
+// p. 163 et 544), repris tel quel. Contenu halakhique : **à relire sur le livre**.
+const SD_VAR_SINCE = {
+    dewWinter: 'depuis Moussaf de Chémini Atséret',
+    dewSummer: 'depuis Moussaf du 1er jour de Pessa\'h',
+    barechSummer: 'depuis \'Hol hamoèd Pessa\'h jusqu\'au 7 \'Hechvan ; hors d\'Israël, jusqu\'au 60e jour après la Tekoufa de Tichri (nuit du 4 au 5, ou du 5 au 6 décembre)',
+    barechWinter: 'depuis la nuit du 7 \'Hechvan ; hors d\'Israël, depuis le 60e jour après la Tekoufa de Tichri (nuit du 4 au 5, ou du 5 au 6 décembre) ; jusqu\'à Min\'ha de la veille de Pessa\'h'
+};
+const SD_ERR_NOTES = {
+    dewSummer: 'Si, en été, on a dit « morid haguéchem », mais qu\'on s\'en rende compte avant d\'avoir dit « baroukh ata Adonaï », on reprend « Ata guibor ». Si l\'on s\'en rend compte au moment où l\'on a dit « baroukh ata Adonaï », on ajoute « lamedéni \'houkékha » puis on reprend « Ata guibor ». Si l\'on a déjà dit « mé\'hayé hamétim », on reprend au début de la Amida. Si l\'on est dans le doute, pendant les trente jours qui suivent le premier jour de Pessa\'h, on reprend au début de la Amida.',
+    dewWinter: 'Si, en hiver, on a dit « morid hatal », mais qu\'on s\'en rende compte avant d\'avoir dit « baroukh ata Adonaï », il convient de reprendre à « Ata guibor ». Si l\'on s\'en rend compte au moment où l\'on a dit « baroukh ata Adonaï », on continue « mé\'hayé hamétim », et non « lamedéni \'houkékha ». On ne l\'intercalera pas non plus entre deux bénédictions.',
+    barechSummer: 'Si l\'on s\'est trompé en disant « Barekh \'alénou » en été et qu\'on s\'en rende compte au milieu de la bénédiction, on reprendra « Barékhénou ». Si l\'on s\'en rend compte après avoir dit « baroukh ata Adonaï » mais avant « mévarekh hachanim », on dira « lamedéni \'houkékha » et on dira à nouveau « Barékhénou ». Si l\'on a déjà dit « mévarekh hachanim », ou si l\'on s\'en rend compte plus tard, on reprendra dans l\'ordre depuis « Barékhénou ». Si l\'on ne s\'en rend compte qu\'après avoir dit le « Yihyou leratson » qui suit « Elohaï netsor », même si l\'on n\'a pas fait les trois pas en arrière, on reprendra au début de la Amida. Si l\'on a dit « Barekh \'alénou » pendant les jours qui suivent Souccot mais avant le 7 \'Hechvan, selon la loi stricte on n\'aurait pas besoin de se reprendre ; cependant il conviendrait de réciter à nouveau la Amida à titre d\'offrande volontaire, en disant : « Si j\'ai l\'obligation de répéter la Amida, je le fais pour m\'acquitter de mon devoir, et sinon que ce soit à titre d\'offrande volontaire. »',
+    barechWinter: 'Si l\'on s\'est trompé en disant « Barékhénou » en hiver, et qu\'on s\'en rende compte au milieu de la bénédiction, on reprendra « Barekh \'alénou ». Si l\'on s\'en rend compte après avoir dit « mévarekh hachanim », mais avant de commencer « Téka\' », on dira alors « véten tal oumatar liverakha » puis « Téka\' béchofar gadol ». Si l\'on ne s\'en rend compte qu\'après avoir commencé « Téka\' », on continuera la prière jusqu\'à « Chéma\' kolénou » ; là, avant de dire « ki ata choméa\' téfilat kol pé », on ajoutera « véten tal oumatar liverakha ». Si, là aussi, on a oublié de le dire et qu\'on s\'en rende compte entre « baroukh ata Adonaï » et « choméa\' téfila », on dira « lamedéni \'houkékha » et on reprendra « Chéma\' kolénou » en ajoutant « véten tal oumatar liverakha ». Si l\'on s\'en rend compte après avoir dit « choméa\' téfila » mais avant de commencer « Retsé », on ajoutera alors « véten tal oumatar liverakha ». Si l\'on a déjà commencé « Retsé », ou si l\'on s\'en rend compte par la suite, on reprendra dans l\'ordre à partir de « Barekh \'alénou ». Si l\'on ne s\'en rend compte qu\'après avoir dit le « Yihyou leratson » qui suit « Elohaï netsor », même si l\'on n\'a pas encore fait trois pas en arrière, on reprendra au début de la Amida.'
+};
+// Les autres ajouts : reconnus par leurs mots (sans voyelles) et leur condition.
+const SD_TEXT_NOTES = [
+    { atom: 'aseret', re: /זכרנו לחיים/, t: 'Si l\'on n\'a pas dit « zokhrénou le\'hayim » et que l\'on s\'en aperçoive avant de prononcer le Nom divin, on se reprend, mais si on l\'a déjà prononcé, on ne se reprend pas.' },
+    { atom: 'aseret', re: /מי כמוך אב הרחמן|וכתוב לחיים|ובספר חיים/, t: 'Si on a omis de le dire et que l\'on s\'en aperçoive avant de prononcer le Nom divin de la bénédiction suivante, on se reprend, sinon on ne se reprend pas.' },
+    { atom: 'aseret', re: /המלך הקדוש/, t: 'Pendant les dix jours de pénitence, si on oublie et on dit « hael hakadoch », ou que l\'on soit dans le doute, et que l\'on ne s\'en souvienne pas tout de suite, on reprend la Amida à son début. Si l\'officiant se trompe, il reprend à « Atta kadoch » et continue normalement.' },
+    { atom: 'aseret', re: /המלך המשפט/, t: 'Si l\'on se trompe et que l\'on se rend compte tout de suite (le temps de dire « chalom \'alékha rabi »), on reprendra « hamélekh hamichpat ». Si l\'on s\'en souvient avant le verset « yihyou lératson », on reprend à « Hachiva chofeténou », mais si c\'est après, on reprend la Amida à son début. Il conviendra de la réciter à titre d\'offrande volontaire.' },
+    { atom: 'rc', re: /יעלה ויבא/, t: 'Si on a omis de dire « Ya\'alé véyavo », on se reprend, sauf pour la prière du soir de Roch \'Hodech.' },
+    { atom: 'hanukkah', re: /על הנסים|על הניסים/, t: 'Si on a omis de dire « Véal hanissim » et que l\'on s\'en aperçoive avant de prononcer le Nom divin de la prochaine bénédiction, on se reprend, sinon on ne se reprend pas.' },
+    { atom: 'tishaBav', re: /נחם/, t: 'Si le 9 Av, on n\'a pas dit « Na\'hem » et qu\'on ne s\'en rende compte qu\'après avoir dit « baroukh atta Adonaï », on ne se reprend pas.' },
+    { atom: 'fastPublic', re: /עננו/, t: 'Celui qui jeûne récite « \'Anénou ». L\'officiant qui a oublié de dire « \'Anénou » entre « Goël » et « Rofé » le dira comme le particulier, sans le Nom divin.' }
+];
+const SD_ATOM_FAMILY = { ch: 'rc', chPesach: 'rc', chSukkot: 'rc', purim: 'hanukkah', fastIndividual: 'fastPublic' };
+function sdErrNote(atoms, bodyText) {
+    for (const a of atoms) if (SD_ERR_NOTES[a]) return SD_ERR_NOTES[a];
+    const fam = atoms.map(a => SD_ATOM_FAMILY[a] || a);
+    const bare = SiddurCore.stripNiqqud(bodyText);
+    const hit = SD_TEXT_NOTES.find(n => fam.indexOf(n.atom) !== -1 && n.re.test(bare));
+    return hit ? hit.t : '';
+}
+// Une règle courte s'affiche telle quelle ; une longue se replie sous « Si l'on s'est trompé ».
+function sdNoteEl(text) {
+    if (text.length <= 170) { const p = sdEl('p', 'sd-var-note', text); p.lang = 'fr'; return p; }
+    const d = sdEl('details', 'sd-var-note sd-var-more');
+    d.appendChild(sdEl('summary', '', 'Si l\'on s\'est trompé'));
+    const p = sdEl('p', '', text);
+    p.lang = 'fr';
+    d.appendChild(p);
+    return d;
+}
+
+// Un bloc de variante. fill(host) y met le texte ; label : le nom en français ; bodyText : le texte (pour les premiers mots et la règle).
+// forced : l'état déjà calculé ('on' / 'off' / 'unknown'), quand la condition n'est pas une consigne du livre (le psaume du jour).
+function sdVarBlock(atoms, label, bodyText, fill, forced) {
+    const state = forced || SiddurCore.evaluate(atoms, sdCtx);
+    const name = label || sdCap(sdAtomsLabel(atoms));
+    const note = sdErrNote(atoms, bodyText);
+    // forced 'fold-unknown' : un passage « selon le cas » replié par défaut (le psaume de la maison d'un deuil).
+    // 'fold-ind' : un jeûne individuel reste possible (l'application ne le sait pas) : replié « pas aujourd'hui », jamais masqué.
+    if ((state === 'off' && !sdPrefs.all) || state === 'fold-unknown' || (state === 'fold-ind' && !sdPrefs.all)) {
+        if (state === 'off' && sdPrefs.hideOff) return document.createDocumentFragment();
+        const fold = sdEl('details', 'sd-fold');
+        const sum = sdEl('summary');
+        sum.appendChild(sdEl('span', 'sd-fold-lab', name + (state === 'off' ? ' · pas aujourd\'hui' : state === 'fold-ind' ? ' · pas aujourd\'hui (sauf jeûne individuel)' : ' · selon le cas')));
+        const he = sdEl('span', 'sd-fold-he');
+        he.lang = 'he'; he.dir = 'rtl';
+        he.appendChild(sdTextNode(sdFirstWords(bodyText)));
+        sum.appendChild(he);
+        fold.appendChild(sum);
+        fill(fold);
+        if (note) fold.appendChild(sdNoteEl(note));
+        return fold;
+    }
+    const box = sdEl('div', 'sd-var' + (state === 'on' ? ' is-on' : state === 'unknown' ? ' is-unknown' : ''));
+    const head = sdEl('p', 'sd-var-head');
+    if (state === 'on') head.appendChild(sdEl('span', 'sd-chip', 'Aujourd\'hui'));
+    else if (state === 'unknown') head.appendChild(sdEl('span', 'sd-chip is-unknown', 'Selon le cas'));
+    head.appendChild(sdEl('span', '', name));
+    const since = atoms.map(a => SD_VAR_SINCE[a]).filter(Boolean)[0];
+    if (since) head.appendChild(sdEl('span', 'sd-var-since', '(' + since + ')'));
+    box.appendChild(head);
+    fill(box);
+    if (note) box.appendChild(sdNoteEl(note));
+    return box;
+}
+
+// Une consigne seule dans son segment : sa traduction française (ou l'hébreu si on l'a demandé, ou s'il n'y a pas de traduction).
+function sdRubricEl(tree, fr) {
+    const kids = tree.c.filter(k => !sdBlank(k));
+    const mark = kids.length === 1 && kids[0].m && kids[0].m.role === 'rubric' ? kids[0].m : null;
+    const state = mark ? SiddurCore.evaluate(mark.atoms, sdCtx) : null;
+    const el = sdEl('p', 'sd-rub' + (state === 'on' ? ' is-on' : state === 'off' && !sdPrefs.all ? ' is-off' : ''));
+    if (state === 'on') el.appendChild(sdEl('span', 'sd-chip', 'Aujourd\'hui'));
+    if (fr && !sdPrefs.heRub) {
+        el.lang = 'fr';
+        el.appendChild(document.createTextNode(fr));
+    } else {
+        el.lang = 'he'; el.dir = 'rtl';
+        el.appendChild(sdTextNode(SiddurCore.plain(tree).replace(/\s+/g, ' ').trim()));
+    }
     return el;
+}
+
+// Le segment : un titre, une consigne seule, ou du texte. Une variante assez longue (une phrase) ou un segment fait seulement de variantes
+// (été / hiver) passe en blocs ; les variantes d'un mot ou deux (« הַשָּׁלוֹם ») restent dans la ligne.
+function sdRenderSegment(tree, index, fr) {   // tree peut être remplacé par son contenu (segment tout en gras)
+    const kids = tree.c.filter(k => !sdBlank(k));
+    const isTitle = index === 0 && kids[0] && kids[0].t === 'tag' && kids[0].n === 'big';
+    if (!isTitle && kids.length && kids.every(k => k.t === 'tag' && k.n === 'small') && !SD_HAS_NIQQUD.test(SiddurCore.plain(tree))) return sdRubricEl(tree, fr);
+    // Un intertitre du livre (« מודים דרבנן » suivi de sa consigne, « קריאה ליום הראשון ») : sans voyelles, un titre court en gras ;
+    // montré en français comme une consigne, en plus appuyé. Les chants non vocalisés (araméen) ont un texte long : ils ne sont pas concernés.
+    if (!isTitle && fr && !sdPrefs.heRub && index > 0 && !SD_HAS_NIQQUD.test(SiddurCore.plain(tree))) {
+        const outside = SiddurCore.plain(tree.c.filter(k => !(k.t === 'tag' && k.n === 'small'))).trim();
+        const marked = tree.c.some(k => k.t === 'tag' && (k.n === 'b' || k.n === 'big' || k.n === 'small'));
+        if (outside && outside.length <= 30 && marked) { const h = sdRubricEl(tree, fr); h.classList.add('sd-rub-head'); return h; }
+    }
+    const newP = () => { const p = sdEl(isTitle ? 'h4' : 'p', isTitle ? 'sd-title' : 'sd-seg'); p.lang = 'he'; p.dir = 'rtl'; return p; };
+    // Un segment entièrement en gras dans la source (une seule balise <b> autour de tout) : on cherche ses variantes à l'intérieur.
+    if (!isTitle && kids.length === 1 && kids[0].t === 'tag' && kids[0].n === 'b' && !kids[0].m && kids[0].c.some(k => k.m)) tree = { t: 'tag', n: 'root', c: kids[0].c };
+    // les variantes de premier niveau : marqueur + corps, ou consigne et corps dans la même balise (« self » : « בחוה"מ פסח: חג המצות… »)
+    const vars = {};
+    tree.c.forEach(k => {
+        if (!k.m) return;
+        if (k.m.role === 'self') { const after = sdAfterColon([k]); if (after.found) vars[k.m.id] = { m: k.m, bodies: after.nodes, self: k }; return; }
+        if (k.m.role !== 'marker' && k.m.role !== 'body') return;
+        const v = vars[k.m.id] || (vars[k.m.id] = { m: k.m, bodies: [] });
+        if (k.m.role === 'body') v.bodies.push(k);
+    });
+    const outside = SiddurCore.stripNiqqud(SiddurCore.plain(tree.c.filter(k => !(k.m && vars[k.m.id]))));
+    const onlyVars = !/[א-ת]/.test(outside);
+    const block = {};
+    Object.keys(vars).forEach(id => {
+        const v = vars[id];
+        const len = SiddurCore.stripNiqqud(SiddurCore.plain(v.bodies)).replace(/\s+/g, ' ').trim().length;
+        if (v.bodies.length && (onlyVars || len >= 25)) block[id] = v;
+    });
+    if (!Object.keys(block).length) {
+        const el = newP();
+        if (kids.length && kids.every(k => k.t === 'tag' && k.n === 'small')) el.classList.add('sd-seg-small');
+        sdRenderNodes(tree.c, el);
+        const inl = [];
+        (function walk(n) { (n.c || []).forEach(k => { if (k.m && (k.m.role === 'marker' || k.m.role === 'self') && SiddurCore.evaluate(k.m.atoms, sdCtx) === 'on') inl.push(k.m.atoms); if (k.t === 'tag') walk(k); }); })(tree);
+        const note = inl.length ? sdErrNote(inl[0], SiddurCore.plain(tree)) : '';
+        if (!note) return el;
+        const wrap = sdEl('div', 'sd-segbox');
+        wrap.appendChild(el);
+        wrap.appendChild(sdNoteEl(note));
+        return wrap;
+    }
+    const wrap = sdEl('div', 'sd-segbox');
+    let cur = null;
+    const flush = () => { if (cur && cur.textContent.trim()) wrap.appendChild(cur); cur = null; };
+    tree.c.forEach(k => {
+        const v = k.m && block[k.m.id];
+        if (!v) { if (!cur) cur = newP(); sdRenderNodes([k], cur); return; }
+        if (k.m.role !== 'marker' && k.m.role !== 'self') return;   // le corps est rendu avec son marqueur
+        flush();
+        const bodyText = SiddurCore.plain(v.bodies);
+        wrap.appendChild(sdVarBlock(v.m.atoms, '', bodyText, host => {
+            const p = newP();
+            // un corps en <small> est rendu à taille normale : c'est le texte à dire
+            const flat = (list) => list.forEach(b => { if (b.t === 'tag' && b.n === 'small') flat(b.c); else sdRenderNodes([b], p, true); });
+            flat(v.bodies);
+            host.appendChild(p);
+        }));
+    });
+    flush();
+    return wrap;
+}
+
+// --- Repères de prière (refonte, étape 3) ------------------------------------------------------------------------------------------
+// Dans la Amida : le nom de chaque bénédiction au-dessus d'elle, la traduction de sa conclusion après elle (« [… bouclier d'Avraham.] »),
+// le signe des inclinaisons, et le mot à mot du début. Partout : le Nom divin écrit יְהֹוָה avec « אדני » au-dessus (réglage), comme dans le
+// Maguen Avot ; la vocalisation de kavana de la source (יַהַוַהַ…) reste dans l'infobulle et revient avec le réglage « comme la source ».
+// Repérage par les premiers mots (sans voyelles) de chaque segment. Traductions et noms écrits pour l'application : **à relire**.
+const SD_BERAKHOT = [
+    { id: 'avot', he: 'ברכת אבות', fr: 'Les Patriarches', start: /^ברוך אתה .*אלהינו ואלהי אבותינו/, end: /מגן אברהם/, hat: 'bouclier d\'Avraham' },
+    { id: 'gevourot', he: 'ברכת גבורות', fr: 'La puissance divine', start: /^אתה גבור/, end: /מחיה המתים/, hat: 'qui ressuscite les morts' },
+    { id: 'kedoucha', he: 'ברכת הקדושה', fr: 'La sainteté du Nom', start: /^אתה קדוש/, end: /האל הקדוש|המלך הקדוש/, hat: 'le D. qui est Saint', hatAseret: 'le Roi qui est Saint' },
+    { id: 'bina', he: 'ברכת הדעת', fr: 'L\'intelligence', start: /^אתה חונן/, end: /חונן הדעת/, hat: 'qui gratifie d\'intelligence' },
+    { id: 'techouva', he: 'ברכת התשובה', fr: 'Le retour', start: /^השיבנו/, end: /הרוצה בתשובה/, hat: 'qui veut la pénitence' },
+    { id: 'selikha', he: 'ברכת הסליחה', fr: 'Le pardon', start: /^סלח לנו/, end: /המרבה לסל/, hat: 'qui multiplie Son pardon' },
+    { id: 'gueoula', he: 'ברכת הגאולה', fr: 'La délivrance', start: /^ראה נא/, end: /גואל ישראל/, hat: 'qui sauve Israël' },
+    { id: 'refoua', he: 'ברכת הרפואה', fr: 'La guérison', start: /^רפאנו/, end: /רופא חולי/, hat: 'qui guérit les malades de Son peuple Israël' },
+    { id: 'chanim', he: 'ברכת השנים', fr: 'Les récoltes de l\'année', start: /^(ברכנו|ברך עלינו)/, end: /מברך השנים/, hat: 'qui bénit les années' },
+    { id: 'kibouts', he: 'ברכת קבוץ גלויות', fr: 'Le rassemblement des exilés', start: /^תקע בשופר/, end: /מקבץ נדחי/, hat: 'qui rassemble les exilés de Son peuple Israël' },
+    { id: 'din', he: 'ברכת השבת המשפט', fr: 'La justice', start: /^השיבה שופטינו/, end: /אוהב צדקה ומשפט|המלך המשפט/, hat: 'Roi qui aime charité et justice', hatAseret: 'le Roi de la justice' },
+    { id: 'minim', he: 'ברכת המינים', fr: 'Contre les calomniateurs', start: /^ולמלשינים|^למינים/, end: /שובר אויבים/, hat: 'qui brise les ennemis et soumet les scélérats' },
+    { id: 'tsadikim', he: 'ברכת הצדיקים', fr: 'Les justes', start: /^על הצדיקים/, end: /ומבטח לצדיקים/, hat: 'appui et abri pour les justes' },
+    { id: 'yerouchalayim', he: 'ברכת בנין ירושלים', fr: 'Jérusalem', start: /^תשכון בתוך ירושלים|^ולירושלים/, end: /בונה ירושלים|מנחם ציון/, hat: 'qui construit Jérusalem', hatTishaBav: 'qui console Sion et réédifie Jérusalem' },
+    { id: 'david', he: 'ברכת מלכות בית דוד', fr: 'Le règne de David', start: /^את צמח דוד/, end: /קרן ישועה/, hat: 'qui fait croître la corne du salut' },
+    { id: 'tefila', he: 'ברכת קבלת התפלה', fr: 'L\'écoute de la prière', start: /^שמע קולנו/, end: /שומע תפלה/, hat: 'qui écoute la prière' },
+    { id: 'avoda', he: 'ברכת העבודה', fr: 'Le service divin', start: /^רצה /, end: /שכינתו לציון/, hat: 'qui ramène Sa présence divine à Tsion' },
+    { id: 'hodaa', he: 'ברכת ההודאה', fr: 'La reconnaissance', start: /^מודים אנחנו/, end: /הטוב שמך/, hat: 'dont le Nom est bon et à Toi il convient de rendre grâce' },
+    { id: 'chalom', he: 'ברכת השלום', fr: 'La paix', start: /^שים שלום/, end: /עמו ישראל בשלום/, hat: 'qui bénit Son peuple Israël par la paix. Amen' },
+    { id: 'netsor', he: 'אלהי נצור', fr: 'Prière personnelle', start: /^יהיו לרצון|^אלהי נצור/ }
+];
+function sdIsAmida(id) { return /amida|moussaf/.test(id); }
+function sdBare(tree) { return SiddurCore.stripNiqqud(SiddurCore.plain(tree)).replace(/[,.:;־\-–]/g, ' ').replace(/\s+/g, ' ').trim(); }
+function sdBerakhaStart(bare) { return SD_BERAKHOT.find(b => b.start.test(bare)) || null; }
+
+// Les inclinaisons (usage séfarade) : au début et à la conclusion de la 1re bénédiction, et de la bénédiction de reconnaissance (Modim).
+// Le signe est un nœud { t: 'text', v: '', k: 'bow' } glissé dans l'arbre avant le mot (le texte, lui, n'est pas modifié).
+function sdWordAt(str, word, last) {
+    let bare = '';
+    const map = [];
+    for (let i = 0; i < str.length; i++) if (!/[֑-ׇ]/.test(str[i])) { map.push(i); bare += str[i]; }
+    const re = new RegExp('(^|[^א-ת])(' + word + ')(?![א-ת])', 'g');
+    let m, at = -1;
+    while ((m = re.exec(bare))) { at = m.index + m[1].length; if (!last) break; }
+    return at < 0 ? -1 : map[at];
+}
+function sdInsertBow(tree, word, last) {
+    const spots = [];
+    (function walk(node) { (node.c || []).forEach((k, idx) => { if (k.t === 'text' && !k.k) spots.push({ list: node.c, k }); else if (k.t === 'tag') walk(k); }); })(tree);
+    const order = last ? spots.slice().reverse() : spots;
+    for (const sp of order) {
+        const at = sdWordAt(sp.k.v, word, last);
+        if (at < 0) continue;
+        const idx = sp.list.indexOf(sp.k);
+        sp.list.splice(idx, 1, { t: 'text', v: sp.k.v.slice(0, at) }, { t: 'text', v: '', k: 'bow' }, { t: 'text', v: sp.k.v.slice(at) });
+        return true;
+    }
+    return false;
+}
+function sdAddBows(tree, bare) {
+    let n = 0;
+    if (/^ברוך אתה .*אלהינו ואלהי אבותינו/.test(bare)) n += sdInsertBow(tree, 'ברוך', false);
+    if (/מגן אברהם/.test(bare) && /^ברוך אתה|^מלך עוזר/.test(bare)) n += sdInsertBow(tree, 'ברוך', true);
+    if (/^מודים אנחנו/.test(bare)) n += sdInsertBow(tree, 'מודים', false);
+    if (/הטוב שמך/.test(bare)) n += sdInsertBow(tree, 'ברוך', true);
+    return n;
+}
+
+// Le Nom divin : יהוה (toutes vocalisations, avec ou sans préfixe ו ב ל כ מ ש) et la graphie de kavana יוהוווהו.
+const SD_NQ = '[֑-ׇ]*';
+const SD_NAME_RE = new RegExp('(^|[^א-ת֑-ׇ])([ובלכמש]' + SD_NQ + ')?(' + ['י', 'ה', 'ו', 'ה'].join(SD_NQ) + SD_NQ + '|' + ['י', 'ו', 'ה', 'ו', 'ו', 'ו', 'ה', 'ו'].join(SD_NQ) + SD_NQ + ')(?![א-ת])', 'g');
+function sdMarkNames(node) {
+    if (sdPrefs.name === 'source' || !node.c) return;
+    const out = [];
+    node.c.forEach(k => {
+        if (k.t === 'tag') { sdMarkNames(k); out.push(k); return; }
+        if (k.k || k.t !== 'text') { out.push(k); return; }
+        let last = 0, m;
+        SD_NAME_RE.lastIndex = 0;
+        const parts = [];
+        while ((m = SD_NAME_RE.exec(k.v))) {
+            const start = m.index + m[1].length;
+            const nameAt = start + (m[2] ? m[2].length : 0);
+            parts.push({ t: 'text', v: k.v.slice(last, nameAt), m: k.m });
+            parts.push({ t: 'text', v: m[3], k: 'name', pre: !!m[2], m: k.m });
+            last = nameAt + m[3].length;
+        }
+        if (!parts.length) { out.push(k); return; }
+        parts.push({ t: 'text', v: k.v.slice(last), m: k.m });
+        parts.forEach(x => { if (x.v || x.k) out.push(x); });
+    });
+    node.c = out;
+}
+const SD_BOW_SVG = '<svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M11 2H7A4 4 0 0 0 3.2 5.8V10.6M1.3 8.7l1.9 2.1 1.9-2.1" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+function sdSpecialNode(node) {
+    if (node.k === 'bow') {
+        const b = sdEl('span', 'sd-bow');
+        b.setAttribute('role', 'img');
+        b.setAttribute('aria-label', 'On s\'incline');
+        b.title = 'On s\'incline';
+        b.innerHTML = SD_BOW_SVG;      // dessin fixe de l'application, pas une donnée
+        return b;
+    }
+    const el = sdEl('span', 'sd-name');
+    el.title = node.v === 'יְהֹוָה' || node.v === 'יְהוָֹה' ? 'Nom divin : on prononce « Adonaï »' : 'Nom divin : on prononce « Adonaï » (dans la source : ' + node.v + ')';
+    el.appendChild(sdTextNode(node.pre ? 'יהֹוָה' : 'יְהֹוָה'));
+    return el;
+}
+
+// Le mot à mot (Maguen Avot) : chaque mot sur sa traduction, en lignes justifiées. Les mots sont repérés sans voyelles.
+const SD_GLOSS = {
+    'אדני': 'Éternel', 'שפתי': 'mes lèvres', 'תפתח': 'Tu ouvriras', 'ופי': 'et ma bouche', 'יגיד': 'dira', 'תהלתך': 'Ta louange',
+    'ברוך': 'Source de bénédictions', 'אתה': 'Tu es', 'יהוה': 'Éternel', 'אלהינו': 'notre D.', 'ואלהי': 'et le D.', 'אבותינו': 'de nos pères',
+    'אלהי': 'le D.', 'אברהם': 'd\'Avraham', 'יצחק': 'd\'Yts\'hak', 'יעקב': 'de Yaâkov', 'האל': 'le D.', 'הגדול': 'grand', 'הגבור': 'puissant',
+    'והנורא': 'et redoutable', 'אל': 'D.', 'עליון': 'Suprême', 'גומל': 'qui prodigue', 'חסדים': 'des bontés', 'טובים': 'bienfaisantes',
+    'קונה': 'possède', 'הכל': 'tout', 'וזוכר': 'et se rappelle', 'חסדי': 'des bontés', 'אבות': 'des Pères', 'ומביא': 'et amène', 'גואל': 'un sauveur',
+    'לבני': 'aux enfants', 'בניהם': 'de leurs enfants', 'למען': 'en faveur', 'שמו': 'de Son Nom', 'באהבה': 'avec amour',
+    'מלך': 'Roi', 'עוזר': 'qui aide', 'ומושיע': 'et sauve', 'ומגן': 'et protège', 'מגן': 'bouclier',
+    'זכרנו': 'souviens-Toi de nous', 'לחיים': 'pour la vie', 'חפץ': 'qui désire', 'בחיים': 'la vie', 'כתבנו': 'inscris-nous', 'בספר': 'dans le livre',
+    'חיים': 'de vie', 'למענך': 'pour Toi', 'אלהים': 'D.'
+};
+function sdGloss(word) { return SD_GLOSS[SiddurCore.stripNiqqud(word).replace(/[^א-ת]/g, '')] || ''; }
+function sdJuxta(p) {
+    const tokens = [];
+    let bow = null;
+    (function walk(parent, bold) {
+        Array.prototype.slice.call(parent.childNodes).forEach(n => {
+            if (n.nodeType === 3) {
+                const orig = sdOrigText.has(n) ? sdOrigText.get(n) : n.nodeValue;
+                orig.split(/\s+/).filter(w => w.trim()).forEach(w => {
+                    // une ponctuation seule (« , » après un mot en gras ou le Nom divin) se colle au mot d'avant
+                    const prev = tokens[tokens.length - 1];
+                    if (!/[\u05D0-\u05EA]/.test(w) && prev && !/^\s/.test(orig)) { (prev.tail = (prev.tail || '') + w); return; }
+                    tokens.push({ w, bold, bow }); bow = null;
+                });
+            } else if (n.classList && n.classList.contains('sd-bow')) bow = n;
+            else if (n.classList && n.classList.contains('sd-name')) { tokens.push({ el: n, bold, bow, gloss: 'Éternel' }); bow = null; }
+            else if (n.tagName === 'STRONG') walk(n, true);
+            else { tokens.push({ el: n, bold, bow, gloss: '' }); bow = null; }
+        });
+    })(p, false);
+    const box = sdEl('div', 'sd-jx');
+    box.lang = 'he'; box.dir = 'rtl';
+    tokens.forEach(tk => {
+        const w = sdEl('span', 'sd-jx-w');
+        const h = sdEl('span', 'sd-jx-h');
+        if (tk.bow) h.appendChild(tk.bow);
+        const inner = tk.bold ? sdEl('strong') : h;
+        if (tk.el) inner.appendChild(tk.el); else inner.appendChild(sdTextNode(tk.w));
+        if (tk.bold) h.appendChild(inner);
+        if (tk.tail) h.appendChild(document.createTextNode(tk.tail));
+        const g = sdEl('span', 'sd-jx-f', tk.el ? tk.gloss : sdGloss(tk.w));
+        g.lang = 'fr';
+        w.appendChild(h);
+        w.appendChild(g);
+        box.appendChild(w);
+    });
+    p.replaceWith(box);
+}
+
+function sdAfterColon(nodes) {
+    let found = false;
+    const walk = (list) => {
+        const out = [];
+        list.forEach(k => {
+            if (found) { out.push(k); return; }
+            if (k.t === 'text' && !k.k) {
+                const i = k.v.indexOf(':');
+                if (i >= 0) { found = true; const rest = k.v.slice(i + 1); if (rest.trim()) out.push(Object.assign({}, k, { v: rest, m: undefined })); }
+                return;
+            }
+            if (k.t === 'tag') { const c = walk(k.c); if (found && c.length) out.push(Object.assign({}, k, { c, m: undefined })); }
+        });
+        return out;
+    };
+    const out = walk(nodes.map(k => k.m && k.m.role === 'self' ? Object.assign({}, k, { m: undefined }) : k));
+    return { nodes: out, found };
+}
+// Une variante enveloppée dans une seule balise avec sa consigne (« <small><small>בתשעה באב מוסיפים:</small> <small>נַחֵם…</small></small> ») :
+// { m, body } si elle est assez longue pour un bloc, sinon null (les variantes d'un mot restent dans la ligne).
+function sdSelfBlock(tree) {
+    const kids = tree.c.filter(k => !sdBlank(k));
+    if (kids.length !== 1 || !kids[0].m || kids[0].m.role !== 'self' || kids[0].t !== 'tag') return null;
+    const inner = kids[0].c.filter(k => !sdBlank(k));
+    const body = inner[0] && inner[0].t === 'tag' && inner[0].n === 'small' && SiddurCore.conditionOf(SiddurCore.plain(inner[0])) ? inner.slice(1) : null;
+    if (!body || SiddurCore.stripNiqqud(SiddurCore.plain(body)).trim().length < 25) return null;
+    return { m: kids[0].m, body };
+}
+
+// Vidouï de Cha'harit : le Kaddich des autres jours, et les supplications propres au lundi et au jeudi (« אל מלך… » jusqu'au Kaddich final).
+// Les consignes du livre sont négatives ou couvrent plusieurs segments : on les lit ici, section par section, d'après le jour de la semaine.
+// usual : le texte de tous les jours ; le jour où il se dit, il reste dans le texte, sans bloc doré (seulement replié le jour où il ne se dit pas).
+// Les consignes du livre que les règles générales ne savent pas lire (négatives, ou sans « : ») : des règles par section, d'après le jour.
+// Chaque règle : la section, la consigne d'en-tête (sans voyelles), le nom du bloc, l'état du jour, et jusqu'où va le bloc.
+const SD_DAY_RULES = [
+    // Vidouï de Cha'harit : le Kaddich des autres jours, et les supplications du lundi et du jeudi (« אל מלך… » jusqu'au Kaddich final).
+    { id: 'chacharit-vidoui', head: /^בימים שני וחמישי אין אומרים/, usual: true, label: 'Kaddich des autres jours (ni lundi ni jeudi)', on: c => !(c.weekday === 1 || c.weekday === 4) },
+    { id: 'chacharit-vidoui', head: /^בימי שני וחמישי מוסיפים/, label: 'Lundi et jeudi : supplications ajoutées', on: c => c.weekday === 1 || c.weekday === 4, toEnd: true },
+    // Fin du Vidouï de Min'ha : Lamnatséa'h, sauf la veille de Chabbat ; « Adonaï malakh » la veille de Chabbat ; « Téfila léani » un jour de jeûne public.
+    { id: 'minha-vidoui', head: /^בערב שבת לא אומרים/, usual: true, label: 'Lamnatséa\'h (sauf la veille de Chabbat)', on: c => c.weekday !== 5 },
+    { id: 'minha-vidoui', head: /^בערב שבת אומרים/, label: 'Veille de Chabbat : « Adonaï malakh »', on: c => c.weekday === 5 },
+    { id: 'minha-vidoui', head: /^בתענית ציבור אומרים/, label: 'Jeûne public : « Téfila léani »', on: c => !!c.flags.fastPublic },
+    // Arvit : « Ata 'honantanou » à la sortie de Chabbat et de fête ; Kaddich Titqabal les autres soirs ; ajouts de la sortie de Chabbat.
+    { id: 'arvit-amida', head: /^במוצאי שבת ויום טוב מוסיפים/, label: 'Sortie de Chabbat ou de fête : « Ata \'honantanou »', on: c => c.weekday === 0 || sdPrevYomTov(c) },
+    { id: 'arvit-amida', head: /^בכל לילות החול מלבד מוצאי שבת/, usual: true, label: 'Kaddich Titqabal (sauf à la sortie de Chabbat)', on: c => c.weekday !== 0 },
+    { id: 'arvit-amida', head: /^במוצאי שבת/, label: 'Sortie de Chabbat : Vihi noam, Véata kadoch…', on: c => c.weekday === 0, until: /^שיר למעלות/ },
+    // Birkhot hacha'har : pas de « chéassa li kol tsorki » le 9 Av et à Kippour.
+    { id: 'birkhot-hachahar', head: /^בתשעה באב וביום הכיפורים/, usual: true, label: '« Chéassa li kol tsorki » (sauf 9 Av et Kippour)', on: c => !c.flags.tishaBav && !(c.hebrew.month === 'Tishri' && c.hebrew.day === 10) },
+    // Les passages qui ne se disent que les jours avec Tahanoun, ou seulement les jours sans.
+    { id: 'chacharit-achre', head: /^ביום שאין אומרים בו תחנון/, usual: true, label: 'Lamnatséa\'h ya\'ankha (jours avec Tahanoun)', on: c => !c.flags.noTachanun },
+    { id: 'chacharit-beit-yaakov', head: /^בימים שאין אומרים תחנון/, usual: true, label: 'Téfila lédavid (jours avec Tahanoun)', on: c => !c.flags.noTachanun },
+    { id: 'chacharit-tora', head: /^ביום שיש בו תחנון/, usual: true, label: 'Jours avec Tahanoun : « El érekh apayim »', on: c => !c.flags.noTachanun, until: /^ביום שאין בו תחנון/ },
+    { id: 'chacharit-tora', head: /^ביום שאין בו תחנון/, label: 'Jours sans Tahanoun : « Yehi Adonaï élohénou imanou »', on: c => !!c.flags.noTachanun },
+    { id: /^(chacharit|minha)-amida$/, head: /^בימים שאין בהם תחנון יש אומרים/, label: 'Jours sans Tahanoun : « Yehi chem » (selon l\'usage)', on: c => !!c.flags.noTachanun },
+    { id: 'tikoun-lea', head: /^בימים שאין אומרים תחנון לא יאמר מזמור/, usual: true, label: 'Lamnatséa\'h ya\'ankha (jours avec Tahanoun)', on: c => !c.flags.noTachanun },
+    // Birkat hamazon ashkénaze et 'Habad (Michna Beroura 1, 11, d'après le Chelah) : « Al naharot Bavel » les jours où l'on dit Tahanoun,
+    // « Chir hamaalot » les jours sans Tahanoun (Chabbat, fêtes, Roch 'Hodech, Hanouka…). Le rite séfarade dit le psaume 67 tous les jours.
+    { id: /^birkat-hamazon-(ashkenaze|habad)$/, head: /^בחול קודם ברכת המזון/, label: 'Jours avec Tahanoun : « Al naharot Bavel »', on: c => !sdNoTachanun(c) },
+    { id: /^birkat-hamazon-(ashkenaze|habad)$/, head: /^בשבת קודם ברכת המזון/, label: 'Jours sans Tahanoun (Chabbat, fêtes, Roch \'Hodech…) : « Chir hamaalot »', on: c => sdNoTachanun(c) },
+    { id: 'tikoun-lea', head: /^בימים שאין אומרים תחנון לא יאמר פסוק/, usual: true, label: 'Verset « Ad ana bekhiya » (jours avec Tahanoun)', on: c => !c.flags.noTachanun }
+];
+function sdNoTachanun(c) { return !!(c.flags.noTachanun || c.flags.shabbat || c.flags.yomTov); }
+function sdPrevYomTov(c) { try { return !!SiddurCore.contextFor(c.fixed - 1, c.israel).flags.yomTov; } catch (e) { return false; } }
+function sdMonThuBlock(sectionId, bares, i) {
+    const r = SD_DAY_RULES.find(x => (x.id instanceof RegExp ? x.id.test(sectionId) : x.id === sectionId) && x.head.test(bares[i]));
+    if (!r || i + 1 >= bares.length) return null;
+    if (r.usual && r.on(sdCtx)) return null;
+    let to = i + 1;
+    if (r.toEnd) to = bares.length - 1;
+    else if (r.until) { while (to + 1 < bares.length && !r.until.test(bares[to + 1])) to++; }
+    return { from: i + 1, to, label: r.label, state: r.on(sdCtx) ? 'on' : 'off' };
+}
+
+// Ce qui se dit avec un minyan (Kaddich, Qédoucha) : dans un bloc gris, marqué « Avec minyan ».
+const SD_KADDICH_START = /^(.{0,45} )?יתגדל ויתקדש/;
+const SD_KADDICH_NEXT = /^(תתקבל|יהא שלמא|על ישראל ועל רבנן|עושה שלום)/;
+function sdMinyanBox(name) {
+    const b = sdEl('div', 'sd-qed sd-minyan');
+    const tag = sdEl('p', 'sd-minyan-tag');
+    tag.appendChild(sdEl('span', 'sd-chip is-minyan', 'Avec minyan'));
+    if (name) tag.appendChild(sdEl('span', 'sd-minyan-name', name));
+    b.appendChild(tag);
+    return b;
+}
+// Les autres passages qui demandent un minyan : Barékhou (et la réponse), Modim dérabbanan et la Birkat Kohanim de la répétition.
+// { from, to, name, atoms? } ; atoms : la Birkat Kohanim de Min'ha, qui ne se dit qu'un jour de jeûne public.
+function sdMinyanRange(bares, i) {
+    const b = bares[i];
+    if (/ברכו את יהוה המברך$/.test(b)) {
+        let j = i;
+        while (j + 1 < bares.length && /^\S+( \S+)? ברוך יהוה המברך לעולם ועד/.test(bares[j + 1])) j++;
+        return { from: i, to: j, name: 'Barékhou' };
+    }
+    if (/^מודים דרבנן/.test(b)) return { from: i, to: i, name: 'Modim dérabbanan' };
+    const bk = /^ברכת כהנים ?(בחזרת|בתענית)/.test(b);
+    if (bk) {
+        let j = i;
+        while (j + 1 < bares.length && j - i < 25 && !/^שים שלום/.test(bares[j + 1])) j++;
+        if (/^ברכת כהנים ?בתענית/.test(b)) return { from: i + 1, to: j, name: 'Birkat Kohanim', atoms: ['fastPublic'], label: 'Birkat Kohanim (jeûne public, Min\'ha proche du coucher du soleil)' };
+        return { from: i, to: j, name: 'Birkat Kohanim' };
+    }
+    return null;
+}
+// Le dernier segment du Kaddich qui commence en i (ses paragraphes suivants : Titqabal, Yehé chlama, Al Israël…), ou -1.
+function sdKaddichEnd(bares, i, byHeader) {
+    if (!SD_KADDICH_START.test(bares[i])) return -1;
+    let j = i;
+    while (j + 1 < bares.length && !byHeader[j + 1] && SD_KADDICH_NEXT.test(bares[j + 1])) j++;
+    return j;
+}
+// Des segments dans un hôte (bloc de variante), les Kaddich en bloc gris.
+function sdAppendSegs(host, from, to, bares, byHeader, seg) {
+    for (let k = from; k <= to; k++) {
+        const e = sdKaddichEnd(bares, k, byHeader);
+        if (e < 0) { host.appendChild(seg(k)); continue; }
+        const box = sdMinyanBox('Kaddich');
+        const last = Math.min(e, to);
+        for (let m = k; m <= last; m++) box.appendChild(seg(m));
+        host.appendChild(box);
+        k = last;
+    }
 }
 
 // Le paratexte d'un chant : qui l'a écrit, dans quel contexte, ce qu'il veut dire ; et le bouton de la traduction française.
@@ -1087,45 +1965,166 @@ function sdRenderSection(section) {
     if (section.about) box.appendChild(sdAboutCard(section.about));
     const counter = { n: 1 };
     const trees = section.segments.map(html => SiddurCore.analyseSegment(html, counter));
+    const amida = sdIsAmida(section.id);
+    const bares = trees.map(sdBare);
+    let bows = 0;
+    trees.forEach((tr, k) => { if (amida) bows += sdAddBows(tr, bares[k]); sdMarkNames(tr); });
     const groups = SiddurCore.groups(section.segments);
     const byHeader = {};
     groups.forEach(g => { byHeader[g.header] = g; });
     let omerAt = -1;
     if (section.id === 'omer' && sdCtx.omer > 0) omerAt = SiddurCore.omerSegment(section.segments, sdCtx.omer);
     if (section.id === 'omer' && sdCtx.omer > 0) box.appendChild(sdEl('p', 'sd-omer-note', t('tools.sd_omer_today', { n: sdCtx.omer })));
-    const frT = sdPrefs.fr ? section.fr_t : null;
-    if (sdPrefs.fr && !frT) box.appendChild(sdEl('p', 'sd-fr-missing', t('tools.sd_fr_missing')));
+    // Les traductions servent toujours aux consignes ; sous chaque segment, seulement si on les a demandées.
+    const frAll = section.fr_t || null;
+    const frOf = (i) => { const tr = frAll && frAll[i]; return tr && tr[0] === SiddurCore.fingerprint(section.segments[i]) ? tr[1] : null; };
+    if (sdPrefs.fr && !frAll) box.appendChild(sdEl('p', 'sd-fr-missing', t('tools.sd_fr_missing')));
     const seg = (i) => {
-        const el = sdRenderSegment(trees[i], i);
-        if (i === omerAt) el.classList.add('sd-omer-today');
-        const tr = frT && frT[i];
-        if (!tr || tr[0] !== SiddurCore.fingerprint(section.segments[i])) {
-            return el;
+        const fr = frOf(i);
+        let el = sdRenderSegment(trees[i], i, fr);
+        if (amida && sdPrefs.jx && /^(אדני שפתי|ברוך אתה .*אלהינו ואלהי אבותינו)/.test(bares[i])) {
+            if (el.matches('.sd-seg')) { const holder = sdEl('div', 'sd-segbox'); holder.appendChild(el); el = holder; }
+            Array.prototype.slice.call(el.querySelectorAll('.sd-seg')).forEach(sdJuxta);
         }
+        if (i === omerAt) el.classList.add('sd-omer-today');
+        if (!sdPrefs.fr || !fr || el.classList.contains('sd-rub')) return el;
         const wrap = document.createDocumentFragment();
         wrap.appendChild(el);
-        const fr = sdEl('p', 'sd-fr-seg', tr[1]);
-        fr.lang = 'fr';
-        wrap.appendChild(fr);
+        const frEl = sdEl('p', 'sd-fr-seg', fr);
+        frEl.lang = 'fr';
+        wrap.appendChild(frEl);
         return wrap;
     };
+    // Amida : le nom de la bénédiction avant elle, la traduction de sa conclusion après le segment qui la contient.
+    const seen = {};
+    // La Qédoucha de la répétition : dans un bloc gris, de son titre jusqu'à la bénédiction suivante.
+    let out = box;
+    let open = null;
+    const headFor = (from, to) => {
+        if (!amida) return;
+        for (let k = from; k <= to; k++) {
+            const b = sdBerakhaStart(bares[k]);
+            if (!b || seen[b.id]) continue;
+            seen[b.id] = true;
+            out = box;
+            if (b.id === 'avot' && bows) {
+                const lg = sdEl('p', 'sd-rub sd-bow-legend');
+                lg.lang = 'fr';
+                const ic = sdSpecialNode({ k: 'bow' });
+                lg.appendChild(ic);
+                lg.appendChild(document.createTextNode('On s\'incline au début et à la fin de la première bénédiction, et au début et à la fin de Modim, aux endroits marqués de ce signe ; pas pour les autres bénédictions. Façon de s\'incliner selon les Séfaradim : quand on dit « Baroukh », on se courbe sans fléchir les genoux ; quand on dit « Atta », on baisse la tête ; quand on prononce le Nom divin, on se redresse.'));
+                out.appendChild(lg);
+            }
+            const h = sdEl('p', 'sd-bk');
+            h.dataset.bk = b.id;
+            h.appendChild(sdEl('span', 'sd-bk-fr', b.fr));
+            const he = sdEl('span', 'sd-bk-he', b.he);
+            he.lang = 'he'; he.dir = 'rtl';
+            h.appendChild(he);
+            out.appendChild(h);
+            open = b.hat ? b : null;
+            return;
+        }
+    };
+    const hatAfter = (from, to, deferIfNextGroup) => {
+        if (!open || sdPrefs.fr) return;
+        let hit = false;
+        for (let k = from; k <= to; k++) if (/ברוך אתה/.test(bares[k]) && open.end.test(bares[k])) hit = true;
+        if (!hit || deferIfNextGroup) return;
+        const on = (atom) => SiddurCore.evaluate([atom], sdCtx) === 'on';
+        const hat = open.hatAseret && on('aseret') ? open.hatAseret : open.hatTishaBav && on('tishaBav') ? open.hatTishaBav : open.hat;
+        const p = sdEl('p', 'sd-hat', '[… ' + hat + '.]');
+        p.lang = 'fr';
+        out.appendChild(p);
+        open = null;
+    };
+    // Le psaume du jour : celui du jour (et ceux des jours particuliers) en bloc « Aujourd'hui », les autres repliés.
+    const psalmDay = /chir-chel-yom/.test(section.id);
     let i = 0;
     while (i < trees.length) {
-        const g = byHeader[i];
-        if (!g) { box.appendChild(seg(i)); i++; continue; }
-        const state = SiddurCore.evaluate(g.atoms, sdCtx);
-        const label = sdAtomsLabel(g.atoms);
-        let host;
-        if (state === 'off' && !sdPrefs.all) {
-            host = sdEl('details', 'sd-group is-off');
-            host.appendChild(sdEl('summary', '', t('tools.sd_group_off', { what: label })));
-        } else {
-            host = sdEl(state === 'on' ? 'details' : 'div', 'sd-group ' + (state === 'on' ? 'is-on' : 'is-unknown'));
-            if (state === 'on') { host.open = true; host.appendChild(sdEl('summary', 'sd-group-badge', t('tools.sd_group_on', { what: label }))); }
-            else if (state === 'unknown') host.appendChild(sdEl('p', 'sd-group-badge', t('tools.sd_group_unknown', { what: label })));
+        if (amida && out === box && /^קדושה/.test(bares[i])) { out = sdMinyanBox('Qédoucha'); box.appendChild(out); }
+        const ps = psalmDay && i + 1 < trees.length ? SiddurCore.dayPsalm(SiddurCore.plain(trees[i]), sdCtx) : null;
+        if (ps) {
+            const fr = frOf(i);
+            const label = fr ? fr.split(/\s*:/)[0].replace(/,?\s*on dit$/, '').trim() : SiddurCore.plain(trees[i]).trim();
+            const h = i;
+            // « היום יום רביעי בשבת קודש… » se récite : on le garde en hébreu, comme texte de prière ; le reste de l'en-tête est le nom du bloc.
+            const head = SiddurCore.plain(trees[h]).replace(/\s+/g, ' ').trim();
+            const at = sdWordAt(head, 'היום', false);
+            out.appendChild(sdVarBlock([], label, SiddurCore.plain(trees[h + 1]), host => {
+                if (at >= 0) { const p = sdEl('p', 'sd-seg'); p.lang = 'he'; p.dir = 'rtl'; p.appendChild(sdTextNode(head.slice(at))); host.appendChild(p); }
+                host.appendChild(seg(h + 1));
+            }, ps === 'unknown' ? 'fold-unknown' : ps));
+            i += 2;
+            continue;
         }
-        for (let k = g.header; k <= g.to; k++) host.appendChild(seg(k));
-        box.appendChild(host);
+        // Variante enveloppée (9 Av : « Na'hem ») : un bloc, avec sa conclusion propre (« … מְנַחֵם צִיּוֹן ») ; ce jour-là, la conclusion
+        // ordinaire (« … בּוֹנֵה יְרוּשָׁלָיִם ») est repliée.
+        const selfB = sdSelfBlock(trees[i]);
+        if (selfB) {
+            const to = i + 1 < trees.length && /^ברוך אתה .*מנחם ציון/.test(bares[i + 1]) ? i + 1 : i;
+            const from = i;
+            headFor(i, i);
+            const bodyText = SiddurCore.plain(selfB.body);
+            out.appendChild(sdVarBlock(selfB.m.atoms, '', bodyText, host => {
+                const p = sdEl('p', 'sd-seg'); p.lang = 'he'; p.dir = 'rtl';
+                selfB.body.forEach(b => { if (b.t === 'tag' && b.n === 'small') sdRenderNodes(b.c, p); else sdRenderNodes([b], p, true); });
+                host.appendChild(p);
+                for (let k = from + 1; k <= to; k++) host.appendChild(seg(k));
+            }));
+            if (to > from && to + 1 < trees.length && /^ברוך אתה .*בונה ירושלים/.test(bares[to + 1]) && SiddurCore.evaluate(selfB.m.atoms, sdCtx) === 'on') {
+                const k = to + 1;
+                out.appendChild(sdVarBlock([], 'Conclusion des autres jours', SiddurCore.plain(trees[k]), host => host.appendChild(seg(k)), 'off'));
+                i = k + 1;
+                continue;
+            }
+            i = to + 1;
+            continue;
+        }
+        const mr = out === box ? sdMinyanRange(bares, i) : null;
+        if (mr) {
+            const fill = host => { const mb = sdMinyanBox(mr.name); for (let k = mr.from; k <= mr.to; k++) mb.appendChild(seg(k)); host.appendChild(mb); };
+            if (mr.atoms) out.appendChild(sdVarBlock(mr.atoms, mr.label, SiddurCore.plain(trees.slice(mr.from, mr.to + 1)), fill));
+            else fill(out);
+            i = mr.to + 1;
+            continue;
+        }
+        const kEnd = !byHeader[i] && out === box ? sdKaddichEnd(bares, i, byHeader) : -1;
+        if (kEnd >= 0) { const kb = sdMinyanBox('Kaddich'); for (let k = i; k <= kEnd; k++) kb.appendChild(seg(k)); out.appendChild(kb); i = kEnd + 1; continue; }
+        const mt = sdMonThuBlock(section.id, bares, i);
+        if (mt) {
+            out.appendChild(sdVarBlock([], mt.label, SiddurCore.plain(trees.slice(mt.from, mt.to + 1)), host => sdAppendSegs(host, mt.from, mt.to, bares, byHeader, seg), mt.state));
+            i = mt.to + 1;
+            continue;
+        }
+        const g = byHeader[i];
+        if (!g) {
+            headFor(i, i); out.appendChild(seg(i)); hatAfter(i, i);
+            if (section.id === 'birkat-hamazon' && /^הרחמן הוא יטע תורתו/.test(bares[i])) out.appendChild(sdGuestBlock());
+            if (section.id === 'chacharit-tora' && /אשר בחר בנו מכל העמים/.test(bares[i])) out.appendChild(sdReadingButton());
+            i++; continue;
+        }
+        headFor(g.from, g.to);
+        // la consigne d'en-tête (« בראש חודש מוסיפים: ») devient le nom du bloc, en français si on l'a
+        const headFr = !sdPrefs.heRub && frOf(g.header);
+        // une consigne longue (plus d'une ligne) : le nom court de la condition suffit sur la ligne repliée
+        const label = headFr && headFr.length <= 60 ? headFr.replace(/[\s:.]+$/, '') : sdCap(sdAtomsLabel(g.atoms));
+        const bodyText = SiddurCore.plain(trees.slice(g.from, g.to + 1));
+        const indFast = g.atoms.indexOf('fastIndividual') !== -1 && SiddurCore.evaluate(g.atoms, sdCtx) === 'unknown';
+        // 'Anénou : deux passages, à distinguer (celui de l'officiant dans la répétition, celui de chacun dans Chéma' kolénou)
+        const anenou = /^עננו/.test(bares[g.from]) && g.atoms.some(x => /fast/.test(x));
+        const name = anenou ? (indFast ? '\'Anénou (jour de jeûne)' : g.atoms.indexOf('fastPublic') !== -1 && g.atoms.length === 1 ? '\'Anénou de l\'officiant (jeûne public)' : label) : label;
+        out.appendChild(sdVarBlock(g.atoms, name, bodyText, host => sdAppendSegs(host, g.from, g.to, bares, byHeader, seg), indFast ? 'fold-ind' : undefined));
+        // 9 Av (Min'ha) : ce jour-là, la conclusion ordinaire qui suit est repliée.
+        if (g.atoms.indexOf('tishaBav') !== -1 && SiddurCore.evaluate(g.atoms, sdCtx) === 'on' && g.to + 1 < trees.length && /^ברוך אתה .*בונה ירושלים/.test(bares[g.to + 1])) {
+            const k = g.to + 1;
+            out.appendChild(sdVarBlock([], 'Conclusion des autres jours', SiddurCore.plain(trees[k]), host => host.appendChild(seg(k)), 'off'));
+            i = k + 1;
+            continue;
+        }
+        // été / hiver de Barekh alénou : deux blocs de suite, la conclusion vient après le second
+        const nextG = byHeader[g.to + 1];
+        hatAfter(g.from, g.to, !!(nextG && sdBerakhaStart(bares[nextG.from]) && open && sdBerakhaStart(bares[nextG.from]).id === open.id));
         i = g.to + 1;
     }
     return box;

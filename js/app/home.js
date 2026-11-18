@@ -187,11 +187,16 @@ function homeRender(keepScroll) {
 }
 
 // --- En-tête et briques communes ---------------------------------------------------------------------------------------------------------
-function homeHeader(content, title, kicker) {
+function homeHeader(content, title, kicker, night) {
     const head = hEl('header', 'home-header');
     const text = hEl('div', 'home-header-text');
     if (kicker) text.appendChild(hEl('div', 'home-kicker', kicker));
     text.appendChild(hEl('h1', 'home-title', title));
+    if (night) {
+        const pill = hEl('div', 'home-night', night);
+        pill.setAttribute('role', 'note');
+        text.appendChild(pill);
+    }
     head.appendChild(text);
     const gear = hButton('settings-btn', () => openSettings());
     gear.textContent = '⚙︎';
@@ -389,6 +394,19 @@ function homeNextZman(day) {
     return null;
 }
 
+// Après le coucher du soleil, le jour civil n'est plus le jour hébraïque : un mot sous la date le dit (le jour hébraïque change à la sortie des étoiles).
+// Entre la chkia et la sortie des étoiles : « 9 Kislev dès 17:49 » ; ensuite, jusqu'à minuit civil : « Nuit du 9 Kislev ».
+function homeNightNote(day) {
+    if (!day.place) return '';
+    const C = HebrewCalendarCore;
+    const z = homeZmanimOf(day, 0);
+    const shkia = ZmanimCore.rounded(z, 'shkia'), tzeit = ZmanimCore.rounded(z, 'tzeit');
+    const name = (fixed) => { const h = C.hebrewFromFixed(fixed); return h.day + ' ' + hcalMonthName(h.year, h.month); };
+    if (day.ctx.fixed > day.fixed) return '☾ Nuit du ' + name(day.ctx.fixed) + (tzeit !== null ? ' · depuis ' + homeTime(day, tzeit) : '');
+    if (shkia !== null && day.now >= shkia && (tzeit === null || day.now < tzeit)) return '☾ Coucher passé · ' + name(day.ctx.fixed + 1) + (tzeit !== null ? ' dès ' + homeTime(day, tzeit) : '');
+    return '';
+}
+
 function homeHero(content, day) {
     const hero = hEl('section', 'home-hero');
     hero.setAttribute('aria-label', 'À cette heure');
@@ -550,7 +568,7 @@ function homeRenderToday(content) {
     const C = HebrewCalendarCore;
     let kicker = '';
     try { kicker = new Intl.DateTimeFormat('fr', { weekday: 'long', day: 'numeric', month: 'long', timeZone: 'UTC' }).format(new Date(Date.UTC(day.civil.year, day.civil.month - 1, day.civil.day))); } catch (e) { kicker = ''; }
-    homeHeader(content, hcalHebrewText(day.ctx.hebrew), kicker);
+    homeHeader(content, hcalHebrewText(day.ctx.hebrew), kicker, homeNightNote(day));
     homeHero(content, day);
 
     const next = day.place ? homeNextZman(day) : null;
