@@ -342,7 +342,6 @@ function benRenderRows() {
         const card = benNode('article', 'tool-result kor-card ben-card');
         card.dataset.row = String(food.id);
         const view = BenedictionsCore.view(food, benState.rite);
-        card.classList.toggle('is-diff', view.diff);
         card.appendChild(benNode('strong', 'kor-situation', food.n));
         if (food.alt && food.alt.length) card.appendChild(benNode('span', 'tool-small', 'Aussi : ' + food.alt.join(', ')));
         if (view.steps) {

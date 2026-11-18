@@ -18262,7 +18262,6 @@ body:has(#screen-recit:not(.hidden))::after {
 .ben-rite { min-height: 40px; padding: 6px 4px; border: 0; border-radius: 10px; background: transparent; font: inherit; font-size: 14px; font-weight: 600; color: var(--text-dark); cursor: pointer; }
 .ben-rite[aria-pressed="true"] { background: var(--surface); box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18); font-weight: 800; }
 .ben-rite-info { margin: 0; }
-.ben-card.is-diff { border-left: 4px solid #d97706; }
 .ben-halakha { margin: 12px 0; padding: 10px 12px; border: 1px solid var(--border-soft); border-radius: 12px; }
 .ben-halakha-title { cursor: pointer; font-weight: 600; font-size: 15px; }
 .ben-halakha-note { margin: 8px 0; font-style: italic; }
