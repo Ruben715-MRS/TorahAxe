@@ -1706,12 +1706,41 @@ function sdSelfBlock(tree) {
 
 // Vidouï de Cha'harit : le Kaddich des autres jours, et les supplications propres au lundi et au jeudi (« אל מלך… » jusqu'au Kaddich final).
 // Les consignes du livre sont négatives ou couvrent plusieurs segments : on les lit ici, section par section, d'après le jour de la semaine.
+// usual : le texte de tous les jours ; le jour où il se dit, il reste dans le texte, sans bloc doré (seulement replié le jour où il ne se dit pas).
+// Les consignes du livre que les règles générales ne savent pas lire (négatives, ou sans « : ») : des règles par section, d'après le jour.
+// Chaque règle : la section, la consigne d'en-tête (sans voyelles), le nom du bloc, l'état du jour, et jusqu'où va le bloc.
+const SD_DAY_RULES = [
+    // Vidouï de Cha'harit : le Kaddich des autres jours, et les supplications du lundi et du jeudi (« אל מלך… » jusqu'au Kaddich final).
+    { id: 'chacharit-vidoui', head: /^בימים שני וחמישי אין אומרים/, usual: true, label: 'Kaddich des autres jours (ni lundi ni jeudi)', on: c => !(c.weekday === 1 || c.weekday === 4) },
+    { id: 'chacharit-vidoui', head: /^בימי שני וחמישי מוסיפים/, label: 'Lundi et jeudi : supplications ajoutées', on: c => c.weekday === 1 || c.weekday === 4, toEnd: true },
+    // Fin du Vidouï de Min'ha : Lamnatséa'h, sauf la veille de Chabbat ; « Adonaï malakh » la veille de Chabbat ; « Téfila léani » un jour de jeûne public.
+    { id: 'minha-vidoui', head: /^בערב שבת לא אומרים/, usual: true, label: 'Lamnatséa\'h (sauf la veille de Chabbat)', on: c => c.weekday !== 5 },
+    { id: 'minha-vidoui', head: /^בערב שבת אומרים/, label: 'Veille de Chabbat : « Adonaï malakh »', on: c => c.weekday === 5 },
+    { id: 'minha-vidoui', head: /^בתענית ציבור אומרים/, label: 'Jeûne public : « Téfila léani »', on: c => !!c.flags.fastPublic },
+    // Arvit : « Ata 'honantanou » à la sortie de Chabbat et de fête ; Kaddich Titqabal les autres soirs ; ajouts de la sortie de Chabbat.
+    { id: 'arvit-amida', head: /^במוצאי שבת ויום טוב מוסיפים/, label: 'Sortie de Chabbat ou de fête : « Ata \'honantanou »', on: c => c.weekday === 0 || sdPrevYomTov(c) },
+    { id: 'arvit-amida', head: /^בכל לילות החול מלבד מוצאי שבת/, usual: true, label: 'Kaddich Titqabal (sauf à la sortie de Chabbat)', on: c => c.weekday !== 0 },
+    { id: 'arvit-amida', head: /^במוצאי שבת/, label: 'Sortie de Chabbat : Vihi noam, Véata kadoch…', on: c => c.weekday === 0, until: /^שיר למעלות/ },
+    // Birkhot hacha'har : pas de « chéassa li kol tsorki » le 9 Av et à Kippour.
+    { id: 'birkhot-hachahar', head: /^בתשעה באב וביום הכיפורים/, usual: true, label: '« Chéassa li kol tsorki » (sauf 9 Av et Kippour)', on: c => !c.flags.tishaBav && !(c.hebrew.month === 'Tishri' && c.hebrew.day === 10) },
+    // Les passages qui ne se disent que les jours avec Tahanoun, ou seulement les jours sans.
+    { id: 'chacharit-achre', head: /^ביום שאין אומרים בו תחנון/, usual: true, label: 'Lamnatséa\'h ya\'ankha (jours avec Tahanoun)', on: c => !c.flags.noTachanun },
+    { id: 'chacharit-beit-yaakov', head: /^בימים שאין אומרים תחנון/, usual: true, label: 'Téfila lédavid (jours avec Tahanoun)', on: c => !c.flags.noTachanun },
+    { id: 'chacharit-tora', head: /^ביום שיש בו תחנון/, usual: true, label: 'Jours avec Tahanoun : « El érekh apayim »', on: c => !c.flags.noTachanun, until: /^ביום שאין בו תחנון/ },
+    { id: 'chacharit-tora', head: /^ביום שאין בו תחנון/, label: 'Jours sans Tahanoun : « Yehi Adonaï élohénou imanou »', on: c => !!c.flags.noTachanun },
+    { id: /^(chacharit|minha)-amida$/, head: /^בימים שאין בהם תחנון יש אומרים/, label: 'Jours sans Tahanoun : « Yehi chem » (selon l\'usage)', on: c => !!c.flags.noTachanun },
+    { id: 'tikoun-lea', head: /^בימים שאין אומרים תחנון לא יאמר מזמור/, usual: true, label: 'Lamnatséa\'h ya\'ankha (jours avec Tahanoun)', on: c => !c.flags.noTachanun },
+    { id: 'tikoun-lea', head: /^בימים שאין אומרים תחנון לא יאמר פסוק/, usual: true, label: 'Verset « Ad ana bekhiya » (jours avec Tahanoun)', on: c => !c.flags.noTachanun }
+];
+function sdPrevYomTov(c) { try { return !!SiddurCore.contextFor(c.fixed - 1, c.israel).flags.yomTov; } catch (e) { return false; } }
 function sdMonThuBlock(sectionId, bares, i) {
-    if (sectionId !== 'chacharit-vidoui') return null;
-    const monThu = sdCtx.weekday === 1 || sdCtx.weekday === 4;
-    if (/^בימים שני וחמישי אין אומרים/.test(bares[i]) && i + 1 < bares.length) return { from: i + 1, to: i + 1, label: 'Kaddich des autres jours (ni lundi ni jeudi)', state: monThu ? 'off' : 'on' };
-    if (/^בימי שני וחמישי מוסיפים/.test(bares[i]) && i + 1 < bares.length) return { from: i + 1, to: bares.length - 1, label: 'Lundi et jeudi : supplications ajoutées', state: monThu ? 'on' : 'off' };
-    return null;
+    const r = SD_DAY_RULES.find(x => (x.id instanceof RegExp ? x.id.test(sectionId) : x.id === sectionId) && x.head.test(bares[i]));
+    if (!r || i + 1 >= bares.length) return null;
+    if (r.usual && r.on(sdCtx)) return null;
+    let to = i + 1;
+    if (r.toEnd) to = bares.length - 1;
+    else if (r.until) { while (to + 1 < bares.length && !r.until.test(bares[to + 1])) to++; }
+    return { from: i + 1, to, label: r.label, state: r.on(sdCtx) ? 'on' : 'off' };
 }
 
 // Ce qui se dit avec un minyan (Kaddich, Qédoucha) : dans un bloc gris, marqué « Avec minyan ».
