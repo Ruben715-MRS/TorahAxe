@@ -750,6 +750,8 @@ window.onload = async () => {
     if (typeof i18n !== 'undefined') await i18n.init();
     homeInit();
     remindersStart();
+    // Premier lancement : la fiche d'accueil (profil et rite, js/app/first-profile.js).
+    profileWelcomeMaybeShow();
 };
 
 // Les rappels (notifications locales) sont reprogrammés à l'ouverture de l'app et à chaque retour au premier plan : iOS n'en garde que quelques-uns

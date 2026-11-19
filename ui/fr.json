@@ -7639,6 +7639,22 @@
     "card_sub": "Compter aujourd'hui",
     "card_sub_tonight": "À compter ce soir"
   },
+  "welcome": {
+    "title": "Bienvenue sur TorahAxe",
+    "intro": "Pour vous présenter les bonnes prières et les bonnes bénédictions, dites-nous deux choses. Vous pourrez les changer à tout moment dans les Réglages.",
+    "gender_label": "Vous êtes",
+    "gender_m": "Un homme",
+    "gender_f": "Une femme",
+    "gender_note": "Les bénédictions du matin, par exemple, se disent différemment pour un homme et pour une femme (« chélo assani icha » / « chéassani kirtsono »). Plus tard, les mitsvot propres aux femmes seront mises en avant dans le profil « Femme ».",
+    "rite_label": "Votre rite",
+    "rite_note": "Séfarade, ashkénaze ou 'Habad : le Siddour et les Bénédictions suivent ce rite.",
+    "start": "Commencer",
+    "skip": "Plus tard",
+    "pick_both": "Choisissez un profil et un rite pour continuer, ou passez cette étape.",
+    "settings_label": "Profil",
+    "settings_note": "Adapte le texte des prières qui diffèrent pour un homme et pour une femme (bénédictions du matin, Modé ani). « Non précisé » affiche les deux versions, comme dans le livre.",
+    "gender_none": "Non précisé"
+  },
   "dates": {
     "title": "Dates personnelles",
     "desc": "Hazkara, anniversaires hébraïques, bar et bat-mitsva, avec rappels.",

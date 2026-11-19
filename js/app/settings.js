@@ -59,6 +59,7 @@ function apRender() {
         group.append(label, seg, note);
         body.appendChild(group);
     });
+    profileRender(body);
     ritRender(body);
     if (typeof stCardsRender === 'function') stCardsRender(body);
     if (typeof stRender === 'function') stRender(body);
