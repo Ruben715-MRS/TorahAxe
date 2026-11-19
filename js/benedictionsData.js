@@ -314,7 +314,7 @@
         {"id": 327, "n": "Kiwano", "b": "haadama", "alt": ["melon à cornes","concombre à cornes"]},
         {"id": 322, "n": "Kiwi", "b": "haets", "alt": ["actinidia"], "notes": [34]},
         {"id": 528, "n": "Knafeh", "b": "mezonot", "alt": ["kenafeh","knafeh","kunafa"], "notes": [36]},
-        {"id": 510, "n": "Kneidlach (boulettes de matsa)", "b": "hamotsi", "alt": ["kneidlekh","boulettes de matsa","matzo balls"], "notes": [36]},
+        {"id": 510, "n": "Kneidlach (boulettes de matsa)", "b": "mezonot", "alt": ["kneidlekh","boulettes de matsa","matzo balls"], "notes": [41]},
         {"id": 508, "n": "Knish", "b": "mezonot", "alt": ["knishes","chausson farci"], "notes": [36]},
         {"id": 507, "n": "Kreplach", "b": "mezonot", "alt": ["kreplakh","raviolis juifs","raviolis farcis"], "notes": [36]},
         {"id": 520, "n": "Kubaneh", "b": "mezonot", "alt": ["kubaneh yéménite"], "notes": [36]},
@@ -565,7 +565,7 @@
         {"id": 376, "n": "Taro", "b": "haadama", "alt": ["colocase"]},
         {"id": 280, "n": "Tarte aux citrons meringuée", "b": "mezonot"},
         {"id": 281, "n": "Tarte aux pommes", "b": "mezonot", "notes": [33]},
-        {"id": 502, "n": "Tcholente (cholent)", "b": "chehakol", "alt": ["tcholent","cholent","hamin ashkénaze","chulent"], "notes": [36]},
+        {"id": 502, "n": "Tcholente (cholent)", "b": "chehakol", "alt": ["tcholent","cholent","hamin ashkénaze","chulent"], "notes": [40]},
         {"id": 500, "n": "Tchoutchouka", "b": "haadama", "alt": ["tchoutchouka algérienne","ratatouille algérienne"], "notes": [36]},
         {"id": 282, "n": "Thé", "b": "chehakol"},
         {"id": 283, "n": "Thé glacé", "b": "chehakol"},
@@ -632,6 +632,8 @@
         35: "Herbe aromatique : par analogie avec la menthe et la ciboulette du guide, on dit Chéhakol quand on la consomme pour son goût, en petite quantité. Si on la mange en quantité, comme un légume, la bénédiction est Haadama. Demandez à votre rav.",
         38: "Condiment : ajouté à un autre aliment pour son goût (par exemple du ketchup sur des frites), il n'a pas de bénédiction séparée : la bénédiction porte sur l'aliment principal. Si on en mange une quantité notable pour lui-même, on dit Chéhakol. Quantité : au moins un kezayit. À faire relire par un rav.",
         39: "Citron vert : Haets lorsqu'il est mangé comme fruit. Chéhakol peut être dit, selon certains avis, s'il est très acide et consommé seul sans plaisir ; le guide Habad mentionne cette règle pour le citron cru, mais ne tranche pas explicitement le cas du citron vert. Pressé en jus : Chéhakol. Utilisé comme condiment : pas de bénédiction séparée. À faire trancher par un rav selon la manière de consommer et la coutume.",
+        40: "Tcholente : Chéhakol pour une recette simple (pommes de terre, viande, haricots, peu ou pas d'orge). Si l'orge y est en quantité notable et reconnaissable, beaucoup de poskim disent Mezonot, même en minorité. Si les grains restent entiers et non écrasés, certains disent Haadama. Chez 'Habad, en cas de doute, manger dans un repas introduit par Hamotsi. À demander à un rav selon la composition exacte et le minhag.",
+        41: "Kneidlach (boulettes de matsa) : Mezonot, selon l'usage courant. Certains avis plus anciens pourraient pencher vers Hamotsi si les boulettes sont grosses. La bénédiction de la matsa elle-même dépend du rite : à vérifier selon la communauté.",
         36: "Plat composé : la bénédiction dépend de ce qui domine entre l'enveloppe (pâte, galette, riz) et la garniture. Voir la section Halakha (« Plat mélangé : Ikar veTafel ») ou l'outil « Mon plat ». Le classement indiqué est indicatif, à faire relire par un rav."
     };
 

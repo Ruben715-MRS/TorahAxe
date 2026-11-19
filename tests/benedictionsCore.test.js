@@ -5,9 +5,9 @@ const C = require('../js/benedictionsCore.js');
 
 const find = (name) => D.FOODS.filter(f => f.n === name)[0];
 
-test('les données : 530 entrées, 38 notes, toutes les bénédictions connues', () => {
+test('les données : 530 entrées, 40 notes, toutes les bénédictions connues', () => {
     assert.strictEqual(D.FOODS.length, 530);
-    assert.strictEqual(Object.keys(D.NOTES).length, 38);
+    assert.strictEqual(Object.keys(D.NOTES).length, 40);
     D.FOODS.forEach(f => {
         C.blessingsOf(f).forEach(b => assert.ok(D.BLESSINGS[b] || b === 'aucune', f.n + ' : ' + b));
         C.notesOf(f).forEach(n => assert.ok(D.NOTES[n], f.n + ' : note ' + n));
