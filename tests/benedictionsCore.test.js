@@ -271,5 +271,5 @@ test('la tchoutchouka : la bénédiction dépend de la préparation, et le pain 
 test('la pita : Hamotsi en général, Mezonot si elle est frite dans beaucoup d\'huile', () => {
     const p = find('Pita');
     assert.deepStrictEqual(C.blessingsOf(p), ['hamotsi', 'mezonot']);
-    assert.deepStrictEqual(C.notesOf(p), [34, 43, 44]);
+    assert.deepStrictEqual(C.notesOf(p), [43, 44]);
 });

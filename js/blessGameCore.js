@@ -48,7 +48,7 @@
             'Poireau', 'Pois chiche', 'Poivron rouge', 'Purée de pommes de terre', 'Radis', 'Tomate', 'Tomate cerise'],
         chehakol: ['Agneau', 'Bière', 'Bœuf', 'Barbe à papa', 'Beurre', 'Canard', 'Caramel', 'Champignon', 'Dinde', 'Eau gazeuse', 'Fromage', 'Fromage blanc', 'Hareng', 'Lait',
             'Limonade', 'Marshmallow', 'Miel', 'Mousse au chocolat', 'Nougat', 'Poisson', 'Poulet', 'Rhum', 'Salami', 'Sardine', 'Saumon', 'Sorbet', 'Sucette', 'Sucre', 'Thé',
-            'Thon', 'Tofu', 'Truite', 'Veau', 'Viande', 'Vodka', 'Whisky', 'Yaourt'],
+            'Thon', 'Truite', 'Veau', 'Viande', 'Vodka', 'Whisky', 'Yaourt'],
         hamotsi: ['Bagel', 'Baguette', 'Pain à base d\'une des cinq céréales', 'Pain à l\'oignon', 'Pain complet', 'Pain de mie', 'Pain de seigle', 'Pain italien',
             'Sandwich au fromage', 'Sandwich aux œufs', 'Sandwich de poulet'],
         mezonot: ['Beignet aux fruits', 'Biscuit au gingembre', 'Cake', 'Couscous', 'Crêpe nature', 'Donut', 'Flocon d\'avoine', 'Gaufre', 'Gâteau', 'Gâteau au chocolat',
