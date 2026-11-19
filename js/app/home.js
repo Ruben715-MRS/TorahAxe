@@ -769,6 +769,7 @@ window.onload = async () => {
     if (typeof i18n !== 'undefined') await i18n.init();
     homeInit();
     remindersStart();
+    if (typeof widgetsStart === 'function') widgetsStart();   // les widgets de l'iPhone (js/app/widgets.js)
     // Premier lancement : la fiche d'accueil (profil et rite, js/app/first-profile.js).
     profileWelcomeMaybeShow();
 };
