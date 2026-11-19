@@ -5,9 +5,9 @@ const C = require('../js/benedictionsCore.js');
 
 const find = (name) => D.FOODS.filter(f => f.n === name)[0];
 
-test('les données : 581 entrées, 42 notes, toutes les bénédictions connues', () => {
+test('les données : 581 entrées, 43 notes, toutes les bénédictions connues', () => {
     assert.strictEqual(D.FOODS.length, 581);
-    assert.strictEqual(Object.keys(D.NOTES).length, 42);
+    assert.strictEqual(Object.keys(D.NOTES).length, 43);
     D.FOODS.forEach(f => {
         C.blessingsOf(f).forEach(b => assert.ok(D.BLESSINGS[b] || b === 'aucune', f.n + ' : ' + b));
         C.notesOf(f).forEach(n => assert.ok(D.NOTES[n], f.n + ' : note ' + n));
@@ -271,5 +271,5 @@ test('la tchoutchouka : la bénédiction dépend de la préparation, et le pain 
 test('la pita : Hamotsi en général, Mezonot si elle est frite dans beaucoup d\'huile', () => {
     const p = find('Pita');
     assert.deepStrictEqual(C.blessingsOf(p), ['hamotsi', 'mezonot']);
-    assert.deepStrictEqual(C.notesOf(p), [34, 43]);
+    assert.deepStrictEqual(C.notesOf(p), [34, 43, 44]);
 });
