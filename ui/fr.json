@@ -7692,6 +7692,26 @@
     "card_sub": "Compter aujourd'hui",
     "card_sub_tonight": "À compter ce soir"
   },
+  "hallah": {
+    "title": "Calculer : faut-il prélever la hallah ?",
+    "weight": "Poids de farine",
+    "unit_g": "g",
+    "unit_kg": "kg",
+    "hint": "Entrez le poids total de farine (de blé, d'épeautre, d'orge, d'avoine ou de seigle) de la pâte.",
+    "r_none": "Moins de 1,2 kg : pas de prélèvement de hallah.",
+    "r_noBless": "De 1,2 kg à 1,666 kg : on prélève la hallah, sans bénédiction.",
+    "r_bless": "De 1,666 kg à 2,25 kg : on prélève avec la bénédiction, selon l'usage le plus répandu. Ceux qui suivent le 'Hazon Ich (qui demande 2,25 kg) prélèvent sans bénédiction.",
+    "r_blessAll": "2,25 kg ou plus : on prélève avec la bénédiction, de l'avis de tous.",
+    "how": "On prélève un morceau de pâte (environ gros comme une olive), on le met à part, puis on dit « Haré zo halla ». Avant de le prélever, on dit la bénédiction (sauf mention contraire ci-dessus) ; autrefois il revenait au prêtre, aujourd'hui on l'enveloppe et on le brûle.",
+    "bless_title": "La bénédiction",
+    "bless_he": "בָּרוּךְ אַתָּה יְהֹוָה אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם, אֲשֶׁר קִדְּשָׁנוּ בְּמִצְוֹתָיו וְצִוָּנוּ לְהַפְרִישׁ חַלָּה מִן הָעִיסָּה.",
+    "bless_tr": "Baroukh ata Adonaï, Élohénou mélekh haolam, achèr kidéchanou bémitsvotav vétsivanou léhafrich 'halla min haïssa.",
+    "bless_fr": "Béni sois-Tu, Éternel notre Dieu, Roi de l'univers, qui nous as sanctifiés par Tes commandements et nous as ordonné de prélever la hallah de la pâte.",
+    "say_he": "הֲרֵי זוֹ חַלָּה",
+    "say_tr": "Haré zo 'halla",
+    "note": "Les seuils varient selon les avis (1,2 kg, 1,666 kg, 2,25 kg) et certains usages séfarades et locaux diffèrent : à confirmer auprès de votre rabbin.",
+    "row_desc": "Combien de farine, avec ou sans bénédiction, et le texte"
+  },
   "welcome": {
     "title": "Bienvenue sur TorahAxe",
     "intro": "Pour vous présenter les bonnes prières et les bonnes bénédictions, dites-nous deux choses. Vous pourrez les changer à tout moment dans les Réglages.",
@@ -7707,6 +7727,8 @@
     "settings_label": "Profil",
     "settings_note": "Adapte le texte des prières qui diffèrent pour un homme et pour une femme (bénédictions du matin, Modé ani). « Non précisé » affiche les deux versions, comme dans le livre.",
     "gender_none": "Non précisé",
+    "bedtime": "Chéma du coucher",
+    "candles": "Bougies de Chabbat",
     "women_card_label": "Mitsvot des femmes",
     "women_card_value": "Bougies, hallah, nidda…",
     "women_card_sub": "Celles dont vous êtes tenue, et les usages"

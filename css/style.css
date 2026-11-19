@@ -18562,3 +18562,11 @@ button.autoscroll-mode { height: 48px; padding: 0 12px; border: 1px dashed var(-
 .gen-ln-badge { margin-inline-start: 5px; padding: 0 7px; border-radius: 999px; background: var(--surface-2); font-size: 11px; font-weight: 700; color: var(--muted-text); }
 .gen-ln-spouses { font-size: 12.5px; color: var(--muted-text); padding-inline-start: 4px; }
 .gen-ln-spouse { font-weight: 500; }
+
+
+/* Hafrachat halla : le calcul sous la mitsva (js/app/commandments.js, hallahCalculator). */
+.cmd-hallah { margin-top: 12px; padding: 12px; border: 1px solid var(--rule); border-radius: 14px; background: var(--surface); }
+.cmd-hallah-row { display: flex; gap: 8px; align-items: center; margin: 8px 0; }
+.cmd-hallah-input { flex: 1; min-width: 0; font: inherit; font-size: 16px; padding: 10px 12px; border: 1px solid var(--rule); border-radius: 12px; background: var(--surface); color: var(--ink); }
+.cmd-hallah-unit { width: 110px; }
+.cmd-hallah-result { font-weight: 700; margin: 6px 0; }

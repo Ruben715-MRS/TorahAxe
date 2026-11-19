@@ -132,7 +132,9 @@ function renderCommandments() {
         list.start = number + 1;
         group.items.forEach(itemId => {
             number++;
-            list.appendChild(commandmentItem(set.id, itemId, hebrew, !group.hideRefs));
+            const item = commandmentItem(set.id, itemId, hebrew, !group.hideRefs);
+            if (set.id === 'femmes' && itemId === 'hallah') item.appendChild(hallahCalculator());
+            list.appendChild(item);
         });
         section.appendChild(list);
         body.appendChild(section);
@@ -390,4 +392,65 @@ function commandmentItem(setId, itemId, hebrew, showRef = true) {
         li.appendChild(r);
     }
     return li;
+}
+
+
+// --- Hafrachat halla : le calcul d'après le poids de farine (js/hallahCore.js) -----------------------------------------------------------------------
+function hallahCalculator() {
+    const box = document.createElement('div');
+    box.className = 'cmd-hallah';
+    box.id = 'cmd-hallah-calc';
+    const h = document.createElement('strong');
+    h.className = 'cmd-name';
+    h.textContent = t('hallah.title');
+    const row = document.createElement('div');
+    row.className = 'cmd-hallah-row';
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.inputMode = 'decimal';
+    input.className = 'cmd-hallah-input';
+    input.setAttribute('aria-label', t('hallah.weight'));
+    input.placeholder = t('hallah.weight');
+    let unit = 'kg';
+    const seg = document.createElement('div');
+    seg.className = 'segmented cmd-hallah-unit';
+    seg.setAttribute('role', 'group');
+    const out = document.createElement('div');
+    out.setAttribute('aria-live', 'polite');
+    const render = () => {
+        out.textContent = '';
+        const level = HallahCore.assess(HallahCore.toGrams(input.value, unit));
+        if (!level) { const p = document.createElement('p'); p.className = 'tool-small'; p.textContent = t('hallah.hint'); out.appendChild(p); return; }
+        const r = document.createElement('p');
+        r.className = 'cmd-hallah-result';
+        r.textContent = t('hallah.r_' + level);
+        out.appendChild(r);
+        if (level === 'none') return;
+        const how = document.createElement('p'); how.className = 'tool-small'; how.textContent = t('hallah.how'); out.appendChild(how);
+        const bl = document.createElement('p'); bl.className = 'cmd-name'; bl.textContent = t('hallah.bless_title'); out.appendChild(bl);
+        if (level !== 'noBless') {
+            out.appendChild(cmdHebrew(Object.assign(document.createElement('p'), { className: 'cmd-full' }), t('hallah.bless_he')));
+            const tr = document.createElement('p'); tr.className = 'tool-small'; tr.textContent = t('hallah.bless_tr'); out.appendChild(tr);
+            const fr = document.createElement('p'); fr.className = 'tool-small'; fr.textContent = t('hallah.bless_fr'); out.appendChild(fr);
+        }
+        out.appendChild(cmdHebrew(Object.assign(document.createElement('p'), { className: 'cmd-full' }), t('hallah.say_he')));
+        const say = document.createElement('p'); say.className = 'tool-small'; say.textContent = t('hallah.say_tr'); out.appendChild(say);
+    };
+    [['kg', 'hallah.unit_kg'], ['g', 'hallah.unit_g']].forEach(([id, key]) => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.textContent = t(key);
+        b.className = id === unit ? 'active' : '';
+        b.setAttribute('aria-pressed', id === unit ? 'true' : 'false');
+        b.onclick = () => { unit = id; Array.prototype.forEach.call(seg.children, el => { const on = el === b; el.className = on ? 'active' : ''; el.setAttribute('aria-pressed', on ? 'true' : 'false'); }); render(); };
+        seg.appendChild(b);
+    });
+    input.oninput = render;
+    row.append(input, seg);
+    const note = document.createElement('p');
+    note.className = 'tool-small';
+    note.textContent = t('hallah.note');
+    box.append(h, row, out, note);
+    render();
+    return box;
 }

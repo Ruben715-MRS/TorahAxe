@@ -17,7 +17,7 @@ const homeTool = (id) => () => openTool(id, 'screen-main');
 // he : le mot de la tuile ; fr : son nom ; desc : la ligne d'explication ; kw : mots de plus pour la recherche ; run : ce qui s'ouvre.
 const HOME_ENTRIES = {
     siddur: { he: 'סידור', fr: 'Siddour', desc: 'Le siddour séfarade : Chaharit, Minha, Arvit, Birkat haMazon, Omer…', kw: 'prière priere tefila', run: homeTool('siddur') },
-    zmanim: { he: 'זמנים', fr: 'Zmanim', desc: 'Les horaires du jour pour n\'importe quel lieu : aube, Chéma, Minha, coucher, Chabbat', kw: 'horaires bougies coucher soleil daf yomi', run: homeTool('zmanim') },
+    zmanim: { he: 'זמנים', fr: 'Horaires', desc: 'Les horaires du jour pour n\'importe quel lieu : aube, Chéma, Minha, coucher, Chabbat', kw: 'horaires bougies coucher soleil daf yomi', run: homeTool('zmanim') },
     kotel: { he: 'כותל', fr: 'Kotel', desc: 'La boussole : la direction de Jérusalem depuis chez vous', kw: 'boussole jérusalem direction mizrah', run: homeTool('kotel') },
     tanakh: { he: 'תנ״ך', fr: 'Tanakh', desc: 'Les 24 livres, verset par verset, avec Rachi', kw: 'bible torah prophètes écrits haftara psaumes', run: homeTool('tanakh') },
     michna: { he: 'משנה', fr: 'Michna', desc: 'Les 63 traités en hébreu, avec Rambam, Bartenura, Tosafot Yom Tov…', kw: 'mishna mishnah bartenura rambam tosafot yom tov melekhet shelomoh tiferet israel gra rash traités ordres zeraim moed nashim nezikin kodashim tohorot avot', run: homeTool('michna') },
@@ -428,6 +428,11 @@ function homeHero(content, day) {
         sdDayNoteLabels(ctx, service.base).forEach(label => chips.appendChild(hEl('span', 'home-chip', label)));
         hero.appendChild(chips);
     }
+    // Le vendredi, jusqu'à l'allumage : l'heure des bougies (pour tous les profils).
+    if (HebrewCalendarCore.weekdayOf(day.fixed) === 5 && !special) {
+        const candles = ZmanimCore.rounded(homeZmanimOf(day, 0), 'candles');
+        if (candles !== null && candles > day.now) hero.appendChild(hEl('p', 'home-hero-candles', '🕯️ ' + t('welcome.candles') + ' · ' + homeTime(day, candles)));
+    }
     // « Commencer » (la prière de l'heure) à gauche, « Tout le Siddour » à droite. Un jour de fête, le bouton principal ouvre déjà tout le Siddour : un seul bouton.
     const regel = special && (ctx.flags.pesach || ctx.flags.sukkot || ctx.flags.shemini || ctx.flags.shavuot);
     const btns = hEl('div', 'home-hero-btns');
@@ -440,6 +445,12 @@ function homeHero(content, day) {
     all.textContent = btns.childElementCount ? 'Tout le Siddour' : 'Ouvrir le Siddour';
     btns.appendChild(all);
     hero.appendChild(btns);
+    // Profil « Femme », le soir : le Chéma du coucher, à côté d'Arvit (qu'elle peut dire aussi).
+    if (service.base === 'arvit' && typeof profileGender === 'function' && profileGender() === 'f') {
+        const bed = hButton('home-hero-btn secondary home-hero-bed', () => openSiddurSections(['chema-coucher'], t('welcome.bedtime')));
+        bed.textContent = t('welcome.bedtime');
+        hero.appendChild(bed);
+    }
     // les trois horaires de cette prière ; la sortie des étoiles / l'aube du lendemain après la nuit
     const keys = HOME_PRAYER_TIMES[service.base];
     const times = hEl('div', 'home-times');
@@ -506,6 +517,12 @@ function homeLoadHilloulot() {
 }
 
 // Ouvre la liste des 613 à la mitsva donnée : on déplie ses ancêtres repliables, on la montre et on la fait clignoter un instant.
+function homeOpenHallah() {
+    openTool('commandments', 'screen-main');
+    if (typeof toolCommandmentsPick === 'function') toolCommandmentsPick('femmes');
+    setTimeout(() => { const el = document.getElementById('cmd-hallah-calc'); if (el) el.scrollIntoView({ block: 'center' }); }, 150);
+}
+
 function homeOpenWomen() {
     openTool('commandments', 'screen-main');
     if (typeof toolCommandmentsPick === 'function') toolCommandmentsPick('femmes');
@@ -712,7 +729,10 @@ function homeRenderToday(content) {
         content.appendChild(homeRows(resume));
     }
     content.appendChild(hEl('h2', 'home-section-title', 'Pratique'));
-    content.appendChild(homeRows([Object.assign({ id: 'kotel' }, HOME_ENTRIES.kotel), Object.assign({ id: 'personalDates' }, HOME_ENTRIES.personalDates)], { personalDates: datesTodaySub() }));
+    const practice = [Object.assign({ id: 'kotel' }, HOME_ENTRIES.kotel)];
+    if (typeof profileGender === 'function' && profileGender() === 'f') practice.push({ id: 'hallah', he: 'הפרשת חלה', fr: 'Hafrachat halla', desc: t('hallah.row_desc'), run: () => homeOpenHallah() });
+    practice.push(Object.assign({ id: 'personalDates' }, HOME_ENTRIES.personalDates));
+    content.appendChild(homeRows(practice, { personalDates: datesTodaySub() }));
     homeGamesSection(content, day);
 }
 
