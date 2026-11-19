@@ -5,8 +5,8 @@ const C = require('../js/benedictionsCore.js');
 
 const find = (name) => D.FOODS.filter(f => f.n === name)[0];
 
-test('les données : 471 entrées, 38 notes, toutes les bénédictions connues', () => {
-    assert.strictEqual(D.FOODS.length, 471);
+test('les données : 530 entrées, 38 notes, toutes les bénédictions connues', () => {
+    assert.strictEqual(D.FOODS.length, 530);
     assert.strictEqual(Object.keys(D.NOTES).length, 38);
     D.FOODS.forEach(f => {
         C.blessingsOf(f).forEach(b => assert.ok(D.BLESSINGS[b] || b === 'aucune', f.n + ' : ' + b));
@@ -45,8 +45,8 @@ test('la recherche ignore accents et majuscules, et cherche chaque mot', () => {
     assert.deepStrictEqual(C.filterFoods({ query: 'tarte pomme' }).map(f => f.n), ['Tarte aux pommes']);
     assert.strictEqual(C.filterFoods({ query: 'cotelette veau' }).length, 1);
     assert.strictEqual(C.filterFoods({ query: 'zzzz' }).length, 0);
-    assert.strictEqual(C.filterFoods({}).length, 471);
-    assert.strictEqual(C.filterFoods({ b: 'all', query: '' }).length, 471);
+    assert.strictEqual(C.filterFoods({}).length, 530);
+    assert.strictEqual(C.filterFoods({ b: 'all', query: '' }).length, 530);
 });
 
 test('les fruits et légumes : on retrouve un aliment par son nom usuel', () => {
