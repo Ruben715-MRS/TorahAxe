@@ -81,3 +81,54 @@ test('sans les noms des parachiot : pas de paracha, le reste fonctionne', () => 
     assert.strictEqual(r.periods[0].parasha, null);
     assert.ok(r.periods[0].hebrew);
 });
+
+test('chaque horaire porte son jour civil, et chaque jour civil son étude', () => {
+    const r = W.build({
+        place: MARSEILLE, nowMs: Date.UTC(2026, 10, 19, 10, 0), parashot: parashot, days: 3,
+        mishnaOf: () => ({ text: 'Michna', sub: 's' }), mitsvaOf: fixed => (fixed % 2 ? null : { text: 'Mitsva', sub: 's' })
+    });
+    assert.ok(r.zmanim.filter(z => z.day === '2026-11-19').length >= 9);
+    assert.strictEqual(r.days.length, 3);
+    const d = r.days[0];
+    assert.strictEqual(d.day, '2026-11-19');
+    assert.strictEqual(d.label, 'jeudi 19 novembre');
+    assert.strictEqual(d.start, Z.localToUtc('Europe/Paris', 2026, 11, 19, 0));
+    assert.strictEqual(d.end, r.days[1].start);
+    assert.deepStrictEqual(d.study.daf, { text: 'Arakhin 2', he: 'ערכין ב׳', sub: 'Jours restants dans le traité : 32' });
+    assert.deepStrictEqual(d.study.tehilim, { text: '49–54', sub: 'Jour 9 du mois hébraïque' });
+    assert.deepStrictEqual(d.study.mishna, { text: 'Michna', sub: 's' });
+    assert.ok(r.days.some(x => !x.study.mitsva) && r.days.some(x => x.study.mitsva));
+});
+
+test('Chabbat : de l\'allumage à la havdala, avec paracha et haftara', () => {
+    const r = W.build({ place: MARSEILLE, nowMs: Date.UTC(2026, 10, 19, 10, 0), parashot: parashot, days: 10, haftaraOf: () => 'Osée 12:13' });
+    const s = r.holy[0];
+    assert.strictEqual(s.name, 'Chabbat Vayétsé');
+    assert.strictEqual(s.kind, 'shabbat');
+    assert.strictEqual(s.startDay, 'vendredi 20 novembre');
+    assert.strictEqual(s.endDay, 'samedi 21 novembre');
+    assert.ok(/^16:\d\d$/.test(s.startTime) && /^17:\d\d$/.test(s.endTime));
+    assert.ok(s.start < s.end);
+    assert.strictEqual(s.parasha, 'Vayétsé');
+    assert.strictEqual(s.haftara, 'Osée 12:13');
+    assert.strictEqual(r.holy.length, 2);
+});
+
+test('une fête qui touche Chabbat forme une seule période ; Kippour seul', () => {
+    const r = W.build({ place: MARSEILLE, nowMs: Date.UTC(2026, 8, 10, 10, 0), parashot: parashot, days: 12, text: { feast: id => id.toUpperCase() } });
+    const rh = r.holy[0];
+    assert.strictEqual(rh.name, 'ROSH · Chabbat');
+    assert.strictEqual(rh.kind, 'both');
+    assert.strictEqual(rh.startDay, 'vendredi 11 septembre');
+    assert.strictEqual(rh.endDay, 'dimanche 13 septembre');
+    const kip = r.holy.find(h => h.name === 'KIPPOUR');
+    assert.strictEqual(kip.kind, 'yomtov');
+    assert.strictEqual(kip.startDay, 'dimanche 20 septembre');
+});
+
+test('pendant Chabbat, la période en cours reste ; sans lieu, aucune', () => {
+    const during = W.build({ place: MARSEILLE, nowMs: Date.UTC(2026, 10, 21, 10, 0), parashot: parashot, days: 3 });
+    assert.strictEqual(during.holy[0].name, 'Chabbat Vayétsé');
+    assert.ok(during.holy[0].start < Date.UTC(2026, 10, 21, 10, 0));
+    assert.deepStrictEqual(W.build({ nowMs: Date.UTC(2026, 10, 19, 10, 0), days: 3 }).holy, []);
+});

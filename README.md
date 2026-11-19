@@ -9,15 +9,21 @@ Couleurs de l'app (bleu nuit `#001a4b`, or `#d4a017`) ; en mode teinté ou trans
 - **« Aujourd'hui » (T1, T8)** : petit, moyen, écran verrouillé (une ligne, rectangle). Date hébraïque (elle change à la sortie des
   étoiles), paracha, Tahanoun, prochaine fête et prochains horaires du lieu choisi dans les Zmanim, avec les opinions des réglages.
 - **« Prochain horaire » (T8)** : écran verrouillé (rond qui se remplit jusqu'au prochain zman, rectangle avec le temps restant).
+- **« Zmanim du jour » (T2)** : moyen et grand ; tous les horaires du jour, le prochain en or, ceux qui sont passés estompés.
+- **« Chabbat et fêtes » (T3)** : petit, moyen, écran verrouillé ; allumage, sortie, paracha et haftara du prochain Chabbat ou de la
+  prochaine fête (une fête qui touche Chabbat forme une seule période).
+- **« Étude du jour » (T4)** : moyen et grand ; Daf Yomi, Téhilim, Michna Yomit, Mitsva du jour (les cartes masquées dans les réglages
+  le sont aussi) ; chaque ligne ouvre son texte.
 
 **D'où viennent les données.** Le widget ne calcule rien : `js/widgetDataCore.js` (pur, testé dans `tests/widgetDataCore.test.js`)
 prépare les 30 prochains jours, et `js/app/widgets.js` les envoie au plugin natif `WidgetBridge` (`ios/App/App/WidgetBridgePlugin.swift`,
-enregistré par `ios/App/App/MainViewController.swift`). Le plugin écrit `widget-today.json` dans l'App Group `group.com.torahaxe.app`, que
+enregistré par `ios/App/App/MainViewController.swift`). Le plugin écrit `widget-data.json` dans l'App Group `group.com.torahaxe.app`, que
 lit le widget (`TodayData.swift`). L'envoi a lieu à l'ouverture, à chaque retour au premier plan et quand le lieu ou une opinion des Zmanim
 change. Sans ouverture de l'app pendant 30 jours, le widget demande de l'ouvrir.
 
-**Toucher un widget** ouvre `torahaxe://widget/today` (l'accueil, onglet Aujourd'hui) ou `torahaxe://widget/zmanim` (le schéma
-`torahaxe` est déclaré dans `Info.plist`).
+**Toucher un widget** ouvre `torahaxe://widget/<écran>` : `today`, `zmanim`, `shabbat`, `daf`, `tehilim`, `mishna`, `mitsva` (schéma
+déclaré dans `Info.plist`). Le lien est reçu par `SceneDelegate`, gardé par le plugin `WidgetBridge` (`takeRoute`) et la page est prévenue
+par l'événement `axewidgetroute` ; il arrive aussi par le plugin App (`appUrlOpen`) : `js/app/widgets.js` n'ouvre l'écran qu'une fois.
 
 Première compilation dans Xcode : choisir l'équipe de signature des cibles **App** et **TorahAxeWidgets** ; la capacité **App Groups**
 (`group.com.torahaxe.app`) est déjà dans `App/App.entitlements` et `TorahAxeWidgets/TorahAxeWidgets.entitlements`, la signature

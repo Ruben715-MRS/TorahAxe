@@ -24,6 +24,9 @@
 		BB61CF6DC3CFFFBF61C248E4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8179D18D201F2AB6534139 /* MainViewController.swift */; };
 		3A0BB1A734782BA3A6E75875 /* WidgetBridgePlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35257AC3086D00FE0E9817F /* WidgetBridgePlugin.swift */; };
 		844F44F2478BA2F355CF293C /* TorahAxeWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A8DD99332D7C6E731DF26CE5 /* TorahAxeWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		0FD8EFF9CAAFE5C098C33CAE /* ZmanimWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894D187EEB1C24EA48FD6DC5 /* ZmanimWidget.swift */; };
+		07B73836975A5BF2962F3C2A /* ShabbatWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C073B0390D25DBE5070AD0 /* ShabbatWidget.swift */; };
+		A2F81B99DC9D56A45F820B95 /* StudyWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AA65B6E6D7F36EDBB52AD5 /* StudyWidget.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +76,9 @@
 		CA8179D18D201F2AB6534139 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		E35257AC3086D00FE0E9817F /* WidgetBridgePlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetBridgePlugin.swift; sourceTree = "<group>"; };
 		D7C447E2D18FDC9FFCDAA1C6 /* App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = App.entitlements; sourceTree = "<group>"; };
+		894D187EEB1C24EA48FD6DC5 /* ZmanimWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZmanimWidget.swift; sourceTree = "<group>"; };
+		06C073B0390D25DBE5070AD0 /* ShabbatWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShabbatWidget.swift; sourceTree = "<group>"; };
+		F5AA65B6E6D7F36EDBB52AD5 /* StudyWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyWidget.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +148,9 @@
 				52A3D4E36DCD7FADDA645741 /* NextZmanWidget.swift */,
 				19333D074BE64B4E04CFB0EE /* Info.plist */,
 				FE43CAA94C294D331C80CDFF /* TorahAxeWidgets.entitlements */,
+				894D187EEB1C24EA48FD6DC5 /* ZmanimWidget.swift */,
+				06C073B0390D25DBE5070AD0 /* ShabbatWidget.swift */,
+				F5AA65B6E6D7F36EDBB52AD5 /* StudyWidget.swift */,
 			);
 			path = TorahAxeWidgets;
 			sourceTree = "<group>";
@@ -273,6 +282,9 @@
 				C3B8DBE64F094E26941C1F6B /* TodayData.swift in Sources */,
 				E13FD5BE3D04273EF16E41B1 /* TodayWidget.swift in Sources */,
 				85005DD28B011BE86570DD35 /* NextZmanWidget.swift in Sources */,
+				0FD8EFF9CAAFE5C098C33CAE /* ZmanimWidget.swift in Sources */,
+				07B73836975A5BF2962F3C2A /* ShabbatWidget.swift in Sources */,
+				A2F81B99DC9D56A45F820B95 /* StudyWidget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
