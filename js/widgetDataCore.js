@@ -15,20 +15,24 @@
 //  - les JOURS CIVILS (`days`) : leur nom et l'étude du jour (T4) — Daf Yomi, Téhilim du mois, Michna Yomit, Mitsva du jour —, comme les
 //    cartes de l'accueil (le jour civil, de minuit à minuit, pas le jour hébraïque).
 //  - les CHABBATS ET FÊTES (`holy`, T3) : de l'allumage des bougies à la havdala, avec la paracha et la haftara. Il faut un lieu.
+//  - l'OMER (T5) : le jour du compte de chaque période (`omer`, `omerText`) et, hors de la période, quand il commence (`omerStart`).
+//  - les DATES PERSONNELLES (`dates`, T6) : les prochaines Hazkarot et anniversaires hébraïques du registre de l'app (js/personalDatesCore.js).
+//  - les HILLOULOT (T7) : celles de chaque période (`hilloulot`) et les prochaines (`hilloulotNext`), d'après data/hilloulot/hilloulot.json.
+//  - À VENIR (T9) : les prochaines fêtes et les jeûnes (`feasts`), et la fenêtre de Birkat haLévana (`levana`, il faut un lieu).
 // Les textes (noms des mois, des fêtes…) sont fournis par l'appelant (i18n) ; à défaut, les libellés français ci-dessous.
 // Testé dans tests/widgetDataCore.test.js.
 
 (function (root, factory) {
     if (typeof module === 'object' && module.exports) {
         module.exports = factory(require('./calendarYearCore.js'), require('./hebrewCalendarCore.js'), require('./zmanimCore.js'), require('./sedraCore.js'),
-            require('./siddurCore.js'));
+            require('./siddurCore.js'), require('./personalDatesCore.js'));
     } else {
-        root.WidgetDataCore = factory(root.CalendarYearCore, root.HebrewCalendarCore, root.ZmanimCore, root.SedraCore, root.SiddurCore);
+        root.WidgetDataCore = factory(root.CalendarYearCore, root.HebrewCalendarCore, root.ZmanimCore, root.SedraCore, root.SiddurCore, root.PersonalDatesCore);
     }
-}(typeof self !== 'undefined' ? self : this, function (CY, HC, Z, Sedra, S) {
+}(typeof self !== 'undefined' ? self : this, function (CY, HC, Z, Sedra, S, PD) {
     'use strict';
 
-    var VERSION = 2;
+    var VERSION = 3;
     var DAY_MS = 86400000;
     var DEFAULT_DAYS = 30;
 
@@ -62,7 +66,10 @@
             today: 'Aujourd\'hui', tomorrow: 'Demain', inDays: 'Dans {n} jours',
             shabbat: 'Chabbat',
             dafSiyum: function (n) { return n === 0 ? 'Dernier jour du traité : siyoum !' : 'Jours restants dans le traité : ' + n; },
-            tehilimDay: function (n) { return 'Jour ' + n + ' du mois hébraïque'; }
+            tehilimDay: function (n) { return 'Jour ' + n + ' du mois hébraïque'; },
+            omerCount: function (n) { return n + (n === 1 ? ' jour' : ' jours') + ' du Omer'; },
+            dateShort: function (type) { return type === 'hazkara' ? 'Hazkara' : 'Anniversaire'; },
+            dateYears: function (item, n) { return item.type === 'hazkara' ? n + ' ans depuis le décès' : n + ' ans'; }
         };
     }
 
@@ -114,7 +121,12 @@
         var feast = nextFeast(fixed, israel);
         var tachanun = Z.tachanunStatus(fixed, israel);
         var par = parashaOf(fixed, israel, input.parashot);
+        var omer = S.contextFor(fixed, israel).omer || 0;
+        var hil = Array.isArray(input.hilloulot) ? Z.hilloulotFor(input.hilloulot, h) : [];
         return {
+            omer: omer >= 1 && omer <= 49 ? omer : 0,
+            omerText: omer >= 1 && omer <= 49 ? text.omerCount(omer) : null,
+            hilloulot: hil.map(function (e) { return { fr: e.fr, he: e.he, bio: e.bio || '' }; }),
             start: start,
             end: end,
             weekday: HC.weekdayOf(fixed),             // 0 = dimanche … 6 = Chabbat
@@ -209,6 +221,87 @@
         return out;
     }
 
+    // --- Lot 3 ----------------------------------------------------------------------------------------------------------------------------
+    // L'Omer : le soir où l'on compte le premier jour (la veille du 16 Nissan), vu du jour `todayFixed`. Pendant le compte, le prochain.
+    function omerStart(todayFixed) {
+        var h = HC.hebrewFromFixed(todayFixed);
+        var first = HC.hebrewToGregorian(h.year, 'Nisan', 16).fixed;
+        if (first + 48 < todayFixed) first = HC.hebrewToGregorian(h.year + 1, 'Nisan', 16).fixed;
+        var eve = civilOfFixed(first - 1);
+        return { day: dayKeyOf(eve), label: civilLabel(eve) };
+    }
+
+    // Les prochaines fêtes (de la Torah et rabbiniques) et les jeûnes, à partir du jour `todayFixed` : [{ name, kind, day, label, ongoing }].
+    function upcomingFeasts(todayFixed, israel, text, count) {
+        var h = HC.hebrewFromFixed(todayFixed);
+        var list = [];
+        [h.year, h.year + 1].forEach(function (year) {
+            HC.feastsOf(year, israel).forEach(function (f) {
+                if ((f.kind === 'moed' || f.kind === 'minor' || f.kind === 'fast') && f.last >= todayFixed) list.push(f);
+            });
+        });
+        list.sort(function (a, b) { return a.fixed - b.fixed; });
+        return list.slice(0, count || 5).map(function (f) {
+            var ongoing = f.fixed <= todayFixed;
+            var c = civilOfFixed(f.fixed);
+            return { name: text.feast(ongoing ? HC.feastNameId(f.id, todayFixed, israel) : f.id), kind: f.kind, day: dayKeyOf(c), label: civilLabel(c), ongoing: ongoing };
+        });
+    }
+
+    // La fenêtre de Birkat haLévana du mois (ou du suivant si elle est passée), comme l'écran Zmanim (zmLevanaInfo) : du premier au dernier
+    // soir, avec les instants où elle s'ouvre (sortie des étoiles du premier soir) et se ferme (fin de la fenêtre). null sans lieu.
+    function levanaOf(place, todayFixed, opts) {
+        if (!place) return null;
+        var h = HC.hebrewFromFixed(todayFixed);
+        var months = HC.monthsOf(h.year);
+        var index = -1;
+        for (var i = 0; i < months.length; i++) if (months[i].id === h.month) index = i;
+        if (index < 0) return null;
+        var candidates = [[h.year, months[index].id], index + 1 < months.length ? [h.year, months[index + 1].id] : [h.year + 1, 'Tishri']];
+        for (var k = 0; k < candidates.length; k++) {
+            var win = Z.levanaWindow(candidates[k][0], candidates[k][1], (opts && opts.levanaWait) || 7);
+            var ev = Z.levanaEvenings(place, win, opts || {});
+            if (!ev) continue;
+            var lastFixed = CY.gregorianToFixed(ev.last.year, ev.last.month, ev.last.day);
+            if (lastFixed < todayFixed) continue;
+            var z = Z.zmanim(place, ev.first.year, ev.first.month, ev.first.day, opts || {});
+            var open = Z.rounded(z, 'tzeit');
+            return {
+                firstDay: dayKeyOf(ev.first), firstLabel: civilLabel(ev.first),
+                lastDay: dayKeyOf(ev.last), lastLabel: civilLabel(ev.last),
+                start: open === null ? win.start : Math.max(open, win.start), end: win.end
+            };
+        }
+        return null;
+    }
+
+    // Les prochaines hilloulot, à partir du jour hébraïque `todayFixed` (aujourd'hui compris) : [{ fr, he, bio, hebrew, day, label }].
+    function upcomingHilloulot(entries, todayFixed, text, count) {
+        if (!Array.isArray(entries) || !entries.length) return [];
+        var out = [];
+        for (var f = todayFixed; f < todayFixed + 400 && out.length < (count || 6); f++) {
+            var h = HC.hebrewFromFixed(f);
+            Z.hilloulotFor(entries, h).forEach(function (e) {
+                var c = civilOfFixed(f);
+                out.push({ fr: e.fr, he: e.he, bio: e.bio || '', hebrew: h.day + ' ' + text.month(h.year, h.month), day: dayKeyOf(c), label: civilLabel(c) });
+            });
+        }
+        return out.slice(0, count || 6);
+    }
+
+    // Les prochaines dates personnelles (registre de l'app), dans l'année qui vient : [{ name, type, kind, years, hebrew, day, label }].
+    // `day` est le jour civil de la date ; une Hazkara commence la veille au soir (le widget le dit).
+    function upcomingDates(items, todayFixed, rite, text, count) {
+        if (!Array.isArray(items) || !items.length) return [];
+        return PD.upcoming(items, todayFixed, 400, rite).slice(0, count || 8).map(function (o) {
+            var c = civilOfFixed(o.fixed);
+            return {
+                name: o.item.name, type: o.item.type, kind: text.dateShort(o.item.type), years: text.dateYears(o.item, o.years),
+                hebrew: o.hebrew.day + ' ' + text.month(o.hebrew.year, o.hebrew.month), day: dayKeyOf(c), label: civilLabel(c)
+            };
+        });
+    }
+
     // Les données des widgets. `input` :
     //   place    : le lieu de l'écran Zmanim (ZmanimCore.normalizePlace), ou null ;
     //   opts     : les opinions choisies (zmStoredOpts) ;
@@ -219,7 +312,8 @@
     //   text     : { month(year, id), feast(id), tachanun: { yes, morning, no }, today, tomorrow, inDays }, chaque champ facultatif ;
     //   zmanimLabels : { clé: libellé } facultatif ;
     //   mishnaOf, mitsvaOf : (fixed) → { text, sub } ou null, pour l'étude du jour ;
-    //   haftaraOf : (civil, israel) → texte de la haftara du Chabbat (civil : { year, month, day }), facultatif.
+    //   haftaraOf : (civil, israel) → texte de la haftara du Chabbat (civil : { year, month, day }), facultatif ;
+    //   hilloulot : les entrées de data/hilloulot/hilloulot.json ; dates : les dates personnelles (store.items) ; rite : celui des Réglages.
     function build(input) {
         input = input || {};
         var text = Object.assign(defaultText(), input.text || {});
@@ -281,9 +375,17 @@
             periods: periods,
             zmanim: zmanim.filter(function (e) { return e.at > nowMs - DAY_MS; }),
             days: civilDays,
-            holy: place ? holyPeriods(firstFixed, days, israel, zOf, tz, input, text).filter(function (h) { return h.end === null || h.end > nowMs; }) : []
+            holy: place ? holyPeriods(firstFixed, days, israel, zOf, tz, input, text).filter(function (h) { return h.end === null || h.end > nowMs; }) : [],
+            omerStart: omerStart(firstFixed + 1),
+            feasts: upcomingFeasts(firstFixed + 1, israel, text, 6),
+            levana: levanaOf(place, firstFixed + 1, input.opts),
+            hilloulotNext: upcomingHilloulot(input.hilloulot, firstFixed + 1, text, 6),
+            dates: upcomingDates(input.dates, firstFixed + 1, input.rite, text, 8)
         };
     }
 
-    return { VERSION: VERSION, ZMANIM: ZMANIM, build: build, nextFeast: nextFeast, parashaOf: parashaOf, studyOf: studyOf };
+    return {
+        VERSION: VERSION, ZMANIM: ZMANIM, build: build, nextFeast: nextFeast, parashaOf: parashaOf, studyOf: studyOf,
+        omerStart: omerStart, upcomingFeasts: upcomingFeasts, levanaOf: levanaOf, upcomingHilloulot: upcomingHilloulot, upcomingDates: upcomingDates
+    };
 }));

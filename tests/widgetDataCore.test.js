@@ -132,3 +132,40 @@ test('pendant Chabbat, la période en cours reste ; sans lieu, aucune', () => {
     assert.ok(during.holy[0].start < Date.UTC(2026, 10, 21, 10, 0));
     assert.deepStrictEqual(W.build({ nowMs: Date.UTC(2026, 10, 19, 10, 0), days: 3 }).holy, []);
 });
+
+const HIL = require('../data/hilloulot/hilloulot.json').entries;
+
+test('Omer : le jour du compte dans chaque période, et quand il commence', () => {
+    const during = W.build({ place: MARSEILLE, nowMs: Date.UTC(2027, 3, 25, 10, 0), parashot: parashot, days: 2 });
+    assert.strictEqual(during.periods[0].omer, 3);
+    assert.strictEqual(during.periods[0].omerText, '3 jours du Omer');
+    const before = W.build({ place: MARSEILLE, nowMs: Date.UTC(2026, 10, 20, 10, 0), parashot: parashot, days: 2 });
+    assert.strictEqual(before.periods[0].omer, 0);
+    assert.strictEqual(before.periods[0].omerText, null);
+    assert.deepStrictEqual(before.omerStart, { day: '2027-04-22', label: 'jeudi 22 avril' });   // 15 Nissan 5787 au soir
+});
+
+test('À venir : fêtes et jeûnes, Birkat haLévana', () => {
+    const r = W.build({ place: MARSEILLE, nowMs: Date.UTC(2026, 10, 20, 10, 0), parashot: parashot, days: 2, text: { feast: id => id } });
+    assert.deepStrictEqual(r.feasts.slice(0, 2).map(f => [f.name, f.kind, f.day]), [['hanouka', 'minor', '2026-12-05'], ['tevet10', 'fast', '2026-12-20']]);
+    assert.strictEqual(r.levana.firstDay, '2026-11-16');
+    assert.strictEqual(r.levana.lastDay, '2026-11-23');
+    assert.ok(r.levana.start < r.levana.end);
+    assert.strictEqual(W.build({ nowMs: Date.UTC(2026, 10, 20, 10, 0), days: 2 }).levana, null);   // sans lieu
+});
+
+test('Hilloulot : celles du jour et les prochaines', () => {
+    const r = W.build({ place: MARSEILLE, nowMs: Date.UTC(2026, 10, 20, 10, 0), parashot: parashot, days: 12, hilloulot: HIL });
+    const p19 = r.periods.find(p => p.hebrewShort === '19 Kislev');
+    assert.ok(p19.hilloulot.some(h => /Maguid/.test(h.fr)));
+    assert.strictEqual(r.hilloulotNext[0].hebrew, '19 Kislev');
+    assert.strictEqual(r.hilloulotNext[0].day, '2026-11-29');
+    assert.strictEqual(W.build({ nowMs: 0, days: 1 }).hilloulotNext.length, 0);
+});
+
+test('Dates personnelles : les prochaines, avec leur date hébraïque', () => {
+    const r = W.build({ place: MARSEILLE, nowMs: Date.UTC(2026, 10, 20, 10, 0), parashot: parashot, days: 2, rite: 'sefarade',
+        dates: [{ id: 'a', name: 'Papa', type: 'hazkara', hebrew: { year: 5770, month: 'Tevet', day: 3 } }] });
+    assert.deepStrictEqual(r.dates, [{ name: 'Papa', type: 'hazkara', kind: 'Hazkara', years: '17 ans depuis le décès', hebrew: '3 Tévet', day: '2026-12-13', label: 'dimanche 13 décembre' }]);
+    assert.deepStrictEqual(W.build({ nowMs: Date.UTC(2026, 10, 20), days: 1 }).dates, []);
+});

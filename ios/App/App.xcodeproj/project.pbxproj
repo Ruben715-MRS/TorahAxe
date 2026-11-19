@@ -27,6 +27,11 @@
 		0FD8EFF9CAAFE5C098C33CAE /* ZmanimWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894D187EEB1C24EA48FD6DC5 /* ZmanimWidget.swift */; };
 		07B73836975A5BF2962F3C2A /* ShabbatWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C073B0390D25DBE5070AD0 /* ShabbatWidget.swift */; };
 		A2F81B99DC9D56A45F820B95 /* StudyWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AA65B6E6D7F36EDBB52AD5 /* StudyWidget.swift */; };
+		E57FC0921D521FFD7A279A64 /* Lot3Sample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C382CBF55626F82E5B0571 /* Lot3Sample.swift */; };
+		3C561F10F1D6E52E14EC5167 /* OmerWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979AFC5E9941F503BF596125 /* OmerWidget.swift */; };
+		1621BFC4551E3A6657B4F81A /* DatesWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80281B96C3C33FEF14254D6 /* DatesWidget.swift */; };
+		66176212AB2A30C02FC8E76A /* HilloulotWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB96B9DED1B4CA6D3F88236D /* HilloulotWidget.swift */; };
+		3F81A218664B1747A5840953 /* UpcomingWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E718C66030C5B1C91FB207A /* UpcomingWidget.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +84,11 @@
 		894D187EEB1C24EA48FD6DC5 /* ZmanimWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZmanimWidget.swift; sourceTree = "<group>"; };
 		06C073B0390D25DBE5070AD0 /* ShabbatWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShabbatWidget.swift; sourceTree = "<group>"; };
 		F5AA65B6E6D7F36EDBB52AD5 /* StudyWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyWidget.swift; sourceTree = "<group>"; };
+		14C382CBF55626F82E5B0571 /* Lot3Sample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lot3Sample.swift; sourceTree = "<group>"; };
+		979AFC5E9941F503BF596125 /* OmerWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OmerWidget.swift; sourceTree = "<group>"; };
+		C80281B96C3C33FEF14254D6 /* DatesWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatesWidget.swift; sourceTree = "<group>"; };
+		DB96B9DED1B4CA6D3F88236D /* HilloulotWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HilloulotWidget.swift; sourceTree = "<group>"; };
+		5E718C66030C5B1C91FB207A /* UpcomingWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingWidget.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +161,11 @@
 				894D187EEB1C24EA48FD6DC5 /* ZmanimWidget.swift */,
 				06C073B0390D25DBE5070AD0 /* ShabbatWidget.swift */,
 				F5AA65B6E6D7F36EDBB52AD5 /* StudyWidget.swift */,
+				14C382CBF55626F82E5B0571 /* Lot3Sample.swift */,
+				979AFC5E9941F503BF596125 /* OmerWidget.swift */,
+				C80281B96C3C33FEF14254D6 /* DatesWidget.swift */,
+				DB96B9DED1B4CA6D3F88236D /* HilloulotWidget.swift */,
+				5E718C66030C5B1C91FB207A /* UpcomingWidget.swift */,
 			);
 			path = TorahAxeWidgets;
 			sourceTree = "<group>";
@@ -285,6 +300,11 @@
 				0FD8EFF9CAAFE5C098C33CAE /* ZmanimWidget.swift in Sources */,
 				07B73836975A5BF2962F3C2A /* ShabbatWidget.swift in Sources */,
 				A2F81B99DC9D56A45F820B95 /* StudyWidget.swift in Sources */,
+				E57FC0921D521FFD7A279A64 /* Lot3Sample.swift in Sources */,
+				3C561F10F1D6E52E14EC5167 /* OmerWidget.swift in Sources */,
+				1621BFC4551E3A6657B4F81A /* DatesWidget.swift in Sources */,
+				66176212AB2A30C02FC8E76A /* HilloulotWidget.swift in Sources */,
+				3F81A218664B1747A5840953 /* UpcomingWidget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

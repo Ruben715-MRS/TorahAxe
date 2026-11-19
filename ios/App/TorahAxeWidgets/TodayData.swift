@@ -39,6 +39,57 @@ struct TodayFile: Decodable {
         let tachanun: String          // yes | morning | no
         let tachanunLabel: String
         let feast: Feast?
+        let omer: Int?                // le jour du compte de l'Omer (1 → 49), 0 hors de la période
+        let omerText: String?         // « 23 jours, soit 3 semaines et 2 jours »
+        let hilloulot: [HilloulaName]?
+    }
+
+    struct HilloulaName: Decodable, Hashable {
+        let fr: String
+        let he: String
+        let bio: String
+    }
+
+    // --- Lot 3 ---
+    struct DayLabel: Decodable {
+        let day: String               // « 2027-04-22 »
+        let label: String             // « jeudi 22 avril »
+    }
+
+    struct UpcomingFeast: Decodable, Hashable {
+        let name: String
+        let kind: String              // moed | minor | fast
+        let day: String
+        let label: String
+        let ongoing: Bool
+    }
+
+    struct Levana: Decodable {
+        let firstDay: String
+        let firstLabel: String
+        let lastDay: String
+        let lastLabel: String
+        let start: Double
+        let end: Double
+    }
+
+    struct Hilloula: Decodable, Hashable {
+        let fr: String
+        let he: String
+        let bio: String
+        let hebrew: String            // « 19 Kislev »
+        let day: String
+        let label: String
+    }
+
+    struct PersonalDate: Decodable, Hashable {
+        let name: String
+        let type: String              // hazkara | birthday | other
+        let kind: String              // « Hazkara », « Anniversaire »
+        let years: String
+        let hebrew: String
+        let day: String
+        let label: String
     }
 
     struct Zman: Decodable, Hashable {
@@ -107,6 +158,20 @@ struct TodayFile: Decodable {
     let days: [CivilDay]?
     let holy: [Holy]?
     let studyCards: StudyCards?
+    let omerStart: DayLabel?
+    let feasts: [UpcomingFeast]?
+    let levana: Levana?
+    let hilloulotNext: [Hilloula]?
+    let dates: [PersonalDate]?
+
+    // Le nombre de jours entre aujourd'hui (dans le fuseau du lieu) et le jour « 2026-12-05 » ; négatif s'il est passé.
+    func daysUntil(_ key: String, from date: Date) -> Int? {
+        var cal = Calendar(identifier: .gregorian)
+        cal.timeZone = TimeZone(identifier: tz) ?? .current
+        let p = key.split(separator: "-").compactMap { Int($0) }
+        guard p.count == 3, let target = cal.date(from: DateComponents(year: p[0], month: p[1], day: p[2])) else { return nil }
+        return cal.dateComponents([.day], from: cal.startOfDay(for: date), to: target).day
+    }
 
     static func load() -> TodayFile? {
         guard let dir = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: WidgetShared.appGroup),
@@ -168,6 +233,7 @@ struct TodayEntry: TimelineEntry {
     let dayZmanim: [TodayFile.Zman]   // les horaires du jour civil
     let holy: TodayFile.Holy?
     let studyCards: TodayFile.StudyCards?
+    var file: TodayFile? = nil        // tout le fichier, pour les widgets du lot 3
 
     var hasPlace: Bool { placeName != nil }
 
@@ -188,7 +254,8 @@ struct TodayEntry: TimelineEntry {
             civilDay: civil,
             dayZmanim: civil.map { day in file.zmanim.filter { $0.day == day.day } } ?? [],
             holy: file.currentHoly(at: date),
-            studyCards: file.studyCards
+            studyCards: file.studyCards,
+            file: file
         )
     }
 
@@ -210,7 +277,8 @@ struct TodayEntry: TimelineEntry {
             start: (base - 3600) * 1000, end: (base + 3600 * 20) * 1000, weekday: 4,
             hebrew: "9 Kislev 5787", hebrewShort: "9 Kislev", hebrewLetters: "ט׳ כסלו",
             parasha: "Vayétsé", parashaHe: "ויצא", tachanun: "yes", tachanunLabel: "Avec Tahanoun",
-            feast: TodayFile.Feast(name: "Hanouka", when: "Dans 16 jours", ongoing: false, days: 16)
+            feast: TodayFile.Feast(name: "Hanouka", when: "Dans 16 jours", ongoing: false, days: 16),
+            omer: 0, omerText: nil, hilloulot: []
         )
         let study = TodayFile.Study(
             daf: TodayFile.StudyItem(text: "Arakhin 2", sub: "Jours restants dans le traité : 32", he: "ערכין ב׳"),

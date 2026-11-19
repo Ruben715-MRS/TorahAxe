@@ -15,13 +15,22 @@ Couleurs de l'app (bleu nuit `#001a4b`, or `#d4a017`) ; en mode teinté ou trans
 - **« Étude du jour » (T4)** : moyen et grand ; Daf Yomi, Téhilim, Michna Yomit, Mitsva du jour (les cartes masquées dans les réglages
   le sont aussi) ; chaque ligne ouvre son texte.
 
+- **« Compte de l'Omer » (T5)** : petit, écran verrouillé (jauge 23/49) ; le compte du jour hébraïque en cours, le reste de l'année le
+  premier soir du compte.
+- **« Dates personnelles » (T6)** : petit, moyen, écran verrouillé ; les prochaines Hazkarot et anniversaires hébraïques du registre. Les
+  noms sont marqués privés (`privacySensitive`) : iOS les masque quand l'iPhone est verrouillé.
+- **« Hilloulot » (T7)** : petit, moyen ; celles du jour, sinon les prochaines (data/hilloulot/hilloulot.json).
+- **« À venir » (T9)** : petit, moyen, écran verrouillé ; prochaines fêtes et jeûnes avec le compte à rebours, fenêtre de Birkat haLévana.
+  La Live Activity du vendredi (« Allumage dans 42 min ») n'est pas faite : iOS ne laisse démarrer une Live Activity que par l'app au
+  premier plan ou par une notification push d'un serveur.
+
 **D'où viennent les données.** Le widget ne calcule rien : `js/widgetDataCore.js` (pur, testé dans `tests/widgetDataCore.test.js`)
 prépare les 30 prochains jours, et `js/app/widgets.js` les envoie au plugin natif `WidgetBridge` (`ios/App/App/WidgetBridgePlugin.swift`,
 enregistré par `ios/App/App/MainViewController.swift`). Le plugin écrit `widget-data.json` dans l'App Group `group.com.torahaxe.app`, que
 lit le widget (`TodayData.swift`). L'envoi a lieu à l'ouverture, à chaque retour au premier plan et quand le lieu ou une opinion des Zmanim
 change. Sans ouverture de l'app pendant 30 jours, le widget demande de l'ouvrir.
 
-**Toucher un widget** ouvre `torahaxe://widget/<écran>` : `today`, `zmanim`, `shabbat`, `daf`, `tehilim`, `mishna`, `mitsva` (schéma
+**Toucher un widget** ouvre `torahaxe://widget/<écran>` : `today`, `zmanim`, `shabbat`, `daf`, `tehilim`, `mishna`, `mitsva`, `omer`, `dates`, `calendar` (schéma
 déclaré dans `Info.plist`). Le lien est reçu par `SceneDelegate`, gardé par le plugin `WidgetBridge` (`takeRoute`) et la page est prévenue
 par l'événement `axewidgetroute` ; il arrive aussi par le plugin App (`appUrlOpen`) : `js/app/widgets.js` n'ouvre l'écran qu'une fois.
 

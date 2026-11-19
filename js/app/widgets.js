@@ -9,12 +9,14 @@
 // Toucher un widget ouvre l'app sur un lien torahaxe://widget/<écran>. Le lien est reçu par l'app native (SceneDelegate), qui le garde et
 // prévient la page (événement « axewidgetroute ») ; la page le reprend avec WidgetBridge.takeRoute(). Le même lien arrive aussi par le plugin
 // App (appUrlOpen) : on prend le premier des deux, et l'écran ne s'ouvre qu'une fois.
-// Écrans : today (l'accueil), zmanim, shabbat (les Zmanim, vue Chabbat), daf, tehilim, mishna, mitsva (l'étude du jour).
+// Écrans : today (l'accueil), zmanim, shabbat (les Zmanim, vue Chabbat), daf, tehilim, mishna, mitsva (l'étude du jour), omer (le compte),
+// dates (les dates personnelles), calendar (le calendrier hébraïque).
 // Sur le web (PWA), il n'y a pas de widget : tout ce fichier est sans effet.
 
 const WIDGET_DAYS = 30;
 let widgetParashot = null;        // data/torah/parashot.json, chargé une fois
 let widgetHaftarot = null;        // data/torah/haftarot.json, chargé une fois
+let widgetHilloulot = null;       // data/hilloulot/hilloulot.json (ses entrées), chargé une fois
 let widgetTimer = null;
 let widgetLastRoute = { route: null, at: 0 };
 
@@ -31,6 +33,7 @@ function widgetLoadData() {
     const jobs = [];
     if (!widgetParashot) jobs.push(widgetFetchJson('data/torah/parashot.json').then(d => { widgetParashot = d && d.parashot ? d.parashot : null; }));
     if (!widgetHaftarot) jobs.push(widgetFetchJson('data/torah/haftarot.json').then(d => { widgetHaftarot = d; }));
+    if (!widgetHilloulot) jobs.push(widgetFetchJson('data/hilloulot/hilloulot.json').then(d => { widgetHilloulot = d && Array.isArray(d.entries) ? d.entries : null; }));
     return Promise.all(jobs);
 }
 
@@ -92,12 +95,18 @@ function widgetBuild() {
         mishnaOf: widgetMishnaOf,
         mitsvaOf: widgetMitsvaOf,
         haftaraOf: widgetHaftaraOf,
+        hilloulot: widgetHilloulot,
+        dates: typeof datesStore === 'function' ? datesStore().items : [],
+        rite: typeof riteGet === 'function' ? riteGet() : 'sefarade',
         text: {
             month: (year, id) => t('tools.hcal_month_' + HC.monthLabelId(year, id)),
             feast: id => t('tools.hcal_f_' + id + '_name'),
             tachanun: { yes: t('tools.zm_tachanun'), morning: t('tools.zm_tachanun_morning'), no: t('tools.zm_no_tachanun') },
             dafSiyum: n => (n === 0 ? t('tools.zm_daf_siyum_today') : t('tools.zm_daf_siyum', { n: n })),
-            tehilimDay: n => t('tools.zm_tehilim_day', { n: n })
+            tehilimDay: n => t('tools.zm_tehilim_day', { n: n }),
+            omerCount: n => (typeof ZmanimReminderCore !== 'undefined' ? ZmanimReminderCore.omerCount(n, (k, p) => t(k, p)) : n + ' jours'),
+            dateShort: type => t('dates.short_' + type, { term: typeof datesTerm === 'function' ? datesTerm() : 'Hazkara' }),
+            dateYears: (item, n) => t(item.type === 'hazkara' ? 'dates.years_hazkara' : 'dates.years_other', { n: n })
         }
     });
     // Les cartes d'étude masquées dans Réglages › Cartes d'étude du jour le sont aussi dans le widget.
@@ -157,6 +166,9 @@ const WIDGET_ROUTES = {
         if (!my) return false;
         michnaOpenAt(my.first.id, my.first.chapter, my.first.mishna, 'screen-main');
     },
+    omer: () => { if (typeof openOmer !== 'function') return false; openOmer('screen-main'); },
+    dates: () => { if (typeof openDates !== 'function') return false; openDates('screen-main'); },
+    calendar: () => openTool('hebrewCalendar', 'screen-main'),
     mitsva: () => {
         const day = widgetToday();
         const items = day ? widgetMitsvaItems(day.fixed) : null;
