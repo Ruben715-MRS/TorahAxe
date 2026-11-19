@@ -7707,8 +7707,10 @@
     "bless_he": "בָּרוּךְ אַתָּה יְהֹוָה אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם, אֲשֶׁר קִדְּשָׁנוּ בְּמִצְוֹתָיו וְצִוָּנוּ לְהַפְרִישׁ חַלָּה מִן הָעִיסָּה.",
     "bless_tr": "Baroukh ata Adonaï, Élohénou mélekh haolam, achèr kidéchanou bémitsvotav vétsivanou léhafrich 'halla min haïssa.",
     "bless_fr": "Béni sois-Tu, Éternel notre Dieu, Roi de l'univers, qui nous as sanctifiés par Tes commandements et nous as ordonné de prélever la hallah de la pâte.",
+    "say_title": "Après le prélèvement",
     "say_he": "הֲרֵי זוֹ חַלָּה",
-    "say_tr": "Haré zo 'halla",
+    "say_tr": "Haré zo 'halla.",
+    "say_fr": "Voici la hallah.",
     "note": "Les seuils varient selon les avis (1,2 kg, 1,666 kg, 2,25 kg) et certains usages séfarades et locaux diffèrent : à confirmer auprès de votre rabbin.",
     "row_desc": "Combien de farine, avec ou sans bénédiction, et le texte"
   },

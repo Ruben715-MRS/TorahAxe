@@ -427,14 +427,18 @@ function hallahCalculator() {
         out.appendChild(r);
         if (level === 'none') return;
         const how = document.createElement('p'); how.className = 'tool-small'; how.textContent = t('hallah.how'); out.appendChild(how);
-        const bl = document.createElement('p'); bl.className = 'cmd-name'; bl.textContent = t('hallah.bless_title'); out.appendChild(bl);
-        if (level !== 'noBless') {
-            out.appendChild(cmdHebrew(Object.assign(document.createElement('p'), { className: 'cmd-full' }), t('hallah.bless_he')));
-            const tr = document.createElement('p'); tr.className = 'tool-small'; tr.textContent = t('hallah.bless_tr'); out.appendChild(tr);
-            const fr = document.createElement('p'); fr.className = 'tool-small'; fr.textContent = t('hallah.bless_fr'); out.appendChild(fr);
-        }
-        out.appendChild(cmdHebrew(Object.assign(document.createElement('p'), { className: 'cmd-full' }), t('hallah.say_he')));
-        const say = document.createElement('p'); say.className = 'tool-small'; say.textContent = t('hallah.say_tr'); out.appendChild(say);
+        // Chaque texte à part : l'hébreu, la phonétique (en italique), puis le français, séparés et aérés.
+        const block = (title, he, tr, fr) => {
+            const b = document.createElement('div');
+            b.className = 'cmd-hallah-block';
+            if (title) { const h3 = document.createElement('strong'); h3.className = 'cmd-name'; h3.textContent = title; b.appendChild(h3); }
+            b.appendChild(cmdHebrew(Object.assign(document.createElement('p'), { className: 'cmd-hallah-he' }), he));
+            const e = document.createElement('p'); e.className = 'cmd-hallah-tr'; const em = document.createElement('em'); em.textContent = tr; e.appendChild(em); b.appendChild(e);
+            if (fr) { const f = document.createElement('p'); f.className = 'cmd-hallah-fr'; f.textContent = fr; b.appendChild(f); }
+            return b;
+        };
+        if (level !== 'noBless') out.appendChild(block(t('hallah.bless_title'), t('hallah.bless_he'), t('hallah.bless_tr'), t('hallah.bless_fr')));
+        out.appendChild(block(t('hallah.say_title'), t('hallah.say_he'), t('hallah.say_tr'), t('hallah.say_fr')));
     };
     [['kg', 'hallah.unit_kg'], ['g', 'hallah.unit_g']].forEach(([id, key]) => {
         const b = document.createElement('button');

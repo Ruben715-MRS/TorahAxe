@@ -18564,9 +18564,16 @@ button.autoscroll-mode { height: 48px; padding: 0 12px; border: 1px dashed var(-
 .gen-ln-spouse { font-weight: 500; }
 
 
-/* Hafrachat halla : le calcul sous la mitsva (js/app/commandments.js, hallahCalculator). */
-.cmd-hallah { margin-top: 12px; padding: 12px; border: 1px solid var(--rule); border-radius: 14px; background: var(--surface); }
+/* Hafrachat halla : le calcul sous la mitsva (js/app/commandments.js, hallahCalculator). L'élément de la liste réserve 52 px à gauche pour sa pastille numérotée :
+   la marge négative fait occuper au calcul toute la largeur de la carte. */
+.cmd-hallah { margin: 14px 0 0 -40px; padding-top: 12px; border-top: 1px solid var(--border-soft); }
 .cmd-hallah-row { display: flex; gap: 8px; align-items: center; margin: 8px 0; }
 .cmd-hallah-input { flex: 1; min-width: 0; font: inherit; font-size: 16px; padding: 10px 12px; border: 1px solid var(--rule); border-radius: 12px; background: var(--surface); color: var(--ink); }
 .cmd-hallah-unit { width: 110px; }
-.cmd-hallah-result { font-weight: 700; margin: 6px 0; }
+.cmd-hallah-result { font-weight: 700; margin: 8px 0; }
+/* La bénédiction et la formule : un bloc chacune, l'hébreu au-dessus de sa phonétique et de sa traduction. */
+.cmd-hallah-block { margin: 14px 0 0; padding: 12px 14px; background: var(--surface-2); border-radius: 12px; }
+.cmd-hallah-block .cmd-name { display: block; margin-bottom: 8px; }
+.cmd-hallah-he { margin: 0 0 12px; font-size: 20px; line-height: 1.8; text-align: right; color: var(--ink); }
+.cmd-hallah-tr { margin: 0 0 10px; font-size: 14px; line-height: 1.5; color: var(--ink-soft); }
+.cmd-hallah-fr { margin: 0; padding-top: 10px; border-top: 1px solid var(--border-soft); font-size: 14px; line-height: 1.5; color: var(--muted-text); }
