@@ -3220,6 +3220,7 @@
     "zm_search_none": "Aucune localité trouvée pour « {q} ».",
     "zm_search_offline": "La recherche demande une connexion. Vous pouvez utiliser votre position ou saisir des coordonnées ci-dessous.",
     "zm_loading": "Recherche en cours…",
+    "zm_more_results": "Voir plus de résultats ({n})",
     "zm_gps": "Utiliser ma position",
     "zm_follow": "Suivre mes déplacements",
     "zm_follow_note": "Si la position de l'appareil change de plus de {km} km, le lieu et les horaires se mettent à jour seuls. Vérifié à l'ouverture de l'app, sans nouvelle demande d'autorisation.",

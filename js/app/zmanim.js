@@ -3,13 +3,16 @@
 // =========================================================================
 // Le lieu se choisit par une recherche (n'importe quelle localité de la Terre), par la position de l'appareil, par des coordonnées saisies,
 // ou parmi des favoris. Les horaires sont calculés SUR L'APPAREIL (js/zmanimCore.js, pur et testé) : hors-ligne, rien n'est envoyé. Seule la
-// recherche d'une localité interroge un service de géocodage (Open-Meteo) avec le nom tapé, et rien d'autre ; la position de l'appareil,
-// elle, ne quitte jamais l'appareil (voir js/location.js). Le lieu, les favoris et les opinions sont gardés dans localStorage.
+// recherche d'une localité interroge un service de géocodage (Open-Meteo) avec le nom tapé ; et « Utiliser ma position » envoie les coordonnées
+// ARRONDIES à ~1 km à un service de géocodage inverse (BigDataCloud) pour afficher le nom de la ville (sans réseau : « Ma position »).
+// Les horaires, eux, se calculent sans rien envoyer (voir js/location.js). Le lieu, les favoris et les opinions sont gardés dans localStorage.
 // Réutilise les fonctions de date de js/app/hebrew-calendar.js (hcalGregorianText, hcalHebrewText, hcalHebrewLetters). Tout ce qui vient de
 // la saisie ou du réseau passe par textContent, jamais par du HTML. Contenu halakhique écrit à la main : à relire par une personne compétente.
 
 const ZM_KEYS = { place: 'zmanimPlace', favs: 'zmanimFavs', opts: 'zmanimOpts', follow: 'zmanimFollow', autoPos: 'zmanimAutoPos' };
 const ZM_GEOCODER = 'https://geocoding-api.open-meteo.com/v1/search';
+const ZM_REVERSE = 'https://api.bigdatacloud.net/data/reverse-geocode-client';
+const ZM_SHOWN = 3;          // résultats de recherche montrés d'abord ; le reste derrière « Voir plus de résultats »
 const ZM_DAY_MS = 86400000;
 
 let zmPlace = null;          // le lieu courant { name, lat, lon, elevation, tz }
@@ -17,6 +20,7 @@ let zmFavs = [];             // les lieux favoris
 let zmOpts = {};             // les opinions choisies (clés de ZmanimCore.DEFAULTS)
 let zmDate = null;           // le jour affiché { year, month, day }
 let zmEditing = false;       // le volet « Lieu » est ouvert
+let zmShowAll = false;       // vrai : tous les résultats de la recherche sont montrés
 let zmFound = null;          // résultats de la dernière recherche : [{ place, detail }], ou { error }, ou { loading }
 let zmTimer = null;
 let zmHe = false;            // vrai : les noms des horaires en hébreu (bouton « A / א »), et la mise en page inversée : le nom à droite, l'heure à gauche
@@ -332,9 +336,25 @@ function zmDistanceKm(a, b) {
     return 6371 * 2 * Math.asin(Math.min(1, Math.sqrt(h)));
 }
 
-// Le lieu devient la position détectée (même forme que « Utiliser ma position »).
+// Le nom de la localité où se trouve la position (géocodage inverse). Ne rejette jamais : '' si hors-ligne, trop lent ou sans réponse utile.
+function zmReverseName(pos) {
+    const controller = typeof AbortController === 'function' ? new AbortController() : null;
+    const timeout = setTimeout(() => { if (controller) controller.abort(); }, 6000);
+    const url = ZM_REVERSE + '?latitude=' + pos.lat.toFixed(2) + '&longitude=' + pos.lon.toFixed(2) + '&localityLanguage=' + encodeURIComponent(zmLocale());
+    return fetch(url, controller ? { signal: controller.signal } : undefined)
+        .then(res => { if (!res.ok) throw new Error('http ' + res.status); return res.json(); })
+        .then(json => ZmanimCore.parseReverseGeocoding(json))
+        .catch(() => '')
+        .then(name => { clearTimeout(timeout); return name; });
+}
+
+// Le lieu devient la position détectée (même forme que « Utiliser ma position »), nommé d'après la ville si le réseau répond.
 function zmApplyDetected(pos, announce) {
-    const place = ZmanimCore.normalizePlace({ name: t('tools.zm_my_position'), lat: pos.lat, lon: pos.lon, elevation: 0, tz: zmDeviceTimeZone() });
+    zmReverseName(pos).then(name => zmApplyDetectedNamed(pos, announce, name));
+}
+
+function zmApplyDetectedNamed(pos, announce, name) {
+    const place = ZmanimCore.normalizePlace({ name: name || t('tools.zm_my_position'), lat: pos.lat, lon: pos.lon, elevation: 0, tz: zmDeviceTimeZone() });
     if (!place) return;
     zmWrite(ZM_KEYS.autoPos, { lat: pos.lat, lon: pos.lon });
     zmPlace = place;
@@ -382,7 +402,7 @@ function zmLocate() {
     zmRender(true);
     TorahAxeLocation.locate().then(pos => {
         if (!pos) { zmFound = { error: t('tools.zm_gps_failed') }; zmRender(true); return; }
-        zmUsePlace({ name: t('tools.zm_my_position'), lat: pos.lat, lon: pos.lon, elevation: 0, tz: zmDeviceTimeZone() });
+        zmReverseName(pos).then(name => zmUsePlace({ name: name || t('tools.zm_my_position'), lat: pos.lat, lon: pos.lon, elevation: 0, tz: zmDeviceTimeZone() }));
     });
 }
 
@@ -390,6 +410,7 @@ function zmSearch(query) {
     const q = String(query || '').trim();
     if (q.length < 2) { zmFound = { error: t('tools.zm_search_short') }; zmRender(true); return; }
     zmFound = { loading: true };
+    zmShowAll = false;
     zmRender(true);
     const controller = typeof AbortController === 'function' ? new AbortController() : null;
     const timeout = setTimeout(() => { if (controller) controller.abort(); }, 8000);
@@ -430,7 +451,7 @@ function zmPlaceEditor(body) {
     if (zmFound && zmFound.loading) results.appendChild(zmEl('p', 'tool-small', t('tools.zm_loading')));
     else if (zmFound && zmFound.error) results.appendChild(zmEl('p', 'tool-msg', zmFound.error));
     else if (Array.isArray(zmFound)) {
-        zmFound.forEach(r => {
+        (zmShowAll ? zmFound : zmFound.slice(0, ZM_SHOWN)).forEach(r => {
             const b = zmEl('button', 'zm-result');
             b.type = 'button';
             b.appendChild(zmEl('strong', '', r.place.name));
@@ -438,6 +459,12 @@ function zmPlaceEditor(body) {
             b.onclick = () => zmUsePlace(r.place);
             results.appendChild(b);
         });
+        if (!zmShowAll && zmFound.length > ZM_SHOWN) {
+            const more = zmEl('button', 'tool-history-chip zm-more', t('tools.zm_more_results', { n: zmFound.length - ZM_SHOWN }));
+            more.type = 'button';
+            more.onclick = () => { zmShowAll = true; zmRender(true); };
+            results.appendChild(more);
+        }
     }
     panel.appendChild(results);
 

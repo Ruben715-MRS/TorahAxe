@@ -479,6 +479,13 @@
         return out;
     }
 
+    // La réponse d'un service de géocodage inverse (BigDataCloud « reverse-geocode-client ») → le nom de la localité, ou '' si rien d'utilisable.
+    function parseReverseGeocoding(json) {
+        if (!json || typeof json !== 'object') return '';
+        var name = [json.city, json.locality, json.principalSubdivision].map(function (x) { return typeof x === 'string' ? x.trim() : ''; }).filter(Boolean)[0];
+        return name ? name.slice(0, 60) : '';
+    }
+
     // Distance (km) entre deux lieux : sert à repérer un lieu déjà enregistré.
     function sameSpot(a, b) { return distanceKm(a.lat, a.lon, b.lat, b.lon) < 1; }
 
@@ -490,6 +497,6 @@
         zmanim: zmanim, hametsTimes: hametsTimes, roundMinute: roundMinute, rounded: rounded, formatTime: formatTime, formatDuration: formatDuration,
         shabbatOf: shabbatOf, dafYomi: dafYomi, tehilimOfDay: tehilimOfDay, noTachanun: noTachanun, tachanunStatus: tachanunStatus,
         moladOf: moladOf, levanaWindow: levanaWindow, levanaEvenings: levanaEvenings,
-        hilloulotFor: hilloulotFor, normalizePlace: normalizePlace, parseGeocoding: parseGeocoding, sameSpot: sameSpot
+        hilloulotFor: hilloulotFor, normalizePlace: normalizePlace, parseGeocoding: parseGeocoding, parseReverseGeocoding: parseReverseGeocoding, sameSpot: sameSpot
     };
 }));
