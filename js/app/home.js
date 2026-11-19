@@ -504,6 +504,11 @@ function homeLoadHilloulot() {
 }
 
 // Ouvre la liste des 613 à la mitsva donnée : on déplie ses ancêtres repliables, on la montre et on la fait clignoter un instant.
+function homeOpenWomen() {
+    openTool('commandments', 'screen-main');
+    if (typeof toolCommandmentsPick === 'function') toolCommandmentsPick('femmes');
+}
+
 function homeOpenMitsva(c) {
     openTool('commandments', 'screen-main');
     if (typeof toolCommandmentsPick === 'function') toolCommandmentsPick('mitzvot');
@@ -672,6 +677,14 @@ function homeRenderToday(content) {
         secondRow.push(card);
     }
     [studyRow(firstRow), studyRow(secondRow)].forEach(row => { if (row) content.appendChild(row); });
+    // Profil « Femme » (js/app/first-profile.js) : un accès direct aux mitsvot des femmes.
+    if (typeof profileGender === 'function' && profileGender() === 'f') {
+        const wrow = hEl('div', 'home-cards');
+        const wcard = homeInfoCard(t('welcome.women_card_label'), t('welcome.women_card_value'), t('welcome.women_card_sub'), () => homeOpenWomen());
+        wcard.classList.add('home-card-wide');
+        wrow.appendChild(wcard);
+        content.appendChild(wrow);
+    }
     // « Étudié » (facultatif, désactivé par défaut) : une case par étude qui existe aujourd'hui.
     if (typeof studyChips === 'function') {
         const kinds = [];

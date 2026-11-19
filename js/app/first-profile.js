@@ -10,7 +10,8 @@ function profileGender() {
 function profileGenderSet(g) {
     const v = ProfileCore.normalizeGender(g);
     try { if (v) localStorage.setItem(GENDER_KEY, v); else localStorage.removeItem(GENDER_KEY); } catch (e) { /* valable pour cette séance */ }
-    // Le Siddour affiche le texte du nouveau profil.
+    // L'accueil (carte des mitsvot des femmes) et le Siddour suivent le nouveau profil.
+    if (typeof homeRefresh === 'function') homeRefresh();
     const screen = typeof toolEl === 'function' ? toolEl('screen-tool-siddur') : null;
     if (screen && !screen.classList.contains('hidden') && typeof sdRerender === 'function') sdRerender();
 }
