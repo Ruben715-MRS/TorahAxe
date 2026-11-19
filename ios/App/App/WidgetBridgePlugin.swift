@@ -30,7 +30,9 @@ public class WidgetBridgePlugin: CAPPlugin, CAPBridgedPlugin {
     @discardableResult
     static func receive(_ url: URL, webView: WKWebView?) -> Bool {
         guard url.scheme == scheme, url.host == "widget" else { return false }
-        let route = url.pathComponents.first { $0 != "/" } ?? "today"
+        // « historiaxe://widget/citation/cit_x » → « citation/cit_x »
+        let parts = url.pathComponents.filter { $0 != "/" }
+        let route = parts.isEmpty ? "today" : parts.joined(separator: "/")
         pendingRoute = route
         webView?.evaluateJavaScript("window.dispatchEvent(new Event('axewidgetroute'))", completionHandler: nil)
         return true
