@@ -750,6 +750,7 @@ window.onload = async () => {
     if (typeof i18n !== 'undefined') await i18n.init();
     homeInit();
     remindersStart();
+    if (typeof widgetsStart === 'function') widgetsStart();   // les widgets de l'iPhone (js/app/widgets.js)
 };
 
 // Les rappels (notifications locales) sont reprogrammés à l'ouverture de l'app et à chaque retour au premier plan : iOS n'en garde que quelques-uns

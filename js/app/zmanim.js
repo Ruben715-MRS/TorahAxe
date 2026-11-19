@@ -69,6 +69,8 @@ function zmRead(key, fallback) {
 }
 function zmWrite(key, value) {
     try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) { /* stockage indisponible : le réglage reste pour la séance */ }
+    // Le lieu et les opinions sont aussi ceux des widgets de l'iPhone (js/app/widgets.js).
+    if ((key === ZM_KEYS.place || key === ZM_KEYS.opts) && typeof widgetsRefresh === 'function') widgetsRefresh();
 }
 function zmLoad() {
     zmPlace = ZmanimCore.normalizePlace(zmRead(ZM_KEYS.place, null));
