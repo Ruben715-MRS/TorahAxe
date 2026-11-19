@@ -15,7 +15,14 @@ try { if (localStorage.getItem('commandmentsLang') === 'he') commandmentsLang = 
 
 function cmdText(key) { return t(key.indexOf('tools.') === 0 ? key : 'tools.' + key); }
 
+// Profil « Femme » : à la première ouverture de l'écran dans la séance, il s'ouvre sur l'onglet des mitsvot des femmes (un autre choix ensuite est respecté).
+let commandmentsProfileApplied = false;
+
 function toolCommandmentsInit() {
+    if (!commandmentsProfileApplied) {
+        commandmentsProfileApplied = true;
+        if (typeof profileGender === 'function' && profileGender() === 'f') commandmentsSet = 'femmes';
+    }
     renderCommandments();
 }
 

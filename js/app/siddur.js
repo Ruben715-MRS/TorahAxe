@@ -1964,7 +1964,10 @@ function sdRenderSection(section) {
     }
     if (section.about) box.appendChild(sdAboutCard(section.about));
     const counter = { n: 1 };
-    const trees = section.segments.map(html => SiddurCore.analyseSegment(html, counter));
+    // Le profil (homme / femme, js/app/first-profile.js) : la version du texte qui le concerne ; les indices restent ceux du livre.
+    const gender = typeof profileGender === 'function' ? profileGender() : null;
+    const prof = ProfileCore.adaptSection(section.segments, gender);
+    const trees = prof.segments.map(html => SiddurCore.analyseSegment(html, counter));
     const amida = sdIsAmida(section.id);
     const bares = trees.map(sdBare);
     let bows = 0;
@@ -1977,7 +1980,7 @@ function sdRenderSection(section) {
     if (section.id === 'omer' && sdCtx.omer > 0) box.appendChild(sdEl('p', 'sd-omer-note', t('tools.sd_omer_today', { n: sdCtx.omer })));
     // Les traductions servent toujours aux consignes ; sous chaque segment, seulement si on les a demandées.
     const frAll = section.fr_t || null;
-    const frOf = (i) => { const tr = frAll && frAll[i]; return tr && tr[0] === SiddurCore.fingerprint(section.segments[i]) ? tr[1] : null; };
+    const frOf = (i) => { const tr = frAll && frAll[i]; return tr && tr[0] === SiddurCore.fingerprint(section.segments[i]) ? ProfileCore.adaptFr(tr[1], gender) : null; };
     if (sdPrefs.fr && !frAll) box.appendChild(sdEl('p', 'sd-fr-missing', t('tools.sd_fr_missing')));
     const seg = (i) => {
         const fr = frOf(i);
@@ -2042,6 +2045,7 @@ function sdRenderSection(section) {
     const psalmDay = /chir-chel-yom/.test(section.id);
     let i = 0;
     while (i < trees.length) {
+        if (prof.hidden.has(i)) { i++; continue; }       // la version de l'autre profil
         if (amida && out === box && /^קדושה/.test(bares[i])) { out = sdMinyanBox('Qédoucha'); box.appendChild(out); }
         const ps = psalmDay && i + 1 < trees.length ? SiddurCore.dayPsalm(SiddurCore.plain(trees[i]), sdCtx) : null;
         if (ps) {

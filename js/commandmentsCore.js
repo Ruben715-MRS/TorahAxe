@@ -77,17 +77,31 @@
         {
             id: 'pratiques',
             icon: '🌿',
-            count: 26,
+            count: 23,
             themeMenu: true,
             restartPerGroup: true,
             groups: [
-                { id: 'women', items: ['hallah', 'nidda', 'ner'] },
                 { id: 'pesah', items: ['pesah', 'matsa', 'maror', 'hametz', 'omer'] },
                 { id: 'kippour', items: ['ky1', 'ky2', 'ky3', 'ky4', 'ky5'] },
                 { id: 'soukkot', items: ['etrog', 'lulav', 'hadass', 'arava'] },
                 { id: 'foyer', items: ['mezouza', 'birkat', 'havdala'] },
                 { id: 'fetes', items: ['hanouka', 'mishloah', 'matanot', 'megila'] },
                 { id: 'vie', items: ['brit', 'pidyon'] }
+            ]
+        },
+        // Mitsvot des femmes : les trois de la Michna (Chabbat 2:6), celles du temps dont elles sont tenues malgré la règle (Kiddouchin 1:7), la prière
+        // de chaque jour, et celles dont elles sont exemptées mais que beaucoup accomplissent. Profil « Femme » (js/app/first-profile.js) : l'onglet s'ouvre en premier.
+        {
+            id: 'femmes',
+            icon: '🕯️',
+            count: 13,
+            themeMenu: true,
+            restartPerGroup: true,
+            groups: [
+                { id: 'mishna', items: ['ner', 'hallah', 'nidda'] },
+                { id: 'temps', items: ['kiddouch', 'matsa', 'kosot', 'hanouka', 'megila'] },
+                { id: 'quotidien', items: ['tefila', 'mazon'] },
+                { id: 'coutumes', items: ['chofar', 'soucca', 'loulav'] }
             ]
         },
         // Principes et textes : ce ne sont pas des mitsvot. Thèmes classés du plus ancien texte au plus récent ; chacun recommence à 1.
