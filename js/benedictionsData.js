@@ -482,7 +482,7 @@
         {"id": 367, "n": "Piment", "b": "haadama", "alt": ["chili","piment vert","piment rouge"]},
         {"id": 366, "n": "Pissenlit", "b": "haadama", "alt": ["dent-de-lion"]},
         {"id": 207, "n": "Pistache", "b": "haets", "alt": ["pistaches"]},
-        {"id": 425, "n": "Pita", "b": "hamotsi", "alt": ["pain pita","pain pitta"]},
+        {"id": 425, "n": "Pita", "b": "hamotsi", "alt": ["pain pita", "pain pitta"], "steps": [{"t": "Pita cuite au four ou sur une plaque sèche (cas général) : Hamotsi, tout d'abord", "b": "hamotsi"}, {"t": "Ou bien, pita frite dans une grande quantité d'huile : Mezonot, sans lavage des mains préalable", "b": "mezonot"}], "notes": [34, 43]},
         {"id": 208, "n": "Pizza", "b": "mezonot", "notes": [25]},
         {"id": 483, "n": "Pkéïla", "b": "chehakol", "alt": ["pkaila","pkéila","pkaïla"], "notes": [36]},
         {"id": 328, "n": "Plantain (banane à cuire)", "b": "haadama", "alt": ["banane plantain","banane à cuire"]},
@@ -684,6 +684,7 @@
         38: "Condiment : ajouté à un autre aliment pour son goût (par exemple du ketchup sur des frites), il n'a pas de bénédiction séparée : la bénédiction porte sur l'aliment principal. Si on en mange une quantité notable pour lui-même, on dit Chéhakol. Quantité : au moins un kezayit. À faire relire par un rav.",
         39: "Citron vert : Haets lorsqu'il est mangé comme fruit. Chéhakol peut être dit, selon certains avis, s'il est très acide et consommé seul sans plaisir ; le guide Habad mentionne cette règle pour le citron cru, mais ne tranche pas explicitement le cas du citron vert. Pressé en jus : Chéhakol. Utilisé comme condiment : pas de bénédiction séparée. À faire trancher par un rav selon la manière de consommer et la coutume.",
         40: "Tcholente : Chéhakol pour une recette simple (pommes de terre, viande, haricots, peu ou pas d'orge). Si l'orge y est en quantité notable et reconnaissable, beaucoup de poskim disent Mezonot, même en minorité. Si les grains restent entiers et non écrasés, certains disent Haadama. Chez 'Habad, en cas de doute, manger dans un repas introduit par Hamotsi. À demander à un rav selon la composition exacte et le minhag.",
+        43: "Pita : Hamotsi dans le cas général. Si la pâte est frite dans une grande quantité d'huile (et non cuite au four ou sur une plaque sèche), son statut change : Mezonot, sans lavage des mains préalable. Le cas de la pita sucrée n'est pas traité ici : à faire préciser. À faire relire par un rav.",
         42: "Tchoutchouka (chakchouka) : au cours d'un repas introduit par Hamotsi, aucune bénédiction particulière : Hamotsi couvre les plats qui l'accompagnent. Sans pain, la bénédiction dépend de la préparation (voir les étapes). Le cas de la purée lisse est un avis de certains décisionnaires : à faire relire par un rav.",
         41: "Kneidlach (boulettes de matsa) : Mezonot, selon l'usage courant. Certains avis plus anciens pourraient pencher vers Hamotsi si les boulettes sont grosses. La bénédiction de la matsa elle-même dépend du rite : à vérifier selon la communauté.",
         36: "Plat composé : la bénédiction dépend de ce qui domine entre l'enveloppe (pâte, galette, riz) et la garniture. Voir la section Halakha (« Plat mélangé : Ikar veTafel ») ou l'outil « Mon plat ». Le classement indiqué est indicatif, à faire relire par un rav."
