@@ -141,6 +141,10 @@ body > #screen-main {
     cursor: pointer;
 }
 .home-hero-btn:active { transform: scale(0.98); }
+/* La ligne des boutons de la carte principale : « Commencer » à gauche, « Tout le Siddour » à droite, de même largeur. */
+.home-hero-btns { display: flex; gap: 8px; }
+.home-hero-btns .home-hero-btn { flex: 1; min-width: 0; }
+.home-hero-btn.secondary { background: transparent; color: inherit; box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.7); }
 
 .home-times {
     display: grid;
@@ -157,6 +161,11 @@ body > #screen-main {
 .home-tiles { display: grid; gap: 10px; }
 .home-tiles.c2 { grid-template-columns: repeat(2, 1fr); }
 .home-tiles.c3 { grid-template-columns: repeat(3, 1fr); }
+/* Zmanim : une seule tuile pleine largeur, aux plus gros caractères de l'accueil. */
+.home-tiles.c1 { grid-template-columns: 1fr; }
+.home-tiles.c1 .home-tile { padding: 18px 8px 16px; }
+.home-tiles.c1 .home-tile .he { font-size: 38px; }
+.home-tiles.c1 .home-tile .fr { font-size: 17px; font-weight: 700; }
 
 .home-tile {
     border: 1px solid var(--border-soft);

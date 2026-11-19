@@ -615,8 +615,10 @@ function sdLastRead() {
 }
 
 // Les notes du jour affichées en pastilles (Machiv haRouah, Avec Tahanoun…), sans Chabbat ni fête (dits à part).
-function sdDayNoteLabels(ctx) {
-    return SiddurCore.notesFor(ctx).filter(id => id !== 'shabbat' && id !== 'yomTov')
+// `base` : l'office en cours ('arvit'…). Tahanoun ne se dit pas à Arvit : ni « Avec Tahanoun » ni « Tahanoun le matin » n'y ont leur place.
+function sdDayNoteLabels(ctx, base) {
+    const noTachanun = base === 'arvit' ? id => !/^(noT|t)achanun/.test(id) : () => true;
+    return SiddurCore.notesFor(ctx).filter(id => id !== 'shabbat' && id !== 'yomTov' && noTachanun(id))
         .map(id => id === 'omer' ? t('tools.sd_note_omer', { n: ctx.omer }) : t('tools.sd_note_' + id));
 }
 
@@ -685,7 +687,7 @@ function sdRenderHome(body) {
         else {
             const chips = sdEl('div', 'home-chips');
             if (service.shabbat) chips.appendChild(sdEl('span', 'home-chip', 'Chabbat'));
-            sdDayNoteLabels(ctx).forEach(label => chips.appendChild(sdEl('span', 'home-chip', label)));
+            sdDayNoteLabels(ctx, service.base).forEach(label => chips.appendChild(sdEl('span', 'home-chip', label)));
             hero.appendChild(chips);
         }
         const regel = special && (ctx.flags.pesach || ctx.flags.sukkot || ctx.flags.shemini || ctx.flags.shavuot);
