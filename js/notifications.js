@@ -21,6 +21,8 @@
         settings: function () { try { return JSON.parse(root.localStorage.getItem('zmanimReminders') || 'null'); } catch (e) { return null; } },
         place: function () { try { return root.ZmanimCore.normalizePlace(JSON.parse(root.localStorage.getItem('zmanimPlace') || 'null')); } catch (e) { return null; } },
         opts: function () { return typeof root.zmStoredOpts === 'function' ? root.zmStoredOpts() : {}; },
+        // Israël ou diaspora d'après le domicile choisi (js/app/first-profile.js) ; undefined : le lieu décide.
+        israel: function () { try { var d = root.localStorage.getItem('torahaxe_domicile_v1'); return d === 'israel' ? true : d === 'diaspora' ? false : undefined; } catch (e) { return undefined; } },
         // Les dates personnelles (Hazkara, anniversaires : js/personalDatesCore.js) : leur registre, le rite choisi (qui règle l'Adar). Facultatif : sans elles, rien de plus n'est programmé.
         datesCore: function () { return root.PersonalDatesCore; },
         dates: function () { try { return JSON.parse(root.localStorage.getItem('torahaxe_dates_v1') || 'null'); } catch (e) { return null; } },
@@ -68,7 +70,7 @@
         if (!p || !core) return Promise.resolve(0);
         var settings = core.normalize(deps.settings());
         var place = deps.place();
-        var zmanimItems = core.anyEnabled(settings) && place ? core.plan(settings, place, deps.opts(), deps.now(), HORIZON_DAYS) : [];
+        var zmanimItems = core.anyEnabled(settings) && place ? core.plan(settings, place, deps.opts(), deps.now(), HORIZON_DAYS, deps.israel ? deps.israel() : undefined) : [];
         // Les rappels des dates personnelles ne dépendent pas du réglage des Zmanim : ils ont leur choix par date. Ils ont besoin du lieu (lever du soleil, coucher, sortie des étoiles).
         var dates = deps.datesCore ? deps.datesCore() : null;
         var rite = deps.rite ? deps.rite() : 'sefarade';

@@ -90,3 +90,137 @@ test('psaume du jour : celui du jour et ceux des jours particuliers', () => {
     assert.strictEqual(S.dayPsalm('למחרת יום הכיפורים אומרים', ctx(2026, 9, 22)), 'on');   // 11 Tichri 5787
     assert.strictEqual(S.dayPsalm('בצום גדליה ובעשרה בטבת אומרים', ctx(2026, 12, 20)), 'on'); // 10 Tevet 5787
 });
+
+const OFFICE_IDX = require('../data/siddur/index.json');
+const OFFICE_ALL = [].concat(...OFFICE_IDX.groups.map(g => g.sections.map(x => x.id)));
+const officeIds = id => OFFICE_IDX.groups.find(g => g.id === id).sections.map(x => x.id);
+const ctxOf = o => ({ flags: Object.assign({ rc: false, shabbat: false, yomTov: false, hanukkah: false, purim: false, chPesach: false, chSukkot: false }, o) });
+
+test("occasionsOf : Roch 'Hodech, Hanouka, Pourim, 'Hol haMoed, dans l'ordre ; rien Chabbat ni jour de fête", () => {
+    const S2 = require('../js/siddurCore.js');
+    assert.deepStrictEqual(S2.occasionsOf(ctxOf({})), []);
+    assert.deepStrictEqual(S2.occasionsOf(ctxOf({ rc: true })), ['rc']);
+    assert.deepStrictEqual(S2.occasionsOf(ctxOf({ rc: true, hanukkah: true })), ['rc', 'hanouka']);
+    assert.deepStrictEqual(S2.occasionsOf(ctxOf({ purim: true })), ['pourim']);
+    assert.deepStrictEqual(S2.occasionsOf(ctxOf({ chPesach: true })), ['chPesach']);
+    assert.deepStrictEqual(S2.occasionsOf(ctxOf({ chSukkot: true })), ['chSukkot']);
+    assert.deepStrictEqual(S2.occasionsOf(ctxOf({ rc: true, shabbat: true })), []);
+    assert.deepStrictEqual(S2.occasionsOf(ctxOf({ hanukkah: true, yomTov: true })), []);
+    assert.deepStrictEqual(S2.occasionsOf(null), []);
+    assert.strictEqual(S2.isRoshChodeshWeekday(ctxOf({ rc: true })), true);
+    assert.strictEqual(S2.isRoshChodeshWeekday(ctxOf({ rc: true, shabbat: true })), false);
+    assert.strictEqual(S2.isRoshChodeshWeekday(ctxOf({ hanukkah: true })), false);
+    assert.strictEqual(S2.OCC_HE.rc, 'ראש חודש');
+});
+
+test('officeFor : un jour ordinaire, les sections de la semaine telles quelles', () => {
+    const S2 = require('../js/siddurCore.js');
+    ['chacharit', 'minha', 'arvit'].forEach(b => assert.deepStrictEqual(S2.officeFor(b, officeIds(b), [], OFFICE_ALL), { ids: officeIds(b), trim: {} }));
+});
+
+test("Roch 'Hodech : Cha'harit suit l'ordre du livre (Hallel, Torah, Moussaf, Barkhi nafchi…)", () => {
+    const S2 = require('../js/siddurCore.js');
+    const group = officeIds('chacharit');
+    const rc = S2.officeFor('chacharit', group, ['rc'], OFFICE_ALL).ids;
+    const cut = rc.indexOf('chacharit-amida');
+    assert.deepStrictEqual(rc.slice(0, cut + 1), group.slice(0, group.indexOf('chacharit-amida') + 1));       // la semaine jusqu'à l'Amida
+    assert.deepStrictEqual(rc.slice(cut + 1, cut + 10), S2.RC_SECTIONS);                                         // puis Roch 'Hodech, dans l'ordre
+    assert.deepStrictEqual(rc.slice(cut + 10), ['chacharit-treize-principes', 'chacharit-dix-souvenirs']);       // puis la fin habituelle
+    ['chacharit-vidoui', 'chacharit-tora', 'chacharit-achre', 'chacharit-ouva-letsion', 'chacharit-chir-chel-yom', 'chacharit-qave', 'chacharit-alenou'].forEach(id => assert.ok(!rc.includes(id), id));
+    // sans une section du livre : on garde l'office de la semaine
+    assert.deepStrictEqual(S2.officeFor('chacharit', group, ['rc'], ['chacharit-amida']).ids, group);
+});
+
+test("Hanouka : Hallel (sans la lecture de Roch 'Hodech), Torah, lectures de Hanouka, puis la suite ; Roch 'Hodech Tévet y ajoute les sections de Roch 'Hodech", () => {
+    const S2 = require('../js/siddurCore.js');
+    const group = officeIds('chacharit');
+    const han = S2.officeFor('chacharit', group, ['hanouka'], OFFICE_ALL);
+    const cut = han.ids.indexOf('chacharit-amida');
+    assert.deepStrictEqual(han.ids.slice(cut + 1, cut + 4), ['rh-hallel', 'chacharit-tora', 'hanouka-chacharit']);
+    assert.deepStrictEqual(han.trim, { 'rh-hallel': S2.HALLEL_TAIL_FROM });
+    assert.ok(!han.ids.includes('chacharit-vidoui'));
+    assert.ok(han.ids.includes('chacharit-achre') && han.ids.includes('chacharit-chir-chel-yom') && han.ids.includes('chacharit-alenou'));
+    const both = S2.officeFor('chacharit', group, ['rc', 'hanouka'], OFFICE_ALL).ids;
+    assert.strictEqual(both[both.indexOf('rh-hallel') + 1], 'hanouka-chacharit');
+    assert.ok(both.includes('rh-moussaf') && both.includes('rh-barkhi-nafchi'));
+});
+
+test('Pourim : la Méguila après Achré, Chochanat Ya\'akov ; Arvit : la Méguila après l\'Amida', () => {
+    const S2 = require('../js/siddurCore.js');
+    const ch = S2.officeFor('chacharit', officeIds('chacharit'), ['pourim'], OFFICE_ALL).ids;
+    const cut = ch.indexOf('chacharit-amida');
+    assert.deepStrictEqual(ch.slice(cut + 1, cut + 6), ['pourim-jour', 'chacharit-tora', 'chacharit-achre', 'pourim-meguila', 'pourim-chochanat-yaakov']);
+    assert.ok(ch.includes('chacharit-ouva-letsion') && !ch.includes('chacharit-vidoui'));
+    const ar = S2.officeFor('arvit', officeIds('arvit'), ['pourim'], OFFICE_ALL).ids;
+    assert.deepStrictEqual(ar, ['arvit-barekhou', 'arvit-chema', 'arvit-amida', 'pourim-meguila', 'pourim-chochanat-yaakov', 'arvit-alenou']);
+});
+
+test("'Hol haMoed : Hallel, Moussaf et le mizmor de la fête (Pessa'h ou Souccot)", () => {
+    const S2 = require('../js/siddurCore.js');
+    const group = officeIds('chacharit');
+    const p = S2.officeFor('chacharit', group, ['chPesach'], OFFICE_ALL);
+    const s3 = S2.officeFor('chacharit', group, ['chSukkot'], OFFICE_ALL);
+    assert.ok(p.ids.includes('regalim-mizmor-pessah') && !p.ids.includes('regalim-mizmor-souccot'));
+    assert.ok(s3.ids.includes('regalim-mizmor-souccot') && !s3.ids.includes('regalim-mizmor-pessah'));
+    [p, s3].forEach(o => {
+        assert.strictEqual(o.ids[o.ids.indexOf('chacharit-amida') + 1], 'hm-hallel');
+        assert.ok(o.ids.indexOf('hm-moussaf') > o.ids.indexOf('chacharit-ouva-letsion'));
+        assert.deepStrictEqual(o.trim, { 'hm-hallel': S2.HALLEL_TAIL_FROM });
+        assert.ok(!o.ids.includes('chacharit-chir-chel-yom'));
+    });
+});
+
+test('Arvit de Hanouka : l\'allumage et Maoz Tsour après la prière ; Min\'ha : inchangée', () => {
+    const S2 = require('../js/siddurCore.js');
+    assert.deepStrictEqual(S2.officeFor('arvit', officeIds('arvit'), ['hanouka'], OFFICE_ALL).ids, officeIds('arvit').concat(['hanouka-allumage', 'hanouka-maoz-tsour']));
+    ['rc', 'hanouka', 'pourim', 'chPesach'].forEach(o => assert.deepStrictEqual(S2.officeFor('minha', officeIds('minha'), [o], OFFICE_ALL).ids, officeIds('minha')));
+});
+
+test("Les Hallel du livre : la lecture de Roch 'Hodech commence bien au segment coupé", () => {
+    const S2 = require('../js/siddurCore.js');
+    const plainTxt = h => h.replace(/<[^>]*>/g, '');
+    ['rh-hallel', 'hm-hallel'].forEach(id => {
+        const d = require('../data/siddur/' + id + '.json');
+        assert.ok(/קודם הוצאת ספר תורה/.test(plainTxt(d.segments[S2.HALLEL_TAIL_FROM])), id);
+    });
+});
+
+test("Chabbat d'occasion : shabbatOccasionsOf (Chabbat Roch 'Hodech, Hanouka, 'Hol haMoed ; rien un Chabbat ordinaire ni de fête)", () => {
+    const S2 = require('../js/siddurCore.js');
+    const sh = o => ctxOf(Object.assign({ shabbat: true }, o));
+    assert.deepStrictEqual(S2.shabbatOccasionsOf(sh({})), []);
+    assert.deepStrictEqual(S2.shabbatOccasionsOf(sh({ rc: true })), ['rc']);
+    assert.deepStrictEqual(S2.shabbatOccasionsOf(sh({ hanukkah: true })), ['hanouka']);
+    assert.deepStrictEqual(S2.shabbatOccasionsOf(sh({ rc: true, hanukkah: true })), ['rc', 'hanouka']);
+    assert.deepStrictEqual(S2.shabbatOccasionsOf(sh({ chPesach: true })), ['chPesach']);
+    assert.deepStrictEqual(S2.shabbatOccasionsOf(sh({ chSukkot: true })), ['chSukkot']);
+    assert.deepStrictEqual(S2.shabbatOccasionsOf(sh({ hanukkah: true, yomTov: true })), []);
+    assert.deepStrictEqual(S2.shabbatOccasionsOf(ctxOf({ hanukkah: true })), []);        // pas un Chabbat
+    assert.deepStrictEqual(S2.shabbatOccasionsOf(null), []);
+});
+
+test("Chabbat d'occasion : Hallel après l'Amida de Cha'harit, lectures de Hanouka après la Torah, mizmor au Moussaf de 'Hol haMoed", () => {
+    const S2 = require('../js/siddurCore.js');
+    const ch = officeIds('chabbat-chacharit');
+    const han = S2.officeFor('chabbat-chacharit', ch, ['hanouka'], OFFICE_ALL);
+    assert.strictEqual(han.ids[han.ids.indexOf('chabbat-ch-amida') + 1], 'rh-hallel');
+    assert.strictEqual(han.ids[han.ids.indexOf('chabbat-ch-tora') + 1], 'hanouka-chacharit');
+    assert.deepStrictEqual(han.trim, { 'rh-hallel': S2.HALLEL_TAIL_FROM });
+    assert.strictEqual(han.ids.length, ch.length + 2);                                                   // rien n'est retiré du Chabbat
+    const rc = S2.officeFor('chabbat-chacharit', ch, ['rc'], OFFICE_ALL);
+    assert.ok(rc.ids.includes('rh-hallel') && !rc.ids.includes('hanouka-chacharit'));
+    const mo = officeIds('chabbat-moussaf');
+    assert.strictEqual(S2.officeFor('chabbat-moussaf', mo, ['chPesach'], OFFICE_ALL).ids[1], 'regalim-mizmor-pessah');
+    assert.strictEqual(S2.officeFor('chabbat-moussaf', mo, ['chSukkot'], OFFICE_ALL).ids[1], 'regalim-mizmor-souccot');
+    assert.deepStrictEqual(S2.officeFor('chabbat-moussaf', mo, ['hanouka'], OFFICE_ALL).ids, mo);        // Hanouka : rien à ajouter au Moussaf
+    ['chabbat-minha', 'chabbat-arvit'].forEach(g => assert.deepStrictEqual(S2.officeFor(g, officeIds(g), ['hanouka'], OFFICE_ALL).ids, officeIds(g)));
+    assert.deepStrictEqual(S2.officeFor('chabbat-chacharit', ch, [], OFFICE_ALL).ids, ch);               // Chabbat ordinaire : inchangé
+});
+
+test("Le vendredi de Hanouka : l'allumage après Min'ha, avant Chabbat ; pas les autres jours", () => {
+    const S2 = require('../js/siddurCore.js');
+    const mi = officeIds('minha');
+    assert.deepStrictEqual(S2.officeFor('minha', mi, ['hanouka'], OFFICE_ALL, { friday: true }).ids, mi.concat(['hanouka-allumage']));
+    assert.deepStrictEqual(S2.officeFor('minha', mi, ['hanouka'], OFFICE_ALL, { friday: false }).ids, mi);
+    assert.deepStrictEqual(S2.officeFor('minha', mi, ['rc'], OFFICE_ALL, { friday: true }).ids, mi);
+});

@@ -18,6 +18,8 @@ function datesStore() { return PersonalDatesCore.normalizeStore(QuizUI.loadPrefs
 
 function datesSave(store) {
     QuizUI.savePrefs(DATES_KEY, store);
+    // Les dates à venir sont aussi celles du widget de l'iPhone (js/app/widgets.js).
+    if (typeof widgetsRefresh === 'function') widgetsRefresh();
     // Les rappels sont recalculés tout de suite : une date ajoutée ce soir peut avoir son rappel demain matin.
     if (typeof TorahAxeNotifications !== 'undefined' && TorahAxeNotifications.isSupported()) TorahAxeNotifications.scheduleZmanim();
 }

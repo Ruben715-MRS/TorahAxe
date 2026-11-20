@@ -5925,6 +5925,15 @@ textarea.form-input {
     color: rgba(255, 255, 255, 0.88);
 }
 
+/* Les boutons de la fiche d'accueil, centrés. */
+.first-profile-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 12px;
+}
+
 .first-profile-choice:focus-visible {
     outline: 3px solid #f5b400;
     outline-offset: 2px;
@@ -17399,6 +17408,21 @@ body[data-view-profile="religieux"] .league-btn {
 .zm-cal-title strong { font-size: 16px; text-transform: capitalize; color: var(--text-dark); }
 .zm-cal-title small { font-size: 12px; color: var(--muted-text); }
 .zm-cal-nav { flex: none; width: 36px; height: 36px; border: 0; background: none; color: var(--muted-text); font-size: 24px; line-height: 1; cursor: pointer; }
+/* Le titre et le sous-titre ouvrent le choix du mois et de l'année (grégorienne, hébraïque) ; les flèches répètent leur pas quand on les appuie. */
+.zm-cal-title-btn, .zm-cal-sub-btn { display: inline-flex; align-items: center; justify-content: center; gap: 4px; max-width: 100%; border: 0; background: none; font: inherit; cursor: pointer; padding: 2px 8px; border-radius: 8px; }
+.zm-cal-title-btn strong { font-size: 16px; text-transform: capitalize; color: var(--text-dark); }
+.zm-cal-sub-btn { font-size: 12px; color: var(--muted-text); }
+.zm-cal-caret { font-size: 11px; color: var(--muted-text); }
+.zm-cal-title-btn:active, .zm-cal-sub-btn:active { background: var(--selected-tint); }
+.zm-cal-nav { touch-action: manipulation; -webkit-touch-callout: none; user-select: none; -webkit-user-select: none; }
+.zm-cal-year { width: 5.5em; font: inherit; font-size: 20px; font-weight: 700; text-align: center; padding: 4px 6px; border: 1px solid var(--border-soft); border-radius: 10px; background: var(--surface); color: var(--text-dark); font-variant-numeric: tabular-nums; }
+.zm-cal-year-he { font-family: 'HX Frank', 'Frank Ruhl Libre', 'SBL Hebrew', serif; font-size: 14px; }
+.zm-cal-months { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 8px; }
+.zm-cal-month { min-height: 48px; padding: 6px 4px; border: 1px solid var(--border-soft); border-radius: 12px; background: var(--surface); color: var(--text-dark); font: inherit; font-size: 14px; font-weight: 600; text-transform: capitalize; cursor: pointer; }
+.zm-cal-month:disabled { opacity: 0.35; cursor: default; }
+.zm-cal-month.is-today { box-shadow: inset 0 0 0 1.5px var(--primary-blue); }
+.zm-cal-month.is-selected { background: var(--primary-blue); border-color: var(--primary-blue); color: #fff; }
+.zm-cal-back { display: block; margin: 10px auto 0; border: 0; background: none; color: var(--primary-blue); font: inherit; font-size: 13px; font-weight: 700; cursor: pointer; }
 .zm-cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; text-align: center; }
 .zm-cal-dow { padding: 2px 0 4px; font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--muted-text); }
 .zm-cal-dow.is-shabbat { color: #b8860b; }
@@ -18562,3 +18586,28 @@ button.autoscroll-mode { height: 48px; padding: 0 12px; border: 1px dashed var(-
 .gen-ln-badge { margin-inline-start: 5px; padding: 0 7px; border-radius: 999px; background: var(--surface-2); font-size: 11px; font-weight: 700; color: var(--muted-text); }
 .gen-ln-spouses { font-size: 12.5px; color: var(--muted-text); padding-inline-start: 4px; }
 .gen-ln-spouse { font-weight: 500; }
+
+
+/* Hafrachat halla : le calcul sous la mitsva (js/app/commandments.js, hallahCalculator). L'élément de la liste réserve 52 px à gauche pour sa pastille numérotée :
+   la marge négative fait occuper au calcul toute la largeur de la carte. */
+.cmd-hallah { margin: 14px 0 0 -40px; padding-top: 12px; border-top: 1px solid var(--border-soft); }
+.cmd-hallah-row { display: flex; gap: 8px; align-items: center; margin: 8px 0; }
+.cmd-hallah-input { flex: 1; min-width: 0; font: inherit; font-size: 16px; padding: 10px 12px; border: 1px solid var(--rule); border-radius: 12px; background: var(--surface); color: var(--ink); }
+.cmd-hallah-unit { width: 110px; }
+.cmd-hallah-result { font-weight: 700; margin: 8px 0; }
+/* La bénédiction et la formule : un bloc chacune, l'hébreu au-dessus de sa phonétique et de sa traduction. */
+.cmd-hallah-block { margin: 14px 0 0; padding: 12px 14px; background: var(--surface-2); border-radius: 12px; }
+.cmd-hallah-block .cmd-name { display: block; margin-bottom: 8px; }
+.cmd-hallah-he { margin: 0 0 12px; font-size: 20px; line-height: 1.8; text-align: right; color: var(--ink); }
+.cmd-hallah-tr { margin: 0 0 10px; font-size: 14px; line-height: 1.5; color: var(--ink-soft); }
+.cmd-hallah-fr { margin: 0; padding-top: 10px; border-top: 1px solid var(--border-soft); font-size: 14px; line-height: 1.5; color: var(--muted-text); }
+
+
+/* Petit écran : la fiche d'accueil ne doit pas dépasser l'écran. On retire les sous-textes de description (sauf l'invite « Choisissez… ») et on resserre. */
+@media (max-height: 880px) {
+    .first-profile-card .modal-desc:not(.first-profile-hint) { display: none; }
+    .first-profile-card { padding: 18px 16px; }
+    .first-profile-intro { margin-bottom: 10px; }
+    .first-profile-card .settings-group { margin-bottom: 10px; }
+}
+.profile-travel { margin: 8px 2px 0; padding: 8px 12px; border-radius: 12px; background: var(--selected-tint); color: var(--text-dark); font-size: 12.5px; line-height: 1.45; }

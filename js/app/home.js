@@ -17,7 +17,7 @@ const homeTool = (id) => () => openTool(id, 'screen-main');
 // he : le mot de la tuile ; fr : son nom ; desc : la ligne d'explication ; kw : mots de plus pour la recherche ; run : ce qui s'ouvre.
 const HOME_ENTRIES = {
     siddur: { he: 'סידור', fr: 'Siddour', desc: 'Le siddour séfarade : Chaharit, Minha, Arvit, Birkat haMazon, Omer…', kw: 'prière priere tefila', run: homeTool('siddur') },
-    zmanim: { he: 'זמנים', fr: 'Zmanim', desc: 'Les horaires du jour pour n\'importe quel lieu : aube, Chéma, Minha, coucher, Chabbat', kw: 'horaires bougies coucher soleil daf yomi', run: homeTool('zmanim') },
+    zmanim: { he: 'זמנים', fr: 'Horaires', desc: 'Les horaires du jour pour n\'importe quel lieu : aube, Chéma, Minha, coucher, Chabbat', kw: 'horaires bougies coucher soleil daf yomi', run: homeTool('zmanim') },
     kotel: { he: 'כותל', fr: 'Kotel', desc: 'La boussole : la direction de Jérusalem depuis chez vous', kw: 'boussole jérusalem direction mizrah', run: homeTool('kotel') },
     tanakh: { he: 'תנ״ך', fr: 'Tanakh', desc: 'Les 24 livres, verset par verset, avec Rachi', kw: 'bible torah prophètes écrits haftara psaumes', run: homeTool('tanakh') },
     michna: { he: 'משנה', fr: 'Michna', desc: 'Les 63 traités en hébreu, avec Rambam, Bartenura, Tosafot Yom Tov…', kw: 'mishna mishnah bartenura rambam tosafot yom tov melekhet shelomoh tiferet israel gra rash traités ordres zeraim moed nashim nezikin kodashim tohorot avot', run: homeTool('michna') },
@@ -355,7 +355,7 @@ function homeDay() {
     let civil;
     if (place) civil = ZmanimCore.civilDateOf(place.tz, now);
     else { const d = new Date(now); civil = { year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate() }; }
-    return { ctx: ctx, place: place, now: now, civil: civil, fixed: CalendarYearCore.gregorianToFixed(civil.year, civil.month, civil.day), israel: place ? ZmanimCore.inIsrael(place) : false };
+    return { ctx: ctx, place: place, now: now, civil: civil, fixed: CalendarYearCore.gregorianToFixed(civil.year, civil.month, civil.day), israel: profileIsrael(place) };
 }
 
 function homeShiftCivil(civil, days) {
@@ -380,16 +380,6 @@ function homeZmanimOf(day, offset) {
 function homeTime(day, ms) { return ms === null || ms === undefined ? '—' : ZmanimCore.formatTime(ms, day.place.tz, 'fr'); }
 
 // Le prochain horaire de la journée (le lever du lendemain s'il n'en reste plus).
-function homeNextZman(day) {
-    const keys = ['alot', 'netz', 'shemaGra', 'tefilaGra', 'chatzot', 'minchaGedola', 'plag', 'shkia', 'tzeit'];
-    for (let offset = 0; offset <= 1; offset++) {
-        const z = homeZmanimOf(day, offset);
-        const list = keys.map(k => ({ key: k, ms: ZmanimCore.rounded(z, k) })).filter(e => e.ms !== null && e.ms > day.now).sort((a, b) => a.ms - b.ms);
-        if (list.length) return list[0];
-    }
-    return null;
-}
-
 // Après le coucher du soleil, le jour civil n'est plus le jour hébraïque : un mot sous la date le dit (le jour hébraïque change à la sortie des étoiles).
 // Entre la chkia et la sortie des étoiles : « 9 Kislev dès 17:49 » ; ensuite, jusqu'à minuit civil : « Nuit du 9 Kislev ».
 function homeNightNote(day) {
@@ -413,16 +403,23 @@ function homeHero(content, day) {
         hero.appendChild(hEl('small', 'home-hero-label', 'La prière du moment'));
         hero.appendChild(hEl('div', 'home-hero-name', 'Indiquez votre lieu'));
         hero.appendChild(hEl('p', 'home-hero-text', 'Le Siddour et les Zmanim s\'adaptent à l\'endroit où vous êtes : prière de l\'heure, horaires du jour, jour hébraïque exact.'));
+        const btns = hEl('div', 'home-hero-btns');
         const b = hButton('home-hero-btn', () => openTool('zmanim', 'screen-main'));
         b.textContent = 'Choisir mon lieu';
-        hero.appendChild(b);
+        const all = hButton('home-hero-btn secondary', () => openTool('siddur', 'screen-main'));
+        all.textContent = 'Le Siddour';
+        btns.append(b, all);
+        hero.appendChild(btns);
         content.appendChild(hero);
         return;
     }
     hero.appendChild(hEl('small', 'home-hero-label', 'À cette heure'));
     const row = hEl('div', 'home-hero-row');
-    row.appendChild(hEl('div', 'home-hero-name', service.title));
-    const he = hEl('span', 'home-hero-he', service.he);
+    // Le nom, sur une ligne, ou sur deux quand il y a un complément (Roch 'Hodech), en français comme en hébreu.
+    const lines = (el, parts) => { parts.forEach((l, i) => { if (i) el.appendChild(document.createElement('br')); el.appendChild(document.createTextNode(l)); }); return el; };
+    const nameEl = service.titleLines ? lines(hEl('div', 'home-hero-name is-two'), service.titleLines) : hEl('div', 'home-hero-name' + (service.title.length > 14 ? ' is-long' : ''), service.title);
+    row.appendChild(nameEl);
+    const he = service.heLines ? lines(hEl('span', 'home-hero-he is-two'), service.heLines) : hEl('span', 'home-hero-he', service.he);
     he.lang = 'he'; he.dir = 'rtl';
     row.appendChild(he);
     hero.appendChild(row);
@@ -430,14 +427,36 @@ function homeHero(content, day) {
         hero.appendChild(hEl('p', 'home-hero-text', t('tools.sd_warn_yomtov')));
     } else {
         const chips = hEl('div', 'home-chips');
-        if (service.shabbat) chips.appendChild(hEl('span', 'home-chip', 'Chabbat'));
-        sdDayNoteLabels(ctx).forEach(label => chips.appendChild(hEl('span', 'home-chip', label)));
-        hero.appendChild(chips);
+        if (service.shabbat && !service.titleLines) chips.appendChild(hEl('span', 'home-chip', 'Chabbat'));     // le titre d'un Chabbat d'occasion le dit déjà
+        sdDayNoteLabels(ctx, service.base).forEach(label => chips.appendChild(hEl('span', 'home-chip', label)));
+        if (chips.childElementCount) hero.appendChild(chips);   // pas de ligne vide quand il n'y a rien à dire (Arvit un jour ordinaire)
     }
+    // Le vendredi, jusqu'à l'allumage : l'heure des bougies (pour tous les profils).
+    if (HebrewCalendarCore.weekdayOf(day.fixed) === 5 && !special) {
+        const candles = ZmanimCore.rounded(homeZmanimOf(day, 0), 'candles');
+        if (candles !== null && candles > day.now) {
+            hero.appendChild(hEl('p', 'home-hero-candles', '🕯️ ' + t('welcome.candles') + ' · ' + homeTime(day, candles)));
+            if (service.occasions && service.occasions.indexOf('hanouka') >= 0) hero.appendChild(hEl('p', 'home-hero-candles', '🕯️ ' + t('welcome.hanouka_friday')));
+        }
+    }
+    // « Commencer » (la prière de l'heure) à gauche, « Tout le Siddour » à droite. Un jour de fête, le bouton principal ouvre déjà tout le Siddour : un seul bouton.
     const regel = special && (ctx.flags.pesach || ctx.flags.sukkot || ctx.flags.shemini || ctx.flags.shavuot);
-    const b = hButton('home-hero-btn', regel ? () => openSiddurPrayer('regalim') : special ? () => openTool('siddur', 'screen-main') : () => openSiddurPrayer(service.group));
-    b.textContent = regel ? 'Prières des trois fêtes' : special ? 'Ouvrir le Siddour' : 'Commencer';
-    hero.appendChild(b);
+    const btns = hEl('div', 'home-hero-btns');
+    if (!special || regel) {
+        const b = hButton('home-hero-btn', regel ? () => openSiddurPrayer('regalim') : () => openSiddurPrayer(service.group));
+        b.textContent = regel ? 'Prières des trois fêtes' : 'Commencer';
+        btns.appendChild(b);
+    }
+    const all = hButton('home-hero-btn' + (btns.childElementCount ? ' secondary' : ''), () => openTool('siddur', 'screen-main'));
+    all.textContent = btns.childElementCount ? 'Tout le Siddour' : 'Ouvrir le Siddour';
+    btns.appendChild(all);
+    hero.appendChild(btns);
+    // Profil « Femme », le soir : le Chéma du coucher, à côté d'Arvit (qu'elle peut dire aussi).
+    if (service.base === 'arvit' && typeof profileGender === 'function' && profileGender() === 'f') {
+        const bed = hButton('home-hero-btn secondary home-hero-bed', () => openSiddurSections(['chema-coucher'], t('welcome.bedtime')));
+        bed.textContent = t('welcome.bedtime');
+        hero.appendChild(bed);
+    }
     // les trois horaires de cette prière ; la sortie des étoiles / l'aube du lendemain après la nuit
     const keys = HOME_PRAYER_TIMES[service.base];
     const times = hEl('div', 'home-times');
@@ -504,6 +523,12 @@ function homeLoadHilloulot() {
 }
 
 // Ouvre la liste des 613 à la mitsva donnée : on déplie ses ancêtres repliables, on la montre et on la fait clignoter un instant.
+function homeOpenHallah() {
+    openTool('commandments', 'screen-main');
+    if (typeof toolCommandmentsPick === 'function') toolCommandmentsPick('femmes');
+    setTimeout(() => { const el = document.getElementById('cmd-hallah-calc'); if (el) el.scrollIntoView({ block: 'center' }); }, 150);
+}
+
 function homeOpenWomen() {
     openTool('commandments', 'screen-main');
     if (typeof toolCommandmentsPick === 'function') toolCommandmentsPick('femmes');
@@ -566,7 +591,7 @@ function homeHilloulot(content, day) {
 function homeResume() {
     const out = [];
     const last = sdLastRead();
-    if (last) out.push({ he: HOME_ENTRIES.siddur.he, fr: 'Siddour', desc: last.title, run: () => openSiddurSections(last.ids, last.title) });
+    if (last) out.push({ he: HOME_ENTRIES.siddur.he, fr: 'Siddour', desc: last.title, run: () => openSiddurSections(last.ids, last.title, last.trim) });
     let block = null;
     try { const b = JSON.parse(localStorage.getItem(TORAH_READER_POSITION_KEY) || 'null'); block = b && Number.isInteger(b.block) ? b.block : null; } catch (e) { block = null; }
     if (block !== null) out.push({ he: HOME_ENTRIES.torahReader.he, fr: 'Tikkoun', desc: 'Reprendre la lecture du rouleau', run: HOME_ENTRIES.torahReader.run });
@@ -582,15 +607,13 @@ function homeRenderToday(content) {
     let kicker = '';
     try { kicker = new Intl.DateTimeFormat('fr', { weekday: 'long', day: 'numeric', month: 'long', timeZone: 'UTC' }).format(new Date(Date.UTC(day.civil.year, day.civil.month - 1, day.civil.day))); } catch (e) { kicker = ''; }
     homeHeader(content, hcalHebrewText(day.ctx.hebrew), kicker, homeNightNote(day));
+    const travel = profileTravelNoteEl(day.place);   // domicile et lieu qui se contredisent : une mention discrète
+    if (travel) content.appendChild(travel);
     homeHero(content, day);
 
-    const next = day.place ? homeNextZman(day) : null;
-    const svc = day.place ? sdCurrentService() : null;
-    const siddurSub = svc ? 'À cette heure : ' + svc.title : 'Prières de la semaine et de Chabbat';
-    const zmanimSub = next ? HOME_ZMAN_NAMES[next.key] + ' · ' + homeTime(day, next.ms) : 'Choisir un lieu';
-    const big = hEl('div', 'home-tiles c2');
-    big.appendChild(homeTile(HOME_ENTRIES.siddur, '', siddurSub));
-    big.appendChild(homeTile(HOME_ENTRIES.zmanim, '', zmanimSub));
+    // Zmanim : une seule grande tuile, sans horaire (la carte principale donne ceux de la prière en cours). Le Siddour s'ouvre depuis la carte principale.
+    const big = hEl('div', 'home-tiles c1');
+    big.appendChild(homeTile(HOME_ENTRIES.zmanim, '', day.place ? '' : 'Choisir un lieu'));
     content.appendChild(big);
 
     const cards = hEl('div', 'home-cards');
@@ -696,6 +719,35 @@ function homeRenderToday(content) {
         if (chips) content.appendChild(chips);
     }
 
+    // La révision du jour : la carte n'apparaît que s'il y a quelque chose à revoir.
+    const due = typeof reviewSummary === 'function' ? reviewSummary() : null;
+    if (due && due.total) {
+        const review = hEl('div', 'home-cards');
+        const card = homeInfoCard('À réviser', t('review.progress_due', { total: due.total }), 'Une séance de ' + due.session + ' questions', () => openReview('screen-main'));
+        card.classList.add('home-card-wide');
+        review.appendChild(card);
+        content.appendChild(review);
+    }
+
+    homeHilloulot(content, day);
+
+    const resume = homeResume();
+    if (resume.length) {
+        content.appendChild(hEl('h2', 'home-section-title', 'Reprendre'));
+        content.appendChild(homeRows(resume));
+    }
+    content.appendChild(hEl('h2', 'home-section-title', 'Pratique'));
+    const practice = [Object.assign({ id: 'kotel' }, HOME_ENTRIES.kotel)];
+    if (typeof profileGender === 'function' && profileGender() === 'f') practice.push({ id: 'hallah', he: 'הפרשת חלה', fr: 'Hafrachat halla', desc: t('hallah.row_desc'), run: () => homeOpenHallah() });
+    practice.push(Object.assign({ id: 'personalDates' }, HOME_ENTRIES.personalDates));
+    content.appendChild(homeRows(practice, { personalDates: datesTodaySub() }));
+    homeGamesSection(content, day);
+}
+
+// « Jouer », sous « Reprendre » et « Pratique » : le défi du jour, la série, et le quiz de la paracha de la semaine.
+function homeGamesSection(content, day) {
+    content.appendChild(hEl('h2', 'home-section-title', 'Jouer'));
+    const title = content.lastChild;
     // Le défi du jour et la série : deux cartes côte à côte ; le Chabbat et les jours de fête, il n'y a pas de défi et la série seule s'affiche (gelée, si elle existe).
     if (typeof dailygameIsRestDay === 'function') {
         const row = hEl('div', 'home-cards');
@@ -714,16 +766,6 @@ function homeRenderToday(content) {
         if (row.childElementCount) content.appendChild(row);
     }
 
-    // La révision du jour : la carte n'apparaît que s'il y a quelque chose à revoir.
-    const due = typeof reviewSummary === 'function' ? reviewSummary() : null;
-    if (due && due.total) {
-        const review = hEl('div', 'home-cards');
-        const card = homeInfoCard('À réviser', t('review.progress_due', { total: due.total }), 'Une séance de ' + due.session + ' questions', () => openReview('screen-main'));
-        card.classList.add('home-card-wide');
-        review.appendChild(card);
-        content.appendChild(review);
-    }
-
     // Le quiz de la paracha de la semaine, s'il existe : trois niveaux, un clic.
     const weekPar = homeQuizIndex ? homeParashaName(day) : null;
     const weekSlug = weekPar ? Object.keys(homeQuizIndex.parashot).find(k => homeQuizIndex.parashot[k].index === weekPar.index) : null;
@@ -736,15 +778,7 @@ function homeRenderToday(content) {
         content.appendChild(quiz);
     }
 
-    homeHilloulot(content, day);
-
-    const resume = homeResume();
-    if (resume.length) {
-        content.appendChild(hEl('h2', 'home-section-title', 'Reprendre'));
-        content.appendChild(homeRows(resume));
-    }
-    content.appendChild(hEl('h2', 'home-section-title', 'Pratique'));
-    content.appendChild(homeRows([Object.assign({ id: 'kotel' }, HOME_ENTRIES.kotel), Object.assign({ id: 'personalDates' }, HOME_ENTRIES.personalDates)], { personalDates: datesTodaySub() }));
+    if (content.lastChild === title) title.remove();   // rien à proposer (Chabbat, ni quiz) : pas de titre seul
 }
 
 // --- Réglages --------------------------------------------------------------------------------------------------------------------------------------
@@ -763,6 +797,7 @@ window.onload = async () => {
     if (typeof i18n !== 'undefined') await i18n.init();
     homeInit();
     remindersStart();
+    if (typeof widgetsStart === 'function') widgetsStart();   // les widgets de l'iPhone (js/app/widgets.js)
     // Premier lancement : la fiche d'accueil (profil et rite, js/app/first-profile.js).
     profileWelcomeMaybeShow();
 };

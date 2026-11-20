@@ -89,8 +89,9 @@ function sdComputeContext() {
     let fixed, israel = false;
     if (sdPlace) {
         fixed = SiddurCore.hebrewDayFixed(sdPlace, now, {});
-        israel = ZmanimCore.inIsrael(sdPlace);
+        israel = profileIsrael(sdPlace);
     } else {
+        israel = profileIsrael(null);   // sans lieu : le domicile, s'il est choisi
         const d = new Date(now);
         fixed = CalendarYearCore.gregorianToFixed(d.getFullYear(), d.getMonth() + 1, d.getDate());
     }
@@ -304,19 +305,43 @@ function sdShabbatContext(ctx) {
 
 // L'office à dire maintenant. En semaine : Cha'harit, Min'ha ou Arvit. Le Chabbat (jour hébraïque, du vendredi soir au samedi avant la nuit) : ceux de Chabbat.
 // { base (chacharit | minha | arvit : pour les horaires), group (le groupe du siddour), title, he, shabbat }, ou null sans lieu.
+// Le service de Chabbat. Un Chabbat d'occasion (Roch 'Hodech, Hanouka, 'Hol haMoed), le nom sur plusieurs lignes : « Chaharit de » / « Chabbat » / « Hanouka ».
+function sdShabbatService(base, group, fr, he) {
+    const svc = { base: base, group: group, title: fr + ' de Chabbat', he: he, shabbat: true };
+    const occ = SiddurCore.shabbatOccasionsOf(sdShabbatContext(sdCtx));
+    if (occ.length) {
+        const lines = sdOccasionLines(base, occ, true);
+        svc.title += ' (' + sdOccasionNames(occ).join(' ' + t('tools.sd_occ_and') + ' ') + ')';
+        svc.titleLines = lines.fr;
+        svc.heLines = lines.he;
+        svc.he = lines.he.join(' ');
+    }
+    return svc;
+}
+
 function sdCurrentService() {
     const base = sdPlace ? sdCurrentPrayer() : null;
     if (!base) return null;
     if (base === 'arvit' && !sdCtx.flags.yomTov && sdBetweenShkiaAndTzeit()) {
         // vendredi après la chkia : l'office du soir de Chabbat ; samedi après la chkia : Arvit de semaine (Chabbat finit à la sortie des étoiles)
-        if (HebrewCalendarCore.weekdayOf(sdCtx.fixed) === 5) return { base: base, group: 'chabbat-arvit', title: 'Arvit de Chabbat', he: 'ערבית', shabbat: true };
+        if (HebrewCalendarCore.weekdayOf(sdCtx.fixed) === 5) return sdShabbatService(base, 'chabbat-arvit', 'Arvit', 'ערבית');
         if (sdCtx.flags.shabbat) return { base: base, group: 'arvit', title: t('tools.sd_p_arvit'), he: SD_HE_PRAYER.arvit, shabbat: false };
     }
     if (sdCtx.flags.shabbat && !sdCtx.flags.yomTov) {
         const map = { chacharit: ['chabbat-chacharit', 'Cha\'harit', 'שחרית'], minha: ['chabbat-minha', 'Min\'ha', 'מנחה'], arvit: ['chabbat-arvit', 'Arvit', 'ערבית'] };
-        return { base: base, group: map[base][0], title: map[base][1] + ' de Chabbat', he: map[base][2], shabbat: true };
+        return sdShabbatService(base, map[base][0], map[base][1], map[base][2]);
     }
-    return { base: base, group: base, title: t('tools.sd_p_' + base), he: SD_HE_PRAYER[base], shabbat: false };
+    const occ = SiddurCore.occasionsOf(sdCtx);
+    const svc = { base: base, group: base, title: t('tools.sd_p_' + base), he: SD_HE_PRAYER[base], shabbat: false, occasions: occ };
+    // Un jour d'occasion : le nom sur plusieurs lignes, en français (« Chaharit de » / « Roch 'Hodech ») comme en hébreu (« שחרית של » / « ראש חודש »).
+    if (occ.length) {
+        const lines = sdOccasionLines(base, occ);
+        svc.title += ' de\u00a0' + sdOccasionNames(occ).join(' ' + t('tools.sd_occ_and') + ' ');
+        svc.titleLines = lines.fr;
+        svc.heLines = lines.he;
+        svc.he = lines.he.join(' ');
+    }
+    return svc;
 }
 
 function sdCleanTitle(fr) { return fr.replace(/ \(jours de semaine\)/, ''); }
@@ -577,7 +602,7 @@ function toolSiddurInit() {
     sdBindScroll();
     sdLoadIndex().then(() => {
         const target = sdTakePending();
-        if (target) sdView = { mode: 'reader', ids: target.ids, title: target.title };
+        if (target) sdView = { mode: 'reader', ids: target.ids, title: target.title, trim: target.trim || {} };
         sdRender();
         setTimeout(sdPrecache, 1500);
     }).catch(() => {
@@ -586,14 +611,57 @@ function toolSiddurInit() {
     });
 }
 
+// Les occasions du jour (Roch 'Hodech, Hanouka, Pourim, 'Hol haMoed ; jamais Chabbat ni jour de fête), et leur nom en français et en hébreu.
+function sdOccasions() { return SiddurCore.occasionsOf(sdComputeContext()); }
+function sdOccasionNames(occ) { return occ.map(o => t('tools.sd_occ_' + o)); }
+
+// Le nom d'un office un jour d'occasion, sur plusieurs lignes : « Chaharit de » puis le nom de la fête (et, si deux se rencontrent, « et Hanouka »), en français comme en hébreu.
+function sdOccasionLines(base, occ, shabbat) {
+    // « 'Hol haMoed Souccot » est trop long pour tenir à côté de l'hébreu : il passe sur deux lignes (« 'Hol haMoed » puis « Souccot »).
+    const split = (name, head) => (name.indexOf(head + ' ') === 0 ? [head, name.slice(head.length + 1)] : [name]);
+    const fr = [], he = [];
+    occ.forEach((o, i) => {
+        const f = split(t('tools.sd_occ_' + o), "'Hol haMoed"), h = split(SiddurCore.OCC_HE[o], 'חול המועד');
+        if (i) { f[0] = t('tools.sd_occ_and') + ' ' + f[0]; h[0] = 'ו' + h[0]; }
+        fr.push.apply(fr, f); he.push.apply(he, h);
+    });
+    // Un Chabbat d'occasion : « Chaharit de » / « Chabbat » / le nom de la fête.
+    if (shabbat) { fr.unshift(t('tools.sd_shabbat')); he.unshift('שבת'); }
+    return { fr: [t('tools.sd_p_' + base) + ' de'].concat(fr), he: [SD_HE_PRAYER[base] + ' של'].concat(he) };
+}
+
+// Un office tel qu'on le lit aujourd'hui : { ids, title, trim }. Un jour d'occasion, le titre le dit (« Chaharit de Roch 'Hodech ») et l'office est composé dans l'ordre du livre
+// (SiddurCore.officeFor), pour que « Commencer » suffise.
+function sdOffice(groupId) {
+    const g = sdIndex.groups.filter(x => x.id === groupId)[0];
+    if (!g) return null;
+    const ids = g.sections.map(s => s.id);
+    let title = sdCleanTitle(g.fr);
+    const all = [];
+    sdIndex.groups.forEach(x => x.sections.forEach(sec => all.push(sec.id)));
+    // Chabbat (Cha'harit, Moussaf, Min'ha, Arvit du vendredi soir) : ceux du Chabbat dont il s'agit (le prochain, si on n'y est pas), avec le nom de l'occasion s'il y en a une.
+    if (/^chabbat-(chacharit|moussaf|minha|arvit)$/.test(groupId)) {
+        const so = SiddurCore.shabbatOccasionsOf(sdShabbatContext(sdComputeContext()));
+        if (!so.length) return { ids: ids, title: title, trim: {} };
+        const o = SiddurCore.officeFor(groupId, ids, so, all);
+        return { ids: o.ids, title: title + ' (' + sdOccasionNames(so).join(' ' + t('tools.sd_occ_and') + ' ') + ')', trim: o.trim };
+    }
+    if (SD_PRAYERS.indexOf(groupId) < 0) return { ids: ids, title: title, trim: {} };
+    const occ = sdOccasions();
+    if (!occ.length) return { ids: ids, title: title, trim: {} };
+    title += ' de\u00a0' + sdOccasionNames(occ).join(' ' + t('tools.sd_occ_and') + ' ');
+    const friday = HebrewCalendarCore.weekdayOf(sdCtx.fixed) === 5;     // le vendredi de Hanouka : l'allumage, avant Chabbat
+    const o = SiddurCore.officeFor(groupId, ids, occ, all, { friday: friday });
+    return { ids: o.ids, title: title, trim: o.trim };
+}
+
 // L'ouverture en attente, résolue en { ids, title } (une prière entière, ou des sections données).
 function sdTakePending() {
     const p = sdPending;
     sdPending = null;
     if (!p) return null;
-    if (p.ids) return { ids: p.ids, title: p.title };
-    const group = sdIndex.groups.filter(g => g.id === p.group)[0];
-    return group ? { ids: group.sections.map(s => s.id), title: group.fr } : null;
+    if (p.ids) return { ids: p.ids, title: p.title, trim: p.trim || {} };
+    return sdOffice(p.group);
 }
 
 // Depuis l'accueil : ouvre le siddour directement sur une prière (chacharit, minha, arvit), ou sur des sections.
@@ -601,8 +669,8 @@ function openSiddurPrayer(groupId) {
     sdPending = { group: groupId };
     openTool('siddur', 'screen-main');
 }
-function openSiddurSections(ids, title) {
-    sdPending = { ids: ids, title: title };
+function openSiddurSections(ids, title, trim) {
+    sdPending = { ids: ids, title: title, trim: trim || {} };
     openTool('siddur', 'screen-main');
 }
 
@@ -615,9 +683,16 @@ function sdLastRead() {
 }
 
 // Les notes du jour affichées en pastilles (Machiv haRouah, Avec Tahanoun…), sans Chabbat ni fête (dits à part).
-function sdDayNoteLabels(ctx) {
-    return SiddurCore.notesFor(ctx).filter(id => id !== 'shabbat' && id !== 'yomTov')
-        .map(id => id === 'omer' ? t('tools.sd_note_omer', { n: ctx.omer }) : t('tools.sd_note_' + id));
+// `base` : l'office en cours ('arvit'…). Tahanoun ne se dit pas à Arvit : ni « Avec Tahanoun » ni « Tahanoun le matin » n'y ont leur place.
+// Les mentions de saison (Machiv haRouah / Morid hatal, Barekh alénou) ne sont pas affichées : elles ne changent que deux fois par an et le texte de la prière les porte déjà.
+const SD_SEASON_NOTES = ['machiv', 'morid', 'tal', 'noTal'];
+function sdDayNoteLabels(ctx, base) {
+    const noTachanun = base === 'arvit' ? id => !/^(noT|t)achanun/.test(id) : () => true;
+    // Roch 'Hodech et Hanouka : le Hallel et le Moussaf ne se disent qu'à Cha'harit ; à Min'ha et Arvit, seulement Yaalé véyavo, Al hanissim.
+    const short = !!base && base !== 'chacharit';
+    const noteKey = id => (short && (id === 'rc' || id === 'hanukkah') ? 'tools.sd_note_' + id + '_short' : 'tools.sd_note_' + id);
+    return SiddurCore.notesFor(ctx).filter(id => id !== 'shabbat' && id !== 'yomTov' && SD_SEASON_NOTES.indexOf(id) < 0 && noTachanun(id))
+        .map(id => id === 'omer' ? t('tools.sd_note_omer', { n: ctx.omer }) : t(noteKey(id)));
 }
 
 function sdRender() {
@@ -654,8 +729,8 @@ function sdBack() {
 
 // --- L'accueil du siddour ------------------------------------------------------------------------------------------------------------------------
 function sdOpenGroup(groupId) {
-    const g = sdIndex.groups.filter(x => x.id === groupId)[0];
-    if (g) sdOpen(g.sections.map(s => s.id), sdCleanTitle(g.fr));
+    const o = sdOffice(groupId);
+    if (o) sdOpen(o.ids, o.title, o.trim);
 }
 
 function sdArvitTime() {
@@ -670,13 +745,16 @@ function sdRenderHome(body) {
     const service = sdCurrentService();
     const special = ctx.flags.yomTov;
 
-    // La carte du moment : l'office de l'heure et les variantes du jour.
+    // La carte du moment : l'office de l'heure et les variantes du jour sont déjà sur l'accueil de l'application. Ici, elle ne reste que pour ce qui demande
+    // une explication ou un geste : un lieu à choisir, ou un jour de fête (avertissement, « Prières des trois fêtes »).
     const hero = sdEl('section', 'home-hero sd-now');
     hero.id = 'sd-hero';
-    if (service) {
+    if (service && !special) {
+        // pas de carte : les offices sont dans la rangée ci-dessous, celui de l'heure marqué
+    } else if (service) {
         hero.appendChild(sdEl('small', 'home-hero-label', 'À cette heure · ' + hcalHebrewText(ctx.hebrew)));
         const row = sdEl('div', 'home-hero-row');
-        row.appendChild(sdEl('div', 'home-hero-name', service.title));
+        row.appendChild(sdEl('div', 'home-hero-name' + (service.title.length > 14 ? ' is-long' : ''), service.title));
         const he = sdEl('span', 'home-hero-he', service.he);
         he.lang = 'he'; he.dir = 'rtl';
         row.appendChild(he);
@@ -684,14 +762,13 @@ function sdRenderHome(body) {
         if (special) hero.appendChild(sdEl('p', 'home-hero-text', t('tools.sd_warn_yomtov')));
         else {
             const chips = sdEl('div', 'home-chips');
-            if (service.shabbat) chips.appendChild(sdEl('span', 'home-chip', 'Chabbat'));
-            sdDayNoteLabels(ctx).forEach(label => chips.appendChild(sdEl('span', 'home-chip', label)));
-            hero.appendChild(chips);
+            if (service.shabbat && !service.titleLines) chips.appendChild(sdEl('span', 'home-chip', 'Chabbat'));
+            sdDayNoteLabels(ctx, service.base).forEach(label => chips.appendChild(sdEl('span', 'home-chip', label)));
+            if (chips.childElementCount) hero.appendChild(chips);
         }
         const regel = special && (ctx.flags.pesach || ctx.flags.sukkot || ctx.flags.shemini || ctx.flags.shavuot);
         const go = sdEl('button', 'home-hero-btn', regel ? 'Prières des trois fêtes' : 'Commencer');
         go.type = 'button';
-        go.id = 'sd-quick-' + service.group;
         go.onclick = () => sdOpenGroup(regel ? 'regalim' : service.group);
         hero.appendChild(go);
     } else {
@@ -704,23 +781,26 @@ function sdRenderHome(body) {
         hero.appendChild(go);
         if (special) hero.appendChild(sdEl('p', 'home-hero-text', t('tools.sd_warn_yomtov')));
     }
-    body.appendChild(hero);
+    if (hero.childElementCount) body.appendChild(hero);
 
-    // Les autres offices de la journée (de Chabbat ou de semaine).
+    // Les offices de la journée (de Chabbat ou de semaine), sous le titre : Cha'harit, Min'ha, Arvit. Celui de l'heure est marqué.
     const offices = ctx.flags.shabbat && !special
         ? [['chabbat-chacharit', 'Cha\'harit', 'שחרית'], ['chabbat-moussaf', 'Moussaf', 'מוסף'], ['chabbat-minha', 'Min\'ha', 'מנחה']]
         : SD_PRAYERS.map(g => [g, t('tools.sd_p_' + g), SD_HE_PRAYER[g]]);
-    const others = offices.filter(o => !service || o[0] !== service.group);
-    const prayers = sdEl('div', 'home-tiles c' + (others.length >= 3 ? 3 : 2));
-    others.forEach(([gid, label, hebrew]) => {
+    // L'office de l'heure qui n'est pas dans la liste (Arvit de Chabbat le vendredi soir, Arvit à la sortie de Chabbat) s'y ajoute.
+    if (service && !special && !offices.some(o => o[0] === service.group)) offices.push([service.group, service.title, service.he]);
+    const prayers = sdEl('div', 'home-tiles c' + (offices.length === 3 ? 3 : 2));
+    offices.forEach(([gid, label, hebrew]) => {
         const b = sdEl('button', 'home-tile');
         b.type = 'button';
         b.id = 'sd-quick-' + gid;
+        if (service && !special && gid === service.group) { b.classList.add('is-now'); b.setAttribute('aria-current', 'true'); }
         const he = sdEl('span', 'he', hebrew);
         he.lang = 'he'; he.dir = 'rtl';
         b.appendChild(he);
         b.appendChild(sdEl('span', 'fr', label));
-        if (gid === 'arvit' && sdPlace) { const when = sdArvitTime(); if (when) b.appendChild(sdEl('span', 'sub', when)); }
+        if (b.classList.contains('is-now')) b.appendChild(sdEl('span', 'sub', 'À cette heure'));
+        else if (gid === 'arvit' && sdPlace) { const when = sdArvitTime(); if (when) b.appendChild(sdEl('span', 'sub', when)); }
         b.onclick = () => sdOpenGroup(gid);
         prayers.appendChild(b);
     });
@@ -790,10 +870,11 @@ function sdRenderHome(body) {
 }
 
 // --- La lecture ----------------------------------------------------------------------------------------------------------------------------------
-function sdOpen(ids, title) {
-    sdView = { mode: 'reader', ids: ids, title: title };
+// `trim` : { section : premier segment à ne pas montrer } (le Hallel du livre se termine par la lecture de Roch 'Hodech, qui ne convient pas à Hanouka ni à 'Hol haMoed).
+function sdOpen(ids, title, trim) {
+    sdView = { mode: 'reader', ids: ids, title: title, trim: trim || {} };
     sdRestoreTop = null;
-    try { localStorage.setItem(SD_LAST_KEY, JSON.stringify({ ids: ids, title: title })); } catch (e) { /* stockage indisponible */ }
+    try { localStorage.setItem(SD_LAST_KEY, JSON.stringify({ ids: ids, title: title, trim: trim || {} })); } catch (e) { /* stockage indisponible */ }
     sdRender();
     const screen = toolEl('screen-tool-siddur');
     if (screen) screen.scrollTop = 0;
@@ -1866,8 +1947,21 @@ const SD_DAY_RULES = [
     // « Chir hamaalot » les jours sans Tahanoun (Chabbat, fêtes, Roch 'Hodech, Hanouka…). Le rite séfarade dit le psaume 67 tous les jours.
     { id: /^birkat-hamazon-(ashkenaze|habad)$/, head: /^בחול קודם ברכת המזון/, label: 'Jours avec Tahanoun : « Al naharot Bavel »', on: c => !sdNoTachanun(c) },
     { id: /^birkat-hamazon-(ashkenaze|habad)$/, head: /^בשבת קודם ברכת המזון/, label: 'Jours sans Tahanoun (Chabbat, fêtes, Roch \'Hodech…) : « Chir hamaalot »', on: c => sdNoTachanun(c) },
+    // Hanouka : Cha'harit donne la lecture de chacun des huit jours, puis celles de Roch 'Hodech Tévet et des Chabbat de Hanouka : on ne montre que celle du jour.
+    ...['הראשון', 'השני', 'השלישי', 'הרביעי', 'החמישי', 'הששי', 'השביעי', 'השמיני'].map((w, k) => ({ id: 'hanouka-chacharit', head: new RegExp('^קריאה ליום ' + w), label: 'Lecture du ' + (k ? (k + 1) + 'e' : '1er') + ' jour de Hanouka', on: c => sdHanukkahDay(c) === k + 1, until: /^(קריאה ליום|\s*ראש חדש טבת|\s*שבת)/ })),
+    { id: 'hanouka-chacharit', head: /^\s*ראש חדש טבת שחל בחול/, label: 'Roch \'Hodech Tévet pendant Hanouka : deux rouleaux', on: c => !!c.flags.rc, until: /^\s*שבת/ },
+    { id: 'hanouka-chacharit', head: /^\s*שבת חנוכה/, label: 'Chabbat de Hanouka', on: c => !!c.flags.shabbat, until: /^\s*שבת וראש/ },
+    { id: 'hanouka-chacharit', head: /^\s*שבת וראש חדש וחנוכה/, label: 'Chabbat, Roch \'Hodech et Hanouka', on: c => !!(c.flags.shabbat && c.flags.rc), toEnd: true },
     { id: 'tikoun-lea', head: /^בימים שאין אומרים תחנון לא יאמר פסוק/, usual: true, label: 'Verset « Ad ana bekhiya » (jours avec Tahanoun)', on: c => !c.flags.noTachanun }
 ];
+// Le jour de Hanouka (1 à 8) : le 25 Kislev est le 1er.
+function sdHanukkahDay(c) {
+    try {
+        const f = HebrewCalendarCore.feastsOf(c.hebrew.year, c.israel).filter(x => x.id === 'hanouka')[0];
+        const n = f ? c.fixed - f.fixed + 1 : 0;
+        return n >= 1 && n <= 8 ? n : 0;
+    } catch (e) { return 0; }
+}
 function sdNoTachanun(c) { return !!(c.flags.noTachanun || c.flags.shabbat || c.flags.yomTov); }
 function sdPrevYomTov(c) { try { return !!SiddurCore.contextFor(c.fixed - 1, c.israel).flags.yomTov; } catch (e) { return false; } }
 function sdMonThuBlock(sectionId, bares, i) {
@@ -1967,6 +2061,8 @@ function sdRenderSection(section) {
     // Le profil (homme / femme, js/app/first-profile.js) : la version du texte qui le concerne ; les indices restent ceux du livre.
     const gender = typeof profileGender === 'function' ? profileGender() : null;
     const prof = ProfileCore.adaptSection(section.segments, gender);
+    const trimFrom = (sdView.trim || {})[section.id];
+    if (Number.isInteger(trimFrom)) for (let k = trimFrom; k < section.segments.length; k++) prof.hidden.add(k);
     const trees = prof.segments.map(html => SiddurCore.analyseSegment(html, counter));
     const amida = sdIsAmida(section.id);
     const bares = trees.map(sdBare);

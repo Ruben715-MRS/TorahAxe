@@ -132,7 +132,9 @@ function renderCommandments() {
         list.start = number + 1;
         group.items.forEach(itemId => {
             number++;
-            list.appendChild(commandmentItem(set.id, itemId, hebrew, !group.hideRefs));
+            const item = commandmentItem(set.id, itemId, hebrew, !group.hideRefs);
+            if (set.id === 'femmes' && itemId === 'hallah') item.appendChild(hallahCalculator());
+            list.appendChild(item);
         });
         section.appendChild(list);
         body.appendChild(section);
@@ -390,4 +392,69 @@ function commandmentItem(setId, itemId, hebrew, showRef = true) {
         li.appendChild(r);
     }
     return li;
+}
+
+
+// --- Hafrachat halla : le calcul d'après le poids de farine (js/hallahCore.js) -----------------------------------------------------------------------
+function hallahCalculator() {
+    const box = document.createElement('div');
+    box.className = 'cmd-hallah';
+    box.id = 'cmd-hallah-calc';
+    const h = document.createElement('strong');
+    h.className = 'cmd-name';
+    h.textContent = t('hallah.title');
+    const row = document.createElement('div');
+    row.className = 'cmd-hallah-row';
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.inputMode = 'decimal';
+    input.className = 'cmd-hallah-input';
+    input.setAttribute('aria-label', t('hallah.weight'));
+    input.placeholder = t('hallah.weight');
+    let unit = 'kg';
+    const seg = document.createElement('div');
+    seg.className = 'segmented cmd-hallah-unit';
+    seg.setAttribute('role', 'group');
+    const out = document.createElement('div');
+    out.setAttribute('aria-live', 'polite');
+    const render = () => {
+        out.textContent = '';
+        const level = HallahCore.assess(HallahCore.toGrams(input.value, unit));
+        if (!level) { const p = document.createElement('p'); p.className = 'tool-small'; p.textContent = t('hallah.hint'); out.appendChild(p); return; }
+        const r = document.createElement('p');
+        r.className = 'cmd-hallah-result';
+        r.textContent = t('hallah.r_' + level);
+        out.appendChild(r);
+        if (level === 'none') return;
+        const how = document.createElement('p'); how.className = 'tool-small'; how.textContent = t('hallah.how'); out.appendChild(how);
+        // Chaque texte à part : l'hébreu, la phonétique (en italique), puis le français, séparés et aérés.
+        const block = (title, he, tr, fr) => {
+            const b = document.createElement('div');
+            b.className = 'cmd-hallah-block';
+            if (title) { const h3 = document.createElement('strong'); h3.className = 'cmd-name'; h3.textContent = title; b.appendChild(h3); }
+            b.appendChild(cmdHebrew(Object.assign(document.createElement('p'), { className: 'cmd-hallah-he' }), he));
+            const e = document.createElement('p'); e.className = 'cmd-hallah-tr'; const em = document.createElement('em'); em.textContent = tr; e.appendChild(em); b.appendChild(e);
+            if (fr) { const f = document.createElement('p'); f.className = 'cmd-hallah-fr'; f.textContent = fr; b.appendChild(f); }
+            return b;
+        };
+        if (level !== 'noBless') out.appendChild(block(t('hallah.bless_title'), t('hallah.bless_he'), t('hallah.bless_tr'), t('hallah.bless_fr')));
+        out.appendChild(block(t('hallah.say_title'), t('hallah.say_he'), t('hallah.say_tr'), t('hallah.say_fr')));
+    };
+    [['kg', 'hallah.unit_kg'], ['g', 'hallah.unit_g']].forEach(([id, key]) => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.textContent = t(key);
+        b.className = id === unit ? 'active' : '';
+        b.setAttribute('aria-pressed', id === unit ? 'true' : 'false');
+        b.onclick = () => { unit = id; Array.prototype.forEach.call(seg.children, el => { const on = el === b; el.className = on ? 'active' : ''; el.setAttribute('aria-pressed', on ? 'true' : 'false'); }); render(); };
+        seg.appendChild(b);
+    });
+    input.oninput = render;
+    row.append(input, seg);
+    const note = document.createElement('p');
+    note.className = 'tool-small';
+    note.textContent = t('hallah.note');
+    box.append(h, row, out, note);
+    render();
+    return box;
 }

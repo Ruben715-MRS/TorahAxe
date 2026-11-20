@@ -369,7 +369,120 @@
         return yes ? 'on' : 'off';
     }
 
+    // --- Roch 'Hodech, Hanouka, Pourim, 'Hol haMoed (un jour de semaine) : l'office entier, dans l'ordre du livre ----------------------------------
+    // Le livre (data/siddur/) range chacune de ces occasions à part. Ici, on compose l'office du jour à partir de ses sections : celles de la semaine jusqu'à
+    // l'Amida, puis celles de l'occasion à la place des sections de la semaine qu'elles remplacent, puis la fin habituelle. Chabbat et les fêtes (Yom Tov) ont leurs
+    // propres offices : aucune occasion n'est rendue ces jours-là.
+    var OCCASIONS = ['rc', 'hanouka', 'pourim', 'chPesach', 'chSukkot'];
+    var OCC_HE = { rc: 'ראש חודש', hanouka: 'חנוכה', pourim: 'פורים', chPesach: 'חול המועד פסח', chSukkot: 'חול המועד סוכות' };
+    var RC_SECTIONS = ['rh-ordre', 'rh-hallel', 'rh-ouva-letsion', 'rh-chir-chel-yom', 'rh-moussaf', 'rh-barkhi-nafchi', 'rh-qave', 'rh-ketoret', 'rh-alenou'];
+    var KEEP_AFTER = ['chacharit-treize-principes', 'chacharit-dix-souvenirs'];
+    // Les sections « Hallel » du livre se terminent par la sortie du rouleau et la lecture de Roch 'Hodech (Pin'has) : à partir de ce segment, on ne les montre pas
+    // quand l'occasion a sa propre lecture (Hanouka, 'Hol haMoed).
+    var HALLEL_TAIL_FROM = 34;
+
+    // Les occasions du jour, dans l'ordre : ['rc', 'hanouka'] (Roch 'Hodech Tévet tombe pendant Hanouka), ['pourim'], ['chPesach']… Vide un jour ordinaire, un Chabbat, un Yom Tov.
+    function occasionsOf(ctx) {
+        if (!ctx || !ctx.flags || ctx.flags.shabbat || ctx.flags.yomTov) return [];
+        var f = ctx.flags, out = [];
+        if (f.rc) out.push('rc');
+        if (f.hanukkah) out.push('hanouka');
+        if (f.purim) out.push('pourim');
+        if (f.chPesach) out.push('chPesach');
+        if (f.chSukkot) out.push('chSukkot');
+        return out;
+    }
+
+    // Les occasions d'un Chabbat (qui n'est pas aussi un jour de fête) : Roch 'Hodech, Hanouka, 'Hol haMoed. Pourim ne tombe pas un Chabbat.
+    function shabbatOccasionsOf(ctx) {
+        if (!ctx || !ctx.flags || !ctx.flags.shabbat || ctx.flags.yomTov) return [];
+        var f = ctx.flags, out = [];
+        if (f.rc) out.push('rc');
+        if (f.hanukkah) out.push('hanouka');
+        if (f.chPesach) out.push('chPesach');
+        if (f.chSukkot) out.push('chSukkot');
+        return out;
+    }
+
+    // Un jour de Roch 'Hodech qui n'est ni Chabbat ni jour de fête.
+    function isRoshChodeshWeekday(ctx) { return occasionsOf(ctx).indexOf('rc') >= 0; }
+
+    // Les offices de Chabbat un Chabbat d'occasion. Le livre annonce le Hallel dans l'Amida de Cha'harit (« en Chabbat Roch 'Hodech, 'Hol haMoed ou Hanouka, on dit ici le Hallel, avant le Kaddich »)
+    // sans en donner le texte : on le met après l'Amida (sans la sortie du rouleau de Roch 'Hodech qui le suit, la Torah de Chabbat étant celle du livre). À Hanouka, les lectures du
+    // second rouleau suivent celle de Chabbat. Au Moussaf de 'Hol haMoed, le mizmor de la fête suit l'Amida.
+    function shabbatOfficeFor(group, ids, occ, has) {
+        var out = ids.slice(), trim = {};
+        var after = function (anchor, id) { var at = out.indexOf(anchor); if (at >= 0 && has(id)) { out.splice(at + 1, 0, id); return true; } return false; };
+        if (group === 'chabbat-chacharit') {
+            if (after('chabbat-ch-amida', 'rh-hallel')) trim['rh-hallel'] = HALLEL_TAIL_FROM;
+            if (occ.indexOf('hanouka') >= 0) after('chabbat-ch-tora', 'hanouka-chacharit');
+        } else if (group === 'chabbat-moussaf') {
+            if (occ.indexOf('chPesach') >= 0) after('chabbat-mo-amida', 'regalim-mizmor-pessah');
+            else if (occ.indexOf('chSukkot') >= 0) after('chabbat-mo-amida', 'regalim-mizmor-souccot');
+        }
+        return { ids: out, trim: trim };
+    }
+
+    // Les sections de Cha'harit de l'office du jour ; null si le livre n'a pas de quoi composer l'office (on garde alors celui de la semaine).
+    function chacharitFor(ids, occ, has) {
+        var cut = ids.indexOf('chacharit-amida');
+        if (cut < 0) return null;
+        var head = ids.slice(0, cut + 1), tail = ids.slice(cut + 1);
+        var without = function (list, drop) { return list.filter(function (x) { return drop.indexOf(x) < 0; }); };
+        var all = function (list) { return list.every(has); };
+        var keep = tail.filter(function (id) { return KEEP_AFTER.indexOf(id) >= 0; });
+        var has_ = function (o) { return occ.indexOf(o) >= 0; };
+        if (has_('rc')) {
+            var rc = RC_SECTIONS.slice();
+            if (has_('hanouka') && has('hanouka-chacharit')) rc.splice(rc.indexOf('rh-hallel') + 1, 0, 'hanouka-chacharit');     // la lecture de Hanouka, après celle de Roch 'Hodech
+            return all(rc) ? { ids: head.concat(rc, keep), trim: {} } : null;
+        }
+        if (has_('hanouka')) {
+            var han = ['rh-hallel', 'chacharit-tora', 'hanouka-chacharit'];
+            if (!all(han)) return null;
+            var trimH = {}; trimH['rh-hallel'] = HALLEL_TAIL_FROM;
+            return { ids: head.concat(han, without(tail, ['chacharit-vidoui', 'chacharit-tora'])), trim: trimH };
+        }
+        if (has_('pourim')) {
+            // la Méguila se lit après Achré, avant la fin d'Ouva lé-Tsion (« Véata kadoch ») ; la Torah de Pourim (Amalek) se lit comme en semaine
+            var pou = ['pourim-jour', 'chacharit-tora', 'chacharit-achre', 'pourim-meguila', 'pourim-chochanat-yaakov'];
+            if (!all(pou)) return null;
+            return { ids: head.concat(pou, without(tail, ['chacharit-vidoui', 'chacharit-tora', 'chacharit-achre'])), trim: {} };
+        }
+        if (has_('chPesach') || has_('chSukkot')) {
+            var mizmor = has_('chPesach') ? 'regalim-mizmor-pessah' : 'regalim-mizmor-souccot';
+            var hm = ['hm-hallel', 'chacharit-tora', 'chacharit-achre', 'chacharit-ouva-letsion', 'chacharit-beit-yaakov', 'hm-moussaf', mizmor, 'chacharit-qave', 'chacharit-alenou'];
+            if (!all(hm)) return null;
+            var trimM = {}; trimM['hm-hallel'] = HALLEL_TAIL_FROM;
+            return { ids: head.concat(hm, keep), trim: trimM };
+        }
+        return null;
+    }
+
+    // L'office du jour : { ids, trim } pour `base` ('chacharit', 'minha', 'arvit'), d'après les sections de la semaine (`ids`), les occasions du jour et les sections que le livre
+    // contient (`available`, facultatif). `trim` : { identifiant de section : premier segment à ne pas montrer }. Un jour ordinaire : les sections de la semaine, telles quelles.
+    // `opts.friday` : le vendredi, avant Chabbat. `base` peut aussi être un groupe de Chabbat (« chabbat-chacharit », « chabbat-moussaf »…) : voir shabbatOfficeFor.
+    function officeFor(base, ids, occ, available, opts) {
+        var plain = { ids: ids.slice(), trim: {} };
+        if (!occ || !occ.length) return plain;
+        var has = function (id) { return ids.indexOf(id) >= 0 || !available || available.indexOf(id) >= 0; };
+        if (/^chabbat-/.test(base)) return shabbatOfficeFor(base, ids, occ, has);
+        // Le vendredi de Hanouka, on allume avant Chabbat : l'allumage suit Min'ha (les bougies de Hanouka avant celles de Chabbat).
+        if (base === 'minha' && occ.indexOf('hanouka') >= 0 && opts && opts.friday && has('hanouka-allumage')) return { ids: ids.concat(['hanouka-allumage']), trim: {} };
+        if (base === 'chacharit') return chacharitFor(ids, occ, has) || plain;
+        if (base === 'arvit') {
+            var out = ids.slice();
+            if (occ.indexOf('pourim') >= 0 && has('pourim-meguila') && has('pourim-chochanat-yaakov')) {
+                var at = out.indexOf('arvit-amida');
+                if (at >= 0) { out.splice(at + 1, 0, 'pourim-meguila', 'pourim-chochanat-yaakov'); return { ids: out, trim: {} }; }
+            }
+            if (occ.indexOf('hanouka') >= 0 && has('hanouka-allumage') && has('hanouka-maoz-tsour')) return { ids: out.concat(['hanouka-allumage', 'hanouka-maoz-tsour']), trim: {} };
+        }
+        return plain;      // Min'ha : les sections de la semaine (Yaalé véyavo, Al hanissim sont dans l'Amida)
+    }
+
     return {
+        RC_SECTIONS: RC_SECTIONS, OCCASIONS: OCCASIONS, OCC_HE: OCC_HE, HALLEL_TAIL_FROM: HALLEL_TAIL_FROM, occasionsOf: occasionsOf, shabbatOccasionsOf: shabbatOccasionsOf, isRoshChodeshWeekday: isRoshChodeshWeekday, officeFor: officeFor,
         fingerprint: fingerprint, parse: parse, plain: plain, stripNiqqud: stripNiqqud, conditionOf: conditionOf, analyseSegment: analyseSegment, groups: groups,
         contextFor: contextFor, mevarchim: mevarchim, evaluate: evaluate, hebrewDayFixed: hebrewDayFixed, notesFor: notesFor, omerSegment: omerSegment, decemberStart: decemberStart, dayPsalm: dayPsalm
     };
