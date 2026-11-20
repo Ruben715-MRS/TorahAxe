@@ -672,10 +672,13 @@ function sdRenderHome(body) {
     const service = sdCurrentService();
     const special = ctx.flags.yomTov;
 
-    // La carte du moment : l'office de l'heure et les variantes du jour.
+    // La carte du moment : l'office de l'heure et les variantes du jour sont déjà sur l'accueil de l'application. Ici, elle ne reste que pour ce qui demande
+    // une explication ou un geste : un lieu à choisir, ou un jour de fête (avertissement, « Prières des trois fêtes »).
     const hero = sdEl('section', 'home-hero sd-now');
     hero.id = 'sd-hero';
-    if (service) {
+    if (service && !special) {
+        // pas de carte : les offices sont dans la rangée ci-dessous, celui de l'heure marqué
+    } else if (service) {
         hero.appendChild(sdEl('small', 'home-hero-label', 'À cette heure · ' + hcalHebrewText(ctx.hebrew)));
         const row = sdEl('div', 'home-hero-row');
         row.appendChild(sdEl('div', 'home-hero-name', service.title));
@@ -693,7 +696,6 @@ function sdRenderHome(body) {
         const regel = special && (ctx.flags.pesach || ctx.flags.sukkot || ctx.flags.shemini || ctx.flags.shavuot);
         const go = sdEl('button', 'home-hero-btn', regel ? 'Prières des trois fêtes' : 'Commencer');
         go.type = 'button';
-        go.id = 'sd-quick-' + service.group;
         go.onclick = () => sdOpenGroup(regel ? 'regalim' : service.group);
         hero.appendChild(go);
     } else {
@@ -706,23 +708,26 @@ function sdRenderHome(body) {
         hero.appendChild(go);
         if (special) hero.appendChild(sdEl('p', 'home-hero-text', t('tools.sd_warn_yomtov')));
     }
-    body.appendChild(hero);
+    if (hero.childElementCount) body.appendChild(hero);
 
-    // Les autres offices de la journée (de Chabbat ou de semaine).
+    // Les offices de la journée (de Chabbat ou de semaine), sous le titre : Cha'harit, Min'ha, Arvit. Celui de l'heure est marqué.
     const offices = ctx.flags.shabbat && !special
         ? [['chabbat-chacharit', 'Cha\'harit', 'שחרית'], ['chabbat-moussaf', 'Moussaf', 'מוסף'], ['chabbat-minha', 'Min\'ha', 'מנחה']]
         : SD_PRAYERS.map(g => [g, t('tools.sd_p_' + g), SD_HE_PRAYER[g]]);
-    const others = offices.filter(o => !service || o[0] !== service.group);
-    const prayers = sdEl('div', 'home-tiles c' + (others.length >= 3 ? 3 : 2));
-    others.forEach(([gid, label, hebrew]) => {
+    // L'office de l'heure qui n'est pas dans la liste (Arvit de Chabbat le vendredi soir, Arvit à la sortie de Chabbat) s'y ajoute.
+    if (service && !special && !offices.some(o => o[0] === service.group)) offices.push([service.group, service.title, service.he]);
+    const prayers = sdEl('div', 'home-tiles c' + (offices.length === 3 ? 3 : 2));
+    offices.forEach(([gid, label, hebrew]) => {
         const b = sdEl('button', 'home-tile');
         b.type = 'button';
         b.id = 'sd-quick-' + gid;
+        if (service && !special && gid === service.group) { b.classList.add('is-now'); b.setAttribute('aria-current', 'true'); }
         const he = sdEl('span', 'he', hebrew);
         he.lang = 'he'; he.dir = 'rtl';
         b.appendChild(he);
         b.appendChild(sdEl('span', 'fr', label));
-        if (gid === 'arvit' && sdPlace) { const when = sdArvitTime(); if (when) b.appendChild(sdEl('span', 'sub', when)); }
+        if (b.classList.contains('is-now')) b.appendChild(sdEl('span', 'sub', 'À cette heure'));
+        else if (gid === 'arvit' && sdPlace) { const when = sdArvitTime(); if (when) b.appendChild(sdEl('span', 'sub', when)); }
         b.onclick = () => sdOpenGroup(gid);
         prayers.appendChild(b);
     });
