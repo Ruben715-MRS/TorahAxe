@@ -224,3 +224,27 @@ test("Le vendredi de Hanouka : l'allumage après Min'ha, avant Chabbat ; pas les
     assert.deepStrictEqual(S2.officeFor('minha', mi, ['hanouka'], OFFICE_ALL, { friday: false }).ids, mi);
     assert.deepStrictEqual(S2.officeFor('minha', mi, ['rc'], OFFICE_ALL, { friday: true }).ids, mi);
 });
+
+// --- Birkat haMazon et Mé'en chaloch : rôles du Zimoun et tableaux --------------------------------------------------------------------
+const bareOf = (html) => S.stripNiqqud(S.plain(S.parse(html))).replace(/[,.:;־\-–]/g, ' ').replace(/\s+/g, ' ').trim();
+const segsOf = (id) => JSON.parse(fs.readFileSync(__dirname + '/../data/siddur/' + id + '.json', 'utf8')).segments.map(bareOf);
+
+test('Zimoun : qui parle, dans les trois rites', () => {
+    assert.strictEqual(S.zimounRole('ויאמר המזמן'), 'lead');
+    assert.strictEqual(S.zimounRole('והמסובים עונים'), 'resp');
+    assert.strictEqual(S.zimounRole('המזמן אומר'), 'lead');
+    assert.strictEqual(S.zimounRole('וחוזר המזמן'), 'again');
+    assert.strictEqual(S.zimounRole('וממשיך'), 'go');
+    assert.strictEqual(S.zimounRole('מי שלא אכל עונה'), 'fast');
+    assert.strictEqual(S.zimounRole('אם המסובים שלושה או יותר חייבים לזמן ככתוב כאן'), null);
+    const roles = (id) => segsOf(id).map(S.zimounRole).filter(Boolean);
+    assert.deepStrictEqual(roles('birkat-hamazon'), ['lead', 'resp', 'lead', 'resp', 'resp']);
+    assert.deepStrictEqual(roles('birkat-hamazon-ashkenaze'), ['lead', 'resp', 'again', 'go', 'resp', 'fast', 'again']);
+    assert.strictEqual(roles('birkat-hamazon-habad').length, 12);
+});
+
+test("Mé'en chaloch : chaque rite donne ses tableaux (céréales, vin, sept espèces)", () => {
+    assert.deepStrictEqual(S.mcTables(segsOf('al-hamihya')), [{ from: 2, to: 4 }, { from: 14, to: 16 }, { from: 18, to: 20 }]);
+    assert.deepStrictEqual(S.mcTables(segsOf('al-hamihya-ashkenaze')), [{ from: 2, to: 4 }, { from: 6, to: 8 }, { from: 10, to: 12 }]);
+    assert.deepStrictEqual(S.mcTables(['ברוך אתה', 'אם שתה יין', 'אם אכל מזונות']), []);
+});
