@@ -1791,6 +1791,46 @@ const SD_BANNERS = [
     { id: /^al-hamihya/, fr: 'Mé\'en Chaloch', sub: 'Bénédiction après un aliment des sept espèces, une pâtisserie ou du vin', he: 'בִּרְכַּת מֵעֵין שָׁלוֹשׁ',
       intro: 'Après avoir mangé un fruit des sept espèces (olives, dattes, raisins, figues, grenades), un aliment à base de l\'une des cinq céréales (pâtisserie, pâtes…) ou bu du vin, on dit cette bérakha. Il faut avoir mangé un kazayit (environ 30 g) dans le temps d\'une \'akhilat prass (environ 7,5 minutes), ou bu un révi\'it (environ 86 ml) de vin dans le temps d\'un chtiyat révi\'it. Sinon, ou pour un autre aliment, on dit Boré néfachot.' }
 ];
+// Les autres bénédictions : bandeau de chaque section (le nom, quand on la dit). Noms et phrases écrits pour l'application : **à relire**.
+SD_BANNERS.push(
+    { id: /^birkhot-hanehenin$/, fr: 'Birkot haNéhénin', sub: 'Bénédictions avant de manger ou de boire', he: 'בִּרְכוֹת הַנֶּהֱנִין' },
+    { id: /^birkhot-hareach$/, fr: 'Bénédictions sur les parfums', sub: 'Birkot haRéa\'h : avant de sentir', he: 'בִּרְכוֹת הָרֵיחַ',
+      legend: [['Ni arbre ni plante, ou doute', 'musc, rue, parfum synthétique en flacon…'], ['Plantes, herbes', 'menthe, géranium…'], ['Arbres, arbustes', 'clous de girofle, roses, jasmin, romarin, basilic, bâtons de cannelle…']] },
+    { id: /^chehehyanou$/, fr: 'Chéhé\'héyanou', sub: 'Vêtement neuf, fruit de saison, nouvelle maison', he: 'בִּרְכַּת שֶׁהֶחֱיָנוּ' },
+    { id: /^mezouza$/, fr: 'Pose de la mézouza', sub: 'Avant de la fixer', he: 'בִּרְכַּת הַמְּזוּזָה' },
+    { id: /^arc-en-ciel$/, fr: 'À la vue d\'un arc-en-ciel', sub: '', he: 'בִּרְכַּת הַקֶּשֶׁת' },
+    { id: /^eclairs-tonnerre$/, fr: 'Éclairs et tonnerre', sub: 'Dès qu\'on les voit ou qu\'on les entend', he: 'בִּרְכַּת בְּרָקִים וּרְעָמִים' },
+    { id: /^hala$/, fr: 'Prélèvement de la \'hala', sub: 'Séparer une part de la pâte', he: 'הַפְרָשַׁת חַלָּה' },
+    { id: /^maake$/, fr: 'Pose d\'un parapet', sub: 'Avant de fixer le parapet du toit', he: 'בִּרְכַּת הַמַּעֲקֶה' },
+    { id: /^tevilat-kelim$/, fr: 'Immersion de la vaisselle', sub: 'Ustensiles achetés à un non-Juif', he: 'בִּרְכַּת טְבִילַת כֵּלִים' },
+    { id: /^tefilat-haderekh$/, fr: 'Prière du voyageur', sub: 'En sortant de la ville', he: 'תְּפִלַּת הַדֶּרֶךְ' },
+    { id: /^birkhot-hareiyot$/, fr: 'Bénédictions « à la vue de… »', sub: 'Birkhot haRéyiyot', he: 'בִּרְכוֹת הָרְאִיָּה' },
+    { id: /^dayan-haemet$/, fr: 'Dayan haEmet et Hatov véhaMétiv', sub: 'À l\'annonce d\'une mauvaise ou d\'une bonne nouvelle', he: 'דַּיַּן הָאֱמֶת' }
+);
+
+// La traduction de la conclusion, entre crochets, sous chaque bénédiction courte (comme « [… qui crée le fruit de la vigne.] » du Maguen Avot). Repérage par la fin du segment, sans voyelles.
+const SD_SHORT_HAT_IDS = /^(birkhot-hanehenin|birkhot-hareach|chehehyanou|mezouza|arc-en-ciel|eclairs-tonnerre|maake|hala|tevilat-kelim|birkhot-hareiyot|dayan-haemet)$/;
+const SD_SHORT_HATS = [
+    [/בורא מיני מזונות$/, 'qui crée toutes sortes de nourritures'], [/בורא פרי הגפן$/, 'qui crée le fruit de la vigne'], [/בורא פרי העץ$/, 'qui crée le fruit de l\'arbre'],
+    [/בורא פרי האדמה$/, 'qui crée le fruit de la terre'], [/שהכל נהיה בדברו$/, 'par la parole de qui tout fut'],
+    [/בורא עצי בשמים$/, 'qui crée des arbustes aromatiques'], [/בורא עשבי בשמים$/, 'qui crée des herbes aromatiques'], [/בורא מיני בשמים$/, 'qui crée toutes sortes d\'aromates'],
+    [/הנותן ריח טוב בפרות$/, 'qui donne une bonne odeur aux fruits'], [/שהחי+נו וקימנו והגיענו לזמן הזה$/, 'qui nous a fait vivre, nous a fait subsister et nous a fait parvenir à ce moment'],
+    [/וצונו לקבע מזוזה$/, 'et nous a ordonné de fixer une mézouza'], [/וצונו לעשות מעקה$/, 'et nous a ordonné de faire un parapet'], [/וצונו להפריש חלה תרומה$/, 'et nous a ordonné de prélever la \'hala en offrande'],
+    [/וצונו על טבילת כלי/, 'et nous a ordonné l\'immersion des ustensiles (de l\'ustensile)'],
+    [/זוכר הברית נאמן בבריתו וקים במאמרו$/, 'qui se souvient de l\'alliance, fidèle à Son alliance et qui tient Sa parole'],
+    [/עושה מעשה בראשית$/, 'qui accomplit l\'œuvre de la Création'], [/שכחו וגבורתו מלא עולם$/, 'dont la force et la puissance remplissent le monde'],
+    [/דין האמת$/, 'le véritable Juge'], [/הטוב והמטיב$/, 'qui est bon et fait le bien'],
+    [/חכם הרזים$/, 'qui connaît les secrets'], [/מציב גבול אלמנה$/, 'qui fixe la frontière de la veuve'], [/שעשה נסים לאבותינו במקום הזה$/, 'qui a fait des miracles à nos pères en ce lieu'],
+    [/שככה לו בעולמו$/, 'qui a de tels êtres dans Son monde'], [/משנה הבריות$/, 'qui varie les créatures'], [/עשה את הים הגדול$/, 'qui a fait la Grande Mer'],
+    [/שחלק מחכמתו ליראיו$/, 'qui a partagé de Sa sagesse avec ceux qui Le craignent'], [/שנתן מחכמתו לבשר ודם$/, 'qui a donné de Sa sagesse à des êtres de chair et de sang'],
+    [/שחלק מכבודו ליראיו$/, 'qui a partagé de Sa gloire avec ceux qui Le craignent'], [/שנתן מכבודו לבשר ודם$/, 'qui a donné de Sa gloire à des êtres de chair et de sang']
+];
+function sdShortHat(id, bare) {
+    if (!SD_SHORT_HAT_IDS.test(id) || !/^ברוך אתה/.test(bare)) return null;
+    const h = SD_SHORT_HATS.find(x => x[0].test(bare));
+    return h ? h[1] : null;
+}
+
 function sdBannerFor(id) { return SD_BANNERS.find(b => b.id.test(id)) || null; }
 
 // Mé'en chaloch : le tableau d'une suite de trois lignes (céréales, vin, sept espèces), dans l'ordre du livre : de droite à gauche.
@@ -2190,12 +2230,18 @@ const SD_MC_DAYS = [
 function sdBannerEl(b) {
     const box = sdEl('header', 'sd-banner');
     box.appendChild(sdEl('p', 'sd-banner-fr', b.fr));
-    box.appendChild(sdEl('p', 'sd-banner-sub', b.sub));
+    if (b.sub) box.appendChild(sdEl('p', 'sd-banner-sub', b.sub));
     const he = sdEl('h4', 'sd-title');
     he.lang = 'he'; he.dir = 'rtl';
     he.appendChild(sdTextNode(b.he));
     box.appendChild(he);
     if (b.intro) { const p = sdEl('p', 'sd-banner-intro', b.intro); p.lang = 'fr'; box.appendChild(p); }
+    if (b.legend) {
+        const g = sdEl('div', 'sd-vtab sd-vtab-fr');
+        b.legend.forEach(c => { const h = sdEl('div', 'sd-vtab-head', c[0]); h.lang = 'fr'; g.appendChild(h); });
+        b.legend.forEach(c => { const e = sdEl('div', 'sd-vtab-cell', c[1]); e.lang = 'fr'; g.appendChild(e); });
+        box.appendChild(g);
+    }
     return box;
 }
 
@@ -2412,6 +2458,8 @@ function sdRenderSection(section) {
         const g = byHeader[i];
         if (!g) {
             headFor(i, i); out.appendChild(seg(i)); hatAfter(i, i); flushEnd();
+            const sh = sdPrefs.fr ? null : sdShortHat(section.id, bares[i]);
+            if (sh) { const hp = sdEl('p', 'sd-hat', '[… ' + sh + '.]'); hp.lang = 'fr'; out.appendChild(hp); }
             if (section.id === 'birkat-hamazon' && /^הרחמן הוא יטע תורתו/.test(bares[i])) out.appendChild(sdGuestBlock());
             if (section.id === 'chacharit-tora' && /אשר בחר בנו מכל העמים/.test(bares[i])) out.appendChild(sdReadingButton());
             i++; continue;

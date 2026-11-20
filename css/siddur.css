@@ -393,3 +393,8 @@
 .sd-vtab-cell:nth-child(3n+1) { border-inline-start: 0; }
 .sd-vtab-lab { display: block; margin: 2px auto; font-family: var(--font-main); font-size: 10.5px; font-weight: 600; color: var(--muted-text); }
 .sd-vtab-cell .sd-small-rub, .sd-vtab-cell .sd-small-text { font-size: 0.8em; }
+
+/* Légende en français (les parfums) : même grille que les tableaux, textes d'interface. */
+.sd-banner .sd-vtab { margin: 10px 0 0; text-align: center; }
+.sd-vtab-fr .sd-vtab-cell { font-family: var(--font-main); font-size: 12px; line-height: 1.35; color: var(--muted-text); }
+.sd-vtab-fr .sd-vtab-head { color: var(--text-dark); }
