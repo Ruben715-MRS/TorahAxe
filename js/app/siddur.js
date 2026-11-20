@@ -17,7 +17,7 @@ let sdIndex = null;
 const sdCache = {};
 // v : version des réglages. En v2, la police par défaut passe de Noto Serif à Frank Ruhl Libre (la seule à avoir un vrai gras) ;
 // un « noto-serif » enregistré avant la v2 n'était que l'ancien défaut, pas un choix : il est remplacé.
-let sdPrefs = { v: 2, size: 2, niqqud: true, all: false, fr: false, font: 'frank', heRub: false, jx: true, name: 'adonai', fab: true, hideOff: false, zim: 3, zimForm: 'a' };
+let sdPrefs = { v: 2, size: 2, niqqud: true, all: false, fr: false, font: 'frank', heRub: false, jx: true, name: 'adonai', fab: true, hideOff: false, zim: 3, zimForm: 'a', zimWed: false };
 // Polices livrées avec leurs vraies graisses (fonts.css) : le gras y est dessiné par la police, pas simulé par un contour.
 const SD_REAL_BOLD = ['frank'];
 let sdView = { mode: 'home', ids: [], title: '' };
@@ -64,6 +64,7 @@ function sdLoadPrefs() {
         if (p.guest && typeof p.guest === 'object') sdPrefs.guest = p.guest;
         if (p.zim === 1 || p.zim === 3 || p.zim === 10) sdPrefs.zim = p.zim;
         if (p.zimForm === 'a' || p.zimForm === 'b') sdPrefs.zimForm = p.zimForm;
+        if (typeof p.zimWed === 'boolean') sdPrefs.zimWed = p.zimWed;
         if (p.name === 'source' || p.name === 'adonai') sdPrefs.name = p.name;
         if (typeof p.font === 'string' && sdFontById(p.font) && (p.v >= 2 || p.font !== 'noto-serif')) sdPrefs.font = p.font;
     } catch (e) { /* stockage indisponible : réglages par défaut */ }
@@ -1670,6 +1671,12 @@ function sdRubricEl(tree, fr) {
 // Le segment : un titre, une consigne seule, ou du texte. Une variante assez longue (une phrase) ou un segment fait seulement de variantes
 // (été / hiver) passe en blocs ; les variantes d'un mot ou deux (« הַשָּׁלוֹם ») restent dans la ligne.
 function sdRenderSegment(tree, index, fr) {   // tree peut être remplacé par son contenu (segment tout en gras)
+    // Une consigne mise en gras dans la source (<b><small>…</small></b>) est une consigne comme les autres : on la lit à travers le gras, pour la montrer en français.
+    const outer = tree.c.filter(k => !sdBlank(k));
+    if (index > 0 && outer.length === 1 && outer[0].t === 'tag' && outer[0].n === 'b' && !SD_HAS_NIQQUD.test(SiddurCore.plain(tree))) {
+        const inner = outer[0].c.filter(k => !sdBlank(k));
+        if (inner.length && inner.every(k => k.t === 'tag' && k.n === 'small')) tree = { t: 'tag', n: 'root', c: outer[0].c };
+    }
     const kids = tree.c.filter(k => !sdBlank(k));
     const isTitle = index === 0 && kids[0] && kids[0].t === 'tag' && kids[0].n === 'big';
     if (!isTitle && kids.length && kids.every(k => k.t === 'tag' && k.n === 'small') && !SD_HAS_NIQQUD.test(SiddurCore.plain(tree))) return sdRubricEl(tree, fr);
@@ -2185,6 +2192,16 @@ function sdZimounControls(withForm) {
     };
     row('Hommes ayant mangé ensemble', 'zim', [[1, '1 ou 2'], [3, '3 à 9'], [10, '10 ou plus']]);
     if (withForm && sdPrefs.zim !== 1) row('Formule d\'ouverture', 'zimForm', [['a', 'Hav lan…'], ['b', 'Birchoutkhèm…']]);
+    if (withForm && sdPrefs.zim !== 1) {
+        const lab = sdEl('label', 'sd-check');
+        const box1 = sdEl('input');
+        box1.type = 'checkbox';
+        box1.checked = !!sdPrefs.zimWed;
+        box1.onchange = () => { sdPrefs.zimWed = box1.checked; sdSavePrefs(); sdRerender(); };
+        lab.appendChild(box1);
+        lab.appendChild(sdEl('span', '', 'Mariage (ou Chéva Berakhot des sept jours qui suivent)'));
+        box.appendChild(lab);
+    }
     const note = sdEl('p', 'sd-origin', sdPrefs.zim === 1 ? 'Seul ou à deux, on ne fait pas de Zimoun : on commence directement par la première bénédiction.' : 'Trois hommes adultes au moins doivent avoir mangé ensemble pour faire le Zimoun. À dix (minyan), on ajoute « Élohénou » et au moins sept d\'entre eux doivent avoir mangé du pain. Une fois que dix hommes ont mangé ensemble, il est interdit de se séparer en petits groupes pour le Zimoun.');
     note.lang = 'fr';
     box.appendChild(note);
@@ -2203,6 +2220,36 @@ function sdZimounSefarade() {
     if (sdPrefs.zim === 1) return box;
     const a = sdPrefs.zimForm !== 'b';
     const ten = { ten: 10, he: ' אֱלֹהֵינוּ' };
+    if (sdPrefs.zimWed) {       // le Zimoun d'un mariage : « chéhassim'ha bim'ono », le poème d'ouverture, et la suite des sept bénédictions
+        const wl = (t) => { const e = sdEl('p', 'sd-origin', t); e.lang = 'fr'; return e; };
+        box.appendChild(sdRoleEl('lead'));
+        box.appendChild(wl('Le meneur tient une coupe de vin (kos chel bérakha) dans la main droite. Poème d\'ouverture, dit ou chanté avant le Zimoun :'));
+        box.appendChild(sdHeLine(['דְּוַי הָסֵר וְגַם חָרוֹן. וְאָז אִלֵּם בְּשִׁיר יָרוֹן. נְחֵנוּ בְּמַעְגְּלֵי צֶדֶק. שְׁעֵה בִּרְכַּת יְשׁוּרוּן.']));
+        box.appendChild(sdRoleEl('lead'));
+        box.appendChild(sdHeLine([a ? 'הַב לָן וְנִבְרִיךְ לְמַלְכָּא עִלָּאָה קַדִּישָׁא' : 'בִּרְשׁוּתְכֶם הַב לָן נְבָרֵךְ']));
+        box.appendChild(sdRoleEl('resp'));
+        box.appendChild(sdHeLine([a ? 'שָׁמַיִם' : 'נְבָרֵךְ']));
+        box.appendChild(sdRoleEl('lead'));
+        box.appendChild(sdHeLine(['בִּרְשׁוּת מַלְכָּא עִלָּאָה קַדִּישָׁא, וּבִרְשׁוּת מָרָנָן וְרַבָּנָן וְרַבּוֹתַי, וּבִרְשׁוּת הֶחָתָן וְהַכַּלָּה, נְבָרֵךְ', ten, ' שֶׁהַשִּׂמְחָה בִּמְעוֹנוֹ שֶׁאָכַלְנוּ מִשֶּׁלּוֹ']));
+        box.appendChild(sdRoleEl('resp'));
+        box.appendChild(sdHeLine(['בָּרוּךְ', ten, ' שֶׁהַשִּׂמְחָה בִּמְעוֹנוֹ שֶׁאָכַלְנוּ מִשֶּׁלּוֹ וּבְטוּבוֹ חָיִינוּ']));
+        box.appendChild(sdRoleEl('again'));
+        box.appendChild(sdHeLine(['בָּרוּךְ', ten, ' שֶׁהַשִּׂמְחָה בִּמְעוֹנוֹ שֶׁאָכַלְנוּ מִשֶּׁלּוֹ וּבְטוּבוֹ חָיִינוּ']));
+        box.appendChild(wl('Puis l\'officiant dit le Birkat haMazon à voix haute. Avec trois à neuf hommes, c\'est la même formule, sans « Élohénou ».'));
+        const fold = sdEl('details', 'sd-about');
+        fold.appendChild(sdEl('summary', '', 'Règles propres au mariage et aux Chéva Berakhot'));
+        [['Les sept bénédictions', 'À la fin du Birkat haMazon, on récite les sept bénédictions nuptiales sur une coupe de vin, souvent distribuées entre des invités que l\'on veut honorer. La bénédiction sur le vin (Boré péri haguéfen) se dit avant ou à la fin, selon l\'usage ; puis le marié, la mariée et les convives boivent.'],
+         ['Conditions', 'Pour dire les sept bénédictions complètes après le Zimoun : la présence d\'un minyan (dix hommes, dont le marié), celle des deux époux, et un repas pris chez le couple ou dans la salle de réception.'],
+         ['Partir avant la fin', 'Tous les invités de la salle forment un seul groupe pour le Zimoun. Comme les mariages se prolongent tard, un invité qui doit partir avant le Birkat haMazon général peut faire un Zimoun à trois avec d\'autres personnes qui partent aussi, ou dire son Birkat haMazon seul en cas de nécessité.']].forEach(r => {
+            const row = sdEl('p', 'sd-about-row');
+            row.lang = 'fr';
+            row.appendChild(sdEl('strong', '', r[0] + '. '));
+            row.appendChild(document.createTextNode(r[1]));
+            fold.appendChild(row);
+        });
+        box.appendChild(fold);
+        return box;
+    }
     box.appendChild(sdRoleEl('lead'));
     box.appendChild(sdHeLine([a ? 'הַב לָן וְנִבְרִיךְ לְמַלְכָּא עִלָּאָה קַדִּישָׁא' : 'בִּרְשׁוּתְכֶם הַב לָן נְבָרֵךְ']));
     box.appendChild(sdRoleEl('resp'));
@@ -2493,6 +2540,17 @@ function sdRenderSection(section) {
         const nextG = byHeader[g.to + 1];
         hatAfter(g.from, g.to, !!(nextG && sdBerakhaStart(bares[nextG.from], bkList) && open && sdBerakhaStart(bares[nextG.from], bkList).id === open.id));
         i = g.to + 1;
+    }
+    if (section.id === 'birkat-hamazon' && sdPrefs.zimWed && sdPrefs.zim !== 1) {
+        const note = sdEl('div', 'sd-chevaberakhot');
+        const tx = sdEl('p', 'sd-origin', 'Repas de mariage : on récite maintenant les sept bénédictions nuptiales sur une coupe de vin (voir le texte).');
+        tx.lang = 'fr';
+        note.appendChild(tx);
+        const btn = sdEl('button', 'tool-history-chip', 'Ouvrir les sept bénédictions');
+        btn.type = 'button';
+        btn.onclick = () => sdOpen(['cheva-berakhot'], 'Chéva berakhot');
+        note.appendChild(btn);
+        box.appendChild(note);
     }
     return box;
 }
