@@ -415,8 +415,11 @@ function homeHero(content, day) {
     }
     hero.appendChild(hEl('small', 'home-hero-label', 'À cette heure'));
     const row = hEl('div', 'home-hero-row');
-    row.appendChild(hEl('div', 'home-hero-name' + (service.title.length > 14 ? ' is-long' : ''), service.title));
-    const he = hEl('span', 'home-hero-he', service.he);
+    // Le nom, sur une ligne, ou sur deux quand il y a un complément (Roch 'Hodech), en français comme en hébreu.
+    const lines = (el, parts) => { parts.forEach((l, i) => { if (i) el.appendChild(document.createElement('br')); el.appendChild(document.createTextNode(l)); }); return el; };
+    const nameEl = service.titleLines ? lines(hEl('div', 'home-hero-name is-two'), service.titleLines) : hEl('div', 'home-hero-name' + (service.title.length > 14 ? ' is-long' : ''), service.title);
+    row.appendChild(nameEl);
+    const he = service.heLines ? lines(hEl('span', 'home-hero-he is-two'), service.heLines) : hEl('span', 'home-hero-he', service.he);
     he.lang = 'he'; he.dir = 'rtl';
     row.appendChild(he);
     hero.appendChild(row);

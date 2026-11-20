@@ -318,7 +318,14 @@ function sdCurrentService() {
         return { base: base, group: map[base][0], title: map[base][1] + ' de Chabbat', he: map[base][2], shabbat: true };
     }
     const rc = SiddurCore.isRoshChodeshWeekday(sdCtx);
-    return { base: base, group: base, title: t('tools.sd_p_' + base) + (rc ? t('tools.sd_rc_suffix') : ''), he: SD_HE_PRAYER[base], shabbat: false, roshChodesh: rc };
+    const svc = { base: base, group: base, title: t('tools.sd_p_' + base) + (rc ? t('tools.sd_rc_suffix') : ''), he: SD_HE_PRAYER[base], shabbat: false, roshChodesh: rc };
+    // Roch 'Hodech : le nom sur deux lignes, en français (« Chaharit de » / « Roch 'Hodech ») comme en hébreu (« שחרית של » / « ראש חודש »).
+    if (rc) {
+        svc.titleLines = [t('tools.sd_p_' + base) + ' de', t('tools.sd_rc_name')];
+        svc.heLines = [SD_HE_PRAYER[base] + ' של', 'ראש חודש'];
+        svc.he = svc.heLines.join(' ');
+    }
+    return svc;
 }
 
 function sdCleanTitle(fr) { return fr.replace(/ \(jours de semaine\)/, ''); }
