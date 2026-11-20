@@ -17,7 +17,7 @@ let sdIndex = null;
 const sdCache = {};
 // v : version des réglages. En v2, la police par défaut passe de Noto Serif à Frank Ruhl Libre (la seule à avoir un vrai gras) ;
 // un « noto-serif » enregistré avant la v2 n'était que l'ancien défaut, pas un choix : il est remplacé.
-let sdPrefs = { v: 2, size: 2, niqqud: true, all: false, fr: false, font: 'frank', heRub: false, jx: true, name: 'adonai', fab: true, hideOff: false };
+let sdPrefs = { v: 2, size: 2, niqqud: true, all: false, fr: false, font: 'frank', heRub: false, jx: true, name: 'adonai', fab: true, hideOff: false, zim: 3, zimForm: 'a' };
 // Polices livrées avec leurs vraies graisses (fonts.css) : le gras y est dessiné par la police, pas simulé par un contour.
 const SD_REAL_BOLD = ['frank'];
 let sdView = { mode: 'home', ids: [], title: '' };
@@ -62,6 +62,8 @@ function sdLoadPrefs() {
         if (typeof p.fab === 'boolean') sdPrefs.fab = p.fab;
         if (typeof p.hideOff === 'boolean') sdPrefs.hideOff = p.hideOff;
         if (p.guest && typeof p.guest === 'object') sdPrefs.guest = p.guest;
+        if (p.zim === 3 || p.zim === 10) sdPrefs.zim = p.zim;
+        if (p.zimForm === 'a' || p.zimForm === 'b') sdPrefs.zimForm = p.zimForm;
         if (p.name === 'source' || p.name === 'adonai') sdPrefs.name = p.name;
         if (typeof p.font === 'string' && sdFontById(p.font) && (p.v >= 2 || p.font !== 'noto-serif')) sdPrefs.font = p.font;
     } catch (e) { /* stockage indisponible : réglages par défaut */ }
@@ -2077,6 +2079,113 @@ function sdAboutCard(about) {
     return card;
 }
 
+// Birkat haMazon : un « Harahaman » par ligne (la source en met plusieurs dans un segment, séparés par « * » ou par un point).
+const SD_HARAHAMAN = /([.:])\s+(?=ה[֑-ׇ]*ר[֑-ׇ]*ח[֑-ׇ]*מ[֑-ׇ]*ן)/g;
+function sdSplitHarahaman(node) {
+    if (!node.c) return;
+    const out = [];
+    node.c.forEach(k => {
+        if (k.t !== 'text' || (!/\*/.test(k.v) && !SD_HARAHAMAN.test(k.v))) { if (k.t === 'tag') sdSplitHarahaman(k); out.push(k); return; }
+        SD_HARAHAMAN.lastIndex = 0;
+        const parts = k.v.replace(SD_HARAHAMAN, '$1\u0001').split(/\s*\*\s*|\u0001/);
+        parts.forEach(part => {
+            if (!part.trim()) return;
+            if (out.length) out.push({ t: 'tag', n: 'br', c: [] });
+            out.push({ t: 'text', v: part.trim(), m: k.m });
+        });
+    });
+    node.c = out;
+}
+
+// Le Zimoun : avec dix hommes ou plus, on ajoute « Élohénou ». La source le met entre parenthèses (« (בעשרה ויותר: אלהינו) ») : on garde le mot ou on l'enlève.
+function sdApplyMinyan(node, ten) {
+    if (!node.c) return;
+    const out = [];
+    for (let n = 0; n < node.c.length; n++) {
+        const k = node.c[n];
+        const txt = k.t === 'tag' ? SiddurCore.plain(k).replace(/\s+/g, ' ').trim() : '';
+        if (k.t === 'tag' && k.n === 'small' && /^\(בעשרה/.test(txt) && /\)$/.test(txt)) {          // « (בעשרה ויותר: אלהינו) » tout entier dans le <small>
+            const b = k.c.filter(x => x.t === 'tag' && x.n === 'b')[0];
+            if (ten && b) out.push(b);
+            continue;
+        }
+        if (k.t === 'tag' && k.n === 'small' && txt === 'בעשרה') {                                    // « (<small>בעשרה</small> אלהינו) » : les parenthèses sont dans le texte autour
+            const prev = out[out.length - 1], next = node.c[n + 1];
+            if (prev && prev.t === 'text' && /\(\s*$/.test(prev.v) && next && next.t === 'text' && /\)/.test(next.v)) {
+                const at = next.v.indexOf(')');
+                prev.v = prev.v.replace(/\(\s*$/, '');
+                next.v = (ten ? next.v.slice(0, at) : '') + next.v.slice(at + 1);
+                continue;
+            }
+        }
+        if (k.t === 'tag') sdApplyMinyan(k, ten);
+        out.push(k);
+    }
+    node.c = out;
+}
+
+// Les réglages du Zimoun : le nombre d'hommes (3 à 9, dix ou plus) et, chez les Séfarades, la formule d'ouverture.
+function sdZimounControls(withForm) {
+    const box = sdEl('div', 'sd-guest-ctrls sd-zim-ctrls');
+    const row = (label, key, opts) => {
+        const r = sdEl('div', 'sd-guest-row');
+        r.appendChild(sdEl('span', 'sd-guest-lab', label));
+        const seg = sdEl('div', 'sd-seg-btns');
+        seg.setAttribute('role', 'group');
+        seg.setAttribute('aria-label', label);
+        opts.forEach(([v, txt]) => {
+            const b = sdEl('button', '', txt);
+            b.type = 'button';
+            b.setAttribute('aria-pressed', String(sdPrefs[key]) === String(v) ? 'true' : 'false');
+            b.onclick = () => { sdPrefs[key] = typeof v === 'number' ? v : v; sdSavePrefs(); sdRerender(); };
+            seg.appendChild(b);
+        });
+        r.appendChild(seg);
+        box.appendChild(r);
+    };
+    row('Hommes ayant mangé ensemble', 'zim', [[3, '3 à 9'], [10, '10 ou plus']]);
+    if (withForm) row('Formule d\'ouverture', 'zimForm', [['a', 'Hav lan…'], ['b', 'Birchoutkhèm…']]);
+    const note = sdEl('p', 'sd-origin', 'Trois hommes adultes au moins doivent avoir mangé ensemble pour faire le Zimoun. À dix (minyan), on ajoute « Élohénou » et au moins sept d\'entre eux doivent avoir mangé du pain. Une fois que dix hommes ont mangé ensemble, il est interdit de se séparer en petits groupes pour le Zimoun.');
+    note.lang = 'fr';
+    box.appendChild(note);
+    return box;
+}
+function sdRoleEl(kind) { const r = sdEl('p', 'sd-role is-' + kind, SD_ROLES[kind]); r.lang = 'fr'; return r; }
+function sdHeLine(chunks) {
+    const p = sdEl('p', 'sd-seg'); p.lang = 'he'; p.dir = 'rtl';
+    chunks.forEach(c => { if (typeof c === 'string') p.appendChild(sdTextNode(c)); else if (c.ten === 10 && sdPrefs.zim === 10) { const b = sdEl('b'); b.appendChild(sdTextNode(c.he)); p.appendChild(b); } });
+    return p;
+}
+// Le Zimoun séfarade, dans l'ordre : l'officiant ouvre, l'assistance répond, l'officiant demande la permission, l'assistance bénit, l'officiant reprend.
+function sdZimounSefarade() {
+    const box = sdEl('div', 'sd-zimoun');
+    box.appendChild(sdZimounControls(true));
+    const a = sdPrefs.zimForm !== 'b';
+    const ten = { ten: 10, he: ' אֱלֹהֵינוּ' };
+    box.appendChild(sdRoleEl('lead'));
+    box.appendChild(sdHeLine([a ? 'הַב לָן וְנִבְרִיךְ לְמַלְכָּא עִלָּאָה קַדִּישָׁא' : 'בִּרְשׁוּתְכֶם הַב לָן נְבָרֵךְ']));
+    box.appendChild(sdRoleEl('resp'));
+    box.appendChild(sdHeLine([a ? 'שָׁמַיִם' : 'נְבָרֵךְ']));
+    box.appendChild(sdRoleEl('lead'));
+    box.appendChild(sdHeLine(['בִּרְשׁוּת מַלְכָּא עִלָּאָה קַדִּישָׁא, וּבִרְשׁוּת מָרָנָן וְרַבָּנָן וְרַבּוֹתַי, נְבָרֵךְ', ten, ' שֶׁאָכַלְנוּ מִשֶּׁלּוֹ']));
+    const more = sdEl('p', 'sd-origin', 'Selon l\'assistance, on ajoute aussi la permission du maître de maison (« birchout ba\'al habayit »), et des invités s\'il y en a.');
+    more.lang = 'fr';
+    box.appendChild(more);
+    box.appendChild(sdRoleEl('resp'));
+    box.appendChild(sdHeLine(['בָּרוּךְ', ten, ' שֶׁאָכַלְנוּ מִשֶּׁלּוֹ וּבְטוּבוֹ חָיִינוּ']));
+    box.appendChild(sdRoleEl('again'));
+    box.appendChild(sdHeLine(['בָּרוּךְ', ten, ' שֶׁאָכַלְנוּ מִשֶּׁלּוֹ וּבְטוּבוֹ חָיִינוּ']));
+    return box;
+}
+
+// Mé'en chaloch séfarade : les ajouts des jours particuliers (« בשבת » + texte, dans le même segment) deviennent des blocs « selon le jour », comme chez les Ashkénazes.
+const SD_MC_DAYS = [
+    { re: /^בשבת /, atoms: ['shabbat'], label: 'Chabbat' }, { re: /^בראש ?חודש /, atoms: ['rc'], label: 'Roch \'Hodech' },
+    { re: /^בראש ?השנה /, atoms: ['roshHashana'], label: 'Roch Hachana' }, { re: /^בפסח /, atoms: ['pesach'], label: 'Pessa\'h' },
+    { re: /^בשבועות /, atoms: ['shavuot'], label: 'Chavouot' }, { re: /^בסוכות /, atoms: ['sukkot'], label: 'Souccot' },
+    { re: /^בשמיני עצרת /, atoms: ['shemini'], label: 'Chémini Atséret' }
+];
+
 // Le bandeau d'une section (voir SD_BANNERS).
 function sdBannerEl(b) {
     const box = sdEl('header', 'sd-banner');
@@ -2144,10 +2253,12 @@ function sdRenderSection(section) {
     const amida = sdIsAmida(section.id);
     const bkList = sdBerakhotFor(section.id);           // les bénédictions à titrer (Amida, Birkat haMazon), ou null
     const bares = trees.map(sdBare);
+    const bhSection = /^birkat-hamazon/.test(section.id);
     const mcAt = {};
     if (/^al-hamihya/.test(section.id)) SiddurCore.mcTables(bares).forEach(tb => { mcAt[tb.from] = tb; });
     let bows = 0;
     trees.forEach((tr, k) => { if (amida) bows += sdAddBows(tr, bares[k]); sdMarkNames(tr); });
+    if (bhSection) trees.forEach(tr => { sdApplyMinyan(tr, sdPrefs.zim === 10); sdSplitHarahaman(tr); });
     const groups = SiddurCore.groups(section.segments);
     const byHeader = {};
     groups.forEach(g => { byHeader[g.header] = g; });
@@ -2230,6 +2341,19 @@ function sdRenderSection(section) {
         if (prof.hidden.has(i)) { i++; continue; }       // la version de l'autre profil
         if (i === 0 && banner) { box.appendChild(sdBannerEl(banner)); i++; continue; }
         if (mcAt[i]) { out.appendChild(sdMcTable(trees.slice(i, mcAt[i].to + 1))); i = mcAt[i].to + 1; continue; }
+        if (section.id === 'birkat-hamazon' && i === 4 && /^אם המסובים שלושה/.test(bares[4]) && /^ברוך אתה/.test(bares[15] || '')) { out.appendChild(sdZimounSefarade()); i = 15; continue; }
+        if (bhSection && section.id !== 'birkat-hamazon' && /^שלושה שאכלו/.test(bares[i])) out.appendChild(sdZimounControls(false));
+        const mcDay = section.id === 'al-hamihya' ? SD_MC_DAYS.find(d => d.re.test(bares[i])) : null;
+        if (mcDay) {
+            const smalls = trees[i].c.filter(k => k.t === 'tag' && k.n === 'small').slice(1);
+            out.appendChild(sdVarBlock(mcDay.atoms, mcDay.label, SiddurCore.plain(smalls), host => {
+                const p = sdEl('p', 'sd-seg'); p.lang = 'he'; p.dir = 'rtl';
+                smalls.forEach((sm, n) => { if (n) p.appendChild(document.createTextNode(' ')); sdRenderNodes(sm.c, p); });
+                host.appendChild(p);
+            }));
+            i++;
+            continue;
+        }
         if (amida && out === box && /^קדושה/.test(bares[i])) { out = sdMinyanBox('Qédoucha'); box.appendChild(out); }
         const ps = psalmDay && i + 1 < trees.length ? SiddurCore.dayPsalm(SiddurCore.plain(trees[i]), sdCtx) : null;
         if (ps) {
