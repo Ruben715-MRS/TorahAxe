@@ -1062,6 +1062,24 @@ function zmShabbatView(body) {
 
 // --- La semaine ------------------------------------------------------------------------------------------------------------------------------
 // Sept jours, du dimanche au samedi : lever, fin du Chéma (Gra), coucher et sortie des étoiles. Un toucher ouvre le jour.
+// Les lignes d'un jour spécial dans la vue Semaine (les éléments viennent de js/dayNotesCore.js) : une phrase par élément.
+function zmWeekNoteLines(parts, candlesMs) {
+    const day = n => (n === 1 ? t('tools.zm_wk_day1') : t('tools.zm_wk_dayn', { n: n }));
+    return parts.map(p => {
+        if (p.type === 'rc') return t('tools.zm_wk_rc', { month: hcalMonthName(p.year, p.month) }) + (p.ordinal ? ' · ' + day(p.ordinal) : '');
+        if (p.type === 'hanouka') {
+            if (p.last) return '🕯️ ' + t('tools.zm_wk_hanouka_last');
+            const tail = p.weekday === 5 ? ' · ' + t('tools.zm_wk_before_shabbat') : p.weekday === 6 ? ' · ' + t('tools.zm_wk_after_havdala') : '';
+            return '🕯️ ' + t(p.candles === 1 ? 'tools.zm_wk_hanouka_1' : 'tools.zm_wk_hanouka_n', { n: p.candles }) + tail;
+        }
+        if (p.type === 'eve') {
+            const base = t('tools.zm_wk_eve', { name: t('tools.hcal_f_' + p.id + '_name') });
+            return candlesMs ? base + ' · ' + t('tools.zm_wk_candles', { time: zmTime(candlesMs) }) : base;
+        }
+        return t('tools.hcal_f_' + p.nameId + '_name') + (p.ordinal ? ' · ' + day(p.ordinal) : '');
+    });
+}
+
 function zmWeekView(body) {
     const C = HebrewCalendarCore, Z = ZmanimCore;
     const fixed = zmFixed(zmDate);
@@ -1084,7 +1102,8 @@ function zmWeekView(body) {
     for (let i = 0; i < 7; i++) {
         const f = start + i;
         const d = CalendarYearCore.fixedToGregorian(f);
-        const tr = zmEl('tr', (f === todayFixed ? 'is-today ' : '') + (C.weekdayOf(f) === 6 ? 'is-shabbat' : ''));
+        const notes = zmSupported(d) ? DayNotesCore.notesOf(f, ZmanimCore.inIsrael(zmPlace)) : { level: null, parts: [] };
+        const tr = zmEl('tr', (f === todayFixed ? 'is-today ' : '') + (C.weekdayOf(f) === 6 ? 'is-shabbat ' : '') + (notes.level ? 'has-note lvl-' + notes.level : ''));
         const first = zmEl('td');
         const dayBtn = zmEl('button', 'zm-week-day');
         dayBtn.type = 'button';
@@ -1104,6 +1123,15 @@ function zmWeekView(body) {
             tr.appendChild(td);
         });
         tbody.appendChild(tr);
+        // Un jour spécial : une ligne pleine largeur sous ses horaires, avec un liseré qui dit son importance (Yom Tov, fête, Roch 'Hodech ou veille).
+        if (notes.level) {
+            const noteRow = zmEl('tr', 'zm-week-note lvl-' + notes.level);
+            const cell = zmEl('td');
+            cell.colSpan = cols.length + 1;
+            zmWeekNoteLines(notes.parts, z ? Z.rounded(z, 'candles') : null).forEach(line => cell.appendChild(zmEl('div', '', line)));
+            noteRow.appendChild(cell);
+            tbody.appendChild(noteRow);
+        }
     }
     table.appendChild(tbody);
     wrap.appendChild(table);
