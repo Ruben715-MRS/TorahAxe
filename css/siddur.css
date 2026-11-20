@@ -385,12 +385,12 @@
 .sd-origin { margin: 2px 0 6px; font-family: var(--font-main); font-size: 13px; line-height: 1.45; font-style: italic; color: var(--muted-text); }
 
 /* Le tableau de Mé'en chaloch : trois colonnes (de droite à gauche comme le livre), des étiquettes françaises au-dessus. */
-.sd-vtab { margin: 10px 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: 1px solid var(--border-soft); border-radius: 12px; overflow: hidden; background: var(--surface); }
-.sd-vtab-head { padding: 7px 4px; text-align: center; font-family: var(--font-main); font-size: 11.5px; font-weight: 700; line-height: 1.25; color: var(--muted-text); background: color-mix(in srgb, var(--muted-text) 12%, var(--surface)); border-inline-start: 1px solid var(--border-soft); }
+.sd-vtab { --vt-line: color-mix(in srgb, var(--text-dark) 35%, var(--bg-color)); margin: 10px 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: 1.5px solid var(--vt-line); border-radius: 12px; overflow: hidden; background: var(--surface); }
+.sd-vtab-head { padding: 7px 4px; text-align: center; font-family: var(--font-main); font-size: 11.5px; font-weight: 700; line-height: 1.25; color: var(--muted-text); background: color-mix(in srgb, var(--muted-text) 12%, var(--surface)); border-inline-start: 1px solid var(--vt-line); }
 .sd-vtab-head:first-child { border-inline-start: 0; }
-.sd-vtab-cap { grid-column: 1 / -1; padding: 5px 8px; text-align: center; font-family: var(--font-main); font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted-text); border-top: 1px solid var(--border-soft); }
-.sd-vtab-cell { padding: 8px 6px; text-align: center; font-family: var(--sd-font, 'HX Frank', 'HX Torah', serif); font-size: calc(var(--sd-size) * 0.85); line-height: 1.5; color: var(--text-dark); border-top: 1px solid var(--border-soft); border-inline-start: 1px solid var(--border-soft); }
-.sd-vtab-cell:nth-child(3n+1) { border-inline-start: 0; }
+.sd-vtab-cap { grid-column: 1 / -1; padding: 5px 8px; text-align: center; font-family: var(--font-main); font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted-text); border-top: 1px solid var(--vt-line); }
+.sd-vtab-cell { padding: 8px 6px; text-align: center; font-family: var(--sd-font, 'HX Frank', 'HX Torah', serif); font-size: calc(var(--sd-size) * 0.85); line-height: 1.5; color: var(--text-dark); border-top: 1px solid var(--vt-line); border-inline-start: 1px solid var(--vt-line); }
+.sd-vtab-cell.is-first { border-inline-start: 0; }
 .sd-vtab-lab { display: block; margin: 2px auto; font-family: var(--font-main); font-size: 10.5px; font-weight: 600; color: var(--muted-text); }
 .sd-vtab-cell .sd-small-rub, .sd-vtab-cell .sd-small-text { font-size: 0.8em; }
 

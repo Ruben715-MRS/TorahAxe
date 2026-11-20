@@ -62,7 +62,7 @@ function sdLoadPrefs() {
         if (typeof p.fab === 'boolean') sdPrefs.fab = p.fab;
         if (typeof p.hideOff === 'boolean') sdPrefs.hideOff = p.hideOff;
         if (p.guest && typeof p.guest === 'object') sdPrefs.guest = p.guest;
-        if (p.zim === 3 || p.zim === 10) sdPrefs.zim = p.zim;
+        if (p.zim === 1 || p.zim === 3 || p.zim === 10) sdPrefs.zim = p.zim;
         if (p.zimForm === 'a' || p.zimForm === 'b') sdPrefs.zimForm = p.zimForm;
         if (p.name === 'source' || p.name === 'adonai') sdPrefs.name = p.name;
         if (typeof p.font === 'string' && sdFontById(p.font) && (p.v >= 2 || p.font !== 'noto-serif')) sdPrefs.font = p.font;
@@ -2183,9 +2183,9 @@ function sdZimounControls(withForm) {
         r.appendChild(seg);
         box.appendChild(r);
     };
-    row('Hommes ayant mangé ensemble', 'zim', [[3, '3 à 9'], [10, '10 ou plus']]);
-    if (withForm) row('Formule d\'ouverture', 'zimForm', [['a', 'Hav lan…'], ['b', 'Birchoutkhèm…']]);
-    const note = sdEl('p', 'sd-origin', 'Trois hommes adultes au moins doivent avoir mangé ensemble pour faire le Zimoun. À dix (minyan), on ajoute « Élohénou » et au moins sept d\'entre eux doivent avoir mangé du pain. Une fois que dix hommes ont mangé ensemble, il est interdit de se séparer en petits groupes pour le Zimoun.');
+    row('Hommes ayant mangé ensemble', 'zim', [[1, '1 ou 2'], [3, '3 à 9'], [10, '10 ou plus']]);
+    if (withForm && sdPrefs.zim !== 1) row('Formule d\'ouverture', 'zimForm', [['a', 'Hav lan…'], ['b', 'Birchoutkhèm…']]);
+    const note = sdEl('p', 'sd-origin', sdPrefs.zim === 1 ? 'Seul ou à deux, on ne fait pas de Zimoun : on commence directement par la première bénédiction.' : 'Trois hommes adultes au moins doivent avoir mangé ensemble pour faire le Zimoun. À dix (minyan), on ajoute « Élohénou » et au moins sept d\'entre eux doivent avoir mangé du pain. Une fois que dix hommes ont mangé ensemble, il est interdit de se séparer en petits groupes pour le Zimoun.');
     note.lang = 'fr';
     box.appendChild(note);
     return box;
@@ -2200,6 +2200,7 @@ function sdHeLine(chunks) {
 function sdZimounSefarade() {
     const box = sdEl('div', 'sd-zimoun');
     box.appendChild(sdZimounControls(true));
+    if (sdPrefs.zim === 1) return box;
     const a = sdPrefs.zimForm !== 'b';
     const ten = { ten: 10, he: ' אֱלֹהֵינוּ' };
     box.appendChild(sdRoleEl('lead'));
@@ -2239,7 +2240,7 @@ function sdBannerEl(b) {
     if (b.legend) {
         const g = sdEl('div', 'sd-vtab sd-vtab-fr');
         b.legend.forEach(c => { const h = sdEl('div', 'sd-vtab-head', c[0]); h.lang = 'fr'; g.appendChild(h); });
-        b.legend.forEach(c => { const e = sdEl('div', 'sd-vtab-cell', c[1]); e.lang = 'fr'; g.appendChild(e); });
+        b.legend.forEach((c, n) => { const e = sdEl('div', 'sd-vtab-cell' + (n === 0 ? ' is-first' : ''), c[1]); e.lang = 'fr'; g.appendChild(e); });
         box.appendChild(g);
     }
     return box;
@@ -2263,8 +2264,8 @@ function sdMcTable(trees) {
     SD_MC_HEADS.forEach(h => { const e = sdEl('div', 'sd-vtab-head', h); e.lang = 'fr'; e.dir = 'ltr'; box.appendChild(e); });
     for (let r = 0; r < rows; r++) {
         if (rows > 1) { const cap = sdEl('div', 'sd-vtab-cap', r === 0 ? 'Si la nourriture ne provient pas d\'Israël' : 'Si la nourriture provient d\'Israël'); cap.lang = 'fr'; cap.dir = 'ltr'; box.appendChild(cap); }
-        cols.forEach(c => {
-            const cell = sdEl('div', 'sd-vtab-cell'); cell.lang = 'he'; cell.dir = 'rtl';
+        cols.forEach((c, n) => {
+            const cell = sdEl('div', 'sd-vtab-cell' + (n === 0 ? ' is-first' : '')); cell.lang = 'he'; cell.dir = 'rtl';
             (c[r] || []).forEach(k => {
                 const lab = k.t === 'tag' && k.n === 'small' ? SD_MC_LABELS[SiddurCore.plain(k).replace(/\s+/g, ' ').trim()] : null;
                 if (lab) { const l = sdEl('span', 'sd-vtab-lab', lab); l.lang = 'fr'; l.dir = 'ltr'; cell.appendChild(l); }
@@ -2388,7 +2389,13 @@ function sdRenderSection(section) {
         if (i === 0 && banner) { box.appendChild(sdBannerEl(banner)); i++; continue; }
         if (mcAt[i]) { out.appendChild(sdMcTable(trees.slice(i, mcAt[i].to + 1))); i = mcAt[i].to + 1; continue; }
         if (section.id === 'birkat-hamazon' && i === 4 && /^אם המסובים שלושה/.test(bares[4]) && /^ברוך אתה/.test(bares[15] || '')) { out.appendChild(sdZimounSefarade()); i = 15; continue; }
-        if (bhSection && section.id !== 'birkat-hamazon' && /^שלושה שאכלו/.test(bares[i])) out.appendChild(sdZimounControls(false));
+        if (bhSection && section.id !== 'birkat-hamazon' && /^שלושה שאכלו/.test(bares[i])) {
+            out.appendChild(sdZimounControls(false));
+            if (sdPrefs.zim === 1) {                       // sans Zimoun : on saute jusqu'à la première bénédiction (avec la note d'origine de la source, s'il y en a une)
+                let j = bares.findIndex(b => SD_BH[0].start.test(b));
+                if (j > i) { if (SD_BH_SRC_NOTE.test(bares[j - 1])) j--; i = j; continue; }
+            }
+        }
         const mcDay = section.id === 'al-hamihya' ? SD_MC_DAYS.find(d => d.re.test(bares[i])) : null;
         if (mcDay) {
             const smalls = trees[i].c.filter(k => k.t === 'tag' && k.n === 'small').slice(1);
