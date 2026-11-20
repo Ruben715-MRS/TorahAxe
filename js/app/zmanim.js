@@ -1137,11 +1137,11 @@ function zmWeekView(body) {
     wrap.appendChild(table);
     body.appendChild(wrap);
     const nav = zmEl('div', 'zm-week-nav');
-    // Les deux boutons sur une seule ligne, sans contour, séparés par une barre verticale.
-    [['‹ Semaine précédente', -7], ['Semaine suivante ›', 7]].forEach(([label, delta], i) => {
-        if (i) { const bar = zmEl('span', 'zm-week-sep'); bar.setAttribute('aria-hidden', 'true'); nav.appendChild(bar); }
+    // Les deux boutons sur une seule ligne, sans contour, aux libellés courts (le nom complet reste pour les lecteurs d'écran).
+    [['‹ Précédente', 'Semaine précédente', -7], ['Suivante ›', 'Semaine suivante', 7]].forEach(([label, aria, delta]) => {
         const b = zmEl('button', 'zm-week-navbtn', label);
         b.type = 'button';
+        b.setAttribute('aria-label', aria);
         b.onclick = () => { const next = zmShift(zmDate, delta); if (zmSupported(next)) { zmDate = next; zmRender(); } };
         nav.appendChild(b);
     });

@@ -126,11 +126,10 @@
 .zm-week tr.lvl-special td:first-child { box-shadow: inset 3px 0 0 #d4a017; }
 .zm-week tr.lvl-minor td:first-child { box-shadow: inset 3px 0 0 var(--border-soft); }
 .zm-week tr.lvl-minor.zm-week-note td { color: var(--muted-text); font-weight: 500; }
-/* Semaine précédente | Semaine suivante : sur une seule ligne, sans contour, séparées par une barre verticale. */
-.zm-week-nav { display: flex; align-items: center; justify-content: center; gap: 4px; flex-wrap: nowrap; }
+/* Précédente / Suivante : sur une seule ligne, sans contour. */
+.zm-week-nav { display: flex; align-items: center; justify-content: center; gap: 32px; flex-wrap: nowrap; }
 .zm-week-navbtn { flex: 0 1 auto; min-width: 0; border: 0; background: none; padding: 10px 8px; font: inherit; font-size: 14px; font-weight: 600; color: var(--primary-blue); cursor: pointer; white-space: nowrap; }
 .zm-week-navbtn:active { background: var(--selected-tint); border-radius: 10px; }
-.zm-week-sep { flex: none; width: 1px; height: 20px; background: var(--border-soft); }
 
 /* --- Réglages --- */
 .zm-set-card {
