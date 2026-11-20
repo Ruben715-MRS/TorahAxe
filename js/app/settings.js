@@ -420,4 +420,18 @@ function abRender(body) {
     AB_CREDITS.forEach(function (c) { const li = document.createElement('li'); li.textContent = c; ul.appendChild(li); });
     box.appendChild(ul);
     rdGroup(body, 'À propos', box, 'Les contenus halakhiques sont à faire relire par une personne compétente avant toute décision pratique.');
+    contactRender(body);
+}
+/* Message de contact en pied de réglages : même texte que sur HistoriAxe. */
+function contactRender(body) {
+    const box = document.createElement('div');
+    box.className = 'settings-contact';
+    const p = document.createElement('p');
+    p.append("Vous avez envie de m'adresser un message ? Compliment, remarque, question ou autre : vous pouvez m'écrire à ");
+    const a = document.createElement('a');
+    a.href = 'mailto:historiaxe.app@gmail.com';
+    a.textContent = 'historiaxe.app@gmail.com';
+    p.appendChild(a);
+    box.appendChild(p);
+    body.appendChild(box);
 }
