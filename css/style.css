@@ -5925,6 +5925,15 @@ textarea.form-input {
     color: rgba(255, 255, 255, 0.88);
 }
 
+/* Les boutons de la fiche d'accueil, centrés. */
+.first-profile-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 12px;
+}
+
 .first-profile-choice:focus-visible {
     outline: 3px solid #f5b400;
     outline-offset: 2px;

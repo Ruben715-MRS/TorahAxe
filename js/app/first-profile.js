@@ -99,7 +99,9 @@ function profileWelcomeShow() {
     skip.type = 'button';
     skip.onclick = close;
 
-    card.append(g, r, hint, start, skip);
+    const actions = profileNode('div', 'first-profile-actions');
+    actions.append(start, skip);
+    card.append(g, r, hint, actions);
     overlay.appendChild(card);
     document.body.appendChild(overlay);
     refresh();
