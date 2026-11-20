@@ -87,6 +87,7 @@ function widgetBuild() {
     const HC = HebrewCalendarCore;
     const data = WidgetDataCore.build({
         place: widgetReadPlace(),
+        israel: typeof profileDomicile === 'function' && profileDomicile() ? profileDomicile() === 'israel' : undefined,
         opts: typeof zmStoredOpts === 'function' ? zmStoredOpts() : {},
         nowMs: Date.now(),
         days: WIDGET_DAYS,

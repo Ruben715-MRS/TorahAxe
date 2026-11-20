@@ -62,3 +62,25 @@ test('traductions : accordées au profil', () => {
     assert.doesNotMatch(P.adaptFr(modeh, 'f'), /Variante|femme/);
     assert.doesNotMatch(P.adaptFr(modeh, 'm'), /Variante|femme/);
 });
+
+test('domicile : valeurs, suggestion par fuseau, Israël ou diaspora, mention de voyage', () => {
+    assert.strictEqual(P.normalizeDomicile('israel'), 'israel');
+    assert.strictEqual(P.normalizeDomicile('diaspora'), 'diaspora');
+    assert.strictEqual(P.normalizeDomicile('mars'), null);
+    assert.strictEqual(P.guessDomicile('Asia/Jerusalem'), 'israel');
+    assert.strictEqual(P.guessDomicile('Europe/Paris'), 'diaspora');
+    assert.strictEqual(P.guessDomicile(undefined), 'diaspora');
+    // le domicile l'emporte ; sans domicile, le lieu décide
+    assert.strictEqual(P.isIsrael('israel', false), true);
+    assert.strictEqual(P.isIsrael('diaspora', true), false);
+    assert.strictEqual(P.isIsrael(null, true), true);
+    assert.strictEqual(P.isIsrael(null, false), false);
+    assert.strictEqual(P.isIsrael(null, undefined), false);
+    // mention de voyage seulement quand ils se contredisent
+    assert.strictEqual(P.travelNote('israel', false), 'israelAbroad');
+    assert.strictEqual(P.travelNote('diaspora', true), 'diasporaInIsrael');
+    assert.strictEqual(P.travelNote('israel', true), null);
+    assert.strictEqual(P.travelNote('diaspora', false), null);
+    assert.strictEqual(P.travelNote(null, true), null);
+    assert.strictEqual(P.travelNote('israel', null), null);
+});

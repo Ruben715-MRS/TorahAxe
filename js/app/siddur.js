@@ -89,8 +89,9 @@ function sdComputeContext() {
     let fixed, israel = false;
     if (sdPlace) {
         fixed = SiddurCore.hebrewDayFixed(sdPlace, now, {});
-        israel = ZmanimCore.inIsrael(sdPlace);
+        israel = profileIsrael(sdPlace);
     } else {
+        israel = profileIsrael(null);   // sans lieu : le domicile, s'il est choisi
         const d = new Date(now);
         fixed = CalendarYearCore.gregorianToFixed(d.getFullYear(), d.getMonth() + 1, d.getDate());
     }

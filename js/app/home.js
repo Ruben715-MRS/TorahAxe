@@ -355,7 +355,7 @@ function homeDay() {
     let civil;
     if (place) civil = ZmanimCore.civilDateOf(place.tz, now);
     else { const d = new Date(now); civil = { year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate() }; }
-    return { ctx: ctx, place: place, now: now, civil: civil, fixed: CalendarYearCore.gregorianToFixed(civil.year, civil.month, civil.day), israel: place ? ZmanimCore.inIsrael(place) : false };
+    return { ctx: ctx, place: place, now: now, civil: civil, fixed: CalendarYearCore.gregorianToFixed(civil.year, civil.month, civil.day), israel: profileIsrael(place) };
 }
 
 function homeShiftCivil(civil, days) {
@@ -601,6 +601,8 @@ function homeRenderToday(content) {
     let kicker = '';
     try { kicker = new Intl.DateTimeFormat('fr', { weekday: 'long', day: 'numeric', month: 'long', timeZone: 'UTC' }).format(new Date(Date.UTC(day.civil.year, day.civil.month - 1, day.civil.day))); } catch (e) { kicker = ''; }
     homeHeader(content, hcalHebrewText(day.ctx.hebrew), kicker, homeNightNote(day));
+    const travel = profileTravelNoteEl(day.place);   // domicile et lieu qui se contredisent : une mention discrète
+    if (travel) content.appendChild(travel);
     homeHero(content, day);
 
     // Zmanim : une seule grande tuile, sans horaire (la carte principale donne ceux de la prière en cours). Le Siddour s'ouvre depuis la carte principale.

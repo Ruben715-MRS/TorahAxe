@@ -16,7 +16,7 @@ function omerToday() {
         const ctx = sdComputeContext();
         let n = ctx.omer || 0, mode = 'morning';
         if (sdPlace && sdBetweenShkiaAndTzeit()) {
-            const israel = ZmanimCore.inIsrael(sdPlace);
+            const israel = profileIsrael(sdPlace);
             n = SiddurCore.contextFor(ctx.fixed + 1, israel).omer || 0;
             mode = 'evening';
         } else if (sdPlace && sdCurrentPrayer() === 'arvit') mode = 'evening';

@@ -57,5 +57,32 @@
         return s.replace(/\s*La femme dit\s*:.*$/, '');
     }
 
-    return { GENDERS: GENDERS, normalizeGender: normalizeGender, adaptSection: adaptSection, adaptFr: adaptFr };
+    // --- Domicile : Israël ou diaspora --------------------------------------------------------------------------------------------------------
+    // Où la personne habite, pas où elle se trouve ce soir : c'est le domicile qui règle les jours de fête (1 ou 2), la paracha et les passages de la prière
+    // qui diffèrent. Le lieu des Zmanim, lui, règle les horaires. Sans choix (null), l'application déduit tout du lieu, comme avant.
+    var DOMICILES = ['israel', 'diaspora'];
+    function normalizeDomicile(v) { return DOMICILES.indexOf(v) >= 0 ? v : null; }
+
+    // Une première suggestion d'après le fuseau horaire de l'appareil (jamais imposée : la personne confirme).
+    function guessDomicile(timeZone) {
+        return /^Asia\/(Jerusalem|Tel_Aviv)$/.test(String(timeZone || '')) ? 'israel' : 'diaspora';
+    }
+
+    // Israël (vrai) ou diaspora (faux) pour les jours de fête : le domicile s'il est choisi, sinon le lieu (placeInIsrael).
+    function isIsrael(domicile, placeInIsrael) {
+        var d = normalizeDomicile(domicile);
+        return d ? d === 'israel' : !!placeInIsrael;
+    }
+
+    // Le domicile et le lieu se contredisent-ils ? 'israelAbroad' (habite en Israël, lieu en diaspora), 'diasporaInIsrael', ou null (d'accord, ou pas de choix / de lieu).
+    function travelNote(domicile, placeInIsrael) {
+        var d = normalizeDomicile(domicile);
+        if (!d || placeInIsrael === null || placeInIsrael === undefined) return null;
+        if (d === 'israel' && !placeInIsrael) return 'israelAbroad';
+        if (d === 'diaspora' && placeInIsrael) return 'diasporaInIsrael';
+        return null;
+    }
+
+    return { GENDERS: GENDERS, normalizeGender: normalizeGender, adaptSection: adaptSection, adaptFr: adaptFr,
+             DOMICILES: DOMICILES, normalizeDomicile: normalizeDomicile, guessDomicile: guessDomicile, isIsrael: isIsrael, travelNote: travelNote };
 }));

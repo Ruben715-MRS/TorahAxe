@@ -18601,3 +18601,13 @@ button.autoscroll-mode { height: 48px; padding: 0 12px; border: 1px dashed var(-
 .cmd-hallah-he { margin: 0 0 12px; font-size: 20px; line-height: 1.8; text-align: right; color: var(--ink); }
 .cmd-hallah-tr { margin: 0 0 10px; font-size: 14px; line-height: 1.5; color: var(--ink-soft); }
 .cmd-hallah-fr { margin: 0; padding-top: 10px; border-top: 1px solid var(--border-soft); font-size: 14px; line-height: 1.5; color: var(--muted-text); }
+
+
+/* Petit écran : la fiche d'accueil ne doit pas dépasser l'écran. On retire les sous-textes de description (sauf l'invite « Choisissez… ») et on resserre. */
+@media (max-height: 880px) {
+    .first-profile-card .modal-desc:not(.first-profile-hint) { display: none; }
+    .first-profile-card { padding: 18px 16px; }
+    .first-profile-intro { margin-bottom: 10px; }
+    .first-profile-card .settings-group { margin-bottom: 10px; }
+}
+.profile-travel { margin: 8px 2px 0; padding: 8px 12px; border-radius: 12px; background: var(--selected-tint); color: var(--text-dark); font-size: 12.5px; line-height: 1.45; }

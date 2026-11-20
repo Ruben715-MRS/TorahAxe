@@ -321,7 +321,7 @@
         var days = Math.max(1, Math.min(60, input.days || DEFAULT_DAYS));
         var place = input.place || null;
         var tz = place ? place.tz : (input.deviceTz || 'UTC');
-        var israel = place ? Z.inIsrael(place) : false;
+        var israel = typeof input.israel === 'boolean' ? input.israel : (place ? Z.inIsrael(place) : false);   // input.israel : le domicile, quand il est choisi
         var labels = input.zmanimLabels || {};
 
         // On part de la veille : la période en cours peut avoir commencé hier soir.

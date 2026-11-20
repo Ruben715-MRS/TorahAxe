@@ -9,7 +9,8 @@
 let hcalTab = 'convert';
 let hcalYear = null;          // l'année hébraïque affichée (onglets Fêtes et Mois) ; null = l'année en cours
 let hcalIsrael = false;       // vrai : les dates d'Israël ; faux : celles de la diaspora
-try { hcalIsrael = localStorage.getItem('hcalIsrael') === '1'; } catch (e) { /* stockage indisponible : diaspora */ }
+// Sans choix fait sur cet écran : le domicile du profil (js/app/first-profile.js).
+try { const v = localStorage.getItem('hcalIsrael'); hcalIsrael = v === null ? localStorage.getItem('torahaxe_domicile_v1') === 'israel' : v === '1'; } catch (e) { /* stockage indisponible : diaspora */ }
 const hcalInputs = { gregorian: '', day: '1', month: 'Tishri', year: '' };
 const HCAL_TABS = [
     { id: 'convert', icon: '🔁' },

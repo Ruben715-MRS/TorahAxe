@@ -210,6 +210,8 @@ function zmRender(keepScroll) {
     } else {
         zmPlaceBar(body);
         if (zmEditing) zmPlaceEditor(body);
+        const travel = profileTravelNoteEl(zmPlace);   // domicile et lieu qui se contredisent : une mention discrète
+        if (travel) body.appendChild(travel);
         if (zmPlace && zmDate) {
             zmDateNav(body);
             zmViewTabs(body);
@@ -759,7 +761,7 @@ function zmCalendar(body) {
     const C = HebrewCalendarCore;
     if (!zmCalMonth) zmCalMonth = { year: zmDate.year, month: zmDate.month };
     const { year, month } = zmCalMonth;
-    const israel = ZmanimCore.inIsrael(zmPlace);
+    const israel = profileIsrael(zmPlace);
     const panel = zmEl('section', 'zm-cal');
     panel.id = 'zm-cal';
     if (zmCalView !== 'days') { zmCalPicker(panel); body.appendChild(panel); return; }
@@ -830,9 +832,9 @@ function zmCalendar(body) {
 }
 
 // --- Les informations du jour ---------------------------------------------------------------------------------------------------------------
-// Le lieu enregistré est-il en Israël ? (la paracha de la semaine diffère parfois de la diaspora : js/sedraCore.js)
+// Israël ou diaspora (le domicile choisi, sinon le lieu enregistré) ? (la paracha de la semaine diffère parfois de la diaspora : js/sedraCore.js)
 function zmStoredIsrael() {
-    try { const p = ZmanimCore.normalizePlace(JSON.parse(localStorage.getItem('zmanimPlace') || 'null')); return !!p && ZmanimCore.inIsrael(p); } catch (e) { return false; }
+    try { return profileIsrael(ZmanimCore.normalizePlace(JSON.parse(localStorage.getItem('zmanimPlace') || 'null'))); } catch (e) { return profileIsrael(null); }
 }
 
 function zmTehilimText(h) {
@@ -883,7 +885,7 @@ function zmZmanName(key, short) {
 // --- Le jour ----------------------------------------------------------------------------------------------------------------------------
 function zmDay(body) {
     const C = HebrewCalendarCore, Z = ZmanimCore;
-    const israel = Z.inIsrael(zmPlace);
+    const israel = profileIsrael(zmPlace);
     const fixed = zmFixed(zmDate);
     const info = C.dayInfo(fixed, israel);
     const h = info.hebrew;
@@ -1018,7 +1020,7 @@ function zmShabbatBanner(body) {
 
 function zmShabbatView(body) {
     const C = HebrewCalendarCore, Z = ZmanimCore;
-    const israel = Z.inIsrael(zmPlace);
+    const israel = profileIsrael(zmPlace);
     const s = Z.shabbatOf(zmPlace, zmDate.year, zmDate.month, zmDate.day, zmOpts);
     if (s.candles === null || s.havdalah === null) {
         body.appendChild(zmEl('p', 'tool-msg', t('tools.zm_none_title')));
@@ -1102,7 +1104,7 @@ function zmWeekView(body) {
     for (let i = 0; i < 7; i++) {
         const f = start + i;
         const d = CalendarYearCore.fixedToGregorian(f);
-        const notes = zmSupported(d) ? DayNotesCore.notesOf(f, ZmanimCore.inIsrael(zmPlace)) : { level: null, parts: [] };
+        const notes = zmSupported(d) ? DayNotesCore.notesOf(f, profileIsrael(zmPlace)) : { level: null, parts: [] };
         const tr = zmEl('tr', (f === todayFixed ? 'is-today ' : '') + (C.weekdayOf(f) === 6 ? 'is-shabbat ' : '') + (notes.level ? 'has-note lvl-' + notes.level : ''));
         const first = zmEl('td');
         const dayBtn = zmEl('button', 'zm-week-day');

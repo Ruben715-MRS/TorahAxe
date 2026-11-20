@@ -87,10 +87,10 @@
     // Les rappels des `days` prochains jours civils du lieu, à partir de `fromMs` : [{ at, kind, key, offset, time, ... }] trié, au plus MAX_PENDING.
     //  kind : 'custom' (key, offset) | 'candles' (before, yomTov) | 'omer' (day) | 'roshChodesh' (when) | 'levana' (last).
     //  `time` : l'horaire lui-même (instant), `at` : l'instant du rappel.
-    function plan(settingsRaw, place, zmanimOpts, fromMs, days) {
+    function plan(settingsRaw, place, zmanimOpts, fromMs, days, israelOpt) {
         var s = normalize(settingsRaw);
         if (!anyEnabled(s) || !place) return [];
-        var israel = Z.inIsrael(place);
+        var israel = typeof israelOpt === 'boolean' ? israelOpt : Z.inIsrael(place);     // israelOpt : le domicile, quand il est choisi
         var today = Z.civilDateOf(place.tz, fromMs);
         var out = [];
         var seenLevana = {};
