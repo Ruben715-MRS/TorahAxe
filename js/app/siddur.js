@@ -305,17 +305,31 @@ function sdShabbatContext(ctx) {
 
 // L'office à dire maintenant. En semaine : Cha'harit, Min'ha ou Arvit. Le Chabbat (jour hébraïque, du vendredi soir au samedi avant la nuit) : ceux de Chabbat.
 // { base (chacharit | minha | arvit : pour les horaires), group (le groupe du siddour), title, he, shabbat }, ou null sans lieu.
+// Le service de Chabbat. Un Chabbat d'occasion (Roch 'Hodech, Hanouka, 'Hol haMoed), le nom sur plusieurs lignes : « Chaharit de » / « Chabbat » / « Hanouka ».
+function sdShabbatService(base, group, fr, he) {
+    const svc = { base: base, group: group, title: fr + ' de Chabbat', he: he, shabbat: true };
+    const occ = SiddurCore.shabbatOccasionsOf(sdShabbatContext(sdCtx));
+    if (occ.length) {
+        const lines = sdOccasionLines(base, occ, true);
+        svc.title += ' (' + sdOccasionNames(occ).join(' ' + t('tools.sd_occ_and') + ' ') + ')';
+        svc.titleLines = lines.fr;
+        svc.heLines = lines.he;
+        svc.he = lines.he.join(' ');
+    }
+    return svc;
+}
+
 function sdCurrentService() {
     const base = sdPlace ? sdCurrentPrayer() : null;
     if (!base) return null;
     if (base === 'arvit' && !sdCtx.flags.yomTov && sdBetweenShkiaAndTzeit()) {
         // vendredi après la chkia : l'office du soir de Chabbat ; samedi après la chkia : Arvit de semaine (Chabbat finit à la sortie des étoiles)
-        if (HebrewCalendarCore.weekdayOf(sdCtx.fixed) === 5) return { base: base, group: 'chabbat-arvit', title: 'Arvit de Chabbat', he: 'ערבית', shabbat: true };
+        if (HebrewCalendarCore.weekdayOf(sdCtx.fixed) === 5) return sdShabbatService(base, 'chabbat-arvit', 'Arvit', 'ערבית');
         if (sdCtx.flags.shabbat) return { base: base, group: 'arvit', title: t('tools.sd_p_arvit'), he: SD_HE_PRAYER.arvit, shabbat: false };
     }
     if (sdCtx.flags.shabbat && !sdCtx.flags.yomTov) {
         const map = { chacharit: ['chabbat-chacharit', 'Cha\'harit', 'שחרית'], minha: ['chabbat-minha', 'Min\'ha', 'מנחה'], arvit: ['chabbat-arvit', 'Arvit', 'ערבית'] };
-        return { base: base, group: map[base][0], title: map[base][1] + ' de Chabbat', he: map[base][2], shabbat: true };
+        return sdShabbatService(base, map[base][0], map[base][1], map[base][2]);
     }
     const occ = SiddurCore.occasionsOf(sdCtx);
     const svc = { base: base, group: base, title: t('tools.sd_p_' + base), he: SD_HE_PRAYER[base], shabbat: false, occasions: occ };
@@ -602,7 +616,7 @@ function sdOccasions() { return SiddurCore.occasionsOf(sdComputeContext()); }
 function sdOccasionNames(occ) { return occ.map(o => t('tools.sd_occ_' + o)); }
 
 // Le nom d'un office un jour d'occasion, sur plusieurs lignes : « Chaharit de » puis le nom de la fête (et, si deux se rencontrent, « et Hanouka »), en français comme en hébreu.
-function sdOccasionLines(base, occ) {
+function sdOccasionLines(base, occ, shabbat) {
     // « 'Hol haMoed Souccot » est trop long pour tenir à côté de l'hébreu : il passe sur deux lignes (« 'Hol haMoed » puis « Souccot »).
     const split = (name, head) => (name.indexOf(head + ' ') === 0 ? [head, name.slice(head.length + 1)] : [name]);
     const fr = [], he = [];
@@ -611,6 +625,8 @@ function sdOccasionLines(base, occ) {
         if (i) { f[0] = t('tools.sd_occ_and') + ' ' + f[0]; h[0] = 'ו' + h[0]; }
         fr.push.apply(fr, f); he.push.apply(he, h);
     });
+    // Un Chabbat d'occasion : « Chaharit de » / « Chabbat » / le nom de la fête.
+    if (shabbat) { fr.unshift(t('tools.sd_shabbat')); he.unshift('שבת'); }
     return { fr: [t('tools.sd_p_' + base) + ' de'].concat(fr), he: [SD_HE_PRAYER[base] + ' של'].concat(he) };
 }
 
@@ -621,13 +637,21 @@ function sdOffice(groupId) {
     if (!g) return null;
     const ids = g.sections.map(s => s.id);
     let title = sdCleanTitle(g.fr);
+    const all = [];
+    sdIndex.groups.forEach(x => x.sections.forEach(sec => all.push(sec.id)));
+    // Chabbat (Cha'harit, Moussaf, Min'ha, Arvit du vendredi soir) : ceux du Chabbat dont il s'agit (le prochain, si on n'y est pas), avec le nom de l'occasion s'il y en a une.
+    if (/^chabbat-(chacharit|moussaf|minha|arvit)$/.test(groupId)) {
+        const so = SiddurCore.shabbatOccasionsOf(sdShabbatContext(sdComputeContext()));
+        if (!so.length) return { ids: ids, title: title, trim: {} };
+        const o = SiddurCore.officeFor(groupId, ids, so, all);
+        return { ids: o.ids, title: title + ' (' + sdOccasionNames(so).join(' ' + t('tools.sd_occ_and') + ' ') + ')', trim: o.trim };
+    }
     if (SD_PRAYERS.indexOf(groupId) < 0) return { ids: ids, title: title, trim: {} };
     const occ = sdOccasions();
     if (!occ.length) return { ids: ids, title: title, trim: {} };
     title += ' de\u00a0' + sdOccasionNames(occ).join(' ' + t('tools.sd_occ_and') + ' ');
-    const all = [];
-    sdIndex.groups.forEach(x => x.sections.forEach(sec => all.push(sec.id)));
-    const o = SiddurCore.officeFor(groupId, ids, occ, all);
+    const friday = HebrewCalendarCore.weekdayOf(sdCtx.fixed) === 5;     // le vendredi de Hanouka : l'allumage, avant Chabbat
+    const o = SiddurCore.officeFor(groupId, ids, occ, all, { friday: friday });
     return { ids: o.ids, title: title, trim: o.trim };
 }
 
@@ -738,7 +762,7 @@ function sdRenderHome(body) {
         if (special) hero.appendChild(sdEl('p', 'home-hero-text', t('tools.sd_warn_yomtov')));
         else {
             const chips = sdEl('div', 'home-chips');
-            if (service.shabbat) chips.appendChild(sdEl('span', 'home-chip', 'Chabbat'));
+            if (service.shabbat && !service.titleLines) chips.appendChild(sdEl('span', 'home-chip', 'Chabbat'));
             sdDayNoteLabels(ctx, service.base).forEach(label => chips.appendChild(sdEl('span', 'home-chip', label)));
             if (chips.childElementCount) hero.appendChild(chips);
         }

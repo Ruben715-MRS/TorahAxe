@@ -184,3 +184,43 @@ test("Les Hallel du livre : la lecture de Roch 'Hodech commence bien au segment 
         assert.ok(/קודם הוצאת ספר תורה/.test(plainTxt(d.segments[S2.HALLEL_TAIL_FROM])), id);
     });
 });
+
+test("Chabbat d'occasion : shabbatOccasionsOf (Chabbat Roch 'Hodech, Hanouka, 'Hol haMoed ; rien un Chabbat ordinaire ni de fête)", () => {
+    const S2 = require('../js/siddurCore.js');
+    const sh = o => ctxOf(Object.assign({ shabbat: true }, o));
+    assert.deepStrictEqual(S2.shabbatOccasionsOf(sh({})), []);
+    assert.deepStrictEqual(S2.shabbatOccasionsOf(sh({ rc: true })), ['rc']);
+    assert.deepStrictEqual(S2.shabbatOccasionsOf(sh({ hanukkah: true })), ['hanouka']);
+    assert.deepStrictEqual(S2.shabbatOccasionsOf(sh({ rc: true, hanukkah: true })), ['rc', 'hanouka']);
+    assert.deepStrictEqual(S2.shabbatOccasionsOf(sh({ chPesach: true })), ['chPesach']);
+    assert.deepStrictEqual(S2.shabbatOccasionsOf(sh({ chSukkot: true })), ['chSukkot']);
+    assert.deepStrictEqual(S2.shabbatOccasionsOf(sh({ hanukkah: true, yomTov: true })), []);
+    assert.deepStrictEqual(S2.shabbatOccasionsOf(ctxOf({ hanukkah: true })), []);        // pas un Chabbat
+    assert.deepStrictEqual(S2.shabbatOccasionsOf(null), []);
+});
+
+test("Chabbat d'occasion : Hallel après l'Amida de Cha'harit, lectures de Hanouka après la Torah, mizmor au Moussaf de 'Hol haMoed", () => {
+    const S2 = require('../js/siddurCore.js');
+    const ch = officeIds('chabbat-chacharit');
+    const han = S2.officeFor('chabbat-chacharit', ch, ['hanouka'], OFFICE_ALL);
+    assert.strictEqual(han.ids[han.ids.indexOf('chabbat-ch-amida') + 1], 'rh-hallel');
+    assert.strictEqual(han.ids[han.ids.indexOf('chabbat-ch-tora') + 1], 'hanouka-chacharit');
+    assert.deepStrictEqual(han.trim, { 'rh-hallel': S2.HALLEL_TAIL_FROM });
+    assert.strictEqual(han.ids.length, ch.length + 2);                                                   // rien n'est retiré du Chabbat
+    const rc = S2.officeFor('chabbat-chacharit', ch, ['rc'], OFFICE_ALL);
+    assert.ok(rc.ids.includes('rh-hallel') && !rc.ids.includes('hanouka-chacharit'));
+    const mo = officeIds('chabbat-moussaf');
+    assert.strictEqual(S2.officeFor('chabbat-moussaf', mo, ['chPesach'], OFFICE_ALL).ids[1], 'regalim-mizmor-pessah');
+    assert.strictEqual(S2.officeFor('chabbat-moussaf', mo, ['chSukkot'], OFFICE_ALL).ids[1], 'regalim-mizmor-souccot');
+    assert.deepStrictEqual(S2.officeFor('chabbat-moussaf', mo, ['hanouka'], OFFICE_ALL).ids, mo);        // Hanouka : rien à ajouter au Moussaf
+    ['chabbat-minha', 'chabbat-arvit'].forEach(g => assert.deepStrictEqual(S2.officeFor(g, officeIds(g), ['hanouka'], OFFICE_ALL).ids, officeIds(g)));
+    assert.deepStrictEqual(S2.officeFor('chabbat-chacharit', ch, [], OFFICE_ALL).ids, ch);               // Chabbat ordinaire : inchangé
+});
+
+test("Le vendredi de Hanouka : l'allumage après Min'ha, avant Chabbat ; pas les autres jours", () => {
+    const S2 = require('../js/siddurCore.js');
+    const mi = officeIds('minha');
+    assert.deepStrictEqual(S2.officeFor('minha', mi, ['hanouka'], OFFICE_ALL, { friday: true }).ids, mi.concat(['hanouka-allumage']));
+    assert.deepStrictEqual(S2.officeFor('minha', mi, ['hanouka'], OFFICE_ALL, { friday: false }).ids, mi);
+    assert.deepStrictEqual(S2.officeFor('minha', mi, ['rc'], OFFICE_ALL, { friday: true }).ids, mi);
+});

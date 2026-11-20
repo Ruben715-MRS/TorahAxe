@@ -427,14 +427,17 @@ function homeHero(content, day) {
         hero.appendChild(hEl('p', 'home-hero-text', t('tools.sd_warn_yomtov')));
     } else {
         const chips = hEl('div', 'home-chips');
-        if (service.shabbat) chips.appendChild(hEl('span', 'home-chip', 'Chabbat'));
+        if (service.shabbat && !service.titleLines) chips.appendChild(hEl('span', 'home-chip', 'Chabbat'));     // le titre d'un Chabbat d'occasion le dit déjà
         sdDayNoteLabels(ctx, service.base).forEach(label => chips.appendChild(hEl('span', 'home-chip', label)));
         if (chips.childElementCount) hero.appendChild(chips);   // pas de ligne vide quand il n'y a rien à dire (Arvit un jour ordinaire)
     }
     // Le vendredi, jusqu'à l'allumage : l'heure des bougies (pour tous les profils).
     if (HebrewCalendarCore.weekdayOf(day.fixed) === 5 && !special) {
         const candles = ZmanimCore.rounded(homeZmanimOf(day, 0), 'candles');
-        if (candles !== null && candles > day.now) hero.appendChild(hEl('p', 'home-hero-candles', '🕯️ ' + t('welcome.candles') + ' · ' + homeTime(day, candles)));
+        if (candles !== null && candles > day.now) {
+            hero.appendChild(hEl('p', 'home-hero-candles', '🕯️ ' + t('welcome.candles') + ' · ' + homeTime(day, candles)));
+            if (service.occasions && service.occasions.indexOf('hanouka') >= 0) hero.appendChild(hEl('p', 'home-hero-candles', '🕯️ ' + t('welcome.hanouka_friday')));
+        }
     }
     // « Commencer » (la prière de l'heure) à gauche, « Tout le Siddour » à droite. Un jour de fête, le bouton principal ouvre déjà tout le Siddour : un seul bouton.
     const regel = special && (ctx.flags.pesach || ctx.flags.sukkot || ctx.flags.shemini || ctx.flags.shavuot);

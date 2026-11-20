@@ -393,8 +393,35 @@
         return out;
     }
 
+    // Les occasions d'un Chabbat (qui n'est pas aussi un jour de fête) : Roch 'Hodech, Hanouka, 'Hol haMoed. Pourim ne tombe pas un Chabbat.
+    function shabbatOccasionsOf(ctx) {
+        if (!ctx || !ctx.flags || !ctx.flags.shabbat || ctx.flags.yomTov) return [];
+        var f = ctx.flags, out = [];
+        if (f.rc) out.push('rc');
+        if (f.hanukkah) out.push('hanouka');
+        if (f.chPesach) out.push('chPesach');
+        if (f.chSukkot) out.push('chSukkot');
+        return out;
+    }
+
     // Un jour de Roch 'Hodech qui n'est ni Chabbat ni jour de fête.
     function isRoshChodeshWeekday(ctx) { return occasionsOf(ctx).indexOf('rc') >= 0; }
+
+    // Les offices de Chabbat un Chabbat d'occasion. Le livre annonce le Hallel dans l'Amida de Cha'harit (« en Chabbat Roch 'Hodech, 'Hol haMoed ou Hanouka, on dit ici le Hallel, avant le Kaddich »)
+    // sans en donner le texte : on le met après l'Amida (sans la sortie du rouleau de Roch 'Hodech qui le suit, la Torah de Chabbat étant celle du livre). À Hanouka, les lectures du
+    // second rouleau suivent celle de Chabbat. Au Moussaf de 'Hol haMoed, le mizmor de la fête suit l'Amida.
+    function shabbatOfficeFor(group, ids, occ, has) {
+        var out = ids.slice(), trim = {};
+        var after = function (anchor, id) { var at = out.indexOf(anchor); if (at >= 0 && has(id)) { out.splice(at + 1, 0, id); return true; } return false; };
+        if (group === 'chabbat-chacharit') {
+            if (after('chabbat-ch-amida', 'rh-hallel')) trim['rh-hallel'] = HALLEL_TAIL_FROM;
+            if (occ.indexOf('hanouka') >= 0) after('chabbat-ch-tora', 'hanouka-chacharit');
+        } else if (group === 'chabbat-moussaf') {
+            if (occ.indexOf('chPesach') >= 0) after('chabbat-mo-amida', 'regalim-mizmor-pessah');
+            else if (occ.indexOf('chSukkot') >= 0) after('chabbat-mo-amida', 'regalim-mizmor-souccot');
+        }
+        return { ids: out, trim: trim };
+    }
 
     // Les sections de Cha'harit de l'office du jour ; null si le livre n'a pas de quoi composer l'office (on garde alors celui de la semaine).
     function chacharitFor(ids, occ, has) {
@@ -434,10 +461,14 @@
 
     // L'office du jour : { ids, trim } pour `base` ('chacharit', 'minha', 'arvit'), d'après les sections de la semaine (`ids`), les occasions du jour et les sections que le livre
     // contient (`available`, facultatif). `trim` : { identifiant de section : premier segment à ne pas montrer }. Un jour ordinaire : les sections de la semaine, telles quelles.
-    function officeFor(base, ids, occ, available) {
+    // `opts.friday` : le vendredi, avant Chabbat. `base` peut aussi être un groupe de Chabbat (« chabbat-chacharit », « chabbat-moussaf »…) : voir shabbatOfficeFor.
+    function officeFor(base, ids, occ, available, opts) {
         var plain = { ids: ids.slice(), trim: {} };
         if (!occ || !occ.length) return plain;
         var has = function (id) { return ids.indexOf(id) >= 0 || !available || available.indexOf(id) >= 0; };
+        if (/^chabbat-/.test(base)) return shabbatOfficeFor(base, ids, occ, has);
+        // Le vendredi de Hanouka, on allume avant Chabbat : l'allumage suit Min'ha (les bougies de Hanouka avant celles de Chabbat).
+        if (base === 'minha' && occ.indexOf('hanouka') >= 0 && opts && opts.friday && has('hanouka-allumage')) return { ids: ids.concat(['hanouka-allumage']), trim: {} };
         if (base === 'chacharit') return chacharitFor(ids, occ, has) || plain;
         if (base === 'arvit') {
             var out = ids.slice();
@@ -451,7 +482,7 @@
     }
 
     return {
-        RC_SECTIONS: RC_SECTIONS, OCCASIONS: OCCASIONS, OCC_HE: OCC_HE, HALLEL_TAIL_FROM: HALLEL_TAIL_FROM, occasionsOf: occasionsOf, isRoshChodeshWeekday: isRoshChodeshWeekday, officeFor: officeFor,
+        RC_SECTIONS: RC_SECTIONS, OCCASIONS: OCCASIONS, OCC_HE: OCC_HE, HALLEL_TAIL_FROM: HALLEL_TAIL_FROM, occasionsOf: occasionsOf, shabbatOccasionsOf: shabbatOccasionsOf, isRoshChodeshWeekday: isRoshChodeshWeekday, officeFor: officeFor,
         fingerprint: fingerprint, parse: parse, plain: plain, stripNiqqud: stripNiqqud, conditionOf: conditionOf, analyseSegment: analyseSegment, groups: groups,
         contextFor: contextFor, mevarchim: mevarchim, evaluate: evaluate, hebrewDayFixed: hebrewDayFixed, notesFor: notesFor, omerSegment: omerSegment, decemberStart: decemberStart, dayPsalm: dayPsalm
     };
