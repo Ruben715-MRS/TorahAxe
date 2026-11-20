@@ -360,3 +360,36 @@
 .sd-guest-text > .sd-fr-seg { margin: 0 12px 10px; }
 .sd-fold.sd-guest > .sd-var-note { padding: 0 12px 10px; }
 .sd-guest-text > .sd-seg + .sd-seg { margin-top: 10px; }
+
+/* =========================================================================
+   Birkat haMazon et Mé'en chaloch, dans l'esprit du Maguen Avot : bandeau, rôles du Zimoun, notes d'origine, tableaux
+   (js/app/siddur.js : SD_BANNERS, SD_ROLES, SD_BH, sdMcTable).
+   ========================================================================= */
+/* Le bandeau : un cartouche gris arrondi, le nom en français puis en hébreu. */
+.sd-banner { margin: 6px 0 14px; padding: 12px 14px 14px; border-radius: 14px; background: color-mix(in srgb, var(--muted-text) 14%, var(--bg-color)); border: 1px solid var(--border-soft); text-align: center; }
+.sd-banner-fr { margin: 0; font-family: var(--font-main); font-size: 19px; font-weight: 800; letter-spacing: 0.02em; text-transform: uppercase; color: var(--text-dark); }
+.sd-banner-sub { margin: 2px 0 6px; font-family: var(--font-main); font-size: 13.5px; font-weight: 600; color: var(--muted-text); }
+.sd-banner .sd-title { margin: 0; font-size: calc(var(--sd-size) * 1.25); line-height: 1.3; }
+.sd-banner-intro { margin: 10px 0 0; padding-top: 8px; border-top: 1px solid var(--border-soft); font-family: var(--font-main); font-size: 13px; line-height: 1.5; font-style: italic; text-align: start; color: var(--muted-text); }
+
+/* Le Zimoun : une étiquette de rôle, et un filet à côté du texte qu'elle annonce (or pour l'officiant, bleu pour les assistants). */
+.sd-role { margin: 14px 0 0; display: flex; align-items: center; gap: 8px; font-family: var(--font-main); font-size: 12px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--home-gold, #96621a); }
+.sd-role::before { content: ""; width: 14px; height: 2px; border-radius: 2px; background: currentColor; }
+.sd-role.is-resp, .sd-role.is-fast { color: var(--primary-blue, #1d3566); }
+:root[data-theme="dark"] .sd-role { color: #dcaa4c; }
+:root[data-theme="dark"] .sd-role.is-resp, :root[data-theme="dark"] .sd-role.is-fast { color: #8fb4f0; }
+.sd-role + .sd-seg { margin-top: 2px; padding-inline-start: 10px; border-inline-start: 3px solid color-mix(in srgb, var(--home-gold, #96621a) 55%, transparent); }
+.sd-role.is-resp + .sd-seg, .sd-role.is-fast + .sd-seg { border-inline-start-color: color-mix(in srgb, var(--primary-blue, #1d3566) 45%, transparent); }
+
+/* La note d'origine d'une bénédiction : en italique, sous son nom. */
+.sd-origin { margin: 2px 0 6px; font-family: var(--font-main); font-size: 13px; line-height: 1.45; font-style: italic; color: var(--muted-text); }
+
+/* Le tableau de Mé'en chaloch : trois colonnes (de droite à gauche comme le livre), des étiquettes françaises au-dessus. */
+.sd-vtab { margin: 10px 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: 1px solid var(--border-soft); border-radius: 12px; overflow: hidden; background: var(--surface); }
+.sd-vtab-head { padding: 7px 4px; text-align: center; font-family: var(--font-main); font-size: 11.5px; font-weight: 700; line-height: 1.25; color: var(--muted-text); background: color-mix(in srgb, var(--muted-text) 12%, var(--surface)); border-inline-start: 1px solid var(--border-soft); }
+.sd-vtab-head:first-child { border-inline-start: 0; }
+.sd-vtab-cap { grid-column: 1 / -1; padding: 5px 8px; text-align: center; font-family: var(--font-main); font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted-text); border-top: 1px solid var(--border-soft); }
+.sd-vtab-cell { padding: 8px 6px; text-align: center; font-family: var(--sd-font, 'HX Frank', 'HX Torah', serif); font-size: calc(var(--sd-size) * 0.85); line-height: 1.5; color: var(--text-dark); border-top: 1px solid var(--border-soft); border-inline-start: 1px solid var(--border-soft); }
+.sd-vtab-cell:nth-child(3n+1) { border-inline-start: 0; }
+.sd-vtab-lab { display: block; margin: 2px auto; font-family: var(--font-main); font-size: 10.5px; font-weight: 600; color: var(--muted-text); }
+.sd-vtab-cell .sd-small-rub, .sd-vtab-cell .sd-small-text { font-size: 0.8em; }

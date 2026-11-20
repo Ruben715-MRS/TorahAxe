@@ -1761,7 +1761,39 @@ const SD_BERAKHOT = [
 ];
 function sdIsAmida(id) { return /amida|moussaf/.test(id); }
 function sdBare(tree) { return SiddurCore.stripNiqqud(SiddurCore.plain(tree)).replace(/[,.:;־\-–]/g, ' ').replace(/\s+/g, ' ').trim(); }
-function sdBerakhaStart(bare) { return SD_BERAKHOT.find(b => b.start.test(bare)) || null; }
+function sdBerakhaStart(bare, list) { return (list || SD_BERAKHOT).find(b => b.start.test(bare)) || null; }
+
+// Birkat haMazon : les quatre bénédictions, comme dans le Maguen Avot : leur nom, qui les a instituées, la traduction de leur conclusion.
+// Repérage par les premiers mots (sans voyelles), valable pour les trois rites. Noms, notes et traductions écrits pour l'application : **à relire**.
+const SD_BH = [
+    { id: 'hazan', he: 'ברכת הזן', fr: 'La nourriture (Birkat haZan)', start: /^ברוך אתה יהוה אלהינו מלך העולם (האל )?הזן/, end: /הזן את ?הכל/, hat: 'qui nourrit tout',
+      origin: 'La première bérakha fut instituée par Moché rabbénou, en remerciement de la manne.' },
+    { id: 'haarets', he: 'ברכת הארץ', fr: 'La Terre (Birkat haArets)', start: /^נודה לך/, end: /על הארץ ועל המזון/, hat: 'pour la terre et pour la nourriture',
+      origin: 'La deuxième bérakha fut instituée par Yéhochoua bin Noun à l\'entrée en Terre d\'Israël, en remerciement de la Terre et de ses fruits.' },
+    { id: 'yerouchalayim', he: 'בונה ירושלים', fr: 'Jérusalem (Boné Yérouchalayim)', start: /^רחם (נא )?יהוה אלהינו/, end: /בונה (ברחמיו )?ירושלים|מנחם ציון/, hat: 'qui construit Jérusalem', hatTishaBav: 'qui console Sion et réédifie Jérusalem',
+      origin: 'La troisième bérakha fut instituée par David haMélèkh pour Israël et Jérusalem, et complétée par Chélomo haMélèkh pour le Temple.' },
+    { id: 'hatov', he: 'הטוב והמטיב', fr: 'La bonté (Hatov véhaMétiv)', start: /^ברוך אתה יהוה אלהינו מלך העולם( לעד)? האל אבינו/,
+      origin: 'La quatrième bérakha fut instituée par les sages de Yavné quand les morts de Bétar purent enfin être enterrés : « Hatov », car leurs corps ne s\'étaient pas décomposés ; « Véhamétiv », car on leur donna une sépulture.',
+      endNote: 'Fin de la quatrième bérakha.' }
+];
+// Dans l'édition ashkénaze, la source porte déjà la note d'origine devant la bénédiction : on ne la double pas.
+const SD_BH_SRC_NOTE = /^(ברכה זו|בונה ירושלים דוד|הטוב והמטיב ביבנה)/;
+function sdBerakhotFor(id) { return sdIsAmida(id) ? SD_BERAKHOT : /^birkat-hamazon/.test(id) ? SD_BH : null; }
+
+// Le Zimoun : qui parle (SiddurCore.zimounRole). L'étiquette remplace la consigne : « L'officiant », « Les assistants ».
+const SD_ROLES = { lead: 'L\'officiant', resp: 'Les assistants', again: 'L\'officiant reprend après eux', go: 'L\'officiant poursuit', fast: 'Celui qui n\'a pas mangé répond' };
+
+// Le bandeau d'une section : le nom en français et en hébreu, une phrase pour dire quand on la dit, et parfois la règle (quantités, délais).
+const SD_BANNERS = [
+    { id: /^birkat-hamazon/, fr: 'Birkat haMazon', sub: 'Bénédictions après le repas', he: 'בִּרְכַּת הַמָּזוֹן' },
+    { id: /^al-hamihya/, fr: 'Mé\'en Chaloch', sub: 'Bénédiction après un aliment des sept espèces, une pâtisserie ou du vin', he: 'בִּרְכַּת מֵעֵין שָׁלוֹשׁ',
+      intro: 'Après avoir mangé un fruit des sept espèces (olives, dattes, raisins, figues, grenades), un aliment à base de l\'une des cinq céréales (pâtisserie, pâtes…) ou bu du vin, on dit cette bérakha. Il faut avoir mangé un kazayit (environ 30 g) dans le temps d\'une \'akhilat prass (environ 7,5 minutes), ou bu un révi\'it (environ 86 ml) de vin dans le temps d\'un chtiyat révi\'it. Sinon, ou pour un autre aliment, on dit Boré néfachot.' }
+];
+function sdBannerFor(id) { return SD_BANNERS.find(b => b.id.test(id)) || null; }
+
+// Mé'en chaloch : le tableau d'une suite de trois lignes (céréales, vin, sept espèces), dans l'ordre du livre : de droite à gauche.
+const SD_MC_HEADS = ['Céréales (pâtisserie, pâtes…)', 'Vin', 'Les sept espèces'];
+const SD_MC_LABELS = { 'בחו"ל': 'Hors d\'Israël', 'וי"א גם': 'Certains ajoutent' };
 
 // Les inclinaisons (usage séfarade) : au début et à la conclusion de la 1re bénédiction, et de la bénédiction de reconnaissance (Modim).
 // Le signe est un nœud { t: 'text', v: '', k: 'bow' } glissé dans l'arbre avant le mot (le texte, lui, n'est pas modifié).
@@ -2045,10 +2077,55 @@ function sdAboutCard(about) {
     return card;
 }
 
+// Le bandeau d'une section (voir SD_BANNERS).
+function sdBannerEl(b) {
+    const box = sdEl('header', 'sd-banner');
+    box.appendChild(sdEl('p', 'sd-banner-fr', b.fr));
+    box.appendChild(sdEl('p', 'sd-banner-sub', b.sub));
+    const he = sdEl('h4', 'sd-title');
+    he.lang = 'he'; he.dir = 'rtl';
+    he.appendChild(sdTextNode(b.he));
+    box.appendChild(he);
+    if (b.intro) { const p = sdEl('p', 'sd-banner-intro', b.intro); p.lang = 'fr'; box.appendChild(p); }
+    return box;
+}
+
+// Mé'en chaloch : le tableau de trois lignes (céréales, vin, sept espèces). Chaque ligne est « consigne + texte » (séfarade : « אם אכל מזונות יאמר » puis
+// le texte ; avec « של ארץ ישראל » au milieu, deux textes : hors d'Israël puis Terre d'Israël) ou « consigne— texte » (ashkénaze, avec ses variantes entre parenthèses).
+function sdMcCells(tree) {
+    const kids = tree.c.filter(k => !sdBlank(k));
+    const smalls = kids.filter(k => k.t === 'tag' && k.n === 'small');
+    if (smalls.length >= 4 && SiddurCore.plain(smalls[2]).replace(/\s+/g, ' ').trim() === 'של ארץ ישראל') return [smalls[1].c, smalls[3].c];
+    if (smalls.length === 2 && kids.length === 2) return [smalls[1].c];                    // consigne + texte, chacun dans son <small>
+    const rest = kids.slice(1);                                                           // la consigne vient en premier
+    return [rest.map(k => k.t === 'text' ? { t: 'text', v: k.v.replace(/[—()]/g, ''), m: k.m } : k)];
+}
+function sdMcTable(trees) {
+    const cols = trees.map(sdMcCells);
+    const rows = Math.max.apply(null, cols.map(c => c.length));
+    const box = sdEl('div', 'sd-vtab');
+    box.dir = 'rtl';
+    SD_MC_HEADS.forEach(h => { const e = sdEl('div', 'sd-vtab-head', h); e.lang = 'fr'; e.dir = 'ltr'; box.appendChild(e); });
+    for (let r = 0; r < rows; r++) {
+        if (rows > 1) { const cap = sdEl('div', 'sd-vtab-cap', r === 0 ? 'Si la nourriture ne provient pas d\'Israël' : 'Si la nourriture provient d\'Israël'); cap.lang = 'fr'; cap.dir = 'ltr'; box.appendChild(cap); }
+        cols.forEach(c => {
+            const cell = sdEl('div', 'sd-vtab-cell'); cell.lang = 'he'; cell.dir = 'rtl';
+            (c[r] || []).forEach(k => {
+                const lab = k.t === 'tag' && k.n === 'small' ? SD_MC_LABELS[SiddurCore.plain(k).replace(/\s+/g, ' ').trim()] : null;
+                if (lab) { const l = sdEl('span', 'sd-vtab-lab', lab); l.lang = 'fr'; l.dir = 'ltr'; cell.appendChild(l); }
+                else sdRenderNodes([k], cell, true);
+            });
+            box.appendChild(cell);
+        });
+    }
+    return box;
+}
+
 function sdRenderSection(section) {
     const box = sdEl('section', 'sd-section-box');
     box.id = 'sd-sec-' + section.id;
-    if (sdView.ids.length > 1) {
+    const banner = sdBannerFor(section.id);
+    if (sdView.ids.length > 1 && !banner) {
         const head = sdEl('h4', 'sd-sec-head');
         head.appendChild(sdEl('span', '', section.fr));
         const he = sdEl('span', 'sd-sec-head-he', section.he);
@@ -2065,7 +2142,10 @@ function sdRenderSection(section) {
     if (Number.isInteger(trimFrom)) for (let k = trimFrom; k < section.segments.length; k++) prof.hidden.add(k);
     const trees = prof.segments.map(html => SiddurCore.analyseSegment(html, counter));
     const amida = sdIsAmida(section.id);
+    const bkList = sdBerakhotFor(section.id);           // les bénédictions à titrer (Amida, Birkat haMazon), ou null
     const bares = trees.map(sdBare);
+    const mcAt = {};
+    if (/^al-hamihya/.test(section.id)) SiddurCore.mcTables(bares).forEach(tb => { mcAt[tb.from] = tb; });
     let bows = 0;
     trees.forEach((tr, k) => { if (amida) bows += sdAddBows(tr, bares[k]); sdMarkNames(tr); });
     const groups = SiddurCore.groups(section.segments);
@@ -2079,6 +2159,8 @@ function sdRenderSection(section) {
     const frOf = (i) => { const tr = frAll && frAll[i]; return tr && tr[0] === SiddurCore.fingerprint(section.segments[i]) ? ProfileCore.adaptFr(tr[1], gender) : null; };
     if (sdPrefs.fr && !frAll) box.appendChild(sdEl('p', 'sd-fr-missing', t('tools.sd_fr_missing')));
     const seg = (i) => {
+        const role = /^birkat-hamazon/.test(section.id) ? SiddurCore.zimounRole(bares[i]) : null;
+        if (role) { const r = sdEl('p', 'sd-role is-' + role, SD_ROLES[role]); r.lang = 'fr'; return r; }
         const fr = frOf(i);
         let el = sdRenderSegment(trees[i], i, fr);
         if (amida && sdPrefs.jx && /^(אדני שפתי|ברוך אתה .*אלהינו ואלהי אבותינו)/.test(bares[i])) {
@@ -2099,10 +2181,12 @@ function sdRenderSection(section) {
     // La Qédoucha de la répétition : dans un bloc gris, de son titre jusqu'à la bénédiction suivante.
     let out = box;
     let open = null;
+    let pendingEnd = null;     // « Fin de la quatrième bérakha » : après le segment qui la porte
+    const flushEnd = () => { if (!pendingEnd) return; const p = sdEl('p', 'sd-hat', '(' + pendingEnd + ')'); p.lang = 'fr'; out.appendChild(p); pendingEnd = null; };
     const headFor = (from, to) => {
-        if (!amida) return;
+        if (!bkList) return;
         for (let k = from; k <= to; k++) {
-            const b = sdBerakhaStart(bares[k]);
+            const b = sdBerakhaStart(bares[k], bkList);
             if (!b || seen[b.id]) continue;
             seen[b.id] = true;
             out = box;
@@ -2121,6 +2205,8 @@ function sdRenderSection(section) {
             he.lang = 'he'; he.dir = 'rtl';
             h.appendChild(he);
             out.appendChild(h);
+            if (b.origin && !(k > 0 && SD_BH_SRC_NOTE.test(bares[k - 1]))) { const o = sdEl('p', 'sd-origin', b.origin); o.lang = 'fr'; out.appendChild(o); }
+            pendingEnd = b.endNote || null;
             open = b.hat ? b : null;
             return;
         }
@@ -2142,6 +2228,8 @@ function sdRenderSection(section) {
     let i = 0;
     while (i < trees.length) {
         if (prof.hidden.has(i)) { i++; continue; }       // la version de l'autre profil
+        if (i === 0 && banner) { box.appendChild(sdBannerEl(banner)); i++; continue; }
+        if (mcAt[i]) { out.appendChild(sdMcTable(trees.slice(i, mcAt[i].to + 1))); i = mcAt[i].to + 1; continue; }
         if (amida && out === box && /^קדושה/.test(bares[i])) { out = sdMinyanBox('Qédoucha'); box.appendChild(out); }
         const ps = psalmDay && i + 1 < trees.length ? SiddurCore.dayPsalm(SiddurCore.plain(trees[i]), sdCtx) : null;
         if (ps) {
@@ -2199,7 +2287,7 @@ function sdRenderSection(section) {
         }
         const g = byHeader[i];
         if (!g) {
-            headFor(i, i); out.appendChild(seg(i)); hatAfter(i, i);
+            headFor(i, i); out.appendChild(seg(i)); hatAfter(i, i); flushEnd();
             if (section.id === 'birkat-hamazon' && /^הרחמן הוא יטע תורתו/.test(bares[i])) out.appendChild(sdGuestBlock());
             if (section.id === 'chacharit-tora' && /אשר בחר בנו מכל העמים/.test(bares[i])) out.appendChild(sdReadingButton());
             i++; continue;
@@ -2224,7 +2312,7 @@ function sdRenderSection(section) {
         }
         // été / hiver de Barekh alénou : deux blocs de suite, la conclusion vient après le second
         const nextG = byHeader[g.to + 1];
-        hatAfter(g.from, g.to, !!(nextG && sdBerakhaStart(bares[nextG.from]) && open && sdBerakhaStart(bares[nextG.from]).id === open.id));
+        hatAfter(g.from, g.to, !!(nextG && sdBerakhaStart(bares[nextG.from], bkList) && open && sdBerakhaStart(bares[nextG.from], bkList).id === open.id));
         i = g.to + 1;
     }
     return box;
