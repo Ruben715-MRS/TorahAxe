@@ -415,7 +415,7 @@ function homeHero(content, day) {
     }
     hero.appendChild(hEl('small', 'home-hero-label', 'À cette heure'));
     const row = hEl('div', 'home-hero-row');
-    row.appendChild(hEl('div', 'home-hero-name', service.title));
+    row.appendChild(hEl('div', 'home-hero-name' + (service.title.length > 14 ? ' is-long' : ''), service.title));
     const he = hEl('span', 'home-hero-he', service.he);
     he.lang = 'he'; he.dir = 'rtl';
     row.appendChild(he);

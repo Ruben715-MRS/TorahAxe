@@ -90,3 +90,30 @@ test('psaume du jour : celui du jour et ceux des jours particuliers', () => {
     assert.strictEqual(S.dayPsalm('למחרת יום הכיפורים אומרים', ctx(2026, 9, 22)), 'on');   // 11 Tichri 5787
     assert.strictEqual(S.dayPsalm('בצום גדליה ובעשרה בטבת אומרים', ctx(2026, 12, 20)), 'on'); // 10 Tevet 5787
 });
+
+test("Roch 'Hodech de semaine : Cha'harit suit l'ordre du livre (Hallel, Torah, Moussaf, Barkhi nafchi…)", () => {
+    const S2 = require('../js/siddurCore.js');
+    const idx = require('../data/siddur/index.json');
+    const group = idx.groups.find(g => g.id === 'chacharit').sections.map(s => s.id);
+    const all = [].concat(...idx.groups.map(g => g.sections.map(s => s.id)));
+    const rc = S2.roshChodeshChacharit(group, all);
+    assert.ok(rc);
+    const cut = rc.indexOf('chacharit-amida');
+    assert.deepStrictEqual(rc.slice(0, cut + 1), group.slice(0, group.indexOf('chacharit-amida') + 1));       // la semaine jusqu'à l'Amida
+    assert.deepStrictEqual(rc.slice(cut + 1, cut + 10), S2.RC_SECTIONS);                                         // puis Roch 'Hodech, dans l'ordre
+    assert.deepStrictEqual(rc.slice(cut + 10), ['chacharit-treize-principes', 'chacharit-dix-souvenirs']);       // puis la fin habituelle
+    ['chacharit-vidoui', 'chacharit-tora', 'chacharit-achre', 'chacharit-ouva-letsion', 'chacharit-chir-chel-yom', 'chacharit-qave', 'chacharit-alenou'].forEach(id => assert.ok(!rc.includes(id), id));
+    assert.ok(S2.RC_SECTIONS.every(id => all.includes(id)), 'toutes les sections de Roch Hodesh existent dans le livre');
+    assert.strictEqual(S2.roshChodeshChacharit(['x', 'y'], all), null);                                           // pas d'Amida : rien à remplacer
+    assert.strictEqual(S2.roshChodeshChacharit(group, ['chacharit-amida']), null);                                // section manquante : on garde la semaine
+});
+
+test("isRoshChodeshWeekday : Roch 'Hodech ni Chabbat ni fête", () => {
+    const S2 = require('../js/siddurCore.js');
+    const f = o => ({ flags: Object.assign({ rc: false, shabbat: false, yomTov: false }, o) });
+    assert.strictEqual(S2.isRoshChodeshWeekday(f({ rc: true })), true);
+    assert.strictEqual(S2.isRoshChodeshWeekday(f({ rc: true, shabbat: true })), false);
+    assert.strictEqual(S2.isRoshChodeshWeekday(f({ rc: true, yomTov: true })), false);
+    assert.strictEqual(S2.isRoshChodeshWeekday(f({})), false);
+    assert.strictEqual(S2.isRoshChodeshWeekday(null), false);
+});

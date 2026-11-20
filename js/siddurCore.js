@@ -369,7 +369,29 @@
         return yes ? 'on' : 'off';
     }
 
+    // --- Roch 'Hodech, un jour de semaine : les offices dans l'ordre du livre ---------------------------------------------------------
+    // Le livre (data/siddur/) range Roch 'Hodesh à part : après l'Amida de Cha'harit viennent le Hallel (abrégé), la lecture de la Torah (4 montées, Pin'has), Achré,
+    // Ouva lé-Tsion, le psaume du jour, le Moussaf, Barkhi nafchi, Qavé, le Pitoum haQétoret et Alénou. Ces sections prennent la place de celles de la semaine qui
+    // suivent l'Amida (Vidouï et Tahanoun, Torah, Achré, Ouva lé-Tsion, psaume du jour, Qavé, Alénou) ; Min'ha et Arvit gardent leurs sections (le Yaalé véyavo est dans l'Amida).
+    var RC_SECTIONS = ['rh-ordre', 'rh-hallel', 'rh-ouva-letsion', 'rh-chir-chel-yom', 'rh-moussaf', 'rh-barkhi-nafchi', 'rh-qave', 'rh-ketoret', 'rh-alenou'];
+    var RC_KEEP_AFTER = ['chacharit-treize-principes', 'chacharit-dix-souvenirs'];
+
+    // Un jour de Roch 'Hodech qui n'est ni Chabbat ni jour de fête (Chabbat et les fêtes ont leurs propres offices).
+    function isRoshChodeshWeekday(ctx) {
+        return !!(ctx && ctx.flags && ctx.flags.rc && !ctx.flags.shabbat && !ctx.flags.yomTov);
+    }
+
+    // Les sections de Cha'harit de la semaine (leurs identifiants, dans l'ordre) -> celles de Cha'harit de Roch 'Hodech ; null si le livre n'a pas de quoi les remplacer.
+    function roshChodeshChacharit(ids, available) {
+        var cut = ids.indexOf('chacharit-amida');
+        if (cut < 0) return null;
+        var has = function (id) { return !available || available.indexOf(id) >= 0; };
+        if (!RC_SECTIONS.every(has)) return null;
+        return ids.slice(0, cut + 1).concat(RC_SECTIONS, ids.filter(function (id) { return RC_KEEP_AFTER.indexOf(id) >= 0; }));
+    }
+
     return {
+        RC_SECTIONS: RC_SECTIONS, isRoshChodeshWeekday: isRoshChodeshWeekday, roshChodeshChacharit: roshChodeshChacharit,
         fingerprint: fingerprint, parse: parse, plain: plain, stripNiqqud: stripNiqqud, conditionOf: conditionOf, analyseSegment: analyseSegment, groups: groups,
         contextFor: contextFor, mevarchim: mevarchim, evaluate: evaluate, hebrewDayFixed: hebrewDayFixed, notesFor: notesFor, omerSegment: omerSegment, decemberStart: decemberStart, dayPsalm: dayPsalm
     };

@@ -317,7 +317,8 @@ function sdCurrentService() {
         const map = { chacharit: ['chabbat-chacharit', 'Cha\'harit', 'שחרית'], minha: ['chabbat-minha', 'Min\'ha', 'מנחה'], arvit: ['chabbat-arvit', 'Arvit', 'ערבית'] };
         return { base: base, group: map[base][0], title: map[base][1] + ' de Chabbat', he: map[base][2], shabbat: true };
     }
-    return { base: base, group: base, title: t('tools.sd_p_' + base), he: SD_HE_PRAYER[base], shabbat: false };
+    const rc = SiddurCore.isRoshChodeshWeekday(sdCtx);
+    return { base: base, group: base, title: t('tools.sd_p_' + base) + (rc ? t('tools.sd_rc_suffix') : ''), he: SD_HE_PRAYER[base], shabbat: false, roshChodesh: rc };
 }
 
 function sdCleanTitle(fr) { return fr.replace(/ \(jours de semaine\)/, ''); }
@@ -587,14 +588,31 @@ function toolSiddurInit() {
     });
 }
 
+// Un office tel qu'on le lit aujourd'hui : { ids, title }. Un jour de Roch 'Hodech de semaine, Cha'harit, Min'ha et Arvit sont ceux de Roch 'Hodech : le titre le dit, et
+// Cha'harit suit l'ordre du livre (Hallel, Torah, Moussaf, Barkhi nafchi…), pour que « Commencer » suffise (SiddurCore.roshChodeshChacharit).
+function sdOffice(groupId) {
+    const g = sdIndex.groups.filter(x => x.id === groupId)[0];
+    if (!g) return null;
+    let ids = g.sections.map(s => s.id);
+    let title = sdCleanTitle(g.fr);
+    if (SD_PRAYERS.indexOf(groupId) >= 0 && SiddurCore.isRoshChodeshWeekday(sdComputeContext())) {
+        title += t('tools.sd_rc_suffix');
+        if (groupId === 'chacharit') {
+            const all = [];
+            sdIndex.groups.forEach(x => x.sections.forEach(s => all.push(s.id)));
+            ids = SiddurCore.roshChodeshChacharit(ids, all) || ids;
+        }
+    }
+    return { ids: ids, title: title };
+}
+
 // L'ouverture en attente, résolue en { ids, title } (une prière entière, ou des sections données).
 function sdTakePending() {
     const p = sdPending;
     sdPending = null;
     if (!p) return null;
     if (p.ids) return { ids: p.ids, title: p.title };
-    const group = sdIndex.groups.filter(g => g.id === p.group)[0];
-    return group ? { ids: group.sections.map(s => s.id), title: group.fr } : null;
+    return sdOffice(p.group);
 }
 
 // Depuis l'accueil : ouvre le siddour directement sur une prière (chacharit, minha, arvit), ou sur des sections.
@@ -621,8 +639,10 @@ function sdLastRead() {
 const SD_SEASON_NOTES = ['machiv', 'morid', 'tal', 'noTal'];
 function sdDayNoteLabels(ctx, base) {
     const noTachanun = base === 'arvit' ? id => !/^(noT|t)achanun/.test(id) : () => true;
+    // Roch 'Hodech : Hallel et Moussaf ne se disent qu'à Cha'harit ; à Min'ha et Arvit, seulement Yaalé véyavo.
+    const rcKey = base && base !== 'chacharit' ? 'tools.sd_note_rc_short' : 'tools.sd_note_rc';
     return SiddurCore.notesFor(ctx).filter(id => id !== 'shabbat' && id !== 'yomTov' && SD_SEASON_NOTES.indexOf(id) < 0 && noTachanun(id))
-        .map(id => id === 'omer' ? t('tools.sd_note_omer', { n: ctx.omer }) : t('tools.sd_note_' + id));
+        .map(id => id === 'omer' ? t('tools.sd_note_omer', { n: ctx.omer }) : id === 'rc' ? t(rcKey) : t('tools.sd_note_' + id));
 }
 
 function sdRender() {
@@ -659,8 +679,8 @@ function sdBack() {
 
 // --- L'accueil du siddour ------------------------------------------------------------------------------------------------------------------------
 function sdOpenGroup(groupId) {
-    const g = sdIndex.groups.filter(x => x.id === groupId)[0];
-    if (g) sdOpen(g.sections.map(s => s.id), sdCleanTitle(g.fr));
+    const o = sdOffice(groupId);
+    if (o) sdOpen(o.ids, o.title);
 }
 
 function sdArvitTime() {
@@ -684,7 +704,7 @@ function sdRenderHome(body) {
     } else if (service) {
         hero.appendChild(sdEl('small', 'home-hero-label', 'À cette heure · ' + hcalHebrewText(ctx.hebrew)));
         const row = sdEl('div', 'home-hero-row');
-        row.appendChild(sdEl('div', 'home-hero-name', service.title));
+        row.appendChild(sdEl('div', 'home-hero-name' + (service.title.length > 14 ? ' is-long' : ''), service.title));
         const he = sdEl('span', 'home-hero-he', service.he);
         he.lang = 'he'; he.dir = 'rtl';
         row.appendChild(he);

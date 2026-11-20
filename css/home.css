@@ -117,6 +117,7 @@ body > #screen-main {
 
 .home-hero-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; }
 .home-hero-name { font-size: 30px; font-weight: 800; line-height: 1.1; }
+.home-hero-name.is-long { font-size: 23px; line-height: 1.2; }   /* « Chaharit de Roch 'Hodech » */
 .home-hero-he { font-family: var(--home-heb); font-size: 30px; font-weight: 700; direction: rtl; line-height: 1.1; }
 .home-hero-text { margin: 0; font-size: 14px; line-height: 1.45; opacity: 0.9; }
 
