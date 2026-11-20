@@ -617,9 +617,11 @@ function sdLastRead() {
 
 // Les notes du jour affichées en pastilles (Machiv haRouah, Avec Tahanoun…), sans Chabbat ni fête (dits à part).
 // `base` : l'office en cours ('arvit'…). Tahanoun ne se dit pas à Arvit : ni « Avec Tahanoun » ni « Tahanoun le matin » n'y ont leur place.
+// Les mentions de saison (Machiv haRouah / Morid hatal, Barekh alénou) ne sont pas affichées : elles ne changent que deux fois par an et le texte de la prière les porte déjà.
+const SD_SEASON_NOTES = ['machiv', 'morid', 'tal', 'noTal'];
 function sdDayNoteLabels(ctx, base) {
     const noTachanun = base === 'arvit' ? id => !/^(noT|t)achanun/.test(id) : () => true;
-    return SiddurCore.notesFor(ctx).filter(id => id !== 'shabbat' && id !== 'yomTov' && noTachanun(id))
+    return SiddurCore.notesFor(ctx).filter(id => id !== 'shabbat' && id !== 'yomTov' && SD_SEASON_NOTES.indexOf(id) < 0 && noTachanun(id))
         .map(id => id === 'omer' ? t('tools.sd_note_omer', { n: ctx.omer }) : t('tools.sd_note_' + id));
 }
 
@@ -692,7 +694,7 @@ function sdRenderHome(body) {
             const chips = sdEl('div', 'home-chips');
             if (service.shabbat) chips.appendChild(sdEl('span', 'home-chip', 'Chabbat'));
             sdDayNoteLabels(ctx, service.base).forEach(label => chips.appendChild(sdEl('span', 'home-chip', label)));
-            hero.appendChild(chips);
+            if (chips.childElementCount) hero.appendChild(chips);
         }
         const regel = special && (ctx.flags.pesach || ctx.flags.sukkot || ctx.flags.shemini || ctx.flags.shavuot);
         const go = sdEl('button', 'home-hero-btn', regel ? 'Prières des trois fêtes' : 'Commencer');

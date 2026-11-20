@@ -426,7 +426,7 @@ function homeHero(content, day) {
         const chips = hEl('div', 'home-chips');
         if (service.shabbat) chips.appendChild(hEl('span', 'home-chip', 'Chabbat'));
         sdDayNoteLabels(ctx, service.base).forEach(label => chips.appendChild(hEl('span', 'home-chip', label)));
-        hero.appendChild(chips);
+        if (chips.childElementCount) hero.appendChild(chips);   // pas de ligne vide quand il n'y a rien à dire (Arvit un jour ordinaire)
     }
     // Le vendredi, jusqu'à l'allumage : l'heure des bougies (pour tous les profils).
     if (HebrewCalendarCore.weekdayOf(day.fixed) === 5 && !special) {
