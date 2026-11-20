@@ -17408,6 +17408,21 @@ body[data-view-profile="religieux"] .league-btn {
 .zm-cal-title strong { font-size: 16px; text-transform: capitalize; color: var(--text-dark); }
 .zm-cal-title small { font-size: 12px; color: var(--muted-text); }
 .zm-cal-nav { flex: none; width: 36px; height: 36px; border: 0; background: none; color: var(--muted-text); font-size: 24px; line-height: 1; cursor: pointer; }
+/* Le titre et le sous-titre ouvrent le choix du mois et de l'année (grégorienne, hébraïque) ; les flèches répètent leur pas quand on les appuie. */
+.zm-cal-title-btn, .zm-cal-sub-btn { display: inline-flex; align-items: center; justify-content: center; gap: 4px; max-width: 100%; border: 0; background: none; font: inherit; cursor: pointer; padding: 2px 8px; border-radius: 8px; }
+.zm-cal-title-btn strong { font-size: 16px; text-transform: capitalize; color: var(--text-dark); }
+.zm-cal-sub-btn { font-size: 12px; color: var(--muted-text); }
+.zm-cal-caret { font-size: 11px; color: var(--muted-text); }
+.zm-cal-title-btn:active, .zm-cal-sub-btn:active { background: var(--selected-tint); }
+.zm-cal-nav { touch-action: manipulation; -webkit-touch-callout: none; user-select: none; -webkit-user-select: none; }
+.zm-cal-year { width: 5.5em; font: inherit; font-size: 20px; font-weight: 700; text-align: center; padding: 4px 6px; border: 1px solid var(--border-soft); border-radius: 10px; background: var(--surface); color: var(--text-dark); font-variant-numeric: tabular-nums; }
+.zm-cal-year-he { font-family: 'HX Frank', 'Frank Ruhl Libre', 'SBL Hebrew', serif; font-size: 14px; }
+.zm-cal-months { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 8px; }
+.zm-cal-month { min-height: 48px; padding: 6px 4px; border: 1px solid var(--border-soft); border-radius: 12px; background: var(--surface); color: var(--text-dark); font: inherit; font-size: 14px; font-weight: 600; text-transform: capitalize; cursor: pointer; }
+.zm-cal-month:disabled { opacity: 0.35; cursor: default; }
+.zm-cal-month.is-today { box-shadow: inset 0 0 0 1.5px var(--primary-blue); }
+.zm-cal-month.is-selected { background: var(--primary-blue); border-color: var(--primary-blue); color: #fff; }
+.zm-cal-back { display: block; margin: 10px auto 0; border: 0; background: none; color: var(--primary-blue); font: inherit; font-size: 13px; font-weight: 700; cursor: pointer; }
 .zm-cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; text-align: center; }
 .zm-cal-dow { padding: 2px 0 4px; font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--muted-text); }
 .zm-cal-dow.is-shabbat { color: #b8860b; }
