@@ -5,9 +5,9 @@ const C = require('../js/benedictionsCore.js');
 
 const find = (name) => D.FOODS.filter(f => f.n === name)[0];
 
-test('les données : 581 entrées, 43 notes, toutes les bénédictions connues', () => {
+test('les données : 581 entrées, 44 notes, toutes les bénédictions connues', () => {
     assert.strictEqual(D.FOODS.length, 581);
-    assert.strictEqual(Object.keys(D.NOTES).length, 43);
+    assert.strictEqual(Object.keys(D.NOTES).length, 44);
     D.FOODS.forEach(f => {
         C.blessingsOf(f).forEach(b => assert.ok(D.BLESSINGS[b] || b === 'aucune', f.n + ' : ' + b));
         C.notesOf(f).forEach(n => assert.ok(D.NOTES[n], f.n + ' : note ' + n));
@@ -272,4 +272,11 @@ test('la pita : Hamotsi en général, Mezonot si elle est frite dans beaucoup d\
     const p = find('Pita');
     assert.deepStrictEqual(C.blessingsOf(p), ['hamotsi', 'mezonot']);
     assert.deepStrictEqual(C.notesOf(p), [43, 44]);
+});
+
+test('le fricassé : pâte frite, donc Mezonot et Al Hamihya après, sucrée ou non', () => {
+    const f = find('Fricassé');
+    assert.strictEqual(f.b, 'mezonot');
+    assert.deepStrictEqual(C.finalsOf(f, 'habad'), ['hamihya']);
+    assert.deepStrictEqual(C.notesOf(f), [45]);
 });

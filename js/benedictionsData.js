@@ -252,7 +252,7 @@
         {"id": 106, "n": "Fraise", "b": "haadama"},
         {"id": 329, "n": "Fraise des bois", "b": "haadama", "alt": ["fraisier des bois"]},
         {"id": 107, "n": "Framboise", "b": "haets"},
-        {"id": 475, "n": "Fricassé", "b": "hamotsi", "alt": ["fricassée","fricassé tunisien","sandwich fricassé"], "notes": [36]},
+        {"id": 475, "n": "Fricassé", "b": "mezonot", "alt": ["fricassée", "fricassé tunisien", "sandwich fricassé"], "notes": [45]},
         {"id": 108, "n": "Frite", "b": "haadama", "alt": ["frites","pommes frites","French fries"]},
         {"id": 109, "n": "Fromage", "b": "chehakol"},
         {"id": 453, "n": "Fromage blanc", "b": "chehakol", "alt": ["fromage frais","faisselle"]},
@@ -686,6 +686,7 @@
         40: "Tcholente : Chéhakol pour une recette simple (pommes de terre, viande, haricots, peu ou pas d'orge). Si l'orge y est en quantité notable et reconnaissable, beaucoup de poskim disent Mezonot, même en minorité. Si les grains restent entiers et non écrasés, certains disent Haadama. Chez 'Habad, en cas de doute, manger dans un repas introduit par Hamotsi. À demander à un rav selon la composition exacte et le minhag.",
         43: "Pita frite : si la pâte est frite dans une grande quantité d'huile (et non cuite au four ou sur une plaque sèche), son statut change : Mezonot, sans lavage des mains préalable. À faire relire par un rav.",
         44: "Pita sucrée (Pat Habaah Békissanin) : si la pâte est faite au jus de fruits, au lait, au miel ou au sucre à la place de l'eau, et que le goût sucré est net, la pita devient une pâtisserie. En petite quantité (collation, moins d'environ 216 g, selon la majorité des décisionnaires) : Mezonot, puis Al Hamihya après. En grande quantité (un repas, plus d'environ 216 à 230 g) : elle redevient du pain, avec Hamotsi, Nétilat Yadaïm et Birkat Hamazon. Une pita légèrement sucrée (eau et un peu de sucre) reste du pain : Hamotsi, quelle que soit la quantité. À faire relire par un rav.",
+        45: "Fricassé : la pâte est frite (et non cuite au four), donc Mezonot, que la pâte soit sucrée ou non (Choul'han 'Aroukh 168, 13, selon la source retenue ; à vérifier). On dit Al Hamihya après l'avoir consommé. À faire relire par un rav.",
         42: "Tchoutchouka (chakchouka) : au cours d'un repas introduit par Hamotsi, aucune bénédiction particulière : Hamotsi couvre les plats qui l'accompagnent. Sans pain, la bénédiction dépend de la préparation (voir les étapes). Le cas de la purée lisse est un avis de certains décisionnaires : à faire relire par un rav.",
         41: "Kneidlach (boulettes de matsa) : Mezonot, selon l'usage courant. Certains avis plus anciens pourraient pencher vers Hamotsi si les boulettes sont grosses. La bénédiction de la matsa elle-même dépend du rite : à vérifier selon la communauté.",
         36: "Plat composé : la bénédiction dépend de ce qui domine entre l'enveloppe (pâte, galette, riz) et la garniture. Voir la section Halakha (« Plat mélangé : Ikar veTafel ») ou l'outil « Mon plat ». Le classement indiqué est indicatif, à faire relire par un rav."
