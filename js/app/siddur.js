@@ -317,13 +317,15 @@ function sdCurrentService() {
         const map = { chacharit: ['chabbat-chacharit', 'Cha\'harit', 'שחרית'], minha: ['chabbat-minha', 'Min\'ha', 'מנחה'], arvit: ['chabbat-arvit', 'Arvit', 'ערבית'] };
         return { base: base, group: map[base][0], title: map[base][1] + ' de Chabbat', he: map[base][2], shabbat: true };
     }
-    const rc = SiddurCore.isRoshChodeshWeekday(sdCtx);
-    const svc = { base: base, group: base, title: t('tools.sd_p_' + base) + (rc ? t('tools.sd_rc_suffix') : ''), he: SD_HE_PRAYER[base], shabbat: false, roshChodesh: rc };
-    // Roch 'Hodech : le nom sur deux lignes, en français (« Chaharit de » / « Roch 'Hodech ») comme en hébreu (« שחרית של » / « ראש חודש »).
-    if (rc) {
-        svc.titleLines = [t('tools.sd_p_' + base) + ' de', t('tools.sd_rc_name')];
-        svc.heLines = [SD_HE_PRAYER[base] + ' של', 'ראש חודש'];
-        svc.he = svc.heLines.join(' ');
+    const occ = SiddurCore.occasionsOf(sdCtx);
+    const svc = { base: base, group: base, title: t('tools.sd_p_' + base), he: SD_HE_PRAYER[base], shabbat: false, occasions: occ };
+    // Un jour d'occasion : le nom sur plusieurs lignes, en français (« Chaharit de » / « Roch 'Hodech ») comme en hébreu (« שחרית של » / « ראש חודש »).
+    if (occ.length) {
+        const lines = sdOccasionLines(base, occ);
+        svc.title += ' de\u00a0' + sdOccasionNames(occ).join(' ' + t('tools.sd_occ_and') + ' ');
+        svc.titleLines = lines.fr;
+        svc.heLines = lines.he;
+        svc.he = lines.he.join(' ');
     }
     return svc;
 }
@@ -586,7 +588,7 @@ function toolSiddurInit() {
     sdBindScroll();
     sdLoadIndex().then(() => {
         const target = sdTakePending();
-        if (target) sdView = { mode: 'reader', ids: target.ids, title: target.title };
+        if (target) sdView = { mode: 'reader', ids: target.ids, title: target.title, trim: target.trim || {} };
         sdRender();
         setTimeout(sdPrecache, 1500);
     }).catch(() => {
@@ -595,22 +597,38 @@ function toolSiddurInit() {
     });
 }
 
-// Un office tel qu'on le lit aujourd'hui : { ids, title }. Un jour de Roch 'Hodech de semaine, Cha'harit, Min'ha et Arvit sont ceux de Roch 'Hodech : le titre le dit, et
-// Cha'harit suit l'ordre du livre (Hallel, Torah, Moussaf, Barkhi nafchi…), pour que « Commencer » suffise (SiddurCore.roshChodeshChacharit).
+// Les occasions du jour (Roch 'Hodech, Hanouka, Pourim, 'Hol haMoed ; jamais Chabbat ni jour de fête), et leur nom en français et en hébreu.
+function sdOccasions() { return SiddurCore.occasionsOf(sdComputeContext()); }
+function sdOccasionNames(occ) { return occ.map(o => t('tools.sd_occ_' + o)); }
+
+// Le nom d'un office un jour d'occasion, sur plusieurs lignes : « Chaharit de » puis le nom de la fête (et, si deux se rencontrent, « et Hanouka »), en français comme en hébreu.
+function sdOccasionLines(base, occ) {
+    // « 'Hol haMoed Souccot » est trop long pour tenir à côté de l'hébreu : il passe sur deux lignes (« 'Hol haMoed » puis « Souccot »).
+    const split = (name, head) => (name.indexOf(head + ' ') === 0 ? [head, name.slice(head.length + 1)] : [name]);
+    const fr = [], he = [];
+    occ.forEach((o, i) => {
+        const f = split(t('tools.sd_occ_' + o), "'Hol haMoed"), h = split(SiddurCore.OCC_HE[o], 'חול המועד');
+        if (i) { f[0] = t('tools.sd_occ_and') + ' ' + f[0]; h[0] = 'ו' + h[0]; }
+        fr.push.apply(fr, f); he.push.apply(he, h);
+    });
+    return { fr: [t('tools.sd_p_' + base) + ' de'].concat(fr), he: [SD_HE_PRAYER[base] + ' של'].concat(he) };
+}
+
+// Un office tel qu'on le lit aujourd'hui : { ids, title, trim }. Un jour d'occasion, le titre le dit (« Chaharit de Roch 'Hodech ») et l'office est composé dans l'ordre du livre
+// (SiddurCore.officeFor), pour que « Commencer » suffise.
 function sdOffice(groupId) {
     const g = sdIndex.groups.filter(x => x.id === groupId)[0];
     if (!g) return null;
-    let ids = g.sections.map(s => s.id);
+    const ids = g.sections.map(s => s.id);
     let title = sdCleanTitle(g.fr);
-    if (SD_PRAYERS.indexOf(groupId) >= 0 && SiddurCore.isRoshChodeshWeekday(sdComputeContext())) {
-        title += t('tools.sd_rc_suffix');
-        if (groupId === 'chacharit') {
-            const all = [];
-            sdIndex.groups.forEach(x => x.sections.forEach(s => all.push(s.id)));
-            ids = SiddurCore.roshChodeshChacharit(ids, all) || ids;
-        }
-    }
-    return { ids: ids, title: title };
+    if (SD_PRAYERS.indexOf(groupId) < 0) return { ids: ids, title: title, trim: {} };
+    const occ = sdOccasions();
+    if (!occ.length) return { ids: ids, title: title, trim: {} };
+    title += ' de\u00a0' + sdOccasionNames(occ).join(' ' + t('tools.sd_occ_and') + ' ');
+    const all = [];
+    sdIndex.groups.forEach(x => x.sections.forEach(sec => all.push(sec.id)));
+    const o = SiddurCore.officeFor(groupId, ids, occ, all);
+    return { ids: o.ids, title: title, trim: o.trim };
 }
 
 // L'ouverture en attente, résolue en { ids, title } (une prière entière, ou des sections données).
@@ -618,7 +636,7 @@ function sdTakePending() {
     const p = sdPending;
     sdPending = null;
     if (!p) return null;
-    if (p.ids) return { ids: p.ids, title: p.title };
+    if (p.ids) return { ids: p.ids, title: p.title, trim: p.trim || {} };
     return sdOffice(p.group);
 }
 
@@ -627,8 +645,8 @@ function openSiddurPrayer(groupId) {
     sdPending = { group: groupId };
     openTool('siddur', 'screen-main');
 }
-function openSiddurSections(ids, title) {
-    sdPending = { ids: ids, title: title };
+function openSiddurSections(ids, title, trim) {
+    sdPending = { ids: ids, title: title, trim: trim || {} };
     openTool('siddur', 'screen-main');
 }
 
@@ -646,10 +664,11 @@ function sdLastRead() {
 const SD_SEASON_NOTES = ['machiv', 'morid', 'tal', 'noTal'];
 function sdDayNoteLabels(ctx, base) {
     const noTachanun = base === 'arvit' ? id => !/^(noT|t)achanun/.test(id) : () => true;
-    // Roch 'Hodech : Hallel et Moussaf ne se disent qu'à Cha'harit ; à Min'ha et Arvit, seulement Yaalé véyavo.
-    const rcKey = base && base !== 'chacharit' ? 'tools.sd_note_rc_short' : 'tools.sd_note_rc';
+    // Roch 'Hodech et Hanouka : le Hallel et le Moussaf ne se disent qu'à Cha'harit ; à Min'ha et Arvit, seulement Yaalé véyavo, Al hanissim.
+    const short = !!base && base !== 'chacharit';
+    const noteKey = id => (short && (id === 'rc' || id === 'hanukkah') ? 'tools.sd_note_' + id + '_short' : 'tools.sd_note_' + id);
     return SiddurCore.notesFor(ctx).filter(id => id !== 'shabbat' && id !== 'yomTov' && SD_SEASON_NOTES.indexOf(id) < 0 && noTachanun(id))
-        .map(id => id === 'omer' ? t('tools.sd_note_omer', { n: ctx.omer }) : id === 'rc' ? t(rcKey) : t('tools.sd_note_' + id));
+        .map(id => id === 'omer' ? t('tools.sd_note_omer', { n: ctx.omer }) : t(noteKey(id)));
 }
 
 function sdRender() {
@@ -687,7 +706,7 @@ function sdBack() {
 // --- L'accueil du siddour ------------------------------------------------------------------------------------------------------------------------
 function sdOpenGroup(groupId) {
     const o = sdOffice(groupId);
-    if (o) sdOpen(o.ids, o.title);
+    if (o) sdOpen(o.ids, o.title, o.trim);
 }
 
 function sdArvitTime() {
@@ -827,10 +846,11 @@ function sdRenderHome(body) {
 }
 
 // --- La lecture ----------------------------------------------------------------------------------------------------------------------------------
-function sdOpen(ids, title) {
-    sdView = { mode: 'reader', ids: ids, title: title };
+// `trim` : { section : premier segment à ne pas montrer } (le Hallel du livre se termine par la lecture de Roch 'Hodech, qui ne convient pas à Hanouka ni à 'Hol haMoed).
+function sdOpen(ids, title, trim) {
+    sdView = { mode: 'reader', ids: ids, title: title, trim: trim || {} };
     sdRestoreTop = null;
-    try { localStorage.setItem(SD_LAST_KEY, JSON.stringify({ ids: ids, title: title })); } catch (e) { /* stockage indisponible */ }
+    try { localStorage.setItem(SD_LAST_KEY, JSON.stringify({ ids: ids, title: title, trim: trim || {} })); } catch (e) { /* stockage indisponible */ }
     sdRender();
     const screen = toolEl('screen-tool-siddur');
     if (screen) screen.scrollTop = 0;
@@ -1903,8 +1923,21 @@ const SD_DAY_RULES = [
     // « Chir hamaalot » les jours sans Tahanoun (Chabbat, fêtes, Roch 'Hodech, Hanouka…). Le rite séfarade dit le psaume 67 tous les jours.
     { id: /^birkat-hamazon-(ashkenaze|habad)$/, head: /^בחול קודם ברכת המזון/, label: 'Jours avec Tahanoun : « Al naharot Bavel »', on: c => !sdNoTachanun(c) },
     { id: /^birkat-hamazon-(ashkenaze|habad)$/, head: /^בשבת קודם ברכת המזון/, label: 'Jours sans Tahanoun (Chabbat, fêtes, Roch \'Hodech…) : « Chir hamaalot »', on: c => sdNoTachanun(c) },
+    // Hanouka : Cha'harit donne la lecture de chacun des huit jours, puis celles de Roch 'Hodech Tévet et des Chabbat de Hanouka : on ne montre que celle du jour.
+    ...['הראשון', 'השני', 'השלישי', 'הרביעי', 'החמישי', 'הששי', 'השביעי', 'השמיני'].map((w, k) => ({ id: 'hanouka-chacharit', head: new RegExp('^קריאה ליום ' + w), label: 'Lecture du ' + (k ? (k + 1) + 'e' : '1er') + ' jour de Hanouka', on: c => sdHanukkahDay(c) === k + 1, until: /^(קריאה ליום|\s*ראש חדש טבת|\s*שבת)/ })),
+    { id: 'hanouka-chacharit', head: /^\s*ראש חדש טבת שחל בחול/, label: 'Roch \'Hodech Tévet pendant Hanouka : deux rouleaux', on: c => !!c.flags.rc, until: /^\s*שבת/ },
+    { id: 'hanouka-chacharit', head: /^\s*שבת חנוכה/, label: 'Chabbat de Hanouka', on: c => !!c.flags.shabbat, until: /^\s*שבת וראש/ },
+    { id: 'hanouka-chacharit', head: /^\s*שבת וראש חדש וחנוכה/, label: 'Chabbat, Roch \'Hodech et Hanouka', on: c => !!(c.flags.shabbat && c.flags.rc), toEnd: true },
     { id: 'tikoun-lea', head: /^בימים שאין אומרים תחנון לא יאמר פסוק/, usual: true, label: 'Verset « Ad ana bekhiya » (jours avec Tahanoun)', on: c => !c.flags.noTachanun }
 ];
+// Le jour de Hanouka (1 à 8) : le 25 Kislev est le 1er.
+function sdHanukkahDay(c) {
+    try {
+        const f = HebrewCalendarCore.feastsOf(c.hebrew.year, c.israel).filter(x => x.id === 'hanouka')[0];
+        const n = f ? c.fixed - f.fixed + 1 : 0;
+        return n >= 1 && n <= 8 ? n : 0;
+    } catch (e) { return 0; }
+}
 function sdNoTachanun(c) { return !!(c.flags.noTachanun || c.flags.shabbat || c.flags.yomTov); }
 function sdPrevYomTov(c) { try { return !!SiddurCore.contextFor(c.fixed - 1, c.israel).flags.yomTov; } catch (e) { return false; } }
 function sdMonThuBlock(sectionId, bares, i) {
@@ -2004,6 +2037,8 @@ function sdRenderSection(section) {
     // Le profil (homme / femme, js/app/first-profile.js) : la version du texte qui le concerne ; les indices restent ceux du livre.
     const gender = typeof profileGender === 'function' ? profileGender() : null;
     const prof = ProfileCore.adaptSection(section.segments, gender);
+    const trimFrom = (sdView.trim || {})[section.id];
+    if (Number.isInteger(trimFrom)) for (let k = trimFrom; k < section.segments.length; k++) prof.hidden.add(k);
     const trees = prof.segments.map(html => SiddurCore.analyseSegment(html, counter));
     const amida = sdIsAmida(section.id);
     const bares = trees.map(sdBare);
