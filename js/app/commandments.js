@@ -460,10 +460,20 @@ function hallahCalculator() {
     return box;
 }
 
-// --- Pureté familiale (nidda) : les dates clés d'après les dates saisies (js/niddaCore.js). Profil Femme seulement. Les dates restent sur l'appareil ------------
-const NIDDA_KEY = 'torahaxe_nidda_v1';
+// --- Pureté familiale (nidda) : les dates clés d'après les dates saisies (js/niddaCore.js). Profil Femme seulement. Tout reste sur l'appareil ------------
+// Stockage (clé v2) : { starts : [{ date, ona }] (historique des débuts de flux, seulement si les vestot sont activées), last, hefsek, usage, note, vestot }.
+// La clé v1 ({ onset, last }) est reprise au premier usage. Rien n'est envoyé.
+const NIDDA_KEY = 'torahaxe_nidda_v2';
+const NIDDA_KEY_V1 = 'torahaxe_nidda_v1';
+function niddaEmpty() { return { starts: [], last: '', hefsek: '', usage: '', note: false, vestot: false }; }
 function niddaLoad() {
-    try { const raw = JSON.parse(localStorage.getItem(NIDDA_KEY) || 'null'); return raw && typeof raw === 'object' ? raw : { onset: '', last: '' }; } catch (e) { return { onset: '', last: '' }; }
+    try {
+        const raw = JSON.parse(localStorage.getItem(NIDDA_KEY) || 'null');
+        if (raw && typeof raw === 'object') return Object.assign(niddaEmpty(), raw);
+        const old = JSON.parse(localStorage.getItem(NIDDA_KEY_V1) || 'null');
+        if (old && old.onset) return Object.assign(niddaEmpty(), { starts: [{ date: old.onset, ona: 'day' }], last: old.last || '' });
+    } catch (e) { /* stockage illisible : on repart de zéro */ }
+    return niddaEmpty();
 }
 function niddaSave(v) { try { localStorage.setItem(NIDDA_KEY, JSON.stringify(v)); } catch (e) { /* stockage indisponible : les dates ne sont pas gardées */ } }
 function niddaFr(iso) {
@@ -471,55 +481,185 @@ function niddaFr(iso) {
     return n === null ? '' : new Date(n * 86400000).toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', timeZone: 'UTC' });
 }
 function niddaCalculator() {
+    const data = niddaLoad();
     const box = document.createElement('div');
-    box.className = 'cmd-hallah';
+    box.className = 'cmd-hallah cmd-nidda';
     box.id = 'cmd-nidda-calc';
     const h = document.createElement('strong');
     h.className = 'cmd-name';
     h.textContent = t('nidda.title');
-    const saved = niddaLoad();
+    const note = document.createElement('p');
+    note.className = 'tool-small';
+    note.textContent = t('nidda.note');
+    box.appendChild(h);
+
+    // 1. L'usage : aucun choix imposé. Tant qu'il n'est pas choisi, les deux dates sont données.
+    const usageBox = document.createElement('div');
+    usageBox.className = 'cmd-nidda-usage segmented';
+    usageBox.setAttribute('role', 'group');
+    usageBox.setAttribute('aria-label', t('nidda.usage_title'));
+    const usageBtns = {};
+    ['ashk', 'sef'].forEach(u => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.textContent = t('nidda.usage_' + u);
+        b.onclick = () => { data.usage = data.usage === u ? '' : u; niddaSave(data); paint(); };
+        usageBtns[u] = b;
+        usageBox.appendChild(b);
+    });
+    const usageHint = document.createElement('p');
+    usageHint.className = 'tool-small';
+    box.append(usageBox, usageHint);
+
+    // 2. Le cycle : début, dernier jour vu, hefsek.
     const fields = document.createElement('div');
     fields.className = 'cmd-nidda-fields';
-    const field = (label, value) => {
+    const field = (label, type, value) => {
         const l = document.createElement('label');
         l.className = 'cmd-nidda-field';
         const s = document.createElement('span');
         s.className = 'tool-small';
         s.textContent = label;
         const i = document.createElement('input');
-        i.type = 'date';
-        i.className = 'cmd-hallah-input';
+        i.type = type;
+        i.className = type === 'date' ? 'cmd-hallah-input' : 'cmd-hallah-input cmd-nidda-ona';
         i.value = value || '';
         l.append(s, i);
         fields.appendChild(l);
         return i;
     };
-    const onset = field(t('nidda.onset'), saved.onset);
-    const last = field(t('nidda.last'), saved.last);
+    const cur = () => data.starts[data.starts.length - 1] || null;
+    const onset = field(t('nidda.onset'), 'date', cur() ? cur().date : '');
+    const ona = document.createElement('select');
+    ona.className = 'cmd-hallah-input cmd-nidda-ona';
+    ona.setAttribute('aria-label', t('nidda.ona'));
+    [['day', 'nidda.ona_day'], ['night', 'nidda.ona_night']].forEach(([v, k]) => { const o = document.createElement('option'); o.value = v; o.textContent = t(k); ona.appendChild(o); });
+    ona.value = cur() ? cur().ona : 'day';
+    fields.appendChild(ona);
+    const last = field(t('nidda.last'), 'date', data.last);
+    const hefsek = field(t('nidda.hefsek'), 'date', data.hefsek);
+    box.appendChild(fields);
+
+    // Un début de flux nouveau (date postérieure) ouvre un cycle : l'ancien passe dans l'historique, les dates du cycle s'effacent.
+    const setStart = () => {
+        const d = onset.value;
+        if (!d || NiddaCore.dayNumber(d) === null) return;
+        const c = cur();
+        if (!c) data.starts.push({ date: d, ona: ona.value });
+        else if (d === c.date) c.ona = ona.value;
+        else if (d > c.date) { data.starts.push({ date: d, ona: ona.value }); data.last = ''; data.hefsek = ''; last.value = ''; hefsek.value = ''; }
+        else { c.date = d; c.ona = ona.value; }
+        data.starts.sort((x, y) => NiddaCore.dayNumber(x.date) - NiddaCore.dayNumber(y.date));
+        trim();
+    };
+    const trim = () => {
+        if (!data.vestot) data.starts = data.starts.slice(-1);
+        else data.starts = data.starts.slice(-NiddaCore.MAX_STARTS);
+    };
+    onset.oninput = () => { setStart(); niddaSave(data); paint(); };
+    ona.onchange = () => { const c = cur(); if (c) c.ona = ona.value; niddaSave(data); paint(); };
+    last.oninput = () => { data.last = last.value; niddaSave(data); paint(); };
+    hefsek.oninput = () => { data.hefsek = hefsek.value; niddaSave(data); paint(); };
+
+    // 3. Le mode : calcul complet, ou seulement noter le hefsek.
+    const noteLabel = document.createElement('label');
+    noteLabel.className = 'cmd-nidda-check';
+    const noteBox = document.createElement('input');
+    noteBox.type = 'checkbox';
+    noteBox.checked = !!data.note;
+    noteBox.onchange = () => { data.note = noteBox.checked; niddaSave(data); paint(); };
+    noteLabel.append(noteBox, document.createTextNode(' ' + t('nidda.note_only')));
+
+    // 4. Les résultats.
     const out = document.createElement('div');
     out.setAttribute('aria-live', 'polite');
     const line = (text, strong) => { const p = document.createElement('p'); p.className = strong ? 'cmd-hallah-result' : 'tool-small'; p.textContent = text; out.appendChild(p); };
-    const render = () => {
-        out.textContent = '';
-        if (!onset.value) { line(t('nidda.hint')); return; }
-        const r = NiddaCore.compute(onset.value, last.value || null);
-        if (!r.ok) { line(t('nidda.err_' + r.reason)); return; }
-        line(t('nidda.nidda', { from: niddaFr(r.nidda.from), to: niddaFr(r.nidda.to) }), false);
-        line(t('nidda.clean', { from: niddaFr(r.clean.from), to: niddaFr(r.clean.to) }), false);
-        line(t('nidda.tevila', { date: niddaFr(r.tevila) }), true);
-    };
+
+    // 5. Les vestot (option) et leur historique.
+    const vestotLabel = document.createElement('label');
+    vestotLabel.className = 'cmd-nidda-check';
+    const vestotBox = document.createElement('input');
+    vestotBox.type = 'checkbox';
+    vestotBox.checked = !!data.vestot;
+    vestotBox.onchange = () => { data.vestot = vestotBox.checked; trim(); niddaSave(data); paint(); };
+    vestotLabel.append(vestotBox, document.createTextNode(' ' + t('nidda.vestot_toggle')));
+    const vestotBlock = document.createElement('div');
+    vestotBlock.className = 'cmd-nidda-vestot';
+
     const clear = document.createElement('button');
     clear.type = 'button';
     clear.className = 'tool-history-chip';
     clear.textContent = t('nidda.clear');
-    clear.onclick = () => { onset.value = ''; last.value = ''; niddaSave({ onset: '', last: '' }); render(); };
-    const persist = () => { niddaSave({ onset: onset.value, last: last.value }); render(); };
-    onset.oninput = persist;
-    last.oninput = persist;
-    const note = document.createElement('p');
-    note.className = 'tool-small';
-    note.textContent = t('nidda.note');
-    box.append(h, fields, out, clear, note);
-    render();
+    clear.onclick = () => {
+        const keep = { usage: data.usage, note: data.note, vestot: data.vestot };
+        Object.assign(data, niddaEmpty(), keep);
+        onset.value = ''; last.value = ''; hefsek.value = ''; ona.value = 'day';
+        niddaSave(data); paint();
+    };
+
+    const reminders = document.createElement('ul');
+    reminders.className = 'tool-small cmd-nidda-rem';
+    ['rem_bedikah', 'rem_moch', 'rem_ketem', 'rem_zavah'].forEach(k => { const li = document.createElement('li'); li.textContent = t('nidda.' + k); reminders.appendChild(li); });
+    const remTitle = document.createElement('p');
+    remTitle.className = 'tool-small';
+    remTitle.textContent = t('nidda.rem_title');
+    box.append(noteLabel, out, vestotLabel, vestotBlock, clear, remTitle, reminders, note);
+
+    function paint() {
+        Object.keys(usageBtns).forEach(u => { const on = data.usage === u; usageBtns[u].className = on ? 'active' : ''; usageBtns[u].setAttribute('aria-pressed', on ? 'true' : 'false'); });
+        usageHint.textContent = data.usage ? t('nidda.usage_note_' + data.usage) : t('nidda.usage_hint');
+        out.textContent = '';
+        const c = cur();
+        if (!c) { line(t('nidda.hint')); }
+        else {
+            const r = NiddaCore.compute(c.date, data.last || null, { usage: data.usage || null, hefsek: data.hefsek || null });
+            if (!r.ok) line(t('nidda.err_' + r.reason, { date: niddaFr(r.earliest) }));
+            else {
+                line(t('nidda.nidda', { from: niddaFr(r.nidda.from), to: niddaFr(r.nidda.to) }));
+                Object.keys(r.earliest).forEach(u => line(t('nidda.earliest', { usage: t('nidda.usage_' + u), date: niddaFr(r.earliest[u]) })));
+                if (r.hefsek && data.note) line(t('nidda.hefsek_noted', { date: niddaFr(r.hefsek) }), true);
+                else if (r.hefsek) {
+                    line(t('nidda.clean', { from: niddaFr(r.clean.from), to: niddaFr(r.clean.to) }));
+                    line(t('nidda.tevila', { date: niddaFr(r.tevila) }), true);
+                }
+            }
+        }
+        // Historique et vestot
+        vestotBlock.textContent = '';
+        if (!data.vestot) return;
+        const starts = document.createElement('div');
+        starts.className = 'cmd-nidda-starts';
+        const title = document.createElement('p');
+        title.className = 'tool-small';
+        title.textContent = t('nidda.starts_title');
+        starts.appendChild(title);
+        data.starts.slice().reverse().forEach((s, idx) => {
+            const row = document.createElement('p');
+            row.className = 'tool-small';
+            row.textContent = niddaFr(s.date) + ' · ' + t(s.ona === 'night' ? 'nidda.ona_night' : 'nidda.ona_day');
+            const del = document.createElement('button');
+            del.type = 'button';
+            del.className = 'tool-history-chip';
+            del.textContent = t('nidda.starts_delete');
+            del.onclick = () => { data.starts = data.starts.filter(x => x !== s); niddaSave(data); paint(); };
+            row.appendChild(document.createTextNode(' '));
+            row.appendChild(del);
+            starts.appendChild(row);
+        });
+        vestotBlock.appendChild(starts);
+        const v = NiddaCore.vestot(data.starts);
+        if (!v.ok) { const p = document.createElement('p'); p.className = 'tool-small'; p.textContent = t('nidda.vestot_none'); vestotBlock.appendChild(p); return; }
+        v.list.forEach(x => {
+            const p = document.createElement('p');
+            p.className = x.kind === 'beinonit' ? 'cmd-hallah-result' : 'tool-small';
+            p.textContent = t('nidda.vestot_' + x.kind, { date: niddaFr(x.date), ona: t(x.ona === 'night' ? 'nidda.ona_night' : 'nidda.ona_day') });
+            vestotBlock.appendChild(p);
+        });
+        const u = document.createElement('p');
+        u.className = 'tool-small';
+        u.textContent = t('nidda.vestot_usages');
+        vestotBlock.appendChild(u);
+    }
+    paint();
     return box;
 }
