@@ -50,12 +50,12 @@
         var id = item.kind + item.n;
         var q = { type: type, id: id, item: item, shown: item.text, timeMs: TIMES[type] };
         if (type === 'kind') {
-            q.options = [{ label: 'pos', value: 'pos' }, { label: 'neg', value: 'neg' }];
+            q.options = [{ label: 'pos', value: 'pos', he: 'מִצְוַת עֲשֵׂה' }, { label: 'neg', value: 'neg', he: 'מִצְוַת לֹא תַעֲשֶׂה' }];
             q.answer = item.kind === 'pos' ? 0 : 1;
         } else if (type === 'book') {
             var others = Quiz.shuffle(BOOK_NAMES.filter(function (b) { return b !== item.bookFr; }), rng).slice(0, Quiz.CHOICES - 1);
             var books = BOOK_NAMES.filter(function (b) { return b === item.bookFr || others.indexOf(b) >= 0; });   // dans l'ordre de la Torah
-            q.options = books.map(function (b) { return { label: b, value: b }; });
+            q.options = books.map(function (b) { return { label: b, value: b, he: parashot.books[BOOK_NAMES.indexOf(b)] }; });
             q.answer = books.indexOf(item.bookFr);
         } else {
             var same = [];

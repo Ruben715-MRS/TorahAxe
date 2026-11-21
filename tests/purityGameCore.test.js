@@ -61,6 +61,7 @@ test('createGame : dix animaux, moitié purs moitié impurs, deux propositions P
         assert.strictEqual(g.questions.filter(q => q.item.status === 'pur').length, 5, section);
         g.questions.forEach(q => {
             assert.deepStrictEqual(q.options.map(o => o.value), ['pur', 'impur']);
+            q.options.forEach(o => assert.ok(/[א-ת]/.test(o.he), 'pur / impur en hébreu'));
             assert.strictEqual(q.options[q.answer].value, q.item.status);
         });
         assert.strictEqual(new Set(g.questions.map(q => q.id)).size, 10, 'pas deux fois le même animal');

@@ -107,12 +107,8 @@ function initMotion() {
             const el = m.target;
             const spentPips = Array.from(el.querySelectorAll('.pip.spent'));
             const spent = spentPips.length;
-            // En multijoueur, le bandeau change de joueur : ses vies ne sont pas celles du précédent.
-            const owner = (el.querySelector('.multi-player-hud') || {}).textContent || '';
-            const previous = el.dataset.motionSpent === undefined || el.dataset.motionOwner !== owner
-                ? null : Number(el.dataset.motionSpent);
+            const previous = el.dataset.motionSpent === undefined ? null : Number(el.dataset.motionSpent);
             el.dataset.motionSpent = String(spent);
-            el.dataset.motionOwner = owner;
             if (previous === null || spent <= previous || motionReduced()) return;
             // Les pastilles se vident de droite à gauche : les vides forment la fin de la rangée, et les
             // `spent - previous` premiers d'entre eux sont ceux qui viennent de se vider.
@@ -121,7 +117,6 @@ function initMotion() {
     });
     document.querySelectorAll('[id$="hud-lives"]').forEach(el => {
         el.dataset.motionSpent = String(el.querySelectorAll('.pip.spent').length);
-        el.dataset.motionOwner = (el.querySelector('.multi-player-hud') || {}).textContent || '';
         livesObserver.observe(el, { childList: true });
     });
 }

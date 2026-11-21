@@ -3,13 +3,16 @@
 // =========================================================================
 // Le lieu se choisit par une recherche (n'importe quelle localité de la Terre), par la position de l'appareil, par des coordonnées saisies,
 // ou parmi des favoris. Les horaires sont calculés SUR L'APPAREIL (js/zmanimCore.js, pur et testé) : hors-ligne, rien n'est envoyé. Seule la
-// recherche d'une localité interroge un service de géocodage (Open-Meteo) avec le nom tapé, et rien d'autre ; la position de l'appareil,
-// elle, ne quitte jamais l'appareil (voir js/location.js). Le lieu, les favoris et les opinions sont gardés dans localStorage.
+// recherche d'une localité interroge un service de géocodage (Open-Meteo) avec le nom tapé ; et « Utiliser ma position » envoie les coordonnées
+// ARRONDIES à ~1 km à un service de géocodage inverse (BigDataCloud) pour afficher le nom de la ville (sans réseau : « Ma position »).
+// Les horaires, eux, se calculent sans rien envoyer (voir js/location.js). Le lieu, les favoris et les opinions sont gardés dans localStorage.
 // Réutilise les fonctions de date de js/app/hebrew-calendar.js (hcalGregorianText, hcalHebrewText, hcalHebrewLetters). Tout ce qui vient de
 // la saisie ou du réseau passe par textContent, jamais par du HTML. Contenu halakhique écrit à la main : à relire par une personne compétente.
 
 const ZM_KEYS = { place: 'zmanimPlace', favs: 'zmanimFavs', opts: 'zmanimOpts', follow: 'zmanimFollow', autoPos: 'zmanimAutoPos' };
 const ZM_GEOCODER = 'https://geocoding-api.open-meteo.com/v1/search';
+const ZM_REVERSE = 'https://api.bigdatacloud.net/data/reverse-geocode-client';
+const ZM_SHOWN = 3;          // résultats de recherche montrés d'abord ; le reste derrière « Voir plus de résultats »
 const ZM_DAY_MS = 86400000;
 
 let zmPlace = null;          // le lieu courant { name, lat, lon, elevation, tz }
@@ -17,6 +20,7 @@ let zmFavs = [];             // les lieux favoris
 let zmOpts = {};             // les opinions choisies (clés de ZmanimCore.DEFAULTS)
 let zmDate = null;           // le jour affiché { year, month, day }
 let zmEditing = false;       // le volet « Lieu » est ouvert
+let zmShowAll = false;       // vrai : tous les résultats de la recherche sont montrés
 let zmFound = null;          // résultats de la dernière recherche : [{ place, detail }], ou { error }, ou { loading }
 let zmTimer = null;
 let zmHe = false;            // vrai : les noms des horaires en hébreu (bouton « A / א »), et la mise en page inversée : le nom à droite, l'heure à gauche
@@ -69,6 +73,8 @@ function zmRead(key, fallback) {
 }
 function zmWrite(key, value) {
     try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) { /* stockage indisponible : le réglage reste pour la séance */ }
+    // Le lieu et les opinions sont aussi ceux des widgets de l'iPhone (js/app/widgets.js).
+    if ((key === ZM_KEYS.place || key === ZM_KEYS.opts) && typeof widgetsRefresh === 'function') widgetsRefresh();
 }
 function zmLoad() {
     zmPlace = ZmanimCore.normalizePlace(zmRead(ZM_KEYS.place, null));
@@ -176,11 +182,8 @@ function toolZmanimInit() {
 function zmLoadParasha() {
     if (zmParasha || zmParashaLoading) return;
     zmParashaLoading = true;
-    Promise.all([
-        fetch('data/torah/calendar.json').then(r => (r.ok ? r.json() : null)),
-        fetch('data/torah/parashot.json').then(r => (r.ok ? r.json() : null))
-    ]).then(([calendar, parashot]) => {
-        if (calendar && parashot) { zmParasha = { calendar, parashot }; zmRender(true); }
+    fetch('data/torah/parashot.json').then(r => (r.ok ? r.json() : null)).then(parashot => {
+        if (parashot) { zmParasha = { calendar: null, parashot }; zmRender(true); }
     }).catch(() => { /* sans paracha : le reste fonctionne */ }).then(() => { zmParashaLoading = false; });
 }
 
@@ -207,6 +210,8 @@ function zmRender(keepScroll) {
     } else {
         zmPlaceBar(body);
         if (zmEditing) zmPlaceEditor(body);
+        const travel = profileTravelNoteEl(zmPlace);   // domicile et lieu qui se contredisent : une mention discrète
+        if (travel) body.appendChild(travel);
         if (zmPlace && zmDate) {
             zmDateNav(body);
             zmViewTabs(body);
@@ -335,9 +340,25 @@ function zmDistanceKm(a, b) {
     return 6371 * 2 * Math.asin(Math.min(1, Math.sqrt(h)));
 }
 
-// Le lieu devient la position détectée (même forme que « Utiliser ma position »).
+// Le nom de la localité où se trouve la position (géocodage inverse). Ne rejette jamais : '' si hors-ligne, trop lent ou sans réponse utile.
+function zmReverseName(pos) {
+    const controller = typeof AbortController === 'function' ? new AbortController() : null;
+    const timeout = setTimeout(() => { if (controller) controller.abort(); }, 6000);
+    const url = ZM_REVERSE + '?latitude=' + pos.lat.toFixed(2) + '&longitude=' + pos.lon.toFixed(2) + '&localityLanguage=' + encodeURIComponent(zmLocale());
+    return fetch(url, controller ? { signal: controller.signal } : undefined)
+        .then(res => { if (!res.ok) throw new Error('http ' + res.status); return res.json(); })
+        .then(json => ZmanimCore.parseReverseGeocoding(json))
+        .catch(() => '')
+        .then(name => { clearTimeout(timeout); return name; });
+}
+
+// Le lieu devient la position détectée (même forme que « Utiliser ma position »), nommé d'après la ville si le réseau répond.
 function zmApplyDetected(pos, announce) {
-    const place = ZmanimCore.normalizePlace({ name: t('tools.zm_my_position'), lat: pos.lat, lon: pos.lon, elevation: 0, tz: zmDeviceTimeZone() });
+    zmReverseName(pos).then(name => zmApplyDetectedNamed(pos, announce, name));
+}
+
+function zmApplyDetectedNamed(pos, announce, name) {
+    const place = ZmanimCore.normalizePlace({ name: name || t('tools.zm_my_position'), lat: pos.lat, lon: pos.lon, elevation: 0, tz: zmDeviceTimeZone() });
     if (!place) return;
     zmWrite(ZM_KEYS.autoPos, { lat: pos.lat, lon: pos.lon });
     zmPlace = place;
@@ -385,7 +406,7 @@ function zmLocate() {
     zmRender(true);
     TorahAxeLocation.locate().then(pos => {
         if (!pos) { zmFound = { error: t('tools.zm_gps_failed') }; zmRender(true); return; }
-        zmUsePlace({ name: t('tools.zm_my_position'), lat: pos.lat, lon: pos.lon, elevation: 0, tz: zmDeviceTimeZone() });
+        zmReverseName(pos).then(name => zmUsePlace({ name: name || t('tools.zm_my_position'), lat: pos.lat, lon: pos.lon, elevation: 0, tz: zmDeviceTimeZone() }));
     });
 }
 
@@ -393,6 +414,7 @@ function zmSearch(query) {
     const q = String(query || '').trim();
     if (q.length < 2) { zmFound = { error: t('tools.zm_search_short') }; zmRender(true); return; }
     zmFound = { loading: true };
+    zmShowAll = false;
     zmRender(true);
     const controller = typeof AbortController === 'function' ? new AbortController() : null;
     const timeout = setTimeout(() => { if (controller) controller.abort(); }, 8000);
@@ -433,7 +455,7 @@ function zmPlaceEditor(body) {
     if (zmFound && zmFound.loading) results.appendChild(zmEl('p', 'tool-small', t('tools.zm_loading')));
     else if (zmFound && zmFound.error) results.appendChild(zmEl('p', 'tool-msg', zmFound.error));
     else if (Array.isArray(zmFound)) {
-        zmFound.forEach(r => {
+        (zmShowAll ? zmFound : zmFound.slice(0, ZM_SHOWN)).forEach(r => {
             const b = zmEl('button', 'zm-result');
             b.type = 'button';
             b.appendChild(zmEl('strong', '', r.place.name));
@@ -441,6 +463,12 @@ function zmPlaceEditor(body) {
             b.onclick = () => zmUsePlace(r.place);
             results.appendChild(b);
         });
+        if (!zmShowAll && zmFound.length > ZM_SHOWN) {
+            const more = zmEl('button', 'tool-history-chip zm-more', t('tools.zm_more_results', { n: zmFound.length - ZM_SHOWN }));
+            more.type = 'button';
+            more.onclick = () => { zmShowAll = true; zmRender(true); };
+            results.appendChild(more);
+        }
     }
     panel.appendChild(results);
 
@@ -538,6 +566,8 @@ function zmPlaceEditor(body) {
 // --- Navigation de date -----------------------------------------------------------------------------------------------------------------
 let zmCalOpen = false;       // le calendrier (grégorien et hébraïque) est déplié
 let zmCalMonth = null;       // le mois affiché { year, month }
+let zmCalView = 'days';       // 'days' : les jours du mois ; 'greg' : le choix du mois et de l'année ; 'heb' : le choix du mois et de l'année hébraïques
+let zmPickYear = null;       // l'année affichée dans le choix (grégorienne ou hébraïque selon zmCalView)
 
 function zmHebrewOfCivil(d) {
     return HebrewCalendarCore.hebrewFromFixed(HebrewCalendarCore.fixedOfGregorian(d.year, d.month, d.day));
@@ -594,6 +624,7 @@ function zmDateNav(body) {
     if (texts.hebrew) { const he = zmEl('small', '', texts.hebrew); if (zmHe) he.lang = 'he'; open.appendChild(he); }
     open.onclick = () => {
         zmCalOpen = !zmCalOpen;
+        zmCalView = 'days';
         zmCalMonth = { year: zmDate.year, month: zmDate.month };
         zmRender(true);
     };
@@ -611,38 +642,159 @@ function zmDateNav(body) {
     if (zmCalOpen && zmSupported(zmDate)) zmCalendar(body);
 }
 
+// Passer au mois d'avant (-1) ou d'après (+1) : faux au-delà des années que l'application sait calculer.
+function zmCalShift(delta) {
+    const C = HebrewCalendarCore;
+    const cur = zmCalMonth || { year: zmDate.year, month: zmDate.month };
+    let y = cur.year, m = cur.month + delta;
+    while (m < 1) { m += 12; y--; }
+    while (m > 12) { m -= 12; y++; }
+    if (y < C.GREGORIAN_MIN || y > C.GREGORIAN_MAX) return false;
+    zmCalMonth = { year: y, month: m };
+    zmRender(true);
+    return true;
+}
+
+// Une flèche qui répète son pas tant qu'on l'appuie, de plus en plus vite (un appui bref ne fait qu'un pas). `step` rend faux quand il ne peut plus avancer.
+// Le calendrier est redessiné à chaque pas : le bouton touché disparaît, d'où l'arrêt sur le document et non sur le bouton.
+const zmHold = { timer: null, fired: false };
+function zmHoldStop() { clearTimeout(zmHold.timer); zmHold.timer = null; }
+function zmHoldable(btn, step) {
+    btn.addEventListener('pointerdown', ev => {
+        if (ev.button > 0) return;
+        zmHold.fired = false;
+        zmHoldStop();
+        let wait = 140;
+        const tick = () => {
+            if (!step()) { zmHoldStop(); return; }
+            zmHold.fired = true;
+            wait = Math.max(45, wait - 10);
+            zmHold.timer = setTimeout(tick, wait);
+        };
+        zmHold.timer = setTimeout(tick, 450);
+        const stop = () => {
+            zmHoldStop();
+            document.removeEventListener('pointerup', stop);
+            document.removeEventListener('pointercancel', stop);
+            setTimeout(() => { zmHold.fired = false; }, 0);
+        };
+        document.addEventListener('pointerup', stop);
+        document.addEventListener('pointercancel', stop);
+    });
+    btn.addEventListener('contextmenu', ev => ev.preventDefault());
+    btn.onclick = () => { if (zmHold.fired) { zmHold.fired = false; return; } step(); };
+}
+
+// Le choix du mois et de l'année : grégorien (douze mois) ou hébraïque (les mois de l'année, avec Adar I et II les années embolismiques).
+// Un appui sur un mois revient au calendrier, sur ce mois (pour l'hébraïque : sur le mois grégorien où il commence).
+function zmCalPicker(panel) {
+    const C = HebrewCalendarCore;
+    const heb = zmCalView === 'heb';
+    const min = heb ? C.HEBREW_MIN : C.GREGORIAN_MIN, max = heb ? C.HEBREW_MAX : C.GREGORIAN_MAX;
+    if (zmPickYear === null) zmPickYear = zmCalMonth.year;
+    zmPickYear = Math.min(max, Math.max(min, zmPickYear));
+    const year = zmPickYear;
+    const setYear = n => { zmPickYear = Math.min(max, Math.max(min, n)); zmRender(true); };
+    const stepYear = d => { if (year + d < min || year + d > max) return false; setYear(year + d); return true; };
+
+    const head = zmEl('div', 'zm-cal-head');
+    const mk = (id, label, aria, d) => { const b = zmEl('button', 'zm-cal-nav', label); b.type = 'button'; b.id = id; b.setAttribute('aria-label', aria); zmHoldable(b, () => stepYear(d)); return b; };
+    head.appendChild(mk('zm-pick-prev', '‹', t('tools.zm_cal_year_prev'), -1));
+    const mid = zmEl('div', 'zm-cal-title');
+    mid.appendChild(zmEl('small', '', t(heb ? 'tools.zm_cal_heb_label' : 'tools.zm_cal_greg_label')));
+    const input = zmEl('input', 'zm-cal-year');
+    input.type = 'text';
+    input.inputMode = 'numeric';
+    input.maxLength = 4;
+    input.id = 'zm-pick-year';
+    input.value = String(year);
+    input.setAttribute('aria-label', t('tools.zm_cal_year'));
+    input.onfocus = () => input.select();
+    input.onkeydown = ev => { if (ev.key === 'Enter') input.blur(); };
+    input.onchange = () => { const n = parseInt(input.value, 10); if (isFinite(n)) setYear(n); else zmRender(true); };
+    mid.appendChild(input);
+    if (heb) mid.appendChild(zmEl('small', 'zm-cal-year-he', C.hebrewNumeral(year)));
+    head.appendChild(mid);
+    head.appendChild(mk('zm-pick-next', '›', t('tools.zm_cal_year_next'), 1));
+    panel.appendChild(head);
+
+    const grid = zmEl('div', 'zm-cal-months');
+    const cur = zmCalMonth;
+    const todayDate = zmToday();
+    const choose = (y, m) => { zmCalMonth = { year: y, month: m }; zmCalView = 'days'; zmPickYear = null; zmRender(true); };
+    if (heb) {
+        C.monthsOf(year).forEach(m => {
+            const b = zmEl('button', 'zm-cal-month', zmHebrewMonthName({ year: year, month: m.id }));
+            b.type = 'button';
+            const g = C.hebrewToGregorian(year, m.id, 1);
+            if (!g) b.disabled = true;
+            else {
+                b.dataset.month = m.id;
+                const h = C.hebrewFromFixed(C.fixedOfGregorian(cur.year, cur.month, 15));
+                if (h.year === year && h.month === m.id) b.classList.add('is-selected');
+                b.onclick = () => choose(g.year, g.month);
+            }
+            grid.appendChild(b);
+        });
+    } else {
+        for (let m = 1; m <= 12; m++) {
+            let name = String(m);
+            try { name = new Intl.DateTimeFormat(zmLocale(), { month: 'long', timeZone: 'UTC' }).format(new Date(Date.UTC(2023, m - 1, 1))); } catch (e) { /* numéro du mois */ }
+            const b = zmEl('button', 'zm-cal-month', name);
+            b.type = 'button';
+            b.dataset.month = String(m);
+            if (cur.year === year && cur.month === m) b.classList.add('is-selected');
+            else if (todayDate.year === year && todayDate.month === m) b.classList.add('is-today');
+            b.onclick = () => choose(year, m);
+            grid.appendChild(b);
+        }
+    }
+    panel.appendChild(grid);
+    const back = zmEl('button', 'zm-cal-back', t('tools.zm_cal_back'));
+    back.type = 'button';
+    back.onclick = () => { zmCalView = 'days'; zmPickYear = null; zmRender(true); };
+    panel.appendChild(back);
+}
+
 // Le calendrier d'un mois : le jour civil en grand, le jour hébraïque en petit dessous ; un point marque Roch 'Hodesh et les fêtes.
 function zmCalendar(body) {
     const C = HebrewCalendarCore;
     if (!zmCalMonth) zmCalMonth = { year: zmDate.year, month: zmDate.month };
     const { year, month } = zmCalMonth;
-    const israel = ZmanimCore.inIsrael(zmPlace);
+    const israel = profileIsrael(zmPlace);
     const panel = zmEl('section', 'zm-cal');
     panel.id = 'zm-cal';
+    if (zmCalView !== 'days') { zmCalPicker(panel); body.appendChild(panel); return; }
     const daysInMonth = new Date(Date.UTC(year, month, 0)).getUTCDate();
-    const shiftMonth = (delta) => {
-        let y = year, m = month + delta;
-        if (m < 1) { m = 12; y--; } else if (m > 12) { m = 1; y++; }
-        if (y < C.GREGORIAN_MIN || y > C.GREGORIAN_MAX) return;
-        zmCalMonth = { year: y, month: m };
-        zmRender(true);
-    };
     // l'en-tête : « novembre 2026 » et les mois hébraïques couverts
     const head = zmEl('div', 'zm-cal-head');
-    const mk = (id, label, aria, delta) => { const b = zmEl('button', 'zm-cal-nav', label); b.type = 'button'; b.id = id; b.setAttribute('aria-label', aria); b.onclick = () => shiftMonth(delta); return b; };
+    const mk = (id, label, aria, delta) => { const b = zmEl('button', 'zm-cal-nav', label); b.type = 'button'; b.id = id; b.setAttribute('aria-label', aria); zmHoldable(b, () => zmCalShift(delta)); return b; };
     head.appendChild(mk('zm-cal-prev', '‹', t('tools.zm_cal_prev'), -1));
     const title = zmEl('div', 'zm-cal-title');
     let monthName = year + '-' + String(month).padStart(2, '0');
     try { monthName = new Intl.DateTimeFormat(zmLocale(), { month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(Date.UTC(year, month - 1, 1))); } catch (e) { /* format par défaut */ }
-    title.appendChild(zmEl('strong', '', monthName));
+    // Le mois et l'année : un bouton qui ouvre le choix grégorien ; les mois hébraïques dessous ouvrent le choix hébraïque.
+    const openPick = (view) => { zmCalView = view; zmPickYear = view === 'heb' ? C.hebrewFromFixed(C.fixedOfGregorian(year, month, 15)).year : year; zmRender(true); };
+    const titleBtn = zmEl('button', 'zm-cal-title-btn');
+    titleBtn.type = 'button';
+    titleBtn.id = 'zm-cal-title-btn';
+    titleBtn.setAttribute('aria-label', t('tools.zm_cal_pick_month'));
+    titleBtn.appendChild(zmEl('strong', '', monthName));
+    titleBtn.appendChild(zmEl('span', 'zm-cal-caret', '▾'));
+    titleBtn.onclick = () => openPick('greg');
+    title.appendChild(titleBtn);
     const hFirst = C.hebrewFromFixed(C.fixedOfGregorian(year, month, 1));
     const hLast = C.hebrewFromFixed(C.fixedOfGregorian(year, month, daysInMonth));
     const yearText = (h) => zmHe ? C.hebrewNumeral(h.year) : String(h.year);
     let range = zmHebrewMonthName(hFirst);
     if (hFirst.month !== hLast.month || hFirst.year !== hLast.year) range = (hFirst.year !== hLast.year ? zmHebrewMonthName(hFirst) + ' ' + yearText(hFirst) : zmHebrewMonthName(hFirst)) + ' – ' + zmHebrewMonthName(hLast) + ' ' + yearText(hLast);
     else range += ' ' + yearText(hFirst);
-    const sub = zmEl('small', '', range);
+    const sub = zmEl('button', 'zm-cal-sub-btn', range);
+    sub.type = 'button';
+    sub.id = 'zm-cal-sub-btn';
+    sub.setAttribute('aria-label', t('tools.zm_cal_pick_hebrew'));
     if (zmHe) sub.lang = 'he';
+    sub.onclick = () => openPick('heb');
     title.appendChild(sub);
     head.appendChild(title);
     head.appendChild(mk('zm-cal-next', '›', t('tools.zm_cal_next'), 1));
@@ -680,6 +832,11 @@ function zmCalendar(body) {
 }
 
 // --- Les informations du jour ---------------------------------------------------------------------------------------------------------------
+// Israël ou diaspora (le domicile choisi, sinon le lieu enregistré) ? (la paracha de la semaine diffère parfois de la diaspora : js/sedraCore.js)
+function zmStoredIsrael() {
+    try { return profileIsrael(ZmanimCore.normalizePlace(JSON.parse(localStorage.getItem('zmanimPlace') || 'null'))); } catch (e) { return profileIsrael(null); }
+}
+
 function zmTehilimText(h) {
     const months = HebrewCalendarCore.monthsOf(h.year);
     const month = months.filter(m => m.id === h.month)[0];
@@ -699,7 +856,7 @@ function zmTehilimStart(h) {
 
 function zmParashaText(date) {
     if (!zmParasha) return null;
-    const indices = TorahCore.parashaForDate(zmParasha.calendar, new Date(date.year, date.month - 1, date.day));
+    const indices = TorahCore.parashaForDate(zmParasha.calendar, new Date(date.year, date.month - 1, date.day), zmStoredIsrael());
     if (!indices || !indices.length) return null;
     return indices.map(k => zmParasha.parashot.parashot[k][zmHe ? 'he' : 'fr']).join(' – ');
 }
@@ -728,7 +885,7 @@ function zmZmanName(key, short) {
 // --- Le jour ----------------------------------------------------------------------------------------------------------------------------
 function zmDay(body) {
     const C = HebrewCalendarCore, Z = ZmanimCore;
-    const israel = Z.inIsrael(zmPlace);
+    const israel = profileIsrael(zmPlace);
     const fixed = zmFixed(zmDate);
     const info = C.dayInfo(fixed, israel);
     const h = info.hebrew;
@@ -831,7 +988,7 @@ function zmTimesList(body, z, state) {
 // La paracha d'une date : { index, name } ou null (calendrier non chargé).
 function zmParashaOf(date) {
     if (!zmParasha) return null;
-    const indices = TorahCore.parashaForDate(zmParasha.calendar, new Date(date.year, date.month - 1, date.day));
+    const indices = TorahCore.parashaForDate(zmParasha.calendar, new Date(date.year, date.month - 1, date.day), zmStoredIsrael());
     if (!indices || !indices.length) return null;
     return { index: indices[0], name: indices.map(k => zmParasha.parashot.parashot[k][zmHe ? 'he' : 'fr']).join(' – ') };
 }
@@ -863,7 +1020,7 @@ function zmShabbatBanner(body) {
 
 function zmShabbatView(body) {
     const C = HebrewCalendarCore, Z = ZmanimCore;
-    const israel = Z.inIsrael(zmPlace);
+    const israel = profileIsrael(zmPlace);
     const s = Z.shabbatOf(zmPlace, zmDate.year, zmDate.month, zmDate.day, zmOpts);
     if (s.candles === null || s.havdalah === null) {
         body.appendChild(zmEl('p', 'tool-msg', t('tools.zm_none_title')));
@@ -887,17 +1044,21 @@ function zmShabbatView(body) {
     }
     // la haftara du chabbat, selon le rite séfarade quand il diffère
     if (zmParasha && zmHaftarot) {
-        const sab = HaftarotCore.sabbathInfo(zmParasha.calendar, zmHaftarot, new Date(s.saturday.year, s.saturday.month - 1, s.saturday.day));
+        const sab = HaftarotCore.sabbathInfo(TorahCore.parashaForDate(null, new Date(s.saturday.year, s.saturday.month - 1, s.saturday.day), zmStoredIsrael()), zmHaftarot, new Date(s.saturday.year, s.saturday.month - 1, s.saturday.day));
         const refs = sab && sab.haftara ? (sab.haftara.s || sab.haftara.a) : null;
         if (refs && refs.length) {
-            const row = zmEl('div', 'home-row zm-haftara');
+            const row = zmEl('button', 'home-row zm-haftara');
+            row.type = 'button';
             row.id = 'zm-haftara';
             const he = zmEl('span', 'he', 'הפטרה');
             he.lang = 'he'; he.dir = 'rtl';
             const text = zmEl('span');
             text.appendChild(zmEl('span', 'fr', 'Haftara : ' + HaftarotCore.refsLabel(refs)));
             text.appendChild(zmEl('span', 'desc', (sab.haftara.s ? 'Rite séfarade' : 'Même lecture dans tous les rites') + (sab.why ? ' · ' + sab.why : '')));
-            row.appendChild(he); row.appendChild(text); row.appendChild(zmEl('span'));
+            row.appendChild(he); row.appendChild(text); row.appendChild(zmEl('span', 'chev', '›'));
+            // ouvre la haftara dans le Tanakh (livre des Prophètes), au rite affiché
+            const rite = sab.haftara.s ? 's' : '';
+            row.onclick = () => tanakhOpenHaftaraFrom({ refs: refs, title: par ? par.name : '', rite: rite }, 'screen-tool-zmanim');
             rows.appendChild(row);
         }
     }
@@ -907,6 +1068,24 @@ function zmShabbatView(body) {
 
 // --- La semaine ------------------------------------------------------------------------------------------------------------------------------
 // Sept jours, du dimanche au samedi : lever, fin du Chéma (Gra), coucher et sortie des étoiles. Un toucher ouvre le jour.
+// Les lignes d'un jour spécial dans la vue Semaine (les éléments viennent de js/dayNotesCore.js) : une phrase par élément.
+function zmWeekNoteLines(parts, candlesMs) {
+    const day = n => (n === 1 ? t('tools.zm_wk_day1') : t('tools.zm_wk_dayn', { n: n }));
+    return parts.map(p => {
+        if (p.type === 'rc') return t('tools.zm_wk_rc', { month: hcalMonthName(p.year, p.month) }) + (p.ordinal ? ' · ' + day(p.ordinal) : '');
+        if (p.type === 'hanouka') {
+            if (p.last) return '🕯️ ' + t('tools.zm_wk_hanouka_last');
+            const tail = p.weekday === 5 ? ' · ' + t('tools.zm_wk_before_shabbat') : p.weekday === 6 ? ' · ' + t('tools.zm_wk_after_havdala') : '';
+            return '🕯️ ' + t(p.candles === 1 ? 'tools.zm_wk_hanouka_1' : 'tools.zm_wk_hanouka_n', { n: p.candles }) + tail;
+        }
+        if (p.type === 'eve') {
+            const base = t('tools.zm_wk_eve', { name: t('tools.hcal_f_' + p.id + '_name') });
+            return candlesMs ? base + ' · ' + t('tools.zm_wk_candles', { time: zmTime(candlesMs) }) : base;
+        }
+        return t('tools.hcal_f_' + p.nameId + '_name') + (p.ordinal ? ' · ' + day(p.ordinal) : '');
+    });
+}
+
 function zmWeekView(body) {
     const C = HebrewCalendarCore, Z = ZmanimCore;
     const fixed = zmFixed(zmDate);
@@ -929,7 +1108,8 @@ function zmWeekView(body) {
     for (let i = 0; i < 7; i++) {
         const f = start + i;
         const d = CalendarYearCore.fixedToGregorian(f);
-        const tr = zmEl('tr', (f === todayFixed ? 'is-today ' : '') + (C.weekdayOf(f) === 6 ? 'is-shabbat' : ''));
+        const notes = zmSupported(d) ? DayNotesCore.notesOf(f, profileIsrael(zmPlace)) : { level: null, parts: [] };
+        const tr = zmEl('tr', (f === todayFixed ? 'is-today ' : '') + (C.weekdayOf(f) === 6 ? 'is-shabbat ' : '') + (notes.level ? 'has-note lvl-' + notes.level : ''));
         const first = zmEl('td');
         const dayBtn = zmEl('button', 'zm-week-day');
         dayBtn.type = 'button';
@@ -949,14 +1129,25 @@ function zmWeekView(body) {
             tr.appendChild(td);
         });
         tbody.appendChild(tr);
+        // Un jour spécial : une ligne pleine largeur sous ses horaires, avec un liseré qui dit son importance (Yom Tov, fête, Roch 'Hodech ou veille).
+        if (notes.level) {
+            const noteRow = zmEl('tr', 'zm-week-note lvl-' + notes.level);
+            const cell = zmEl('td');
+            cell.colSpan = cols.length + 1;
+            zmWeekNoteLines(notes.parts, z ? Z.rounded(z, 'candles') : null).forEach(line => cell.appendChild(zmEl('div', '', line)));
+            noteRow.appendChild(cell);
+            tbody.appendChild(noteRow);
+        }
     }
     table.appendChild(tbody);
     wrap.appendChild(table);
     body.appendChild(wrap);
     const nav = zmEl('div', 'zm-week-nav');
-    [['‹ Semaine précédente', -7], ['Semaine suivante ›', 7]].forEach(([label, delta]) => {
-        const b = zmEl('button', 'tool-history-chip', label);
+    // Les deux boutons sur une seule ligne, sans contour, aux libellés courts (le nom complet reste pour les lecteurs d'écran).
+    [['‹ Précédente', 'Semaine précédente', -7], ['Suivante ›', 'Semaine suivante', 7]].forEach(([label, aria, delta]) => {
+        const b = zmEl('button', 'zm-week-navbtn', label);
         b.type = 'button';
+        b.setAttribute('aria-label', aria);
         b.onclick = () => { const next = zmShift(zmDate, delta); if (zmSupported(next)) { zmDate = next; zmRender(); } };
         nav.appendChild(b);
     });
@@ -1215,6 +1406,9 @@ function zmReminders(body) {
         [['off', t('tools.zm_rem_off')], ['tzeit', t('tools.zm_rem_omer_tzeit')], ['shkia', t('tools.zm_rem_omer_shkia')]],
         zmRem.omer.on ? zmRem.omer.at : 'off',
         v => { if (v === 'off') zmRem.omer.on = false; else { zmRem.omer.on = true; zmRem.omer.at = v; } });
+    zmRemSelect(details, 'zm-r-omer-morning', t('tools.zm_rem_omer_morning'),
+        [['off', t('tools.zm_rem_off')], ['on', t('tools.zm_rem_omer_morning_on')]],
+        zmRem.omer.morning ? 'on' : 'off', v => { zmRem.omer.morning = v === 'on'; });
     if (zmRem.omer.on) {
         zmRemSelect(details, 'zm-r-omer-text', t('tools.zm_rem_omer_text'),
             [['count', t('tools.zm_rem_omer_text_count')], ['simple', t('tools.zm_rem_omer_text_simple')]],
@@ -1227,8 +1421,8 @@ function zmReminders(body) {
         v => { if (v === 'off') zmRem.roshChodesh.on = false; else { zmRem.roshChodesh.on = true; zmRem.roshChodesh.when = v; } });
     // Birkat haLévana
     zmRemSelect(details, 'zm-r-levana', t('tools.zm_rem_levana'),
-        [['off', t('tools.zm_rem_no')], ['on', t('tools.zm_rem_yes')]],
-        zmRem.levana.on ? 'on' : 'off', v => { zmRem.levana.on = v === 'on'; });
+        [['off', t('tools.zm_rem_no')], ['every', t('tools.zm_rem_levana_every')], ['ends', t('tools.zm_rem_levana_ends')]],
+        zmRem.levana.on ? (zmRem.levana.every ? 'every' : 'ends') : 'off', v => { zmRem.levana.on = v !== 'off'; zmRem.levana.every = v !== 'ends'; });
 
     // Rappels personnalisés : les jours de la semaine, puis chaque horaire avec son décalage
     details.appendChild(zmEl('h3', 'tool-h', t('tools.zm_rem_custom_title')));

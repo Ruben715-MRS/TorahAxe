@@ -51,3 +51,10 @@ test('mots du Tanakh et de la Guémara : les résultats portent l\'identifiant d
     const g = games.gemara(); Gem.answer(g, Gem.question(g).answer);
     assert.ok(g.results[0].id);
 });
+
+test('Maîtres et élèves : chaque nom proposé porte aussi son écriture hébraïque', () => {
+    for (let seed = 1; seed <= 20; seed++) {
+        const g = Tr.createGame({ section: 'all', rng: seeded(seed) });
+        g.questions.forEach(q => q.options.forEach(o => assert.ok(/[א-ת]/.test(o.he), o.label)));
+    }
+});

@@ -32,9 +32,9 @@
         return {
             on: false,
             candles: { on: false, before: 60 },
-            omer: { on: false, at: 'tzeit', text: 'count' },      // at : 'tzeit' | 'shkia' ; text : 'count' (le compte) | 'simple'
+            omer: { on: true, at: 'tzeit', text: 'count', morning: false },   // at : 'tzeit' | 'shkia' (la veille au soir, avec bénédiction) ; text : 'count' (le compte) | 'simple' ; morning : rappel du matin (sans bénédiction)
             roshChodesh: { on: false, when: 'eve' },              // when : 'eve' (la veille au soir) | 'morning'
-            levana: { on: false },
+            levana: { on: false, every: true },     // every : un rappel chaque soir de la fenêtre (sinon, seulement le premier et le dernier soir)
             days: [0, 1, 2, 3, 4, 5, 6],                          // jours de la semaine des rappels personnalisés (0 = dimanche)
             custom: {}                                            // { clé d'horaire: décalage en minutes avant (0 à l'heure) }
         };
@@ -52,6 +52,7 @@
         }
         if (raw.omer && typeof raw.omer === 'object') {
             out.omer.on = raw.omer.on === true;
+            out.omer.morning = raw.omer.morning === true;
             out.omer.at = raw.omer.at === 'shkia' ? 'shkia' : 'tzeit';
             out.omer.text = raw.omer.text === 'simple' ? 'simple' : 'count';
         }
@@ -59,7 +60,7 @@
             out.roshChodesh.on = raw.roshChodesh.on === true;
             out.roshChodesh.when = raw.roshChodesh.when === 'morning' ? 'morning' : 'eve';
         }
-        if (raw.levana && typeof raw.levana === 'object') out.levana.on = raw.levana.on === true;
+        if (raw.levana && typeof raw.levana === 'object') { out.levana.on = raw.levana.on === true; out.levana.every = raw.levana.every !== false; }
         if (Array.isArray(raw.days)) {
             var days = raw.days.filter(function (x, i, a) { return Number.isInteger(x) && x >= 0 && x <= 6 && a.indexOf(x) === i; });
             out.days = days.sort();
@@ -75,7 +76,7 @@
 
     // Y a-t-il quelque chose à programmer ? (le réglage général, puis au moins un rappel choisi)
     function anyEnabled(s) {
-        return s.on && (s.candles.on || s.omer.on || s.roshChodesh.on || s.levana.on || (s.days.length > 0 && Object.keys(s.custom).length > 0));
+        return s.on && (s.candles.on || s.omer.on || s.omer.morning || s.roshChodesh.on || s.levana.on || (s.days.length > 0 && Object.keys(s.custom).length > 0));
     }
 
     function addDays(date, n) {
@@ -86,10 +87,10 @@
     // Les rappels des `days` prochains jours civils du lieu, à partir de `fromMs` : [{ at, kind, key, offset, time, ... }] trié, au plus MAX_PENDING.
     //  kind : 'custom' (key, offset) | 'candles' (before, yomTov) | 'omer' (day) | 'roshChodesh' (when) | 'levana' (last).
     //  `time` : l'horaire lui-même (instant), `at` : l'instant du rappel.
-    function plan(settingsRaw, place, zmanimOpts, fromMs, days) {
+    function plan(settingsRaw, place, zmanimOpts, fromMs, days, israelOpt) {
         var s = normalize(settingsRaw);
         if (!anyEnabled(s) || !place) return [];
-        var israel = Z.inIsrael(place);
+        var israel = typeof israelOpt === 'boolean' ? israelOpt : Z.inIsrael(place);     // israelOpt : le domicile, quand il est choisi
         var today = Z.civilDateOf(place.tz, fromMs);
         var out = [];
         var seenLevana = {};
@@ -121,6 +122,11 @@
                 var evening = Z.rounded(z, s.omer.at);
                 if (evening !== null) push({ at: evening, kind: 'omer', day: ctxNext.omer, time: evening, simple: s.omer.text === 'simple' });
             }
+            // L'Omer, le matin (au lever du soleil) : le jour hébraïque N a commencé la veille au soir ; si on a oublié, on compte sans bénédiction
+            if (s.omer.morning && ctxToday.omer >= 1 && ctxToday.omer <= 49) {
+                var sunrise = Z.rounded(z, 'netz');
+                if (sunrise !== null) push({ at: sunrise, kind: 'omer', when: 'morning', day: ctxToday.omer, time: sunrise, simple: false });
+            }
             // Roch 'Hodesh
             if (s.roshChodesh.on) {
                 if (s.roshChodesh.when === 'eve' && ctxNext.flags.rc) {
@@ -148,8 +154,11 @@
                     var same = function (a) { return a.year === date.year && a.month === date.month && a.day === date.day; };
                     var tzeit = Z.rounded(z, 'tzeit');
                     if (tzeit === null) return;
-                    if (same(ev.first)) push({ at: tzeit, kind: 'levana', last: false, time: tzeit, until: ev.last });
-                    else if (same(ev.last)) push({ at: tzeit, kind: 'levana', last: true, time: tzeit });
+                    var dn = function (a) { return Date.UTC(a.year, a.month - 1, a.day) / DAY; };
+                    var left = dn(ev.last) - dn(date) + 1;          // les soirées restantes, celle-ci comprise
+                    if (same(ev.last)) push({ at: tzeit, kind: 'levana', last: true, left: 1, time: tzeit });
+                    else if (same(ev.first)) push({ at: tzeit, kind: 'levana', last: false, first: true, left: left, time: tzeit, until: ev.last });
+                    else if (s.levana.every && left > 1 && dn(date) > dn(ev.first)) push({ at: tzeit, kind: 'levana', last: false, first: false, left: left, time: tzeit });
                 });
             }
         }
@@ -184,6 +193,9 @@
                 body: tr('tools.zmr_candles_body', { n: item.before, time: time })
             };
         }
+        if (item.kind === 'omer' && item.when === 'morning') {
+            return { title: tr('tools.zmr_omer_title', { n: item.day }), body: tr('tools.zmr_omer_morning_body', { text: omerCount(item.day, tr) }) };
+        }
         if (item.kind === 'omer') {
             return {
                 title: tr('tools.zmr_omer_title', { n: item.day }),
@@ -196,9 +208,9 @@
                 : { title: tr('tools.zmr_rc_morning_title'), body: tr('tools.zmr_rc_morning_body') };
         }
         if (item.kind === 'levana') {
-            return item.last
-                ? { title: tr('tools.zmr_levana_title'), body: tr('tools.zmr_levana_last') }
-                : { title: tr('tools.zmr_levana_title'), body: tr('tools.zmr_levana_first') };
+            if (item.last) return { title: tr('tools.zmr_levana_title'), body: tr('tools.zmr_levana_last') };
+            if (item.first) return { title: tr('tools.zmr_levana_title'), body: tr('tools.zmr_levana_first', { n: item.left }) };
+            return { title: tr('tools.zmr_levana_title'), body: tr('tools.zmr_levana_left', { n: item.left }) };
         }
         var name = tr('tools.zmr_n_' + item.key);
         return {

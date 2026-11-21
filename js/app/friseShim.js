@@ -55,6 +55,8 @@ function getCurrentTheme() {
 // (voir js/app/frise.js), un score et un titre, rien d'autre.
 function endGame(isWin) {
     stopTimer();
+    // La frise est terminée (réussie, ou perdue faute de vies) : elle compte pour la série et les niveaux (js/app/progress.js). Une frise réussie rapporte 80 points d'expérience, une perdue 40.
+    if (typeof progressRecord === 'function') progressRecord('frise', isWin ? 3 : 1, 4);
     showScreen('screen-frise-end');
     document.getElementById('frise-end-title').textContent = isWin
         ? 'Frise terminée !'

@@ -1,0 +1,259 @@
+{
+ "v": 1,
+ "parasha": "Hayé Sara",
+ "levels": {
+  "1": [
+   {
+    "q": "Quel âge Sara avait-elle à sa mort ?",
+    "a": "Cent vingt-sept ans",
+    "w": [
+     "Cent vingt ans",
+     "Cent soixante-quinze ans",
+     "Quatre-vingt-dix ans"
+    ],
+    "ref": "23:1",
+    "proof": [
+     "cent vingt-sept ans"
+    ],
+    "x": "Elle mourut à Kiryath-Arba, qui est Hébron, dans le pays de Canaan."
+   },
+   {
+    "q": "Quel est le nom du champ et du caveau qu'Abraham achète pour enterrer Sara ?",
+    "a": {
+     "t": "Makpéla",
+     "he": "מַכְפֵּלָה"
+    },
+    "w": [
+     {
+      "t": "Mamré",
+      "he": "מַמְרֵא"
+     },
+     {
+      "t": "Hébron",
+      "he": "חֶבְרוֹן"
+     },
+     {
+      "t": "Sichem",
+      "he": "שְׁכֶם"
+     }
+    ],
+    "ref": "23:17",
+    "proof": [
+     "Makpéla"
+    ],
+    "x": "C'est le champ d'Éfron, en face de Mamré."
+   },
+   {
+    "q": "Quelle somme Abraham pèse-t-il à Éfron pour le champ ?",
+    "a": "Quatre cents sicles d'argent",
+    "w": [
+     "Quarante sicles d'argent",
+     "Cent sicles d'argent",
+     "Dix sicles d'or"
+    ],
+    "ref": "23:16",
+    "proof": [
+     "quatre cents sicles d'argent"
+    ],
+    "x": "C'est en monnaie courante, devant les enfants de Heth."
+   },
+   {
+    "q": "Combien de chameaux le serviteur d'Abraham emmène-t-il vers Aram Double Fleuve ?",
+    "a": "Dix chameaux",
+    "w": [
+     "Trois chameaux",
+     "Sept chameaux",
+     "Douze chameaux"
+    ],
+    "ref": "24:10",
+    "proof": [
+     "dix chameaux"
+    ],
+    "x": "Il est chargé de ce que son maître avait de meilleur."
+   },
+   {
+    "q": "Quel est le nom du frère de Rébecca, qui accourt auprès du serviteur à la fontaine ?",
+    "a": {
+     "t": "Laban",
+     "he": "לָבָן"
+    },
+    "w": [
+     {
+      "t": "Ismaël",
+      "he": "יִשְׁמָעֵאל"
+     },
+     {
+      "t": "Nahor",
+      "he": "נָחוֹר"
+     },
+     {
+      "t": "Bathuel",
+      "he": "בְּתוּאֵל"
+     }
+    ],
+    "ref": "24:29",
+    "proof": [
+     "un frère nommé Laban"
+    ],
+    "x": "Rébecca est fille de Bathuel, fils de Milka."
+   }
+  ],
+  "2": [
+   {
+    "q": "Quel est le poids de la boucle en or offerte à Rébecca ?",
+    "a": "Un béka",
+    "w": [
+     "Dix sicles",
+     "Cent sicles",
+     "Un kikkar"
+    ],
+    "ref": "24:22",
+    "proof": [
+     "poids d'un béka"
+    ],
+    "x": "Les deux bracelets pesaient dix sicles d'or."
+   },
+   {
+    "q": "Combien de jours la famille de Rébecca demande-t-elle qu'elle reste avec eux avant de partir ?",
+    "a": "Une dizaine de jours",
+    "w": [
+     "Trois jours",
+     "Une semaine",
+     "Un mois"
+    ],
+    "ref": "24:55",
+    "proof": [
+     "dizaine de jours"
+    ],
+    "x": "Le serviteur demande de ne pas le retarder."
+   },
+   {
+    "q": "Comment s'appelle la nouvelle épouse qu'Abraham prend après la mort de Sara ?",
+    "a": {
+     "t": "Ketoura",
+     "he": "קְטוּרָה"
+    },
+    "w": [
+     {
+      "t": "Agar",
+      "he": "הָגָר"
+     },
+     {
+      "t": "Rébecca",
+      "he": "רִבְקָה"
+     },
+     {
+      "t": "Judith",
+      "he": "יְהוּדִית"
+     }
+    ],
+    "ref": "25:1",
+    "proof": [
+     "Ketoura"
+    ],
+    "x": "Abraham prit une nouvelle épouse."
+   },
+   {
+    "q": "Quel âge Abraham avait-il à sa mort ?",
+    "a": "Cent soixante-quinze ans",
+    "w": [
+     "Cent vingt-sept ans",
+     "Cent quatre-vingts ans",
+     "Cent soixante ans"
+    ],
+    "ref": "25:7",
+    "proof": [
+     "cent soixante-quinze ans"
+    ],
+    "x": "Il mourut dans une heureuse vieillesse, âgé et satisfait."
+   },
+   {
+    "q": "Que faisait Isaac dans les champs, à l'approche du soir, quand il vit venir les chameaux ?",
+    "a": "Il s'était livré à la méditation",
+    "w": [
+     "Il labourait la terre de son père",
+     "Il gardait le troupeau de son père",
+     "Il creusait un puits dans le désert"
+    ],
+    "ref": "24:63",
+    "proof": [
+     "méditation"
+    ],
+    "x": "En levant les yeux, il vit que des chameaux s'avançaient."
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, pourquoi Hébron est-elle appelée « ville des Quatre » (Kiryath-Arba) ?",
+    "a": "À cause de quatre géants, ou de quatre couples qui y furent enterrés",
+    "w": [
+     "À cause de quatre portes de la ville",
+     "À cause de quatre tribus qui y habitaient",
+     "À cause de quatre sources autour de la ville"
+    ],
+    "ref": "23:2",
+    "proof": [
+     "ארבע ענקים",
+     "ארבע זוגות"
+    ],
+    "x": "Rachi sur Genèse 23:2 : à cause de quatre géants (Ahiman, Chéchaï, Talmaï et leur père), ou de quatre couples enterrés là : Adam et Ève, Abraham et Sara, Isaac et Rébecca, Jacob et Léa."
+   },
+   {
+    "q": "Selon Rachi, que montre le nom « Éfron » écrit sans « vav » ?",
+    "a": "Qu'il a promis beaucoup et n'a même pas fait peu",
+    "w": [
+     "Qu'il était un homme pauvre",
+     "Qu'il était un étranger à la ville",
+     "Qu'il avait changé son nom"
+    ],
+    "ref": "23:16",
+    "proof": [
+     "אמר הרבה ואפלו מעט לא עשה"
+    ],
+    "x": "Rachi sur Genèse 23:16 : Éfron manque du « vav » : il a beaucoup promis et n'a rien fait, même un peu."
+   },
+   {
+    "q": "Selon Rachi, que veut dire « c'est toi qui l'as désignée » (hokhahta) à propos de Rébecca ?",
+    "a": "Qu'elle est digne de lui et capable de faire des bonnes actions",
+    "w": [
+     "Que Dieu l'a choisie depuis sa naissance",
+     "Que Rébecca a été choisie par le sort",
+     "Que Rébecca est l'unique fille de Bathuel"
+    ],
+    "ref": "24:14",
+    "proof": [
+     "גומלת חסדים"
+    ],
+    "x": "Rachi sur Genèse 24:14 : elle est digne de lui : elle fait des actes de bonté ; et il lui convient d'entrer dans la maison d'Abraham."
+   },
+   {
+    "q": "Selon Rachi, que signifie le mot « lasouah » à propos d'Isaac dans les champs ?",
+    "a": "Un langage de prière",
+    "w": [
+     "Un langage de repos",
+     "Un langage de marche",
+     "Un langage de travail"
+    ],
+    "ref": "24:63",
+    "proof": [
+     "לשון תפלה"
+    ],
+    "x": "Rachi sur Genèse 24:63 : « lasouah » est un langage de prière, comme « que sa plainte s'épanche »."
+   },
+   {
+    "q": "Selon Rachi, quel signe voyait-on dans la tente de Sara tant qu'elle vivait ?",
+    "a": "Une lumière allumée d'un vendredi soir à l'autre",
+    "w": [
+     "Une colonne de fumée au-dessus de la tente",
+     "Une étoile au-dessus de la tente",
+     "Un feu continuellement entretenu"
+    ],
+    "ref": "24:67",
+    "proof": [
+     "נר דלוק מערב שבת לערב שבת"
+    ],
+    "x": "Rachi sur Genèse 24:67 : tant que Sara vivait, une lumière était allumée d'un vendredi soir au suivant, la pâte était bénie et une nuée était attachée à la tente ; à sa mort ces signes cessèrent ; avec Rébecca, ils revinrent."
+   }
+  ]
+ }
+}

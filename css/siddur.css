@@ -174,3 +174,233 @@
 
 /* Les blocs de la feuille gardent leur hauteur : c'est le corps de la feuille qui défile (sinon une liste à overflow:hidden se compresse au lieu de déborder). */
 .sd-sheet-body > * { flex-shrink: 0; }
+
+/* =========================================================================
+   Refonte, étape 2 : variantes en blocs, consignes en français (js/app/siddur.js, sdVarBlock, sdRubricEl).
+   ========================================================================= */
+/* Une consigne : en français, en police d'interface, sur sa propre ligne, au-dessus du texte qu'elle concerne. */
+.sd-rub { margin: 14px 0 2px; font-family: var(--font-main); font-size: max(13px, calc(var(--sd-size) * 0.6)); line-height: 1.45; color: var(--muted-text); text-align: start; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; }
+.sd-rub[dir="rtl"] { text-align: right; }
+.sd-rub.is-on { color: var(--text-dark); }
+.sd-rub.is-off { opacity: 0.6; }
+/* Dans le texte : une consigne en petit passe en police d'interface ; un texte de prière en petit garde presque sa taille et sa couleur. */
+.sd-seg .sd-small-rub { font-family: var(--font-main); font-size: 0.56em; color: var(--muted-text); }
+.sd-seg .sd-small-text { font-size: 0.9em; color: var(--text-dark); line-height: inherit; }
+.sd-seg .sd-small-text .sd-small-text { font-size: 1em; }
+.sd-seg .sd-v.is-on.sd-small-text { font-size: 0.95em; }
+
+/* Le bloc d'une variante : celle du jour sur fond doré, filet à droite (côté où commence l'hébreu). */
+.sd-var { margin: 10px -10px; padding: 4px 10px 8px; border-radius: 12px; border: 1px solid var(--border-soft); background: var(--surface); }
+.sd-var.is-on { border-color: transparent; background: color-mix(in srgb, #fed65b 20%, var(--bg-color)); box-shadow: inset -3px 0 0 #d4a017; }
+.sd-var.is-unknown { border-style: dashed; background: transparent; }
+.sd-var-head { margin: 4px 0 0; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; font-family: var(--font-main); font-size: 13px; line-height: 1.35; color: var(--muted-text); }
+.sd-var.is-on > .sd-var-head { color: var(--text-dark); }
+.sd-chip { flex: none; font-family: var(--font-main); font-size: 10.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 8px; border-radius: 99px; background: #d4a017; color: #1d1500; }
+.sd-chip.is-unknown { background: var(--border-soft); color: var(--text-dark); }
+.sd-var-note { margin: 4px 0 0; font-family: var(--font-main); font-size: 12.5px; line-height: 1.4; color: var(--muted-text); }
+.sd-var > .sd-seg, .sd-var > .sd-segbox { padding-top: 2px; }
+
+/* Une variante qui ne s'applique pas : repliée sur une ligne, son nom et ses premiers mots. */
+.sd-fold { margin: 8px 0; border: 1px solid var(--border-soft); border-radius: 12px; background: var(--surface); }
+.sd-fold > summary { list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 44px; padding: 6px 12px; cursor: pointer; font-family: var(--font-main); font-size: 13px; line-height: 1.3; color: var(--muted-text); }
+.sd-fold > summary::-webkit-details-marker { display: none; }
+.sd-fold > summary::after { content: "›"; flex: none; font-size: 17px; color: var(--muted-text); }
+.sd-fold[open] > summary::after { transform: rotate(90deg); }
+.sd-fold-lab { flex: 0 1 auto; min-width: 0; }
+.sd-fold-he { flex: 1 1 0; min-width: 0; text-align: right; font-family: var(--sd-font, 'HX Frank', 'HX Torah', serif); font-size: 17px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sd-fold[open] > summary .sd-fold-he { visibility: hidden; }
+.sd-fold > .sd-seg, .sd-fold > .sd-segbox, .sd-fold > .sd-rub { padding: 0 12px; opacity: 0.72; }
+.sd-fold > .sd-var-note { padding: 0 12px 10px; }
+.sd-fold > .sd-fr-seg { margin: 0 12px 10px; }
+.sd-fold > summary:focus-visible { outline: 2px solid var(--home-gold, #96621a); outline-offset: 2px; border-radius: 12px; }
+/* L'étiquette française d'une variante courte restée dans la ligne (« Dix jours de pénitence : » devant « הַמֶּלֶךְ הַקָּדוֹשׁ »). */
+.sd-seg .sd-v-lab { font-family: var(--font-main); font-size: max(11px, 0.5em); font-weight: 600; color: var(--muted-text); padding: 1px 6px; margin: 0 2px; border-radius: 99px; background: var(--surface); border: 1px solid var(--border-soft); white-space: nowrap; vertical-align: 0.15em; display: inline-block; line-height: 1.4; }
+.sd-seg .sd-v-lab.is-on { color: #1d1500; background: #d4a017; border-color: transparent; }
+.sd-seg .sd-v-lab.is-off { opacity: 0.6; }
+
+/* =========================================================================
+   Refonte, étape 3 : repères de prière (js/app/siddur.js, SD_BERAKHOT, sdAddBows, sdMarkNames, sdJuxta).
+   ========================================================================= */
+/* Le nom de la bénédiction : français à gauche en petites capitales, hébreu à droite, sur un filet. */
+.sd-bk { margin: 20px 0 4px; padding-bottom: 3px; border-bottom: 1px solid var(--border-soft); display: flex; align-items: baseline; justify-content: space-between; gap: 12px; font-family: var(--font-main); font-size: 11.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--home-gold, #96621a); }
+:root[data-theme="dark"] .sd-bk { color: #dcaa4c; }
+.sd-bk-he { font-family: var(--sd-font, 'HX Frank', serif); font-size: 16px; font-weight: 500; letter-spacing: 0; text-transform: none; }
+/* La traduction de la conclusion, comme dans le Maguen Avot : entre crochets, en italique, sous la bénédiction. */
+.sd-hat { margin: -2px 0 4px; font-family: var(--font-main); font-size: 12.5px; font-style: italic; color: var(--muted-text); text-align: left; }
+/* Le signe d'inclinaison. */
+.sd-bow { display: inline-block; width: 0.6em; height: 0.6em; margin-inline-end: 0.1em; vertical-align: 0.55em; color: var(--home-gold, #96621a); }
+:root[data-theme="dark"] .sd-bow { color: #dcaa4c; }
+.sd-bow svg { display: block; width: 100%; height: 100%; }
+.sd-bow-legend { display: block; }
+.sd-bow-legend .sd-bow { width: 14px; height: 14px; vertical-align: -1px; }
+/* Le Nom divin : « אדני » en petit au-dessus, sans changer la hauteur de la ligne. */
+.sd-name { position: relative; display: inline-block; }
+.sd-name::after { content: "אדני"; position: absolute; left: 0; right: 0; top: -0.66em; text-align: center; font-size: 0.42em; line-height: 1; font-weight: 400; color: var(--muted-text); pointer-events: none; }
+/* Le mot à mot : lignes pleines d'un bord à l'autre (justifiées), la dernière calée à droite. */
+.sd-jx { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 10px; padding: 6px 0 4px; font-family: var(--sd-font, 'HX Frank', 'HX Torah', serif); font-size: var(--sd-size); color: var(--text-dark); }
+.sd-jx::after { content: ""; flex: auto; }
+.sd-jx-w { display: inline-flex; flex-direction: column; align-items: center; gap: 1px; }
+.sd-jx-h { line-height: 1.35; white-space: nowrap; }
+.sd-jx-h strong { font-family: inherit; font-weight: 700; }
+.sd-jx-f { font-family: var(--font-main); font-size: 10.5px; line-height: 1.15; color: var(--muted-text); text-align: center; max-width: 7.5em; direction: ltr; }
+.sd-jx .sd-name::after { top: -0.5em; }
+
+/* =========================================================================
+   Refonte, étape 4 : barre des parties de l'office (js/app/siddur.js, sdPartsNav) et intertitres.
+   ========================================================================= */
+.sd-parts { grid-column: 1 / -1; margin: 2px -16px 0 -66px; padding: 0 12px; display: flex; gap: 2px; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none; -webkit-overflow-scrolling: touch; border-top: 1px solid var(--border-soft); }
+.sd-parts::-webkit-scrollbar { display: none; }
+.sd-part { flex: none; min-height: 40px; padding: 8px 10px 9px; border: 0; background: transparent; color: var(--muted-text); font: inherit; font-size: 13.5px; font-weight: 500; white-space: nowrap; cursor: pointer; }
+.sd-part[aria-current="true"] { color: var(--text-dark); font-weight: 700; box-shadow: inset 0 -2.5px 0 var(--favorite-yellow, #d4a017); }
+.sd-part:focus-visible { outline: 2px solid var(--home-gold, #96621a); outline-offset: -2px; border-radius: 8px; }
+.sd-readbar:has(.sd-parts) .sd-read-prog { margin-top: 0; }
+#screen-tool-siddur .sd-section-box { scroll-margin-top: calc(env(safe-area-inset-top, 0px) + 116px); }
+/* Un intertitre du livre, en français : plus appuyé qu'une consigne. */
+.sd-rub.sd-rub-head { margin-top: 20px; color: var(--text-dark); font-weight: 600; font-size: max(14px, calc(var(--sd-size) * 0.64)); }
+
+/* =========================================================================
+   Refonte, étape 5 : le tableau des interruptions (js/app/siddur.js, sdOpenInterruptions ; js/interruptionsCore.js).
+   ========================================================================= */
+:root { --ix-oui: #1d7448; --ix-oui-bg: #e2f3e9; --ix-cond: #8a5600; --ix-cond-bg: #fbedd0; --ix-non: #ad2a20; --ix-non-bg: #fbe3e0; }
+:root[data-theme="dark"] { --ix-oui: #67cf98; --ix-oui-bg: #173527; --ix-cond: #eab14a; --ix-cond-bg: #3b2c10; --ix-non: #f28479; --ix-non-bg: #3d1c19; }
+/* Le bouton flottant, à portée de pouce. */
+.sd-fab { position: fixed; z-index: 55; left: 50%; transform: translateX(-50%); bottom: calc(env(safe-area-inset-bottom, 0px) + 18px); display: inline-flex; align-items: center; gap: 8px; min-height: 46px; padding: 10px 18px; border: 0; border-radius: 99px; background: var(--primary-blue, #1d3566); color: #fff; font: inherit; font-size: 14px; font-weight: 600; white-space: nowrap; box-shadow: 0 8px 22px rgba(0, 0, 0, 0.28); cursor: pointer; }
+:root[data-theme="dark"] .sd-fab { background: #2a5db0; }
+.sd-fab svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; }
+.sd-fab:focus-visible { outline: 3px solid var(--favorite-yellow, #d4a017); outline-offset: 2px; }
+#screen-tool-siddur.is-reading .sd-nav { padding-bottom: 96px; }
+#screen-tool-siddur.is-reading .sd-content { padding-bottom: 80px; }
+/* La feuille. */
+.sd-ix-where { display: flex; flex-direction: column; gap: 6px; }
+.sd-ix-label { font-size: 13px; font-weight: 700; color: var(--muted-text); }
+.sd-ix-select { width: 100%; min-height: 46px; padding: 10px 12px; border: 1px solid var(--border-soft); border-radius: 12px; background: var(--surface); color: var(--text-dark); font: inherit; font-size: 15px; font-weight: 600; }
+.sd-ix-hint { margin: 0; font-size: 12.5px; color: var(--muted-text); }
+.sd-ix-hint:empty { display: none; }
+.sd-ix-views button { flex: 1; padding: 0 12px; }
+.sd-ix-views button[aria-pressed="true"] { background: var(--selected-tint); border-color: var(--primary-blue); }
+.sd-ix-out { display: flex; flex-direction: column; gap: 8px; }
+.sd-ix-empty { margin: 8px 4px; font-size: 14px; color: var(--muted-text); }
+.sd-ix-sum { margin: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.sd-ix-list { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--border-soft); border-radius: 14px; padding: 0 12px; }
+.sd-ix-row { display: grid; grid-template-columns: 1fr auto; gap: 2px 10px; align-items: center; padding: 10px 0; border-top: 1px solid var(--border-soft); }
+.sd-ix-row:first-child { border-top: 0; }
+.sd-ix-act { font-size: 14.5px; font-weight: 500; color: var(--text-dark); }
+.sd-ix-det { grid-column: 1 / -1; font-size: 13px; line-height: 1.4; color: var(--muted-text); }
+.sd-ix-pill { flex: none; font-size: 11.5px; font-weight: 700; padding: 3px 9px; border-radius: 99px; white-space: nowrap; }
+.sd-ix-pill.is-oui { background: var(--ix-oui-bg); color: var(--ix-oui); }
+.sd-ix-pill.is-cond { background: var(--ix-cond-bg); color: var(--ix-cond); }
+.sd-ix-pill.is-non { background: var(--ix-non-bg); color: var(--ix-non); }
+.sd-ix-pill.is-nil { background: var(--border-soft); color: var(--muted-text); }
+.sd-ix-note { margin: 4px 2px 0; font-size: 12px; line-height: 1.45; color: var(--muted-text); }
+/* La vue tableau : défile dans les deux sens, en-têtes et première colonne fixes. */
+.sd-ix-gridwrap { overflow: auto; max-height: 60vh; max-height: 60dvh; border: 1px solid var(--border-soft); border-radius: 12px; background: var(--surface); touch-action: pan-x pan-y; }
+.sd-ix-grid { border-collapse: separate; border-spacing: 0; font-size: 11.5px; line-height: 1.3; }
+.sd-ix-grid th, .sd-ix-grid td { padding: 6px 7px; border-right: 1px solid var(--border-soft); border-bottom: 1px solid var(--border-soft); vertical-align: top; text-align: left; color: var(--text-dark); }
+.sd-ix-grid thead th { position: sticky; top: 0; z-index: 2; background: var(--surface); font-weight: 700; }
+.sd-ix-grid td, .sd-ix-grid thead th { min-width: 96px; max-width: 120px; }
+.sd-ix-grid tbody th { position: sticky; left: 0; z-index: 1; background: var(--surface); font-weight: 700; min-width: 130px; max-width: 150px; }
+.sd-ix-grid .sd-ix-corner { left: 0; z-index: 3; }
+.sd-ix-grid td.is-o { background: var(--ix-oui-bg); color: var(--ix-oui); }
+.sd-ix-grid td.is-c { background: var(--ix-cond-bg); color: var(--ix-cond); }
+.sd-ix-grid td.is-n { background: var(--ix-non-bg); color: var(--ix-non); }
+.sd-ix-grid td.is-nil { color: var(--muted-text); }
+.sd-ix-grid tr.is-here th { box-shadow: inset 4px 0 0 var(--favorite-yellow, #d4a017); }
+/* Repris du Maguen Avot : depuis quand vaut la variante, et la règle longue repliée. */
+.sd-var-since { flex-basis: 100%; font-size: 11.5px; color: var(--muted-text); }
+.sd-var-more > summary { cursor: pointer; font-weight: 600; min-height: 32px; display: flex; align-items: center; color: var(--text-dark); }
+.sd-var-more > p { margin: 2px 0 4px; }
+.sd-segbox > .sd-var-note { margin: -2px 0 8px; }
+.sd-var-more > summary { list-style: none; gap: 6px; }
+.sd-var-more > summary::-webkit-details-marker { display: none; }
+.sd-var-more > summary::after { content: "›"; font-size: 16px; color: var(--muted-text); }
+.sd-var-more[open] > summary::after { transform: rotate(90deg); }
+.sd-opt-hint { margin: -6px 4px 0; font-size: 12.5px; color: var(--muted-text); }
+
+/* La Qédoucha de la répétition : un bloc gris, dans le style des blocs « Aujourd'hui ». */
+.sd-qed { margin: 12px -10px; padding: 2px 10px 8px; border-radius: 12px; background: color-mix(in srgb, var(--muted-text) 12%, var(--bg-color)); box-shadow: inset -3px 0 0 color-mix(in srgb, var(--muted-text) 55%, transparent); }
+.sd-qed > .sd-rub:first-child { margin-top: 10px; color: var(--text-dark); font-weight: 700; }
+
+/* Le bouton « Lecture de la Torah » et la feuille de la lecture du jour. */
+.sd-reading-btn { display: block; margin: 14px auto; min-height: 46px; padding: 10px 22px; border: 0; border-radius: 12px; background: var(--primary-blue, #2e54b3); color: #fff; font: inherit; font-size: 15.5px; font-weight: 600; cursor: pointer; box-shadow: var(--card-shadow); }
+:root[data-theme="dark"] .sd-reading-btn { background: #2a5db0; }
+.sd-reading-btn:focus-visible { outline: 3px solid var(--favorite-yellow, #d4a017); outline-offset: 2px; }
+.sd-reading-head { display: flex; flex-direction: column; gap: 2px; padding-bottom: 8px; border-bottom: 1px solid var(--border-soft); }
+.sd-reading-title { margin: 0; font-size: 17px; font-weight: 800; color: var(--text-dark); }
+.sd-reading-he { margin: 0; font-family: var(--sd-font, 'HX Frank', serif); font-size: 22px; text-align: right; color: var(--text-dark); }
+.sd-reading-when { margin: 4px 0 0; font-size: 13px; color: var(--muted-text); }
+.sd-reading-text { font-family: var(--sd-font, 'HX Frank', 'HX Torah', serif); font-size: var(--sd-size, 23px); color: var(--text-dark); }
+.sd-reading-aliya { margin: 0 0 10px; line-height: 1.75; text-align: justify; text-align-last: right; }
+.sd-reading-mark { font-size: 0.6em; color: var(--home-gold, #96621a); margin-inline-end: 6px; vertical-align: 0.15em; }
+:root[data-theme="dark"] .sd-reading-mark { color: #dcaa4c; }
+.sd-reading-ref { display: block; margin-top: 2px; font-family: var(--font-main); font-size: 11.5px; color: var(--muted-text); text-align: left; }
+
+/* Une seule police pour l'hébreu de prière : la règle globale « * { font-family: var(--font-main) } » donnait Inter aux mots du mot à mot
+   et aux montées de la lecture de la Torah ; ils prennent la police choisie pour le texte (Frank Ruhl Libre par défaut). */
+.sd-jx-h, .sd-jx-h *, .sd-reading-aliya, .sd-reading-aliya *:not(.sd-reading-ref):not(.sd-reading-mark) { font-family: var(--sd-font, 'HX Frank', 'HX Torah', serif); }
+.sd-jx-h strong { font-weight: 700; font-synthesis: none; }
+.sd-content:not([data-bold="real"]) .sd-jx-h strong { font-weight: 400; text-shadow: 0.35px 0 0 currentColor, -0.35px 0 0 currentColor, 0 0.2px 0 currentColor; }
+
+/* Avec minyan (Kaddich, Qédoucha) : le bloc gris porte une étiquette ; le texte reste en couleur pleine (il se dit, avec un minyan). */
+.sd-minyan-tag { margin: 8px 0 2px; }
+.sd-chip.is-minyan { background: color-mix(in srgb, var(--muted-text) 30%, var(--bg-color)); color: var(--text-dark); }
+.sd-minyan > .sd-rub:nth-child(2) { margin-top: 6px; color: var(--text-dark); font-weight: 700; }
+.sd-qed > .sd-rub:first-child { margin-top: 10px; }
+.sd-var .sd-minyan, .sd-fold .sd-minyan { margin-inline: 0; }
+.sd-minyan-tag { display: flex; align-items: center; gap: 8px; }
+.sd-minyan-name { font-family: var(--font-main); font-size: 13px; font-weight: 600; color: var(--text-dark); }
+
+/* La bénédiction de l'invité : réglages (qui reçoit, marié, enfants) au-dessus du texte accordé. */
+.sd-guest-ctrls { display: flex; flex-direction: column; gap: 8px; padding: 4px 12px 10px; font-family: var(--font-main); }
+.sd-guest-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 12px; }
+.sd-guest-row[hidden] { display: none; }
+.sd-guest-lab { font-size: 13.5px; font-weight: 600; color: var(--text-dark); }
+.sd-guest-ctrls .sd-seg-btns button { min-width: 0; padding: 0 12px; font-size: 13.5px; }
+.sd-guest-ctrls .sd-seg-btns button[aria-pressed="true"] { background: var(--selected-tint); border-color: var(--primary-blue); }
+.sd-guest-text > .sd-seg { padding: 0 12px; }
+.sd-guest-text > .sd-fr-seg { margin: 0 12px 10px; }
+.sd-fold.sd-guest > .sd-var-note { padding: 0 12px 10px; }
+.sd-guest-text > .sd-seg + .sd-seg { margin-top: 10px; }
+
+/* =========================================================================
+   Birkat haMazon et Mé'en chaloch, dans l'esprit du Maguen Avot : bandeau, rôles du Zimoun, notes d'origine, tableaux
+   (js/app/siddur.js : SD_BANNERS, SD_ROLES, SD_BH, sdMcTable).
+   ========================================================================= */
+/* Le bandeau : un cartouche gris arrondi, le nom en français puis en hébreu. */
+.sd-banner { margin: 6px 0 14px; padding: 12px 14px 14px; border-radius: 14px; background: color-mix(in srgb, var(--muted-text) 14%, var(--bg-color)); border: 1px solid var(--border-soft); text-align: center; }
+.sd-banner-fr { margin: 0; font-family: var(--font-main); font-size: 19px; font-weight: 800; letter-spacing: 0.02em; text-transform: uppercase; color: var(--text-dark); }
+.sd-banner-sub { margin: 2px 0 6px; font-family: var(--font-main); font-size: 13.5px; font-weight: 600; color: var(--muted-text); }
+.sd-banner .sd-title { margin: 0; font-size: calc(var(--sd-size) * 1.25); line-height: 1.3; }
+.sd-banner-intro { margin: 10px 0 0; padding-top: 8px; border-top: 1px solid var(--border-soft); font-family: var(--font-main); font-size: 13px; line-height: 1.5; font-style: italic; text-align: start; color: var(--muted-text); }
+
+/* Le Zimoun : une étiquette de rôle, et un filet à côté du texte qu'elle annonce (or pour l'officiant, bleu pour les assistants). */
+.sd-role { margin: 14px 0 0; display: flex; align-items: center; gap: 8px; font-family: var(--font-main); font-size: 12px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--home-gold, #96621a); }
+.sd-role::before { content: ""; width: 14px; height: 2px; border-radius: 2px; background: currentColor; }
+.sd-role.is-resp, .sd-role.is-fast { color: var(--primary-blue, #1d3566); }
+:root[data-theme="dark"] .sd-role { color: #dcaa4c; }
+:root[data-theme="dark"] .sd-role.is-resp, :root[data-theme="dark"] .sd-role.is-fast { color: #8fb4f0; }
+.sd-role + .sd-seg { margin-top: 2px; padding-inline-start: 10px; border-inline-start: 3px solid color-mix(in srgb, var(--home-gold, #96621a) 55%, transparent); }
+.sd-role.is-resp + .sd-seg, .sd-role.is-fast + .sd-seg { border-inline-start-color: color-mix(in srgb, var(--primary-blue, #1d3566) 45%, transparent); }
+
+/* La note d'origine d'une bénédiction : en italique, sous son nom. */
+.sd-origin { margin: 2px 0 6px; font-family: var(--font-main); font-size: 13px; line-height: 1.45; font-style: italic; color: var(--muted-text); }
+
+/* Le tableau de Mé'en chaloch : trois colonnes (de droite à gauche comme le livre), des étiquettes françaises au-dessus. */
+.sd-vtab { --vt-line: color-mix(in srgb, var(--text-dark) 35%, var(--bg-color)); margin: 10px 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: 1.5px solid var(--vt-line); border-radius: 12px; overflow: hidden; background: var(--surface); }
+.sd-vtab-head { padding: 7px 4px; text-align: center; font-family: var(--font-main); font-size: 11.5px; font-weight: 700; line-height: 1.25; color: var(--muted-text); background: color-mix(in srgb, var(--muted-text) 12%, var(--surface)); border-inline-start: 1px solid var(--vt-line); }
+.sd-vtab-head:first-child { border-inline-start: 0; }
+.sd-vtab-cap { grid-column: 1 / -1; padding: 5px 8px; text-align: center; font-family: var(--font-main); font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted-text); border-top: 1px solid var(--vt-line); }
+.sd-vtab-cell { padding: 8px 6px; text-align: center; font-family: var(--sd-font, 'HX Frank', 'HX Torah', serif); font-size: calc(var(--sd-size) * 0.85); line-height: 1.5; color: var(--text-dark); border-top: 1px solid var(--vt-line); border-inline-start: 1px solid var(--vt-line); }
+.sd-vtab-cell.is-first { border-inline-start: 0; }
+.sd-vtab-lab { display: block; margin: 2px auto; font-family: var(--font-main); font-size: 10.5px; font-weight: 600; color: var(--muted-text); }
+.sd-vtab-cell .sd-small-rub, .sd-vtab-cell .sd-small-text { font-size: 0.8em; }
+
+/* Légende en français (les parfums) : même grille que les tableaux, textes d'interface. */
+.sd-banner .sd-vtab { margin: 10px 0 0; text-align: center; }
+.sd-vtab-fr .sd-vtab-cell { font-family: var(--font-main); font-size: 12px; line-height: 1.35; color: var(--muted-text); }
+.sd-vtab-fr .sd-vtab-head { color: var(--text-dark); }
+
+/* La case « Mariage » du Zimoun, et le renvoi vers les sept bénédictions. */
+.sd-check { display: flex; align-items: center; gap: 10px; min-height: 44px; font-family: var(--font-main); font-size: 14px; font-weight: 600; color: var(--text-dark); cursor: pointer; }
+.sd-check input { width: 22px; height: 22px; flex: none; accent-color: var(--primary-blue, #1d3566); }
+.sd-chevaberakhot { margin: 14px 0 6px; padding: 8px 12px 12px; border-radius: 12px; border: 1px solid var(--border-soft); background: var(--surface); }
+.sd-zimoun > .sd-about { margin: 12px 0; }

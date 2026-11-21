@@ -90,13 +90,18 @@
         </div>
         <!-- Titre et consigne ne s'affichent plus (la place revient à l'arbre) ; ils restent lus par les lecteurs d'écran. -->
         <h2 class="header-title sr-only" data-i18n="tools.genealogy_title">Généalogie biblique</h2>
-        <p class="modes-header-subtitle sr-only" data-i18n="tools.genealogy_intro">Touchez « A » pour les noms en français, « א » pour l'hébreu. Faites glisser l'arbre ; repliez ou dépliez une branche avec son bouton.</p>
+        <p class="modes-header-subtitle sr-only" data-i18n="tools.genealogy_intro">Choisissez la présentation : la fiche d'une personne, les lignées ou l'arbre. Touchez « A » pour les noms en français, « א » pour l'hébreu.</p>
         <div class="gen-bar">
             <input type="search" id="gen-search" class="tool-input" autocomplete="off" placeholder="Chercher un nom" aria-label="Chercher un nom" data-i18n-attr="placeholder:tools.genealogy_search;aria-label:tools.genealogy_search">
             <ul class="gen-results" id="gen-results"></ul>
+            <div class="gen-views" role="group" aria-label="Présentation" data-i18n-attr="aria-label:tools.genealogy_views_aria">
+                <button type="button" class="gen-view-btn" id="gen-view-family" aria-pressed="true" onclick="genSetView('family')" data-i18n="tools.genealogy_view_family">Fiche</button>
+                <button type="button" class="gen-view-btn" id="gen-view-lines" aria-pressed="false" onclick="genSetView('lines')" data-i18n="tools.genealogy_view_lines">Lignées</button>
+                <button type="button" class="gen-view-btn" id="gen-view-tree" aria-pressed="false" onclick="genSetView('tree')" data-i18n="tools.genealogy_view_tree">Arbre</button>
+            </div>
             <div class="gen-actions">
-                <button type="button" class="btn" onclick="genZoom(-1)" aria-label="Rétrécir" data-i18n-attr="aria-label:tools.genealogy_zoom_out">−</button>
-                <button type="button" class="btn" onclick="genZoom(1)" aria-label="Agrandir" data-i18n-attr="aria-label:tools.genealogy_zoom_in">+</button>
+                <button type="button" class="btn gen-tree-only" onclick="genZoom(-1)" aria-label="Rétrécir" data-i18n-attr="aria-label:tools.genealogy_zoom_out">−</button>
+                <button type="button" class="btn gen-tree-only" onclick="genZoom(1)" aria-label="Agrandir" data-i18n-attr="aria-label:tools.genealogy_zoom_in">+</button>
                 <button type="button" class="btn" onclick="genCollapseAll()" data-i18n="tools.genealogy_collapse_all">Tout replier</button>
                 <button type="button" class="btn" onclick="genExpandAll()" data-i18n="tools.genealogy_expand_all">Tout déplier</button>
             </div>
@@ -105,7 +110,12 @@
             <div class="gen-cat-menu hidden" id="gen-cat-menu" role="group" aria-label="Catégories" data-i18n-attr="aria-label:tools.genealogy_cat_button"></div>
             <section class="gen-cat-panel hidden" id="gen-cat-panel" aria-live="polite"></section>
         </div>
-        <div class="gen-view" id="gen-view" tabindex="0" role="region" aria-label="Arbre généalogique" data-i18n-attr="aria-label:tools.genealogy_view_aria">
+        <div class="gen-family" id="gen-family" role="region" aria-label="Fiche de la personne" data-i18n-attr="aria-label:tools.genealogy_family_aria" aria-live="polite"></div>
+        <div class="gen-lines-box hidden" id="gen-lines" role="region" aria-label="Lignées" data-i18n-attr="aria-label:tools.genealogy_view_lines">
+            <div class="gen-lines-path" id="gen-lines-path"></div>
+            <div class="gen-lines-scroll" id="gen-lines-scroll" tabindex="0"><div class="gen-lines-list" id="gen-lines-list"></div></div>
+        </div>
+        <div class="gen-view hidden" id="gen-view" tabindex="0" role="region" aria-label="Arbre généalogique" data-i18n-attr="aria-label:tools.genealogy_view_aria">
             <div class="gen-sizer" id="gen-sizer"><div class="gen-stage" id="gen-stage"></div></div>
         </div>
     </div>
@@ -282,6 +292,15 @@
         <p class="modes-header-subtitle" data-i18n="tools.ben_intro">Quelle bénédiction dire avant de manger ou de boire ? Cherchez un aliment, ou parcourez la liste par bénédiction. Liste du Beth Loubavitch ('Habad), avec les écarts des rites séfarade et ashkénaze. Outil d'étude, pas une décision de halakha.</p>
         <div class="tool-panel kor-panel">
             <div id="tool-ben-body" class="kor-body"></div>
+        </div>
+    </div>
+
+<div id="screen-tool-periods" class="list-screen hidden">
+        <button class="back-btn" onclick="periodsBack()" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title" data-i18n="tools.per_title">Périodes et usages</h2>
+        <p class="modes-header-subtitle" data-i18n="tools.per_intro">Ce qui est interdit, permis ou obligatoire à certains moments de l'année, selon votre rite. Outil d'étude, pas une décision de halakha.</p>
+        <div class="tool-panel kor-panel">
+            <div id="tool-per-body" class="kor-body"></div>
         </div>
     </div>
 
@@ -700,13 +719,24 @@
     </div>
 
     <!-- Scripts de l'app, dans l'ordre de leurs dépendances -->
-    <script src="js/torahCore.js"></script>
     <script src="js/i18n.js"></script>
     <script src="js/location.js"></script>
     <script src="js/calendarYearCore.js"></script>
+    <script src="js/studyCore.js"></script>
+    <script src="js/mitsvaCycleData.js"></script>
+    <script src="js/mitsvaOfDayCore.js"></script>
     <script src="js/hebrewCalendarCore.js"></script>
+    <script src="js/dayNotesCore.js"></script>
+    <script src="js/sedraTables.js"></script>
+    <script src="js/sedraCore.js"></script>
+    <script src="js/torahCore.js"></script>
     <script src="js/zmanimCore.js"></script>
     <script src="js/siddurCore.js"></script>
+    <script src="js/profileCore.js"></script>
+    <script src="js/hallahCore.js"></script>
+    <script src="js/niddaCore.js"></script>
+    <script src="js/interruptionsCore.js"></script>
+    <script src="js/torahReadingCore.js"></script>
     <script src="js/zmanimReminderCore.js"></script>
     <script src="js/notifications.js"></script>
     <script src="js/compassCore.js"></script>
@@ -747,6 +777,9 @@
     <script src="js/benedictionsData.js"></script>
     <script src="js/benedictionsCore.js"></script>
     <script src="js/app/benedictions.js"></script>
+    <script src="js/periodsData.js"></script>
+    <script src="js/periodsCore.js"></script>
+    <script src="js/app/periods.js"></script>
     <script src="js/statutsData.js"></script>
     <script src="js/statutsCore.js"></script>
     <script src="js/app/statuts.js"></script>
@@ -759,6 +792,8 @@
     <script src="js/haftarotCore.js"></script>
     <script src="js/app/tanakh.js"></script>
     <script src="js/michnaCore.js"></script>
+    <script src="js/mishnaYomiTable.js"></script>
+    <script src="js/mishnaYomiCore.js"></script>
     <script src="js/app/michna.js"></script>
     <script src="js/talmudCore.js"></script>
     <script src="js/app/talmud.js"></script>
@@ -797,9 +832,21 @@
     <script src="js/torahRefs.js"></script>
     <script src="js/mitsvaGameCore.js"></script>
     <script src="js/verseGameCore.js"></script>
+    <script src="js/scrambleGameCore.js"></script>
+    <script src="js/blessGameCore.js"></script>
+    <script src="js/authorGameCore.js"></script>
+    <script src="js/gimGameCore.js"></script>
+    <script src="js/rootGameCore.js"></script>
+    <script src="js/parashaQuizCore.js"></script>
     <script src="js/whoData.js"></script>
     <script src="js/whoGameCore.js"></script>
     <script src="js/orderGameCore.js"></script>
+    <script src="js/mapGameCore.js"></script>
+    <script src="js/dailyGameCore.js"></script>
+    <script src="js/gamesCatalog.js"></script>
+    <script src="js/progressCore.js"></script>
+    <script src="js/personalDatesCore.js"></script>
+    <script src="js/widgetDataCore.js"></script>
     <script src="js/app/quiz-ui.js"></script>
     <script src="js/app/lexicon-game.js"></script>
     <script src="js/app/gemara-game.js"></script>
@@ -808,12 +855,28 @@
     <script src="js/app/purity-game.js"></script>
     <script src="js/app/mitsva-game.js"></script>
     <script src="js/app/verse-game.js"></script>
+    <script src="js/app/scramble-game.js"></script>
+    <script src="js/app/bless-game.js"></script>
+    <script src="js/app/author-game.js"></script>
+    <script src="js/app/gim-game.js"></script>
+    <script src="js/app/root-game.js"></script>
+    <script src="js/app/parasha-quiz.js"></script>
     <script src="js/app/who-game.js"></script>
     <script src="js/app/order-game.js"></script>
+    <script src="js/app/map-game.js"></script>
+    <script src="js/app/daily-game.js"></script>
+    <script src="js/app/progress.js"></script>
+    <script src="js/app/personal-dates.js"></script>
+    <script src="js/app/omer.js"></script>
+    <script src="js/app/study.js"></script>
     <script src="js/app/tools.js"></script>
     <script src="js/app/navigation.js"></script>
+    <script src="js/app/first-profile.js"></script>
     <script src="js/app/settings.js"></script>
+    <script src="js/app/game-screen.js"></script>
     <script src="js/app/home.js"></script>
+    <script src="js/app/widgets.js"></script>
+    <script src="js/app/offline.js"></script>
 
     <!-- Écrans des récits -->
 <div id="screen-recits" class="list-screen hidden">
@@ -967,170 +1030,59 @@
         </div>
     </div>
 
-<div id="screen-purgame" class="list-screen hidden">
-        <button class="back-btn" onclick="purgameBack()" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
-        <h2 class="header-title" data-i18n="purgame.title">Pur ou impur ?</h2>
-        <p class="modes-header-subtitle" id="purgame-status" role="status"></p>
-        <div id="purgame-setup" class="lexgame-setup">
-            <div class="lexgame-levels" id="purgame-sections" role="group" aria-label="Animaux joués" data-i18n-attr="aria-label:purgame.section_aria"></div>
-            <button type="button" class="btn" onclick="purgameStart()" data-i18n="arcade.play">Jouer</button>
-            <p class="tool-small" data-i18n="purgame.how">Dix animaux, 100 points chacun, huit secondes pour répondre : pur (permis) ou impur (interdit) ? Une fois le temps écoulé, la question est comptée fausse.</p>
-            <p class="tool-small" data-i18n="purgame.how_sure">Seuls les cas sans discussion sont posés : les animaux dont l'identification est perdue ou discutée (le zémer, le tétras, la girafe…) ne sont jamais demandés. Outil d'étude, pas une décision de halakha.</p>
+<div id="screen-dailygame" class="list-screen hidden">
+        <button class="back-btn" onclick="dailygameBack()" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title" data-i18n="dailygame.title">Défi du jour</h2>
+        <p class="modes-header-subtitle" id="dailygame-status" role="status"></p>
+        <div id="dailygame-setup" class="lexgame-setup">
+            <p class="lexgame-progress-text" id="dailygame-date"></p>
+            <p class="tool-small" id="dailygame-today" role="status"></p>
+            <button type="button" class="btn" id="dailygame-start" onclick="dailygameStart()" data-i18n="arcade.play">Jouer</button>
+            <p class="tool-small" data-i18n="dailygame.how">Cinq questions tirées de la date du jour : la paracha de la semaine, le Daf Yomi, le mois hébraïque, la prochaine fête, les Téhilim. Les mêmes pour tout le monde, un jour donné ; 100 points par bonne réponse. Les réponses se trouvent dans l'onglet « Aujourd'hui » : le défi invite à les connaître.</p>
+            <p class="tool-small" data-i18n="dailygame.how_rest">Il n'y a pas de défi le Chabbat ni les jours de fête.</p>
         </div>
-        <div id="purgame-play" class="hidden">
-            <p class="cause-question" id="purgame-question"></p>
-            <p class="lexgame-word is-french" id="purgame-word"></p>
-            <p class="tool-small trgame-he" id="purgame-he" lang="he" dir="rtl"></p>
-            <div class="lexgame-bar quiz-timer" id="purgame-timer" role="progressbar" aria-valuemin="0" aria-valuemax="8" aria-valuenow="8" aria-label="Temps restant" data-i18n-attr="aria-label:purgame.time_aria"><i id="purgame-timer-fill"></i></div>
-            <p class="tool-small quiz-time" id="purgame-time"></p>
-            <div class="cause-cards purgame-options" id="purgame-options"></div>
-            <div class="wheel-feedback hidden" id="purgame-feedback" role="status">
-                <strong id="purgame-feedback-title"></strong>
-                <p id="purgame-feedback-text"></p>
-                <p class="tool-small hidden" id="purgame-feedback-note"></p>
+        <div id="dailygame-play" class="hidden">
+            <p class="cause-question" id="dailygame-question"></p>
+            <div class="cause-cards" id="dailygame-options"></div>
+            <div class="wheel-feedback hidden" id="dailygame-feedback" role="status">
+                <strong id="dailygame-feedback-title"></strong>
+                <p id="dailygame-feedback-text"></p>
+                <p class="tool-small hidden" id="dailygame-feedback-note"></p>
                 <div class="lexgame-actions">
-                    <button type="button" class="btn" id="purgame-next" onclick="purgameContinue()"></button>
+                    <button type="button" class="btn" id="dailygame-next" onclick="dailygameContinue()"></button>
                 </div>
             </div>
         </div>
-        <div class="arcade-over hidden" id="purgame-over">
+        <div class="arcade-over hidden" id="dailygame-over">
             <h3 data-i18n="arcade.over">Partie terminée</h3>
-            <p id="purgame-over-text"></p>
-            <button type="button" class="btn" onclick="purgameStart()" data-i18n="arcade.replay">Rejouer</button>
+            <p id="dailygame-over-text"></p>
+            <p id="dailygame-over-progress"></p>
         </div>
     </div>
 
-<div id="screen-mitsvagame" class="list-screen hidden">
-        <button class="back-btn" onclick="mitsvagameBack()" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
-        <h2 class="header-title" data-i18n="mitsvagame.title">Mitsva express</h2>
-        <p class="modes-header-subtitle" id="mitsvagame-status" role="status"></p>
-        <div id="mitsvagame-setup" class="lexgame-setup">
-            <p class="tool-small" id="mitsvagame-load" role="status"></p>
-            <button type="button" class="btn" id="mitsvagame-start" onclick="mitsvagameStart()" data-i18n="arcade.play">Jouer</button>
-            <p class="tool-small" data-i18n="mitsvagame.how">Dix commandements de la liste du Rambam, 100 points chacun, quelques secondes pour répondre : de quelle paracha, ou de quel livre de la Torah, le Rambam tire-t-il le commandement ? Une fois le temps écoulé, la question est comptée fausse.</p>
-            <p class="tool-small" data-i18n="mitsvagame.how_sure">La question porte toujours sur le verset que le Rambam cite à l'appui, pas sur tous les endroits où la loi apparaît. De temps en temps : « positif ou négatif ? » sur un commandement positif formulé à la forme négative.</p>
-        </div>
-        <div id="mitsvagame-play" class="hidden">
-            <p class="cause-question" id="mitsvagame-question"></p>
-            <p class="lexgame-word is-french mitsvagame-text" id="mitsvagame-word"></p>
-            <div class="lexgame-bar quiz-timer" id="mitsvagame-timer" role="progressbar" aria-valuemin="0" aria-valuemax="12" aria-valuenow="12" aria-label="Temps restant" data-i18n-attr="aria-label:mitsvagame.time_aria"><i id="mitsvagame-timer-fill"></i></div>
-            <p class="tool-small quiz-time" id="mitsvagame-time"></p>
-            <div class="cause-cards" id="mitsvagame-options"></div>
-            <div class="wheel-feedback hidden" id="mitsvagame-feedback" role="status">
-                <strong id="mitsvagame-feedback-title"></strong>
-                <p id="mitsvagame-feedback-text"></p>
-                <p class="tool-small hidden" id="mitsvagame-feedback-note"></p>
-                <div class="lexgame-actions">
-                    <button type="button" class="btn" id="mitsvagame-next" onclick="mitsvagameContinue()"></button>
-                </div>
-            </div>
-        </div>
-        <div class="arcade-over hidden" id="mitsvagame-over">
-            <h3 data-i18n="arcade.over">Partie terminée</h3>
-            <p id="mitsvagame-over-text"></p>
-            <button type="button" class="btn" onclick="mitsvagameStart()" data-i18n="arcade.replay">Rejouer</button>
-        </div>
+<div id="screen-progress" class="list-screen hidden">
+        <button class="back-btn" onclick="progressBack()" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title" data-i18n="progress.title">Ma progression</h2>
+        <div id="progress-body" class="progress-body"></div>
     </div>
 
-<div id="screen-parashagame" class="list-screen hidden">
-        <button class="back-btn" onclick="parashagameBack()" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
-        <h2 class="header-title" data-i18n="parashagame.title">Dans quelle paracha ?</h2>
-        <p class="modes-header-subtitle" id="parashagame-status" role="status"></p>
-        <div id="parashagame-setup" class="lexgame-setup">
-            <p class="tool-small" id="parashagame-load" role="status"></p>
-            <label class="gem-reduce"><input type="checkbox" id="parashagame-fr" onchange="parashagameToggleFr()"> <span data-i18n="parashagame.with_fr">Afficher aussi la traduction française (Bible du Rabbinat)</span></label>
-            <button type="button" class="btn" id="parashagame-start" onclick="parashagameStart()" data-i18n="arcade.play">Jouer</button>
-            <p class="tool-small" data-i18n="parashagame.how">Cinq versets tirés au hasard dans toute la Torah : de quelle paracha vient chacun ? Chaque verset vaut 100 points. Un indice montre le verset suivant et coûte 20 points ; une mauvaise réponse en coûte 20 aussi. À zéro point, la paracha est dévoilée.</p>
-            <p class="tool-small" data-i18n="parashagame.how_formula">Les versets qui ne sont que « L'Éternel parla à Moïse en disant » ne sont jamais tirés : on les trouve partout. Ils peuvent en revanche apparaître en indice.</p>
-        </div>
-        <div id="parashagame-play" class="hidden">
-            <div class="parashagame-verses" id="parashagame-verses" aria-live="polite"></div>
-            <p class="parashagame-points" id="parashagame-points"></p>
-            <button type="button" class="btn btn-secondary" id="parashagame-hint" onclick="parashagameHint()"></button>
-            <p class="cause-question parashagame-ask" id="parashagame-ask"></p>
-            <div class="lexgame-levels" id="parashagame-sections" role="group" aria-label="Livre de la Torah" data-i18n-attr="aria-label:parashagame.books_aria"></div>
-            <div class="parashagame-grid" id="parashagame-parashot"></div>
-            <div class="wheel-feedback hidden" id="parashagame-feedback" role="status">
-                <strong id="parashagame-feedback-title"></strong>
-                <p id="parashagame-feedback-text"></p>
-                <p class="tool-small hidden" id="parashagame-feedback-note"></p>
-                <div class="lexgame-actions">
-                    <button type="button" class="btn" id="parashagame-next" onclick="parashagameContinue()"></button>
-                    <button type="button" class="btn lexgame-dict-btn" onclick="parashagameOpenParasha()" data-i18n="parashagame.read">Lire la paracha</button>
-                </div>
-            </div>
-        </div>
-        <div class="arcade-over hidden" id="parashagame-over">
-            <h3 data-i18n="arcade.over">Partie terminée</h3>
-            <p id="parashagame-over-text"></p>
-            <button type="button" class="btn" onclick="parashagameStart()" data-i18n="arcade.replay">Rejouer</button>
-        </div>
+<div id="screen-omer" class="list-screen hidden">
+        <button class="back-btn" onclick="omerBack()" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title" data-i18n="omer.title">Compte de l'Omer</h2>
+        <div id="omer-body" class="omer-body"></div>
     </div>
 
-<div id="screen-whogame" class="list-screen hidden">
-        <button class="back-btn" onclick="whogameBack()" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
-        <h2 class="header-title" data-i18n="whogame.title">Qui suis-je ?</h2>
-        <p class="modes-header-subtitle" id="whogame-status" role="status"></p>
-        <div id="whogame-setup" class="lexgame-setup">
-            <div class="lexgame-levels" id="whogame-sections" role="group" aria-label="Personnages joués" data-i18n-attr="aria-label:whogame.section_aria"></div>
-            <button type="button" class="btn" onclick="whogameStart()" data-i18n="arcade.play">Jouer</button>
-            <p class="tool-small" data-i18n="whogame.how">Un personnage parle à la première personne : qui est-ce ? Cinq personnages par partie, 100 points chacun. Chaque indice de plus, du plus vague au plus précis, coûte 20 points. Vous n'avez qu'une réponse : une erreur vaut 0 point et dévoile la réponse.</p>
-            <p class="tool-small" data-i18n="whogame.how_sources">Les personnages de la Bible ont des indices écrits à la main d'après le texte biblique. Pour les sages du Talmud, les indices viennent de leur fiche dans le dictionnaire araméen : l'époque, leurs maîtres, leurs disciples, puis ce que l'on dit d'eux.</p>
-        </div>
-        <div id="whogame-play" class="hidden">
-            <div class="parashagame-verses" id="whogame-clues" aria-live="polite"></div>
-            <p class="parashagame-points" id="whogame-points"></p>
-            <button type="button" class="btn btn-secondary" id="whogame-hint" onclick="whogameHint()"></button>
-            <p class="cause-question parashagame-ask" id="whogame-ask"></p>
-            <div class="cause-cards" id="whogame-options"></div>
-            <div class="wheel-feedback hidden" id="whogame-feedback" role="status">
-                <strong id="whogame-feedback-title"></strong>
-                <p id="whogame-feedback-text"></p>
-                <p class="tool-small hidden" id="whogame-feedback-note"></p>
-                <div class="lexgame-actions">
-                    <button type="button" class="btn" id="whogame-next" onclick="whogameContinue()"></button>
-                </div>
-            </div>
-        </div>
-        <div class="arcade-over hidden" id="whogame-over">
-            <h3 data-i18n="arcade.over">Partie terminée</h3>
-            <p id="whogame-over-text"></p>
-            <button type="button" class="btn" onclick="whogameStart()" data-i18n="arcade.replay">Rejouer</button>
-        </div>
+<div id="screen-dates" class="list-screen hidden">
+        <button class="back-btn" onclick="datesBack()" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title" data-i18n="dates.title">Dates personnelles</h2>
+        <div id="dates-body" class="dates-body"></div>
     </div>
 
-<div id="screen-ordergame" class="list-screen hidden">
-        <button class="back-btn" onclick="ordergameBack()" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
-        <h2 class="header-title" data-i18n="ordergame.title">Le bon ordre</h2>
-        <p class="modes-header-subtitle" id="ordergame-status" role="status"></p>
-        <div id="ordergame-setup" class="lexgame-setup">
-            <p class="tool-small" id="ordergame-load" role="status"></p>
-            <div class="lexgame-levels" id="ordergame-sections" role="group" aria-label="Listes jouées" data-i18n-attr="aria-label:ordergame.section_aria"></div>
-            <button type="button" class="btn" id="ordergame-start" onclick="ordergameStart()" data-i18n="arcade.play">Jouer</button>
-            <p class="tool-small" data-i18n="ordergame.how">Cinq éléments d'une liste connue (les parachiot, les livres du Tanakh, les traités de la Michna ou du Talmud, les générations, les fils de Jacob, les rois) sont donnés en désordre : touchez-les dans l'ordre, le premier d'abord. 20 points par élément à la bonne place, soit 100 pour un classement parfait ; cinq classements par partie.</p>
-        </div>
-        <div id="ordergame-play" class="hidden">
-            <p class="cause-question" id="ordergame-question"></p>
-            <p class="tool-small ordergame-help" data-i18n="ordergame.help">Touchez un élément pour le placer à la première place libre ; touchez un élément placé pour le retirer.</p>
-            <ol class="ordergame-slots" id="ordergame-slots"></ol>
-            <div class="ordergame-pool" id="ordergame-pool" role="group" aria-label="Éléments à classer" data-i18n-attr="aria-label:ordergame.pool_aria"></div>
-            <div class="lexgame-actions ordergame-actions" id="ordergame-actions">
-                <button type="button" class="btn" id="ordergame-check" onclick="ordergameCheck()" data-i18n="ordergame.check">Vérifier</button>
-                <button type="button" class="btn btn-secondary" id="ordergame-clear" onclick="ordergameClear()" data-i18n="ordergame.clear">Tout effacer</button>
-            </div>
-            <div class="wheel-feedback hidden" id="ordergame-feedback" role="status">
-                <strong id="ordergame-feedback-title"></strong>
-                <ol class="ordergame-answer" id="ordergame-answer"></ol>
-                <p class="tool-small hidden" id="ordergame-feedback-note"></p>
-                <div class="lexgame-actions">
-                    <button type="button" class="btn" id="ordergame-next" onclick="ordergameContinue()"></button>
-                </div>
-            </div>
-        </div>
-        <div class="arcade-over hidden" id="ordergame-over">
-            <h3 data-i18n="arcade.over">Partie terminée</h3>
-            <p id="ordergame-over-text"></p>
-            <button type="button" class="btn" onclick="ordergameStart()" data-i18n="arcade.replay">Rejouer</button>
+    <div class="modal-overlay hidden" id="modal-date" onclick="if (event.target === this) datesCloseForm()">
+        <div class="modal-content">
+            <button class="back-btn" onclick="datesCloseForm()" aria-label="Fermer">‹</button>
+            <h2 class="header-title" id="date-form-title"></h2>
+            <div id="date-form-body" class="dates-form"></div>
         </div>
     </div>
 
@@ -1166,38 +1118,6 @@
             <p id="gemgame-over-text"></p>
             <p id="gemgame-over-progress"></p>
             <button type="button" class="btn" onclick="gemgameStart()" data-i18n="arcade.replay">Rejouer</button>
-        </div>
-    </div>
-
-<div id="screen-trgame" class="list-screen hidden">
-        <button class="back-btn" onclick="trgameBack()" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
-        <h2 class="header-title" data-i18n="trgame.title">Maîtres et élèves</h2>
-        <p class="modes-header-subtitle" id="trgame-status" role="status"></p>
-        <div id="trgame-setup" class="lexgame-setup">
-            <div class="lexgame-levels" id="trgame-sections" role="group" aria-label="Maîtres joués" data-i18n-attr="aria-label:trgame.section_aria"></div>
-            <button type="button" class="btn" onclick="trgameStart()" data-i18n="arcade.play">Jouer</button>
-            <p class="tool-small" data-i18n="trgame.how">Dix questions, 100 points chacune. « Qui est un maître de… ? » : un seul des quatre noms a vraiment enseigné ce sage. « L'intrus » : trois des quatre sont des élèves du maître indiqué, un seul ne l'est pas.</p>
-            <p class="tool-small" data-i18n="trgame.how_sure">Seules les questions à réponse certaine sont posées : les liens discutés (« ? » sur la carte) ne sont jamais la bonne réponse, et les fausses pistes sont des sages qui ne peuvent pas être le maître (venus après) ou l'élève (venus avant ou en même temps).</p>
-        </div>
-        <div id="trgame-play" class="hidden">
-            <p class="cause-question" id="trgame-question"></p>
-            <p class="lexgame-word is-french" id="trgame-word"></p>
-            <p class="tool-small trgame-he" id="trgame-he" lang="he" dir="rtl"></p>
-            <div class="cause-cards" id="trgame-options"></div>
-            <div class="wheel-feedback hidden" id="trgame-feedback" role="status">
-                <strong id="trgame-feedback-title"></strong>
-                <p id="trgame-feedback-text"></p>
-                <p class="tool-small hidden" id="trgame-feedback-note"></p>
-                <div class="lexgame-actions">
-                    <button type="button" class="btn" id="trgame-next" onclick="trgameContinue()"></button>
-                    <button type="button" class="btn lexgame-dict-btn" onclick="trgameOpenChain()" data-i18n="trgame.see_chain">Voir la chaîne</button>
-                </div>
-            </div>
-        </div>
-        <div class="arcade-over hidden" id="trgame-over">
-            <h3 data-i18n="arcade.over">Partie terminée</h3>
-            <p id="trgame-over-text"></p>
-            <button type="button" class="btn" onclick="trgameStart()" data-i18n="arcade.replay">Rejouer</button>
         </div>
     </div>
 

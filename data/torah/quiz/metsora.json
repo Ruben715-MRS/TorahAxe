@@ -1,0 +1,224 @@
+{
+ "v": 1,
+ "parasha": "Metsora",
+ "levels": {
+  "1": [
+   {
+    "q": "Que prend-on pour purifier le lépreux, avec deux oiseaux vivants et purs ?",
+    "a": "Du bois de cèdre, de l'écarlate et de l'hysope",
+    "w": [
+     "Du bois de chittîm, de l'azur et du sel",
+     "De l'huile d'olive, du vin et du miel",
+     "Du cuivre, de l'argent et de l'or"
+    ],
+    "ref": "14:4",
+    "proof": [
+     "bois de cèdre, de l'écarlate et de l'hysope"
+    ],
+    "x": "L'un des oiseaux est égorgé ; l'autre, trempé dans son sang, est lâché dans la campagne."
+   },
+   {
+    "q": "Que fait le lépreux, le septième jour de sa purification ?",
+    "a": "Il se rase tout le poil, lave ses vêtements et baigne son corps",
+    "w": [
+     "Il offre un sacrifice sur l'autel d'or",
+     "Il retourne au milieu du camp sans autre geste",
+     "Il jeûne jusqu'au soir"
+    ],
+    "ref": "14:9",
+    "proof": [
+     "il se rasera tout le poil"
+    ],
+    "x": "Sa chevelure, sa barbe, ses sourcils : tout son poil."
+   },
+   {
+    "q": "Combien de fois asperge-t-on celui qui se purifie de la lèpre ?",
+    "a": "Sept fois",
+    "w": [
+     "Trois fois",
+     "Une seule fois",
+     "Douze fois"
+    ],
+    "ref": "14:7",
+    "proof": [
+     "sept aspersions"
+    ],
+    "x": "Le pontife lâche ensuite l'oiseau vivant dans la campagne."
+   },
+   {
+    "q": "Dans quel pays la plaie de lèpre peut-elle apparaître sur une maison ?",
+    "a": "Le pays de Canaan, donné en possession",
+    "w": [
+     "Le pays d'Égypte, où Israël a séjourné",
+     "Le désert de Sinaï, lieu de campement",
+     "Le pays de Madian, chez Jéthro"
+    ],
+    "ref": "14:34",
+    "proof": [
+     "pays de Canaan"
+    ],
+    "x": "« Je ferai naître une altération lépreuse dans une maison du pays que vous posséderez. »"
+   },
+   {
+    "q": "Que prend l'homme pauvre, dont les moyens sont insuffisants, comme délictif ?",
+    "a": "Un agneau",
+    "w": [
+     "Un taureau",
+     "Un bouc",
+     "Un bélier de deux ans"
+    ],
+    "ref": "14:21",
+    "proof": [
+     "un agneau comme délictif"
+    ],
+    "x": "Il prend aussi un dixième de fleur de farine pour l'oblation, et un log d'huile."
+   }
+  ],
+  "2": [
+   {
+    "q": "Que fait le pontife avant d'entrer examiner une maison atteinte de plaie ?",
+    "a": "Il ordonne qu'on la vide",
+    "w": [
+     "Il y allume un feu de cèdre",
+     "Il y fait entrer Aaron",
+     "Il attend trente jours sur le seuil"
+    ],
+    "ref": "14:36",
+    "proof": [
+     "vide la maison"
+    ],
+    "x": "Ainsi, tout ce qui est dans la maison ne sera pas impur."
+   },
+   {
+    "q": "Que fait-on d'une maison dont la plaie s'est étendue après nouvelle visite ?",
+    "a": "On la démolit et on transporte les matériaux hors de la ville",
+    "w": [
+     "On la bénit et on y habite sept jours",
+     "On la vend à un étranger du camp",
+     "On la ferme jusqu'à la fête suivante"
+    ],
+    "ref": "14:45",
+    "proof": [
+     "démolira la maison"
+    ],
+    "x": "Les pierres, la charpente et tout l'enduit sont portés dans un lieu impur."
+   },
+   {
+    "q": "Combien de jours la femme qui éprouve un flux reste-t-elle dans son isolement ?",
+    "a": "Sept jours",
+    "w": [
+     "Trois jours",
+     "Quarante jours",
+     "Un jour"
+    ],
+    "ref": "15:19",
+    "proof": [
+     "sept jours"
+    ],
+    "x": "Quiconque la touchera sera souillé jusqu'au soir."
+   },
+   {
+    "q": "Que fait-on d'un vaisseau d'argile touché par celui qui a le flux ?",
+    "a": "On le brise",
+    "w": [
+     "On le recouvre de cuivre",
+     "On le lave à l'eau claire",
+     "On le laisse sept jours au soleil"
+    ],
+    "ref": "15:12",
+    "proof": [
+     "vaisseau d'argile",
+     "sera brisé"
+    ],
+    "x": "Un vaisseau de bois, lui, sera nettoyé dans l'eau."
+   },
+   {
+    "q": "Avec quel doigt le pontife fait-il sept aspersions d'huile devant le Seigneur ?",
+    "a": "Avec l'index droit",
+    "w": [
+     "Avec le pouce droit",
+     "Avec l'index gauche",
+     "Avec le petit doigt de la main droite"
+    ],
+    "ref": "14:27",
+    "proof": [
+     "index droit"
+    ],
+    "x": "L'huile est prise de la main gauche du pontife."
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, pourquoi ne purifie-t-on pas le lépreux de nuit ?",
+    "a": "Parce que la règle de sa purification doit s'accomplir le jour",
+    "w": [
+     "Parce qu'il faut attendre la nuit pour l'isolement",
+     "Parce que les oiseaux ne chantent que de jour",
+     "Parce que la nuit est réservée aux sacrifices"
+    ],
+    "ref": "14:2",
+    "proof": [
+     "בלילה"
+    ],
+    "x": "Rachi sur Lévitique 14:2 : « voici la loi » : on ne le purifie pas de nuit."
+   },
+   {
+    "q": "Selon Rachi, pourquoi utilise-t-on des oiseaux pour purifier le lépreux ?",
+    "a": "Parce que les plaies viennent de la médisance, et que les oiseaux gazouillent sans cesse",
+    "w": [
+     "Parce que les oiseaux sont les messagers du pontife",
+     "Parce que les oiseaux volent vers le sanctuaire",
+     "Parce que les oiseaux vivent en troupes"
+    ],
+    "ref": "14:4",
+    "proof": [
+     "פטפוט",
+     "לשון הרע"
+    ],
+    "x": "Rachi sur Lévitique 14:4 : les plaies viennent de la médisance, qui est un bavardage ; aussi sa purification demande des oiseaux qui gazouillent sans cesse."
+   },
+   {
+    "q": "Selon Rachi, que rappelle le bois de cèdre dans la purification du lépreux ?",
+    "a": "Que les plaies viennent de l'orgueil",
+    "w": [
+     "Que les plaies viennent de la paresse",
+     "Que les plaies viennent de l'avarice",
+     "Que les plaies viennent de la colère"
+    ],
+    "ref": "14:4",
+    "proof": [
+     "גסות הרוח"
+    ],
+    "x": "Rachi sur Lévitique 14:4 : les plaies viennent de l'orgueil, d'où le cèdre, arbre élevé."
+   },
+   {
+    "q": "Selon Rachi, quel remède l'écarlate (tolaat) et l'hysope enseignent-ils au lépreux ?",
+    "a": "S'abaisser comme un ver et comme l'hysope",
+    "w": [
+     "Se dresser comme un cèdre",
+     "Se purifier dans le fleuve",
+     "Se taire pendant sept jours"
+    ],
+    "ref": "14:4",
+    "proof": [
+     "ישפיל עצמו"
+    ],
+    "x": "Rachi sur Lévitique 14:4 : que doit-il faire pour guérir ? Qu'il s'humilie de son orgueil, comme un ver et comme l'hysope."
+   },
+   {
+    "q": "Selon Rachi, pourquoi l'annonce de la plaie dans les maisons est-elle une bonne nouvelle ?",
+    "a": "Parce que les Amorites y avaient caché des trésors d'or, que la démolition révèle",
+    "w": [
+     "Parce que la maison est reconstruite aux frais du temple",
+     "Parce que le propriétaire reçoit un sacrifice",
+     "Parce que la maison devient plus grande"
+    ],
+    "ref": "14:34",
+    "proof": [
+     "מטמוניות של זהב"
+    ],
+    "x": "Rachi sur Lévitique 14:34 : c'est une bonne nouvelle : les Amorites avaient caché des trésors d'or dans les murs de leurs maisons ; en démolissant la maison, on les trouve."
+   }
+  ]
+ }
+}

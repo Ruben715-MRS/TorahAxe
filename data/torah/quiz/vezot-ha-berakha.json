@@ -1,0 +1,223 @@
+{
+ "v": 1,
+ "parasha": "Vézot Ha-Bérakha",
+ "levels": {
+  "1": [
+   {
+    "q": "Comment la Torah appelle-t-elle Moïse, quand il bénit les enfants d'Israël avant de mourir ?",
+    "a": "L'homme de Dieu",
+    "w": [
+     "Le serviteur du roi",
+     "Le berger du peuple",
+     "Le prince des prêtres"
+    ],
+    "ref": "33:1",
+    "proof": [
+     "Moïse, l'homme de Dieu"
+    ],
+    "x": "C'est la bénédiction qu'il adresse aux enfants d'Israël avant sa mort."
+   },
+   {
+    "q": "Que fait Asher, selon la bénédiction qui lui est adressée ?",
+    "a": "Il baigne son pied dans l'huile",
+    "w": [
+     "Il plonge ses mains dans le lait",
+     "Il couvre sa tête de miel",
+     "Il lave ses habits dans la source"
+    ],
+    "ref": "33:24",
+    "proof": [
+     "baignant son pied dans l'huile"
+    ],
+    "x": "Il est béni entre les fils, bienvenu auprès de ses frères."
+   },
+   {
+    "q": "Quel âge avait Moïse lorsqu'il mourut ?",
+    "a": "Cent vingt ans",
+    "w": [
+     "Cent dix ans",
+     "Cent trente ans",
+     "Quatre-vingts ans"
+    ],
+    "ref": "34:7",
+    "proof": [
+     "cent vingt ans"
+    ],
+    "x": "Son regard ne s'était point terni et sa vigueur n'était point épuisée."
+   },
+   {
+    "q": "Que dit la Torah de la sépulture de Moïse ?",
+    "a": "Nul ne l'a connue jusqu'à ce jour",
+    "w": [
+     "Elle se trouve dans la vallée du Jourdain",
+     "Elle a été marquée par une pierre",
+     "Elle est gardée par les Lévites"
+    ],
+    "ref": "34:6",
+    "proof": [
+     "nul n'a connu sa sépulture"
+    ],
+    "x": "Il fut enseveli dans la vallée du pays de Moab, qui fait face à Beth-Peor."
+   },
+   {
+    "q": "Que dit la Torah de Moïse parmi les prophètes d'Israël ?",
+    "a": "Aucun prophète tel que lui, avec qui Dieu communiquait face à face",
+    "w": [
+     "Aucun prophète plus âgé que lui",
+     "Aucun prophète plus puissant que lui dans la guerre",
+     "Aucun prophète plus savant que lui dans la loi"
+    ],
+    "ref": "34:10",
+    "proof": [
+     "face à face"
+    ],
+    "x": "Il n'a plus paru en Israël un prophète tel que Moïse."
+   }
+  ],
+  "2": [
+   {
+    "q": "Que demande Moïse pour Juda dans sa bénédiction ?",
+    "a": "Que Dieu écoute son vœu et l'associe à son peuple",
+    "w": [
+     "Que Dieu lui donne un roi puissant",
+     "Que Dieu lui donne une terre fertile",
+     "Que Dieu le garde de ses ennemis"
+    ],
+    "ref": "33:7",
+    "proof": [
+     "Ecoute, Seigneur, le vœu de Juda"
+    ],
+    "x": "Que son bras soit son champion et son auxiliaire contre ses ennemis."
+   },
+   {
+    "q": "Comment Moïse appelle-t-il Benjamin, dans sa bénédiction ?",
+    "a": "Favori du Seigneur",
+    "w": [
+     "Fils de la droite",
+     "Gardien du sanctuaire",
+     "Prince des tribus"
+    ],
+    "ref": "33:12",
+    "proof": [
+     "Favori du Seigneur"
+    ],
+    "x": "Il repose avec confiance auprès de lui."
+   },
+   {
+    "q": "Que souhaite Moïse à Ruben, dans sa bénédiction ?",
+    "a": "Qu'il vive et soit immortel, et que sa population soit innombrable",
+    "w": [
+     "Qu'il règne et soit puissant, et que son bras soit fort",
+     "Qu'il soit béni et protégé, et que sa terre soit féconde",
+     "Qu'il soit fidèle et juste, et que son peuple soit saint"
+    ],
+    "ref": "33:6",
+    "proof": [
+     "Que Ruben vive"
+    ],
+    "x": "Les vœux concernent sa population."
+   },
+   {
+    "q": "Sur quel mont Moïse monte-t-il pour contempler le pays avant sa mort ?",
+    "a": "Le mont Nébo, au sommet du Pisga, en face de Jéricho",
+    "w": [
+     "Le mont Hor, au bord du désert de Cîn",
+     "Le mont Garizim, en face de Sichem",
+     "Le mont Horeb, en face du désert de Pharan"
+    ],
+    "ref": "34:1",
+    "proof": [
+     "mont Nébo",
+     "Pisga"
+    ],
+    "x": "Dieu lui fait contempler tout le pays."
+   },
+   {
+    "q": "Quels objets sont confiés à Lévi dans la bénédiction de Moïse ?",
+    "a": "Les toummîm et les ourîm",
+    "w": [
+     "Les tables et l'arche",
+     "Les trompettes et les cors",
+     "L'encensoir et la coupe"
+    ],
+    "ref": "33:8",
+    "proof": [
+     "toummîm et tes ourîm"
+    ],
+    "x": "Il est l'homme dévoué que Dieu a éprouvé à Massa."
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, pourquoi Moïse bénit-il les tribus juste avant sa mort ?",
+    "a": "Parce que si ce n'est pas maintenant, quand le ferait-il ?",
+    "w": [
+     "Parce que les tribus lui avaient demandé de le faire",
+     "Parce que Dieu le lui avait ordonné sur le Nébo",
+     "Parce que Jacob l'avait fait avant lui"
+    ],
+    "ref": "33:1",
+    "proof": [
+     "סמוך למיתתו"
+    ],
+    "x": "Rachi sur Deutéronome 33:1 : juste avant sa mort : si ce n'est pas maintenant, quand ?"
+   },
+   {
+    "q": "Selon Rachi, pourquoi Dieu s'est-il d'abord montré à Séir ?",
+    "a": "Parce qu'il a offert la Torah aux fils d'Ésaü, qui n'ont pas voulu l'accepter",
+    "w": [
+     "Parce qu'il a voulu rassembler les nations",
+     "Parce qu'il a voulu punir les fils d'Ésaü",
+     "Parce que le mont Séir est plus haut que le Sinaï"
+    ],
+    "ref": "33:2",
+    "proof": [
+     "שפתח לבני עשו"
+    ],
+    "x": "Rachi sur Deutéronome 33:2 : il s'est montré à Séir, à la descendance d'Ésaü, pour qu'ils reçoivent la Torah, et ils n'ont pas voulu."
+   },
+   {
+    "q": "Selon Rachi, que signifie « la Torah que Moïse nous a prescrite est un héritage » ?",
+    "a": "Qu'elle est un héritage pour l'assemblée de Jacob : « nous la tenons et ne l'abandonnerons pas »",
+    "w": [
+     "Qu'elle est un trésor pour les seuls prêtres",
+     "Qu'elle est un livre pour les seuls Lévites",
+     "Qu'elle est un don pour les seuls prophètes"
+    ],
+    "ref": "33:4",
+    "proof": [
+     "מורשה היא לקהלת יעקב"
+    ],
+    "x": "Rachi sur Deutéronome 33:4 : c'est un héritage de l'assemblée de Jacob : nous la tenons et ne l'abandonnerons pas."
+   },
+   {
+    "q": "Selon Rachi, qui a écrit « Moïse mourut là » ?",
+    "a": "Josué, qui a écrit à partir d'ici",
+    "w": [
+     "Moïse lui-même, en pleurant",
+     "Aaron, avant sa mort",
+     "Éléazar, le prêtre"
+    ],
+    "ref": "34:5",
+    "proof": [
+     "מכאן ואילך כתב יהושע"
+    ],
+    "x": "Rachi sur Deutéronome 34:5 : jusqu'ici Moïse a écrit ; à partir d'ici, c'est Josué."
+   },
+   {
+    "q": "Selon Rachi, pourquoi la tombe de Moïse est-elle face à Beth-Peor ?",
+    "a": "Parce que sa tombe y était préparée depuis la création, pour expier l'affaire de Peor",
+    "w": [
+     "Parce que le peuple y a campé en dernier",
+     "Parce que Moïse a demandé à y être enterré",
+     "Parce que Dieu l'a choisie au hasard"
+    ],
+    "ref": "34:6",
+    "proof": [
+     "מששת ימי בראשית"
+    ],
+    "x": "Rachi sur Deutéronome 34:6 : sa tombe y était préparée depuis les six jours de la création, pour expier l'affaire de Peor."
+   }
+  ]
+ }
+}

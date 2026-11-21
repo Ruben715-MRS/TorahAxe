@@ -68,11 +68,6 @@ let totalTimePlayed = 0;
 
 let comboMultiplier = 1.0;
 
-// --- MULTIPLAYER STATE ---
-let multiPlayers = [];
-let currentMultiPlayerIndex = 0;
-let multiGameActive = false;
-
 let currentGameSpan = 1;
 let questionStartTime = 0;
 

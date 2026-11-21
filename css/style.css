@@ -5925,6 +5925,15 @@ textarea.form-input {
     color: rgba(255, 255, 255, 0.88);
 }
 
+/* Les boutons de la fiche d'accueil, centrés. */
+.first-profile-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 12px;
+}
+
 .first-profile-choice:focus-visible {
     outline: 3px solid #f5b400;
     outline-offset: 2px;
@@ -6223,136 +6232,6 @@ textarea.form-input {
     text-align: center;
 }
 
-/* Mode Multijoueurs */
-.multi-card {
-    background-color: #8e44ad !important;
-}
-
-.multiplayer-setup-container {
-    max-width: 500px;
-    margin: 40px auto;
-    background: #fff;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: var(--card-shadow);
-    color: #333;
-    text-align: center;
-}
-
-.multiplayer-setup-container h2 {
-    color: #2c3e50;
-    margin-bottom: 20px;
-}
-
-.multiplayer-setup-container select,
-.multiplayer-setup-container input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 16px;
-    background: #ffffff !important;
-    color: #141d23 !important;
-}
-
-/* « Nombre de joueurs : » et son choix sur une seule ligne, pour ne pas confondre ce choix avec les champs de noms. */
-.multi-count-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    margin: 0 0 18px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid var(--border-soft);
-}
-
-.multi-count-row label {
-    text-align: left;
-    font-weight: 600;
-}
-
-.multiplayer-setup-container .multi-count-row select {
-    width: auto;
-    min-width: 130px;
-    margin: 0;
-}
-
-.multiplayer-setup-container input::placeholder {
-    color: #8B93A0 !important;
-    opacity: 1;
-}
-
-.multi-turn-banner {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: #2c3e50;
-    color: white;
-    padding: 40px;
-    border-radius: 12px;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0, 26, 75, 0.5);
-    z-index: 1000;
-    width: 90%;
-    max-width: 400px;
-}
-
-:root[data-theme="dark"] .multi-turn-banner {
-    background: var(--surface);
-    border: 1px solid var(--border-soft);
-}
-
-.multi-turn-banner h2 {
-    margin-bottom: 20px;
-    font-size: 24px;
-}
-
-.multi-end-podium {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin: 30px 0;
-}
-
-.podium-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 15px;
-    background: #f8f9fa;
-    border-radius: 9999px;
-    align-items: center;
-    font-weight: bold;
-    border-left: 5px solid #ccc;
-}
-
-.podium-row.gold {
-    border-left-color: #FFD700;
-    background: #fff9e6;
-}
-
-.podium-row.silver {
-    border-left-color: #C0C0C0;
-    background: #f2f2f2;
-}
-
-.podium-row.bronze {
-    border-left-color: #CD7F32;
-    background: #faf0e6;
-}
-
-.multi-player-hud {
-    font-weight: bold;
-    color: white;
-    background: #8e44ad;
-    padding: 2px 8px;
-    border-radius: 12px;
-    margin-right: 10px;
-    font-size: 0.9em;
-}
-
-
 /* --- Overrides for Tailored Executive UI --- */
 .game-bar {
     background: rgba(255, 255, 255, 0.8) !important;
@@ -6539,36 +6418,16 @@ textarea.form-input {
     color: var(--text-dark) !important;
 }
 
-:root[data-theme="dark"] .multiplayer-setup-container {
-    background: var(--surface);
-    color: var(--text-dark);
-}
-
-:root[data-theme="dark"] .podium-row {
-    background: var(--surface-2);
-}
-
-:root[data-theme="dark"] .podium-row.gold { background: rgba(255, 215, 0, 0.14); }
-:root[data-theme="dark"] .podium-row.silver { background: rgba(192, 192, 192, 0.14); }
-:root[data-theme="dark"] .podium-row.bronze { background: rgba(205, 127, 50, 0.16); }
-
-:root[data-theme="dark"] .multiplayer-setup-container h2 {
-    color: var(--text-dark);
-}
-
 /* Champs de formulaire dans les modales et écrans de configuration (pseudo défi du jour, mode du bouton « Jouer »,
            etc.) : en mode sombre, même fond marine que la barre de recherche, avec le texte clair du thème. */
 :root[data-theme="dark"] .form-input,
-:root[data-theme="dark"] #daily-pseudo-input,
-:root[data-theme="dark"] .multiplayer-setup-container input,
-:root[data-theme="dark"] .multiplayer-setup-container select {
+:root[data-theme="dark"] #daily-pseudo-input {
     background: #17233A !important;
     border-color: #2A3B5C !important;
     color: var(--text-dark) !important;
 }
 
-:root[data-theme="dark"] .form-input::placeholder,
-:root[data-theme="dark"] .multiplayer-setup-container input::placeholder {
+:root[data-theme="dark"] .form-input::placeholder {
     color: #8B93A0 !important;
 }
 
@@ -6804,7 +6663,6 @@ body > .list-screen {
 /* Écrans qui occupent tout l'écran (accueil, carte, cadre des rapports) : aucune marge. */
 #screen-home,
 #screen-atlas,
-#screen-multi-turn,
 #screen-rapport {
     padding-top: 0;
     padding-bottom: 0;
@@ -15791,7 +15649,6 @@ body[data-view-profile="religieux"] .league-btn {
 .tr-key.is-c-sighet { background: #e7e5e4; }
 .tr-key.is-c-spinka { background: #d1fae5; }
 .tr-key.is-c-vizhnitz { background: #fbcfe8; }
-#screen-tool-hassidout .tr-bar { margin-top: 8px; }
 .tr-line.is-far { stroke-dasharray: 6 4; }
 .gen-screen .gen-view { cursor: grab; user-select: none; -webkit-user-select: none; touch-action: none; }
 .gen-screen .gen-view.is-dragging, .gen-screen .gen-view.is-dragging .gen-card, .gen-screen .gen-view.is-dragging .gen-toggle { cursor: grabbing; }
@@ -16684,6 +16541,9 @@ body[data-view-profile="religieux"] .league-btn {
 .quiz-timer i { width: 100%; }
 .quiz-timer.is-low i { background: var(--danger-red-text); }
 .quiz-time { margin: 0 0 12px; text-align: center; }
+/* Une réponse en deux écritures : le nom latin, puis le nom hébreu en dessous, plus discret ; dans une rangée de boutons (livres), à la suite. */
+.lexgame-option .he { display: block; margin-top: 2px; font-size: 15px; font-weight: 400; color: var(--muted-text); }
+.tool-history-chip .he { font-size: 0.95em; font-weight: 400; color: var(--muted-text); }
 #screen-mitsvagame .lexgame-word.mitsvagame-text { font-size: 22px; line-height: 1.35; margin-bottom: 14px; }   /* l'énoncé d'un commandement : une phrase, pas un mot */
 
 /* « Dans quelle paracha ? » : les versets montrés (le premier, puis un de plus par indice), les points en jeu, puis le choix du livre et de la paracha. */
@@ -16705,11 +16565,106 @@ body[data-view-profile="religieux"] .league-btn {
 .ordergame-slot .ordergame-chip { flex: 1; flex-direction: row; justify-content: space-between; border: 0; background: transparent; padding: 4px 6px; text-align: left; }
 .ordergame-chip .he { font-size: 14px; font-weight: 400; color: var(--muted-text); }
 .ordergame-chip:disabled { cursor: default; }
+
+/* Le verset en désordre : les places et les mots, de droite à gauche (l'attribut dir="rtl" est sur les conteneurs). */
+.scrgame-fr { margin: 0 0 10px; text-align: center; font-size: 15px; line-height: 1.45; color: var(--muted-text); }
+.scrgame-slots, .scrgame-pool { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 0 0 12px; }
+.scrgame-slot, .scrgame-chip { display: inline-flex; align-items: center; justify-content: center; min-width: 48px; min-height: 48px; padding: 6px 10px; border-radius: 12px; border: 1px dashed var(--border-soft); background: var(--surface-2); color: var(--muted-text); font: inherit; font-size: 22px; line-height: 1.4; }
+.scrgame-slot.is-filled { border-style: solid; background: var(--surface); color: var(--text-dark); cursor: pointer; }
+.scrgame-slot.is-locked { background: var(--selected-tint); border-color: var(--progress-green); cursor: default; }
+.scrgame-slot:not(.is-filled) { font-size: 13px; font-weight: 700; }
+.scrgame-chip { border-style: solid; background: var(--surface); color: var(--text-dark); cursor: pointer; }
+.scrgame-refline { margin: 0 0 8px; text-align: center; min-height: 1em; }
+
+/* Jouer à plusieurs : le panneau des réglages, l'écran « passez le téléphone » et le classement. */
+.multi-panel { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; padding: 12px; border-radius: 14px; border: 1px solid var(--border-soft); background: var(--surface); }
+.multi-names { display: flex; flex-direction: column; gap: 8px; }
+.multi-gate { position: fixed; inset: 0; z-index: 9000; display: flex; align-items: center; justify-content: center; padding: 24px; background: var(--surface-2, #f2f4f7); }
+.multi-gate-card { display: flex; flex-direction: column; align-items: center; gap: 14px; width: 100%; max-width: 380px; text-align: center; }
+.multi-gate-lead { margin: 0; font-size: 15px; color: var(--muted-text); }
+.multi-gate-name { margin: 0; font-size: 34px; font-weight: 800; line-height: 1.15; color: var(--text-dark); overflow-wrap: anywhere; }
+.multi-gate-scores { margin: 0; font-size: 13px; color: var(--muted-text); }
+.multi-gate .btn { width: 100%; }
+.multi-ranking { list-style: none; margin: 8px 0 12px; padding: 0; display: flex; flex-direction: column; gap: 6px; text-align: left; }
+.multi-ranking li { padding: 8px 12px; border-radius: 10px; border: 1px solid var(--border-soft); background: var(--surface); }
+.multi-ranking li.is-first { border-color: var(--progress-green); background: var(--selected-tint); font-weight: 700; }
+
+/* Quiz de la paracha : le choix du niveau et le bandeau de la question. */
+.pquiz-select { width: 100%; margin: 0 0 10px; }
+.pquiz-badge { margin: 0 0 6px; text-align: center; font-weight: 700; letter-spacing: 0.02em; }
 .ordergame-pool { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 0 0 12px; min-height: 12px; }
 .ordergame-actions { margin-bottom: 12px; }
 .ordergame-answer { counter-reset: none; margin: 8px 0; }
 .ordergame-answer li { font-size: 15px; }
 .ordergame-answer small { color: var(--muted-text); }
+/* « Sur la carte » : un dessin SVG de la carte, la mer et la terre aux couleurs du jour ou de la nuit, le point touché et le bon endroit. */
+.mapgame-map { margin: 0 0 10px; border-radius: 14px; overflow: hidden; border: 1px solid var(--border-soft); background: #a9cde8; touch-action: manipulation; line-height: 0; }
+.mapgame-map svg { width: 100%; height: auto; display: block; cursor: crosshair; }
+.mapgame-sea { fill: #a9cde8; }
+.mapgame-land { fill: #f3ecd9; stroke: #b9ad8c; stroke-width: 0.5; fill-rule: evenodd; }
+.mapgame-water { fill: #a9cde8; stroke: #7fa9c9; stroke-width: 0.4; }
+.mapgame-river { fill: none; stroke: #7fa9c9; stroke-width: 1; stroke-linecap: round; stroke-linejoin: round; }
+.mapgame-label { fill: #4d7595; font-size: 8px; font-style: italic; pointer-events: none; }
+.mapgame-zone { fill: rgba(231, 76, 60, 0.28); stroke: #c0392b; stroke-width: 1.2; pointer-events: none; }
+.mapgame-pin { fill: #1f3a8a; stroke: #fff; stroke-width: 1.5; pointer-events: none; }
+.mapgame-goal { fill: #1e8e3e; stroke: #fff; stroke-width: 1.5; pointer-events: none; }
+.mapgame-line { stroke: #444; stroke-width: 1; stroke-dasharray: 3 2; pointer-events: none; }
+.mapgame-legend { margin: 0 0 8px; text-align: center; }
+.mapgame-actions { margin-bottom: 12px; }
+/* La fiche après la réponse : la légende et le bouton « Lieu suivant » ne se touchent pas. */
+#mapgame-feedback-note { margin: 8px 0 0; }
+/* La case « Repères » : elle est en retrait des modes de jeu, avec sa propre case. */
+.mapgame-hints-toggle { display: inline-flex; align-items: center; gap: 8px; margin: 4px 0 0; font-size: 15px; color: var(--text-dark); cursor: pointer; }
+.mapgame-hints-toggle input { width: 18px; height: 18px; margin: 0; accent-color: #001a4b; cursor: pointer; }
+/* Les repères (réglage « Repères ») : les points des villes et montagnes, les contours des tribus et des mers ; le repère touché s'illumine. */
+.mapgame-region { fill: rgba(61, 95, 154, 0.08); stroke: #3d5f9a; stroke-width: 0.6; stroke-dasharray: 2 1.5; stroke-linejoin: round; cursor: pointer; }
+.mapgame-spot { fill: #3d5f9a; fill-opacity: 0.6; stroke: #fff; stroke-width: 0.8; cursor: pointer; }
+.mapgame-region.is-picked { fill: rgba(245, 183, 0, 0.5); stroke: #9a6700; stroke-width: 1.2; stroke-dasharray: none; }
+.mapgame-spot.is-picked { fill: #f5b700; fill-opacity: 1; stroke: #7a4f00; stroke-width: 2.2; }
+#mapgame-feedback .lexgame-actions { margin-top: 12px; }
+:root[data-theme="dark"] .mapgame-map, :root[data-theme="dark"] .mapgame-sea, :root[data-theme="dark"] .mapgame-water { background: #2c4a63; fill: #2c4a63; }
+:root[data-theme="dark"] .mapgame-land { fill: #46433a; stroke: #6d675a; }
+:root[data-theme="dark"] .mapgame-water { stroke: #567a99; }
+:root[data-theme="dark"] .mapgame-river { stroke: #567a99; }
+:root[data-theme="dark"] .mapgame-label { fill: #9cc1de; }
+:root[data-theme="dark"] .mapgame-pin { fill: #7aa2ff; }
+:root[data-theme="dark"] .mapgame-line { stroke: #ddd; }
+/* « Ma progression » : la série, les niveaux par domaine, les badges. */
+.progress-body { display: flex; flex-direction: column; gap: 10px; padding-bottom: 24px; }
+.progress-card { border: 1px solid var(--border-soft); border-radius: 14px; background: var(--surface); padding: 14px; }
+.progress-card small { display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted-text); }
+.progress-big { display: block; font-size: 34px; line-height: 1.15; margin: 2px 0 6px; color: var(--text-dark); }
+.progress-streak.is-frozen { border-color: #7fa9c9; background: rgba(127, 169, 201, 0.12); }
+.progress-streak.is-active { border-color: var(--progress-green); }
+.progress-card p { margin: 4px 0 0; }
+.progress-rule { color: var(--muted-text); }
+.progress-level-head { display: flex; align-items: baseline; gap: 8px; margin-bottom: 8px; }
+.progress-level-head .he { color: var(--muted-text); font-size: 14px; }
+.progress-level-n { margin-left: auto; font-weight: 700; }
+.progress-badges { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.progress-badge { display: flex; flex-direction: column; gap: 3px; padding: 10px; border-radius: 12px; border: 1px dashed var(--border-soft); background: var(--surface-2); opacity: 0.7; }
+.progress-badge.is-earned { opacity: 1; border-style: solid; border-color: var(--progress-green); background: var(--surface); }
+.progress-badge strong { font-size: 14px; }
+.progress-badge em { font-style: normal; font-weight: 700; font-size: 13px; color: var(--muted-text); }
+.progress-badge.is-earned em { color: var(--progress-green); }
+/* « Dates personnelles » : les lignes (à venir, mes dates), le calculateur, le formulaire. */
+.dates-body { display: flex; flex-direction: column; gap: 10px; padding-bottom: 28px; }
+.dates-card { display: flex; flex-direction: column; gap: 3px; text-align: left; width: 100%; padding: 12px 14px; border-radius: 14px; border: 1px solid var(--border-soft); background: var(--surface); color: var(--text-dark); font: inherit; cursor: pointer; }
+.dates-card-head { display: flex; align-items: baseline; gap: 8px; }
+.dates-card-head strong { font-size: 16px; }
+.dates-card-type { margin-left: auto; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted-text); }
+.dates-card-date { font-size: 14px; }
+.dates-card-meta { color: var(--muted-text); }
+.dates-calc { display: flex; flex-direction: column; gap: 10px; border: 1px solid var(--border-soft); border-radius: 14px; background: var(--surface); padding: 14px; }
+.dates-result { display: flex; flex-direction: column; gap: 6px; padding-top: 8px; border-top: 1px solid var(--border-soft); }
+.dates-result p { margin: 0; }
+.dates-field { display: flex; flex-direction: column; gap: 4px; font-size: 13px; font-weight: 600; color: var(--muted-text); }
+.dates-input { width: 100%; box-sizing: border-box; padding: 10px; border-radius: 10px; border: 1px solid var(--border-soft); background: var(--surface-2); color: var(--text-dark); font: inherit; font-weight: 400; }
+.dates-check { display: flex; align-items: center; gap: 8px; font-size: 14px; }
+.dates-form { display: flex; flex-direction: column; gap: 12px; padding-bottom: 20px; }
+.dates-row3 { display: grid; grid-template-columns: 1fr 1.6fr 1.3fr; gap: 8px; }
+.dates-error { margin: 0; color: var(--danger-red-text); font-weight: 600; }
+.dates-rules { margin-top: 6px; color: var(--muted-text); }
 .parashagame-he { margin: 0; font-size: 24px; line-height: 1.7; text-align: right; color: var(--text-dark); }
 .parashagame-fr { margin: 8px 0 0; font-size: 14px; line-height: 1.45; color: var(--muted-text); }
 .parashagame-points { margin: 0 0 8px; text-align: center; font-weight: 700; }
@@ -17445,6 +17400,21 @@ body[data-view-profile="religieux"] .league-btn {
 .zm-cal-title strong { font-size: 16px; text-transform: capitalize; color: var(--text-dark); }
 .zm-cal-title small { font-size: 12px; color: var(--muted-text); }
 .zm-cal-nav { flex: none; width: 36px; height: 36px; border: 0; background: none; color: var(--muted-text); font-size: 24px; line-height: 1; cursor: pointer; }
+/* Le titre et le sous-titre ouvrent le choix du mois et de l'année (grégorienne, hébraïque) ; les flèches répètent leur pas quand on les appuie. */
+.zm-cal-title-btn, .zm-cal-sub-btn { display: inline-flex; align-items: center; justify-content: center; gap: 4px; max-width: 100%; border: 0; background: none; font: inherit; cursor: pointer; padding: 2px 8px; border-radius: 8px; }
+.zm-cal-title-btn strong { font-size: 16px; text-transform: capitalize; color: var(--text-dark); }
+.zm-cal-sub-btn { font-size: 12px; color: var(--muted-text); }
+.zm-cal-caret { font-size: 11px; color: var(--muted-text); }
+.zm-cal-title-btn:active, .zm-cal-sub-btn:active { background: var(--selected-tint); }
+.zm-cal-nav { touch-action: manipulation; -webkit-touch-callout: none; user-select: none; -webkit-user-select: none; }
+.zm-cal-year { width: 5.5em; font: inherit; font-size: 20px; font-weight: 700; text-align: center; padding: 4px 6px; border: 1px solid var(--border-soft); border-radius: 10px; background: var(--surface); color: var(--text-dark); font-variant-numeric: tabular-nums; }
+.zm-cal-year-he { font-family: 'HX Frank', 'Frank Ruhl Libre', 'SBL Hebrew', serif; font-size: 14px; }
+.zm-cal-months { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 8px; }
+.zm-cal-month { min-height: 48px; padding: 6px 4px; border: 1px solid var(--border-soft); border-radius: 12px; background: var(--surface); color: var(--text-dark); font: inherit; font-size: 14px; font-weight: 600; text-transform: capitalize; cursor: pointer; }
+.zm-cal-month:disabled { opacity: 0.35; cursor: default; }
+.zm-cal-month.is-today { box-shadow: inset 0 0 0 1.5px var(--primary-blue); }
+.zm-cal-month.is-selected { background: var(--primary-blue); border-color: var(--primary-blue); color: #fff; }
+.zm-cal-back { display: block; margin: 10px auto 0; border: 0; background: none; color: var(--primary-blue); font: inherit; font-size: 13px; font-weight: 700; cursor: pointer; }
 .zm-cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; text-align: center; }
 .zm-cal-dow { padding: 2px 0 4px; font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--muted-text); }
 .zm-cal-dow.is-shabbat { color: #b8860b; }
@@ -17582,8 +17552,9 @@ body[data-view-profile="religieux"] .league-btn {
 .sd-section-box { display: flex; flex-direction: column; gap: 2px; margin-bottom: 18px; }
 .sd-sec-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin: 18px 0 6px; padding: 8px 12px; border-radius: 12px; background: var(--selected-tint); color: var(--text-dark); font-size: 15px; scroll-margin-top: 72px; }
 .sd-sec-head-he { font-size: 20px; font-family: 'HX Frank', 'Frank Ruhl Libre', 'SBL Hebrew', serif; }
-.sd-seg, .sd-title { margin: 0; font-family: var(--sd-font, 'HX Torah', 'Noto Serif Hebrew', serif); font-size: var(--sd-size); line-height: 1.85; text-align: right; color: var(--text-dark); padding: 2px 0; }
-.sd-title { font-size: calc(var(--sd-size) * 1.15); font-weight: 700; text-align: center; margin: 14px 0 6px; }
+/* Texte de prière justifié comme dans un siddour imprimé : bord droit et bord gauche droits, dernière ligne calée à droite. */
+.sd-seg, .sd-title { margin: 0; font-family: var(--sd-font, 'HX Frank', 'HX Torah', serif); font-size: var(--sd-size); line-height: 1.65; text-align: justify; text-align-last: right; text-justify: inter-word; hyphens: none; color: var(--text-dark); padding: 3px 0; }
+.sd-title { font-size: calc(var(--sd-size) * 1.15); font-weight: 700; text-align: center; text-align-last: center; margin: 14px 0 6px; }
 .sd-big { font-size: 1.15em; }
 .sd-small { font-size: 0.68em; color: var(--muted-text); line-height: 1.5; }
 .sd-small.sd-v.is-on, .sd-v.is-on { color: var(--text-dark); }
@@ -18125,9 +18096,15 @@ button.zm-study-link:focus-visible { outline: 2px solid var(--primary-blue); out
 .player-profile-pseudo-form[hidden] { display: none; }
 .player-profile-pseudo-form input { flex: 1 1 140px; min-width: 0; padding: 8px 12px; border-radius: 10px; border: 1px solid var(--border-soft); background: var(--surface); color: var(--text-dark); font: inherit; }
 
-/* Siddour : les polices n'ont qu'une graisse (400). Le gras du livre (premiers mots, titres) est donc dessiné par un léger contour de la MÊME police,
-   au lieu de laisser le navigateur choisir une autre police pour le gras. */
-.sd-seg strong, .sd-title, .sd-title strong, .sd-big strong { font-family: inherit; font-weight: 400; font-synthesis: none; text-shadow: 0.35px 0 0 currentColor, -0.35px 0 0 currentColor, 0 0.2px 0 currentColor; }
+/* Siddour : le gras du livre (premiers mots, titres). Frank Ruhl Libre (police par défaut) a un vrai 700 (fonts.css) ;
+   les autres polices n'ont qu'une graisse, leur gras est alors dessiné par un léger contour de la MÊME police, au lieu de
+   laisser le navigateur prendre une autre police. data-bold est posé par sdSetFont (js/app/siddur.js). */
+/* La règle globale « * { font-family: var(--font-main) } » donnait Inter à tout ce qui est imbriqué dans le texte (titres en <big>,
+   consignes en <small>) : dans un texte de prière, tout hérite de la police choisie. */
+.sd-seg *, .sd-title * { font-family: inherit; }
+.sd-seg strong, .sd-title strong, .sd-big strong { font-synthesis: none; }
+.sd-content[data-bold="real"] :is(.sd-seg strong, .sd-title, .sd-title strong, .sd-big strong) { font-weight: 700; }
+.sd-content:not([data-bold="real"]) :is(.sd-seg strong, .sd-title, .sd-title strong, .sd-big strong) { font-weight: 400; text-shadow: 0.35px 0 0 currentColor, -0.35px 0 0 currentColor, 0 0.2px 0 currentColor; }
 .sd-font-list { display: flex; flex-direction: column; gap: 6px; margin: 8px 0 4px; }
 .sd-font-option { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; padding: 8px 14px; border: 1px solid var(--border-soft); border-radius: 12px; background: var(--surface); color: var(--text-dark); cursor: pointer; text-align: start; font: inherit; }
 .sd-font-option[aria-checked="true"] { border-color: var(--primary-blue); background: var(--selected-tint); }
@@ -18233,6 +18210,26 @@ button.zm-study-link:focus-visible { outline: 2px solid var(--primary-blue); out
     border-color: #FF8A80;
 }
 
+.settings-contact {
+    margin: 28px 0 8px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line, rgba(0, 0, 0, 0.08));
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+}
+
+.settings-contact p {
+    margin: 0;
+}
+
+.settings-contact a {
+    color: inherit;
+    text-decoration: underline;
+    overflow-wrap: anywhere;
+}
+
 .settings-credits {
     margin: 0 0 4px;
     padding-left: 18px;
@@ -18313,7 +18310,27 @@ body:has(#screen-recit:not(.hidden))::after {
 .ben-rite { min-height: 40px; padding: 6px 4px; border: 0; border-radius: 10px; background: transparent; font: inherit; font-size: 14px; font-weight: 600; color: var(--text-dark); cursor: pointer; }
 .ben-rite[aria-pressed="true"] { background: var(--surface); box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18); font-weight: 800; }
 .ben-rite-info { margin: 0; }
-.ben-card.is-diff { border-left: 4px solid #d97706; }
+.ben-halakha { margin: 12px 0; padding: 10px 12px; border: 1px solid var(--border-soft); border-radius: 12px; }
+.ben-halakha-title { cursor: pointer; font-weight: 600; font-size: 15px; }
+.ben-halakha-note { margin: 8px 0; font-style: italic; }
+.ben-halakha-sec { margin-top: 14px; display: flex; flex-direction: column; gap: 6px; }
+.ben-halakha-h { font-size: 14px; font-weight: 600; margin: 0; }
+.ben-halakha-list, .ben-halakha-ex { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 4px; }
+.ben-halakha-table { overflow-x: auto; }
+.ben-halakha-table table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.ben-halakha-table th, .ben-halakha-table td { text-align: left; vertical-align: top; padding: 6px 8px; border-bottom: 1px solid var(--border-soft); }
+.ben-halakha-table th { font-weight: 600; }
+.ben-halakha-link { font: inherit; font-size: 12px; color: #d97706; background: none; border: 0; padding: 0; margin-left: 6px; text-decoration: underline; cursor: pointer; }
+.ben-halakha-links { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.ben-halakha-sources { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 3px; }
+.ben-halakha-unverified { font-size: 11px; opacity: 0.75; border: 1px dashed currentColor; border-radius: 6px; padding: 0 5px; margin-left: 4px; }
+.ben-ikar { margin: 12px 0; }
+.ben-ikar-rows { display: flex; flex-direction: column; gap: 8px; margin: 8px 0; }
+.ben-ikar-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.ben-ikar-sel { flex: 1 1 140px; min-width: 0; }
+.ben-ikar-pct { width: 72px; }
+.ben-ikar-check { font-size: 13px; display: inline-flex; align-items: center; gap: 2px; }
+.ben-ikar-result { display: flex; flex-direction: column; gap: 6px; margin-top: 6px; }
 .ben-diff { background: #fef3c7; color: #78350f; border-color: transparent; font-weight: 700; }
 .ben-was { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 0; }
 .ben-rite-note { display: flex; flex-direction: column; gap: 2px; padding: 8px 10px; border-radius: 10px; background: var(--surface-2); }
@@ -18327,6 +18344,8 @@ body:has(#screen-recit:not(.hidden))::after {
 .ben-final { display: flex; flex-direction: column; gap: 2px; padding-top: 6px; border-top: 1px dashed var(--border-soft); }
 .ben-final-tags { align-items: center; }
 .ben-final-btn { font: inherit; font-size: 12px; cursor: pointer; }
+.ben-tag-btn { font: inherit; font-size: 12px; cursor: pointer; }
+.kor-type.is-focus { outline: 2px solid #d97706; outline-offset: 2px; }
 .ben-shiur, .ben-final-none { margin: 0; }
 .ben-finals-rule { font-style: italic; }
 .ben-finals { margin-top: 4px; }
@@ -18482,3 +18501,164 @@ body:has(#screen-recit:not(.hidden))::after {
 button.autoscroll-mode { height: 48px; padding: 0 12px; border: 1px dashed var(--border-soft); border-radius: 24px; background: transparent; cursor: pointer; }
 .autoscroll-close { color: var(--muted-text); font-size: 18px; }
 .has-autoscroll { padding-bottom: calc(var(--sab, env(safe-area-inset-bottom, 0px)) + 130px) !important; }
+
+/* Compte de l'Omer */
+.omer-body { display: flex; flex-direction: column; gap: 12px; padding-bottom: 28px; align-items: stretch; }
+.omer-day { font-size: 2rem; font-weight: 700; text-align: center; }
+.omer-count-fr { text-align: center; margin: 0; opacity: .85; }
+.omer-modes { display: flex; gap: 8px; }
+.omer-mode { flex: 1; padding: 10px 8px; border-radius: 12px; border: 1px solid currentColor; background: transparent; color: inherit; font: inherit; opacity: .6; }
+.omer-mode.is-on { opacity: 1; font-weight: 700; background: rgba(127,127,127,.18); }
+.omer-text { display: flex; flex-direction: column; gap: 8px; }
+.omer-he { font-size: 1.5rem; line-height: 1.9; margin: 0; }
+.omer-he-count { font-size: 1.8rem; font-weight: 700; text-align: center; }
+.omer-fr, .omer-translit, .omer-note, .omer-none { margin: 0; font-size: .95rem; }
+.omer-translit, .omer-note { opacity: .7; font-style: italic; }
+.omer-full { padding: 12px; border-radius: 12px; border: 1px solid currentColor; background: transparent; color: inherit; font: inherit; }
+
+/* --- Généalogie biblique : les trois présentations (Fiche · Lignées · Arbre), voir js/app/genealogy.js --- */
+.gen-views { display: inline-flex; margin-top: 8px; padding: 3px; gap: 2px; border: 1px solid var(--border-soft); border-radius: 999px; background: var(--surface); }
+.gen-view-btn { min-height: 34px; padding: 4px 16px; border: 0; border-radius: 999px; background: transparent; color: var(--text-dark); font: inherit; font-size: 14px; font-weight: 700; cursor: pointer; }
+.gen-view-btn[aria-pressed="true"] { background: var(--primary-blue); color: #fff; }
+:root[data-theme="dark"] .gen-view-btn[aria-pressed="true"] { background: var(--text-dark); color: var(--bg-color); }
+#screen-tool-genealogy:not([data-view="tree"]) .gen-tree-only,
+#screen-tool-genealogy:not([data-view="tree"]) .gen-dir-btn,
+#screen-tool-genealogy[data-view="family"] .gen-actions { display: none; }
+.gen-card.is-lineage { box-shadow: 0 0 0 2px #f59e0b; }
+.gen-line.is-lineage { stroke: #f59e0b; stroke-width: 3; }
+
+/* La fiche : la personne au centre, sa lignée en haut, sa famille autour. */
+.gen-family { width: 100%; max-width: 560px; box-sizing: border-box; padding: 6px 16px 28px; text-align: left; }
+.gen-family [lang="he"] { font-family: 'Frank Ruhl Libre', 'SBL Hebrew', serif; }
+.gen-fam-path { display: flex; gap: 2px; overflow-x: auto; padding: 2px 0 6px; scrollbar-width: none; }
+.gen-fam-path::-webkit-scrollbar { display: none; }
+.gen-fam-path button { flex: 0 0 auto; border: 0; background: none; color: var(--muted-text); font: inherit; font-size: 12.5px; padding: 4px 2px; cursor: pointer; white-space: nowrap; }
+.gen-fam-path button::after { content: "›"; margin-inline-start: 5px; opacity: .6; }
+.gen-fam-path button[aria-current="true"] { color: var(--text-dark); font-weight: 700; }
+.gen-fam-path[dir="rtl"] button::after { content: "‹"; }
+.gen-fam-path button[aria-current="true"]::after { content: none; }
+.gen-fam-sec { margin-top: 14px; }
+.gen-fam-h { display: flex; justify-content: space-between; margin: 0 0 6px; font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--muted-text); }
+.gen-fam-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; }
+.gen-fam-card { display: flex; flex-direction: column; min-width: 0; padding: 8px 10px; border: 1px solid #94a3b8; border-radius: 12px; color: #0f172a; font: inherit; text-align: start; cursor: pointer; }
+.gen-fam-card.is-man { border-color: #60a5fa; }
+.gen-fam-card.is-woman { border-color: #f472b6; }
+.gen-fam-card.is-far { border-style: dashed; }
+.gen-fam-card.is-cat, .gen-fam-main.is-cat { box-shadow: 0 0 0 3px var(--cat-color); }
+.gen-fam-name { font-weight: 700; font-size: 14px; overflow-wrap: anywhere; }
+.gen-fam-sub { font-size: 11.5px; color: #475569; }
+.gen-fam-none { margin: 0; padding: 6px 0; font-size: 13px; font-style: italic; color: var(--muted-text); }
+.gen-fam-mother { grid-column: 1 / -1; margin: 6px 0 -2px; font-size: 12px; color: var(--muted-text); }
+.gen-fam-main { margin-top: 14px; padding: 16px 16px 14px; border: 2px solid #60a5fa; border-radius: 20px; background: var(--surface); color: var(--text-dark); text-align: center; box-shadow: var(--card-shadow); animation: gen-rise .25s ease-out; }
+.gen-fam-main.is-woman { border-color: #f472b6; }
+.gen-fam-main.is-man, .gen-fam-main.is-woman { background: var(--surface); }
+.gen-fam-gen { margin: 0; font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--muted-text); }
+.gen-fam-big { margin: 2px 0 0; font-size: 28px; line-height: 1.15; letter-spacing: -0.01em; overflow-wrap: anywhere; }
+.gen-fam-big[lang="he"] { font-size: 32px; }
+.gen-fam-alt { margin: 2px 0 0; font-size: 18px; color: var(--muted-text); }
+.gen-fam-alt[lang="he"] { font-size: 22px; }
+.gen-fam-chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-top: 10px; }
+.gen-fam-chip { flex: 0 0 auto; padding: 4px 11px; border: 1px solid #94a3b8; border-radius: 999px; color: #0f172a; font: inherit; font-size: 13px; cursor: pointer; }
+.gen-fam-chip.is-man { border-color: #60a5fa; }
+.gen-fam-chip.is-woman { border-color: #f472b6; }
+.gen-fam-chip.is-self { outline: 2px solid #f59e0b; outline-offset: 1px; font-weight: 700; }
+.gen-fam-tag { display: inline-flex; align-items: center; gap: 5px; padding: 2px 9px; border: 1px solid var(--border-soft); border-radius: 999px; font-size: 12px; color: var(--muted-text); }
+.gen-fam-actions { display: flex; justify-content: center; gap: 8px; margin-top: 10px; }
+.gen-fam-actions:empty { display: none; }
+.gen-fam-actions .btn { width: auto; min-height: 36px; padding: 6px 14px; font-size: 13px; }
+.gen-fam-sibs { display: flex; gap: 6px; overflow-x: auto; padding: 3px 2px 4px; }
+@keyframes gen-rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .gen-fam-main { animation: none; } }
+
+/* Les lignées : l'arbre en sommaire, avec un bandeau qui suit la branche lue. */
+.gen-lines-box { width: 100%; flex: 1; min-height: 62vh; display: flex; flex-direction: column; border-top: 1px solid var(--glass-border); text-align: start; }
+.gen-lines-box.hidden { display: none; }
+.gen-lines-path { flex: 0 0 auto; margin: 8px 12px 4px; padding: 7px 10px; min-height: 34px; box-sizing: border-box; border: 1px solid var(--border-soft); border-radius: 12px; background: var(--surface); font-size: 12.5px; color: var(--muted-text); white-space: nowrap; overflow-x: auto; scrollbar-width: none; }
+.gen-lines-path::-webkit-scrollbar { display: none; }
+.gen-lines-path button { border: 0; background: none; padding: 0; color: inherit; font: inherit; cursor: pointer; }
+.gen-lines-path button:last-child { color: var(--text-dark); font-weight: 700; }
+.gen-ln-sep { margin: 0 5px; opacity: .6; }
+.gen-lines-scroll { position: relative; flex: 1 1 0; min-height: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 0 10px 40px; }
+.gen-lines-list { max-width: 720px; margin: 0 auto; }
+.gen-ln-row { display: flex; align-items: flex-start; gap: 4px; padding-block: 3px; background-image: repeating-linear-gradient(to right, var(--border-soft) 0 1px, transparent 1px 14px); background-repeat: no-repeat; background-position: 10px 0; }
+.gen-lines-list[dir="rtl"] .gen-ln-row { background-position: right 10px top 0; }
+.gen-lines-list[dir="rtl"] .gen-ln-toggle { transform: scaleX(-1); }
+.gen-ln-toggle { flex: 0 0 26px; height: 26px; border: 0; border-radius: 6px; background: none; color: var(--muted-text); font-size: 12px; cursor: pointer; }
+.gen-ln-space { flex: 0 0 26px; }
+.gen-ln-body { flex: 1; min-width: 0; font-size: 14px; line-height: 1.5; color: var(--text-dark); }
+.gen-ln-name, .gen-ln-spouse { padding: 1px 5px; border: 0; border-radius: 6px; background: none !important; color: var(--text-dark); font: inherit; font-weight: 600; cursor: pointer; box-shadow: inset 0 -2px 0 #60a5fa; }
+.gen-ln-name.is-woman, .gen-ln-spouse.is-woman { box-shadow: inset 0 -2px 0 #f472b6; }
+.gen-ln-name.is-chain { font-weight: 500; }
+.gen-ln-name.is-cat, .gen-ln-spouse.is-cat { box-shadow: inset 0 0 0 2px var(--cat-color); }
+.gen-ln-name.is-lineage { background: color-mix(in srgb, #f59e0b 22%, transparent) !important; }
+.gen-ln-name.is-focus, .gen-ln-spouse.is-focus { background: #f59e0b !important; color: #0f172a; }
+.gen-ln-name[lang="he"], .gen-ln-spouse[lang="he"], .gen-lines-path[lang="he"] button { font-family: 'Frank Ruhl Libre', 'SBL Hebrew', serif; font-size: 1.08em; }
+.gen-ln-arrow { margin: 0 1px; color: var(--muted-text); opacity: .7; }
+.gen-ln-meta { margin-inline-start: 5px; font-size: 11.5px; color: var(--muted-text); white-space: nowrap; }
+.gen-ln-badge { margin-inline-start: 5px; padding: 0 7px; border-radius: 999px; background: var(--surface-2); font-size: 11px; font-weight: 700; color: var(--muted-text); }
+.gen-ln-spouses { font-size: 12.5px; color: var(--muted-text); padding-inline-start: 4px; }
+.gen-ln-spouse { font-weight: 500; }
+
+
+/* Hafrachat halla : le calcul sous la mitsva (js/app/commandments.js, hallahCalculator). L'élément de la liste réserve 52 px à gauche pour sa pastille numérotée :
+   la marge négative fait occuper au calcul toute la largeur de la carte. */
+.cmd-hallah { margin: 14px 0 0 -40px; padding-top: 12px; border-top: 1px solid var(--border-soft); }
+.cmd-hallah-row { display: flex; gap: 8px; align-items: center; margin: 8px 0; }
+.cmd-hallah-input { flex: 1; min-width: 0; font: inherit; font-size: 16px; padding: 10px 12px; border: 1px solid var(--rule); border-radius: 12px; background: var(--surface); color: var(--ink); }
+.cmd-hallah-unit { width: 110px; }
+.cmd-nidda-fields { display: grid; gap: 10px; margin: 8px 0; }
+.cmd-nidda-field { display: flex; flex-direction: column; gap: 4px; }
+.cmd-nidda-field .cmd-hallah-input { flex: none; width: 100%; }
+.cmd-hallah-result { font-weight: 700; margin: 8px 0; }
+/* La bénédiction et la formule : un bloc chacune, l'hébreu au-dessus de sa phonétique et de sa traduction. */
+.cmd-hallah-block { margin: 14px 0 0; padding: 12px 14px; background: var(--surface-2); border-radius: 12px; }
+.cmd-hallah-block .cmd-name { display: block; margin-bottom: 8px; }
+.cmd-hallah-he { margin: 0 0 12px; font-size: 20px; line-height: 1.8; text-align: right; color: var(--ink); }
+.cmd-hallah-tr { margin: 0 0 10px; font-size: 14px; line-height: 1.5; color: var(--ink-soft); }
+.cmd-hallah-fr { margin: 0; padding-top: 10px; border-top: 1px solid var(--border-soft); font-size: 14px; line-height: 1.5; color: var(--muted-text); }
+
+
+/* Petit écran : la fiche d'accueil ne doit pas dépasser l'écran. On retire les sous-textes de description (sauf l'invite « Choisissez… ») et on resserre. */
+@media (max-height: 880px) {
+    .first-profile-card .modal-desc:not(.first-profile-hint) { display: none; }
+    .first-profile-card { padding: 18px 16px; }
+    .first-profile-intro { margin-bottom: 10px; }
+    .first-profile-card .settings-group { margin-bottom: 10px; }
+}
+.profile-travel { margin: 8px 2px 0; padding: 8px 12px; border-radius: 12px; background: var(--selected-tint); color: var(--text-dark); font-size: 12.5px; line-height: 1.45; }
+
+/* --- Périodes et usages (js/app/periods.js) : la liste des périodes, puis les règles d'une période avec leur statut --- */
+.per-rite { display: flex; flex-direction: column; gap: 4px; margin-bottom: 12px; }
+.per-list { display: flex; flex-direction: column; gap: 10px; }
+.per-card { display: flex; flex-direction: column; align-items: stretch; gap: 6px; padding: 12px 14px; border: 1px solid var(--border-soft); border-radius: 14px; background: var(--surface); color: var(--text-dark); font: inherit; text-align: left; cursor: pointer; }
+.per-card.is-active { border-color: var(--text-dark); box-shadow: var(--card-shadow); }
+.per-card:focus-visible, .per-back:focus-visible { outline: 2px solid var(--text-dark); outline-offset: 2px; }
+.per-card-head, .per-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px 12px; }
+.per-card-name, .per-title { font-size: 17px; line-height: 1.25; margin: 0; font-weight: 800; }
+.per-card-he { font-size: 18px; color: var(--muted-text); }
+.per-card-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; }
+.per-badge { display: inline-block; padding: 2px 10px; border: 1px solid var(--border-soft); border-radius: 999px; background: var(--surface-2); font-size: 12px; font-weight: 700; }
+.per-badge-active { border-color: var(--success-text); color: var(--success-text); }
+.per-badge-soon { border-color: var(--favorite-yellow); }
+.per-back { align-self: flex-start; margin-bottom: 8px; }
+.per-dates { margin: 2px 0; }
+.per-group { margin: 18px 0 8px; font-size: 14px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted-text); }
+.per-rule { gap: 6px; }
+.per-rule-head { display: flex; align-items: flex-start; gap: 10px; }
+.per-rule-text { flex: 1; min-width: 0; line-height: 1.35; }
+.per-mark { flex: none; display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; border: 2px solid currentColor; font-weight: 800; font-size: 15px; line-height: 1; }
+.per-mark-no { color: var(--danger-red-text); }
+.per-mark-ok { color: var(--success-text); }
+.per-mark-avoid { color: var(--favorite-yellow); }
+.per-mark-must { color: var(--text-dark); background: var(--selected-tint); }
+.per-mark-custom { color: var(--muted-text); }
+.per-status { flex: none; font-size: 12px; font-weight: 800; }
+.per-status-no { color: var(--danger-red-text); }
+.per-status-ok { color: var(--success-text); }
+.per-status-avoid, .per-status-custom { color: var(--muted-text); }
+.per-note { font-size: 13.5px; line-height: 1.45; }
+.per-others, .per-src { font-size: 12.5px; line-height: 1.4; color: var(--muted-text); }
+.per-others { font-style: italic; }
+.per-disclaimer { margin-top: 16px; }
+.per-day { gap: 6px; }
+.per-occ { font-size: 13px; font-weight: 700; color: var(--muted-text); margin: 0; }

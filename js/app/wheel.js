@@ -380,6 +380,8 @@ function wheelTapMonth(month) {
 function wheelFinish(calendar, game) {
     game.done = true;
     wheelProgressSave(CalendarWheel.recordResult(wheelProgress(), calendar.id, game.errors));
+    // La partie est terminée : elle compte pour la série et les niveaux (js/app/progress.js) ; chaque erreur retire un dixième du score.
+    if (typeof progressRecord === 'function') progressRecord('wheel', Math.max(0, 10 - game.errors), 10);
 }
 
 // Une fête posée : son nom, sa date et ce qu'on y célèbre (après chaque bonne réponse, ou au toucher d'une pastille).

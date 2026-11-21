@@ -53,7 +53,7 @@ function purgameRender() {
     document.getElementById('purgame-question').textContent = t('purgame.ask_item');
     QuizUI.word('purgame', q.shown, true);
     document.getElementById('purgame-he').textContent = q.shownHe;
-    QuizUI.options('purgame', q, option => ({ label: t('purgame.' + option.label) }), purgameAnswer);
+    QuizUI.options('purgame', q, option => ({ label: t('purgame.' + option.label), he: option.he }), purgameAnswer);
     QuizUI.timerStart('purgame', PurityGameCore.TIME_MS, 'screen-purgame', purgameTimeout);
 }
 

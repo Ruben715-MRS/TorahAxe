@@ -54,7 +54,6 @@ const tanakhSummaries = {};   // livre -> resume-<livre>.json : { book, parts?, 
 const tanakhCounts = {};   // livre -> counts-<livre>.json : { order, chapters[c][v] = masque } (quels exégètes commentent le verset)
 let tanakhAliyot = null;     // data/torah/aliyot.json : { parashot[k] = [7 débuts [c, v], maftir ou null] } (null tant qu'il n'est pas chargé)
 let tanakhHaftarot = null;   // data/torah/haftarot.json : { regular, combined, sabbaths } (null tant qu'il n'est pas chargé)
-let tanakhCalendar = null;   // data/torah/calendar.json : { sabbaths } (le calendrier des parachiot, diaspora)
 let tanakhWeekDate = null;   // la date choisie pour « Paracha et haftara par date » (null : aujourd'hui)
 let tanakhWeekOpen = false;
 let tanakhParashot = null;  // data/torah/parashot.json : { books, parashot[] } (null tant qu'il n'est pas chargé)
@@ -102,6 +101,12 @@ function tanakhOpenParasha(gi, aliyah, from) {
 
 function toolTanakhInit() {
     autoScrollClose('tanakh');
+    if (tanakhPendingHaftara && tanakhIndex) {
+        const ph = tanakhPendingHaftara;
+        tanakhPendingHaftara = null;
+        tanakhOpenHaftara(ph);
+        return;
+    }
     if (tanakhPendingParasha && tanakhIndex) {
         const pp = tanakhPendingParasha;
         tanakhPendingParasha = null;
@@ -122,6 +127,12 @@ function toolTanakhInit() {
         .then(index => {
             tanakhIndex = index;
             msg.textContent = '';
+            if (tanakhPendingHaftara) {
+                const ph = tanakhPendingHaftara;
+                tanakhPendingHaftara = null;
+                tanakhOpenHaftara(ph);
+                return;
+            }
             if (tanakhPendingParasha) {
                 const pp = tanakhPendingParasha;
                 tanakhPendingParasha = null;
@@ -392,12 +403,6 @@ function tanakhLoadParashot() {
             .then(res => { if (!res.ok) throw new Error('haftarot HTTP ' + res.status); return res.json(); })
             .then(data => { tanakhHaftarot = data; tanakhRender(); })
             .catch(() => { /* pas de haftarot */ });
-    }
-    if (!tanakhCalendar) {
-        fetch('data/torah/calendar.json')
-            .then(res => { if (!res.ok) throw new Error('calendrier HTTP ' + res.status); return res.json(); })
-            .then(data => { tanakhCalendar = data; tanakhRender(); })
-            .catch(() => { /* pas de recherche par date */ });
     }
 }
 
@@ -1146,10 +1151,20 @@ function tanakhGoParasha(gi, aliyah = 0) {
 }
 
 // Ouvre une haftara : `info` = { refs, title, rite ('a' | 's' | ''), back : { id, rank } } ; plusieurs livres (rare) : le premier s'ouvre, un bouton ouvre l'autre.
+// `back` est facultatif : sans lui, pas de bouton « Retour à la paracha » (la touche Retour de l'écran ramène à l'écran d'origine).
 function tanakhOpenHaftara(info, group) {
     const groups = HaftarotCore.groupByBook(info.refs);
     const g = groups[group || 0];
-    tanakhOpen(g.id, { mode: 'chapter', haftara: { refs: g.refs, all: info.refs, title: info.title, rite: info.rite, back: info.back, group: group || 0 } });
+    tanakhOpen(g.id, { mode: 'chapter', haftara: { refs: g.refs, all: info.refs, title: info.title, rite: info.rite, back: info.back || null, group: group || 0 } });
+}
+
+// Une haftara demandée par un autre écran (le bouton « Haftara » de l'écran Zmanim) : { refs, title, rite }, prise au prochain toolTanakhInit.
+let tanakhPendingHaftara = null;
+function tanakhOpenHaftaraFrom(info, from) {
+    tanakhPendingHaftara = { refs: info.refs, title: info.title, rite: info.rite };
+    tanakhPending = null;
+    tanakhPendingParasha = null;
+    openTool('tanakh', from || 'screen-main');
 }
 
 // Les boutons d'une haftara : « Achkénaze : Isaïe 54:1–55:5 », « Séfarade : … » ; un seul bouton quand les deux rites lisent la même chose.
@@ -1191,11 +1206,13 @@ function tanakhRenderCycle() {
             btn.onclick = () => tanakhOpenHaftara(hf, i);
             row.appendChild(btn);
         });
-        const back = tanakhCycleNode('button', 'tool-history-chip', t('tools.tanakh_haftara_back'));
-        back.type = 'button';
-        back.id = 'tool-tanakh-haftara-back';
-        back.onclick = () => tanakhOpen(hf.back.id, { mode: 'parasha', parasha: hf.back.rank, aliyah: 0 });
-        row.appendChild(back);
+        if (hf.back) {
+            const back = tanakhCycleNode('button', 'tool-history-chip', t('tools.tanakh_haftara_back'));
+            back.type = 'button';
+            back.id = 'tool-tanakh-haftara-back';
+            back.onclick = () => tanakhOpen(hf.back.id, { mode: 'parasha', parasha: hf.back.rank, aliyah: 0 });
+            row.appendChild(back);
+        }
         box.appendChild(row);
         return;
     }
@@ -1214,7 +1231,7 @@ function tanakhRenderCycle() {
     }
     box.appendChild(line);
     // Par date.
-    if (tanakhCalendar) box.appendChild(tanakhRenderWeek());
+    box.appendChild(tanakhRenderWeek());
 }
 
 function tanakhWeekValue() {
@@ -1249,11 +1266,12 @@ function tanakhRenderWeek() {
     result.id = 'tool-tanakh-week-result';
     result.setAttribute('role', 'status');
     const date = tanakhWeekDate || new Date();
-    const info = HaftarotCore.sabbathInfo(tanakhCalendar, tanakhHaftarot, date);
+    const israel = typeof zmStoredIsrael === 'function' && zmStoredIsrael();
+    const info = HaftarotCore.sabbathInfo(TorahCore.parashaForDate(null, date, israel), tanakhHaftarot, date);
     if (!info) {
-        const range = HaftarotCore.calendarRange(tanakhCalendar);
-        const key = HaftarotCore.sabbathKey(date);
-        const inside = range && key >= range.first && key <= range.last;
+        // Hors du calendrier (1583 à 2400), ou un Chabbat de fête qui n'a pas de paracha ordinaire.
+        const year = Number(HaftarotCore.sabbathKey(date).slice(0, 4));
+        const inside = year >= 1583 && year <= 2400;
         result.appendChild(tanakhCycleNode('p', 'tool-small', t(inside ? 'tools.tanakh_week_holiday' : 'tools.tanakh_week_out')));
     } else {
         const [y, m, d] = info.key.split('-').map(Number);

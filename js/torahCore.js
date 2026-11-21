@@ -15,9 +15,9 @@
 // petuchot). Une petucha reçoit de nouveau son marqueur « #(פ) » en fin de bloc, comme dans la source.
 
 (function (root, factory) {
-    if (typeof module === 'object' && typeof module.exports === 'object') module.exports = factory();
-    else root.TorahCore = factory();
-})(typeof self !== 'undefined' ? self : this, function () {
+    if (typeof module === 'object' && typeof module.exports === 'object') module.exports = factory(require('./sedraCore.js'));
+    else root.TorahCore = factory(root.SedraCore);
+})(typeof self !== 'undefined' ? self : this, function (Sedra) {
     'use strict';
 
     var DEFAULT_URL = 'data/torah/torah.json';
@@ -277,19 +277,13 @@
         return out;
     }
 
-    // Paraschiyot de la semaine. `calendar` : { sabbaths: { 'AAAA-MM-JJ': [indices de parashot.json] } }, un samedi par clé.
-    // Renvoie les indices du prochain samedi à partir de `date` (le jour même compte), ou null si le calendrier ne va pas jusque-là.
-    function parashaForDate(calendar, date) {
-        if (!calendar || !calendar.sabbaths) return null;
-        var d = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-        d.setDate(d.getDate() + ((6 - d.getDay() + 7) % 7));
-        var pad = function (n) { return n < 10 ? '0' + n : String(n); };
-        var key = d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
-        return calendar.sabbaths[key] || null;
+    // La paracha de la semaine : les indices (dans data/torah/parashot.json) des parachiot du prochain samedi à partir de `date` (le jour même compte), ou null (Chabbat de fête, sans
+    // paracha ordinaire ; ou date hors du calendrier de l'application, 1583 à 2400). Le calcul est celui de js/sedraCore.js, pour toute date et pour Israël comme pour la diaspora
+    // (`israel`, faux par défaut) : data/torah/calendar.json (2025 à 2036, diaspora) n'est plus nécessaire, le paramètre `calendar` est gardé pour les appels existants et ignoré.
+    function parashaForDate(calendar, date, israel) {
+        return Sedra.parashaOfDate({ year: date.getFullYear(), month: date.getMonth() + 1, day: date.getDate() }, !!israel);
     }
 
-    // Chargeur : `fetchFn(url)` doit renvoyer une réponse façon fetch. Renvoie une fonction `load()`
-    // qui résout vers les blocs décodés ; le téléchargement n'a lieu qu'au premier appel.
     function createLoader(fetchFn, url) {
         var pending = null;
         return function load() {

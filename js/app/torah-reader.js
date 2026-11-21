@@ -90,7 +90,6 @@ const TORAH_READER_POSITION_KEY = 'torahaxe_torah_reader_position';
 // La position n'est enregistrée qu'après une action de l'utilisateur (toucher, molette, clic) : les ajustements automatiques
 // (mise à l'échelle, rendu des pages voisines) ne modifient pas la mémoire.
 let torahReaderSaveEnabled = false;
-let torahReaderWeek = null;   // calendrier des paraschiyot (data/torah/calendar.json), s'il est installé
 function torahReaderSavedBlock() {
     try {
         const b = JSON.parse(localStorage.getItem(TORAH_READER_POSITION_KEY) || 'null');
@@ -669,21 +668,13 @@ function torahReaderPickButton(p, k, withFr) {
     return btn;
 }
 
-// Calendrier des paraschiyot : data/torah/calendar.json. Sans ce fichier, le bouton de la semaine reste caché.
-function torahReaderLoadWeek() {
-    fetch('data/torah/calendar.json')
-        .then(res => (res.ok ? res.json() : null))
-        .catch(() => null)
-        .then(calendar => {
-            torahReaderWeek = calendar;
-            torahReaderShowWeek();
-        });
-}
+// Le bouton de la semaine : la paracha est calculée (js/sedraCore.js), rien à charger.
+function torahReaderLoadWeek() { torahReaderShowWeek(); }
 
 function torahReaderShowWeek() {
     const btn = toolEl('torah-reader-week');
     if (!btn || !torahReaderData) return;
-    const indices = TorahCore.parashaForDate(torahReaderWeek, new Date());
+    const indices = TorahCore.parashaForDate(null, new Date(), typeof zmStoredIsrael === 'function' && zmStoredIsrael());
     if (!indices || !indices.length) { btn.classList.add('hidden'); return; }
     const names = indices.map(k => torahReaderData.parashot[k].he);
     btn.textContent = names.join(' – ');

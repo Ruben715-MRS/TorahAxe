@@ -1,7 +1,7 @@
 // =========================================================================
 // === HAFTAROT ET PARACHA PAR DATE (règles, sans DOM) ===
 // =========================================================================
-// Les haftarot sont dans data/torah/haftarot.json (scripts/build_haftarot.js) ; le calendrier des parachiot dans data/torah/calendar.json. Ici : lire ces
+// Les haftarot sont dans data/torah/haftarot.json (scripts/build_haftarot.js) ; les parachiot de chaque Chabbat se calculent (js/sedraCore.js, TorahCore.parashaForDate). Ici : lire ces
 // fichiers (le shabbat d'une date, la haftara d'une paracha ou d'un shabbat), nommer une référence en français et la placer dans les livres de data/tanakh.
 // Testé dans tests/haftarotCore.test.js, qui vérifie chaque référence contre les chapitres et versets des livres.
 
@@ -121,21 +121,17 @@
     }
 
     // Tout ce qu'on sait d'un shabbat : { key, indices, haftara : { a, s }, why (le nom français du shabbat particulier, ou '') }, ou null si le calendrier
-    // ne dit rien (fête, ou année hors du calendrier). `calendar` : data/torah/calendar.json ; `data` : data/torah/haftarot.json.
-    function sabbathInfo(calendar, data, date) {
-        if (!calendar || !calendar.sabbaths) return null;
+    // ne dit rien (fête, ou année hors du calendrier). `indices` : les parachiot de ce Chabbat (TorahCore.parashaForDate), null si c'est une fête ; `data` : data/torah/haftarot.json.
+    function sabbathInfo(indices, data, date) {
+        if (!indices || !indices.length) return null;
         var key = sabbathKey(date);
-        var indices = calendar.sabbaths[key];
-        if (!indices) return null;
         var special = data && data.sabbaths && data.sabbaths[key];
+        // Les Chabbatot particuliers (Chekalim, Zakhor, Hanouka, Roch Hodech…) ne sont listés que pour les années de data/torah/haftarot.json : hors de cette plage on ne peut pas
+        // savoir si ce Chabbat en est un, donc on ne donne pas de haftara (plutôt qu'une haftara ordinaire peut-être fausse).
+        var listed = data && data.sabbaths ? Object.keys(data.sabbaths).sort() : [];
+        if (!special && listed.length && (key < listed[0].slice(0, 4) + '-01-01' || key > listed[listed.length - 1].slice(0, 4) + '-12-31')) return { key: key, indices: indices, haftara: null, why: '' };
         var haftara = special ? { a: special.a, s: special.s } : indices.length > 1 ? (data && data.combined && data.combined[indices.join('-')]) : regular(data, indices[0]);
         return { key: key, indices: indices, haftara: haftara || null, why: special ? whyLabel(special.why) : '' };
     }
-    // Le samedi du calendrier le plus proche en dehors des bornes ? Les bornes du calendrier : premier et dernier shabbat.
-    function calendarRange(calendar) {
-        var keys = Object.keys((calendar && calendar.sabbaths) || {}).sort();
-        return keys.length ? { first: keys[0], last: keys[keys.length - 1] } : null;
-    }
-
-    return { BOOKS: BOOKS, whyLabel: whyLabel, parseRef: parseRef, refLabel: refLabel, refsLabel: refsLabel, groupByBook: groupByBook, segments: segments, sabbathKey: sabbathKey, regular: regular, sabbathInfo: sabbathInfo, calendarRange: calendarRange };
+    return { BOOKS: BOOKS, whyLabel: whyLabel, parseRef: parseRef, refLabel: refLabel, refsLabel: refsLabel, groupByBook: groupByBook, segments: segments, sabbathKey: sabbathKey, regular: regular, sabbathInfo: sabbathInfo };
 }));

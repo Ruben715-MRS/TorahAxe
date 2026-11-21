@@ -21,6 +21,12 @@
         settings: function () { try { return JSON.parse(root.localStorage.getItem('zmanimReminders') || 'null'); } catch (e) { return null; } },
         place: function () { try { return root.ZmanimCore.normalizePlace(JSON.parse(root.localStorage.getItem('zmanimPlace') || 'null')); } catch (e) { return null; } },
         opts: function () { return typeof root.zmStoredOpts === 'function' ? root.zmStoredOpts() : {}; },
+        // Israël ou diaspora d'après le domicile choisi (js/app/first-profile.js) ; undefined : le lieu décide.
+        israel: function () { try { var d = root.localStorage.getItem('torahaxe_domicile_v1'); return d === 'israel' ? true : d === 'diaspora' ? false : undefined; } catch (e) { return undefined; } },
+        // Les dates personnelles (Hazkara, anniversaires : js/personalDatesCore.js) : leur registre, le rite choisi (qui règle l'Adar). Facultatif : sans elles, rien de plus n'est programmé.
+        datesCore: function () { return root.PersonalDatesCore; },
+        dates: function () { try { return JSON.parse(root.localStorage.getItem('torahaxe_dates_v1') || 'null'); } catch (e) { return null; } },
+        rite: function () { try { return root.localStorage.getItem('torahaxe_rite_v1') === 'ashkenaze' ? 'ashkenaze' : 'sefarade'; } catch (e) { return 'sefarade'; } },
         tr: function (key, params) { return t(key, params); },   // t : constante globale de js/i18n.js (pas une propriété de window)
         now: function () { return Date.now(); },
         locale: 'fr'
@@ -64,7 +70,13 @@
         if (!p || !core) return Promise.resolve(0);
         var settings = core.normalize(deps.settings());
         var place = deps.place();
-        var items = core.anyEnabled(settings) && place ? core.plan(settings, place, deps.opts(), deps.now(), HORIZON_DAYS) : [];
+        var zmanimItems = core.anyEnabled(settings) && place ? core.plan(settings, place, deps.opts(), deps.now(), HORIZON_DAYS, deps.israel ? deps.israel() : undefined) : [];
+        // Les rappels des dates personnelles ne dépendent pas du réglage des Zmanim : ils ont leur choix par date. Ils ont besoin du lieu (lever du soleil, coucher, sortie des étoiles).
+        var dates = deps.datesCore ? deps.datesCore() : null;
+        var rite = deps.rite ? deps.rite() : 'sefarade';
+        var personalItems = dates && place && deps.dates ? dates.plan(deps.dates(), place, deps.opts(), deps.now(), HORIZON_DAYS, rite) : [];
+        var items = zmanimItems.concat(personalItems).sort(function (a, b) { return a.at - b.at; }).slice(0, core.MAX_PENDING);
+        var term = deps.tr(rite === 'ashkenaze' ? 'dates.term_yahrzeit' : 'dates.term_hazkara');
         return pendingOurs(p).then(function (old) {
             return old.length ? p.cancel({ notifications: old }) : null;
         }).then(function () {
@@ -72,8 +84,12 @@
             return permission().then(function (state) {
                 if (state !== 'granted') return 0;
                 var list = items.map(function (item, i) {
-                    var text = core.describe(item, deps.tr, place, deps.locale);
-                    return { id: ID_BASE + i, title: text.title, body: text.body, schedule: { at: new Date(item.at), allowWhileIdle: true } };
+                    var text = item.kind === 'personal' ? dates.describe(item, deps.tr, term) : core.describe(item, deps.tr, place, deps.locale);
+                    var n = { id: ID_BASE + i, title: text.title, body: text.body, schedule: { at: new Date(item.at), allowWhileIdle: true } };
+                    // Ce qu'on ouvre en touchant la notification (voir onOpen)
+                    if (item.kind === 'omer') n.extra = { route: 'omer', mode: item.when === 'morning' ? 'morning' : 'evening', day: item.day };
+                    else if (item.kind === 'personal') n.extra = { route: 'dates' };
+                    return n;
                 });
                 return p.schedule({ notifications: list }).then(function () { return list.length; });
             });
@@ -86,6 +102,19 @@
         return chain;
     }
 
+    // Quand on touche une de nos notifications : handler(extra) avec { route: 'omer', mode, day } ou { route: 'dates' }. Sans plugin : rien.
+    function onOpen(handler) {
+        var p = deps.plugin();
+        if (!p || typeof p.addListener !== 'function') return false;
+        try {
+            p.addListener('localNotificationActionPerformed', function (ev) {
+                var n = ev && ev.notification;
+                if (n && n.extra && n.extra.route) handler(n.extra);
+            });
+        } catch (e) { return false; }
+        return true;
+    }
+
     // Un rappel d'essai dans quelques secondes, pour vérifier que les notifications arrivent bien.
     function sendTest(seconds) {
         var p = deps.plugin();
@@ -96,5 +125,5 @@
         }).catch(function () { return false; });
     }
 
-    return { ID_BASE: ID_BASE, isSupported: isSupported, permission: permission, enableZmanim: enableZmanim, scheduleZmanim: scheduleZmanim, sendTest: sendTest };
+    return { ID_BASE: ID_BASE, isSupported: isSupported, permission: permission, enableZmanim: enableZmanim, scheduleZmanim: scheduleZmanim, onOpen: onOpen, sendTest: sendTest };
 }));

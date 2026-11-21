@@ -27,7 +27,8 @@ body > #screen-main {
     min-height: 0;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    padding: calc(var(--sat, 0px) + 12px) 16px 24px;
+    /* Le titre et la date restent nets : ils commencent sous le bord doux du flou de la bande d'état. */
+    padding: calc(var(--sat, 0px) + 28px) 16px 24px;
 }
 
 .home-content {
@@ -67,6 +68,18 @@ body > #screen-main {
 }
 .home-kicker::first-letter { text-transform: uppercase; }
 
+.home-night {
+    display: inline-block;
+    margin-top: 6px;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--primary-blue);
+    background: rgba(10, 31, 92, 0.08);
+}
+:root[data-theme="dark"] .home-night { color: var(--text-dark); background: rgba(255, 255, 255, 0.12); }
+
 .home-header .settings-btn {
     position: static;
     flex: none;
@@ -104,6 +117,9 @@ body > #screen-main {
 
 .home-hero-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; }
 .home-hero-name { font-size: 30px; font-weight: 800; line-height: 1.1; }
+.home-hero-name.is-long { font-size: 23px; line-height: 1.2; }
+/* Le nom sur deux lignes (« Chaharit de » / « Roch 'Hodech », « שחרית של » / « ראש חודש ») : même taille en français et en hébreu, sans coupure dans une ligne. */
+.home-hero-name.is-two, .home-hero-he.is-two { font-size: 24px; line-height: 1.25; white-space: nowrap; }
 .home-hero-he { font-family: var(--home-heb); font-size: 30px; font-weight: 700; direction: rtl; line-height: 1.1; }
 .home-hero-text { margin: 0; font-size: 14px; line-height: 1.45; opacity: 0.9; }
 
@@ -128,6 +144,12 @@ body > #screen-main {
     cursor: pointer;
 }
 .home-hero-btn:active { transform: scale(0.98); }
+/* La ligne des boutons de la carte principale : « Commencer » à gauche, « Tout le Siddour » à droite, de même largeur. */
+.home-hero-btns { display: flex; gap: 8px; }
+.home-hero-candles { margin: 0; font-size: 14px; font-weight: 600; color: #f3d9a0; }
+.home-hero-btns .home-hero-btn { flex: 1; min-width: 0; white-space: nowrap; }
+@media (max-width: 380px) { .home-hero-btns .home-hero-btn { font-size: 14px; padding-inline: 8px; } }
+.home-hero-btn.secondary { background: transparent; color: inherit; box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.7); }
 
 .home-times {
     display: grid;
@@ -144,6 +166,11 @@ body > #screen-main {
 .home-tiles { display: grid; gap: 10px; }
 .home-tiles.c2 { grid-template-columns: repeat(2, 1fr); }
 .home-tiles.c3 { grid-template-columns: repeat(3, 1fr); }
+/* Zmanim : une seule tuile pleine largeur, aux plus gros caractères de l'accueil. */
+.home-tiles.c1 { grid-template-columns: 1fr; }
+.home-tiles.c1 .home-tile { padding: 18px 8px 16px; }
+.home-tiles.c1 .home-tile .he { font-size: 38px; }
+.home-tiles.c1 .home-tile .fr { font-size: 17px; font-weight: 700; }
 
 .home-tile {
     border: 1px solid var(--border-soft);
@@ -172,6 +199,8 @@ body > #screen-main {
 .home-tile .sub { font-size: 11.5px; color: var(--muted-text); font-weight: 500; }
 .home-tiles.c2 .home-tile { padding: 16px 8px 14px; }
 .home-tiles.c2 .home-tile .he { font-size: 29px; }
+.home-tile.is-now { border-color: var(--home-gold); box-shadow: 0 0 0 1.5px var(--home-gold), var(--card-shadow); }
+.home-tile.is-now .sub { color: var(--home-gold); font-weight: 700; }
 .home-tile:active, .home-row:active, .home-card:active { background: var(--selected-tint); }
 .home-tile:focus-visible, .home-row:focus-visible, .home-card:focus-visible, .home-tab:focus-visible,
 .home-hero-btn:focus-visible, .home-hero:focus-visible { outline: 2px solid var(--home-gold); outline-offset: 2px; }
@@ -199,6 +228,9 @@ div.home-card:active { background: var(--surface); }
 .home-card small { font-size: 11px; color: var(--muted-text); font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
 .home-card strong { font-size: 16px; line-height: 1.25; }
 .home-card em { font-style: normal; font-size: 12.5px; color: var(--muted-text); }
+/* Case réduite (Michna Yomit, mitsva du jour) : deux par rangée, le texte est limité à quelques lignes. */
+.home-card-compact strong { font-size: 14px; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; overflow-wrap: anywhere; }
+.home-card-compact em { font-size: 11.5px; }
 
 /* --- Listes (une ligne par entrée, avec description) --- */
 .home-rows {
@@ -216,7 +248,7 @@ div.home-card:active { background: var(--surface); }
     color: var(--text-dark);
     font: inherit;
     display: grid;
-    grid-template-columns: 66px 1fr 12px;
+    grid-template-columns: 76px 1fr 12px;
     align-items: center;
     gap: 12px;
     padding: 11px 14px;
@@ -282,3 +314,11 @@ div.home-card:active { background: var(--surface); }
     .home-content { animation: homeFade 0.18s ease-out; }
     @keyframes homeFade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
 }
+
+/* Suivi d'étude : les cases « étudié » sous l'étude du jour */
+.study-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 2px 0 6px; }
+.study-chip { padding: 8px 12px; border-radius: 999px; border: 1px solid currentColor; background: transparent; color: inherit; font: inherit; font-size: .9rem; opacity: .75; }
+.study-chip.is-done { opacity: 1; font-weight: 700; background: rgba(46,160,67,.18); border-color: rgba(46,160,67,.9); }
+
+.cmd-flash { animation: cmd-flash 2.5s ease-out; }
+@keyframes cmd-flash { 0%, 40% { background: rgba(255, 200, 0, .35); } 100% { background: transparent; } }

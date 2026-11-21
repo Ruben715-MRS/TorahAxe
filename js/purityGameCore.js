@@ -20,7 +20,7 @@
     var ROUNDS = Quiz.ROUNDS;
     var TIME_MS = 8000;                         // le temps par animal
     var SECTIONS = ['all', 'terre', 'oiseaux', 'eau'];
-    var OPTIONS = [{ label: 'pur', value: 'pur' }, { label: 'impur', value: 'impur' }];   // `label` : la clé de traduction (purgame.pur / purgame.impur)
+    var OPTIONS = [{ label: 'pur', value: 'pur', he: 'טָהוֹר' }, { label: 'impur', value: 'impur', he: 'טָמֵא' }];   // `label` : la clé de traduction (purgame.pur / purgame.impur) ; `he` : tahor / tamé
 
     // Les animaux de mer et d'eau douce impurs, sans discussion : sans nageoires ou sans écailles (Lévitique 11:10-12 ; Deutéronome 14:10). [nom, raison]
     var SEA_IMPURE = [

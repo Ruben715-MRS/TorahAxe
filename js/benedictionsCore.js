@@ -2,7 +2,7 @@
 // === GUIDE DES BÉNÉDICTIONS — RECHERCHE ET FILTRES (sans DOM) ===
 // =========================================================================
 // Les données sont dans js/benedictionsData.js ; l'écran dans js/app/benedictions.js. Ici, ce qui se calcule, testé dans tests/benedictionsCore.test.js :
-//  - la recherche d'un aliment (sans accents ni majuscules, sur son nom, le détail de ses cas et le nom de sa bénédiction) ;
+//  - la recherche d'un aliment (sans accents ni majuscules, sur son nom, ses autres noms `alt` (kaki = plaqueminier, pitaya = fruit du dragon…), le détail de ses cas et le nom de sa bénédiction) ;
 //  - le rite (Séfarade, Ashkénaze, 'Habad) : la liste est celle de 'Habad ; `view` donne l'aliment tel qu'un autre rite le lit (bénédiction et note propres) ;
 //  - la bénédiction finale (Birkat Hamazon, Al Hamihya, Al Haguéfen, Al Haets, Boré Nefachot) d'un aliment, et la quantité qui l'exige, selon le rite ;
 //  - le filtre par bénédiction (un aliment à plusieurs bénédictions apparaît sous chacune d'elles) ;
@@ -69,7 +69,7 @@
     }
 
     function searchText(food, rite) {
-        var parts = [food.n];
+        var parts = [food.n].concat(food.alt || []);
         (view(food, rite).steps || []).forEach(function (s) { parts.push(s.t); });
         blessingsOf(food, rite).forEach(function (b) { parts.push(label(b)); });
         return stemmed(parts.join(' '));
@@ -87,9 +87,10 @@
             return words.every(function (w) { return hay.indexOf(w) !== -1; });
         });
         if (!words.length) return found;
-        // Avec une recherche : les noms les plus courts d'abord (le nom exact, « Pâtes », est le plus court), puis les plus longs ; à longueur égale, l'ordre du guide.
-        return found.map(function (food, i) { return { food: food, len: food.n.length, i: i }; })
-            .sort(function (a, b) { return a.len - b.len || a.i - b.i; })
+        // Avec une recherche : le nom exact d'abord, puis les noms les plus courts (le nom exact, « Pâtes », est le plus court), puis les plus longs ; à longueur égale, l'ordre du guide.
+        var q = stemmed(f.query);
+        return found.map(function (food, i) { return { food: food, exact: stemmed(food.n) === q ? 0 : 1, len: food.n.length, i: i }; })
+            .sort(function (a, b) { return a.exact - b.exact || a.len - b.len || a.i - b.i; })
             .map(function (x) { return x.food; });
     }
 
@@ -139,5 +140,27 @@
         return counts;
     }
 
-    return { normalize: normalize, riteOf: riteOf, override: override, view: view, blessingsOf: blessingsOf, notesOf: notesOf, label: label, finalOf: finalOf, finalOpen: finalOpen, finalsOf: finalsOf, isLiquid: isLiquid, shiur: shiur, finalNote: finalNote, filterFoods: filterFoods, countByBlessing: countByBlessing };
+    // « Mon plat » : la bénédiction de l'Ikar (le principal) d'un plat composé. `parts` : [{ b (une clé de Data.ORDER), pct (poids ou pourcentage), principal?, liant? }].
+    // Règles (Ikar veTafel, Halakha) : un ingrédient « liant » (ex. farine qui ne sert qu'à lier) est ignoré ; une des cinq céréales (Mezonot), même minoritaire, l'emporte ;
+    // puis le pain (Hamotsi) ; puis l'unique ingrédient marqué principal ; sinon la bénédiction la plus présente en quantité (égalité : ordre Maga Esh).
+    // Retour : { b, rule ('none' | 'mezonot' | 'hamotsi' | 'principal' | 'majorite' | 'egalite'), ignored (nombre d'ingrédients ignorés comme liants) }.
+    function ikarOf(parts) {
+        var all = (parts || []).filter(function (p) { return p && Data.ORDER.indexOf(p.b) !== -1 && p.b !== 'aucune'; });
+        var active = all.filter(function (p) { return !p.liant; });
+        var ignored = all.length - active.length;
+        if (!active.length) return { b: null, rule: 'none', ignored: ignored };
+        if (active.some(function (p) { return p.b === 'mezonot'; })) return { b: 'mezonot', rule: 'mezonot', ignored: ignored };
+        if (active.some(function (p) { return p.b === 'hamotsi'; })) return { b: 'hamotsi', rule: 'hamotsi', ignored: ignored };
+        var principal = active.filter(function (p) { return p.principal; });
+        if (principal.length === 1) return { b: principal[0].b, rule: 'principal', ignored: ignored };
+        var pool = principal.length > 1 ? principal : active;
+        var sums = {};
+        pool.forEach(function (p) { sums[p.b] = (sums[p.b] || 0) + (Number(p.pct) || 0); });
+        var best = Math.max.apply(null, Data.ORDER.filter(function (b) { return sums[b] !== undefined; }).map(function (b) { return sums[b]; }));
+        var tops = Data.ORDER.filter(function (b) { return sums[b] !== undefined && sums[b] === best; });
+        if (tops.length === 1) return { b: tops[0], rule: 'majorite', ignored: ignored };
+        return { b: tops[0], rule: 'egalite', tie: tops, ignored: ignored };
+    }
+
+    return { ikarOf: ikarOf, normalize: normalize, riteOf: riteOf, override: override, view: view, blessingsOf: blessingsOf, notesOf: notesOf, label: label, finalOf: finalOf, finalOpen: finalOpen, finalsOf: finalsOf, isLiquid: isLiquid, shiur: shiur, finalNote: finalNote, filterFoods: filterFoods, countByBlessing: countByBlessing };
 }));

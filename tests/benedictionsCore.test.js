@@ -5,9 +5,9 @@ const C = require('../js/benedictionsCore.js');
 
 const find = (name) => D.FOODS.filter(f => f.n === name)[0];
 
-test('les données : 291 entrées, 33 notes, toutes les bénédictions connues', () => {
-    assert.strictEqual(D.FOODS.length, 291);
-    assert.strictEqual(Object.keys(D.NOTES).length, 33);
+test('les données : 582 entrées, 46 notes, toutes les bénédictions connues', () => {
+    assert.strictEqual(D.FOODS.length, 582);
+    assert.strictEqual(Object.keys(D.NOTES).length, 46);
     D.FOODS.forEach(f => {
         C.blessingsOf(f).forEach(b => assert.ok(D.BLESSINGS[b] || b === 'aucune', f.n + ' : ' + b));
         C.notesOf(f).forEach(n => assert.ok(D.NOTES[n], f.n + ' : note ' + n));
@@ -45,8 +45,32 @@ test('la recherche ignore accents et majuscules, et cherche chaque mot', () => {
     assert.deepStrictEqual(C.filterFoods({ query: 'tarte pomme' }).map(f => f.n), ['Tarte aux pommes']);
     assert.strictEqual(C.filterFoods({ query: 'cotelette veau' }).length, 1);
     assert.strictEqual(C.filterFoods({ query: 'zzzz' }).length, 0);
-    assert.strictEqual(C.filterFoods({}).length, 291);
-    assert.strictEqual(C.filterFoods({ b: 'all', query: '' }).length, 291);
+    assert.strictEqual(C.filterFoods({}).length, 582);
+    assert.strictEqual(C.filterFoods({ b: 'all', query: '' }).length, 582);
+});
+
+test('les fruits et légumes : on retrouve un aliment par son nom usuel', () => {
+    const names = (q) => C.filterFoods({ query: q }).map(f => f.n);
+    assert.strictEqual(names('kaki')[0], 'Kaki');
+    assert.strictEqual(names('plaqueminier')[0], 'Kaki');
+    assert.strictEqual(names('fruit du dragon')[0], 'Fruit du dragon');
+    assert.strictEqual(names('pitaya')[0], 'Fruit du dragon');
+    assert.ok(names('patate').indexOf('Pomme de terre cuite, écrasée ou frite') !== -1);
+    assert.strictEqual(names('batate')[0], 'Patate douce');
+    assert.strictEqual(names('chou-fleur')[0], 'Chou fleur');
+    assert.ok(names('poivron').indexOf('Poivron rouge') !== -1);
+    assert.deepStrictEqual(C.blessingsOf(find('Kaki')), ['haets']);
+    assert.deepStrictEqual(C.blessingsOf(find('Fruit du dragon')), ['haadama']);
+    assert.deepStrictEqual(C.notesOf(find('Kaki')), []);
+    assert.deepStrictEqual(C.notesOf(find('Papaye')), [34]);
+    assert.strictEqual(find('Sushi').b, 'mezonot');
+    assert.deepStrictEqual(C.finalsOf(find('Sushi'), 'habad'), ['nefachot']);
+});
+
+test('les aliments ajoutés : une bénédiction valide, et seules les notes qui les concernent', () => {
+    D.FOODS.filter(f => f.id >= 292).forEach(f => {
+        assert.ok(D.ORDER.indexOf(f.b) !== -1, f.n);
+    });
 });
 
 test('le filtre par bénédiction : un aliment à deux cas apparaît sous chacune', () => {
@@ -55,14 +79,14 @@ test('le filtre par bénédiction : un aliment à deux cas apparaît sous chacun
     assert.ok(mez.indexOf('Glace dans un cornet sucré') !== -1);
     assert.ok(che.indexOf('Glace dans un cornet sucré') !== -1);
     assert.ok(mez.indexOf('Gâteau') !== -1 && che.indexOf('Gâteau') === -1);
-    assert.deepStrictEqual(C.filterFoods({ b: 'aucune' }).map(f => f.n), ["Aspirine n'ayant pas de goût"]);
+    assert.deepStrictEqual(C.filterFoods({ b: 'aucune' }).map(f => f.n), ["Aspirine n'ayant pas de goût", 'Chewing-gum']);
 });
 
 test('les compteurs : chaque aliment est compté au moins une fois', () => {
     const counts = C.countByBlessing();
     const total = Object.keys(counts).reduce((s, k) => s + counts[k], 0);
     assert.ok(total >= D.FOODS.length);
-    assert.strictEqual(counts.aucune, 1);
+    assert.strictEqual(counts.aucune, 2);
 });
 
 test('les rites : \'Habad est la liste telle quelle, les autres ont leurs écarts', () => {
@@ -92,7 +116,7 @@ test('les rites : le filtre et les compteurs suivent le rite', () => {
     const chehakolSef = C.filterFoods({ b: 'chehakol', rite: 'sefarade' }).map(f => f.n);
     assert.ok(chehakolHabad.indexOf('Riz') !== -1 && chehakolSef.indexOf('Riz') === -1);
     assert.ok(C.filterFoods({ b: 'mezonot', rite: 'sefarade' }).some(f => f.n === 'Riz'));
-    assert.strictEqual(C.countByBlessing('sefarade').mezonot, C.countByBlessing('habad').mezonot + 4);
+    assert.strictEqual(C.countByBlessing('sefarade').mezonot, C.countByBlessing('habad').mezonot + 6);
 });
 
 test('les écarts de rite ne désignent que des aliments qui existent', () => {
@@ -194,4 +218,81 @@ test('la recherche : les noms les plus courts d\'abord, puis les plus longs', ()
     // sans recherche : l'ordre du guide
     assert.strictEqual(C.filterFoods({})[0].n, D.FOODS[0].n);
     assert.strictEqual(C.filterFoods({ b: 'haets' })[0].n, D.FOODS.filter(f => f.b === 'haets')[0].n);
+});
+
+test('la halakha générale : sections complètes, bénédictions connues, tableau du dessert', () => {
+    const H = D.HALAKHA;
+    assert.ok(H.note.length > 0);
+    assert.strictEqual(H.sections.length, 5);
+    H.sections.forEach(sec => {
+        assert.ok(sec.id && sec.title, sec.id);
+        assert.ok((sec.paras || []).length + (sec.bullets || []).length > 0, sec.id);
+        (sec.list || []).forEach(it => assert.ok(D.ORDER.indexOf(it.b) !== -1, it.b));
+    });
+    assert.deepStrictEqual(H.sections[0].list.map(it => it.b), ['hamotsi', 'mezonot', 'haguafen', 'haets', 'haadama', 'chehakol']);
+    const dessert = H.sections.filter(sec => sec.id === 'dessert')[0];
+    assert.strictEqual(dessert.table.length, 6);
+});
+
+test('la halakha : les exemples renvoient à un aliment de la liste, les sources et liens sont bien formés', () => {
+    const H = D.HALAKHA;
+    const ikar = H.sections.filter(sec => sec.id === 'ikar')[0];
+    ikar.examples.filter(ex => ex.q).forEach(ex => assert.ok(C.filterFoods({ query: ex.q }).length > 0, ex.q));
+    H.sections.forEach(sec => (sec.sources || []).forEach(src => {
+        assert.ok(src.ref && src.for, sec.id);
+    }));
+    const links = H.sections.reduce((all, sec) => all.concat(sec.links || []), []);
+    links.forEach(l => assert.ok(['ben-texts', 'ben-other'].indexOf(l.panel) !== -1, l.label));
+});
+
+test('mon plat : l\'Ikar selon les règles (céréale, pain, principal, majorité, liant, égalité)', () => {
+    assert.strictEqual(C.ikarOf([{ b: 'haadama', pct: 60 }, { b: 'chehakol', pct: 40 }]).b, 'haadama');
+    assert.strictEqual(C.ikarOf([{ b: 'haadama', pct: 60 }, { b: 'chehakol', pct: 40 }]).rule, 'majorite');
+    assert.strictEqual(C.ikarOf([{ b: 'mezonot', pct: 70 }, { b: 'haadama', pct: 30 }]).b, 'mezonot');
+    assert.strictEqual(C.ikarOf([{ b: 'mezonot', pct: 10 }, { b: 'chehakol', pct: 90 }]).b, 'mezonot');
+    assert.strictEqual(C.ikarOf([{ b: 'chehakol', pct: 90 }, { b: 'mezonot', pct: 10, liant: true }]).b, 'chehakol');
+    assert.strictEqual(C.ikarOf([{ b: 'haadama', pct: 80 }, { b: 'hamotsi', pct: 20 }]).b, 'hamotsi');
+    assert.strictEqual(C.ikarOf([{ b: 'haets', pct: 30, principal: true }, { b: 'haadama', pct: 70 }]).rule, 'principal');
+    const tie = C.ikarOf([{ b: 'haadama', pct: 50 }, { b: 'haets', pct: 50 }]);
+    assert.strictEqual(tie.rule, 'egalite');
+    assert.strictEqual(tie.b, 'haets');
+    assert.strictEqual(C.ikarOf([]).rule, 'none');
+    assert.strictEqual(C.ikarOf([{ b: 'aucune', pct: 100 }]).rule, 'none');
+});
+
+test('la tchoutchouka : la bénédiction dépend de la préparation, et le pain couvre le plat', () => {
+    const t = find('Tchoutchouka (chakchouka)');
+    assert.strictEqual(C.filterFoods({ query: 'shakshuka' })[0].n, 'Tchoutchouka (chakchouka)');
+    assert.deepStrictEqual(C.blessingsOf(t), ['haadama', 'chehakol']);
+    assert.deepStrictEqual(C.finalsOf(t, 'habad'), ['nefachot']);
+    assert.deepStrictEqual(C.notesOf(t), [36, 42]);
+});
+
+test('la pita : Hamotsi en général, Mezonot si elle est frite dans beaucoup d\'huile', () => {
+    const p = find('Pita');
+    assert.deepStrictEqual(C.blessingsOf(p), ['hamotsi', 'mezonot']);
+    assert.deepStrictEqual(C.notesOf(p), [43, 44]);
+});
+
+test('le fricassé : pâte frite, donc Mezonot et Al Hamihya après, sucrée ou non', () => {
+    const f = find('Fricassé');
+    assert.strictEqual(f.b, 'mezonot');
+    assert.deepStrictEqual(C.finalsOf(f, 'habad'), ['hamihya']);
+    assert.deepStrictEqual(C.notesOf(f), [45]);
+});
+
+test('le pain de mie : Hamotsi, Mezonot en séfarade si la pâte est sucrée et le goût net', () => {
+    const f = find('Pain de mie');
+    assert.deepStrictEqual(C.blessingsOf(f, 'sefarade'), ['mezonot', 'hamotsi']);
+    assert.deepStrictEqual(C.blessingsOf(f, 'ashkenaze'), ['hamotsi']);
+    assert.deepStrictEqual(C.blessingsOf(f, 'habad'), ['hamotsi']);
+    assert.deepStrictEqual(C.finalsOf(f, 'sefarade'), ['hamihya', 'hamazon']);
+});
+
+test('le fourre-tout « Sandwich » : le nom exact d\'abord, Hamotsi en habad, Mezonot ou Hamotsi selon le rite', () => {
+    assert.strictEqual(C.filterFoods({ query: 'sandwich' })[0].n, 'Sandwich');
+    const f = find('Sandwich');
+    assert.deepStrictEqual(C.blessingsOf(f, 'habad'), ['hamotsi']);
+    assert.ok(C.blessingsOf(f, 'sefarade').indexOf('mezonot') !== -1);
+    assert.ok(C.blessingsOf(f, 'ashkenaze').indexOf('mezonot') !== -1);
 });

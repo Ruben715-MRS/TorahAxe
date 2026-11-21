@@ -8,6 +8,11 @@
 //
 // Une question : { type, options: [{ label, … }], answer: index de la bonne proposition, … } ; une partie (`state`) :
 // { questions, index, score, found, results, resolved: null | 'right' | 'wrong', picked, over, empty, …champs propres au jeu }.
+//
+// À PLUSIEURS (au tour par tour, on se passe le téléphone) : `setPendingPlayers(noms)` annonce que la prochaine partie créée se joue à plusieurs ; `createState` la rattache aussitôt
+// (`state.multi`). Les questions sont réparties à tour de rôle (la question i est celle du joueur i modulo n) et le nombre de questions est ramené à un multiple du nombre de joueurs,
+// pour que chacun en ait autant. Les points de chaque question vont à celui qui y a répondu : ils sont versés à `next`, d'après ce que le jeu a ajouté à `state.score` et `state.found`,
+// quelle que soit la façon dont le jeu les compte. Tout jeu qui passe par `createState` et `next` est donc jouable à plusieurs sans rien écrire de plus.
 (function (root, factory) {
     if (typeof module === 'object' && module.exports) module.exports = factory();
     else root.QuizCore = factory();
@@ -29,6 +34,67 @@
         return out;
     }
 
+    // --- À plusieurs ----------------------------------------------------------------------------------------------------------------------------
+    var MIN_PLAYERS = 2;
+    var MAX_PLAYERS = 6;
+    var NAME_MAX = 20;
+    var pendingPlayers = null;
+
+    // Les noms retenus : de 2 à 6, rognés ; un nom vide devient « Joueur n ». `null` si la liste ne fait pas une partie à plusieurs.
+    function cleanNames(names) {
+        if (!Array.isArray(names) || names.length < MIN_PLAYERS || names.length > MAX_PLAYERS) return null;
+        return names.map(function (name, i) {
+            var n = String(name === null || name === undefined ? '' : name).replace(/\s+/g, ' ').trim().slice(0, NAME_MAX);
+            return n || 'Joueur ' + (i + 1);
+        });
+    }
+
+    // Le nombre de questions à tirer pour un jeu qui en pose `base` seul : à plusieurs, chaque joueur doit en avoir au moins trois (les jeux à cinq questions en donneraient une ou deux
+    // par personne). Les jeux à dix questions n'ont pas besoin de cet appel : dix questions font déjà trois tours pour trois joueurs.
+    var MIN_EACH = 3;
+    function roundsFor(base) { return pendingPlayers ? Math.max(base, MIN_EACH * pendingPlayers.length) : base; }
+
+    // La prochaine partie créée sera jouée à plusieurs par ces joueurs (`null` : annule). Renvoie les noms retenus, ou null.
+    function setPendingPlayers(names) {
+        pendingPlayers = names ? cleanNames(names) : null;
+        return pendingPlayers;
+    }
+
+    // Rattache les joueurs à la partie : ramène les questions à un multiple du nombre de joueurs. Sans assez de questions pour que chacun en ait une, la partie reste en solo.
+    function attachPlayers(state, names) {
+        var list = cleanNames(names);
+        if (!list) return false;
+        var usable = Math.floor(state.questions.length / list.length) * list.length;
+        if (usable < list.length) return false;
+        state.questions = state.questions.slice(0, usable);
+        state.multi = { players: list.map(function (name) { return { name: name, score: 0, found: 0 }; }), settledScore: 0, settledFound: 0 };
+        return true;
+    }
+
+    // Le joueur de la question en cours (index), ou null hors partie à plusieurs.
+    function ownerIndex(state) { return state.multi ? state.index % state.multi.players.length : null; }
+    function currentPlayer(state) { return state.multi ? state.multi.players[state.index % state.multi.players.length] : null; }
+
+    // Verse au joueur de la question en cours ce que le jeu a ajouté au score et aux bonnes réponses depuis la dernière fois.
+    function settle(state) {
+        var m = state.multi;
+        if (!m) return;
+        var player = m.players[state.index % m.players.length];
+        player.score += state.score - m.settledScore;
+        player.found += state.found - m.settledFound;
+        m.settledScore = state.score;
+        m.settledFound = state.found;
+    }
+
+    // Le classement : { rows: [{ name, score, found, rank }] du premier au dernier (égalités : même rang, ordre de jeu), winners: [noms], tie: plusieurs gagnants }.
+    function standings(state) {
+        var rows = state.multi.players.map(function (p, i) { return { name: p.name, score: p.score, found: p.found, order: i }; });
+        rows.sort(function (a, b) { return b.score - a.score || a.order - b.order; });
+        rows.forEach(function (r, i) { r.rank = i > 0 && rows[i - 1].score === r.score ? rows[i - 1].rank : i + 1; delete r.order; });
+        var winners = rows.filter(function (r) { return r.rank === 1; }).map(function (r) { return r.name; });
+        return { rows: rows, winners: winners, tie: winners.length > 1 };
+    }
+
     // Une partie neuve sur ces questions ; `extra` : les champs propres au jeu (niveau, section…), recopiés tels quels.
     function createState(questions, extra) {
         var state = {
@@ -36,6 +102,7 @@
             over: !questions.length, empty: !questions.length
         };
         Object.keys(extra || {}).forEach(function (k) { state[k] = extra[k]; });
+        if (pendingPlayers) { attachPlayers(state, pendingPlayers); pendingPlayers = null; }
         return state;
     }
 
@@ -106,6 +173,7 @@
     // Passe à la question suivante. Renvoie ['done'] à la fin de la partie, [] si elle continue (ou si la question n'est pas répondue).
     function next(state) {
         if (state.over || !state.resolved) return [];
+        settle(state);
         state.resolved = null;
         state.picked = null;
         state.index += 1;
@@ -113,5 +181,5 @@
         return [];
     }
 
-    return { ROUNDS: ROUNDS, CHOICES: CHOICES, POINTS: POINTS, shuffle: shuffle, createState: createState, question: question, answer: answer, expire: expire, next: next, resetRound: resetRound, roundHint: roundHint, roundGuess: roundGuess };
+    return { ROUNDS: ROUNDS, CHOICES: CHOICES, POINTS: POINTS, MIN_PLAYERS: MIN_PLAYERS, MAX_PLAYERS: MAX_PLAYERS, setPendingPlayers: setPendingPlayers, roundsFor: roundsFor, attachPlayers: attachPlayers, ownerIndex: ownerIndex, currentPlayer: currentPlayer, standings: standings, shuffle: shuffle, createState: createState, question: question, answer: answer, expire: expire, next: next, resetRound: resetRound, roundHint: roundHint, roundGuess: roundGuess };
 });

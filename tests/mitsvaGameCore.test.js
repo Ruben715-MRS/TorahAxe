@@ -56,10 +56,12 @@ test('makeQuestion « book » : quatre livres sur cinq, la bonne incluse ; « ki
         const q = M.makeQuestion(PAR, item, 'book', rng);
         assert.strictEqual(q.options.length, 4);
         assert.strictEqual(q.options[q.answer].value, item.bookFr);
+        q.options.forEach(o => assert.strictEqual(o.he, PAR.books[M.BOOK_NAMES.indexOf(o.value)], 'nom hébreu du livre'));
     });
     const trap = M.items(PAR).find(x => x.trap);
     const k = M.makeQuestion(PAR, trap, 'kind', rng);
     assert.deepStrictEqual(k.options.map(o => o.value), ['pos', 'neg']);
+    k.options.forEach(o => assert.ok(/[א-ת]/.test(o.he)));
     assert.strictEqual(k.answer, 0);
 });
 

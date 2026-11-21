@@ -1,0 +1,228 @@
+{
+ "v": 1,
+ "parasha": "Béhar",
+ "levels": {
+  "1": [
+   {
+    "q": "Que doit faire la terre la septième année, une fois les Israélites entrés dans le pays ?",
+    "a": "Observer un chômage en l'honneur de l'Éternel",
+    "w": [
+     "Être ensemencée de blé et d'orge",
+     "Être partagée de nouveau entre les tribus",
+     "Être offerte tout entière au sanctuaire"
+    ],
+    "ref": "25:2",
+    "proof": [
+     "chômage en l'honneur de l'Éternel"
+    ],
+    "x": "Six années on ensemence le champ et l'on travaille la vigne."
+   },
+   {
+    "q": "Quel jour du septième mois fait-on retentir le cor pour proclamer le Jubilé ?",
+    "a": "Le dixième jour, au jour des expiations",
+    "w": [
+     "Le premier jour, au nouvel an",
+     "Le quinzième jour, à la fête de la récolte",
+     "Le septième jour, à la fin de la semaine"
+    ],
+    "ref": "25:9",
+    "proof": [
+     "dixième jour du mois"
+    ],
+    "x": "Le son du cor retentit à travers tout le pays."
+   },
+   {
+    "q": "Quelle année sanctifie-t-on en proclamant la liberté pour tous les habitants ?",
+    "a": "La cinquantième année",
+    "w": [
+     "La quarante-neuvième année",
+     "La septième année",
+     "La centième année"
+    ],
+    "ref": "25:10",
+    "proof": [
+     "cinquantième année"
+    ],
+    "x": "Cette année sera le Jubilé : chacun rentre dans son bien et retourne à sa famille."
+   },
+   {
+    "q": "Que ne faut-il pas accepter d'un frère qui vient à déchoir ?",
+    "a": "Ni intérêt ni profit",
+    "w": [
+     "Ni cadeau ni visite",
+     "Ni gage ni caution",
+     "Ni travail ni service"
+    ],
+    "ref": "25:36",
+    "proof": [
+     "ni intérêt ni profit"
+    ],
+    "x": "« Crains ton Dieu, et que ton frère vive avec toi. »"
+   },
+   {
+    "q": "Que ne faut-il pas imposer à un frère réduit à la misère qui se vend ?",
+    "a": "Le travail d'un esclave",
+    "w": [
+     "Le travail d'un mercenaire",
+     "Le travail des champs",
+     "Le travail du soir"
+    ],
+    "ref": "25:39",
+    "proof": [
+     "travail d'un esclave"
+    ],
+    "x": "Il se vend, mais ne doit pas être traité en esclave."
+   }
+  ],
+  "2": [
+   {
+    "q": "Combien d'années sabbatiques compte-t-on avant le Jubilé ?",
+    "a": "Sept fois sept années, soit quarante-neuf ans",
+    "w": [
+     "Sept années sabbatiques, soit sept ans",
+     "Quarante-neuf années sabbatiques de sept ans",
+     "Dix fois sept années, soit soixante-dix ans"
+    ],
+    "ref": "25:8",
+    "proof": [
+     "quarante-neuf ans"
+    ],
+    "x": "On sanctifie ensuite la cinquantième année."
+   },
+   {
+    "q": "Que promet Dieu pour la sixième année, avant l'année sabbatique ?",
+    "a": "Une bénédiction qui produit la récolte de trois années",
+    "w": [
+     "Une récolte de sept années entières, sans travail ni semailles",
+     "Une pluie abondante pendant sept jours, à chaque saison",
+     "Une récolte doublée la seconde année, après le Jubilé"
+    ],
+    "ref": "25:21",
+    "proof": [
+     "récolte de trois années"
+    ],
+    "x": "Ainsi, on aura de quoi manger la septième année, sans semer ni rentrer de récoltes."
+   },
+   {
+    "q": "Que devient une maison d'une ville close de murs si elle n'est pas rachetée dans l'année entière ?",
+    "a": "Elle est acquise définitivement à l'acheteur",
+    "w": [
+     "Elle revient au propriétaire au Jubilé",
+     "Elle est remise aux Lévites sans rachat",
+     "Elle est partagée entre les voisins"
+    ],
+    "ref": "25:30",
+    "proof": [
+     "une année entière",
+     "acquise définitivement"
+    ],
+    "x": "Le Jubilé ne la dégage point."
+   },
+   {
+    "q": "Qui mange du produit de la terre durant l'année de repos ?",
+    "a": "Toi, ton esclave, ta servante, le mercenaire et l'étranger",
+    "w": [
+     "Seul le propriétaire du champ et sa famille",
+     "Seuls les Lévites et les pontifes",
+     "Seuls les pauvres et les orphelins"
+    ],
+    "ref": "25:6",
+    "proof": [
+     "ton esclave",
+     "à ta servante",
+     "au mercenaire"
+    ],
+    "x": "Ce repos de la terre appartient à tous pour la consommation."
+   },
+   {
+    "q": "Que se passe-t-il pour une maison que possèdent les Lévites dans leur ville ?",
+    "a": "Sa vente est résiliée par le Jubilé",
+    "w": [
+     "Sa vente est définitive après un an",
+     "Elle est partagée entre les tribus",
+     "Elle est détruite et rebâtie"
+    ],
+    "ref": "25:33",
+    "proof": [
+     "Lévites",
+     "résiliée par le Jubilé"
+    ],
+    "x": "Car les maisons des villes des Lévites sont leur propriété parmi les enfants d'Israël."
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, pourquoi la Torah dit-elle « au mont Sinaï » à propos de l'année sabbatique ?",
+    "a": "Pour enseigner que toutes les règles de la shemita, générales et détaillées, ont été dites au Sinaï",
+    "w": [
+     "Parce que la shemita a été fixée au mont Sinaï seulement, et pas ailleurs",
+     "Parce que le Sinaï est le lieu de la terre promise à Abraham",
+     "Parce que seul Moïse connaissait cette loi, sans qu'on puisse la transmettre"
+    ],
+    "ref": "25:1",
+    "proof": [
+     "שמטה",
+     "מסיני"
+    ],
+    "x": "Rachi sur Lévitique 25:1 : quel rapport entre l'année sabbatique et le mont Sinaï ? Toutes les règles de la shemita ont été dites au Sinaï, avec leurs détails."
+   },
+   {
+    "q": "Selon Rachi, que signifie « sabbat pour l'Éternel » à propos de la terre ?",
+    "a": "Un chômage pour le Nom de Dieu, comme le Chabbat de la création",
+    "w": [
+     "Un chômage en l'honneur du roi, comme le jour de sa naissance",
+     "Un chômage destiné aux Lévites, qui n'ont pas de terre",
+     "Un chômage consacré aux pauvres du camp, à leur seul profit"
+    ],
+    "ref": "25:2",
+    "proof": [
+     "לשם ה'",
+     "שבת בראשית"
+    ],
+    "x": "Rachi sur Lévitique 25:2 : au nom de l'Éternel, comme il est dit du Chabbat de la création."
+   },
+   {
+    "q": "Selon Rachi, que montre la précision « le dixième jour » pour le son du cor du Jubilé ?",
+    "a": "Que le cor du Jubilé repousse le Chabbat, ce que le cor de Roch Hachana ne fait pas",
+    "w": [
+     "Que le Jubilé tombe toujours un jour de Chabbat, chaque cinquantième année",
+     "Que le cor est plus fort et plus long le dixième jour du mois",
+     "Que le cor est réservé aux prêtres et aux Lévites du sanctuaire"
+    ],
+    "ref": "25:9",
+    "proof": [
+     "דוחה שבת"
+    ],
+    "x": "Rachi sur Lévitique 25:9 : pourquoi « le dixième jour » ? Pour enseigner que le cor du dixième jour repousse le Chabbat dans tout le pays."
+   },
+   {
+    "q": "Selon Rachi, que signifient « nechekh » (intérêt) et « tarbit » (profit) ensemble ?",
+    "a": "Une seule faute, qu'on transgresse par deux interdits",
+    "w": [
+     "Deux fautes sans rapport l'une avec l'autre",
+     "Une faute légère, qu'on peut racheter par un don",
+     "Une loi réservée aux marchands de l'étranger"
+    ],
+    "ref": "25:36",
+    "proof": [
+     "בשני לאוין"
+    ],
+    "x": "Rachi sur Lévitique 25:36 : les Sages les ont rendus équivalents, pour qu'on transgresse deux interdits."
+   },
+   {
+    "q": "Selon Rachi, pourquoi la Torah écrit-elle « je suis l'Éternel » à la fin de la section sur le sanctuaire ?",
+    "a": "Parce que Dieu est fidèle pour payer le salaire de celui qui observe",
+    "w": [
+     "Parce que Dieu est le seul roi de la terre et de tous les peuples",
+     "Parce que Dieu a créé le sanctuaire avant la création du monde",
+     "Parce que Dieu a donné l'ordre à Moïse et à Aaron ensemble"
+    ],
+    "ref": "26:2",
+    "proof": [
+     "נאמן לשלם שכר"
+    ],
+    "x": "Rachi sur Lévitique 26:2 : « je suis l'Éternel » : fidèle pour payer le salaire."
+   }
+  ]
+ }
+}

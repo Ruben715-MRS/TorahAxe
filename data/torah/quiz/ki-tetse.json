@@ -1,0 +1,234 @@
+{
+ "v": 1,
+ "parasha": "Ki Tetsé",
+ "levels": {
+  "1": [
+   {
+    "q": "Combien de temps la captive pleure-t-elle son père et sa mère dans la maison de son nouveau mari ?",
+    "a": "Un mois entier",
+    "w": [
+     "Une semaine entière, dans la maison",
+     "Sept jours, après s'être rasé la tête",
+     "Quarante jours, jusqu'à la fin du deuil"
+    ],
+    "ref": "21:13",
+    "proof": [
+     "un mois entier"
+    ],
+    "x": "Elle se rase la tête, se coupe les ongles et se dépouille de son vêtement de captive."
+   },
+   {
+    "q": "Que doit-on faire de la mère, quand on rencontre un nid d'oiseaux avec des petits ?",
+    "a": "La laisser envoler, mais on peut prendre les petits",
+    "w": [
+     "La prendre avec ses petits, sans autre souci",
+     "La laisser avec ses petits, sans y toucher du tout",
+     "La prendre, et laisser les petits au nid"
+    ],
+    "ref": "22:7",
+    "proof": [
+     "laisser envoler la mère"
+    ],
+    "x": "« De la sorte, tu seras heureux et tu verras se prolonger tes jours. »"
+   },
+   {
+    "q": "Que doit-on établir autour du toit d'une maison neuve ?",
+    "a": "Un appui, pour éviter une chute mortelle",
+    "w": [
+     "Une tente, pour éviter la chaleur excessive",
+     "Un autel, pour remercier Dieu de la maison",
+     "Une inscription, pour bénir les habitants"
+    ],
+    "ref": "22:8",
+    "proof": [
+     "un appui autour du toit"
+    ],
+    "x": "Ainsi la maison n'est pas cause d'une mort, si quelqu'un venait à en tomber."
+   },
+   {
+    "q": "Quelle étoffe la Torah interdit-elle de porter ?",
+    "a": "Une étoffe mixte, mélangée de laine et de lin",
+    "w": [
+     "Une étoffe teinte d'azur et de pourpre en même temps",
+     "Une étoffe brodée de fils d'or et d'argent",
+     "Une étoffe de lin blanc sans aucune couture"
+    ],
+    "ref": "22:11",
+    "proof": [
+     "laine et de lin"
+    ],
+    "x": "On ne laboure pas non plus avec un bœuf et un âne attelés ensemble."
+   },
+   {
+    "q": "Que la Torah interdit-elle de faire au bœuf qui foule le grain ?",
+    "a": "Le museler",
+    "w": [
+     "Le vendre",
+     "L'enchaîner",
+     "Le conduire hors du champ"
+    ],
+    "ref": "25:4",
+    "proof": [
+     "Ne muselle point le bœuf"
+    ],
+    "x": "Il doit pouvoir manger pendant le travail."
+   }
+  ],
+  "2": [
+   {
+    "q": "Quelle part de l'héritage doit recevoir le fils aîné, même s'il est de la femme dédaignée ?",
+    "a": "Une part double dans tout son avoir",
+    "w": [
+     "La moitié de l'héritage, avant le partage",
+     "Un tiers de plus que ses frères seulement",
+     "Le titre de chef, sans part supplémentaire"
+    ],
+    "ref": "21:17",
+    "proof": [
+     "part double"
+    ],
+    "x": "Il est le premier fruit de la force de son père."
+   },
+   {
+    "q": "Au bout de combien de générations l'Ammonite et le Moabite sont-ils admis dans l'assemblée du Seigneur ?",
+    "a": "Jamais : même après la dixième génération, ils sont exclus à perpétuité",
+    "w": [
+     "Après la troisième génération, à condition de se convertir",
+     "Après la septième génération, s'ils offrent un sacrifice",
+     "Après la dixième génération, si leurs pères sont morts"
+    ],
+    "ref": "23:4",
+    "proof": [
+     "dixième génération"
+    ],
+    "x": "Ils ne vous ont pas offert le pain et l'eau, et ils ont stipendié Balaam."
+   },
+   {
+    "q": "Combien de temps le nouveau marié est-il dispensé de l'armée et de toute corvée ?",
+    "a": "Un an",
+    "w": [
+     "Un mois",
+     "Sept jours",
+     "Quarante jours"
+    ],
+    "ref": "24:5",
+    "proof": [
+     "pendant un an"
+    ],
+    "x": "Il peut vaquer librement à son intérieur et rendre heureuse la femme qu'il a prise."
+   },
+   {
+    "q": "Quand doit-on rendre à un pauvre le vêtement qu'il avait donné en gage ?",
+    "a": "Au coucher du soleil, pour qu'il puisse reposer sous sa couverture",
+    "w": [
+     "Au lever du soleil, pour qu'il puisse partir au travail",
+     "À la fin de la semaine, après le Chabbat",
+     "À la fin du mois, après le remboursement"
+    ],
+    "ref": "24:13",
+    "proof": [
+     "au coucher du soleil"
+    ],
+    "x": "Cela sera compté comme une bonne œuvre devant l'Éternel."
+   },
+   {
+    "q": "Quel peuple s'est jeté sur les traînards d'Israël, par derrière, au sortir d'Égypte ?",
+    "a": {
+     "t": "Amalec",
+     "he": "עֲמָלֵק"
+    },
+    "w": [
+     {
+      "t": "Édom",
+      "he": "אֱדוֹם"
+     },
+     {
+      "t": "Moab",
+      "he": "מוֹאָב"
+     },
+     {
+      "t": "Ammon",
+      "he": "עַמּוֹן"
+     }
+    ],
+    "ref": "25:17",
+    "proof": [
+     "Amalec"
+    ],
+    "x": "Il ne craignait pas Dieu : Israël devra effacer sa mémoire."
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, pourquoi la Torah autorise-t-elle d'épouser une captive de guerre ?",
+    "a": "Seulement pour répondre au mauvais penchant, car sinon on la prendrait de façon interdite",
+    "w": [
+     "Parce que la captive devient aussitôt israélite",
+     "Parce que la guerre sanctifie le mariage",
+     "Parce que la Torah aime les mariages de guerre"
+    ],
+    "ref": "21:11",
+    "proof": [
+     "כנגד יצר הרע"
+    ],
+    "x": "Rachi sur Deutéronome 21:11 : la Torah n'a parlé qu'en réponse au mauvais penchant ; mais s'il la prend, il finira par la haïr."
+   },
+   {
+    "q": "Selon Rachi, que montre le lien entre la mitsva du nid et celle du parapet ?",
+    "a": "Qu'une mitsva en amène une autre",
+    "w": [
+     "Qu'une faute en amène une autre",
+     "Qu'une maison amène une autre maison",
+     "Qu'un nid amène une récompense"
+    ],
+    "ref": "22:8",
+    "proof": [
+     "מצוה גוררת מצוה"
+    ],
+    "x": "Rachi sur Deutéronome 22:8 : si tu as accompli la mitsva du nid, tu bâtiras une maison neuve et tu accompliras celle du parapet : une mitsva en entraîne une autre."
+   },
+   {
+    "q": "Selon Rachi, que signifie le mot « chaatnez » ?",
+    "a": "Un mot composé : étoffe cardée, filée et tissée",
+    "w": [
+     "Un mot qui signifie mélange de laine et de poil",
+     "Un mot qui signifie étoffe teinte en secret",
+     "Un mot qui signifie étoffe de deuil"
+    ],
+    "ref": "22:11",
+    "proof": [
+     "שוע טווי ונוז"
+    ],
+    "x": "Rachi sur Deutéronome 22:11 : langage de mélange ; les Sages l'expliquent : « shou'a » (cardé), « tavoui » (filé), « nouz » (tissé)."
+   },
+   {
+    "q": "Selon Rachi, que signifie « il réjouira sa femme » pour le nouveau marié ?",
+    "a": "Qu'il doit rendre sa femme heureuse",
+    "w": [
+     "Qu'il doit l'emmener en voyage",
+     "Qu'il doit lui offrir une maison neuve",
+     "Qu'il doit la présenter à ses frères"
+    ],
+    "ref": "24:5",
+    "proof": [
+     "ישמח את אשתו"
+    ],
+    "x": "Rachi sur Deutéronome 24:5 : « il réjouira sa femme » ; celui qui traduit « et il se réjouira avec sa femme » se trompe."
+   },
+   {
+    "q": "Selon Rachi, que doit craindre celui qui triche sur les mesures et les poids ?",
+    "a": "Une attaque de l'ennemi, comme Amalec",
+    "w": [
+     "Une famine dans le pays",
+     "Une peste dans la ville",
+     "Une sécheresse sur le champ"
+    ],
+    "ref": "25:17",
+    "proof": [
+     "מאזני מרמה"
+    ],
+    "x": "Rachi sur Deutéronome 25:17 : si tu as triché sur les mesures et les poids, crains l'excitation de l'ennemi : « la balance fausse est une abomination » ; et ensuite vient l'orgueilleux."
+   }
+  ]
+ }
+}

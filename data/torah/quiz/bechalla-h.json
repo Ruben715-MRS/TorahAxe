@@ -1,0 +1,242 @@
+{
+ "v": 1,
+ "parasha": "Béchalla'h",
+ "levels": {
+  "1": [
+   {
+    "q": "Quels ossements Moïse emporte-t-il en quittant l'Égypte ?",
+    "a": "Ceux de Joseph",
+    "w": [
+     "Ceux de Jacob",
+     "Ceux d'Abraham",
+     "Ceux de Lévi"
+    ],
+    "ref": "13:19",
+    "proof": [
+     "ossements de Joseph"
+    ],
+    "x": "Joseph avait fait jurer aux enfants d'Israël : « Vous emporterez mes ossements d'ici avec vous. »"
+   },
+   {
+    "q": "Comment l'Éternel guide-t-il Israël dans le désert, de jour et de nuit ?",
+    "a": "Par une colonne de nuée le jour et une colonne de feu la nuit",
+    "w": [
+     "Par une étoile le jour et une torche la nuit",
+     "Par un ange le jour et une voix la nuit",
+     "Par un nuage le jour et la lune la nuit"
+    ],
+    "ref": "13:21",
+    "proof": [
+     "colonne de nuée",
+     "colonne de feu"
+    ],
+    "x": "La colonne de nuée, le jour, et la colonne de feu, la nuit, ne cessaient de précéder le peuple."
+   },
+   {
+    "q": "Combien de chars d'élite Pharaon prend-il pour poursuivre Israël ?",
+    "a": "Six cents",
+    "w": [
+     "Trois cents",
+     "Mille",
+     "Douze cents"
+    ],
+    "ref": "14:7",
+    "proof": [
+     "six cents chars"
+    ],
+    "x": "Il prit six cents chars d'élite et tous les chariots d'Égypte."
+   },
+   {
+    "q": "Qui mène la bataille contre Amalec à Refidim ?",
+    "a": {
+     "t": "Josué",
+     "he": "יְהוֹשֻׁעַ"
+    },
+    "w": [
+     {
+      "t": "Aaron",
+      "he": "אַהֲרֹן"
+     },
+     {
+      "t": "Hour",
+      "he": "חוּר"
+     },
+     {
+      "t": "Caleb",
+      "he": "כָּלֵב"
+     }
+    ],
+    "ref": "17:9-10",
+    "proof": [
+     "Josué"
+    ],
+    "x": "Moïse dit à Josué : « Choisis des hommes et va livrer bataille à Amalec. »"
+   },
+   {
+    "q": "Quel nom la maison d'Israël donne-t-elle à la nourriture qui tombe du ciel ?",
+    "a": "La manne",
+    "w": [
+     "La rosée",
+     "Le pain d'Égypte",
+     "Le miel du désert"
+    ],
+    "ref": "16:31",
+    "proof": [
+     "manne"
+    ],
+    "x": "Elle ressemblait à de la graine de coriandre, était blanche et avait la saveur d'un beignet au miel."
+   }
+  ],
+  "2": [
+   {
+    "q": "Pendant combien de jours Israël marche-t-il dans le désert de Chour sans trouver d'eau ?",
+    "a": "Trois jours",
+    "w": [
+     "Sept jours",
+     "Un jour",
+     "Quarante jours"
+    ],
+    "ref": "15:22",
+    "proof": [
+     "trois jours sans trouver d'eau"
+    ],
+    "x": "Moïse fit décamper Israël de la plage des joncs ; ils marchèrent trois jours sans trouver d'eau."
+   },
+   {
+    "q": "Que trouve Israël à Élim ?",
+    "a": "Douze sources d'eau et soixante-dix palmiers",
+    "w": [
+     "Sept sources et douze palmiers",
+     "Soixante-dix sources et douze palmiers",
+     "Une seule source et un grand sycomore"
+    ],
+    "ref": "15:27",
+    "proof": [
+     "douze sources",
+     "soixante-dix palmiers"
+    ],
+    "x": "Ils y campèrent près des eaux."
+   },
+   {
+    "q": "À quoi la manne ressemble-t-elle ?",
+    "a": "À de la graine de coriandre, blanche",
+    "w": [
+     "À de petits grains de sel",
+     "À des flocons de neige",
+     "À du sable doré"
+    ],
+    "ref": "16:31",
+    "proof": [
+     "graine de coriandre",
+     "blanche"
+    ],
+    "x": "Elle avait la saveur d'un beignet au miel."
+   },
+   {
+    "q": "Que fait Moïse pour qu'Israël ait le dessus dans la bataille contre Amalec ?",
+    "a": "Il tient son bras levé, soutenu par Aaron et Hour",
+    "w": [
+     "Il lance des pierres du haut de la colline",
+     "Il frappe le rocher de sa verge",
+     "Il fait sonner le chofar sans s'arrêter"
+    ],
+    "ref": "17:11-12",
+    "proof": [
+     "bras levé",
+     "Hour"
+    ],
+    "x": "Tant que Moïse tenait son bras levé, Israël avait le dessus ; lorsqu'il le laissait fléchir, c'est Amalec qui l'emportait."
+   },
+   {
+    "q": "Pendant combien de temps Israël mange-t-il de la manne ?",
+    "a": "Quarante ans",
+    "w": [
+     "Sept ans",
+     "Un an",
+     "Soixante-dix ans"
+    ],
+    "ref": "16:35",
+    "proof": [
+     "quarante ans"
+    ],
+    "x": "Ils en mangèrent jusqu'à leur arrivée en pays habité, jusqu'aux confins du pays de Canaan."
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, pourquoi Baal-Cefôn reste-t-il debout face au camp d'Israël, alors que les autres idoles d'Égypte ont péri ?",
+    "a": "Pour tromper les Égyptiens et leur faire croire que leur divinité était forte",
+    "w": [
+     "Pour servir de repère aux Israélites dans le désert",
+     "Parce que Pharaon l'avait fait construire en pierre",
+     "Parce que les plaies ne frappent que les idoles de bois"
+    ],
+    "ref": "14:2",
+    "proof": [
+     "בעל צפן",
+     "להטעותן"
+    ],
+    "x": "Rachi sur Exode 14:2 : il est resté des dieux d'Égypte pour les tromper : ils diraient que leur divinité est puissante."
+   },
+   {
+    "q": "Selon Rachi, pourquoi Dieu ordonne-t-il à Israël de revenir en arrière avant de camper près de la mer ?",
+    "a": "Pour tromper Pharaon : il dirait que les Israélites étaient perdus dans le désert",
+    "w": [
+     "Pour permettre aux retardataires de rejoindre le camp",
+     "Pour que les enfants se reposent avant la traversée",
+     "Pour s'éloigner des soldats philistins"
+    ],
+    "ref": "14:2",
+    "proof": [
+     "להטעות",
+     "תועים"
+    ],
+    "x": "Rachi sur Exode 14:2 : ils se rapprochaient de l'Égypte chaque jour, pour faire croire à Pharaon qu'ils s'étaient égarés en chemin."
+   },
+   {
+    "q": "Selon Rachi, que répond Dieu à Moïse qui prie devant la mer ?",
+    "a": "Que ce n'est pas le moment de prier longuement, car Israël est dans la détresse",
+    "w": [
+     "Qu'il doit lever sa verge avant de dire un mot",
+     "Qu'il doit attendre que Josué ait fini de prier",
+     "Qu'il doit d'abord réunir les anciens d'Israël"
+    ],
+    "ref": "14:15",
+    "proof": [
+     "להאריך בתפלה",
+     "בצרה"
+    ],
+    "x": "Rachi sur Exode 14:15 : « pourquoi cries-tu vers moi ? » : ce n'est pas le moment de prolonger la prière, car Israël est dans la détresse."
+   },
+   {
+    "q": "Selon Rachi, quand Miriam a-t-elle prophétisé, elle que la Torah appelle « la prophétesse » ?",
+    "a": "Avant la naissance de Moïse, quand elle annonça que sa mère mettrait au monde un fils",
+    "w": [
+     "Au bord de la mer, juste avant de chanter",
+     "Quand Moïse fut déposé sur le fleuve",
+     "Au pied du buisson, devant Moïse"
+    ],
+    "ref": "15:20",
+    "proof": [
+     "קדם שנולד משה"
+    ],
+    "x": "Rachi sur Exode 15:20 : elle prophétisa alors qu'elle n'était encore que la sœur d'Aaron, avant la naissance de Moïse."
+   },
+   {
+    "q": "Selon Rachi, que signifie que les enfants d'Israël sortent d'Égypte « hamouchim » ?",
+    "a": "Munis de provisions",
+    "w": [
+     "Armés de pied en cap",
+     "En rangs de cinq",
+     "Par groupes de cinquante"
+    ],
+    "ref": "13:18",
+    "proof": [
+     "חמושים",
+     "מזינים"
+    ],
+    "x": "Rachi sur Exode 13:18 : « hamouchim » veut dire « pourvus de vivres »."
+   }
+  ]
+ }
+}

@@ -1,0 +1,270 @@
+{
+ "v": 1,
+ "parasha": "Pinh'as",
+ "levels": {
+  "1": [
+   {
+    "q": "Qui détourne la colère de Dieu de dessus les enfants d'Israël, en se montrant jaloux de sa cause ?",
+    "a": {
+     "t": "Phinéas",
+     "he": "פִּינְחָס"
+    },
+    "w": [
+     {
+      "t": "Éléazar",
+      "he": "אֶלְעָזָר"
+     },
+     {
+      "t": "Josué",
+      "he": "יְהוֹשֻׁעַ"
+     },
+     {
+      "t": "Caleb",
+      "he": "כָּלֵב"
+     }
+    ],
+    "ref": "25:11",
+    "proof": [
+     "Phinéas, fils d'Eléazar"
+    ],
+    "x": "Il est fils d'Éléazar, fils d'Aaron le pontife."
+   },
+   {
+    "q": "Que Dieu accorde-t-il à Phinéas et à sa postérité, comme gage d'alliance ?",
+    "a": "Le sacerdoce à perpétuité",
+    "w": [
+     "Un territoire à l'orient du Jourdain",
+     "Le commandement de l'armée d'Israël",
+     "Une alliance avec les rois de Madian"
+    ],
+    "ref": "25:13",
+    "proof": [
+     "sacerdoce à perpétuité"
+    ],
+    "x": "Parce qu'il a pris parti pour son Dieu et procuré expiation aux enfants d'Israël."
+   },
+   {
+    "q": "Combien de filles Celofhad avait-il, lui qui n'eut point de fils ?",
+    "a": "Cinq filles",
+    "w": [
+     "Trois filles",
+     "Sept filles",
+     "Deux filles"
+    ],
+    "ref": "26:33",
+    "proof": [
+     "Mahla, Nos, Hogla, Milca et Tirça"
+    ],
+    "x": "Elles s'approchent de Moïse pour réclamer une propriété parmi les frères de leur père."
+   },
+   {
+    "q": "Qui Dieu désigne-t-il pour succéder à Moïse comme chef du peuple ?",
+    "a": {
+     "t": "Josué",
+     "he": "יְהוֹשֻׁעַ"
+    },
+    "w": [
+     {
+      "t": "Caleb",
+      "he": "כָּלֵב"
+     },
+     {
+      "t": "Éléazar",
+      "he": "אֶלְעָזָר"
+     },
+     {
+      "t": "Phinéas",
+      "he": "פִּינְחָס"
+     }
+    ],
+    "ref": "27:18",
+    "proof": [
+     "Josué, fils de Noun"
+    ],
+    "x": "Moïse lui impose les mains devant le pontife Éléazar."
+   },
+   {
+    "q": "Combien d'agneaux d'un an offre-t-on par jour en holocauste perpétuel ?",
+    "a": "Deux agneaux",
+    "w": [
+     "Un seul agneau",
+     "Trois agneaux",
+     "Sept agneaux"
+    ],
+    "ref": "28:3",
+    "proof": [
+     "deux par jour"
+    ],
+    "x": "L'un est offert le matin, l'autre vers le soir."
+   }
+  ],
+  "2": [
+   {
+    "q": "Comment s'appelle l'Israélite frappé par Phinéas, qui avait péri avec la Madianite ?",
+    "a": {
+     "t": "Zimri",
+     "he": "זִמְרִי"
+    },
+    "w": [
+     {
+      "t": "Dathan",
+      "he": "דָּתָן"
+     },
+     {
+      "t": "Abirâm",
+      "he": "אֲבִירָם"
+     },
+     {
+      "t": "Caleb",
+      "he": "כָּלֵב"
+     }
+    ],
+    "ref": "25:14",
+    "proof": [
+     "Zimri, fils de Salou"
+    ],
+    "x": "Il est chef d'une famille paternelle des Siméonites."
+   },
+   {
+    "q": "Comment s'appelle la Madianite frappée avec Zimri, fille de Cour ?",
+    "a": {
+     "t": "Kozbi",
+     "he": "כָּזְבִּי"
+    },
+    "w": [
+     {
+      "t": "Mahla",
+      "he": "מַחְלָה"
+     },
+     {
+      "t": "Milca",
+      "he": "מִלְכָּה"
+     },
+     {
+      "t": "Tirça",
+      "he": "תִּרְצֶה"
+     }
+    ],
+    "ref": "25:15",
+    "proof": [
+     "Kozbi, fille de Cour"
+    ],
+    "x": "Son père est chef des peuplades d'une famille paternelle de Madian."
+   },
+   {
+    "q": "Quel est le résultat du dénombrement des enfants d'Israël ?",
+    "a": "Six cent un mille sept cent trente hommes",
+    "w": [
+     "Six cent trois mille cinq cent cinquante hommes",
+     "Six cent mille hommes",
+     "Six cent un mille sept cent quarante hommes"
+    ],
+    "ref": "26:51",
+    "proof": [
+     "six cent un mille sept cent trente"
+    ],
+    "x": "Aux plus nombreux, on donne une plus grande part de territoire."
+   },
+   {
+    "q": "Combien de mâles lévites d'un mois et plus sont dénombrés ?",
+    "a": "Vingt-trois mille",
+    "w": [
+     "Vingt-deux mille",
+     "Huit mille six cents",
+     "Vingt-trois mille cinq cents"
+    ],
+    "ref": "26:62",
+    "proof": [
+     "vingt-trois mille mâles"
+    ],
+    "x": "Ils n'avaient point reçu de patrimoine comme les autres tribus."
+   },
+   {
+    "q": "Quel est le jour du premier du septième mois, selon la Torah ?",
+    "a": "Le jour du son du Chofar",
+    "w": [
+     "Le jour des expiations",
+     "Le jour de la fête des tentes",
+     "Le jour de la gerbe de l'ômer"
+    ],
+    "ref": "29:1",
+    "proof": [
+     "jour du son du Chofar"
+    ],
+    "x": "Il y a convocation sainte : on ne fait aucune œuvre servile."
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, pourquoi la Torah rappelle-t-elle la généalogie de Phinéas jusqu'à Aaron ?",
+    "a": "Parce que les tribus le méprisaient comme petit-fils d'un homme qui engraissait des veaux pour l'idolâtrie",
+    "w": [
+     "Parce que Phinéas avait été élevé hors du camp",
+     "Parce que Phinéas portait le nom de son oncle",
+     "Parce que Phinéas n'était pas de la tribu de Lévi"
+    ],
+    "ref": "25:11",
+    "proof": [
+     "בן פוטי"
+    ],
+    "x": "Rachi sur Nombres 25:11 : les tribus le raillaient : « voyez ce fils de Pouti, dont l'aïeul maternel engraissait des veaux pour l'idolâtrie, et qui a tué un prince d'Israël ! » ; la Torah établit sa généalogie par Aaron."
+   },
+   {
+    "q": "Selon Rachi, pourquoi les fils de Coré ne sont-ils pas morts ?",
+    "a": "Parce qu'ils ont médité le repentir dans leur cœur au moment de la querelle",
+    "w": [
+     "Parce qu'ils n'étaient pas encore nés",
+     "Parce que Moïse a prié pour eux",
+     "Parce qu'ils étaient restés dans leur tente"
+    ],
+    "ref": "26:11",
+    "proof": [
+     "הרהרו תשובה"
+    ],
+    "x": "Rachi sur Nombres 26:11 : ils étaient dans le complot au début, mais au moment de la querelle, ils ont médité le repentir dans leur cœur ; un lieu élevé leur fut préparé dans la géhenne où ils demeurèrent."
+   },
+   {
+    "q": "Selon Rachi, pourquoi la Torah précise-t-elle que les filles de Celofhad descendent de « Joseph » ?",
+    "a": "Parce que Joseph aimait la terre d'Israël, et que ses descendantes l'ont aimée aussi",
+    "w": [
+     "Parce que Joseph a été le premier à recevoir un héritage",
+     "Parce que Joseph était le plus vieux des fils de Jacob",
+     "Parce que Joseph a épousé la fille du prêtre d'On"
+    ],
+    "ref": "27:1",
+    "proof": [
+     "יוסף חבב את הארץ"
+    ],
+    "x": "Rachi sur Nombres 27:1 : Joseph aimait la terre (« vous ferez monter mes os d'ici ») ; ses descendantes l'aimèrent aussi."
+   },
+   {
+    "q": "Selon Rachi, que signifie « un homme en qui il y a un esprit » à propos de Josué ?",
+    "a": "Un homme capable de supporter l'esprit de chacun",
+    "w": [
+     "Un homme qui connaît tous les secrets de la Torah",
+     "Un homme qui a le courage d'un lion",
+     "Un homme qui ne dort jamais pendant la nuit"
+    ],
+    "ref": "27:18",
+    "proof": [
+     "כנגד רוחו של כל אחד"
+    ],
+    "x": "Rachi sur Nombres 27:18 : comme tu l'as demandé : quelqu'un qui peut aller à la rencontre de l'esprit de chacun."
+   },
+   {
+    "q": "Selon Rachi, que fonde le mot « vous veillerez » (tishmerou) à propos du sacrifice perpétuel ?",
+    "a": "L'institution des « maamadot », où prêtres, Lévites et Israélites se tiennent présents",
+    "w": [
+     "L'institution des fêtes d'automne",
+     "L'institution du jeûne du jour des expiations",
+     "L'institution des offrandes de chaque tribu"
+    ],
+    "ref": "28:2",
+    "proof": [
+     "מעמדות"
+    ],
+    "x": "Rachi sur Nombres 28:2 : « vous veillerez » : que des prêtres, des Lévites et des Israélites se tiennent présents auprès de lui ; de là les « maamadot » ont été institués."
+   }
+  ]
+ }
+}

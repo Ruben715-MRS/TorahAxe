@@ -15,7 +15,9 @@ function benLoadRite() {
         const saved = localStorage.getItem(BEN_RITE_KEY);
         if (saved && BenedictionsData.RITES[saved]) return saved;
     } catch (e) { /* stockage indisponible */ }
-    return BenedictionsData.DEFAULT_RITE;
+    // Aucun choix fait sur cet écran : le rite du profil (Réglages, js/app/settings.js ; séfarade par défaut). Changer le rite du profil efface le choix fait ici.
+    const global = typeof riteFull === 'function' ? riteFull() : null;
+    return global && BenedictionsData.RITES[global] ? global : BenedictionsData.DEFAULT_RITE;
 }
 function benSaveRite(rite) {
     try { localStorage.setItem(BEN_RITE_KEY, rite); } catch (e) { /* stockage indisponible */ }
@@ -95,6 +97,9 @@ function benRender() {
     body.appendChild(chips);
     benRenderChips();
 
+    body.appendChild(benHalakhaPanel());
+    body.appendChild(benIkarPanel());
+
     const msg = benNode('p', 'tool-msg', '');
     msg.id = 'ben-msg';
     msg.setAttribute('role', 'status');
@@ -108,6 +113,186 @@ function benRender() {
     body.appendChild(benOtherPanel());
     body.appendChild(benSourceCard());
     benRenderRows();
+}
+
+// « Mon plat » : on compose un plat (ingrédients, poids ou pourcentages) et l'outil donne la bénédiction de l'Ikar. Calcul : BenedictionsCore.ikarOf.
+const IKAR_MAX = 6;
+let ikarRows = [{ b: 'haadama', pct: 60, principal: false, liant: false }, { b: 'chehakol', pct: 40, principal: false, liant: false }];
+const IKAR_MSG = {
+    none: 'Ajoutez au moins un ingrédient.',
+    mezonot: 'Une des cinq céréales donne du goût ou de la satiété : Mezonot, même en petite quantité. Un ingrédient ne servant qu\'à lier n\'est pas compté.',
+    hamotsi: 'Il y a du pain : Hamotsi prime sur les autres bénédictions du plat.',
+    principal: 'Un seul ingrédient est marqué principal : c\'est lui qui donne la bénédiction.',
+    majorite: 'C\'est la bénédiction la plus présente en quantité (l\'Ikar).',
+    egalite: 'Égalité entre plusieurs bénédictions : on suit l\'ordre Maga Esh (la première de la liste l\'emporte). À demander à votre rav.'
+};
+
+function benIkarPanel() {
+    const D = BenedictionsData;
+    const panel = benNode('details', 'kor-details ben-ikar');
+    panel.id = 'ben-ikar';
+    panel.appendChild(benNode('summary', '', 'Mon plat : quelle bénédiction pour mon plat ?'));
+    panel.appendChild(benNode('p', 'tool-small', 'Ajoutez les ingrédients avec leur poids ou leur pourcentage. Cochez « principal » pour l\'ingrédient qui fait le plat, et « liant » pour une farine ou une panure qui ne sert qu\'à lier.'));
+    const list = benNode('div', 'ben-ikar-rows');
+    panel.appendChild(list);
+    const result = benNode('div', 'ben-ikar-result');
+    result.setAttribute('role', 'status');
+    panel.appendChild(result);
+
+    function refresh() {
+        const r = BenedictionsCore.ikarOf(ikarRows);
+        toolClear(result);
+        if (!r.b) { result.appendChild(benNode('p', 'tool-small', IKAR_MSG.none)); return; }
+        const line = benNode('div', 'kor-tags');
+        line.appendChild(benNode('span', 'tool-small', 'Bénédiction de l\'Ikar :'));
+        line.appendChild(benBlessingTag(r.b));
+        result.appendChild(line);
+        result.appendChild(benNode('p', 'tool-small', IKAR_MSG[r.rule]));
+        if (r.ignored) result.appendChild(benNode('p', 'tool-small', r.ignored + ' ingrédient(s) ignoré(s) comme liant.'));
+    }
+
+    function draw() {
+        toolClear(list);
+        ikarRows.forEach((row, i) => {
+            const line = benNode('div', 'ben-ikar-row');
+            const sel = benNode('select', 'tool-input ben-ikar-sel');
+            sel.setAttribute('aria-label', 'Bénédiction de l\'ingrédient ' + (i + 1));
+            D.ORDER.filter(b => b !== 'aucune').forEach(b => {
+                const o = benNode('option', '', BenedictionsCore.label(b));
+                o.value = b;
+                if (b === row.b) o.selected = true;
+                sel.appendChild(o);
+            });
+            sel.onchange = () => { row.b = sel.value; refresh(); };
+            const pct = benNode('input', 'tool-input ben-ikar-pct');
+            pct.type = 'number'; pct.min = '0'; pct.step = '1';
+            pct.value = String(row.pct);
+            pct.setAttribute('aria-label', 'Part de l\'ingrédient ' + (i + 1));
+            pct.oninput = () => { row.pct = Math.max(0, Number(pct.value) || 0); refresh(); };
+            line.appendChild(sel);
+            line.appendChild(pct);
+            [['principal', 'Principal'], ['liant', 'Liant']].forEach(([key, text]) => {
+                const lab = benNode('label', 'ben-ikar-check');
+                const cb = benNode('input', '');
+                cb.type = 'checkbox';
+                cb.checked = !!row[key];
+                cb.onchange = () => { row[key] = cb.checked; refresh(); };
+                lab.appendChild(cb);
+                lab.appendChild(document.createTextNode(' ' + text));
+                line.appendChild(lab);
+            });
+            const del = benNode('button', 'tool-history-chip', 'Retirer');
+            del.type = 'button';
+            del.setAttribute('aria-label', 'Retirer l\'ingrédient ' + (i + 1));
+            del.onclick = () => { ikarRows.splice(i, 1); draw(); refresh(); };
+            line.appendChild(del);
+            list.appendChild(line);
+        });
+        const add = benNode('button', 'tool-history-chip', '+ Ajouter un ingrédient');
+        add.type = 'button';
+        add.disabled = ikarRows.length >= IKAR_MAX;
+        add.onclick = () => { ikarRows.push({ b: 'haadama', pct: 0, principal: false, liant: false }); draw(); refresh(); };
+        list.appendChild(add);
+    }
+
+    draw();
+    refresh();
+    return panel;
+}
+
+// Cherche un aliment dans la liste, puis fait voir la liste.
+function benSearchFor(query) {
+    benState.query = query;
+    const input = document.getElementById('ben-query');
+    if (input) input.value = query;
+    benRenderRows();
+    const rows = document.getElementById('ben-rows');
+    if (rows) rows.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// Ouvre un bloc de l'écran (par son id) et y va ; ou ouvre une bénédiction dans le Siddour (ids).
+function benGoTo(target) {
+    const el = document.getElementById(target);
+    if (!el) return;
+    el.open = true;
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// La halakha générale, repliée par défaut, au-dessus de la liste : ordre des bénédictions, plat mélangé, dessert. Données : BenedictionsData.HALAKHA.
+function benHalakhaPanel() {
+    const H = BenedictionsData.HALAKHA;
+    const panel = benNode('details', 'ben-halakha');
+    panel.id = 'ben-halakha';
+    panel.appendChild(benNode('summary', 'ben-halakha-title', 'Halakha : ordre des bénédictions, plats mélangés, desserts'));
+    panel.appendChild(benNode('p', 'tool-small ben-halakha-note', H.note));
+    H.sections.forEach(sec => {
+        const part = benNode('section', 'ben-halakha-sec');
+        part.appendChild(benNode('h3', 'ben-halakha-h', sec.title));
+        (sec.paras || []).forEach(text => part.appendChild(benNode('p', 'tool-small', text)));
+        if (sec.list) {
+            const ol = benNode('ol', 'ben-halakha-list');
+            sec.list.forEach(item => ol.appendChild(benNode('li', 'tool-small', item.t)));
+            part.appendChild(ol);
+        }
+        if (sec.table) {
+            const wrap = benNode('div', 'ben-halakha-table');
+            const table = benNode('table', '');
+            const head = benNode('tr', '');
+            ['Type de dessert', 'Bénédiction avant ?', 'Remarque'].forEach(h => head.appendChild(benNode('th', '', h)));
+            table.appendChild(head);
+            sec.table.forEach(row => {
+                const tr = benNode('tr', '');
+                tr.appendChild(benNode('td', '', row.type));
+                tr.appendChild(benNode('td', '', row.before));
+                tr.appendChild(benNode('td', '', row.note || '—'));
+                table.appendChild(tr);
+            });
+            wrap.appendChild(table);
+            part.appendChild(wrap);
+        }
+        if (sec.examples) {
+            const ul = benNode('ul', 'ben-halakha-ex');
+            sec.examples.forEach(ex => {
+                const li = benNode('li', 'tool-small', ex.t);
+                if (ex.q && BenedictionsCore.filterFoods({ query: ex.q }).length) {
+                    const link = benNode('button', 'ben-halakha-link', 'Voir « ' + ex.q + ' » dans la liste');
+                    link.type = 'button';
+                    link.onclick = () => benSearchFor(ex.q);
+                    li.appendChild(link);
+                }
+                ul.appendChild(li);
+            });
+            part.appendChild(ul);
+        }
+        if (sec.links) {
+            const row = benNode('div', 'ben-halakha-links');
+            sec.links.forEach(l => {
+                const btn = benNode('button', 'tool-history-chip', l.label);
+                btn.type = 'button';
+                btn.onclick = () => benGoTo(l.panel);
+                row.appendChild(btn);
+            });
+            part.appendChild(row);
+        }
+        if (sec.sources) {
+            const ul = benNode('ul', 'ben-halakha-sources');
+            sec.sources.forEach(src => {
+                const li = benNode('li', 'tool-small');
+                li.appendChild(benNode('strong', '', src.ref));
+                li.appendChild(document.createTextNode(' : ' + src.for + ' '));
+                li.appendChild(benNode('span', 'ben-halakha-unverified', 'non vérifiée'));
+                ul.appendChild(li);
+            });
+            part.appendChild(ul);
+        }
+        if (sec.bullets) {
+            const ul = benNode('ul', 'ben-halakha-list');
+            sec.bullets.forEach(text => ul.appendChild(benNode('li', 'tool-small', text)));
+            part.appendChild(ul);
+        }
+        panel.appendChild(part);
+    });
+    return panel;
 }
 
 function benRenderRiteInfo() {
@@ -157,26 +342,26 @@ function benRenderRows() {
         const card = benNode('article', 'tool-result kor-card ben-card');
         card.dataset.row = String(food.id);
         const view = BenedictionsCore.view(food, benState.rite);
-        card.classList.toggle('is-diff', view.diff);
         card.appendChild(benNode('strong', 'kor-situation', food.n));
+        if (food.alt && food.alt.length) card.appendChild(benNode('span', 'tool-small', 'Aussi : ' + food.alt.join(', ')));
         if (view.steps) {
             const steps = benNode('ol', 'ben-steps');
             view.steps.forEach(s => {
                 const li = benNode('li', 'ben-step');
                 li.appendChild(benNode('span', 'tool-small', s.t));
-                li.appendChild(benTag(s.b));
+                li.appendChild(benBlessingTag(s.b));
                 steps.appendChild(li);
             });
             card.appendChild(steps);
         } else {
             const tags = benNode('div', 'kor-tags');
-            tags.appendChild(benTag(view.b));
+            tags.appendChild(benBlessingTag(view.b));
             if (view.diff) tags.appendChild(benNode('span', 'kor-tag ben-diff', t('tools.ben_diff', { rite: D.RITES.habad.short })));
             card.appendChild(tags);
             if (view.diff) {
                 const was = benNode('p', 'tool-small ben-was');
                 was.appendChild(document.createTextNode(t('tools.ben_habad_says', { rite: D.RITES.habad.short }) + ' '));
-                was.appendChild(benTag(view.habad));
+                was.appendChild(benBlessingTag(view.habad));
                 card.appendChild(was);
             }
         }
@@ -188,15 +373,17 @@ function benRenderRows() {
             box.appendChild(benNode('p', 'tool-small', view.note));
             card.appendChild(box);
         }
-        const notes = BenedictionsCore.notesOf(food);
-        if (notes.length) {
+        // Les notes 1 à 33 sont celles du guide 'Habad ; les suivantes (D.GUIDE_NOTES) sont des précisions de l'application, présentées à part.
+        const allNotes = BenedictionsCore.notesOf(food);
+        [[allNotes.filter(n => n <= D.GUIDE_NOTES), true], [allNotes.filter(n => n > D.GUIDE_NOTES), false]].forEach(([notes, fromGuide]) => {
+            if (!notes.length) return;
             const habad = benState.rite === 'habad';
             const details = benNode('details', 'kor-details ben-notes');
-            const key = 'tools.ben_notes_' + (notes.length > 1 ? 'n' : '1') + (habad ? '' : '_habad');
+            const key = fromGuide ? 'tools.ben_notes_' + (notes.length > 1 ? 'n' : '1') + (habad ? '' : '_habad') : 'tools.ben_app_notes_' + (notes.length > 1 ? 'n' : '1');
             details.appendChild(benNode('summary', '', t(key, { n: notes.join(', ') })));
             notes.forEach(n => details.appendChild(benNode('p', 'tool-small', (notes.length > 1 ? '(' + n + ') ' : '') + D.NOTES[n])));
             card.appendChild(details);
-        }
+        });
         list.appendChild(card);
     });
     toolEl('ben-msg').textContent = rows.length ? t('tools.ben_count', { n: rows.length, total: D.FOODS.length }) : t('tools.ben_none');
@@ -211,6 +398,7 @@ function benTextsPanel() {
     ['hamotsi', 'mezonot', 'haguafen', 'haets', 'haadama', 'chehakol'].forEach(b => {
         const def = D.BLESSINGS[b];
         const card = benNode('article', 'tool-result kor-type');
+        card.id = 'ben-text-' + b;
         const head = benNode('div', 'kor-type-head');
         head.appendChild(benHebrew('strong', def.he, 'kor-he kor-he-inline'));
         head.appendChild(benNode('span', 'kor-type-name', def.fr));
@@ -227,6 +415,31 @@ function benTextsPanel() {
     open.onclick = () => benOpenSiddur(['birkhot-hanehenin'], 'Birkhot haNéhénin');
     panel.appendChild(open);
     return panel;
+}
+
+// La puce d'une bénédiction dans une fiche (avant consommation) : elle ouvre le texte de cette bénédiction dans le bloc des six textes, comme les puces après consommation ouvrent leur texte.
+function benBlessingTag(b) {
+    const D = BenedictionsData;
+    if (!D.BLESSINGS[b]) return benTag(b);
+    const tag = benNode('button', 'kor-tag ben-tag ben-tag-' + b + ' ben-tag-btn');
+    tag.type = 'button';
+    tag.dataset.blessing = b;
+    tag.setAttribute('aria-label', t('tools.ben_text_open', { name: D.BLESSINGS[b].fr }));
+    tag.appendChild(benHebrew('span', D.BLESSINGS[b].he, 'ben-tag-he'));
+    tag.appendChild(document.createTextNode(' ' + D.BLESSINGS[b].fr));
+    tag.onclick = () => benShowText(b);
+    return tag;
+}
+
+// Ouvre le bloc des six textes, puis fait voir le texte de la bénédiction `b`.
+function benShowText(b) {
+    const panel = document.getElementById('ben-texts');
+    const card = document.getElementById('ben-text-' + b);
+    if (!panel || !card) return;
+    panel.open = true;
+    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    card.classList.add('is-focus');
+    setTimeout(() => card.classList.remove('is-focus'), 1600);
 }
 
 // Ouvre le Siddour sur des sections ; le retour ramène ici.
@@ -316,6 +529,7 @@ const BEN_OTHER = [
     { he: 'קשת', fr: 'Arc-en-ciel', desc: 'Celui qui se souvient de l\'alliance', ids: ['arc-en-ciel'], title: 'Arc-en-ciel' },
     { he: 'ברקים', fr: 'Éclairs et tonnerre', desc: 'Œuvre de la Création ; Sa force remplit le monde', ids: ['eclairs-tonnerre'], title: 'Éclairs et tonnerre' },
     { he: 'שהחיינו', fr: 'Chéhé\'héyanou', desc: 'Vêtement neuf, fruit de saison, nouvelle maison', ids: ['chehehyanou'], title: 'Chéhé\'héyanou' },
+    { he: 'ברכת האילנות', fr: 'Birkat haIlanot', desc: 'Les arbres en fleurs, au printemps (Nissan)', ids: ['nissan-ilanot'], title: 'Birkat haIlanot' },
     { he: 'דיין האמת', fr: 'Dayan haEmet, Hatov véhaMétiv', desc: 'Un décès ; une bonne nouvelle partagée', ids: ['dayan-haemet'], title: 'Dayan haEmet et Hatov véhaMétiv' }
 ];
 
