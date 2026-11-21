@@ -55,30 +55,30 @@
     var NIQQUD = /[֑-ׇ]/g;
     function stripNiqqud(s) { return s.replace(NIQQUD, ''); }
     function hasHebrew(s) { return /[א-ת]/.test(s); }
-    function norm(s) { return stripNiqqud(s).replace(/["״'׳־\-–]/g, ' ').replace(/\s+/g, ' ').trim(); }
+    function norm(s) { return stripNiqqud(s).replace(/["״”“'׳־\-–]/g, ' ').replace(/\s+/g, ' ').trim(); }
 
     // --- Les consignes ---------------------------------------------------------------------------------------------------------------------
     // Les mots-clés d'une consigne (sans voyelles ni guillemets) : chacun est une « raison » de dire la variante ; une consigne qui en cite plusieurs
     // vaut pour l'une OU l'autre (« בראש חודש ובחול המועד » : Roch 'Hodesh ou 'Hol haMoed). L'ordre compte : le plus précis d'abord.
     var ATOMS = [
-        ['aseret', /עשרת ימי תשובה/],
+        ['aseret', /עשרת ימי תשובה|בעשי ?ת(\s|$)|^עשי ת/],
         ['roshHashana', /בראש השנה|^ברה ש$/],
         ['moadim', /^במועדים/],
-        ['rc', /בראש (חדש|חודש)|בליל ראש (חדש|חודש)|(^|\s)בר ?ח(\s|$)/],
+        ['rc', /בראש (חדש|חודש)|בליל ראש (חדש|חודש)|(^|\s)[בל]ר ?ח(\s|$)/],
         ['chPesach', /(חוה מ|חול המועד) פסח/],
         ['chSukkot', /(חוה מ|חול המועד) סוכות/],
         ['ch', /חול המועד|חוה מ\b|חוהמ/],
         ['shemini', /בשמיני עצרת/],
-        ['pesach', /^בפסח|ובפסח|, בפסח/],
+        ['pesach', /^בפסח|ובפסח|, בפסח|^לפסח/],
         ['shavuot', /בשבועות/],
-        ['sukkot', /^בסוכות|ובסוכות/],
+        ['sukkot', /^בסוכות|ובסוכות|^לסוכות|^לסכות/],
         ['yomTov', /ביום טוב|ביו ט|יום טוב|וביו ט/],
         ['hanukkah', /חנוכה/],
         ['purim', /פורים/],
         ['tishaBav', /תשעה באב/],
-        ['fastPublic', /תענית ציבור/],
+        ['fastPublic', /תענית (ציבור|צבור)/],
         ['fastIndividual', /תענית יחיד/],
-        ['noTachanun', /ימים שאין בהם תחנון/],
+        ['noTachanun', /ימים שאין בהם תחנון|ביום שאין אומרים תחנון/],
         ['summer', /בקיץ/],
         ['winter', /בחורף/],
         ['shabbat', /^בשבת|ובשבת|, בשבת/]

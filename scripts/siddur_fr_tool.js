@@ -8,7 +8,11 @@
 // Les titres (segment 0, « <big> ») et les segments sans lettre hébraïque n'ont pas besoin de traduction.
 const fs = require('fs'), path = require('path');
 const S = require('../js/siddurCore.js');
-const DIR = path.join(__dirname, '..', 'data', 'siddur');
+// SD_RITE=ashkenaz (ou habad) : on travaille sur data/siddur/<rite>/ (textes et traductions fr/ de ce rite) ; sans lui, sur le siddour d'Edot HaMizrach.
+// Les sections d'un index marquées `from` y sont reprises du siddour séfarade : elles ne sont pas dans le dossier du rite.
+const ROOT = path.join(__dirname, '..', 'data', 'siddur');
+const DIR = process.env.SD_RITE ? path.join(ROOT, process.env.SD_RITE) : ROOT;
+if (process.env.SD_RITE) fs.mkdirSync(path.join(DIR, 'fr'), { recursive: true });
 const ids = () => fs.readdirSync(DIR).filter(f => f.endsWith('.json') && f !== 'index.json').map(f => f.replace(/\.json$/, ''));
 const load = id => JSON.parse(fs.readFileSync(path.join(DIR, id + '.json'), 'utf8'));
 function loadFr(id) { try { return JSON.parse(fs.readFileSync(path.join(DIR, 'fr', id + '.json'), 'utf8')).t || {}; } catch (e) { return {}; } }
@@ -20,7 +24,7 @@ function saveFr(id, t) {
 // Reconstruit fr/index.json (le nombre de segments traduits par section) : à lancer une fois toutes les traductions écrites.
 function reindex() {
     const idxPath = path.join(DIR, 'fr', 'index.json');
-    const idx = JSON.parse(fs.readFileSync(idxPath, 'utf8'));
+    const idx = fs.existsSync(idxPath) ? JSON.parse(fs.readFileSync(idxPath, 'utf8')) : { v: 1, sections: {} };
     ids().forEach(id => { const n = Object.keys(loadFr(id)).length; if (n) idx.sections[id] = n; });
     fs.writeFileSync(idxPath, JSON.stringify(idx) + '\n');
 }
@@ -51,7 +55,8 @@ if (cmd === 'reindex') { reindex(); console.log('index reconstruit'); } else if 
     console.log(id, n, 'traductions ajoutées');
 } else if (cmd === 'reuse') {
     const known = {};
-    ids().forEach(id => { const t = loadFr(id); Object.keys(t).forEach(k => { known[t[k][0]] = t[k][1]; }); });
+    const frDirs = [ROOT, path.join(ROOT, 'ashkenaz'), path.join(ROOT, 'habad')];
+    frDirs.forEach(d => { try { fs.readdirSync(path.join(d, 'fr')).filter(f => f.endsWith('.json') && f !== 'index.json').forEach(f => { const t = JSON.parse(fs.readFileSync(path.join(d, 'fr', f), 'utf8')).t || {}; Object.keys(t).forEach(k => { known[t[k][0]] = t[k][1]; }); }); } catch (e) { /* pas de traductions dans ce dossier */ } });
     const OC = require('../js/zmanimReminderCore.js');
     let total = 0;
     ids().forEach(id => {
