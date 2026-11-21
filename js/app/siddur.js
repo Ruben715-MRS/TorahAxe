@@ -2025,7 +2025,9 @@ const SD_DAY_RULES = [
     // Arvit : « Ata 'honantanou » à la sortie de Chabbat et de fête ; Kaddich Titqabal les autres soirs ; ajouts de la sortie de Chabbat.
     { id: 'arvit-amida', head: /^במוצאי שבת ויום טוב מוסיפים/, label: 'Sortie de Chabbat ou de fête : « Ata \'honantanou »', on: c => c.weekday === 0 || sdPrevYomTov(c) },
     { id: 'arvit-amida', head: /^בכל לילות החול מלבד מוצאי שבת/, usual: true, label: 'Kaddich Titqabal (sauf à la sortie de Chabbat)', on: c => c.weekday !== 0 },
-    { id: 'arvit-amida', head: /^במוצאי שבת/, label: 'Sortie de Chabbat : Vihi noam, Véata kadoch…', on: c => c.weekday === 0, until: /^שיר למעלות/ },
+    // La sortie de Chabbat commence à « Chouva » ; la requête facultative qui le précède (« לפני שובה ») est repliée à part, « selon le cas ».
+    { id: 'arvit-amida', head: /^במוצאי שבת/, label: 'Sortie de Chabbat : « Chouva »', on: c => c.weekday === 0, until: /^שיר למעלות/,
+        optional: { head: /^לפני .?שובה.? יש נוהגים/, until: /^שובה/, label: 'Requête facultative avant « Chouva »' } },
     // Birkhot hacha'har : pas de « chéassa li kol tsorki » le 9 Av et à Kippour.
     { id: 'birkhot-hachahar', head: /^בתשעה באב וביום הכיפורים/, usual: true, label: '« Chéassa li kol tsorki » (sauf 9 Av et Kippour)', on: c => !c.flags.tishaBav && !(c.hebrew.month === 'Tishri' && c.hebrew.day === 10) },
     // Les passages qui ne se disent que les jours avec Tahanoun, ou seulement les jours sans.
@@ -2060,10 +2062,21 @@ function sdMonThuBlock(sectionId, bares, i) {
     const r = SD_DAY_RULES.find(x => (x.id instanceof RegExp ? x.id.test(sectionId) : x.id === sectionId) && x.head.test(bares[i]));
     if (!r || i + 1 >= bares.length) return null;
     if (r.usual && r.on(sdCtx)) return null;
-    let to = i + 1;
+    const state = r.on(sdCtx) ? 'on' : 'off';
+    let from = i + 1;
+    // Un passage facultatif annoncé au début du bloc (le jour où il s'applique) : replié à part, « selon le cas », et hors du bloc.
+    const pre = [];
+    if (state === 'on' && r.optional && r.optional.head.test(bares[from])) {
+        let to = from + 1;
+        while (to + 1 < bares.length && !r.optional.until.test(bares[to + 1])) to++;
+        pre.push({ from: from + 1, to, label: r.optional.label, state: 'fold-unknown' });
+        from = to + 1;
+    }
+    if (from >= bares.length) return null;
+    let to = from;
     if (r.toEnd) to = bares.length - 1;
     else if (r.until) { while (to + 1 < bares.length && !r.until.test(bares[to + 1])) to++; }
-    return { from: i + 1, to, label: r.label, state: r.on(sdCtx) ? 'on' : 'off' };
+    return { from: from, to, label: r.label, state: state, pre: pre };
 }
 
 // Ce qui se dit avec un minyan (Kaddich, Qédoucha) : dans un bloc gris, marqué « Avec minyan ».
@@ -2516,6 +2529,7 @@ function sdRenderSection(section) {
         if (kEnd >= 0) { const kb = sdMinyanBox('Kaddich'); for (let k = i; k <= kEnd; k++) kb.appendChild(seg(k)); out.appendChild(kb); i = kEnd + 1; continue; }
         const mt = sdMonThuBlock(section.id, bares, i);
         if (mt) {
+            mt.pre.forEach(p => out.appendChild(sdVarBlock([], p.label, SiddurCore.plain(trees.slice(p.from, p.to + 1)), host => sdAppendSegs(host, p.from, p.to, bares, byHeader, seg), p.state)));
             out.appendChild(sdVarBlock([], mt.label, SiddurCore.plain(trees.slice(mt.from, mt.to + 1)), host => sdAppendSegs(host, mt.from, mt.to, bares, byHeader, seg), mt.state));
             i = mt.to + 1;
             continue;
