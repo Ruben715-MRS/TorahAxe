@@ -1,0 +1,230 @@
+{
+ "v": 1,
+ "parasha": "Michpatim",
+ "levels": {
+  "1": [
+   {
+    "q": "Combien d'années un esclave hébreu reste-t-il esclave, avant d'être remis en liberté ?",
+    "a": "Six années",
+    "w": [
+     "Sept années",
+     "Trois années",
+     "Douze années"
+    ],
+    "ref": "21:2",
+    "proof": [
+     "six années"
+    ],
+    "x": "À la septième année, il sera remis en liberté sans rançon."
+   },
+   {
+    "q": "Que fait le maître pour garder à son service l'esclave qui refuse la liberté ?",
+    "a": "Il lui perce l'oreille avec un poinçon",
+    "w": [
+     "Il lui coupe une mèche de cheveux devant le tribunal",
+     "Il lui passe une bague de fer au doigt devant l'autel",
+     "Il lui fait jurer fidélité sur la porte de sa maison"
+    ],
+    "ref": "21:6",
+    "proof": [
+     "percera l'oreille",
+     "poinçon"
+    ],
+    "x": "Son maître l'amène devant le tribunal, le place près d'une porte ou d'un poteau, et lui perce l'oreille ; il le servira à perpétuité."
+   },
+   {
+    "q": "Combien de fois par an tous les mâles paraissent-ils devant l'Éternel ?",
+    "a": "Trois fois par an",
+    "w": [
+     "Une fois par an, à l'automne",
+     "Sept fois par an, à chaque néoménie",
+     "Quatre fois par an, à chaque saison"
+    ],
+    "ref": "23:17",
+    "proof": [
+     "trois fois"
+    ],
+    "x": "Trois fois par an, tous tes mâles paraîtront par-devant le Souverain, l'Éternel."
+   },
+   {
+    "q": "Combien de temps Moïse reste-t-il sur la montagne, au milieu du nuage ?",
+    "a": "Quarante jours et quarante nuits",
+    "w": [
+     "Sept jours et sept nuits, sans manger",
+     "Trois jours et trois nuits, en silence",
+     "Quarante jours seulement, en redescendant chaque nuit"
+    ],
+    "ref": "24:18",
+    "proof": [
+     "quarante jours et quarante nuits"
+    ],
+    "x": "Moïse pénétra au milieu du nuage et s'éleva sur la montagne."
+   },
+   {
+    "q": "Pourquoi la Torah interdit-elle de molester l'étranger ?",
+    "a": "Parce que les Israélites ont eux-mêmes été étrangers en Égypte",
+    "w": [
+     "Parce que l'étranger est protégé par un impôt versé au sanctuaire",
+     "Parce que l'étranger descend lui aussi d'Abraham",
+     "Parce que Pharaon avait ordonné de bien traiter les étrangers"
+    ],
+    "ref": "22:20",
+    "proof": [
+     "étrangers en Égypte"
+    ],
+    "x": "« Tu ne contristeras point l'étranger ni ne le molesteras ; car vous-mêmes avez été étrangers en Égypte. »"
+   }
+  ],
+  "2": [
+   {
+    "q": "Quel animal la Torah interdit-elle de faire cuire dans le lait de sa mère ?",
+    "a": "Un chevreau",
+    "w": [
+     "Une colombe",
+     "Un poisson du fleuve",
+     "Un âne de bât"
+    ],
+    "ref": "23:19",
+    "proof": [
+     "chevreau",
+     "lait de sa mère"
+    ],
+    "x": "« Tu ne feras point cuire un chevreau dans le lait de sa mère. »"
+   },
+   {
+    "q": "Quelle règle de réparation la Torah énonce-t-elle pour une blessure grave ?",
+    "a": "Œil pour œil, dent pour dent, main pour main, pied pour pied",
+    "w": [
+     "Une amende de cent sicles d'argent par blessure",
+     "Le bannissement de sept ans loin de la ville",
+     "Un an de service dans la maison de la victime"
+    ],
+    "ref": "21:24",
+    "proof": [
+     "œil pour œil",
+     "dent pour dent"
+    ],
+    "x": "Suivent : brûlure pour brûlure, meurtrissure pour meurtrissure."
+   },
+   {
+    "q": "Que fait Moïse de la moitié du sang des sacrifices, avant de lire le livre de l'alliance ?",
+    "a": "Il la met dans des bassins, et répand l'autre moitié sur l'autel",
+    "w": [
+     "Il en asperge le peuple, puis verse le reste au pied de la montagne",
+     "Il en garde la moitié pour les prêtres et jette l'autre au feu",
+     "Il en marque les linteaux des tentes, puis en enduit l'autel"
+    ],
+    "ref": "24:6",
+    "proof": [
+     "bassins",
+     "autel"
+    ],
+    "x": "Alors Moïse prit la moitié du sang, la mit dans des bassins et répandit l'autre moitié sur l'autel."
+   },
+   {
+    "q": "Combien d'années ensemence-t-on la terre avant l'année de jachère ?",
+    "a": "Six années",
+    "w": [
+     "Cinq années",
+     "Sept années",
+     "Quarante-neuf années"
+    ],
+    "ref": "23:10",
+    "proof": [
+     "six années"
+    ],
+    "x": "Six années tu ensemenceras ta terre et en recueilleras le produit ; la septième, tu la laisseras reposer."
+   },
+   {
+    "q": "À quoi ressemble la substance sous les pieds de la Divinité d'Israël, vue par les anciens ?",
+    "a": "Au brillant du saphir, limpide comme la substance du ciel",
+    "w": [
+     "À de l'or fondu, pur et ruisselant",
+     "À du cristal glacé, froid comme la neige",
+     "À un nuage de poussière rouge et de feu"
+    ],
+    "ref": "24:10",
+    "proof": [
+     "saphir"
+    ],
+    "x": "Ils contemplèrent la Divinité d'Israël."
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, pourquoi les lois civiles suivent-elles directement les lois de l'autel ?",
+    "a": "Pour enseigner qu'il faut placer le Sanhédrin près du Temple",
+    "w": [
+     "Pour montrer que les sacrifices passent avant la justice",
+     "Pour que les juges offrent un sacrifice avant chaque procès",
+     "Pour rappeler que l'autel est le lieu des serments"
+    ],
+    "ref": "21:1",
+    "proof": [
+     "סנהדרין",
+     "המקדש"
+    ],
+    "x": "Rachi sur Exode 21:1 : pourquoi la section des lois est-elle juxtaposée à celle de l'autel ? Pour te dire de placer le Sanhédrin près du Sanctuaire."
+   },
+   {
+    "q": "Selon Rachi, que signifie « les lois que tu leur exposeras », littéralement « que tu placeras devant eux » ?",
+    "a": "Les leur présenter comme une table dressée et prête, en leur expliquant les raisons",
+    "w": [
+     "Les leur faire répéter deux ou trois fois par cœur sans explication",
+     "Les graver devant eux sur des tables de pierre",
+     "Les leur lire seulement à la fin de chaque semaine"
+    ],
+    "ref": "21:1",
+    "proof": [
+     "כשלחן הערוך",
+     "טעמי"
+    ],
+    "x": "Rachi sur Exode 21:1 : comme une table dressée et prête à manger : il ne suffit pas de leur faire répéter la loi, il faut leur expliquer le pourquoi."
+   },
+   {
+    "q": "Selon Rachi, quelle oreille le maître perce-t-il à l'esclave qui refuse la liberté ?",
+    "a": "L'oreille droite",
+    "w": [
+     "L'oreille gauche",
+     "Les deux oreilles",
+     "Celle qu'il préfère, devant le juge"
+    ],
+    "ref": "21:6",
+    "proof": [
+     "הימנית"
+    ],
+    "x": "Rachi sur Exode 21:6 : l'oreille droite, par analogie avec la purification du lépreux."
+   },
+   {
+    "q": "Selon Rachi, que signifie « vous avez été étrangers en Égypte » après l'interdiction de molester l'étranger ?",
+    "a": "Qu'il ne faut pas reprocher à autrui le défaut que l'on a soi-même",
+    "w": [
+     "Qu'il faut offrir un repas à l'étranger chaque semaine",
+     "Qu'il faut lui apprendre l'hébreu avant de lui parler",
+     "Qu'il faut craindre que Pharaon vienne le reprendre"
+    ],
+    "ref": "22:20",
+    "proof": [
+     "מום שבך",
+     "אל תאמר לחברך"
+    ],
+    "x": "Rachi sur Exode 22:20 : « le défaut que tu as, ne le reproche pas à ton prochain » : toi aussi tu as été étranger."
+   },
+   {
+    "q": "Selon Rachi, que contient le « livre de l'alliance » que Moïse lit au peuple ?",
+    "a": "Tout ce qui va de la Genèse jusqu'au don de la Torah, et les commandements reçus à Mara",
+    "w": [
+     "Seulement les dix paroles prononcées au Sinaï",
+     "Les lois du Tabernacle et des sacrifices",
+     "Les noms des douze tribus et leurs territoires"
+    ],
+    "ref": "24:7",
+    "proof": [
+     "מבראשית",
+     "במרה"
+    ],
+    "x": "Rachi sur Exode 24:7 : le livre de l'alliance : de la Genèse au don de la Torah, avec les commandements donnés à Mara."
+   }
+  ]
+ }
+}

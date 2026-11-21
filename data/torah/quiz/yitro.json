@@ -1,0 +1,267 @@
+{
+ "v": 1,
+ "parasha": "Yitro",
+ "levels": {
+  "1": [
+   {
+    "q": "Qui vient retrouver Moïse au désert avec ses fils et sa femme ?",
+    "a": {
+     "t": "Jéthro",
+     "he": "יִתְרוֹ"
+    },
+    "w": [
+     {
+      "t": "Aaron",
+      "he": "אַהֲרֹן"
+     },
+     {
+      "t": "Josué",
+      "he": "יְהוֹשֻׁעַ"
+     },
+     {
+      "t": "Hour",
+      "he": "חוּר"
+     }
+    ],
+    "ref": "18:5",
+    "proof": [
+     "Jéthro"
+    ],
+    "x": "Jéthro, beau-père de Moïse, vint le trouver au désert, où il campait près de la montagne de Dieu."
+   },
+   {
+    "q": "Comment s'appelle le second fils de Moïse ?",
+    "a": {
+     "t": "Éliézer",
+     "he": "אֱלִיעֶזֶר"
+    },
+    "w": [
+     {
+      "t": "Gersom",
+      "he": "גֵּרְשֹׁם"
+     },
+     {
+      "t": "Manassé",
+      "he": "מְנַשֶּׁה"
+     },
+     {
+      "t": "Éphraïm",
+      "he": "אֶפְרַיִם"
+     }
+    ],
+    "ref": "18:4",
+    "proof": [
+     "Éliézer"
+    ],
+    "x": "« Le Dieu de mon père est venu à mon aide et m'a sauvé du glaive de Pharaon. »"
+   },
+   {
+    "q": "Quel conseil de Jéthro Moïse applique-t-il pour juger le peuple ?",
+    "a": "Choisir des hommes de mérite et les créer magistrats du peuple",
+    "w": [
+     "Juger seulement le septième jour, après la prière de l'aube",
+     "Envoyer tous les procès à Pharaon pour qu'il les tranche",
+     "Faire tirer au sort les juges parmi les anciens des tribus"
+    ],
+    "ref": "18:25",
+    "proof": [
+     "magistrats du peuple"
+    ],
+    "x": "Il choisit des hommes de mérite entre tout Israël et les créa magistrats du peuple."
+   },
+   {
+    "q": "Dans quel désert Israël arrive-t-il et campe-t-il en face de la montagne ?",
+    "a": {
+     "t": "Sinaï",
+     "he": "סִינָי"
+    },
+    "w": [
+     {
+      "t": "Refidim",
+      "he": "רְפִידִים"
+     },
+     {
+      "t": "Élim",
+      "he": "אֵילִם"
+     },
+     {
+      "t": "Soukkoth",
+      "he": "סֻכּוֹת"
+     }
+    ],
+    "ref": "19:1-2",
+    "proof": [
+     "Sinaï"
+    ],
+    "x": "Partis de Refidim, ils entrèrent dans le désert de Sinaï et y campèrent, Israël en face de la montagne."
+   },
+   {
+    "q": "Que se passe-t-il le troisième jour au matin sur la montagne ?",
+    "a": "Des tonnerres, des éclairs, une nuée épaisse et un son de cor très intense",
+    "w": [
+     "Un tremblement de terre et un vent d'est qui renverse les tentes",
+     "De la neige, un épais brouillard et un silence de mort",
+     "Une pluie de feu, une voix de femme et un grand silence"
+    ],
+    "ref": "19:16",
+    "proof": [
+     "tonnerres",
+     "éclairs"
+    ],
+    "x": "Tout le peuple, dans le camp, trembla."
+   }
+  ],
+  "2": [
+   {
+    "q": "À quelle date arrivent-ils au désert de Sinaï ?",
+    "a": "À la troisième néoménie depuis leur départ d'Égypte, le jour même",
+    "w": [
+     "À la première néoménie, au moment où l'on célèbre le début du printemps",
+     "À la septième néoménie, au moment des premières pluies d'automne",
+     "Au quinzième jour du premier mois, en pleine nuit de la sortie"
+    ],
+    "ref": "19:1",
+    "proof": [
+     "troisième néoménie"
+    ],
+    "x": "Le jour même, ils arrivèrent au désert de Sinaï."
+   },
+   {
+    "q": "Quelles qualités Jéthro demande-t-il aux hommes que Moïse placera à la tête du peuple ?",
+    "a": "Éminents, craignant Dieu, amis de la vérité et ennemis du lucre",
+    "w": [
+     "Riches, âgés, savants et patients",
+     "Forts, courageux, silencieux et sévères",
+     "Nés en Égypte, de bonne famille et pieux"
+    ],
+    "ref": "18:21",
+    "proof": [
+     "craignant Dieu",
+     "ennemis du lucre"
+    ],
+    "x": "« Choisis entre tout le peuple des hommes éminents, craignant Dieu, amis de la vérité, ennemis du lucre. »"
+   },
+   {
+    "q": "Quels magistrats Moïse établit-il à la tête du peuple ?",
+    "a": "Des chiliarques, centurions, cinquanteniers et décurions",
+    "w": [
+     "Des juges d'Israël, des scribes et des chefs de maison",
+     "Des princes de tribus, des anciens et des maîtres de la loi",
+     "Des lévites, des prêtres et des gardiens du camp"
+    ],
+    "ref": "18:25",
+    "proof": [
+     "chiliarques",
+     "décurions"
+    ],
+    "x": "Ils jugeaient le peuple en tout temps ; les affaires difficiles allaient à Moïse."
+   },
+   {
+    "q": "Que doivent faire les Israélites pour être prêts au troisième jour ?",
+    "a": "Se sanctifier et laver leurs vêtements",
+    "w": [
+     "Jeûner trois jours",
+     "Offrir des sacrifices au pied de la montagne",
+     "S'éloigner du camp dans le désert"
+    ],
+    "ref": "19:10",
+    "proof": [
+     "laver",
+     "vêtements"
+    ],
+    "x": "« Va vers le peuple, sanctifie-les aujourd'hui et demain, et qu'ils lavent leurs vêtements. »"
+   },
+   {
+    "q": "En combien de jours l'Éternel a-t-il fait le ciel, la terre et la mer, d'après le motif du Chabbat ?",
+    "a": "En six jours",
+    "w": [
+     "En sept jours",
+     "En trois jours",
+     "En dix jours"
+    ],
+    "ref": "20:11",
+    "proof": [
+     "six jours"
+    ],
+    "x": "Il s'est reposé le septième jour ; c'est pourquoi l'Éternel a béni le jour du sabbat et l'a sanctifié."
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, qu'est-ce que Jéthro avait entendu pour qu'il vienne rejoindre Moïse ?",
+    "a": "La traversée de la mer des Joncs et la guerre contre Amalec",
+    "w": [
+     "La révélation du buisson ardent et les plaies d'Égypte",
+     "La mort de Pharaon et la fuite des soldats",
+     "L'arrivée de la manne et la source de Marah"
+    ],
+    "ref": "18:1",
+    "proof": [
+     "קריעת ים סוף",
+     "עמלק"
+    ],
+    "x": "Rachi sur Exode 18:1 : il apprit l'ouverture de la mer des Joncs et la guerre d'Amalec."
+   },
+   {
+    "q": "Selon Rachi, pourquoi le nom de Jéthro est-il devenu plus long que « Yéter » ?",
+    "a": "Une lettre lui a été ajoutée quand il s'est converti et qu'il a accompli les commandements",
+    "w": [
+     "Parce que Moïse lui avait donné ce nom en l'honneur de la Torah",
+     "Parce qu'il était devenu chef des Madianites",
+     "Parce qu'il avait enseigné les juges d'Israël"
+    ],
+    "ref": "18:1",
+    "proof": [
+     "וקים המצוות",
+     "אות אחד"
+    ],
+    "x": "Rachi sur Exode 18:1 : « Yitro » : lorsqu'il se convertit et accomplit les commandements, on ajouta une lettre à son nom."
+   },
+   {
+    "q": "Selon Rachi, pourquoi Dieu compare-t-il Israël à un aigle qui porte ses petits « sur ses ailes » ?",
+    "a": "Parce que l'aigle ne craint que les flèches de l'homme et porte donc ses petits au-dessus de lui, pour les protéger",
+    "w": [
+     "Parce que l'aigle est le plus haut de tous les oiseaux et ne redescend jamais sur la terre ferme",
+     "Parce que l'aigle ne se pose jamais sur le sol, de peur d'être pris par les chasseurs",
+     "Parce que l'aigle fait son nid dans la montagne de Sinaï, au-dessus des nuages et du feu"
+    ],
+    "ref": "19:4",
+    "proof": [
+     "כנשר",
+     "גוזליו"
+    ],
+    "x": "Rachi sur Exode 19:4 : comme l'aigle qui porte ses petits sur ses ailes ; les autres oiseaux les mettent entre leurs pattes, mais lui ne craint que l'homme."
+   },
+   {
+    "q": "Selon Rachi, qui désigne l'expression « la maison de Jacob » quand Dieu envoie Moïse parler au peuple ?",
+    "a": "Les femmes, à qui l'on parle en termes doux",
+    "w": [
+     "Les douze tribus réunies devant la montagne, hommes et femmes",
+     "Les descendants de Lévi, chargés d'enseigner au peuple",
+     "Les enfants de moins de treize ans, qui doivent être instruits"
+    ],
+    "ref": "19:3",
+    "proof": [
+     "הנשים",
+     "רכה"
+    ],
+    "x": "Rachi sur Exode 19:3 : « à la maison de Jacob », ce sont les femmes : on leur parle avec douceur."
+   },
+   {
+    "q": "Selon Rachi, que signifie le commandement « souviens-toi du jour du Chabbat » pour toute la semaine ?",
+    "a": "Penser tout le temps au Chabbat : si l'on trouve un bel objet, le réserver pour le Chabbat",
+    "w": [
+     "Réciter chaque jour le kiddouch devant la bougie",
+     "Compter les jours jusqu'au Chabbat en les nommant",
+     "Ne rien entreprendre qui ne puisse être achevé avant le Chabbat"
+    ],
+    "ref": "20:8",
+    "proof": [
+     "חפץ יפה",
+     "לשבת"
+    ],
+    "x": "Rachi sur Exode 20:8 : on pense toujours au Chabbat ; si un bel objet se présente, on le garde pour le Chabbat."
+   }
+  ]
+ }
+}

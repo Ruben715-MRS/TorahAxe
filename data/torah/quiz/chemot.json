@@ -1,0 +1,261 @@
+{
+ "v": 1,
+ "parasha": "Chemot",
+ "levels": {
+  "1": [
+   {
+    "q": "Comment Moïse appelle-t-il son premier fils, né chez les Madianites ?",
+    "a": {
+     "t": "Gersom",
+     "he": "גֵּרְשֹׁם"
+    },
+    "w": [
+     {
+      "t": "Éliézer",
+      "he": "אֱלִיעֶזֶר"
+     },
+     {
+      "t": "Manassé",
+      "he": "מְנַשֶּׁה"
+     },
+     {
+      "t": "Éphraïm",
+      "he": "אֶפְרַיִם"
+     }
+    ],
+    "ref": "2:22",
+    "proof": [
+     "Gersom"
+    ],
+    "x": "« Je suis un émigré sur une terre étrangère. »"
+   },
+   {
+    "q": "Pendant combien de temps la mère de Moïse le tient-elle caché ?",
+    "a": "Trois mois",
+    "w": [
+     "Sept jours",
+     "Quarante jours",
+     "Un an"
+    ],
+    "ref": "2:2",
+    "proof": [
+     "trois mois"
+    ],
+    "x": "Elle considéra qu'il était beau et le tint caché pendant trois mois."
+   },
+   {
+    "q": "Comment s'appelle le beau-père de Moïse, prêtre de Madian ?",
+    "a": {
+     "t": "Jéthro",
+     "he": "יִתְרוֹ"
+    },
+    "w": [
+     {
+      "t": "Laban",
+      "he": "לָבָן"
+     },
+     {
+      "t": "Éfrôn",
+      "he": "עֶפְרֹן"
+     },
+     {
+      "t": "Pharaon",
+      "he": "פַּרְעֹה"
+     }
+    ],
+    "ref": "3:1",
+    "proof": [
+     "Jéthro",
+     "prêtre de Madian"
+    ],
+    "x": "Moïse faisait paître les brebis de Jéthro son beau-père, prêtre de Madian."
+   },
+   {
+    "q": "Quel frère de Moïse Dieu désigne-t-il pour parler au peuple à sa place ?",
+    "a": {
+     "t": "Aaron",
+     "he": "אַהֲרֹן"
+    },
+    "w": [
+     {
+      "t": "Josué",
+      "he": "יְהוֹשֻׁעַ"
+     },
+     {
+      "t": "Hour",
+      "he": "חוּר"
+     },
+     {
+      "t": "Gersom",
+      "he": "גֵּרְשֹׁם"
+     }
+    ],
+    "ref": "4:14",
+    "proof": [
+     "Aaron"
+    ],
+    "x": "« N'y a-t-il pas Aaron, ton frère, le lévite ? Je sais qu'il parle avec facilité. »"
+   },
+   {
+    "q": "En quoi le bâton de Moïse se change-t-il quand il le jette à terre ?",
+    "a": "En serpent",
+    "w": [
+     "En fleuve",
+     "En flamme",
+     "En lion"
+    ],
+    "ref": "4:3",
+    "proof": [
+     "serpent"
+    ],
+    "x": "Moïse jeta le bâton à terre : il devint un serpent, et Moïse s'enfuit devant lui."
+   }
+  ],
+  "2": [
+   {
+    "q": "Que doit faire Moïse de ses sandales devant le buisson ardent ?",
+    "a": "Les ôter, car l'endroit où il se tient est un sol sacré",
+    "w": [
+     "Les laisser à l'entrée de sa tente",
+     "Les enterrer au pied de la montagne",
+     "Les offrir en sacrifice"
+    ],
+    "ref": "3:5",
+    "proof": [
+     "sol sacré"
+    ],
+    "x": "« N'approche point d'ici ! Ôte ta chaussure, car l'endroit que tu foules est un sol sacré ! »"
+   },
+   {
+    "q": "Que répond Dieu à Moïse qui lui demande son Nom ?",
+    "a": "« Je suis l'Être invariable »",
+    "w": [
+     "« Je suis le Dieu de la montagne »",
+     "« Je suis celui qui a créé le ciel »",
+     "« Je suis le feu qui ne s'éteint pas »"
+    ],
+    "ref": "3:14",
+    "proof": [
+     "l'Être invariable"
+    ],
+    "x": "« Ainsi parleras-tu aux enfants d'Israël : C'est l'Être invariable qui m'a délégué auprès de vous. »"
+   },
+   {
+    "q": "Que fait Moïse après avoir vu un Égyptien frapper un Hébreu ?",
+    "a": "Il tue l'Égyptien et le cache dans le sable",
+    "w": [
+     "Il le dénonce à Pharaon",
+     "Il l'enferme dans une citerne",
+     "Il le laisse partir en l'avertissant"
+    ],
+    "ref": "2:12",
+    "proof": [
+     "sable"
+    ],
+    "x": "Il regarda de tous côtés, ne vit personne, frappa l'Égyptien et le cacha dans le sable."
+   },
+   {
+    "q": "Quelle consigne Pharaon donne-t-il aux Hébreux après la demande de Moïse et Aaron d'aller au désert ?",
+    "a": "De fabriquer le même nombre de briques, mais sans qu'on leur fournisse de paille",
+    "w": [
+     "De partir au désert pendant trois jours seulement",
+     "De livrer un tribut d'or et d'argent",
+     "De reconstruire les murailles de Ramsès en une année"
+    ],
+    "ref": "5:7",
+    "proof": [
+     "paille"
+    ],
+    "x": "« Vous ne continuerez plus à fournir de la paille au peuple pour faire des briques : qu'ils aillent eux-mêmes en ramasser. »"
+   },
+   {
+    "q": "Pourquoi la fille de Pharaon appelle-t-elle l'enfant Moïse ?",
+    "a": "Parce qu'elle l'a retiré des eaux",
+    "w": [
+     "Parce qu'il est né sur le Nil",
+     "Parce qu'il est un don du ciel",
+     "Parce qu'il ressemble à son père"
+    ],
+    "ref": "2:10",
+    "proof": [
+     "retiré des eaux"
+    ],
+    "x": "Elle lui donna le nom de Moïse, disant : « Parce que je l'ai retiré des eaux. »"
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, qui sont les sages-femmes Chiphra et Poua ?",
+    "a": "Yokhéved et Miriam",
+    "w": [
+     "Léa et Rachel",
+     "Tsippora et Élichéva",
+     "Dina et Thamar"
+    ],
+    "ref": "1:15",
+    "proof": [
+     "יוכבד",
+     "מרים"
+    ],
+    "x": "Rachi sur Exode 1:15 : Chiphra est Yokhéved, et Poua est Miriam."
+   },
+   {
+    "q": "Selon Rachi, que veut dire l'expression « il vit qu'il n'y avait personne » quand Moïse regarde autour de lui avant de frapper l'Égyptien ?",
+    "a": "Qu'il ne verrait jamais un homme se convertir parmi les descendants de cet Égyptien",
+    "w": [
+     "Qu'aucun témoin ne se trouvait sur le chemin",
+     "Qu'aucun Hébreu n'osait défendre son frère",
+     "Qu'aucun garde de Pharaon n'était en service"
+    ],
+    "ref": "2:12",
+    "proof": [
+     "שיתגיר"
+    ],
+    "x": "Rachi sur Exode 2:12 : il vit qu'aucun homme ne sortirait de lui qui se convertirait."
+   },
+   {
+    "q": "Selon Rachi, pourquoi Dieu apparaît-il à Moïse dans un buisson d'épines plutôt que dans un grand arbre ?",
+    "a": "Pour montrer qu'il est avec Israël dans sa détresse",
+    "w": [
+     "Parce que le buisson poussait seul au milieu du désert",
+     "Parce que le buisson était le plus petit des arbres",
+     "Pour que Moïse puisse s'y cacher du feu"
+    ],
+    "ref": "3:2",
+    "proof": [
+     "בצרה"
+    ],
+    "x": "Rachi sur Exode 3:2 : Dieu est avec Israël dans la détresse, comme le buisson d'épines est entouré de ronces."
+   },
+   {
+    "q": "Selon Rachi, que se passe-t-il dans la maison quand Moïse naît ?",
+    "a": "Elle se remplit de lumière",
+    "w": [
+     "Les murs tremblent",
+     "Un parfum de cèdre l'envahit",
+     "Les voisins entendent une voix du ciel"
+    ],
+    "ref": "2:2",
+    "proof": [
+     "אורה"
+    ],
+    "x": "Rachi sur Exode 2:2 : quand Moïse naquit, la maison entière fut remplie de lumière."
+   },
+   {
+    "q": "Selon Rachi, que montre la Torah en comptant à nouveau les fils d'Israël par leur nom au début de l'Exode ?",
+    "a": "Qu'ils sont chers à Dieu, comparés aux étoiles qu'il fait sortir en nombre et appelle chacune par son nom",
+    "w": [
+     "Qu'ils étaient devenus aussi nombreux que le sable de la mer",
+     "Que chacun d'eux avait gardé son nom hébreu malgré l'exil",
+     "Qu'il fallait vérifier qu'aucun d'eux n'était resté en Canaan"
+    ],
+    "ref": "1:1",
+    "proof": [
+     "כוכבים",
+     "במספר"
+    ],
+    "x": "Rachi sur Exode 1:1 : Dieu les compte encore, par amour, comme les étoiles qu'il fait sortir par nombre et appelle toutes par leur nom."
+   }
+  ]
+ }
+}
