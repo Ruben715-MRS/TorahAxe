@@ -1,0 +1,277 @@
+{
+ "v": 1,
+ "parasha": "Vayichla'h",
+ "levels": {
+  "1": [
+   {
+    "q": "À qui Jacob envoie-t-il des messagers pour annoncer son retour ?",
+    "a": {
+     "t": "Ésaü",
+     "he": "עֵשָׂו"
+    },
+    "w": [
+     {
+      "t": "Laban",
+      "he": "לָבָן"
+     },
+     {
+      "t": "Hamor",
+      "he": "חֲמוֹר"
+     },
+     {
+      "t": "Isaac",
+      "he": "יִצְחָק"
+     }
+    ],
+    "ref": "32:4",
+    "proof": [
+     "Ésaü",
+     "messagers"
+    ],
+    "x": "Jacob envoya des messagers en avant, vers Ésaü son frère, au pays de Séir."
+   },
+   {
+    "q": "Combien d'hommes accompagnent Ésaü quand il vient à la rencontre de Jacob ?",
+    "a": "Quatre cents",
+    "w": [
+     "Deux cents",
+     "Six cents",
+     "Mille"
+    ],
+    "ref": "32:7",
+    "proof": [
+     "quatre cents hommes"
+    ],
+    "x": "Les messagers rapportent : « Ésaü vient à ta rencontre et quatre cents hommes l'accompagnent. »"
+   },
+   {
+    "q": "Quel nouveau nom l'homme qui lutte avec Jacob lui donne-t-il ?",
+    "a": {
+     "t": "Israël",
+     "he": "יִשְׂרָאֵל"
+    },
+    "w": [
+     {
+      "t": "Édom",
+      "he": "אֱדוֹם"
+     },
+     {
+      "t": "Péniel",
+      "he": "פְּנִיאֵל"
+     },
+     {
+      "t": "Béthel",
+      "he": "בֵּית־אֵל"
+     }
+    ],
+    "ref": "32:29",
+    "proof": [
+     "Israël"
+    ],
+    "x": "« Jacob ne sera plus désormais ton nom, mais bien Israël ; car tu as jouté contre des puissances célestes et humaines et tu es resté fort. »"
+   },
+   {
+    "q": "Quelle fille de Jacob est enlevée par Sichem, fils de Hamor ?",
+    "a": {
+     "t": "Dina",
+     "he": "דִּינָה"
+    },
+    "w": [
+     {
+      "t": "Basemath",
+      "he": "בָשְׂמַת"
+     },
+     {
+      "t": "Oholibama",
+      "he": "אָהֳלִיבָמָה"
+     },
+     {
+      "t": "Timna",
+      "he": "תִּמְנָע"
+     }
+    ],
+    "ref": "34:1-2",
+    "proof": [
+     "Dina",
+     "Sichem"
+    ],
+    "x": "Dina, la fille que Léa avait enfantée, fut remarquée de Sichem, qui l'enleva."
+   },
+   {
+    "q": "Où Rachel est-elle ensevelie après être morte en couches ?",
+    "a": {
+     "t": "Éfrath",
+     "he": "אֶפְרָת"
+    },
+    "w": [
+     {
+      "t": "Hébron",
+      "he": "חֶבְרוֹן"
+     },
+     {
+      "t": "Sichem",
+      "he": "שְׁכֶם"
+     },
+     {
+      "t": "Béthel",
+      "he": "בֵּית־אֵל"
+     }
+    ],
+    "ref": "35:19",
+    "proof": [
+     "Éfrath"
+    ],
+    "x": "Rachel mourut et fut ensevelie sur le chemin d'Éfrath, qui est Bethléem."
+   }
+  ],
+  "2": [
+   {
+    "q": "En combien de bandes Jacob partage-t-il son monde, son bétail et ses chameaux en apprenant qu'Ésaü approche ?",
+    "a": "En deux bandes",
+    "w": [
+     "En trois bandes",
+     "En quatre bandes",
+     "En sept bandes"
+    ],
+    "ref": "32:8-9",
+    "proof": [
+     "deux bandes"
+    ],
+    "x": "Si Ésaü attaque l'une des bandes, la bande restante deviendra une ressource."
+   },
+   {
+    "q": "Quelle partie du corps de Jacob est touchée pendant la lutte avec l'homme ?",
+    "a": "La cuisse",
+    "w": [
+     "L'épaule",
+     "Le genou",
+     "La main"
+    ],
+    "ref": "32:26",
+    "proof": [
+     "cuisse"
+    ],
+    "x": "Il lui pressa la cuisse, et la cuisse de Jacob se luxa ; il boitait ensuite à cause de sa cuisse."
+   },
+   {
+    "q": "Quel cadeau de chèvres et de boucs Jacob prépare-t-il pour Ésaü ?",
+    "a": "Deux cents chèvres et vingt boucs",
+    "w": [
+     "Cent chèvres et dix boucs",
+     "Vingt chèvres et deux cents boucs",
+     "Cinquante chèvres et cinquante boucs"
+    ],
+    "ref": "32:15",
+    "proof": [
+     "deux cents chèvres",
+     "vingt boucs"
+    ],
+    "x": "Le cadeau comprend aussi deux cents brebis et vingt béliers, puis des chamelles, des vaches et des ânes."
+   },
+   {
+    "q": "Que construit Jacob à Soukkoth ?",
+    "a": "Une demeure pour lui et des enclos pour son bétail",
+    "w": [
+     "Un autel et une stèle",
+     "Un puits et un abreuvoir",
+     "Une tente de réunion et un parc à chameaux"
+    ],
+    "ref": "33:17",
+    "proof": [
+     "demeure",
+     "enclos"
+    ],
+    "x": "C'est pourquoi l'on appela cet endroit Soukkoth, « les enclos »."
+   },
+   {
+    "q": "Pour quel prix Jacob acquiert-il le terrain où il plante sa tente, près de Sichem ?",
+    "a": "Cent kesita",
+    "w": [
+     "Dix kesita",
+     "Cinquante kesita",
+     "Mille kesita"
+    ],
+    "ref": "33:19",
+    "proof": [
+     "cent kesita"
+    ],
+    "x": "Il l'acquit de la main des enfants de Hamor, père de Sichem, pour cent kesita."
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, qui sont les « messagers » que Jacob envoie à Ésaü ?",
+    "a": "De véritables anges",
+    "w": [
+     "Des serviteurs choisis parmi ses bergers",
+     "Ses deux fils aînés, Ruben et Siméon",
+     "Des hommes de Séir engagés pour l'occasion"
+    ],
+    "ref": "32:4",
+    "proof": [
+     "מלאכים ממש"
+    ],
+    "x": "Rachi sur Genèse 32:4 : « des anges au sens propre »."
+   },
+   {
+    "q": "Selon Rachi, pourquoi Jacob est-il à la fois « effrayé » et « plein d'anxiété » avant de rencontrer Ésaü ?",
+    "a": "Il craignait d'être tué, et s'angoissait à l'idée de devoir tuer d'autres hommes",
+    "w": [
+     "Il craignait pour ses troupeaux, et s'angoissait pour ses femmes",
+     "Il craignait la colère d'Ésaü, et s'angoissait de ne pas avoir assez de cadeaux",
+     "Il craignait la faim dans le désert, et s'angoissait pour ses enfants"
+    ],
+    "ref": "32:8",
+    "proof": [
+     "שמא יהרג",
+     "אחרים"
+    ],
+    "x": "Rachi sur Genèse 32:8 : il avait peur d'être tué, et il était angoissé à l'idée de tuer lui-même d'autres hommes."
+   },
+   {
+    "q": "Selon Rachi, qui est l'homme qui lutte avec Jacob jusqu'à l'aube ?",
+    "a": "L'ange gardien d'Ésaü",
+    "w": [
+     "L'ange qui avait annoncé la naissance d'Isaac",
+     "Un brigand de la région de Séir",
+     "Laban, venu le rattraper"
+    ],
+    "ref": "32:25",
+    "proof": [
+     "שרו של עשו"
+    ],
+    "x": "Rachi sur Genèse 32:25 : nos Sages expliquent qu'il s'agit du « chef » céleste d'Ésaü."
+   },
+   {
+    "q": "Selon Rachi, pourquoi la Torah appelle-t-elle Dina « fille de Léa » plutôt que « fille de Jacob » ?",
+    "a": "Parce qu'elle aimait sortir, comme sa mère Léa",
+    "w": [
+     "Parce que Léa l'avait élevée seule",
+     "Parce que Jacob l'avait confiée à Léa dès sa naissance",
+     "Parce qu'elle ressemblait trait pour trait à sa mère"
+    ],
+    "ref": "34:1",
+    "proof": [
+     "יציאתה",
+     "לאה"
+    ],
+    "x": "Rachi sur Genèse 34:1 : à cause de sa sortie : elle aussi aimait sortir, comme sa mère qui était « sortie » à la rencontre de Jacob."
+   },
+   {
+    "q": "Selon Rachi, pourquoi Jacob appelle-t-il son dernier fils Benjamin, « fils de la droite » ?",
+    "a": "Parce qu'il est le seul fils né en terre de Canaan, c'est-à-dire au sud, côté « droit »",
+    "w": [
+     "Parce qu'il est né à la droite de la tente de Rachel",
+     "Parce qu'il est né après onze frères, comme la main droite compte onze",
+     "Parce qu'il a été béni de la main droite de Jacob"
+    ],
+    "ref": "35:18",
+    "proof": [
+     "נולד",
+     "בנגב"
+    ],
+    "x": "Rachi sur Genèse 35:18 : Benjamin est le seul né en terre de Canaan, qui se trouve au sud (« la droite ») quand on vient d'Aram-Naharayim."
+   }
+  ]
+ }
+}

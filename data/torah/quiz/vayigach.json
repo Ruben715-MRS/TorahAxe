@@ -1,0 +1,264 @@
+{
+ "v": 1,
+ "parasha": "Vayigach",
+ "levels": {
+  "1": [
+   {
+    "q": "Qui s'approche de Joseph pour plaider en faveur de Benjamin ?",
+    "a": {
+     "t": "Juda",
+     "he": "יְהוּדָה"
+    },
+    "w": [
+     {
+      "t": "Ruben",
+      "he": "רְאוּבֵן"
+     },
+     {
+      "t": "Siméon",
+      "he": "שִׁמְעוֹן"
+     },
+     {
+      "t": "Lévi",
+      "he": "לֵוִי"
+     }
+    ],
+    "ref": "44:18",
+    "proof": [
+     "Juda"
+    ],
+    "x": "Juda s'approcha de Joseph et lui offrit de rester esclave à la place de Benjamin."
+   },
+   {
+    "q": "Que dit Joseph à ses frères pour se faire connaître ?",
+    "a": "« Je suis Joseph »",
+    "w": [
+     "« Je suis le vice-roi d'Égypte »",
+     "« Je suis le fils de Jacob, votre ennemi »",
+     "« Je suis votre frère Benjamin »"
+    ],
+    "ref": "45:3",
+    "proof": [
+     "Je suis Joseph"
+    ],
+    "x": "« Je suis Joseph ! Mon père vit-il encore ? » Ses frères ne purent lui répondre, tant ils étaient troublés."
+   },
+   {
+    "q": "Quel âge Jacob déclare-t-il à Pharaon ?",
+    "a": "Cent trente ans",
+    "w": [
+     "Cent dix ans",
+     "Cent quarante-sept ans",
+     "Soixante-dix ans"
+    ],
+    "ref": "47:9",
+    "proof": [
+     "cent trente ans"
+    ],
+    "x": "« Le nombre des années de mes pérégrinations : cent trente ans. »"
+   },
+   {
+    "q": "Combien de personnes de la maison de Jacob se trouvent réunies en Égypte ?",
+    "a": "Soixante-dix",
+    "w": [
+     "Soixante-six",
+     "Douze",
+     "Quatre-vingt-dix"
+    ],
+    "ref": "46:27",
+    "proof": [
+     "soixante-dix"
+    ],
+    "x": "Total des individus de la maison de Jacob réunis en Égypte : soixante-dix."
+   },
+   {
+    "q": "Dans quelle province Pharaon propose-t-il d'établir le père et les frères de Joseph ?",
+    "a": {
+     "t": "Gessen",
+     "he": "גֹּשֶׁן"
+    },
+    "w": [
+     {
+      "t": "Soukkoth",
+      "he": "סֻכּוֹת"
+     },
+     {
+      "t": "Sichem",
+      "he": "שְׁכֶם"
+     },
+     {
+      "t": "Canaan",
+      "he": "כְּנָעַן"
+     }
+    ],
+    "ref": "47:6",
+    "proof": [
+     "Gessen"
+    ],
+    "x": "« Qu'ils habitent la terre de Gessen. »"
+   }
+  ],
+  "2": [
+   {
+    "q": "Que donne Joseph à Benjamin, en plus de cinq habillements de rechange ?",
+    "a": "Trois cents pièces d'argent",
+    "w": [
+     "Cent pièces d'or",
+     "Trois cents chèvres",
+     "Cinq cents pièces d'argent"
+    ],
+    "ref": "45:22",
+    "proof": [
+     "trois cents pièces d'argent",
+     "cinq habillements"
+    ],
+    "x": "À ses frères, il donne des habillements de rechange ; à Benjamin, beaucoup plus."
+   },
+   {
+    "q": "Qui Jacob envoie-t-il devant lui vers Joseph, pour préparer l'entrée de Gessen ?",
+    "a": {
+     "t": "Juda",
+     "he": "יְהוּדָה"
+    },
+    "w": [
+     {
+      "t": "Ruben",
+      "he": "רְאוּבֵן"
+     },
+     {
+      "t": "Lévi",
+      "he": "לֵוִי"
+     },
+     {
+      "t": "Benjamin",
+      "he": "בִנְיָמִן"
+     }
+    ],
+    "ref": "46:28",
+    "proof": [
+     "Juda",
+     "Gessen"
+    ],
+    "x": "Jacob avait envoyé Juda en avant, vers Joseph, pour qu'il lui préparât l'entrée de Gessen."
+   },
+   {
+    "q": "Que fait Jacob à Beer-Chéva avant de descendre en Égypte ?",
+    "a": "Il offre des sacrifices au Dieu de son père Isaac",
+    "w": [
+     "Il construit un puits et le nomme Chéva",
+     "Il bénit ses petits-enfants un à un",
+     "Il fait jurer à ses fils de ramener ses os en Canaan"
+    ],
+    "ref": "46:1",
+    "proof": [
+     "victimes",
+     "Isaac"
+    ],
+    "x": "Israël partit avec tout ce qui lui appartenait et offrit des sacrifices au Dieu de son père Isaac."
+   },
+   {
+    "q": "Que dit Jacob en revoyant Joseph vivant ?",
+    "a": "Qu'il peut maintenant mourir, après avoir vu son visage",
+    "w": [
+     "Qu'il veut s'installer en Égypte pour toujours",
+     "Qu'il veut repartir aussitôt à Hébron",
+     "Qu'il ne reconnaît plus son fils"
+    ],
+    "ref": "46:30",
+    "proof": [
+     "je puis mourir"
+    ],
+    "x": "« Maintenant, je puis mourir, après avoir vu ton visage, car tu vis encore. »"
+   },
+   {
+    "q": "Quelle part des produits les Égyptiens doivent-ils donner à Pharaon, d'après la loi de Joseph ?",
+    "a": "Un cinquième",
+    "w": [
+     "Un dixième",
+     "Un tiers",
+     "La moitié"
+    ],
+    "ref": "47:24",
+    "proof": [
+     "cinquième"
+    ],
+    "x": "Les quatre autres parts leur servent à ensemencer les champs et à nourrir leurs familles."
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, sur quel ton Juda s'adresse-t-il à Joseph ?",
+    "a": "Avec dureté : il lui parle rudement",
+    "w": [
+     "Avec une humilité complète, en se prosternant",
+     "En pleurant, la voix brisée",
+     "En chuchotant, pour que personne d'autre n'entende"
+    ],
+    "ref": "44:18",
+    "proof": [
+     "קשות"
+    ],
+    "x": "Rachi sur Genèse 44:18 : « ne t'irrite pas contre ton serviteur » : de là on apprend qu'il lui parla durement."
+   },
+   {
+    "q": "Selon Rachi, pourquoi Joseph fait-il sortir tous les Égyptiens avant de se faire connaître à ses frères ?",
+    "a": "Pour ne pas que ses frères aient honte de lui être connus devant les Égyptiens",
+    "w": [
+     "Pour que les Égyptiens n'apprennent pas qu'il était hébreu",
+     "Pour que personne ne l'entende pleurer",
+     "Pour pouvoir parler en hébreu sans interprète"
+    ],
+    "ref": "45:1",
+    "proof": [
+     "מתבישין",
+     "מצרים"
+    ],
+    "x": "Rachi sur Genèse 45:1 : il ne pouvait supporter que les Égyptiens entendent ses frères humiliés lorsqu'il se ferait connaître à eux."
+   },
+   {
+    "q": "Selon Rachi, pourquoi les frères restent-ils sans voix quand Joseph se fait connaître ?",
+    "a": "Par honte devant lui",
+    "w": [
+     "Par peur de la vengeance de Pharaon",
+     "Parce qu'ils ne comprenaient pas l'hébreu de Joseph",
+     "Parce qu'ils croyaient rêver"
+    ],
+    "ref": "45:3",
+    "proof": [
+     "הבושה"
+    ],
+    "x": "Rachi sur Genèse 45:3 : ils furent troublés « par honte » devant lui."
+   },
+   {
+    "q": "Selon Rachi, pourquoi la Torah dit-elle que Jacob offre des sacrifices « au Dieu de son père Isaac » et non d'Abraham ?",
+    "a": "Pour enseigner qu'on doit plus d'honneur à son père qu'à son grand-père",
+    "w": [
+     "Parce qu'Isaac vivait encore et avait demandé ces sacrifices",
+     "Parce qu'Abraham n'avait jamais prié en Beer-Chéva",
+     "Parce qu'Isaac avait creusé le puits de Beer-Chéva"
+    ],
+    "ref": "46:1",
+    "proof": [
+     "בכבוד אביו",
+     "זקנו"
+    ],
+    "x": "Rachi sur Genèse 46:1 : on est tenu d'honorer son père plus que son grand-père ; c'est pourquoi la Torah mentionne Isaac et non Abraham."
+   },
+   {
+    "q": "Selon Rachi, pourquoi Jacob ne se jette-t-il pas au cou de Joseph, alors que Joseph pleure longuement sur le sien ?",
+    "a": "Parce qu'il était en train de réciter le Chéma",
+    "w": [
+     "Parce qu'il ne reconnaissait pas son fils",
+     "Parce qu'il était trop faible pour se lever",
+     "Parce qu'il craignait la colère de Pharaon"
+    ],
+    "ref": "46:29",
+    "proof": [
+     "נפל על צוארי",
+     "קורא את שמע"
+    ],
+    "x": "Rachi sur Genèse 46:29 : Jacob ne tomba pas sur le cou de Joseph et ne l'embrassa pas : nos Sages disent qu'il lisait le Chéma."
+   }
+  ]
+ }
+}

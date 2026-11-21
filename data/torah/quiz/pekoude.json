@@ -1,0 +1,235 @@
+{
+ "v": 1,
+ "parasha": "Pekoudé",
+ "levels": {
+  "1": [
+   {
+    "q": "Avec quoi Dieu ordonne-t-il d'oindre le tabernacle et tout son contenu ?",
+    "a": "Avec l'huile d'onction",
+    "w": [
+     "Avec l'huile du luminaire seule",
+     "Avec le sang des béliers de la consécration",
+     "Avec l'eau de la cuve de cuivre"
+    ],
+    "ref": "40:9",
+    "proof": [
+     "huile d'onction"
+    ],
+    "x": "Ainsi consacré, le tabernacle et toutes ses pièces deviennent chose sacrée."
+   },
+   {
+    "q": "Qui dirige la tâche confiée aux Lévites pour le tabernacle, sous les ordres de Moïse ?",
+    "a": {
+     "t": "Ithamar",
+     "he": "אִיתָמָר"
+    },
+    "w": [
+     {
+      "t": "Gershon",
+      "he": "גֵרְשׁוֹן"
+     },
+     {
+      "t": "Kehath",
+      "he": "קְהָת"
+     },
+     {
+      "t": "Mérari",
+      "he": "מְרָרִי"
+     }
+    ],
+    "ref": "38:21",
+    "proof": [
+     "Ithamar"
+    ],
+    "x": "C'est le fils d'Aaron, le prêtre."
+   },
+   {
+    "q": "À quelle date le tabernacle est-il érigé ?",
+    "a": "Au premier jour du premier mois de la deuxième année",
+    "w": [
+     "Au septième jour du mois de Tichri, la deuxième année",
+     "Au dixième jour du premier mois de la première année",
+     "Au premier jour du troisième mois de la deuxième année"
+    ],
+    "ref": "40:17",
+    "proof": [
+     "premier jour du mois"
+    ],
+    "x": "Moïse dresse d'abord le tabernacle, avec ses socles, ses solives, ses traverses et ses piliers."
+   },
+   {
+    "q": "Que brille sur le Tabernacle pendant la nuit, aux yeux de toute la maison d'Israël ?",
+    "a": "Un feu",
+    "w": [
+     "Une étoile",
+     "Un arc-en-ciel",
+     "Une colonne de fumée noire"
+    ],
+    "ref": "40:38",
+    "proof": [
+     "un feu y brillait la nuit"
+    ],
+    "x": "Une nuée divine le couvre durant le jour."
+   },
+   {
+    "q": "Que fait Moïse après avoir examiné tout le travail, exécuté conformément aux prescriptions ?",
+    "a": "Il bénit les ouvriers",
+    "w": [
+     "Il offre un sacrifice sur l'autel",
+     "Il convoque les anciens du camp",
+     "Il remonte aussitôt sur la montagne"
+    ],
+    "ref": "39:43",
+    "proof": [
+     "Moïse les bénit"
+    ],
+    "x": "Tout a été fait comme le Seigneur l'avait prescrit."
+   }
+  ],
+  "2": [
+   {
+    "q": "Combien d'hommes sont dénombrés, depuis l'âge de vingt ans et au-dessus ?",
+    "a": "Six cent trois mille cinq cent cinquante",
+    "w": [
+     "Six cent mille, sans les Lévites",
+     "Six cent trois mille deux cent vingt hommes",
+     "Six cent cinq mille cinq cent cinquante hommes"
+    ],
+    "ref": "38:26",
+    "proof": [
+     "six cent trois mille cinq cent cinquante"
+    ],
+    "x": "Chacun avait donné un béka par tête, soit un demi-sicle."
+   },
+   {
+    "q": "Combien de kikkar d'or sont employés pour l'ouvrage du sanctuaire ?",
+    "a": "Vingt-neuf kikkar, plus sept cent trente sicles",
+    "w": [
+     "Vingt-cinq kikkar, plus sept cent sicles",
+     "Trente-neuf kikkar, plus cent sicles",
+     "Cent kikkar, plus mille sicles"
+    ],
+    "ref": "38:24",
+    "proof": [
+     "vingt-neuf kikkar"
+    ],
+    "x": "C'est le produit de l'offrande, au poids du sanctuaire."
+   },
+   {
+    "q": "Combien de kikkar d'argent entrent dans chaque socle du sanctuaire ?",
+    "a": "Un kikkar par socle, pour cent socles",
+    "w": [
+     "Deux kikkar par socle, pour cinquante socles",
+     "Un demi-kikkar par socle, pour deux cents socles",
+     "Dix kikkar par socle, pour dix socles"
+    ],
+    "ref": "38:27",
+    "proof": [
+     "un kikkar par socle"
+    ],
+    "x": "Les cent kikkar servent à fondre les socles du sanctuaire et du voile."
+   },
+   {
+    "q": "Quel poids correspond à « un béka par tête » dans le dénombrement ?",
+    "a": "Un demi-sicle au poids du sanctuaire",
+    "w": [
+     "Un sicle entier au poids du sanctuaire",
+     "Un quart de sicle au poids du sanctuaire",
+     "Vingt ghéra au poids du sanctuaire"
+    ],
+    "ref": "38:26",
+    "proof": [
+     "béka par tête",
+     "demi sicle"
+    ],
+    "x": "Cette somme a été versée par tous ceux qui firent partie du dénombrement."
+   },
+   {
+    "q": "Pourquoi Moïse ne peut-il pas pénétrer dans la Tente d'assignation une fois le tabernacle dressé ?",
+    "a": "Parce que la nuée reposait au sommet et que la majesté divine remplissait le Tabernacle",
+    "w": [
+     "Parce que la Tente était fermée par un rideau de fer",
+     "Parce qu'Aaron y célébrait seul le service",
+     "Parce que le peuple l'en empêchait par des cris"
+    ],
+    "ref": "40:35",
+    "proof": [
+     "la nuée reposait au sommet"
+    ],
+    "x": "La nuée enveloppe la Tente et la majesté du Seigneur remplit le Tabernacle."
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, que suggère le mot « Tabernacle » répété deux fois (« mishkan, mishkan ») ?",
+    "a": "Une allusion au Temple qui sera pris en gage par deux destructions",
+    "w": [
+     "Une allusion aux deux autels du sanctuaire, de cuivre et d'or",
+     "Une allusion aux deux Temples construits à Jérusalem par deux rois",
+     "Une allusion aux deux tables de la Loi, brisées puis refaites"
+    ],
+    "ref": "38:21",
+    "proof": [
+     "שני חרבנין"
+    ],
+    "x": "Rachi sur Exode 38:21 : une allusion au Temple, devenu gage à cause des fautes d'Israël, par deux destructions."
+   },
+   {
+    "q": "Selon Rachi, que montre « Beçalêl fit tout ce que l'Éternel avait ordonné à Moïse » ?",
+    "a": "Qu'il a même compris ce que Moïse ne lui avait pas dit",
+    "w": [
+     "Qu'il a refait les travaux plusieurs fois",
+     "Qu'il a corrigé les erreurs de Moïse",
+     "Qu'il a travaillé seul, sans Oholiab"
+    ],
+    "ref": "38:22",
+    "proof": [
+     "דברים שלא אמר לו רבו"
+    ],
+    "x": "Rachi sur Exode 38:22 : il a fait même les choses que son maître ne lui avait pas dites : son avis s'est accordé avec ce qui avait été dit à Moïse au Sinaï."
+   },
+   {
+    "q": "Selon Rachi, que prouve que le Tabernacle est le « Tabernacle du témoignage » ?",
+    "a": "Que Dieu a pardonné la faute du veau d'or, puisqu'il fait résider sa présence parmi eux",
+    "w": [
+     "Que Dieu a donné les tables de la Loi à Moïse",
+     "Que le peuple a accepté la Torah au Sinaï",
+     "Que les prêtres ont reçu le sacerdoce perpétuel"
+    ],
+    "ref": "38:21",
+    "proof": [
+     "מעשה העגל"
+    ],
+    "x": "Rachi sur Exode 38:21 : un témoignage pour Israël que Dieu leur a pardonné l'affaire du veau, puisqu'il a fait résider sa présence parmi eux."
+   },
+   {
+    "q": "Selon Rachi, comment le Tabernacle a-t-il été dressé, puisque personne ne pouvait le lever ?",
+    "a": "Il s'est dressé de lui-même, Moïse faisant semblant de le monter",
+    "w": [
+     "Les Lévites l'ont soulevé ensemble avec de solides cordes",
+     "Les anges l'ont dressé pendant la nuit, sous la nuée",
+     "Moïse l'a monté seul, grâce à sa grande force physique"
+    ],
+    "ref": "39:33",
+    "proof": [
+     "הוקם מאליו"
+    ],
+    "x": "Rachi sur Exode 39:33 : Dieu lui dit : fais semblant de le dresser, et il se dresse et se tient de lui-même."
+   },
+   {
+    "q": "Selon Rachi, quelle bénédiction Moïse adresse-t-il aux ouvriers ?",
+    "a": "Que la présence divine réside dans l'œuvre de leurs mains",
+    "w": [
+     "Que leurs enfants héritent de leur talent et de leur sagesse",
+     "Que leur nom soit gravé sur les pierres du pectoral d'Aaron",
+     "Que leur travail soit béni par la pluie, chaque année"
+    ],
+    "ref": "39:43",
+    "proof": [
+     "שתשרה שכינה"
+    ],
+    "x": "Rachi sur Exode 39:43 : « que la présence divine réside dans l'œuvre de vos mains ; que la grâce de l'Éternel notre Dieu soit sur nous »."
+   }
+  ]
+ }
+}

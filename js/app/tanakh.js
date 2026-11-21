@@ -101,6 +101,12 @@ function tanakhOpenParasha(gi, aliyah, from) {
 
 function toolTanakhInit() {
     autoScrollClose('tanakh');
+    if (tanakhPendingHaftara && tanakhIndex) {
+        const ph = tanakhPendingHaftara;
+        tanakhPendingHaftara = null;
+        tanakhOpenHaftara(ph);
+        return;
+    }
     if (tanakhPendingParasha && tanakhIndex) {
         const pp = tanakhPendingParasha;
         tanakhPendingParasha = null;
@@ -121,6 +127,12 @@ function toolTanakhInit() {
         .then(index => {
             tanakhIndex = index;
             msg.textContent = '';
+            if (tanakhPendingHaftara) {
+                const ph = tanakhPendingHaftara;
+                tanakhPendingHaftara = null;
+                tanakhOpenHaftara(ph);
+                return;
+            }
             if (tanakhPendingParasha) {
                 const pp = tanakhPendingParasha;
                 tanakhPendingParasha = null;
@@ -1139,10 +1151,20 @@ function tanakhGoParasha(gi, aliyah = 0) {
 }
 
 // Ouvre une haftara : `info` = { refs, title, rite ('a' | 's' | ''), back : { id, rank } } ; plusieurs livres (rare) : le premier s'ouvre, un bouton ouvre l'autre.
+// `back` est facultatif : sans lui, pas de bouton « Retour à la paracha » (la touche Retour de l'écran ramène à l'écran d'origine).
 function tanakhOpenHaftara(info, group) {
     const groups = HaftarotCore.groupByBook(info.refs);
     const g = groups[group || 0];
-    tanakhOpen(g.id, { mode: 'chapter', haftara: { refs: g.refs, all: info.refs, title: info.title, rite: info.rite, back: info.back, group: group || 0 } });
+    tanakhOpen(g.id, { mode: 'chapter', haftara: { refs: g.refs, all: info.refs, title: info.title, rite: info.rite, back: info.back || null, group: group || 0 } });
+}
+
+// Une haftara demandée par un autre écran (le bouton « Haftara » de l'écran Zmanim) : { refs, title, rite }, prise au prochain toolTanakhInit.
+let tanakhPendingHaftara = null;
+function tanakhOpenHaftaraFrom(info, from) {
+    tanakhPendingHaftara = { refs: info.refs, title: info.title, rite: info.rite };
+    tanakhPending = null;
+    tanakhPendingParasha = null;
+    openTool('tanakh', from || 'screen-main');
 }
 
 // Les boutons d'une haftara : « Achkénaze : Isaïe 54:1–55:5 », « Séfarade : … » ; un seul bouton quand les deux rites lisent la même chose.
@@ -1184,11 +1206,13 @@ function tanakhRenderCycle() {
             btn.onclick = () => tanakhOpenHaftara(hf, i);
             row.appendChild(btn);
         });
-        const back = tanakhCycleNode('button', 'tool-history-chip', t('tools.tanakh_haftara_back'));
-        back.type = 'button';
-        back.id = 'tool-tanakh-haftara-back';
-        back.onclick = () => tanakhOpen(hf.back.id, { mode: 'parasha', parasha: hf.back.rank, aliyah: 0 });
-        row.appendChild(back);
+        if (hf.back) {
+            const back = tanakhCycleNode('button', 'tool-history-chip', t('tools.tanakh_haftara_back'));
+            back.type = 'button';
+            back.id = 'tool-tanakh-haftara-back';
+            back.onclick = () => tanakhOpen(hf.back.id, { mode: 'parasha', parasha: hf.back.rank, aliyah: 0 });
+            row.appendChild(back);
+        }
         box.appendChild(row);
         return;
     }

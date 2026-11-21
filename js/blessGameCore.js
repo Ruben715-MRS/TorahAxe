@@ -49,7 +49,7 @@
         chehakol: ['Agneau', 'Bière', 'Bœuf', 'Barbe à papa', 'Beurre', 'Canard', 'Caramel', 'Champignon', 'Dinde', 'Eau gazeuse', 'Fromage', 'Fromage blanc', 'Hareng', 'Lait',
             'Limonade', 'Marshmallow', 'Miel', 'Mousse au chocolat', 'Nougat', 'Poisson', 'Poulet', 'Rhum', 'Salami', 'Sardine', 'Saumon', 'Sorbet', 'Sucette', 'Sucre', 'Thé',
             'Thon', 'Truite', 'Veau', 'Viande', 'Vodka', 'Whisky', 'Yaourt'],
-        hamotsi: ['Bagel', 'Baguette', 'Pain à base d\'une des cinq céréales', 'Pain à l\'oignon', 'Pain complet', 'Pain de mie', 'Pain de seigle', 'Pain italien',
+        hamotsi: ['Bagel', 'Baguette', 'Pain à base d\'une des cinq céréales', 'Pain à l\'oignon', 'Pain complet', 'Pain de seigle', 'Pain italien',
             'Sandwich au fromage', 'Sandwich aux œufs', 'Sandwich de poulet'],
         mezonot: ['Beignet aux fruits', 'Biscuit au gingembre', 'Cake', 'Couscous', 'Crêpe nature', 'Donut', 'Flocon d\'avoine', 'Gaufre', 'Gâteau', 'Gâteau au chocolat',
             'Gâteau au fromage', 'Gâteau au miel', 'Gâteau aux fruits', 'Lasagnes', 'Macaroni', 'Millefeuilles', 'Muffin', 'Nouille', 'Pancake', 'Pâtes', 'Ravioli cuit', 'Semoule',

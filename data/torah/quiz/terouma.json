@@ -1,0 +1,225 @@
+{
+ "v": 1,
+ "parasha": "Térouma",
+ "levels": {
+  "1": [
+   {
+    "q": "Quels métaux figurent en tête de l'offrande demandée aux enfants d'Israël ?",
+    "a": "L'or, l'argent et le cuivre",
+    "w": [
+     "Le fer, l'étain et le plomb",
+     "L'or, le fer et le bronze poli",
+     "L'argent, l'étain et le cuivre rouge"
+    ],
+    "ref": "25:3",
+    "proof": [
+     "argent et cuivre"
+    ],
+    "x": "Suivent les étoffes d'azur, de pourpre, d'écarlate, de fin lin et de poil de chèvre."
+   },
+   {
+    "q": "Pourquoi les Israélites doivent-ils construire un sanctuaire ?",
+    "a": "Pour que Dieu réside au milieu d'eux",
+    "w": [
+     "Pour y conserver les trésors de l'Égypte",
+     "Pour y loger Moïse et sa famille",
+     "Pour y enfermer le peuple pendant les fêtes"
+    ],
+    "ref": "25:8",
+    "proof": [
+     "je réside au milieu d'eux"
+    ],
+    "x": "« Et ils me construiront un sanctuaire, pour que je réside au milieu d'eux. »"
+   },
+   {
+    "q": "Dans quel bois fait-on l'arche, la table et les traverses du tabernacle ?",
+    "a": "En bois de chittîm",
+    "w": [
+     "En bois de cèdre du Liban",
+     "En bois d'olivier sculpté",
+     "En bois de tahach séché"
+    ],
+    "ref": "25:10",
+    "proof": [
+     "bois de chittîm"
+    ],
+    "x": "L'arche est revêtue d'or pur à l'intérieur et à l'extérieur."
+   },
+   {
+    "q": "Que dépose-t-on dans l'arche ?",
+    "a": "Le Statut que Dieu donnera à Moïse",
+    "w": [
+     "Les pains de proposition de la semaine",
+     "Le candélabre d'or et ses mouchettes",
+     "Un bassin rempli d'eau lustrale"
+    ],
+    "ref": "25:16",
+    "proof": [
+     "Statut"
+    ],
+    "x": "« Tu déposeras dans l'arche le Statut que je te donnerai. »"
+   },
+   {
+    "q": "Combien de lampes le candélabre d'or porte-t-il ?",
+    "a": "Sept lampes",
+    "w": [
+     "Six lampes, une par branche",
+     "Douze lampes, une par tribu",
+     "Trois lampes sur chaque côté"
+    ],
+    "ref": "25:37",
+    "proof": [
+     "au nombre de sept"
+    ],
+    "x": "Le candélabre est fait d'un seul lingot d'or pur, avec six branches."
+   }
+  ],
+  "2": [
+   {
+    "q": "Quelle est la longueur de l'arche ?",
+    "a": "Deux coudées et demie",
+    "w": [
+     "Deux coudées exactement",
+     "Trois coudées et demie",
+     "Une coudée et demie"
+    ],
+    "ref": "25:10",
+    "proof": [
+     "deux coudées et demie de long"
+    ],
+    "x": "Elle a une coudée et demie de large et une coudée et demie de hauteur."
+   },
+   {
+    "q": "Que doit-on faire des barres passées dans les anneaux de l'arche ?",
+    "a": "Les laisser en permanence, elles ne doivent point la quitter",
+    "w": [
+     "Les retirer chaque soir et les ranger sous le voile",
+     "Les remplacer à chaque étape du désert",
+     "Les couvrir d'argent après chaque voyage"
+    ],
+    "ref": "25:15",
+    "proof": [
+     "ne doivent point la quitter"
+    ],
+    "x": "Elles servent à porter l'arche."
+   },
+   {
+    "q": "Combien de tapis de lin forment le tabernacle, et quelle est la longueur de chacun ?",
+    "a": "Dix tapis de vingt-huit coudées",
+    "w": [
+     "Onze tapis de trente coudées",
+     "Dix tapis de dix coudées",
+     "Douze tapis de vingt coudées"
+    ],
+    "ref": "26:1-2",
+    "proof": [
+     "dix tapis",
+     "vingt-huit coudées"
+    ],
+    "x": "Chaque tapis a quatre coudées de large : cinq sont joints d'un côté, cinq de l'autre."
+   },
+   {
+    "q": "Combien de solives place-t-on du côté sud du tabernacle, et combien de socles d'argent au-dessous ?",
+    "a": "Vingt solives sur quarante socles",
+    "w": [
+     "Vingt solives sur vingt socles",
+     "Huit solives sur seize socles",
+     "Dix solives sur quarante socles"
+    ],
+    "ref": "26:18-19",
+    "proof": [
+     "vingt solives",
+     "quarante socles"
+    ],
+    "x": "Deux socles sont placés sous chaque solive, pour recevoir ses deux tenons."
+   },
+   {
+    "q": "Quelle est la hauteur de l'autel de bois recouvert de cuivre ?",
+    "a": "Trois coudées",
+    "w": [
+     "Cinq coudées",
+     "Une coudée et demie",
+     "Dix coudées"
+    ],
+    "ref": "27:1",
+    "proof": [
+     "trois coudées de hauteur"
+    ],
+    "x": "Il est carré, de cinq coudées de longueur et de cinq coudées de largeur."
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, que signifie « me préparer une offrande » (« qu'on prenne pour moi ») ?",
+    "a": "Que l'offrande soit prélevée pour le nom de Dieu",
+    "w": [
+     "Que l'offrande soit remise au prêtre en secret",
+     "Que Moïse soit le seul à la recevoir",
+     "Que chacun la donne à un voisin plus pauvre"
+    ],
+    "ref": "25:2",
+    "proof": [
+     "לשמי"
+    ],
+    "x": "Rachi sur Exode 25:2 : « pour moi » : pour mon nom."
+   },
+   {
+    "q": "Selon Rachi, combien de prélèvements sont évoqués dans ce passage ?",
+    "a": "Trois : pour les socles, pour l'autel et pour le Tabernacle",
+    "w": [
+     "Deux : pour l'arche et pour la table",
+     "Quatre : un par type de métal demandé",
+     "Un seul : celui de la construction du sanctuaire"
+    ],
+    "ref": "25:2",
+    "proof": [
+     "שלש תרומות"
+    ],
+    "x": "Rachi sur Exode 25:2 : les Sages ont dit que trois prélèvements sont mentionnés : demi-sicle pour les socles, demi-sicle pour les sacrifices publics, et dons volontaires pour le Tabernacle."
+   },
+   {
+    "q": "Selon Rachi, que signifie « ils me construiront un sanctuaire » ?",
+    "a": "Qu'ils fassent pour son nom une maison de sainteté",
+    "w": [
+     "Qu'ils érigent un palais pour le roi d'Israël",
+     "Qu'ils bâtissent une tour qui monte jusqu'au ciel",
+     "Qu'ils creusent une grotte dans la montagne"
+    ],
+    "ref": "25:8",
+    "proof": [
+     "בית קדשה"
+    ],
+    "x": "Rachi sur Exode 25:8 : « ils feront pour moi un sanctuaire » : une maison de sainteté pour mon nom."
+   },
+   {
+    "q": "Selon Rachi, que signifie « les barres ne doivent point quitter l'arche » ?",
+    "a": "Elles n'en sont jamais retirées",
+    "w": [
+     "Elles n'en sont retirées que pour le Chabbat",
+     "Elles n'en sont retirées que pendant la guerre",
+     "Elles sont retirées lorsque le peuple campe"
+    ],
+    "ref": "25:15",
+    "proof": [
+     "לעולם"
+    ],
+    "x": "Rachi sur Exode 25:15 : « ne s'écarteront pas » : jamais (traité Yoma)."
+   },
+   {
+    "q": "Selon Rachi, pourquoi Dieu montre-t-il à Moïse une menora de feu ?",
+    "a": "Parce que Moïse avait de la difficulté à réaliser le candélabre",
+    "w": [
+     "Parce que Moïse avait oublié la longueur des branches",
+     "Parce que le peuple refusait de donner de l'or",
+     "Parce que l'artisan Betsalel ne comprenait pas le plan"
+    ],
+    "ref": "25:40",
+    "proof": [
+     "נתקשה",
+     "מנורה של אש"
+    ],
+    "x": "Rachi sur Exode 25:40 : Moïse eut du mal avec l'ouvrage du candélabre, jusqu'à ce que Dieu lui en montre un de feu."
+   }
+  ]
+ }
+}

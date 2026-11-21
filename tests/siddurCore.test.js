@@ -248,3 +248,20 @@ test("Mé'en chaloch : chaque rite donne ses tableaux (céréales, vin, sept esp
     assert.deepStrictEqual(S.mcTables(segsOf('al-hamihya-ashkenaze')), [{ from: 2, to: 4 }, { from: 6, to: 8 }, { from: 10, to: 12 }]);
     assert.deepStrictEqual(S.mcTables(['ברוך אתה', 'אם שתה יין', 'אם אכל מזונות']), []);
 });
+
+test('Arvit de semaine : le psaume « Barkhi nafchi » de la nuit de Roch \'Hodech est replié, ouvert seulement ces jours-là', () => {
+    const wk = require('../data/siddur/arvit-barekhou.json').segments;
+    assert.deepStrictEqual(S.conditionOf('בליל ראש חודש יש הנוהגים לומר מזמור זה קודם ערבית').atoms, ['rc']);
+    const groups = S.groups(wk);
+    assert.strictEqual(groups.length, 1);
+    assert.deepStrictEqual({ header: groups[0].header, from: groups[0].from, to: groups[0].to, atoms: groups[0].atoms }, { header: 1, from: 2, to: 2, atoms: ['rc'] });
+    assert.ok(wk[2].replace(/[\u0591-\u05C7]/g, '').includes('ברכי נפשי'));          // le segment 2 est bien le psaume
+    // hors Roch 'Hodech : « off » ; la nuit de Roch 'Hodech (30 Hechvan 5787 = 10 nov. 2026, au soir) : « on »
+    assert.strictEqual(S.evaluate(groups[0].atoms, S.contextFor(CY.gregorianToFixed(2026, 11, 21), false)), 'off');
+    assert.strictEqual(S.evaluate(groups[0].atoms, S.contextFor(CY.gregorianToFixed(2026, 11, 10), false)), 'on');
+});
+
+test('Chabbat : la consigne de la nuit de Roch \'Hodech ne fait pas de bloc (le psaume n\'est pas imprimé là)', () => {
+    const sh = require('../data/siddur/chabbat-arvit-barekhou.json').segments;
+    assert.deepStrictEqual(S.groups(sh), []);
+});

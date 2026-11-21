@@ -1,0 +1,252 @@
+{
+ "v": 1,
+ "parasha": "Va'éra",
+ "levels": {
+  "1": [
+   {
+    "q": "En quoi les eaux du fleuve se changent-elles quand Aaron les frappe avec la verge ?",
+    "a": "En sang",
+    "w": [
+     "En huile",
+     "En lait",
+     "En vin"
+    ],
+    "ref": "7:20-21",
+    "proof": [
+     "sang"
+    ],
+    "x": "Les poissons du fleuve moururent, le fleuve devint infect : il n'y eut que du sang dans tout le pays d'Égypte."
+   },
+   {
+    "q": "Quelle plaie succède à celle du sang ?",
+    "a": "Les grenouilles",
+    "w": [
+     "La vermine",
+     "La grêle",
+     "Les ténèbres"
+    ],
+    "ref": "8:1-2",
+    "proof": [
+     "grenouilles"
+    ],
+    "x": "Aaron dirigea sa main sur les eaux de l'Égypte ; les grenouilles montèrent et envahirent le pays."
+   },
+   {
+    "q": "Quel âge Moïse a-t-il lorsqu'ils parlent à Pharaon ?",
+    "a": "Quatre-vingts ans",
+    "w": [
+     "Quarante ans",
+     "Cent vingt ans",
+     "Soixante-dix ans"
+    ],
+    "ref": "7:7",
+    "proof": [
+     "quatre-vingts ans"
+    ],
+    "x": "Moïse était âgé de quatre-vingts ans et Aaron de quatre-vingt-trois ans."
+   },
+   {
+    "q": "Quelle province d'Égypte est épargnée par la grêle ?",
+    "a": {
+     "t": "Gessen",
+     "he": "גֹּשֶׁן"
+    },
+    "w": [
+     {
+      "t": "Ramsès",
+      "he": "רַעְמְסֵס"
+     },
+     {
+      "t": "Pithom",
+      "he": "פִּתֹם"
+     },
+     {
+      "t": "Soukkoth",
+      "he": "סֻכּוֹת"
+     }
+    ],
+    "ref": "9:26",
+    "proof": [
+     "Gessen"
+    ],
+    "x": "La seule province de Gessen, où habitaient les enfants d'Israël, fut exempte de la grêle."
+   },
+   {
+    "q": "Comment s'appelle la mère d'Aaron et de Moïse ?",
+    "a": {
+     "t": "Jocabed",
+     "he": "יוֹכֶבֶד"
+    },
+    "w": [
+     {
+      "t": "Miriam",
+      "he": "מִרְיָם"
+     },
+     {
+      "t": "Tsippora",
+      "he": "צִפֹּרָה"
+     },
+     {
+      "t": "Élichéva",
+      "he": "אֱלִישֶׁבַע"
+     }
+    ],
+    "ref": "6:20",
+    "proof": [
+     "Jocabed"
+    ],
+    "x": "Amram choisit Jocabed, sa tante, pour épouse ; elle lui enfanta Aaron et Moïse."
+   }
+  ],
+  "2": [
+   {
+    "q": "Quel âge Aaron a-t-il lorsqu'ils parlent à Pharaon ?",
+    "a": "Quatre-vingt-trois ans",
+    "w": [
+     "Quatre-vingts ans",
+     "Quatre-vingt-dix ans",
+     "Soixante-dix-sept ans"
+    ],
+    "ref": "7:7",
+    "proof": [
+     "quatre-vingt-trois ans"
+    ],
+    "x": "Moïse avait quatre-vingts ans, Aaron quatre-vingt-trois."
+   },
+   {
+    "q": "En quoi la poussière de la terre se transforme-t-elle quand Aaron la frappe de sa verge ?",
+    "a": "En vermine",
+    "w": [
+     "En sauterelles",
+     "En sang",
+     "En grêle"
+    ],
+    "ref": "8:12-13",
+    "proof": [
+     "vermine"
+    ],
+    "x": "La vermine couvrit hommes et bêtes ; toute la poussière de la terre se transforma en vermine."
+   },
+   {
+    "q": "Que disent les devins à Pharaon devant la vermine qu'ils ne peuvent imiter ?",
+    "a": "« Le doigt de Dieu est là ! »",
+    "w": [
+     "« Le Nil est maudit »",
+     "« Cette plaie vient de Pharaon lui-même »",
+     "« Les Hébreux sont plus forts que nous »"
+    ],
+    "ref": "8:15",
+    "proof": [
+     "doigt de Dieu"
+    ],
+    "x": "Mais le cœur de Pharaon persista et il ne les écouta point."
+   },
+   {
+    "q": "Que devient le bétail des Israélites pendant la peste du bétail ?",
+    "a": "Pas un seul animal n'en meurt",
+    "w": [
+     "La moitié du troupeau meurt",
+     "Tous les troupeaux meurent",
+     "Les animaux tombent malades, puis guérissent"
+    ],
+    "ref": "9:7",
+    "proof": [
+     "pas un animal n'était mort"
+    ],
+    "x": "Pharaon fit vérifier : pas un animal n'était mort du bétail des Israélites. Cependant son cœur s'obstina."
+   },
+   {
+    "q": "Que se passe-t-il quand Moïse implore le Seigneur au sujet des grenouilles ?",
+    "a": "Elles périssent dans les maisons, les fermes et les champs",
+    "w": [
+     "Elles s'enfoncent dans le sable du désert",
+     "Elles retournent toutes dans le fleuve",
+     "Elles se changent en poussière"
+    ],
+    "ref": "8:8-9",
+    "proof": [
+     "implora",
+     "périrent"
+    ],
+    "x": "Le Seigneur agit selon la parole de Moïse : les grenouilles périrent dans les maisons, dans les fermes et dans les champs."
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, que signifie que Moïse devient « Dieu » pour Pharaon ?",
+    "a": "Un juge et un maître qui le châtie par les plaies et les souffrances",
+    "w": [
+     "Un prophète que Pharaon doit adorer",
+     "Un prince placé au-dessus de tous les ministres d'Égypte",
+     "Un médecin chargé de guérir le roi"
+    ],
+    "ref": "7:1",
+    "proof": [
+     "שופט",
+     "ורודה"
+    ],
+    "x": "Rachi sur Exode 7:1 : il sera juge et maître, pour le châtier par les plaies et les souffrances."
+   },
+   {
+    "q": "Selon Rachi, pourquoi Pharaon sort-il le matin vers le fleuve ?",
+    "a": "Pour faire ses besoins en cachette : il se faisait passer pour un dieu qui n'en a pas besoin",
+    "w": [
+     "Pour offrir un sacrifice au Nil à l'aube",
+     "Pour y prendre un bain rituel",
+     "Pour inspecter les canaux d'irrigation"
+    ],
+    "ref": "7:15",
+    "proof": [
+     "לנקביו",
+     "אלוה"
+    ],
+    "x": "Rachi sur Exode 7:15 : il prétendait ne pas avoir de besoins naturels et sortait de bon matin vers le Nil pour les faire."
+   },
+   {
+    "q": "Selon Rachi, pourquoi est-ce Aaron, et non Moïse, qui frappe le fleuve ?",
+    "a": "Parce que le fleuve avait protégé Moïse quand il y avait été jeté : Moïse ne devait pas le frapper",
+    "w": [
+     "Parce que Moïse était trop âgé pour lever la verge",
+     "Parce que Pharaon n'aurait pas écouté Moïse",
+     "Parce que le fleuve obéissait seulement à Aaron"
+    ],
+    "ref": "7:19",
+    "proof": [
+     "הגן",
+     "משה"
+    ],
+    "x": "Rachi sur Exode 7:19 : le fleuve avait protégé Moïse bébé ; c'est pourquoi il ne fut pas frappé par lui, ni par le sang ni par les grenouilles."
+   },
+   {
+    "q": "Selon Rachi, pourquoi est-ce encore Aaron qui frappe la poussière pour la vermine ?",
+    "a": "Parce que la terre avait protégé Moïse en cachant l'Égyptien qu'il avait tué dans le sable",
+    "w": [
+     "Parce que Moïse était impur après la plaie du sang",
+     "Parce que la poussière ne reconnaissait que la verge d'Aaron",
+     "Parce que Moïse avait promis de ne plus rien frapper"
+    ],
+    "ref": "8:12",
+    "proof": [
+     "הגן",
+     "בחול"
+    ],
+    "x": "Rachi sur Exode 8:12 : la poussière ne devait pas être frappée par Moïse, car elle l'avait protégé en cachant l'Égyptien."
+   },
+   {
+    "q": "Selon Rachi, que veut dire Dieu en disant aux Hébreux qu'il ne s'est pas fait connaître à leurs pères sous son nom « l'Éternel » ?",
+    "a": "Qu'il ne s'était pas montré fidèle à sa parole : il avait promis sans accomplir de leur vivant",
+    "w": [
+     "Qu'il leur était apparu sous un nom que personne ne savait prononcer",
+     "Qu'il n'avait parlé à eux que par des anges",
+     "Qu'il avait caché son nom pour les protéger"
+    ],
+    "ref": "6:3",
+    "proof": [
+     "נאמן",
+     "הבטחתים"
+    ],
+    "x": "Rachi sur Exode 6:3 : ils ne l'ont pas connu par sa qualité de vérité, lui qui est fidèle à sa parole : il leur avait promis et n'avait pas encore accompli."
+   }
+  ]
+ }
+}

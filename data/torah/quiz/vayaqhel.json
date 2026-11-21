@@ -1,0 +1,259 @@
+{
+ "v": 1,
+ "parasha": "Vayaqhel",
+ "levels": {
+  "1": [
+   {
+    "q": "Quelle activité la Torah interdit-elle dans toutes les demeures le jour du Chabbat ?",
+    "a": "Allumer du feu",
+    "w": [
+     "Cuire du pain pour les invités",
+     "Voyager au-delà du camp",
+     "Porter des fardeaux sur les épaules"
+    ],
+    "ref": "35:3",
+    "proof": [
+     "ne ferez point de feu"
+    ],
+    "x": "« Vous ne ferez point de feu dans aucune de vos demeures en ce jour de repos. »"
+   },
+   {
+    "q": "Que font les femmes industrieuses pour la construction du Tabernacle ?",
+    "a": "Elles filent elles-mêmes l'azur, la pourpre, l'écarlate et le lin",
+    "w": [
+     "Elles tissent les voiles de la cour sans les filer",
+     "Elles brodent les vêtements d'Aaron sans fil",
+     "Elles teignent les peaux de bélier en rouge"
+    ],
+    "ref": "35:25",
+    "proof": [
+     "filèrent elles-mêmes"
+    ],
+    "x": "Elles apportent le tout, déjà filé."
+   },
+   {
+    "q": "Oholiab, fils d'Ahisamak, qui seconde Beçalêl, appartient à quelle tribu ?",
+    "a": {
+     "t": "Dan",
+     "he": "דָן"
+    },
+    "w": [
+     {
+      "t": "Juda",
+      "he": "יְהוּדָה"
+     },
+     {
+      "t": "Lévi",
+      "he": "לֵוִי"
+     },
+     {
+      "t": "Siméon",
+      "he": "שִׁמְעוֹן"
+     }
+    ],
+    "ref": "35:34",
+    "proof": [
+     "tribu de Dan"
+    ],
+    "x": "Beçalêl est de la tribu de Juda ; Dieu les a doués tous deux du don de l'enseignement."
+   },
+   {
+    "q": "Quelles peaux, parmi les offrandes, sont teintes en rouge ?",
+    "a": "Les peaux de bélier",
+    "w": [
+     "Les peaux de tahach",
+     "Les peaux de chèvre",
+     "Les peaux de bœuf"
+    ],
+    "ref": "35:7",
+    "proof": [
+     "peaux de bélier teintes en rouge"
+    ],
+    "x": "La liste mentionne aussi des peaux de tahach et du bois de chittîm."
+   },
+   {
+    "q": "Combien de jours de travail la Torah rappelle-t-elle avant le jour de la solennité sainte ?",
+    "a": "Six jours",
+    "w": [
+     "Cinq jours",
+     "Sept jours",
+     "Trois jours"
+    ],
+    "ref": "35:2",
+    "proof": [
+     "Pendant six jours"
+    ],
+    "x": "Le septième jour est un chômage absolu en l'honneur de l'Éternel."
+   }
+  ],
+  "2": [
+   {
+    "q": "Quel est le grand-père de Beçalêl, selon sa généalogie ?",
+    "a": {
+     "t": "Hour",
+     "he": "חוּר"
+    },
+    "w": [
+     {
+      "t": "Ahisamak",
+      "he": "אֲחִיסָמָךְ"
+     },
+     {
+      "t": "Amram",
+      "he": "עַמְרָם"
+     },
+     {
+      "t": "Caleb",
+      "he": "כָּלֵב"
+     }
+    ],
+    "ref": "35:30",
+    "proof": [
+     "fils d'Ouri, fils de Hour"
+    ],
+    "x": "Beçalêl est fils d'Ouri, fils de Hour, de la tribu de Juda."
+   },
+   {
+    "q": "Quelle proclamation fait-on circuler dans le camp, sur l'ordre de Moïse ?",
+    "a": "Que ni homme ni femme ne préparent plus de matériaux pour les offrandes",
+    "w": [
+     "Que chacun double sa contribution avant le soir",
+     "Que seuls les hommes de Juda apportent encore de l'or",
+     "Que chaque tribu apporte son offrande dans l'ordre"
+    ],
+    "ref": "36:6",
+    "proof": [
+     "ne préparent plus de matériaux"
+    ],
+    "x": "Le peuple s'abstient alors de faire des offrandes."
+   },
+   {
+    "q": "Que filent les femmes qui se distinguaient par une habileté supérieure ?",
+    "a": "Le poil de chèvre",
+    "w": [
+     "Le lin retors",
+     "La laine teinte en rouge",
+     "Les fils d'argent"
+    ],
+    "ref": "35:26",
+    "proof": [
+     "poil de chèvre"
+    ],
+    "x": "Les autres femmes industrieuses filent l'azur, la pourpre, l'écarlate et le lin."
+   },
+   {
+    "q": "Qui, avec Beçalêl, est doué du don de l'enseignement ?",
+    "a": {
+     "t": "Oholiab",
+     "he": "אָהֳלִיאָב"
+    },
+    "w": [
+     {
+      "t": "Ahisamak",
+      "he": "אֲחִיסָמָךְ"
+     },
+     {
+      "t": "Josué",
+      "he": "יְהוֹשֻׁעַ"
+     },
+     {
+      "t": "Hour",
+      "he": "חוּר"
+     }
+    ],
+    "ref": "35:34",
+    "proof": [
+     "Oholiab"
+    ],
+    "x": "Dieu leur donne le talent d'exécuter toute œuvre d'artisan, d'artiste et de brodeur."
+   },
+   {
+    "q": "Que se passe-t-il pour les matériaux apportés par le peuple pour l'ouvrage ?",
+    "a": "Ils suffisent et au-delà pour tout l'ouvrage",
+    "w": [
+     "Ils sont à peine suffisants pour le tabernacle",
+     "Ils manquent pour l'autel et la cuve",
+     "Ils sont rendus aux donateurs à la fin"
+    ],
+    "ref": "36:7",
+    "proof": [
+     "suffirent et par delà"
+    ],
+    "x": "Le peuple n'a plus besoin d'en apporter."
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, quand Moïse réunit-il le peuple pour lui transmettre les commandements du Tabernacle ?",
+    "a": "Le lendemain de Yom Kippour, quand il est descendu de la montagne",
+    "w": [
+     "Le jour même où il a brisé les tables",
+     "Le premier jour du mois de Nissan",
+     "La veille de la fête de Chavouot"
+    ],
+    "ref": "35:1",
+    "proof": [
+     "למחרת יום הכפורים"
+    ],
+    "x": "Rachi sur Exode 35:1 : le lendemain de Yom Kippour, quand Moïse descendit de la montagne."
+   },
+   {
+    "q": "Selon Rachi, pourquoi Moïse mentionne-t-il le Chabbat avant l'ordre de construire le Tabernacle ?",
+    "a": "Pour enseigner que la construction ne repousse pas le Chabbat",
+    "w": [
+     "Pour que les ouvriers se reposent avant de commencer",
+     "Pour que le Chabbat soit le premier jour du chantier",
+     "Pour que les femmes cessent de filer ce jour"
+    ],
+    "ref": "35:2",
+    "proof": [
+     "אינו דוחה את השבת"
+    ],
+    "x": "Rachi sur Exode 35:2 : il leur dit d'abord l'avertissement du Chabbat pour enseigner que l'ouvrage du Tabernacle n'écarte pas le Chabbat."
+   },
+   {
+    "q": "Selon Rachi, qui était Hour, grand-père de Beçalêl ?",
+    "a": "Le fils de Myriam",
+    "w": [
+     "Le fils d'Aaron",
+     "Le frère de Josué",
+     "Le premier fils de Caleb"
+    ],
+    "ref": "35:30",
+    "proof": [
+     "בנה של מרים"
+    ],
+    "x": "Rachi sur Exode 35:30 : Hour était le fils de Myriam."
+   },
+   {
+    "q": "Selon Rachi, que désigne le mot « ḥaḥ » parmi les bijoux d'or apportés ?",
+    "a": "Un bracelet d'or rond porté au bras",
+    "w": [
+     "Une boucle d'oreille ronde",
+     "Un collier à trois rangs",
+     "Une bague ornée d'une pierre"
+    ],
+    "ref": "35:22",
+    "proof": [
+     "הצמיד",
+     "זרוע"
+    ],
+    "x": "Rachi sur Exode 35:22 : un bijou d'or rond, placé sur le bras : le bracelet."
+   },
+   {
+    "q": "Selon Rachi, pourquoi les chefs de tribus ne donnent-ils pas en premier pour le Tabernacle ?",
+    "a": "Ils pensaient compléter ce que le peuple ne pourrait pas donner",
+    "w": [
+     "Ils attendaient que Moïse les désigne par leur nom",
+     "Ils voulaient donner seulement de l'argent",
+     "Ils avaient déjà tout donné pour le veau d'or"
+    ],
+    "ref": "35:27",
+    "proof": [
+     "משלימין"
+    ],
+    "x": "Rachi sur Exode 35:27 : les chefs dirent : que le peuple donne ce qu'il donne, et ce qui manquera, nous le compléterons."
+   }
+  ]
+ }
+}
