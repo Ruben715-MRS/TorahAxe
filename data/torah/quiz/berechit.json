@@ -1,0 +1,249 @@
+{
+ "v": 1,
+ "parasha": "Béréchit",
+ "levels": {
+  "1": [
+   {
+    "q": "Comment Dieu appelle-t-il la lumière, et comment appelle-t-il les ténèbres, le premier jour ?",
+    "a": "La lumière « jour », les ténèbres « nuit »",
+    "w": [
+     "La lumière « aube », les ténèbres « soir »",
+     "La lumière « ciel », les ténèbres « terre »",
+     "La lumière « vie », les ténèbres « mort »"
+    ],
+    "ref": "1:5",
+    "proof": [
+     "la lumière jour",
+     "Nuit"
+    ],
+    "x": "Il fut soir, il fut matin : un jour."
+   },
+   {
+    "q": "Que fait Dieu le septième jour ?",
+    "a": "Il met fin à l'œuvre, se repose, bénit ce jour et le proclame saint",
+    "w": [
+     "Il crée l'homme et la femme à son image",
+     "Il sépare les eaux d'en haut des eaux d'en bas",
+     "Il plante un jardin en Éden vers l'orient"
+    ],
+    "ref": "2:2-3",
+    "proof": [
+     "se reposa, le septième jour"
+    ],
+    "x": "Il se repose de toute l'œuvre qu'il avait produite."
+   },
+   {
+    "q": "Avec quoi Dieu forme-t-il la femme ?",
+    "a": "Avec une des côtes de l'homme",
+    "w": [
+     "Avec la poussière du sol",
+     "Avec un souffle de vie",
+     "Avec une branche de l'arbre de vie"
+    ],
+    "ref": "2:21-22",
+    "proof": [
+     "il prit une de ses côtes"
+    ],
+    "x": "Dieu fit peser une torpeur sur l'homme, qui s'endormit."
+   },
+   {
+    "q": "Quel animal pousse la femme à manger du fruit de l'arbre ?",
+    "a": "Le serpent, rusé plus que tout animal",
+    "w": [
+     "Le lion, fort plus que tout animal",
+     "L'aigle, rapide plus que tout animal",
+     "Le renard, agile plus que tout animal"
+    ],
+    "ref": "3:1",
+    "proof": [
+     "le serpent était rusé"
+    ],
+    "x": "Il lui demande : « Est-il vrai que Dieu a dit... »"
+   },
+   {
+    "q": "Quel fils d'Adam et Ève cultivait la terre, et tua son frère ?",
+    "a": {
+     "t": "Caïn",
+     "he": "קַיִן"
+    },
+    "w": [
+     {
+      "t": "Abel",
+      "he": "הֶבֶל"
+     },
+     {
+      "t": "Seth",
+      "he": "שֵׁת"
+     },
+     {
+      "t": "Hénoc",
+      "he": "חֲנוֹךְ"
+     }
+    ],
+    "ref": "4:2",
+    "proof": [
+     "Caïn cultiva la terre"
+    ],
+    "x": "Abel était pasteur de menu bétail."
+   }
+  ],
+  "2": [
+   {
+    "q": "Quel âge Adam avait-il lorsqu'il mourut ?",
+    "a": "Neuf cent trente ans",
+    "w": [
+     "Neuf cent soixante-neuf ans",
+     "Huit cent quatre-vingt-quinze ans",
+     "Cent trente ans"
+    ],
+    "ref": "5:5",
+    "proof": [
+     "neuf cent trente ans"
+    ],
+    "x": "Tel fut tout le temps qu'Adam vécut."
+   },
+   {
+    "q": "Que fait l'Éternel pour que personne ne frappe Caïn ?",
+    "a": "Il le marque d'un signe, et punit au septuple celui qui le tuerait",
+    "w": [
+     "Il le chasse au désert, où nul ne peut le voir",
+     "Il lui donne une épée de feu pour se défendre",
+     "Il le cache dans la terre d'Éden"
+    ],
+    "ref": "4:15",
+    "proof": [
+     "marqua d'un signe",
+     "au septuple"
+    ],
+    "x": "Il le marque ainsi pour que nul ne le frappe en le rencontrant."
+   },
+   {
+    "q": "Que Dieu place-t-il à l'entrée du jardin d'Éden, après avoir chassé l'homme ?",
+    "a": "Les chérubins, avec la lame de l'épée flamboyante",
+    "w": [
+     "Un ange, avec la verge de Moïse",
+     "Un feu, avec une muraille de pierre",
+     "Un lion, avec une chaîne de fer"
+    ],
+    "ref": "3:24",
+    "proof": [
+     "chérubins",
+     "épée flamboyante"
+    ],
+    "x": "Pour garder les abords de l'arbre de vie."
+   },
+   {
+    "q": "Où Dieu plante-t-il le jardin où il place l'homme ?",
+    "a": "En Éden, vers l'orient",
+    "w": [
+     "En Éden, vers l'occident",
+     "Près du fleuve du pays de Havila",
+     "Au pied d'une montagne de l'orient"
+    ],
+    "ref": "2:8",
+    "proof": [
+     "jardin en Éden, vers l'orient"
+    ],
+    "x": "Il y place l'homme qu'il avait façonné."
+   },
+   {
+    "q": "Quel nom Ève donne-t-elle à son fils, né après la mort d'Abel ?",
+    "a": {
+     "t": "Seth",
+     "he": "שֵׁת"
+    },
+    "w": [
+     {
+      "t": "Caïn",
+      "he": "קַיִן"
+     },
+     {
+      "t": "Hénoc",
+      "he": "חֲנוֹךְ"
+     },
+     {
+      "t": "Abel",
+      "he": "הֶבֶל"
+     }
+    ],
+    "ref": "4:25",
+    "proof": [
+     "pour nom Seth"
+    ],
+    "x": "« Parce que Dieu m'a accordé une nouvelle postérité au lieu d'Abel. »"
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, par quel commandement la Torah aurait-elle dû commencer ?",
+    "a": "Par « ce mois-ci sera pour vous », première mitsva donnée à Israël",
+    "w": [
+     "Par « tu ne tueras pas », première des dix paroles",
+     "Par « sois fécond et multiplie-toi », première mitsva de l'homme",
+     "Par « souviens-toi du jour du Sabbat », première mitsva du monde"
+    ],
+    "ref": "1:1",
+    "proof": [
+     "החדש הזה לכם"
+    ],
+    "x": "Rachi sur Genèse 1:1 : rabbi Isaac dit : il aurait suffi de commencer par « ce mois-ci sera pour vous » ; pourquoi la Torah commence-t-elle par Béréchit ? Pour montrer la puissance de Dieu qui donne la terre à qui lui plaît."
+   },
+   {
+    "q": "Selon Rachi, pourquoi la Torah dit-elle « un jour » et non « premier jour » ?",
+    "a": "Parce que Dieu était seul au monde ce jour-là",
+    "w": [
+     "Parce que le premier jour est le plus important",
+     "Parce que les jours n'étaient pas encore comptés",
+     "Parce que la lumière est unique"
+    ],
+    "ref": "1:5",
+    "proof": [
+     "יחיד בעולמו"
+    ],
+    "x": "Rachi sur Genèse 1:5 : pourquoi « un » ? Parce que Dieu était unique dans son monde : les anges n'avaient pas encore été créés."
+   },
+   {
+    "q": "Selon Rachi, que nous apprend « faisons l'homme » ?",
+    "a": "L'humilité de Dieu, qui consulte avant de créer",
+    "w": [
+     "La puissance de Dieu, qui crée sans effort",
+     "La sagesse de Dieu, qui calcule chaque chose",
+     "La bonté de Dieu, qui donne la vie à tous"
+    ],
+    "ref": "1:26",
+    "proof": [
+     "ענותנותו של הקב\"ה"
+    ],
+    "x": "Rachi sur Genèse 1:26 : nous apprenons ici l'humilité de Dieu : l'homme est à l'image des anges qui seraient jaloux de lui ; Dieu les consulte."
+   },
+   {
+    "q": "Selon Rachi, que signifient les deux « yod » de « vayitser » (il façonna) l'homme ?",
+    "a": "Deux créations : l'une pour ce monde, l'autre pour la résurrection des morts",
+    "w": [
+     "Deux souffles : l'un du corps, l'autre de l'âme",
+     "Deux sexes : l'un mâle, l'autre femelle",
+     "Deux mondes : le ciel et la terre"
+    ],
+    "ref": "2:7",
+    "proof": [
+     "יצירה לעולם הזה ויצירה לתחית המתים"
+    ],
+    "x": "Rachi sur Genèse 2:7 : deux créations : une pour ce monde et une pour la résurrection des morts."
+   },
+   {
+    "q": "Selon Rachi, pourquoi Dieu a-t-il fait mourir Hénoc avant son temps ?",
+    "a": "Parce qu'il était juste mais risquait de retomber dans le mal",
+    "w": [
+     "Parce qu'il était méchant et corrompu",
+     "Parce qu'il était trop fort pour les hommes",
+     "Parce qu'il était le dernier des justes"
+    ],
+    "ref": "5:24",
+    "proof": [
+     "קל בדעתו לשוב להרשיע"
+    ],
+    "x": "Rachi sur Genèse 5:24 : il était juste mais facile à ramener au mal ; Dieu l'a hâté et fait mourir avant son temps."
+   }
+  ]
+ }
+}

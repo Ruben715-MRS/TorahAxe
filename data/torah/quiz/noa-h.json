@@ -1,0 +1,258 @@
+{
+ "v": 1,
+ "parasha": "Noa'h",
+ "levels": {
+  "1": [
+   {
+    "q": "Quel fils de Noé, père de Canaan, voit la nudité de son père et va l'annoncer à ses frères ?",
+    "a": {
+     "t": "Cham",
+     "he": "חָם"
+    },
+    "w": [
+     {
+      "t": "Sem",
+      "he": "שֵׁם"
+     },
+     {
+      "t": "Japhet",
+      "he": "יֶפֶת"
+     },
+     {
+      "t": "Kouch",
+      "he": "כּוּשׁ"
+     }
+    ],
+    "ref": "9:22",
+    "proof": [
+     "Cham, père de Canaan"
+    ],
+    "x": "Sem et Japhet couvrent leur père à reculons."
+   },
+   {
+    "q": "En quel bois Noé fait-il l'arche ?",
+    "a": "En bois de gôfèr",
+    "w": [
+     "En bois de chittîm",
+     "En bois de cèdre",
+     "En bois d'olivier"
+    ],
+    "ref": "6:14",
+    "proof": [
+     "bois de gôfèr"
+    ],
+    "x": "Il l'enduit de poix en dedans et en dehors."
+   },
+   {
+    "q": "Pendant combien de temps la pluie tombe-t-elle sur la terre ?",
+    "a": "Quarante jours et quarante nuits",
+    "w": [
+     "Sept jours et sept nuits",
+     "Cent cinquante jours",
+     "Trois jours et trois nuits"
+    ],
+    "ref": "7:12",
+    "proof": [
+     "quarante jours et quarante nuits"
+    ],
+    "x": "La crue des eaux dure ensuite cent cinquante jours."
+   },
+   {
+    "q": "Que rapporte la colombe à Noé, sur le soir ?",
+    "a": "Une feuille d'olivier fraîche dans son bec",
+    "w": [
+     "Un rameau de palmier encore vert",
+     "Une branche de vigne chargée de fruits",
+     "Un épi de blé mûr"
+    ],
+    "ref": "8:11",
+    "proof": [
+     "feuille d'olivier fraîche"
+    ],
+    "x": "Noé juge que les eaux avaient baissé sur la terre."
+   },
+   {
+    "q": "Quel signe Dieu donne-t-il de son alliance avec la terre après le déluge ?",
+    "a": "Son arc dans la nue",
+    "w": [
+     "Une colonne de feu dans le ciel",
+     "Une étoile au levant",
+     "Une pluie de rosée"
+    ],
+    "ref": "9:13",
+    "proof": [
+     "mon arc dans la nue"
+    ],
+    "x": "C'est le signe d'une alliance perpétuelle entre Dieu et tous les êtres animés."
+   }
+  ],
+  "2": [
+   {
+    "q": "Quelle est la longueur de l'arche ?",
+    "a": "Trois cents coudées",
+    "w": [
+     "Cent coudées",
+     "Cinquante coudées",
+     "Mille coudées"
+    ],
+    "ref": "6:15",
+    "proof": [
+     "trois cents coudées"
+    ],
+    "x": "Sa largeur est de cinquante coudées et sa hauteur de trente coudées."
+   },
+   {
+    "q": "Quel âge Noé avait-il quand le déluge commença ?",
+    "a": "Six cents ans",
+    "w": [
+     "Quatre cent quatre-vingts ans",
+     "Cent vingt ans",
+     "Neuf cent cinquante ans"
+    ],
+    "ref": "7:11",
+    "proof": [
+     "année six cent de la vie de Noé"
+    ],
+    "x": "Ce fut le deuxième mois, le dix-septième jour du mois."
+   },
+   {
+    "q": "Sur quels monts l'arche s'arrête-t-elle ?",
+    "a": {
+     "t": "Ararat",
+     "he": "אֲרָרָט"
+    },
+    "w": [
+     {
+      "t": "Sinaï",
+      "he": "סִינָי"
+     },
+     {
+      "t": "Garizim",
+      "he": "גְּרִזִים"
+     },
+     {
+      "t": "Nébo",
+      "he": "נְבוֹ"
+     }
+    ],
+    "ref": "8:4",
+    "proof": [
+     "monts Ararat"
+    ],
+    "x": "C'est le septième mois, le dix-septième jour du mois."
+   },
+   {
+    "q": "Quel matériau les hommes de Babel utilisent-ils comme mortier ?",
+    "a": "Le bitume",
+    "w": [
+     "La chaux",
+     "L'argile blanche",
+     "Le sable"
+    ],
+    "ref": "11:3",
+    "proof": [
+     "bitume de mortier"
+    ],
+    "x": "Ils préparent aussi des briques cuites au feu."
+   },
+   {
+    "q": "Quel puissant ravisseur est le premier à être puissant sur la terre, fils de Kouch ?",
+    "a": {
+     "t": "Nemrod",
+     "he": "נִמְרֹד"
+    },
+    "w": [
+     {
+      "t": "Cham",
+      "he": "חָם"
+     },
+     {
+      "t": "Canaan",
+      "he": "כְּנָעַן"
+     },
+     {
+      "t": "Sem",
+      "he": "שֵׁם"
+     }
+    ],
+    "ref": "10:8",
+    "proof": [
+     "Nemrod"
+    ],
+    "x": "Le commencement de sa domination fut Babel."
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, que signifie « juste dans ses générations » (bedorotav), à propos de Noé ?",
+    "a": "Certains l'expliquent à son éloge, d'autres à son détriment : juste seulement pour sa génération",
+    "w": [
+     "Que Noé fut juste uniquement envers sa famille",
+     "Que Noé fut juste uniquement envers ses fils",
+     "Que Noé fut juste uniquement envers Dieu"
+    ],
+    "ref": "6:9",
+    "proof": [
+     "לפי דורו היה צדיק"
+    ],
+    "x": "Rachi sur Genèse 6:9 : certains Sages l'expliquent à son éloge : s'il avait vécu dans une génération de justes, il l'aurait été encore plus ; d'autres à son détriment : selon sa génération il était juste, mais pas au temps d'Abraham."
+   },
+   {
+    "q": "Selon Rachi, pourquoi Dieu a-t-il fait construire l'arche à Noé pendant cent vingt ans ?",
+    "a": "Pour que les gens de sa génération le voient et s'interrogent, et se repentent",
+    "w": [
+     "Parce que l'arche était trop grande pour être bâtie plus vite",
+     "Parce que Noé était seul pour la construire",
+     "Parce que Dieu n'avait pas décidé du déluge"
+    ],
+    "ref": "6:14",
+    "proof": [
+     "ק\"כ שנה"
+    ],
+    "x": "Rachi sur Genèse 6:14 : pour que les gens du déluge le voient s'occuper de cette arche cent vingt ans, qu'ils lui demandent ce que c'est, et qu'il leur réponde : Dieu va amener un déluge ; peut-être se repentiront-ils."
+   },
+   {
+    "q": "Selon Rachi, pourquoi le corbeau ne rapporta-t-il rien, allant et venant autour de l'arche ?",
+    "a": "Parce qu'il soupçonnait Noé au sujet de sa compagne",
+    "w": [
+     "Parce qu'il avait trouvé de la nourriture ailleurs",
+     "Parce qu'il était trop faible pour voler",
+     "Parce qu'il craignait le vent"
+    ],
+    "ref": "8:7",
+    "proof": [
+     "חושדו על בת זוגו"
+    ],
+    "x": "Rachi sur Genèse 8:7 : il tournait autour de l'arche sans accomplir sa mission ; il soupçonnait Noé au sujet de sa compagne."
+   },
+   {
+    "q": "Selon Rachi, que signifie « puissant chasseur devant l'Éternel » à propos de Nemrod ?",
+    "a": "Qu'il séduisait les gens par ses paroles et les poussait à se révolter contre Dieu",
+    "w": [
+     "Qu'il chassait les animaux sauvages pour nourrir son peuple",
+     "Qu'il construisait des villes pour protéger son peuple",
+     "Qu'il combattait les ennemis de Dieu avec une grande armée"
+    ],
+    "ref": "10:9",
+    "proof": [
+     "צד דעתן של בריות בפיו"
+    ],
+    "x": "Rachi sur Genèse 10:9 : il capturait l'esprit des gens par ses paroles et les poussait à se révolter contre Dieu."
+   },
+   {
+    "q": "Selon Rachi, que montre le fait que Dieu dispersa la génération de la tour de Babel ?",
+    "a": "Que cette génération n'a pas de part au monde futur",
+    "w": [
+     "Que cette génération a été sauvée du déluge",
+     "Que cette génération a reçu la Torah avant les autres",
+     "Que cette génération a été punie moins sévèrement"
+    ],
+    "ref": "11:9",
+    "proof": [
+     "אין להם חלק לעולם הבא"
+    ],
+    "x": "Rachi sur Genèse 11:9 : il en résulte qu'ils n'ont pas de part au monde futur."
+   }
+  ]
+ }
+}

@@ -64,6 +64,15 @@
     "3": 5
    }
   },
+  "berechit": {
+   "index": 0,
+   "fr": "Béréchit",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
   "bo": {
    "index": 14,
    "fr": "Bo",
@@ -145,6 +154,15 @@
     "3": 5
    }
   },
+  "haye-sara": {
+   "index": 4,
+   "fr": "Hayé Sara",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
   "houqat": {
    "index": 38,
    "fr": "'Houqat",
@@ -175,6 +193,15 @@
   "ki-tissa": {
    "index": 20,
    "fr": "Ki Tissa",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "lekh-lekha": {
+   "index": 2,
+   "fr": "Lekh Lekha",
    "counts": {
     "1": 5,
     "2": 5,
@@ -238,6 +265,15 @@
   "nitsavim": {
    "index": 50,
    "fr": "Nitsavim",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "noa-h": {
+   "index": 1,
+   "fr": "Noa'h",
    "counts": {
     "1": 5,
     "2": 5,
@@ -316,6 +352,15 @@
     "3": 5
    }
   },
+  "toledot": {
+   "index": 5,
+   "fr": "Toledot",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
   "tsav": {
    "index": 24,
    "fr": "Tsav",
@@ -373,6 +418,15 @@
   "vayelekh": {
    "index": 51,
    "fr": "Vayélekh",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "vayera": {
+   "index": 3,
+   "fr": "Vayéra",
    "counts": {
     "1": 5,
     "2": 5,
