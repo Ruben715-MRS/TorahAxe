@@ -1,0 +1,225 @@
+{
+ "v": 1,
+ "parasha": "Vayikra",
+ "levels": {
+  "1": [
+   {
+    "q": "Comment doit être un holocauste pris dans le gros bétail ?",
+    "a": "Un mâle sans défaut",
+    "w": [
+     "Une femelle sans défaut, âgée de trois ans",
+     "Un mâle ou une femelle, peu importe",
+     "Un mâle marqué d'une tache blanche sur le front"
+    ],
+    "ref": "1:3",
+    "proof": [
+     "mâle, sans défaut"
+    ],
+    "x": "Il est présenté au seuil de la Tente d'assignation, pour être agréé devant l'Éternel."
+   },
+   {
+    "q": "Quels oiseaux peut-on offrir en holocauste ?",
+    "a": "Des tourterelles ou de jeunes colombes",
+    "w": [
+     "Des perdrix ou des cailles du désert",
+     "Des colombes adultes ou des poules sauvages",
+     "Des corbeaux ou des aigles du camp"
+    ],
+    "ref": "1:14",
+    "proof": [
+     "tourterelles ou les jeunes colombes"
+    ],
+    "x": "Le pontife rompt la tête de l'oiseau et la fait fumer sur l'autel."
+   },
+   {
+    "q": "De quoi est faite l'oblation que l'on présente au Seigneur ?",
+    "a": "De fleur de farine, arrosée d'huile, avec de l'encens",
+    "w": [
+     "De pain levé, saupoudré de miel et de poivre",
+     "D'orge grillée, avec du vin et du sel gemme",
+     "De fruits frais, cueillis le jour même"
+    ],
+    "ref": "2:1",
+    "proof": [
+     "fleur de farine"
+    ],
+    "x": "Elle l'arrosera d'huile et mettra dessus de l'encens."
+   },
+   {
+    "q": "Que doit-on joindre à toutes les offrandes, comme signe d'alliance ?",
+    "a": "Du sel",
+    "w": [
+     "Du miel",
+     "Du vin",
+     "Du levain"
+    ],
+    "ref": "2:13",
+    "proof": [
+     "garniras de sel"
+    ],
+    "x": "« Tu n'omettras point ce sel, signe d'alliance avec ton Dieu. »"
+   },
+   {
+    "q": "Quels ingrédients ne doivent jamais fumer sur l'autel avec l'oblation ?",
+    "a": "Le levain et le miel",
+    "w": [
+     "Le sel et l'huile",
+     "L'encens et la farine",
+     "Le vin et le lait"
+    ],
+    "ref": "2:11",
+    "proof": [
+     "levain ni de miel"
+    ],
+    "x": "Quelque oblation que l'on offre à l'Éternel, elle ne doit pas être fermentée."
+   }
+  ],
+  "2": [
+   {
+    "q": "Que fait celui qui apporte un holocauste avant l'immolation ?",
+    "a": "Il appuie sa main sur la tête de la victime",
+    "w": [
+     "Il verse de l'huile sur sa tête",
+     "Il lui lie les pattes avec un cordon d'azur",
+     "Il lui lave les pieds dans la cuve"
+    ],
+    "ref": "1:4",
+    "proof": [
+     "appuiera sa main sur la tête"
+    ],
+    "x": "La victime sera agréée en sa faveur pour lui obtenir propitiation."
+   },
+   {
+    "q": "De quel côté de l'autel immole-t-on l'holocauste du menu bétail ?",
+    "a": "Du côté nord",
+    "w": [
+     "Du côté sud",
+     "Du côté est, vers l'entrée",
+     "Du côté ouest, vers l'arche"
+    ],
+    "ref": "1:11",
+    "proof": [
+     "côté nord de l'autel"
+    ],
+    "x": "Les fils d'Aaron aspergent de son sang le tour de l'autel."
+   },
+   {
+    "q": "Quelle valeur le bélier du délit doit-il avoir pour celui qui détourne un objet consacré ?",
+    "a": "Deux sicles d'argent au poids du sanctuaire",
+    "w": [
+     "Un sicle d'argent au poids du sanctuaire",
+     "Cinq sicles d'argent au poids de la ville",
+     "Dix ghéra d'argent au poids du sanctuaire"
+    ],
+    "ref": "5:15",
+    "proof": [
+     "deux sicles"
+    ],
+    "x": "Il l'offre comme offrande délictive, choisi dans le bétail."
+   },
+   {
+    "q": "Que doit ajouter celui qui a fait tort au sanctuaire en détournant un objet consacré ?",
+    "a": "Un cinquième en sus de la valeur",
+    "w": [
+     "Un dixième en sus de la valeur",
+     "La moitié en sus de la valeur",
+     "Le double de la valeur du bien"
+    ],
+    "ref": "5:16",
+    "proof": [
+     "un cinquième en sus"
+    ],
+    "x": "Il remet le tout au pontife, qui fait propitiation par le bélier délictif."
+   },
+   {
+    "q": "Que doit apporter celui dont les moyens ne vont pas jusqu'à deux tourterelles pour son péché ?",
+    "a": "Un dixième d'êpha de fleur de farine, sans huile ni encens",
+    "w": [
+     "Un agneau de première année sans défaut",
+     "Un demi-sicle d'argent pour le sanctuaire",
+     "Un dixième d'êpha de fleur de farine, avec huile et encens"
+    ],
+    "ref": "5:11",
+    "proof": [
+     "dixième d'êpha de fleur de farine",
+     "point d'huile"
+    ],
+    "x": "Il n'y emploiera point d'huile et n'y mettra point d'encens, car c'est un expiatoire."
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, que montre le mot « il appela » (vayiqra) placé avant chaque parole divine à Moïse ?",
+    "a": "Un langage d'affection, celui qu'emploient les anges de service",
+    "w": [
+     "Un langage de crainte, pour que Moïse se prosterne",
+     "Un langage de colère, après la faute du veau d'or",
+     "Un langage d'alliance, comme celui du Sinaï"
+    ],
+    "ref": "1:1",
+    "proof": [
+     "לשון חבה",
+     "מלאכי השרת"
+    ],
+    "x": "Rachi sur Lévitique 1:1 : tout commence par un appel, langage d'affection, celui dont usent les anges de service."
+   },
+   {
+    "q": "Selon Rachi, pourquoi la Torah écrit-elle « quand un homme (adam) offrira » ?",
+    "a": "Comme Adam n'a rien offert de volé, car tout était à lui, ne présentez rien de volé",
+    "w": [
+     "Parce que seul un homme peut offrir un sacrifice",
+     "Pour inclure les étrangers qui voudraient offrir",
+     "Pour rappeler que l'homme est créé à l'image de Dieu"
+    ],
+    "ref": "1:2",
+    "proof": [
+     "לא תקריבו מן הגזל"
+    ],
+    "x": "Rachi sur Lévitique 1:2 : Adam le premier homme n'a rien offert de volé ; vous non plus ne présenterez pas de bien volé."
+   },
+   {
+    "q": "Selon Rachi, pourquoi la Torah dit-elle « une personne (néfesh) » pour l'oblation de farine ?",
+    "a": "Parce que c'est le pauvre qui l'apporte, et Dieu le considère comme s'il offrait sa vie",
+    "w": [
+     "Parce que la farine représente l'âme du donateur riche",
+     "Parce que seul un prêtre peut offrir la farine",
+     "Parce que l'oblation remplace le sacrifice d'un homme"
+    ],
+    "ref": "2:1",
+    "proof": [
+     "עני",
+     "נפשו"
+    ],
+    "x": "Rachi sur Lévitique 2:1 : le mot « âme » n'apparaît que pour l'oblation, car c'est le pauvre qui la donne ; Dieu l'estime comme s'il avait offert sa propre vie."
+   },
+   {
+    "q": "Selon Rachi, depuis quand l'alliance est-elle conclue avec le sel ?",
+    "a": "Depuis les six jours de la création, quand les eaux inférieures ont obtenu une promesse",
+    "w": [
+     "Depuis le déluge, à cause de l'arc-en-ciel",
+     "Depuis la sortie d'Égypte, à la mer des Joncs",
+     "Depuis le don de la Torah au mont Sinaï"
+    ],
+    "ref": "2:13",
+    "proof": [
+     "מששת ימי בראשית"
+    ],
+    "x": "Rachi sur Lévitique 2:13 : l'alliance est conclue avec le sel depuis les six jours de la création ; les eaux inférieures se sont vu promettre d'être offertes sur l'autel avec le sel."
+   },
+   {
+    "q": "Selon Rachi, que dit le mot « asher » dans « lorsqu'un prince péchera » (asher nasi yehta) ?",
+    "a": "Qu'il évoque le bonheur (ashré) de la génération dont le chef se repent de sa faute",
+    "w": [
+     "Qu'il annonce la punition du prince",
+     "Qu'il rappelle la règle du sacrifice de la communauté",
+     "Qu'il interdit au prince d'offrir lui-même"
+    ],
+    "ref": "4:22",
+    "proof": [
+     "אשרי הדור"
+    ],
+    "x": "Rachi sur Lévitique 4:22 : heureuse la génération dont le prince se soucie d'expier une faute commise par inadvertance : combien plus se repent-il de ses fautes volontaires."
+   }
+  ]
+ }
+}

@@ -1,0 +1,222 @@
+{
+ "v": 1,
+ "parasha": "Tazria",
+ "levels": {
+  "1": [
+   {
+    "q": "Combien de jours une femme qui enfante un garçon est-elle impure ?",
+    "a": "Sept jours",
+    "w": [
+     "Quatorze jours",
+     "Trois jours seulement",
+     "Quarante jours entiers"
+    ],
+    "ref": "12:2",
+    "proof": [
+     "sept jours"
+    ],
+    "x": "C'est comme lorsqu'elle est isolée à cause de sa souffrance."
+   },
+   {
+    "q": "Quel jour circoncit-on l'enfant mâle ?",
+    "a": "Au huitième jour",
+    "w": [
+     "Au septième jour",
+     "Au troisième jour",
+     "Au quarantième jour"
+    ],
+    "ref": "12:3",
+    "proof": [
+     "huitième jour"
+    ],
+    "x": "« Au huitième jour, on circoncira l'excroissance de l'enfant. »"
+   },
+   {
+    "q": "Pendant combien de jours la mère d'une fille reste-t-elle dans le sang de purification, après ses deux semaines d'impureté ?",
+    "a": "Soixante-six jours",
+    "w": [
+     "Trente-trois jours",
+     "Quatre-vingt-dix jours",
+     "Quarante jours"
+    ],
+    "ref": "12:5",
+    "proof": [
+     "soixante-six jours"
+    ],
+    "x": "Elle est impure deux semaines, comme lors de son isolement."
+   },
+   {
+    "q": "Que la femme apporte-t-elle comme holocauste, quand sa purification est accomplie ?",
+    "a": "Un agneau d'un an",
+    "w": [
+     "Un taureau d'un an",
+     "Une jeune colombe",
+     "Un bélier de deux ans"
+    ],
+    "ref": "12:6",
+    "proof": [
+     "agneau d'un an comme holocauste"
+    ],
+    "x": "Elle apporte aussi une jeune colombe ou une tourterelle comme expiatoire."
+   },
+   {
+    "q": "Que doit crier le lépreux, les vêtements déchirés et la tête découverte ?",
+    "a": "« Impur ! Impur ! »",
+    "w": [
+     "« Au secours ! Au secours ! »",
+     "« Pur ! Pur ! »",
+     "« Éloignez-vous de moi, mon Dieu ! »"
+    ],
+    "ref": "13:45",
+    "proof": [
+     "Impur"
+    ],
+    "x": "Il s'enveloppe aussi jusqu'à la moustache."
+   }
+  ],
+  "2": [
+   {
+    "q": "Pendant combien de jours la mère d'un garçon reste-t-elle ensuite dans le sang de purification ?",
+    "a": "Trente-trois jours",
+    "w": [
+     "Quarante jours",
+     "Soixante-six jours",
+     "Sept jours"
+    ],
+    "ref": "12:4",
+    "proof": [
+     "trente-trois jours"
+    ],
+    "x": "Elle ne touche à rien de consacré et n'entre point dans le saint lieu avant que ces jours soient accomplis."
+   },
+   {
+    "q": "Où le lépreux demeure-t-il pendant que dure son affection ?",
+    "a": "Isolé, hors du camp",
+    "w": [
+     "Dans une tente à l'entrée du camp",
+     "Dans la maison du pontife",
+     "Dans la maison de son frère aîné"
+    ],
+    "ref": "13:46",
+    "proof": [
+     "hors du camp"
+    ],
+    "x": "Tant qu'il garde cette plaie, il est impur."
+   },
+   {
+    "q": "Que dit la Torah d'un homme dont la tête se dégarnit de cheveux ?",
+    "a": "Il n'est que chauve : il est pur",
+    "w": [
+     "Il est impur et doit être isolé",
+     "Il doit se présenter au pontife chaque semaine",
+     "Il doit se raser le reste du poil"
+    ],
+    "ref": "13:40",
+    "proof": [
+     "n'est que chauve"
+    ],
+    "x": "La calvitie n'est pas une plaie de lèpre."
+   },
+   {
+    "q": "Que fait-on d'une étoffe de laine ou de lin atteinte de lèpre corrosive ?",
+    "a": "On la brûle",
+    "w": [
+     "On la lave sept fois",
+     "On l'enterre hors du camp",
+     "On la remet au pontife"
+    ],
+    "ref": "13:52",
+    "proof": [
+     "On brûlera l'étoffe"
+    ],
+    "x": "Elle doit être brûlée par le feu."
+   },
+   {
+    "q": "Que fait le pontife en voyant que la plaie ne s'est pas étendue, après avoir séquestré le malade sept jours ?",
+    "a": "Il le déclare pur après lavage de ses vêtements",
+    "w": [
+     "Il le déclare impur sur-le-champ",
+     "Il le renvoie sans l'examiner",
+     "Il le sépare encore trente jours"
+    ],
+    "ref": "13:6",
+    "proof": [
+     "déclarera pur"
+    ],
+    "x": "Il lave alors ses vêtements et devient pur."
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, pourquoi la loi de la femme qui enfante est-elle placée après celle des animaux ?",
+    "a": "Comme l'homme a été créé après les animaux, sa loi est expliquée après la leur",
+    "w": [
+     "Parce que la femme est moins sainte que les animaux",
+     "Parce que les animaux sont plus anciens que la Torah",
+     "Parce que l'enfantement suit toujours la fête"
+    ],
+    "ref": "12:2",
+    "proof": [
+     "אחר תורת בהמה חיה ועוף"
+    ],
+    "x": "Rachi sur Lévitique 12:2 : de même que la création de l'homme est postérieure à celle des animaux, sa loi est exposée après celle des animaux."
+   },
+   {
+    "q": "Selon Rachi, que signifie « elle restera » (tashev) dans le sang de purification ?",
+    "a": "Un temps d'attente, de retenue",
+    "w": [
+     "Un temps de fête et de repos",
+     "Un temps d'isolement total",
+     "Un temps de jeûne"
+    ],
+    "ref": "12:4",
+    "proof": [
+     "לשון עכבה"
+    ],
+    "x": "Rachi sur Lévitique 12:4 : « tashev » n'est qu'un langage de retard, d'attente."
+   },
+   {
+    "q": "Selon Rachi, qui seul peut déclarer pur ou impur un malade des plaies ?",
+    "a": "Un prêtre, par décision de la Torah",
+    "w": [
+     "Un juge, après témoignage de deux hommes",
+     "Un médecin, après examen",
+     "Moïse lui-même"
+    ],
+    "ref": "13:2",
+    "proof": [
+     "על פי כהן"
+    ],
+    "x": "Rachi sur Lévitique 13:2 : c'est un décret de l'Écriture que l'impureté des plaies et leur purification dépendent du prêtre."
+   },
+   {
+    "q": "Selon Rachi, pourquoi le lépreux demeure-t-il seul, à l'écart des autres impurs ?",
+    "a": "Parce qu'il a séparé par la médisance un homme de sa femme ou de son prochain",
+    "w": [
+     "Parce que sa maladie est contagieuse",
+     "Parce qu'il a offensé le prêtre",
+     "Parce qu'il a profané le Chabbat"
+    ],
+    "ref": "13:46",
+    "proof": [
+     "הבדיל בלשון הרע"
+    ],
+    "x": "Rachi sur Lévitique 13:46 : puisqu'il a séparé, par la médisance, un homme de sa femme et de son prochain, lui aussi sera séparé."
+   },
+   {
+    "q": "Selon Rachi, pourquoi le lépreux crie-t-il « impur, impur » ?",
+    "a": "Pour annoncer son état et que les gens s'écartent de lui",
+    "w": [
+     "Pour attirer la pitié des passants",
+     "Pour demander la prière du peuple",
+     "Pour avertir le pontife de son arrivée"
+    ],
+    "ref": "13:45",
+    "proof": [
+     "ויפרשו ממנו"
+    ],
+    "x": "Rachi sur Lévitique 13:45 : il annonce qu'il est impur, afin que les gens se séparent de lui."
+   }
+  ]
+ }
+}

@@ -1,0 +1,236 @@
+{
+ "v": 1,
+ "parasha": "Qora'h",
+ "levels": {
+  "1": [
+   {
+    "q": "Qui forme un parti avec Dathan et Abirâm contre Moïse et Aaron ?",
+    "a": {
+     "t": "Coré",
+     "he": "קֹרַח"
+    },
+    "w": [
+     {
+      "t": "Éléazar",
+      "he": "אֶלְעָזָר"
+     },
+     {
+      "t": "Kehath",
+      "he": "קְהָת"
+     },
+     {
+      "t": "Josué",
+      "he": "יְהוֹשֻׁעַ"
+     }
+    ],
+    "ref": "16:1",
+    "proof": [
+     "Coré, fils de Yiçhar"
+    ],
+    "x": "Il est fils de Yiçhar, fils de Kehath, fils de Lévi."
+   },
+   {
+    "q": "Combien de princes de la communauté s'avancent avec les révoltés devant Moïse ?",
+    "a": "Deux cent cinquante",
+    "w": [
+     "Soixante-dix",
+     "Quatre cent cinquante",
+     "Cent vingt"
+    ],
+    "ref": "16:2",
+    "proof": [
+     "deux cent cinquante"
+    ],
+    "x": "Ce sont des personnages notables, membres des réunions."
+   },
+   {
+    "q": "Que fait la terre pour Coré, ses gens et tout ce qui est à eux ?",
+    "a": "Elle ouvre son sein et les dévore",
+    "w": [
+     "Elle tremble et les rejette hors du camp",
+     "Elle se couvre d'un nuage de poussière",
+     "Elle se recouvre d'eau et les engloutit"
+    ],
+    "ref": "16:32",
+    "proof": [
+     "la terre ouvrit son sein"
+    ],
+    "x": "Un feu consume aussi les deux cent cinquante hommes qui avaient offert l'encens."
+   },
+   {
+    "q": "Quel fruit mûrit sur la verge d'Aaron déposée dans la tente du statut ?",
+    "a": "Des amandes",
+    "w": [
+     "Des grenades",
+     "Des olives",
+     "Des figues"
+    ],
+    "ref": "17:23",
+    "proof": [
+     "amandes"
+    ],
+    "x": "La verge avait germé des boutons, éclos des fleurs, mûri des amandes."
+   },
+   {
+    "q": "Que fait-on des encensoirs des hommes coupables de leur propre mort ?",
+    "a": "On les transforme en plaques minces pour revêtir l'autel",
+    "w": [
+     "On les enterre hors du camp, avec les corps",
+     "On les fond pour fabriquer une coupe d'or",
+     "On les suspend à l'entrée du tabernacle"
+    ],
+    "ref": "17:3",
+    "proof": [
+     "plaques minces",
+     "revêtira l'autel"
+    ],
+    "x": "Ils sont devenus saints parce qu'ils ont été présentés devant le Seigneur."
+   }
+  ],
+  "2": [
+   {
+    "q": "Combien de verges Moïse doit-il recevoir des chefs de familles paternelles ?",
+    "a": "Douze verges, une par famille paternelle",
+    "w": [
+     "Quatorze verges, une par tribu et deux pour Lévi",
+     "Douze verges, une par prêtre",
+     "Sept verges, une par jour de la semaine"
+    ],
+    "ref": "17:17",
+    "proof": [
+     "douze verges"
+    ],
+    "x": "Le nom de chacun est écrit sur sa verge ; celui d'Aaron, sur la verge de Lévi."
+   },
+   {
+    "q": "Que dit Moïse n'avoir jamais pris à un seul des révoltés ?",
+    "a": "Son âne",
+    "w": [
+     "Son bœuf",
+     "Sa tente",
+     "Son manteau"
+    ],
+    "ref": "16:15",
+    "proof": [
+     "pris à un seul d'entre eux son âne"
+    ],
+    "x": "Moïse est fort contristé et demande à Dieu de n'accueillir point leur hommage."
+   },
+   {
+    "q": "Que donne Dieu aux enfants de Lévi comme héritage, en échange de leur service ?",
+    "a": "Toute dîme en Israël",
+    "w": [
+     "Des villes fortifiées en Canaan",
+     "Le tiers des moissons",
+     "Le premier-né de chaque troupeau"
+    ],
+    "ref": "18:21",
+    "proof": [
+     "toute dîme en Israël"
+    ],
+    "x": "Ils n'auront point de patrimoine entre les enfants d'Israël."
+   },
+   {
+    "q": "Que dit la Torah du premier-né de la vache, de la brebis ou de la chèvre ?",
+    "a": "Il ne se libère pas : il est saint, et son sang est répandu sur l'autel",
+    "w": [
+     "Il se libère pour cinq sicles d'argent",
+     "Il est donné aux Lévites en échange d'un agneau",
+     "Il est consumé entièrement sur l'autel"
+    ],
+    "ref": "18:17",
+    "proof": [
+     "ne peux les libérer",
+     "ils sont saints"
+    ],
+    "x": "On brûle ensuite leur graisse comme combustion en odeur agréable à l'Éternel."
+   },
+   {
+    "q": "Où replace-t-on la verge d'Aaron, comme signe durable à l'encontre des rebelles ?",
+    "a": "Devant le statut",
+    "w": [
+     "Sur l'autel de cuivre",
+     "Dans la cuve de cuivre",
+     "À l'entrée du camp, devant le peuple"
+    ],
+    "ref": "17:25",
+    "proof": [
+     "devant le statut"
+    ],
+    "x": "Ce signe fait cesser leurs murmures."
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, que signifie « Coré prit » (vayiqah) ?",
+    "a": "Il se prit lui-même à part, pour se séparer de la communauté",
+    "w": [
+     "Il prit les encensoirs d'Aaron",
+     "Il prit la verge de Moïse",
+     "Il prit la défense des princes"
+    ],
+    "ref": "16:1",
+    "proof": [
+     "לקח את עצמו"
+    ],
+    "x": "Rachi sur Nombres 16:1 : il se prit lui-même d'un côté, pour se séparer du reste de la communauté et provoquer une querelle sur le sacerdoce."
+   },
+   {
+    "q": "Selon Rachi, pourquoi Dathan et Abirâm se sont-ils associés à Coré ?",
+    "a": "Parce que la tribu de Ruben campait au sud, voisine de Kehath : malheur au méchant et à son voisin",
+    "w": [
+     "Parce qu'ils étaient frères de Coré",
+     "Parce qu'ils avaient été chassés de leur tribu",
+     "Parce que Moïse les avait offensés"
+    ],
+    "ref": "16:1",
+    "proof": [
+     "אוי לרשע אוי לשכנו"
+    ],
+    "x": "Rachi sur Nombres 16:1 : la tribu de Ruben campait au sud, près de Kehath, et ils se sont associés à la querelle de Coré : malheur au méchant, malheur à son voisin."
+   },
+   {
+    "q": "Selon Rachi, pourquoi la Torah ne dit-elle pas « fils de Jacob » dans la généalogie de Coré ?",
+    "a": "Parce que Jacob a demandé que son nom ne soit pas mentionné dans leur querelle",
+    "w": [
+     "Parce que Coré n'était pas de la descendance de Jacob",
+     "Parce que Jacob a refusé de bénir Lévi",
+     "Parce que ce nom est réservé aux prêtres"
+    ],
+    "ref": "16:1",
+    "proof": [
+     "שבקש רחמים"
+    ],
+    "x": "Rachi sur Nombres 16:1 : Jacob a demandé grâce pour que son nom ne soit pas associé à leur querelle : « que mon honneur ne s'unisse pas à leur assemblée »."
+   },
+   {
+    "q": "Selon Rachi, comment Moïse explique-t-il n'avoir pas pris un seul âne, même lorsqu'il alla de Madian en Égypte ?",
+    "a": "Il fit monter sa femme et ses fils sur son âne, sans prendre celui d'un autre",
+    "w": [
+     "Il traversa le désert à pied avec ses fils",
+     "Il emprunta l'âne de Jéthro avec son accord",
+     "Il fit monter ses fils sur un chameau"
+    ],
+    "ref": "16:15",
+    "proof": [
+     "ממדין למצרים"
+    ],
+    "x": "Rachi sur Nombres 16:15 : même quand il alla de Madian en Égypte et fit monter sa femme et ses fils sur l'âne, Moïse n'en prit pas un autre que le sien."
+   },
+   {
+    "q": "Selon Rachi, que signifie « alliance de sel » pour les prêtres ?",
+    "a": "Une alliance éternelle, comme le sel qui ne se corrompt jamais",
+    "w": [
+     "Une alliance de pauvreté, comme le sel de la mer",
+     "Une alliance de purification, comme l'eau salée",
+     "Une alliance de justice, comme le sel de la terre"
+    ],
+    "ref": "18:19",
+    "proof": [
+     "שאינו מסריח לעולם"
+    ],
+    "x": "Rachi sur Nombres 18:19 : comme l'alliance conclue avec le sel, qui ne se gâte jamais."
+   }
+  ]
+ }
+}

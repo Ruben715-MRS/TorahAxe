@@ -1,0 +1,238 @@
+{
+ "v": 1,
+ "parasha": "Nasso",
+ "levels": {
+  "1": [
+   {
+    "q": "Qui doit-on renvoyer du camp, hors des enceintes où Dieu réside ?",
+    "a": "Le lépreux, celui qui a un flux et celui qui est souillé par un cadavre",
+    "w": [
+     "Le voleur, le menteur et celui qui jure en vain au nom de Dieu",
+     "L'étranger, le mercenaire et le serviteur du prêtre",
+     "Le blessé, le vieillard et le malade que personne ne soigne"
+    ],
+    "ref": "5:2",
+    "proof": [
+     "lépreux",
+     "souillé par un cadavre"
+    ],
+    "x": "Hommes ou femmes, on les relègue hors du camp, afin qu'ils ne souillent point les enceintes où Dieu réside."
+   },
+   {
+    "q": "De quoi s'abstient celui qui fait vœu d'être abstème (nazir) ?",
+    "a": "De vin et de boisson enivrante, et de tout produit de la vigne",
+    "w": [
+     "De viande et de lait",
+     "De pain et de gâteaux de farine",
+     "De sel et de toute huile"
+    ],
+    "ref": "6:3",
+    "proof": [
+     "vin et de boisson enivrante"
+    ],
+    "x": "Il ne mange ni raisins frais ni secs, depuis les pépins jusqu'à l'enveloppe."
+   },
+   {
+    "q": "Que ne doit pas toucher la tête de l'abstème pendant sa période d'abstinence ?",
+    "a": "Le rasoir",
+    "w": [
+     "L'eau",
+     "L'huile",
+     "Le sel"
+    ],
+    "ref": "6:5",
+    "proof": [
+     "le rasoir ne doit pas effleurer sa tête"
+    ],
+    "x": "Il laisse croître librement la chevelure de sa tête."
+   },
+   {
+    "q": "Par quelles paroles commence la bénédiction que les prêtres adressent au peuple ?",
+    "a": "« Que l'Éternel te bénisse et te protège ! »",
+    "w": [
+     "« Que l'Éternel te garde et te soutienne ! »",
+     "« Que l'Éternel te sanctifie et te conduise ! »",
+     "« Que l'Éternel te répande ses grâces et t'écoute ! »"
+    ],
+    "ref": "6:24",
+    "proof": [
+     "Que l'Éternel te bénisse et te protège"
+    ],
+    "x": "Puis : « Que l'Éternel fasse rayonner sa face sur toi » et « t'accorde la paix »."
+   },
+   {
+    "q": "Qui présente son offrande le premier jour, parmi les phylarques ?",
+    "a": {
+     "t": "Nahchôn",
+     "he": "נַחְשׁוֹן"
+    },
+    "w": [
+     {
+      "t": "Nethanel",
+      "he": "נְתַנְאֵל"
+     },
+     {
+      "t": "Eliçour",
+      "he": "אֱלִיצוּר"
+     },
+     {
+      "t": "Cheloumïel",
+      "he": "שְׁלֻמִיאֵל"
+     }
+    ],
+    "ref": "7:12",
+    "proof": [
+     "Nahchôn"
+    ],
+    "x": "Il est fils d'Amminadab, de la tribu de Juda."
+   }
+  ],
+  "2": [
+   {
+    "q": "Quelles offrandes les phylarques apportent-ils pour le transport du tabernacle ?",
+    "a": "Six voitures-litières et douze bêtes à cornes",
+    "w": [
+     "Douze voitures-litières et six taureaux gras pour le sacrifice",
+     "Six voitures-litières et dix-huit béliers sans défaut",
+     "Douze voitures couvertes et douze ânes pour les porter"
+    ],
+    "ref": "7:3",
+    "proof": [
+     "six voitures-litières",
+     "douze bêtes à cornes"
+    ],
+    "x": "Une voiture par deux phylarques, un taureau par phylarque."
+   },
+   {
+    "q": "Quel est le poids de l'écuelle d'argent de la première offrande de tribu ?",
+    "a": "Cent trente sicles",
+    "w": [
+     "Soixante-dix sicles",
+     "Trente sicles",
+     "Cinquante sicles"
+    ],
+    "ref": "7:13",
+    "proof": [
+     "cent trente sicles"
+    ],
+    "x": "Le bassin d'argent fait soixante-dix sicles, au poids du sanctuaire."
+   },
+   {
+    "q": "Pourquoi Moïse ne donne-t-il pas de voitures aux enfants de Kehath ?",
+    "a": "Parce qu'ils sont chargés des objets sacrés, qu'ils portent sur l'épaule",
+    "w": [
+     "Parce qu'ils sont trop nombreux pour utiliser des voitures dans le désert",
+     "Parce qu'ils campent trop loin du tabernacle, à l'orient du camp",
+     "Parce qu'ils sont dispensés du service du tabernacle cette année-là"
+    ],
+    "ref": "7:9",
+    "proof": [
+     "porter sur l'épaule"
+    ],
+    "x": "Les fils de Gerson et de Merari reçoivent, eux, des voitures."
+   },
+   {
+    "q": "Quelle part ajoute-t-on à l'objet du délit, restitué à la personne lésée ?",
+    "a": "Un cinquième",
+    "w": [
+     "Un dixième",
+     "La moitié",
+     "Un tiers"
+    ],
+    "ref": "5:7",
+    "proof": [
+     "augmenté du cinquième"
+    ],
+    "x": "Le coupable confesse le préjudice commis, puis restitue intégralement."
+   },
+   {
+    "q": "Que présente l'abstème à la fin de la période de son abstinence, comme rémunératoire ?",
+    "a": "Un bélier sans défaut",
+    "w": [
+     "Un agneau d'un an",
+     "Une brebis d'un an",
+     "Un taureau sans défaut"
+    ],
+    "ref": "6:14",
+    "proof": [
+     "un bélier, sans défaut, pour rémunératoire"
+    ],
+    "x": "Il apporte aussi un agneau d'un an pour l'holocauste et une brebis d'un an pour l'expiatoire."
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, que sont les trois « camps » dont il est question en renvoyant les impurs ?",
+    "a": "Le camp de la Présence, le camp des Lévites et le camp d'Israël",
+    "w": [
+     "Le camp des prêtres, le camp des juges et le camp des chefs de tribus",
+     "Le camp des rois, des prêtres et des Lévites du désert",
+     "Le camp de l'est, le camp du sud et le camp de l'ouest du tabernacle"
+    ],
+    "ref": "5:2",
+    "proof": [
+     "שלש מחנות",
+     "מחנה שכינה"
+    ],
+    "x": "Rachi sur Nombres 5:2 : il y avait trois camps au moment du campement : l'enceinte (camp de la Présence), le camp des Lévites autour, et le camp des bannières."
+   },
+   {
+    "q": "Selon Rachi, pourquoi la section du nazir suit-elle celle de la femme soupçonnée d'infidélité ?",
+    "a": "Pour enseigner que celui qui voit une telle femme dans sa déchéance s'abstiendrait du vin",
+    "w": [
+     "Parce que les deux lois sont données le même jour",
+     "Parce que le nazir est un juge de cette femme",
+     "Parce que le nazir doit offrir sa chevelure pour elle"
+    ],
+    "ref": "6:2",
+    "proof": [
+     "הרואה סוטה בקלקולה"
+    ],
+    "x": "Rachi sur Nombres 6:2 : pour te dire que celui qui voit la femme infidèle dans sa ruine doit s'abstenir de vin, qui mène à l'adultère."
+   },
+   {
+    "q": "Selon Rachi, que signifie « Que l'Éternel te protège » dans la bénédiction des prêtres ?",
+    "a": "Qu'aucun brigand ne vienne te prendre ton bien",
+    "w": [
+     "Que tu ne sois jamais malade",
+     "Que tu aies de nombreux enfants",
+     "Que tu ne manques jamais de pain"
+    ],
+    "ref": "6:24",
+    "proof": [
+     "לסטים"
+    ],
+    "x": "Rachi sur Nombres 6:24 : que ne viennent pas des brigands prendre ton bien ; car celui qui donne un don à son serviteur ne peut le protéger de tous, mais Dieu donne et protège."
+   },
+   {
+    "q": "Selon Rachi, que montre l'écriture « kallot » (épousailles) dans « le jour où Moïse eut achevé de dresser le tabernacle » ?",
+    "a": "Que ce jour-là, Israël était comme une mariée qui entre sous le dais nuptial",
+    "w": [
+     "Que ce jour-là, Israël était comme un roi sur son trône",
+     "Que ce jour-là, Israël était comme un berger qui se repose",
+     "Que ce jour-là, Israël était comme un fleuve au printemps"
+    ],
+    "ref": "7:1",
+    "proof": [
+     "ככלה הנכנסת לחפה"
+    ],
+    "x": "Rachi sur Nombres 7:1 : « kallot » s'écrit défectif, comme « kalla » : le jour où le Tabernacle fut dressé, Israël était comme une épouse qui entre sous le dais."
+   },
+   {
+    "q": "Selon Rachi, que sont les « voitures de tsav » offertes par les phylarques ?",
+    "a": "Des chariots couverts, qui se ferment par le haut",
+    "w": [
+     "Des chars d'argent ornés de pierres",
+     "Des litières portées par quatre hommes",
+     "Des chariots à roues de bois et de cuivre"
+    ],
+    "ref": "7:3",
+    "proof": [
+     "מחפים",
+     "מכסות"
+    ],
+    "x": "Rachi sur Nombres 7:3 : « tsav » signifie qui couvre ; ce sont des chariots couverts."
+   }
+  ]
+ }
+}

@@ -1,0 +1,237 @@
+{
+ "v": 1,
+ "parasha": "Ré'é",
+ "levels": {
+  "1": [
+   {
+    "q": "Sur quel mont proclame-t-on la bénédiction, quand Israël est installé dans le pays ?",
+    "a": {
+     "t": "Garizim",
+     "he": "גְּרִזִים"
+    },
+    "w": [
+     {
+      "t": "Hébal",
+      "he": "עֵיבָל"
+     },
+     {
+      "t": "Hermon",
+      "he": "חֶרְמוֹן"
+     },
+     {
+      "t": "Moab",
+      "he": "מוֹאָב"
+     }
+    ],
+    "ref": "11:29",
+    "proof": [
+     "mont Garizim"
+    ],
+    "x": "La malédiction est proclamée sur le mont Hébal."
+   },
+   {
+    "q": "Pourquoi la Torah interdit-elle de manger le sang ?",
+    "a": "Parce que le sang c'est la vie, et qu'on ne doit pas absorber la vie avec la chair",
+    "w": [
+     "Parce que le sang est réservé aux prêtres du sanctuaire",
+     "Parce que le sang attire les mauvais esprits du désert",
+     "Parce que le sang rend impur celui qui le touche"
+    ],
+    "ref": "12:23",
+    "proof": [
+     "le sang c'est la vie"
+    ],
+    "x": "Il faut éviter avec soin d'en manger le sang."
+   },
+   {
+    "q": "Que la Torah interdit-elle de faire en l'honneur d'un mort, puisque les Israélites sont les enfants de l'Éternel ?",
+    "a": "Se taillader le corps et se raser entre les yeux",
+    "w": [
+     "Pleurer plus de sept jours entiers",
+     "Porter des vêtements noirs pendant un mois",
+     "Ne plus prononcer son nom de la journée"
+    ],
+    "ref": "14:1",
+    "proof": [
+     "ne vous tailladez point le corps"
+    ],
+    "x": "« Vous êtes les enfants de l'Éternel, votre Dieu. »"
+   },
+   {
+    "q": "Quel animal est impur parce qu'il a l'ongle fendu mais ne rumine point ?",
+    "a": "Le porc",
+    "w": [
+     "Le chameau",
+     "Le lièvre",
+     "Le bœuf"
+    ],
+    "ref": "14:8",
+    "proof": [
+     "le porc"
+    ],
+    "x": "Le chameau, le lièvre et la gerboise ruminent mais n'ont pas l'ongle fendu."
+   },
+   {
+    "q": "À quelles trois fêtes tous les mâles paraissent-ils devant l'Éternel, trois fois l'an ?",
+    "a": "La fête des azymes, celle des semaines et celle des tentes",
+    "w": [
+     "La fête des trompettes, celle des expiations et celle des tentes",
+     "La fête de la Pâque, celle des prémices et celle des lumières",
+     "La fête des azymes, celle des tentes et celle des jeûnes"
+    ],
+    "ref": "16:16",
+    "proof": [
+     "fête des azymes",
+     "celle des semaines",
+     "celle des tentes"
+    ],
+    "x": "Ils viennent dans l'endroit que Dieu aura élu."
+   }
+  ],
+  "2": [
+   {
+    "q": "Quelle loi s'applique tous les sept ans, selon la Torah ?",
+    "a": "La loi de rémission",
+    "w": [
+     "La loi du jubilé",
+     "La loi du rachat",
+     "La loi du repos de la terre"
+    ],
+    "ref": "15:1",
+    "proof": [
+     "loi de rémission"
+    ],
+    "x": "Chaque créancier remet alors ce qu'il a prêté à son prochain."
+   },
+   {
+    "q": "Combien d'années un Hébreu vendu sert-il, avant d'être renvoyé libre ?",
+    "a": "Six ans, puis il est libre la septième année",
+    "w": [
+     "Sept ans, puis il est libre la huitième année",
+     "Trois ans, puis il est libre la quatrième année",
+     "Quarante-neuf ans, puis il est libre au jubilé"
+    ],
+    "ref": "15:12",
+    "proof": [
+     "te serviront six ans"
+    ],
+    "x": "La même règle s'applique à une femme hébreue."
+   },
+   {
+    "q": "Qui vient manger la dîme entière déposée dans les murs, à la fin de la troisième année ?",
+    "a": "Le Lévite, l'étranger, l'orphelin et la veuve",
+    "w": [
+     "Les prêtres, les juges, les anciens et les chefs",
+     "Les pauvres, les malades, les voyageurs et les vieillards",
+     "Les soldats, les bergers, les artisans et les scribes"
+    ],
+    "ref": "14:28-29",
+    "proof": [
+     "le Lévite",
+     "l'étranger, l'orphelin et la veuve"
+    ],
+    "x": "Le Lévite n'a point de part ni de patrimoine comme le propriétaire."
+   },
+   {
+    "q": "Quel mois la Torah appelle-t-elle celui de la Pâque, où Israël est sorti d'Égypte ?",
+    "a": "Le mois de la germination",
+    "w": [
+     "Le mois des moissons",
+     "Le mois des fruits",
+     "Le mois des pluies"
+    ],
+    "ref": "16:1",
+    "proof": [
+     "mois de la germination"
+    ],
+    "x": "« Prends garde au mois de la germination. »"
+   },
+   {
+    "q": "Que prélève-t-on annuellement, selon la loi de la dîme ?",
+    "a": "La dîme du produit de la semence venu sur le champ",
+    "w": [
+     "La dîme du bétail né en cours d'année seulement",
+     "La moitié du produit de la vigne chaque année",
+     "Le dixième du butin pris à la guerre"
+    ],
+    "ref": "14:22",
+    "proof": [
+     "dîme du produit de ta semence"
+    ],
+    "x": "On la mange devant l'Éternel, dans le lieu qu'il choisira."
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, de quelles bénédiction et malédiction est-il question dans « voyez, je vous propose »  ?",
+    "a": "Celles qui seront dites sur le mont Garizim et le mont Hébal",
+    "w": [
+     "Celles du Sinaï, gravées sur les tables",
+     "Celles de Jacob à ses fils sur son lit de mort",
+     "Celles des prophètes au temps du roi David"
+    ],
+    "ref": "11:26",
+    "proof": [
+     "בהר גרזים"
+    ],
+    "x": "Rachi sur Deutéronome 11:26 : celles qui sont dites sur le mont Garizim et le mont Hébal."
+   },
+   {
+    "q": "Selon Rachi, que montre « vous détruirez, vous détruirez » (abed teabedoun) à propos de l'idolâtrie ?",
+    "a": "Qu'on doit déraciner même ses restes, après l'avoir détruite",
+    "w": [
+     "Qu'on doit l'interdire seulement dans le pays",
+     "Qu'on doit la combattre seulement par la parole",
+     "Qu'on doit la faire disparaître en une seule fois"
+    ],
+    "ref": "12:2",
+    "proof": [
+     "צריך לשרש"
+    ],
+    "x": "Rachi sur Deutéronome 12:2 : celui qui déracine l'idolâtrie doit aussi en arracher les racines."
+   },
+   {
+    "q": "Selon Rachi, que signifie « vous êtes les enfants de l'Éternel : ne vous tailladez pas » ?",
+    "a": "Que vous êtes dignes d'être beaux et non mutilés ni rasés",
+    "w": [
+     "Que vous devez porter le deuil comme les prêtres",
+     "Que vous devez pleurer vos morts en silence",
+     "Que vous devez laisser croître vos cheveux en signe de deuil"
+    ],
+    "ref": "14:1",
+    "proof": [
+     "נאים ולא גדודים"
+    ],
+    "x": "Rachi sur Deutéronome 14:1 : parce que vous êtes les fils de Dieu, vous êtes dignes d'être beaux et non lacérés et chauves."
+   },
+   {
+    "q": "Selon Rachi, qui passe avant dans la charité, parmi les pauvres ?",
+    "a": "Les pauvres de ta ville, avant ceux d'une autre ville",
+    "w": [
+     "Les pauvres d'une autre ville, avant ceux de ta ville",
+     "Les pauvres étrangers, avant ceux de ta famille",
+     "Les pauvres savants, avant les autres"
+    ],
+    "ref": "15:7",
+    "proof": [
+     "עניי עירך קודמים"
+    ],
+    "x": "Rachi sur Deutéronome 15:7 : « dans une de tes portes » : les pauvres de ta ville passent avant ceux d'une autre ville."
+   },
+   {
+    "q": "Selon Rachi, pourquoi appelle-t-on la matsa « pain d'affliction » (lehem oni) ?",
+    "a": "Parce qu'elle rappelle l'affliction des Israélites en Égypte",
+    "w": [
+     "Parce qu'elle est mangée dans le deuil",
+     "Parce qu'elle est faite de farine pauvre",
+     "Parce qu'elle est cuite en hâte"
+    ],
+    "ref": "16:3",
+    "proof": [
+     "לחם שמזכיר את העני"
+    ],
+    "x": "Rachi sur Deutéronome 16:3 : un pain qui rappelle l'affliction que les Israélites ont subie en Égypte."
+   }
+  ]
+ }
+}

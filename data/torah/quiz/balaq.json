@@ -1,0 +1,247 @@
+{
+ "v": 1,
+ "parasha": "Balaq",
+ "levels": {
+  "1": [
+   {
+    "q": "Quel roi de Moab, fils de Cippor, envoie des messagers à Balaam ?",
+    "a": {
+     "t": "Balak",
+     "he": "בָּלָק"
+    },
+    "w": [
+     {
+      "t": "Sihôn",
+      "he": "סִיחוֹן"
+     },
+     {
+      "t": "Og",
+      "he": "עוֹג"
+     },
+     {
+      "t": "Édom",
+      "he": "אֱדוֹם"
+     }
+    ],
+    "ref": "22:2",
+    "proof": [
+     "Balak, fils de Cippor"
+    ],
+    "x": "Il a su tout ce qu'Israël avait fait aux Amorréens, et Moab a grand peur."
+   },
+   {
+    "q": "Qui voit l'ange du Seigneur sur la route, avant Balaam ?",
+    "a": "L'ânesse de Balaam",
+    "w": [
+     "Les princes de Moab",
+     "Les serviteurs de Balaam",
+     "Balak lui-même"
+    ],
+    "ref": "22:25",
+    "proof": [
+     "L'ânesse, voyant l'ange du Seigneur"
+    ],
+    "x": "Elle se serre contre le mur et froisse le pied de Balaam."
+   },
+   {
+    "q": "Que dit Balaam de dresser, avant de bénir Israël sur les hauteurs ?",
+    "a": "Sept autels, avec sept taureaux et sept béliers",
+    "w": [
+     "Douze autels, avec douze taureaux et douze agneaux",
+     "Trois autels, avec trois taureaux et trois béliers",
+     "Un autel, avec un taureau et un bélier"
+    ],
+    "ref": "23:1",
+    "proof": [
+     "sept autels",
+     "sept taureaux et sept béliers"
+    ],
+    "x": "Balak fait ce qu'a dit Balaam, et offrent un taureau et un bélier sur chaque autel."
+   },
+   {
+    "q": "Que dit Balaam en voyant les tentes d'Israël dans le désert ?",
+    "a": "« Qu'elles sont belles tes tentes, ô Jacob ! »",
+    "w": [
+     "« Que sont grandes tes armées, ô Jacob ! »",
+     "« Que sont fortes tes murailles, ô Israël ! »",
+     "« Que sont nombreux tes troupeaux, ô Jacob ! »"
+    ],
+    "ref": "24:5",
+    "proof": [
+     "Qu'elles sont belles tes tentes"
+    ],
+    "x": "« Tes demeures, ô Israël ! »"
+   },
+   {
+    "q": "Que dit Balaam de ce peuple, de la cime des rochers ?",
+    "a": "Il vit solitaire et ne se confond pas avec les nations",
+    "w": [
+     "Il est nombreux comme les étoiles du ciel et le sable de la mer",
+     "Il est fort comme un lion qui se couche sur sa proie",
+     "Il est béni comme un arbre planté près d'un cours d'eau"
+    ],
+    "ref": "23:9",
+    "proof": [
+     "vit solitaire"
+    ],
+    "x": "Balaam le voit du haut des collines."
+   }
+  ],
+  "2": [
+   {
+    "q": "Combien de fois Balaam a-t-il frappé son ânesse, selon ses paroles ?",
+    "a": "À trois reprises",
+    "w": [
+     "À sept reprises",
+     "À une seule reprise",
+     "À dix reprises"
+    ],
+    "ref": "22:28",
+    "proof": [
+     "à trois reprises"
+    ],
+    "x": "Le Seigneur ouvre la bouche de l'ânesse, qui parle à Balaam."
+   },
+   {
+    "q": "À quoi Moab compare-t-il la multitude d'Israël, en parlant aux anciens de Madian ?",
+    "a": "À un bœuf qui fourrage l'herbe des champs",
+    "w": [
+     "À une nuée de sauterelles qui dévore les récoltes du pays",
+     "À un fleuve qui déborde au printemps sur les plaines",
+     "À un feu qui s'étend dans les broussailles du désert"
+    ],
+    "ref": "22:4",
+    "proof": [
+     "le bœuf fourrage l'herbe des champs"
+    ],
+    "x": "« Bientôt cette multitude aura fourragé tous nos alentours. »"
+   },
+   {
+    "q": "De quelle ville Balaam, fils de Beor, est-il originaire, au bord du fleuve ?",
+    "a": {
+     "t": "Pethor",
+     "he": "פְּתוֹר"
+    },
+    "w": [
+     {
+      "t": "Hesbon",
+      "he": "חֶשְׁבּוֹן"
+     },
+     {
+      "t": "Edréi",
+      "he": "אֶדְרֶעִי"
+     },
+     {
+      "t": "Jéricho",
+      "he": "יְרֵחוֹ"
+     }
+    ],
+    "ref": "22:5",
+    "proof": [
+     "Pethor"
+    ],
+    "x": "Balak y envoie des messagers pour le mander."
+   },
+   {
+    "q": "Que dit Balaam de Dieu, dans sa seconde déclaration ?",
+    "a": "Dieu n'est pas un mortel pour mentir ni un fils d'Adam pour se raviser",
+    "w": [
+     "Dieu est un roi qui se repent après sa colère et revient sur ses décisions",
+     "Dieu est un pasteur qui conduit son troupeau vers les eaux",
+     "Dieu est un père qui pardonne toujours à ses enfants rebelles"
+    ],
+    "ref": "23:19",
+    "proof": [
+     "Dieu n'est pas un mortel"
+    ],
+    "x": "Est-ce lui qui parle et ne tient point parole ?"
+   },
+   {
+    "q": "Que dit Balaam à Balak de tout ce que dira l'Éternel ?",
+    "a": "Qu'il doit le faire",
+    "w": [
+     "Qu'il doit le taire",
+     "Qu'il peut le modifier",
+     "Qu'il doit le répéter aux anciens"
+    ],
+    "ref": "23:26",
+    "proof": [
+     "je dois le faire"
+    ],
+    "x": "« Ne t'avais-je pas fait cette déclaration ? »"
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, pourquoi Balak a-t-il peur d'Israël ?",
+    "a": "Parce que deux rois dont on se croyait sûr, Sihôn et Og, n'ont pu leur résister",
+    "w": [
+     "Parce qu'Israël avait détruit les murs de Jéricho et de toute la plaine",
+     "Parce qu'Israël avait reçu l'ordre de conquérir Moab aussitôt",
+     "Parce que Balaam avait prédit la ruine de Moab dans une vision"
+    ],
+    "ref": "22:2",
+    "proof": [
+     "אלו שני מלכים"
+    ],
+    "x": "Rachi sur Nombres 22:2 : « ces deux rois sur lesquels nous comptions n'ont pas tenu devant eux ; nous, à plus forte raison ! »."
+   },
+   {
+    "q": "Selon Rachi, pourquoi Dieu a-t-il fait résider sa présence sur un païen méchant comme Balaam ?",
+    "a": "Pour que les nations ne puissent pas dire qu'elles auraient été meilleures avec un prophète",
+    "w": [
+     "Pour que Balaam devienne le prophète d'Israël pour les générations",
+     "Pour qu'il conduise lui-même Israël dans le pays promis",
+     "Pour qu'il enseigne la Torah à Moab et à tous les peuples voisins"
+    ],
+    "ref": "22:5",
+    "proof": [
+     "כדי שלא יהיה פתחון פה לאמות"
+    ],
+    "x": "Rachi sur Nombres 22:5 : pour que les nations n'aient pas de prétexte pour dire : si nous avions eu des prophètes, nous serions revenus au bien."
+   },
+   {
+    "q": "Selon Rachi, que montre le fait que Balaam selle lui-même son ânesse ?",
+    "a": "Que la haine fait passer par-dessus les règles de la dignité",
+    "w": [
+     "Que Balaam était pauvre et n'avait pas de serviteur à son service",
+     "Que Balaam aimait voyager seul et sans témoin à travers la route",
+     "Que Balaam voulait cacher son départ aux princes de Moab et de Madian"
+    ],
+    "ref": "22:21",
+    "proof": [
+     "השנאה מקלקלת את השורה"
+    ],
+    "x": "Rachi sur Nombres 22:21 : la haine corrompt la règle : il a sellé lui-même ; Abraham avait fait de même pour accomplir l'ordre divin."
+   },
+   {
+    "q": "Selon Rachi, que signifie « trois fois » (shalosh regalim) que l'ânesse dit à Balaam ?",
+    "a": "Une allusion aux trois fêtes de pèlerinage que le peuple célèbre chaque année",
+    "w": [
+     "Une allusion aux trois patriarches qu'il avait voulu maudire en son cœur",
+     "Une allusion aux trois jours de marche du désert avant Mara",
+     "Une allusion aux trois plaies qui ont frappé l'Égypte avant la sortie"
+    ],
+    "ref": "22:28",
+    "proof": [
+     "שלש רגלים"
+    ],
+    "x": "Rachi sur Nombres 22:28 : il lui fait allusion : tu veux déraciner une nation qui célèbre trois pèlerinages par an ?"
+   },
+   {
+    "q": "Selon Rachi, qui est « celui qui écrase les sommités de Moab » dans la prophétie de Balaam ?",
+    "a": "David",
+    "w": [
+     "Josué",
+     "Moïse",
+     "Salomon"
+    ],
+    "ref": "24:17",
+    "proof": [
+     "זה דוד"
+    ],
+    "x": "Rachi sur Nombres 24:17 : c'est David, dont il est dit : « il les coucha à terre et les mesura avec deux cordes pour en faire mourir »."
+   }
+  ]
+ }
+}

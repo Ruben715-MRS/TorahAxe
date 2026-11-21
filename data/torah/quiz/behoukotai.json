@@ -1,0 +1,224 @@
+{
+ "v": 1,
+ "parasha": "Béhoukotaï",
+ "levels": {
+  "1": [
+   {
+    "q": "Que donne Dieu aux Israélites s'ils se conduisent selon ses lois ?",
+    "a": "Les pluies en leur saison",
+    "w": [
+     "Une longue vie sans maladie",
+     "Un roi issu de la tribu de Juda",
+     "Une terre sans ennemis voisins ni frontières"
+    ],
+    "ref": "26:3-4",
+    "proof": [
+     "pluies en leur saison"
+    ],
+    "x": "La terre livre son produit et l'arbre du champ donne son fruit."
+   },
+   {
+    "q": "Combien d'Israélites en poursuivent une centaine, dans la promesse faite à Israël ?",
+    "a": "Cinq",
+    "w": [
+     "Dix",
+     "Cent",
+     "Une myriade"
+    ],
+    "ref": "26:8",
+    "proof": [
+     "Cinq d'entre vous"
+    ],
+    "x": "Cent d'entre eux en poursuivent une myriade, et leurs ennemis tombent devant leur glaive."
+   },
+   {
+    "q": "En quoi Dieu transformerait-il le ciel et la terre, si Israël ne l'écoute pas ?",
+    "a": "Un ciel de fer et une terre d'airain",
+    "w": [
+     "Un ciel de feu et une terre de sable",
+     "Un ciel de nuages et une terre de boue",
+     "Un ciel d'argent et une terre de cuivre"
+    ],
+    "ref": "26:19",
+    "proof": [
+     "ciel de fer",
+     "terre d'airain"
+    ],
+    "x": "Il brise ainsi leur arrogante audace."
+   },
+   {
+    "q": "Combien de femmes cuiront le pain dans un même four, quand Dieu coupera les vivres ?",
+    "a": "Dix femmes",
+    "w": [
+     "Trois femmes",
+     "Sept femmes",
+     "Douze femmes"
+    ],
+    "ref": "26:26",
+    "proof": [
+     "dix femmes"
+    ],
+    "x": "Elles rapporteront le pain au poids, et l'on mangera sans se rassasier."
+   },
+   {
+    "q": "Comment compte-t-on la dîme du gros et du menu bétail ?",
+    "a": "Le dixième animal qui passe sous la verge est consacré à l'Éternel",
+    "w": [
+     "Le premier-né de chaque troupeau est consacré à l'Éternel",
+     "Une bête sur sept est consacrée à l'Éternel",
+     "Tous les mâles d'un an sont consacrés à l'Éternel"
+    ],
+    "ref": "27:32",
+    "proof": [
+     "passeront sous la verge"
+    ],
+    "x": "Le dixième animal est consacré à l'Éternel."
+   }
+  ],
+  "2": [
+   {
+    "q": "Quelle est la valeur d'un homme de vingt à soixante ans ?",
+    "a": "Cinquante sicles d'argent, au poids du sanctuaire",
+    "w": [
+     "Vingt sicles d'argent, au poids du sanctuaire",
+     "Trente sicles d'argent, au poids de la ville",
+     "Quinze sicles d'argent, au poids du sanctuaire"
+    ],
+    "ref": "27:3",
+    "proof": [
+     "cinquante sicles d'argent"
+    ],
+    "x": "Telle est l'estimation de la personne vouée au Seigneur."
+   },
+   {
+    "q": "Quelle est la valeur d'une femme de vingt à soixante ans ?",
+    "a": "Trente sicles",
+    "w": [
+     "Dix sicles",
+     "Quinze sicles",
+     "Cinquante sicles"
+    ],
+    "ref": "27:4",
+    "proof": [
+     "trente sicles"
+    ],
+    "x": "Pour l'homme du même âge, la valeur est de cinquante sicles."
+   },
+   {
+    "q": "Quelle est la valeur d'un homme de soixante ans et plus ?",
+    "a": "Quinze sicles",
+    "w": [
+     "Cinquante sicles",
+     "Dix sicles",
+     "Vingt sicles"
+    ],
+    "ref": "27:7",
+    "proof": [
+     "quinze sicles"
+    ],
+    "x": "Pour une femme du même âge, la valeur est de dix sicles."
+   },
+   {
+    "q": "De combien de ghéra un sicle du sanctuaire est-il formé ?",
+    "a": "Vingt ghéra",
+    "w": [
+     "Dix ghéra",
+     "Cinq ghéra",
+     "Cinquante ghéra"
+    ],
+    "ref": "27:25",
+    "proof": [
+     "vingt ghêra"
+    ],
+    "x": "Toute évaluation se fait d'après le sicle du sanctuaire."
+   },
+   {
+    "q": "Que doit ajouter celui qui veut racheter la personne ou la terre qu'il a consacrée à l'Éternel ?",
+    "a": "Un cinquième en sus de l'estimation",
+    "w": [
+     "Un dixième en sus de l'estimation",
+     "La moitié en sus de l'estimation",
+     "Le double de l'estimation"
+    ],
+    "ref": "27:13",
+    "proof": [
+     "un cinquième en sus"
+    ],
+    "x": "C'est la règle du rachat."
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, que signifie « si vous vous conduisez selon mes lois » ?",
+    "a": "Que vous soyez appliqués à l'étude de la Torah",
+    "w": [
+     "Que vous observiez tous les sabbats",
+     "Que vous offriez les sacrifices à temps",
+     "Que vous respectiez les fêtes de l'année"
+    ],
+    "ref": "26:3",
+    "proof": [
+     "עמלים בתורה"
+    ],
+    "x": "Rachi sur Lévitique 26:3 : « selon mes lois vous marcherez » : que vous soyez assidus à l'étude de la Torah."
+   },
+   {
+    "q": "Selon Rachi, pourquoi la paix vient-elle après les autres bénédictions ?",
+    "a": "Car la paix équivaut à tout, et sans paix il n'y a rien",
+    "w": [
+     "Car la paix est la plus facile à obtenir",
+     "Car la paix est réservée aux seuls prêtres",
+     "Car la paix n'a pas de valeur sans richesse"
+    ],
+    "ref": "26:6",
+    "proof": [
+     "השלום שקול כנגד הכל"
+    ],
+    "x": "Rachi sur Lévitique 26:6 : « Je ferai régner la paix » : la paix équivaut à tout le reste."
+   },
+   {
+    "q": "Selon Rachi, que signifie « je marcherai au milieu de vous » ?",
+    "a": "Que Dieu se promènera avec eux dans le jardin d'Éden comme l'un d'eux",
+    "w": [
+     "Que Dieu habitera dans le Tabernacle seul",
+     "Que Dieu enverra un ange devant eux",
+     "Que Dieu parlera avec chacun en secret"
+    ],
+    "ref": "26:12",
+    "proof": [
+     "גן עדן"
+    ],
+    "x": "Rachi sur Lévitique 26:12 : je me promènerai avec vous dans le jardin d'Éden comme l'un d'entre vous, sans que vous soyez effrayés de moi."
+   },
+   {
+    "q": "Selon Rachi, combien de calamités l'expression « couper le pain » annonce-t-elle ?",
+    "a": "Sept calamités, dont l'épée, le siège, la peste et la disette",
+    "w": [
+     "Trois calamités, dont la famine et la peste",
+     "Dix calamités, une par plaie d'Égypte",
+     "Douze calamités, une par tribu"
+    ],
+    "ref": "26:26",
+    "proof": [
+     "שבע פרעניות"
+    ],
+    "x": "Rachi sur Lévitique 26:26 : sept châtiments : l'épée, le siège, la peste, la rupture du pain, le manque de bois, le pain rassis, le mal dans les entrailles."
+   },
+   {
+    "q": "Selon Rachi, pourquoi le nom de Jacob est-il écrit ici avec un vav (« Yaakov »), plein ?",
+    "a": "Parce qu'il a pris une lettre du nom d'Élie en gage, pour qu'Élie annonce la délivrance",
+    "w": [
+     "Parce qu'il a reçu une lettre du nom d'Isaac en héritage",
+     "Parce qu'il est le dernier des patriarches nommés",
+     "Parce qu'il a bâti l'autel de Béthel"
+    ],
+    "ref": "26:42",
+    "proof": [
+     "אליהו",
+     "ערבון"
+    ],
+    "x": "Rachi sur Lévitique 26:42 : cinq fois « Yaakov » est écrit plein, et cinq fois « Élie » est écrit défectif : Jacob a pris une lettre du nom d'Élie en gage, qu'il viendra annoncer la délivrance de ses fils."
+   }
+  ]
+ }
+}

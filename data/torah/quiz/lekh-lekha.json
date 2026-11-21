@@ -1,0 +1,235 @@
+{
+ "v": 1,
+ "parasha": "Lekh Lekha",
+ "levels": {
+  "1": [
+   {
+    "q": "Quel âge Abram a-t-il lorsqu'il sort de Harân ?",
+    "a": "Soixante-quinze ans",
+    "w": [
+     "Soixante-dix ans",
+     "Quatre-vingt-dix ans",
+     "Cent ans"
+    ],
+    "ref": "12:4",
+    "proof": [
+     "soixante-quinze ans"
+    ],
+    "x": "Loth part avec lui, comme l'Éternel le lui avait dit."
+   },
+   {
+    "q": "À quoi Dieu compare-t-il la descendance d'Abram, en le faisant sortir en plein air ?",
+    "a": "Aux étoiles du ciel, impossibles à compter",
+    "w": [
+     "Au sable de la mer, impossible à compter",
+     "À la poussière de la terre, impossible à compter",
+     "Aux gouttes de la pluie, impossibles à compter"
+    ],
+    "ref": "15:5",
+    "proof": [
+     "compte les étoiles"
+    ],
+    "x": "« Ainsi sera ta descendance. »"
+   },
+   {
+    "q": "Quel nom Abram donne-t-il au fils qu'Agar lui enfante ?",
+    "a": {
+     "t": "Ismaël",
+     "he": "יִשְׁמָעֵאל"
+    },
+    "w": [
+     {
+      "t": "Isaac",
+      "he": "יִצְחָק"
+     },
+     {
+      "t": "Moab",
+      "he": "מוֹאָב"
+     },
+     {
+      "t": "Ammon",
+      "he": "עַמּוֹן"
+     }
+    ],
+    "ref": "16:15",
+    "proof": [
+     "Ismaël"
+    ],
+    "x": "Abram a alors quatre-vingt-six ans."
+   },
+   {
+    "q": "Quel nouveau nom Dieu donne-t-il à Abram ?",
+    "a": "Abraham, père d'une multitude de nations",
+    "w": [
+     "Abraham, père d'un grand peuple",
+     "Israël, prince avec Dieu",
+     "Abrahamel, serviteur de Dieu"
+    ],
+    "ref": "17:5",
+    "proof": [
+     "ton nom sera Abraham"
+    ],
+    "x": "Ton nom ne s'énoncera plus Abram."
+   },
+   {
+    "q": "À quel âge circoncit-on tout mâle, selon le pacte ?",
+    "a": "À l'âge de huit jours",
+    "w": [
+     "À l'âge de sept jours",
+     "À l'âge de treize ans",
+     "À l'âge de trente jours"
+    ],
+    "ref": "17:12",
+    "proof": [
+     "l'âge de huit jours"
+    ],
+    "x": "Même l'enfant né dans la maison ou acheté à prix d'argent."
+   }
+  ],
+  "2": [
+   {
+    "q": "Combien d'hommes fidèles, enfants de sa maison, Abram arme-t-il pour poursuivre les ennemis ?",
+    "a": "Trois cent dix-huit",
+    "w": [
+     "Trois cents",
+     "Quatre cent dix-huit",
+     "Cent dix-huit"
+    ],
+    "ref": "14:14",
+    "proof": [
+     "trois cent dix huit"
+    ],
+    "x": "Il les suit jusqu'à Dan."
+   },
+   {
+    "q": "Qu'apporte Melchisédec, roi de Salem, à Abram ?",
+    "a": "Du pain et du vin",
+    "w": [
+     "De l'eau et du sel",
+     "De l'huile et du miel",
+     "Des fruits et du lait"
+    ],
+    "ref": "14:18",
+    "proof": [
+     "pain et du vin"
+    ],
+    "x": "Il est prêtre du Dieu suprême."
+   },
+   {
+    "q": "Quels animaux Dieu demande-t-il à Abram de préparer, pour l'alliance ?",
+    "a": "Une génisse, une chèvre et un bélier de trois ans, une tourterelle et une jeune colombe",
+    "w": [
+     "Un taureau, un agneau et une chèvre de deux ans, un pigeon et une caille",
+     "Une vache, un bœuf et un mouton d'un an, deux colombes",
+     "Un veau, un bouc et un agneau de trois ans, une tourterelle seule"
+    ],
+    "ref": "15:9",
+    "proof": [
+     "génisse âgée de trois ans",
+     "bélier de trois ans"
+    ],
+    "x": "Il y ajoute une tourterelle et une jeune colombe."
+   },
+   {
+    "q": "Combien d'années la postérité d'Abram sera-t-elle asservie et opprimée sur une terre étrangère ?",
+    "a": "Quatre cents ans",
+    "w": [
+     "Quarante ans",
+     "Quatre-vingts ans",
+     "Mille ans"
+    ],
+    "ref": "15:13",
+    "proof": [
+     "quatre cents ans"
+    ],
+    "x": "Sache-le bien : elle séjournera sur une terre étrangère."
+   },
+   {
+    "q": "Quel âge Ismaël a-t-il lors de sa circoncision ?",
+    "a": "Treize ans",
+    "w": [
+     "Huit jours",
+     "Quatre-vingt-dix-neuf ans",
+     "Seize ans"
+    ],
+    "ref": "17:25",
+    "proof": [
+     "treize ans"
+    ],
+    "x": "Abraham a alors quatre-vingt-dix-neuf ans."
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, pourquoi Dieu dit-il « va pour toi » à Abram ?",
+    "a": "Pour son bien : là-bas il aura des enfants et sa réputation sera connue",
+    "w": [
+     "Pour punir Abram de sa faute envers son père",
+     "Pour éloigner Abram des idoles de Terah",
+     "Pour qu'Abram puisse bâtir un autel"
+    ],
+    "ref": "12:1",
+    "proof": [
+     "להנאתך ולטובתך"
+    ],
+    "x": "Rachi sur Genèse 12:1 : pour ton agrément et ton bien : là-bas je ferai de toi une grande nation ; ici tu ne mérites pas d'avoir des fils ; en outre, je ferai connaître ta nature dans le monde."
+   },
+   {
+    "q": "Selon Rachi, que signifie « les âmes qu'ils avaient faites à Harân » ?",
+    "a": "Ceux qu'Abraham et Sara avaient convertis, placés sous les ailes de la Présence divine",
+    "w": [
+     "Les serviteurs qu'Abraham avait achetés à Harân",
+     "Les enfants qui leur étaient nés à Harân",
+     "Les troupeaux qu'ils avaient acquis à Harân"
+    ],
+    "ref": "12:5",
+    "proof": [
+     "תחת כנפי השכינה"
+    ],
+    "x": "Rachi sur Genèse 12:5 : ceux qu'ils avaient amenés sous les ailes de la Présence : Abraham convertissait les hommes et Sara les femmes."
+   },
+   {
+    "q": "Selon Rachi, pourquoi y avait-il des querelles entre les pasteurs d'Abram et ceux de Loth ?",
+    "a": "Parce que les bergers de Loth étaient méchants et faisaient brouter leurs bêtes dans les champs d'autrui",
+    "w": [
+     "Parce que les bergers de Loth manquaient d'eau",
+     "Parce que les bergers d'Abram voulaient plus de terres",
+     "Parce que les troupeaux étaient trop nombreux"
+    ],
+    "ref": "13:7",
+    "proof": [
+     "רועים של לוט רשעים"
+    ],
+    "x": "Rachi sur Genèse 13:7 : les pasteurs de Loth faisaient paître leur bétail dans les champs d'autrui, et ceux d'Abram leur reprochaient le vol."
+   },
+   {
+    "q": "Selon Rachi, que veut dire « un homme sauvage (pere adam) » à propos d'Ismaël ?",
+    "a": "Un homme qui aime le désert et y chasse les animaux",
+    "w": [
+     "Un homme qui vit seul dans la montagne",
+     "Un homme qui combat contre ses frères",
+     "Un homme qui est le serviteur du roi"
+    ],
+    "ref": "16:12",
+    "proof": [
+     "אוהב מדברות לצוד חיות"
+    ],
+    "x": "Rachi sur Genèse 16:12 : il aime les déserts pour y chasser les animaux."
+   },
+   {
+    "q": "Selon Rachi, que montre la lettre « resh » qui est restée dans le nom Abraham ?",
+    "a": "Que le nom d'Abraham signifie « père d'une multitude de nations », par abréviation",
+    "w": [
+     "Que le nom d'Abram a été simplement allongé",
+     "Que le nom d'Abraham vient du pays d'Aram",
+     "Que le nom d'Abraham est celui de son père"
+    ],
+    "ref": "17:5",
+    "proof": [
+     "נוטריקון"
+    ],
+    "x": "Rachi sur Genèse 17:5 : « av hamon goyim » : le mot est une abréviation de son nom ; le resh était déjà là, car il n'était d'abord père que d'Aram, son lieu d'origine ; maintenant il l'est de tout le monde."
+   }
+  ]
+ }
+}

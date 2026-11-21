@@ -1,0 +1,224 @@
+{
+ "v": 1,
+ "parasha": "Va'et'hanan",
+ "levels": {
+  "1": [
+   {
+    "q": "Sur quelle montagne Moïse doit-il monter pour voir le pays, puisqu'il ne passera pas le Jourdain ?",
+    "a": "Le sommet du Pisga",
+    "w": [
+     "Le sommet du Horeb, où il a reçu la Torah",
+     "Le sommet du mont Hor, où Aaron est mort",
+     "Le sommet du mont Séir, près du pays d'Édom"
+    ],
+    "ref": "3:27",
+    "proof": [
+     "sommet du Pisga"
+    ],
+    "x": "Il porte sa vue au couchant, au nord, au midi et à l'orient."
+   },
+   {
+    "q": "Sur quoi Dieu écrit-il les dix paroles de son alliance ?",
+    "a": "Sur deux tables de pierre",
+    "w": [
+     "Sur deux rouleaux de parchemin, en lettres noires",
+     "Sur un livre de cuivre, déposé dans l'arche",
+     "Sur un seul bloc d'or, scellé par Moïse"
+    ],
+    "ref": "4:13",
+    "proof": [
+     "deux tables de pierre"
+    ],
+    "x": "Il enjoint au peuple d'observer son alliance."
+   },
+   {
+    "q": "Quelle est la première déclaration de l'Éternel dans les dix paroles ?",
+    "a": "« Je suis l'Éternel, ton Dieu, qui t'ai fait sortir du pays d'Égypte »",
+    "w": [
+     "« Tu n'auras pas d'autres dieux devant moi »",
+     "« Tu ne prendras pas le nom de l'Éternel en vain »",
+     "« Souviens-toi du jour du Sabbat »"
+    ],
+    "ref": "5:6",
+    "proof": [
+     "Je suis l'Éternel, ton Dieu, qui t'ai fait sortir"
+    ],
+    "x": "C'est la première parole : d'une maison d'esclavage."
+   },
+   {
+    "q": "Quelle est la déclaration que prononce Israël dans « Écoute, Israël » ?",
+    "a": "« L'Éternel est notre Dieu, l'Éternel est un ! »",
+    "w": [
+     "« L'Éternel est mon berger, je ne manquerai de rien, jamais »",
+     "« L'Éternel est roi pour toujours et à jamais, sur toute la terre »",
+     "« L'Éternel est notre père, notre roc et notre refuge dans la détresse »"
+    ],
+    "ref": "6:4",
+    "proof": [
+     "l'Éternel est un"
+    ],
+    "x": "C'est l'affirmation fondamentale de l'unité divine."
+   },
+   {
+    "q": "Où doit-on attacher les paroles de Dieu, comme symbole ?",
+    "a": "Sur le bras, et en fronteau entre les yeux",
+    "w": [
+     "Sur la poitrine, et en collier autour du cou",
+     "Sur le dos, et en ceinture autour des reins",
+     "Sur la tête, et en couronne d'or"
+    ],
+    "ref": "6:8",
+    "proof": [
+     "sur ton bras",
+     "entre tes yeux"
+    ],
+    "x": "On les inscrit aussi sur les poteaux de la maison et sur les portes."
+   }
+  ],
+  "2": [
+   {
+    "q": "Que Moïse interdit-il de faire aux commandements de l'Éternel ?",
+    "a": "D'y ajouter ou d'en retrancher quoi que ce soit",
+    "w": [
+     "De les modifier selon les circonstances de chaque génération",
+     "De les transmettre à l'étranger qui séjourne parmi eux",
+     "De les écrire sur un parchemin sans l'autorisation du pontife"
+    ],
+    "ref": "4:2",
+    "proof": [
+     "N'ajoutez rien"
+    ],
+    "x": "« De manière à observer les commandements de l'Éternel, tels que je vous les prescris. »"
+   },
+   {
+    "q": "À quelle tribu appartient Golân, ville de refuge située dans le Basan ?",
+    "a": "Manassé",
+    "w": [
+     "Ruben, à l'est du Jourdain",
+     "Siméon, au sud du pays",
+     "Juda, à l'ouest du Jourdain"
+    ],
+    "ref": "4:43",
+    "proof": [
+     "Golân, dans le Basan",
+     "Manassé"
+    ],
+    "x": "Bécer est chez Ruben ; Ramoth, en Galaad, chez Gad."
+   },
+   {
+    "q": "Que prescrit la Torah au sujet d'une alliance matrimoniale avec les nations du pays ?",
+    "a": "Ne pas donner sa fille à leur fils, ni prendre leur fille pour son fils",
+    "w": [
+     "Autoriser les mariages à condition de les convertir",
+     "Autoriser seulement les mariages avec les fils de chefs",
+     "Interdire tout contact avec leurs enfants"
+    ],
+    "ref": "7:3",
+    "proof": [
+     "ta fille, ne la donne pas"
+    ],
+    "x": "« Ne t'allie avec aucun d'eux. »"
+   },
+   {
+    "q": "Quand doit-on s'entretenir des paroles de Dieu, selon le verset ?",
+    "a": "À la maison, en voyage, en se couchant et en se levant",
+    "w": [
+     "À l'aube et au crépuscule seulement",
+     "Le Chabbat et les jours de fête seulement",
+     "Dans le sanctuaire seulement, devant les prêtres"
+    ],
+    "ref": "6:7",
+    "proof": [
+     "en te couchant et en te levant"
+    ],
+    "x": "On les inculque aussi aux enfants."
+   },
+   {
+    "q": "Pourquoi, selon la Torah, Dieu a-t-il préféré Israël aux autres peuples ?",
+    "a": "Pas parce qu'il est plus nombreux : il est le moindre de tous",
+    "w": [
+     "Parce qu'il est le plus fort de tous les peuples",
+     "Parce qu'il est le plus ancien des peuples",
+     "Parce qu'il possède les plus grandes villes"
+    ],
+    "ref": "7:7",
+    "proof": [
+     "le moindre de tous"
+    ],
+    "x": "Il est un peuple consacré à l'Éternel, un peuple spécial entre tous."
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, quels exemples illustrent « n'ajoutez rien » ?",
+    "a": "Cinq sections dans les tefillin, cinq espèces du loulav, cinq fils des tsitsit",
+    "w": [
+     "Quatre sections dans les tefillin, quatre espèces au loulav, quatre fils",
+     "Trois sections dans les tefillin, trois espèces au loulav, trois fils",
+     "Sept sections dans les tefillin, sept espèces au loulav, sept fils"
+    ],
+    "ref": "4:2",
+    "proof": [
+     "חמש פרשיות בתפלין"
+    ],
+    "x": "Rachi sur Deutéronome 4:2 : par exemple ajouter une cinquième section aux tefillin, une cinquième espèce au loulav, un cinquième fil aux tsitsit."
+   },
+   {
+    "q": "Selon Rachi, que signifie « l'Éternel est un » à propos d'« notre Dieu » ?",
+    "a": "Que l'Éternel, notre Dieu maintenant et pas celui des nations, sera un jour reconnu comme unique",
+    "w": [
+     "Que l'Éternel n'a pas de commencement et pas de fin",
+     "Que l'Éternel est le seul Dieu d'Israël depuis la création",
+     "Que l'Éternel est le roi de tous les peuples depuis toujours"
+    ],
+    "ref": "6:4",
+    "proof": [
+     "עתיד להיות ה' אחד"
+    ],
+    "x": "Rachi sur Deutéronome 6:4 : celui qui est notre Dieu maintenant, et non celui des nations, sera un jour « Éternel unique »."
+   },
+   {
+    "q": "Selon Rachi, que signifie « de tout ton cœur » (bechol levavekha) ?",
+    "a": "Avec tes deux penchants, le bon et le mauvais",
+    "w": [
+     "Avec toute ta fortune, sans en réserver",
+     "Avec toute ta force, sans te fatiguer",
+     "Avec toute ta sagesse, sans douter"
+    ],
+    "ref": "6:5",
+    "proof": [
+     "בשני יצריך"
+    ],
+    "x": "Rachi sur Deutéronome 6:5 : « avec tes deux penchants »."
+   },
+   {
+    "q": "Selon Rachi, que signifie « tu les inculqueras » (veshinantam) ?",
+    "a": "Que les paroles soient bien aiguisées dans ta bouche, pour répondre sans hésiter",
+    "w": [
+     "Que les paroles soient écrites sur un livre et lues chaque jour",
+     "Que les paroles soient chantées chaque jour devant les enfants",
+     "Que les paroles soient répétées à voix basse avant de dormir"
+    ],
+    "ref": "6:7",
+    "proof": [
+     "מחדדים"
+    ],
+    "x": "Rachi sur Deutéronome 6:7 : un langage d'aiguisement : si quelqu'un t'interroge, tu n'auras pas à hésiter."
+   },
+   {
+    "q": "Selon Rachi, que signifie « vous êtes le moindre » (hame'at) ?",
+    "a": "Que vous vous diminuez vous-mêmes, comme Abraham, Moïse et Aaron",
+    "w": [
+     "Que vous êtes le plus petit des peuples du monde",
+     "Que vous avez peu de terre en héritage",
+     "Que vous êtes peu nombreux dans le désert"
+    ],
+    "ref": "7:7",
+    "proof": [
+     "הממעטין עצמכם"
+    ],
+    "x": "Rachi sur Deutéronome 7:7 : vous vous diminuez vous-mêmes : Abraham (« poussière et cendre »), Moïse et Aaron (« que sommes-nous ? »)."
+   }
+  ]
+ }
+}

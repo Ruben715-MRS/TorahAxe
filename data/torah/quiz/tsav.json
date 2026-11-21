@@ -1,0 +1,226 @@
+{
+ "v": 1,
+ "parasha": "Tsav",
+ "levels": {
+  "1": [
+   {
+    "q": "Que dit la Torah du feu de l'autel ?",
+    "a": "Il doit brûler sans s'éteindre",
+    "w": [
+     "Il est éteint chaque soir et rallumé le matin",
+     "Il doit être rallumé chaque Chabbat",
+     "Il est éteint pendant les jours de fête"
+    ],
+    "ref": "6:5-6",
+    "proof": [
+     "sans s'éteindre"
+    ],
+    "x": "« Un feu continuel sera entretenu sur l'autel, il ne devra point s'éteindre. »"
+   },
+   {
+    "q": "Combien de jours dure l'installation d'Aaron et de ses fils à l'entrée de la Tente d'assignation ?",
+    "a": "Sept jours",
+    "w": [
+     "Trois jours",
+     "Quarante jours",
+     "Douze jours"
+    ],
+    "ref": "8:33",
+    "proof": [
+     "sept jours"
+    ],
+    "x": "Ils ne quittent point le seuil de la Tente durant ces jours."
+   },
+   {
+    "q": "Où mange-t-on ce qui reste de l'oblation ?",
+    "a": "En lieu saint, dans le parvis de la Tente d'assignation",
+    "w": [
+     "Dans les tentes de chaque tribu",
+     "Hors du camp, sur une colline",
+     "Dans la maison de chaque pontife"
+    ],
+    "ref": "6:9",
+    "proof": [
+     "parvis de la Tente d'assignation"
+    ],
+    "x": "Aaron et ses fils le mangent sous forme d'azymes."
+   },
+   {
+    "q": "Quel aliment la Torah interdit-elle de manger dans toutes les demeures, pour les oiseaux comme pour les quadrupèdes ?",
+    "a": "Le sang",
+    "w": [
+     "La graisse du foie",
+     "La queue de l'agneau",
+     "Le miel"
+    ],
+    "ref": "7:26",
+    "proof": [
+     "aucune espèce de sang"
+    ],
+    "x": "« Vous ne mangerez, dans toutes vos demeures, aucune espèce de sang. »"
+   },
+   {
+    "q": "Avec quoi Moïse purifie-t-il Aaron et ses fils avant de les vêtir ?",
+    "a": "Avec de l'eau",
+    "w": [
+     "Avec de l'huile d'onction",
+     "Avec le sang du taureau",
+     "Avec le sel de l'alliance"
+    ],
+    "ref": "8:6",
+    "proof": [
+     "les lava avec de l'eau"
+    ],
+    "x": "Moïse les fait approcher, puis les lave avant de revêtir Aaron."
+   }
+  ],
+  "2": [
+   {
+    "q": "Que fait-on d'un vaisseau d'argile où a bouilli la chair d'un expiatoire ?",
+    "a": "On le brise",
+    "w": [
+     "On le lave à l'eau claire",
+     "On le garde pour l'usage du pontife",
+     "On le dépose hors du camp"
+    ],
+    "ref": "6:21",
+    "proof": [
+     "vaisseau d'argile",
+     "sera brisé"
+    ],
+    "x": "Un vaisseau de cuivre, lui, est nettoyé et lavé avec de l'eau."
+   },
+   {
+    "q": "Où Moïse applique-t-il le sang du bélier d'inauguration sur Aaron ?",
+    "a": "Sur le lobe de l'oreille droite, le pouce de la main droite et l'orteil du pied droit",
+    "w": [
+     "Sur le front, la poitrine et les épaules",
+     "Sur le lobe de l'oreille gauche et le pouce de la main gauche",
+     "Sur la tiare et sur le pectoral"
+    ],
+    "ref": "8:23",
+    "proof": [
+     "lobe de l'oreille droite"
+    ],
+    "x": "Il fait de même pour les fils d'Aaron."
+   },
+   {
+    "q": "À partir de quand la chair du sacrifice rémunératoire n'est-elle plus agréée si l'on en mange ?",
+    "a": "Dès le troisième jour",
+    "w": [
+     "Dès le lendemain matin",
+     "Dès le septième jour",
+     "Dès la tombée de la nuit"
+    ],
+    "ref": "7:18",
+    "proof": [
+     "troisième jour"
+    ],
+    "x": "La victime votive ou volontaire se consomme le jour de l'offrande ; le lendemain, s'il en reste, on peut en manger."
+   },
+   {
+    "q": "Quelle est l'oblation qu'Aaron et ses fils présentent chacun au jour de leur onction ?",
+    "a": "Un dixième d'êpha de fleur de farine, moitié le matin, moitié le soir",
+    "w": [
+     "Un êpha entier de fleur de farine, le matin",
+     "Un dixième d'êpha d'orge grillée, le soir",
+     "Un demi-sicle d'argent, matin et soir"
+    ],
+    "ref": "6:13",
+    "proof": [
+     "dixième d'êpha de fleur de farine"
+    ],
+    "x": "Elle est présentée régulièrement."
+   },
+   {
+    "q": "Combien de fois Moïse asperge-t-il l'autel avec l'huile d'onction ?",
+    "a": "Sept fois",
+    "w": [
+     "Trois fois",
+     "Deux fois",
+     "Douze fois"
+    ],
+    "ref": "8:11",
+    "proof": [
+     "sept fois"
+    ],
+    "x": "Il oint ensuite l'autel, tous ses ustensiles, la cuve et son support."
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, que signifie le mot « ordonne » (tsav) adressé à Aaron et à ses fils ?",
+    "a": "Un encouragement à agir tout de suite et pour toujours, surtout quand cela coûte de l'argent",
+    "w": [
+     "Un ordre qui ne vaut que pour les prêtres de cette génération",
+     "Un avertissement contre toute négligence du feu",
+     "Une permission accordée aux seuls fils d'Aaron"
+    ],
+    "ref": "6:2",
+    "proof": [
+     "זרוז",
+     "חסרון כיס"
+    ],
+    "x": "Rachi sur Lévitique 6:2 : « ordonne » est toujours un langage d'encouragement, pour tout de suite et pour les générations ; surtout là où il y a une perte d'argent."
+   },
+   {
+    "q": "Selon Rachi, quelle faute commet celui qui éteint le feu de l'autel ?",
+    "a": "Il transgresse deux interdits à la fois",
+    "w": [
+     "Il transgresse trois interdits à la fois",
+     "Il doit apporter un expiatoire",
+     "Il est puni de mort"
+    ],
+    "ref": "6:6",
+    "proof": [
+     "בשני לאוין"
+    ],
+    "x": "Rachi sur Lévitique 6:6 : celui qui éteint le feu sur l'autel transgresse deux interdits."
+   },
+   {
+    "q": "Selon Rachi, qui doit offrir un sacrifice de reconnaissance (todah) ?",
+    "a": "Ceux qui ont traversé la mer ou le désert, les prisonniers libérés et les malades guéris",
+    "w": [
+     "Ceux qui ont transgressé le Chabbat par inadvertance",
+     "Ceux qui ont reçu une récolte exceptionnelle",
+     "Ceux qui reviennent d'un pèlerinage à Jérusalem"
+    ],
+    "ref": "7:12",
+    "proof": [
+     "יורדי הים",
+     "חולה שנתרפא"
+    ],
+    "x": "Rachi sur Lévitique 7:12 : ceux qui descendent en mer, ceux qui voyagent dans le désert, les prisonniers et le malade guéri doivent rendre grâce."
+   },
+   {
+    "q": "Selon Rachi, que montre « ne sera pas cuite avec du levain » pour le reste de l'oblation ?",
+    "a": "Que même les restes de l'oblation sont interdits de levain",
+    "w": [
+     "Que seule la part de l'autel est sans levain",
+     "Que le levain est permis pour les pontifes",
+     "Que le reste ne doit pas être cuit"
+    ],
+    "ref": "6:10",
+    "proof": [
+     "השירים",
+     "חמץ"
+    ],
+    "x": "Rachi sur Lévitique 6:10 : même les restes sont interdits au levain."
+   },
+   {
+    "q": "Selon Rachi, quel sang n'est pas visé par l'interdit « du sang d'oiseau ou de quadrupède » ?",
+    "a": "Le sang des poissons et des sauterelles",
+    "w": [
+     "Le sang des animaux sauvages",
+     "Le sang d'un animal malade",
+     "Le sang d'un animal sacrifié"
+    ],
+    "ref": "7:26",
+    "proof": [
+     "דם דגים וחגבים"
+    ],
+    "x": "Rachi sur Lévitique 7:26 : « d'oiseau ou de bête » exclut le sang des poissons et des sauterelles."
+   }
+  ]
+ }
+}

@@ -1,0 +1,246 @@
+{
+ "v": 1,
+ "parasha": "Devarim",
+ "levels": {
+  "1": [
+   {
+    "q": "Combien de journées y a-t-il depuis le Horeb jusqu'à Kadéch-Barnéa, en passant par le mont Séir ?",
+    "a": "Onze journées",
+    "w": [
+     "Trois journées",
+     "Quarante journées",
+     "Sept journées"
+    ],
+    "ref": "1:2",
+    "proof": [
+     "onze journées"
+    ],
+    "x": "Moïse rappelle ainsi la distance parcourue par le peuple."
+   },
+   {
+    "q": "À quelle date Moïse redit-il aux enfants d'Israël tout ce que l'Éternel lui avait ordonné ?",
+    "a": "La quarantième année, le premier jour du onzième mois",
+    "w": [
+     "La quarantième année, le premier jour du premier mois",
+     "La première année, le quinzième jour du septième mois",
+     "La quarantième année, le dixième jour du septième mois"
+    ],
+    "ref": "1:3",
+    "proof": [
+     "quarantième année, le onzième mois"
+    ],
+    "x": "C'est après avoir défait Sihon et Og."
+   },
+   {
+    "q": "Quel roi du Basan, qui résidait à Astaroth et à Edréi, fut défait par Israël ?",
+    "a": {
+     "t": "Og",
+     "he": "עוֹג"
+    },
+    "w": [
+     {
+      "t": "Balak",
+      "he": "בָּלָק"
+     },
+     {
+      "t": "Balaam",
+      "he": "בִּלְעָם"
+     },
+     {
+      "t": "Amalek",
+      "he": "עֲמָלֵק"
+     }
+    ],
+    "ref": "1:4",
+    "proof": [
+     "Og, roi du Basan"
+    ],
+    "x": "Sihon, roi des Amorréens, résidait à Hesbon."
+   },
+   {
+    "q": "Quelle instruction Moïse donne-t-il aux juges ?",
+    "a": "Écouter également tous leurs frères et prononcer équitablement, même pour l'étranger",
+    "w": [
+     "Juger seulement les affaires importantes et laisser les autres au peuple",
+     "Juger selon la tribu de chaque plaideur, sans mélange",
+     "Juger en secret, sans témoins ni parties présentes"
+    ],
+    "ref": "1:16",
+    "proof": [
+     "prononcez équitablement"
+    ],
+    "x": "Entre chacun et son frère, entre chacun et l'étranger."
+   },
+   {
+    "q": "Quel explorateur seul verra le pays, car il est resté fidèle au Seigneur ?",
+    "a": {
+     "t": "Caleb",
+     "he": "כָּלֵב"
+    },
+    "w": [
+     {
+      "t": "Aaron",
+      "he": "אַהֲרֹן"
+     },
+     {
+      "t": "Og",
+      "he": "עוֹג"
+     },
+     {
+      "t": "Balaam",
+      "he": "בִּלְעָם"
+     }
+    ],
+    "ref": "1:36",
+    "proof": [
+     "Caleb, fils de Yefounné"
+    ],
+    "x": "Dieu donnera à lui et à ses enfants le sol qu'il a foulé."
+   }
+  ],
+  "2": [
+   {
+    "q": "Combien d'années dura le voyage depuis Kadêch-Barnéa jusqu'au torrent de Zéred ?",
+    "a": "Trente-huit ans",
+    "w": [
+     "Quarante ans",
+     "Onze ans",
+     "Trente-trois ans"
+    ],
+    "ref": "2:14",
+    "proof": [
+     "trente-huit ans"
+    ],
+    "x": "Toute la génération guerrière avait alors disparu du camp."
+   },
+   {
+    "q": "Comment les Israélites doivent-ils se procurer aliments et eau auprès des fils d'Ésaü ?",
+    "a": "En les achetant à prix d'argent",
+    "w": [
+     "En les recevant en cadeau de leurs frères",
+     "En les échangeant contre du bétail",
+     "En les prenant de force sur leur chemin"
+    ],
+    "ref": "2:6",
+    "proof": [
+     "à prix d'argent"
+    ],
+    "x": "Même l'eau doit être payée."
+   },
+   {
+    "q": "À quoi les Amorréens comparent-ils leur poursuite d'Israël après la faute des explorateurs ?",
+    "a": "À des abeilles",
+    "w": [
+     "À des lions",
+     "À des loups",
+     "À des aigles"
+    ],
+    "ref": "1:44",
+    "proof": [
+     "comme font les abeilles"
+    ],
+    "x": "Ils taillèrent les Israélites en pièces dans Séir, jusqu'à Horma."
+   },
+   {
+    "q": "Comment la Torah décrit-elle les Emîm, premiers habitants de Moab ?",
+    "a": "Une nation grande, nombreuse et de haute stature, comme les Anakéens",
+    "w": [
+     "Une nation petite, dispersée et sans chef, comme les Horéens",
+     "Une nation de bergers installés près de la mer Salée",
+     "Une nation de forgerons vivant dans les montagnes"
+    ],
+    "ref": "2:10",
+    "proof": [
+     "haute stature"
+    ],
+    "x": "Les Moabites les appelaient Emîm."
+   },
+   {
+    "q": "Comment sont les villes du Basan prises par Israël ?",
+    "a": "Fortifiées de hauts remparts, avec portes et verrous",
+    "w": [
+     "Sans murailles, ouvertes sur la plaine",
+     "Bâties sur pilotis, au bord du Jourdain",
+     "Creusées dans le roc, sans remparts"
+    ],
+    "ref": "3:5",
+    "proof": [
+     "hauts remparts"
+    ],
+    "x": "Sans compter les villes ouvertes, très nombreuses."
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, pourquoi Moïse n'énumère-t-il les lieux de la faute que par allusion ?",
+    "a": "Par respect pour Israël : ce sont des paroles de reproche",
+    "w": [
+     "Parce qu'il avait oublié les noms exacts",
+     "Parce que ces lieux n'existaient plus",
+     "Parce que Dieu le lui avait interdit"
+    ],
+    "ref": "1:1",
+    "proof": [
+     "מפני כבודן של ישראל"
+    ],
+    "x": "Rachi sur Deutéronome 1:1 : ce sont des paroles de reproche ; il mentionne les lieux où ils ont irrité Dieu et les passe sous silence par respect pour Israël."
+   },
+   {
+    "q": "Selon Rachi, pourquoi Moïse ne leur adresse-t-il ses reproches que peu avant sa mort ?",
+    "a": "Il suit l'exemple de Jacob, qui n'a repris ses fils que peu avant sa mort",
+    "w": [
+     "Parce que le peuple n'était pas prêt auparavant",
+     "Parce que Dieu le lui avait ordonné au Horeb",
+     "Parce qu'il craignait la colère du peuple"
+    ],
+    "ref": "1:3",
+    "proof": [
+     "סמוך למיתה"
+    ],
+    "x": "Rachi sur Deutéronome 1:3 : il ne les a repris que près de sa mort, comme Jacob, qui n'a repris ses fils que près de sa mort."
+   },
+   {
+    "q": "Selon Rachi, que montre le mot « votre fardeau » à propos des Israélites ?",
+    "a": "Qu'ils étaient pénibles, toujours à chercher de nouveaux procès",
+    "w": [
+     "Qu'ils étaient pauvres et accablés d'impôts",
+     "Qu'ils étaient fatigués par la marche du désert",
+     "Qu'ils étaient divisés en nombreux clans"
+    ],
+    "ref": "1:12",
+    "proof": [
+     "טרחנין"
+    ],
+    "x": "Rachi sur Deutéronome 1:12 : cela enseigne qu'ils étaient importuns : celui qui voyait son adversaire gagner disait « j'ai des témoins à présenter »."
+   },
+   {
+    "q": "Selon Rachi, que signifie « vous écouterez le petit comme le grand » ?",
+    "a": "Qu'une affaire d'une pièce doit compter autant qu'une affaire de cent mines",
+    "w": [
+     "Que les enfants peuvent témoigner devant les juges",
+     "Que les petites tribus ont les mêmes droits que les grandes",
+     "Que les juges doivent écouter chaque plaideur à voix basse"
+    ],
+    "ref": "1:17",
+    "proof": [
+     "דין של פרוטה כדין של מאה מנה"
+    ],
+    "x": "Rachi sur Deutéronome 1:17 : que le procès d'une pièce te soit aussi cher que celui de cent mines."
+   },
+   {
+    "q": "Selon Rachi, que signifie « vous êtes restés assez longtemps (rav lakhem) auprès de cette montagne » ?",
+    "a": "Que vous avez reçu beaucoup de grandeur et de récompense pour votre séjour au Sinaï",
+    "w": [
+     "Que vous avez été trop longtemps rassemblés autour du Horeb sans rien faire",
+     "Que vous devez maintenant quitter le désert pour toujours et sans retour",
+     "Que vous avez offert assez de sacrifices pour que Dieu vous pardonne"
+    ],
+    "ref": "1:6",
+    "proof": [
+     "גדלה ושכר"
+    ],
+    "x": "Rachi sur Deutéronome 1:6 : une grande récompense pour votre séjour : vous avez fait le Tabernacle, le candélabre, reçu la Torah, institué le Sanhédrin."
+   }
+  ]
+ }
+}

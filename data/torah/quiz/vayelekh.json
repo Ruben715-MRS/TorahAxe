@@ -1,0 +1,235 @@
+{
+ "v": 1,
+ "parasha": "Vayélekh",
+ "levels": {
+  "1": [
+   {
+    "q": "Quel âge Moïse déclare-t-il avoir aujourd'hui ?",
+    "a": "Cent vingt ans",
+    "w": [
+     "Cent dix ans",
+     "Quatre-vingts ans",
+     "Cent trente ans"
+    ],
+    "ref": "31:2",
+    "proof": [
+     "cent vingt ans"
+    ],
+    "x": "Il ne peut plus servir de guide, et l'Éternel lui a dit qu'il ne traversera pas le Jourdain."
+   },
+   {
+    "q": "Qui Moïse appelle-t-il en présence de tout Israël, pour lui dire « sois fort et vaillant » ?",
+    "a": {
+     "t": "Josué",
+     "he": "יְהוֹשֻׁעַ"
+    },
+    "w": [
+     {
+      "t": "Caleb",
+      "he": "כָּלֵב"
+     },
+     {
+      "t": "Éléazar",
+      "he": "אֶלְעָזָר"
+     },
+     {
+      "t": "Aaron",
+      "he": "אַהֲרֹן"
+     }
+    ],
+    "ref": "31:7",
+    "proof": [
+     "Moïse appela Josué"
+    ],
+    "x": "C'est lui qui entrera avec le peuple dans le pays promis à leurs pères."
+   },
+   {
+    "q": "À quelle fête lit-on la Loi devant tout le peuple, à la fin de chaque septième année ?",
+    "a": "À la fête des tentes",
+    "w": [
+     "À la fête des azymes",
+     "À la fête des semaines",
+     "Au jour des expiations"
+    ],
+    "ref": "31:10",
+    "proof": [
+     "fête des tentes"
+    ],
+    "x": "C'est à l'époque de l'année de relâche."
+   },
+   {
+    "q": "Que doit-on écrire et enseigner aux enfants d'Israël, afin qu'il serve de témoignage contre eux ?",
+    "a": "Un cantique",
+    "w": [
+     "Une prière",
+     "Une liste de noms",
+     "Une loi nouvelle"
+    ],
+    "ref": "31:19",
+    "proof": [
+     "écrivez pour vous ce cantique"
+    ],
+    "x": "On le met dans leur bouche."
+   },
+   {
+    "q": "Où dépose-t-on le livre de la Loi, qui restera comme témoin contre Israël ?",
+    "a": "À côté de l'arche d'alliance",
+    "w": [
+     "Dans l'arche d'alliance, sous le propitiatoire",
+     "Dans la Tente d'assignation, derrière le voile",
+     "Sur l'autel des holocaustes"
+    ],
+    "ref": "31:26",
+    "proof": [
+     "à côté de l'arche d'alliance"
+    ],
+    "x": "Moïse ordonne cela aux Lévites, porteurs de l'arche."
+   }
+  ],
+  "2": [
+   {
+    "q": "Qui doit-on convoquer pour entendre la lecture de la Loi, à la fête des tentes ?",
+    "a": "Le peuple entier, hommes, femmes, enfants et l'étranger",
+    "w": [
+     "Les anciens et les prêtres seulement, dans le parvis",
+     "Les hommes seulement, devant l'arche",
+     "Les chefs de tribus et les juges seulement"
+    ],
+    "ref": "31:12",
+    "proof": [
+     "hommes, femmes et enfants"
+    ],
+    "x": "Afin qu'ils entendent, s'instruisent et révèrent l'Éternel."
+   },
+   {
+    "q": "À quelle époque la Loi est-elle lue devant tout Israël ?",
+    "a": "À la fin de chaque septième année, lors de l'année de relâche",
+    "w": [
+     "À la fin de chaque année, avant la fête de la Pâque",
+     "À la fin de chaque cinquantième année, au jubilé",
+     "À la fin de chaque troisième année, lors de la dîme"
+    ],
+    "ref": "31:10",
+    "proof": [
+     "fin de chaque septième année"
+    ],
+    "x": "C'est lors de la fête des tentes."
+   },
+   {
+    "q": "À qui Moïse confie-t-il la Loi qu'il a mise par écrit ?",
+    "a": "Aux pontifes, descendants de Lévi, et à tous les anciens d'Israël",
+    "w": [
+     "À Josué et à Caleb seulement",
+     "Aux seuls chefs des douze tribus",
+     "À Aaron seul, devant l'arche"
+    ],
+    "ref": "31:9",
+    "proof": [
+     "pontifes, descendants de Lévi",
+     "anciens d'Israël"
+    ],
+    "x": "Ils portent l'arche d'alliance du Seigneur."
+   },
+   {
+    "q": "Que dit l'Éternel à Moïse, au sujet du Jourdain ?",
+    "a": "« Tu ne traverseras pas ce Jourdain »",
+    "w": [
+     "« Tu traverseras le Jourdain en dernier »",
+     "« Tu traverseras le Jourdain avec Aaron »",
+     "« Tu passeras le Jourdain sur ses eaux »"
+    ],
+    "ref": "31:2",
+    "proof": [
+     "Tu ne traverseras pas ce Jourdain"
+    ],
+    "x": "Moïse dit qu'il ne peut plus servir de guide."
+   },
+   {
+    "q": "Que dit Moïse à Josué à propos de qui entrera avec le peuple dans le pays ?",
+    "a": "C'est lui qui entrera avec ce peuple dans le pays juré à leurs pères",
+    "w": [
+     "C'est Caleb qui entrera avec les anciens dans le pays",
+     "C'est Éléazar qui entrera avec le peuple dans le pays",
+     "C'est Aaron qui entrera avec les prêtres dans le pays"
+    ],
+    "ref": "31:7",
+    "proof": [
+     "c'est toi qui entreras avec ce peuple"
+    ],
+    "x": "Il doit être fort et vaillant."
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, que signifie « j'ai cent vingt ans aujourd'hui » ?",
+    "a": "Que ses jours sont accomplis : il est né et mourra le même jour",
+    "w": [
+     "Que ses jours sont comptés depuis la sortie d'Égypte",
+     "Que ses années sont comptées depuis le Sinaï",
+     "Que ses années sont comptées depuis le buisson ardent"
+    ],
+    "ref": "31:2",
+    "proof": [
+     "היום מלאו ימי"
+    ],
+    "x": "Rachi sur Deutéronome 31:2 : aujourd'hui mes jours et mes années sont accomplis : en ce jour je suis né et en ce jour je mourrai."
+   },
+   {
+    "q": "Selon Rachi, que signifie « je ne peux plus aller et venir » ?",
+    "a": "Que l'autorisation lui a été retirée et donnée à Josué",
+    "w": [
+     "Que ses forces l'ont abandonné",
+     "Que ses yeux sont devenus faibles",
+     "Que le peuple ne l'écoute plus"
+    ],
+    "ref": "31:2",
+    "proof": [
+     "איני רשאי"
+    ],
+    "x": "Rachi sur Deutéronome 31:2 : non pas que sa force ait faibli, mais l'autorisation lui a été retirée et donnée à Josué."
+   },
+   {
+    "q": "Selon Rachi, quelle année est « l'année de relâche » ?",
+    "a": "La huitième année, qui suit la septième",
+    "w": [
+     "La septième année, en cours",
+     "La cinquantième année, du jubilé",
+     "La première année de chaque cycle"
+    ],
+    "ref": "31:10",
+    "proof": [
+     "בשמינית"
+    ],
+    "x": "Rachi sur Deutéronome 31:10 : la première année après la shemita, la huitième ; on l'appelle « année de relâche » car la shemita s'y applique encore pour la moisson."
+   },
+   {
+    "q": "Selon Rachi, pourquoi amène-t-on aussi les enfants à la lecture ?",
+    "a": "Pour donner une récompense à ceux qui les amènent",
+    "w": [
+     "Pour qu'ils apprennent à lire la Torah",
+     "Pour qu'ils se joignent au cantique",
+     "Pour qu'ils voient les prêtres"
+    ],
+    "ref": "31:12",
+    "proof": [
+     "לתת שכר למביאיהם"
+    ],
+    "x": "Rachi sur Deutéronome 31:12 : les enfants viennent pour donner une récompense à ceux qui les amènent."
+   },
+   {
+    "q": "Selon Rachi, que signifie « je cacherai ma face » ?",
+    "a": "Que Dieu ne regardera pas leur détresse",
+    "w": [
+     "Que Dieu se retirera du Tabernacle",
+     "Que Dieu détournera son nuage",
+     "Que Dieu fermera le ciel"
+    ],
+    "ref": "31:17",
+    "proof": [
+     "כמו שאיני רואה בצרתם"
+    ],
+    "x": "Rachi sur Deutéronome 31:17 : comme si je ne voyais pas leur détresse."
+   }
+  ]
+ }
+}

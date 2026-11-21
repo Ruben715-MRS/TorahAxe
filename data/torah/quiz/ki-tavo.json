@@ -1,0 +1,248 @@
+{
+ "v": 1,
+ "parasha": "Ki Tavo",
+ "levels": {
+  "1": [
+   {
+    "q": "Que prend-on du pays, une fois arrivé, pour se rendre à l'endroit que Dieu aura choisi ?",
+    "a": "Des prémices des fruits, dans une corbeille",
+    "w": [
+     "Les premiers-nés du bétail, dans un enclos",
+     "Une part de la dîme, dans un sac de lin",
+     "Un gâteau de farine, dans une écuelle d'argent"
+    ],
+    "ref": "26:2",
+    "proof": [
+     "prémices de tous les fruits de la terre",
+     "corbeille"
+    ],
+    "x": "Il se rend à l'endroit que Dieu aura choisi pour y attacher son nom."
+   },
+   {
+    "q": "Sur quoi écrit-on toutes les paroles de la Loi, après avoir passé le Jourdain ?",
+    "a": "Sur de grandes pierres enduites de chaux",
+    "w": [
+     "Sur des tables de bois de chittîm recouvertes d'or",
+     "Sur des peaux de bélier teintes en rouge",
+     "Sur les murailles de la première ville conquise"
+    ],
+    "ref": "27:2-3",
+    "proof": [
+     "grandes pierres",
+     "chaux"
+    ],
+    "x": "On les érige sur le mont Hébal."
+   },
+   {
+    "q": "Quelle tribu prend position sur le mont Garizim, pour la bénédiction ?",
+    "a": {
+     "t": "Siméon",
+     "he": "שִׁמְעוֹן"
+    },
+    "w": [
+     {
+      "t": "Ruben",
+      "he": "רְאוּבֵן"
+     },
+     {
+      "t": "Gad",
+      "he": "גָד"
+     },
+     {
+      "t": "Asher",
+      "he": "אָשֵׁר"
+     }
+    ],
+    "ref": "27:12",
+    "proof": [
+     "Siméon, Lévi et Juda"
+    ],
+    "x": "Siméon, Lévi, Juda, Issachar, Joseph et Benjamin y prennent position."
+   },
+   {
+    "q": "À quoi la Torah compare-t-elle la nation lointaine que Dieu lancera contre Israël s'il désobéit ?",
+    "a": "À l'aigle en son vol, rapide",
+    "w": [
+     "Au lion qui bondit sur sa proie",
+     "À la nuée de sauterelles du désert",
+     "Au fleuve qui déborde au printemps"
+    ],
+    "ref": "28:49",
+    "proof": [
+     "rapide comme l'aigle"
+    ],
+    "x": "Une nation dont Israël n'entendra point la langue."
+   },
+   {
+    "q": "Que devient Israël, s'il obéit avec soin à tous les préceptes de l'Éternel ?",
+    "a": "Le premier de tous les peuples de la terre",
+    "w": [
+     "Le plus nombreux de tous les peuples de la terre",
+     "Le plus ancien de tous les peuples de la terre",
+     "Le plus sage de tous les peuples de la terre"
+    ],
+    "ref": "28:1",
+    "proof": [
+     "premier de tous les peuples"
+    ],
+    "x": "Toutes les bénédictions suivantes se réalisent alors pour lui."
+   }
+  ],
+  "2": [
+   {
+    "q": "Quelle année est appelée « année de la dîme » ?",
+    "a": "La troisième année",
+    "w": [
+     "La première année",
+     "La septième année",
+     "La cinquantième année"
+    ],
+    "ref": "26:12",
+    "proof": [
+     "troisième année, année de la dîme"
+    ],
+    "x": "On donne alors leur dû au Lévite, à l'étranger, à l'orphelin et à la veuve."
+   },
+   {
+    "q": "Quelle tribu prend position sur le mont Hébal, pour la malédiction ?",
+    "a": {
+     "t": "Zabulon",
+     "he": "זְבוּלֻן"
+    },
+    "w": [
+     {
+      "t": "Siméon",
+      "he": "שִׁמְעוֹן"
+     },
+     {
+      "t": "Lévi",
+      "he": "לֵוִי"
+     },
+     {
+      "t": "Juda",
+      "he": "יְהוּדָה"
+     }
+    ],
+    "ref": "27:13",
+    "proof": [
+     "Zabulon"
+    ],
+    "x": "Ruben, Gad, Asher, Zabulon, Dan et Nephtali s'y placent."
+   },
+   {
+    "q": "Quel est le pacte conclu dans le pays de Moab, en plus de celui du Horeb ?",
+    "a": "Un pacte que Dieu ordonne à Moïse d'établir",
+    "w": [
+     "Un pacte que Moïse conclut avec les nations",
+     "Un pacte que le peuple conclut avec les Lévites",
+     "Un pacte que Josué conclut avec Caleb"
+    ],
+    "ref": "28:69",
+    "proof": [
+     "pacte que l'Éternel ordonna à Moïse"
+    ],
+    "x": "Il est indépendant du pacte conclu au Horeb."
+   },
+   {
+    "q": "Qui prononce « Amen » après chaque malédiction, quand le peuple répond ?",
+    "a": "Le peuple tout entier",
+    "w": [
+     "Les Lévites seuls",
+     "Les anciens seuls",
+     "Les prêtres seuls"
+    ],
+    "ref": "27:15",
+    "proof": [
+     "le peuple en"
+    ],
+    "x": "Ces malédictions sont prononcées sur le mont Hébal."
+   },
+   {
+    "q": "Que dit la Torah de celui qui érigerait une image taillée en un lieu secret ?",
+    "a": "Il est maudit, car c'est une abomination pour l'Éternel",
+    "w": [
+     "Il est banni, car c'est une faute contre le prince",
+     "Il est exclu de l'assemblée sept générations",
+     "Il est puni de mort sur-le-champ par le tribunal"
+    ],
+    "ref": "27:15",
+    "proof": [
+     "Maudit soit l'homme qui ferait une image taillée"
+    ],
+    "x": "C'est un ouvrage de l'art humain."
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, quels fruits sont tenus de donner les prémices (bikourim) ?",
+    "a": "Les sept espèces du pays",
+    "w": [
+     "Tous les fruits de tous les arbres",
+     "Seulement le froment et l'orge",
+     "Seulement les fruits des arbres plantés"
+    ],
+    "ref": "26:2",
+    "proof": [
+     "שבעת המינין"
+    ],
+    "x": "Rachi sur Deutéronome 26:2 : tous les fruits n'y sont pas tenus, mais seulement les sept espèces."
+   },
+   {
+    "q": "Selon Rachi, comment marque-t-on le fruit qu'on a vu mûrir en premier dans son champ ?",
+    "a": "On l'entoure d'un jonc et l'on dit : « bikourim »",
+    "w": [
+     "On l'entoure d'un cordon d'azur et l'on dit une bénédiction",
+     "On le cueille et on le met à part dans une corbeille",
+     "On le recouvre d'une pierre et on le laisse sécher"
+    ],
+    "ref": "26:2",
+    "proof": [
+     "כורך עליה גמי"
+    ],
+    "x": "Rachi sur Deutéronome 26:2 : on descend dans son champ, on voit un fruit mûr en premier, on l'entoure de jonc : voici des bikourim."
+   },
+   {
+    "q": "Selon Rachi, que veut dire « un Araméen voulait faire périr mon père » ?",
+    "a": "Que Laban a cherché à tout détruire",
+    "w": [
+     "Que Laban a vendu Joseph en Égypte",
+     "Que l'Araméen a volé les troupeaux de Jacob",
+     "Que l'Araméen a fait la guerre à Isaac"
+    ],
+    "ref": "26:5",
+    "proof": [
+     "לבן"
+    ],
+    "x": "Rachi sur Deutéronome 26:5 : il rappelle les bontés de Dieu : Laban a cherché à tout détruire, et Dieu lui a compté comme s'il l'avait fait."
+   },
+   {
+    "q": "Selon Rachi, que désigne « peu nombreux » (bimtei meat) ?",
+    "a": "Soixante-dix âmes",
+    "w": [
+     "Douze âmes",
+     "Quarante âmes",
+     "Cent vingt âmes"
+    ],
+    "ref": "26:5",
+    "proof": [
+     "בשבעים נפש"
+    ],
+    "x": "Rachi sur Deutéronome 26:5 : soixante-dix personnes."
+   },
+   {
+    "q": "Selon Rachi, quels trois types de pierres y avait-il à l'entrée dans le pays ?",
+    "a": "Douze dans le Jourdain, douze au campement, et celles de l'autel",
+    "w": [
+     "Sept pierres au Jourdain, sept à Gilgal et sept sur l'autel",
+     "Quarante pierres au Jourdain et quarante au désert",
+     "Douze pierres de l'autel, douze du camp, et douze du sanctuaire"
+    ],
+    "ref": "27:2",
+    "proof": [
+     "שלושה מיני אבנים"
+    ],
+    "x": "Rachi sur Deutéronome 27:2 : il y avait trois sortes de pierres : douze dans le Jourdain, douze au lieu où ils ont passé la nuit, et celles de l'autel sur le mont Hébal."
+   }
+  ]
+ }
+}

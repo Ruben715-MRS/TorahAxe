@@ -1,0 +1,247 @@
+{
+ "v": 1,
+ "parasha": "Toledot",
+ "levels": {
+  "1": [
+   {
+    "q": "Que dit le Seigneur à Rébecca, enceinte, de ce qu'elle porte dans son sein ?",
+    "a": "Deux nations, dont l'aîné obéira au plus jeune",
+    "w": [
+     "Deux fils, qui hériteront ensemble de leur père",
+     "Deux rois, qui régneront sur Canaan",
+     "Deux frères, qui seront prêtres du Seigneur"
+    ],
+    "ref": "25:23",
+    "proof": [
+     "Deux nations sont dans ton sein"
+    ],
+    "x": "Un peuple sera plus puissant que l'autre."
+   },
+   {
+    "q": "Comment est le premier fils qui naît, Ésaü ?",
+    "a": "Roux, et tout son corps comme une pelisse",
+    "w": [
+     "Blond, avec une voix puissante",
+     "Brun, avec les cheveux frisés",
+     "Pâle, avec les yeux de sa mère"
+    ],
+    "ref": "25:25",
+    "proof": [
+     "roux"
+    ],
+    "x": "On lui donna le nom d'Ésaü."
+   },
+   {
+    "q": "Que tient la main du second fils à sa naissance, d'où son nom de Jacob ?",
+    "a": "Le talon d'Ésaü",
+    "w": [
+     "La main d'Ésaü",
+     "Le bras d'Ésaü",
+     "La cheville de sa mère"
+    ],
+    "ref": "25:26",
+    "proof": [
+     "tenant de la main le talon d'Ésaü"
+    ],
+    "x": "Isaac avait soixante ans lors de leur naissance."
+   },
+   {
+    "q": "Que sert Jacob à Ésaü, en échange de son droit d'aînesse ?",
+    "a": "Du pain et un plat de lentilles",
+    "w": [
+     "Du gibier et du vin",
+     "Du miel et du lait",
+     "Du blé grillé et des figues"
+    ],
+    "ref": "25:34",
+    "proof": [
+     "pain et un plat de lentilles"
+    ],
+    "x": "Ésaü dédaigna ainsi le droit d'aînesse."
+   },
+   {
+    "q": "Quel rendement Isaac recueille-t-il la même année qu'il sème dans le pays de Gherar ?",
+    "a": "Le centuple",
+    "w": [
+     "Le double",
+     "Le triple",
+     "Le décuple"
+    ],
+    "ref": "26:12",
+    "proof": [
+     "au centuple"
+    ],
+    "x": "Tant le Seigneur le bénissait."
+   }
+  ],
+  "2": [
+   {
+    "q": "Quel âge Isaac avait-il lorsqu'il prit Rébecca pour épouse ?",
+    "a": "Quarante ans",
+    "w": [
+     "Soixante ans",
+     "Trente-sept ans",
+     "Cent ans"
+    ],
+    "ref": "25:20",
+    "proof": [
+     "quarante ans"
+    ],
+    "x": "Rébecca est fille de Bathuel et sœur de Laban, l'Araméen."
+   },
+   {
+    "q": "Quel âge Isaac avait-il à la naissance de ses fils ?",
+    "a": "Soixante ans",
+    "w": [
+     "Quarante ans",
+     "Cent ans",
+     "Quatre-vingts ans"
+    ],
+    "ref": "25:26",
+    "proof": [
+     "soixante ans"
+    ],
+    "x": "Rébecca était stérile, et Isaac avait imploré l'Éternel."
+   },
+   {
+    "q": "Quel nom Ésaü reçoit-il à cause du mets rouge qu'il demande à Jacob ?",
+    "a": {
+     "t": "Édom",
+     "he": "אֱדוֹם"
+    },
+    "w": [
+     {
+      "t": "Moab",
+      "he": "מוֹאָב"
+     },
+     {
+      "t": "Ammon",
+      "he": "עַמּוֹן"
+     },
+     {
+      "t": "Ismaël",
+      "he": "יִשְׁמָעֵאל"
+     }
+    ],
+    "ref": "25:30",
+    "proof": [
+     "on le nomma Édom"
+    ],
+    "x": "Il dit : « Laisse-moi avaler de ce rouge. »"
+   },
+   {
+    "q": "Qui Isaac préfère-t-il, et qui Rébecca préfère-t-elle ?",
+    "a": "Isaac préfère Ésaü, Rébecca préfère Jacob",
+    "w": [
+     "Isaac préfère Jacob, Rébecca préfère Ésaü",
+     "Isaac et Rébecca préfèrent Ésaü",
+     "Isaac et Rébecca préfèrent Jacob"
+    ],
+    "ref": "25:28",
+    "proof": [
+     "préférait Ésaü",
+     "Rébecca préférait Jacob"
+    ],
+    "x": "Isaac aimait le gibier qu'Ésaü mettait dans sa bouche."
+   },
+   {
+    "q": "Quel roi des Philistins Isaac va-t-il trouver à Gherar à cause de la famine ?",
+    "a": {
+     "t": "Abimélec",
+     "he": "אֲבִימֶלֶךְ"
+    },
+    "w": [
+     {
+      "t": "Pharaon",
+      "he": "פַּרְעֹה"
+     },
+     {
+      "t": "Balak",
+      "he": "בָּלָק"
+     },
+     {
+      "t": "Og",
+      "he": "עוֹג"
+     }
+    ],
+    "ref": "26:1",
+    "proof": [
+     "Abimélec, roi des Philistins"
+    ],
+    "x": "Le Seigneur lui dit de ne pas descendre en Égypte."
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, pourquoi la Torah répète-t-elle « Abraham engendra Isaac » ?",
+    "a": "Parce que les railleurs disaient qu'Isaac était d'Abimélec, et Dieu a fait ressembler Isaac à Abraham",
+    "w": [
+     "Parce qu'Abraham avait deux fils nommés Isaac",
+     "Parce qu'Isaac avait changé de nom",
+     "Parce qu'Isaac était devenu plus grand qu'Abraham"
+    ],
+    "ref": "25:19",
+    "proof": [
+     "ליצני הדור"
+    ],
+    "x": "Rachi sur Genèse 25:19 : les railleurs de la génération disaient qu'Isaac était d'Abimélec ; Dieu fit ressembler son visage à celui d'Abraham, et le texte atteste : Abraham engendra Isaac."
+   },
+   {
+    "q": "Selon Rachi, que signifie « les enfants se heurtaient » (vayitrotsetsou) dans son sein ?",
+    "a": "Qu'ils couraient : à la porte de l'étude, Jacob s'agitait ; à la porte de l'idolâtrie, Ésaü",
+    "w": [
+     "Qu'ils luttaient pour sortir les premiers",
+     "Qu'ils chantaient dans son sein",
+     "Qu'ils dormaient tour à tour"
+    ],
+    "ref": "25:22",
+    "proof": [
+     "לשון ריצה"
+    ],
+    "x": "Rachi sur Genèse 25:22 : les Sages l'expliquent comme une course : lorsqu'elle passait devant la porte de l'étude, Jacob courait pour sortir ; devant celle de l'idolâtrie, Ésaü s'agitait."
+   },
+   {
+    "q": "Selon Rachi, pourquoi Isaac avait-il soixante ans à la naissance de ses fils ?",
+    "a": "Parce qu'il attendit dix ans après les trois ans de Rébecca, puis dix ans encore, avant d'avoir un fils",
+    "w": [
+     "Parce qu'il avait épousé Rébecca à soixante ans",
+     "Parce qu'Abraham avait perdu un fils auparavant",
+     "Parce que Rébecca était trop jeune"
+    ],
+    "ref": "25:26",
+    "proof": [
+     "צפה והמתין לה"
+    ],
+    "x": "Rachi sur Genèse 25:26 : dix ans jusqu'à ce qu'elle ait treize ans, puis dix ans d'attente ; comme Abraham pour Sara ; puis ils prièrent."
+   },
+   {
+    "q": "Selon Rachi, pourquoi « Ésaü rentra des champs, fatigué » (« ce jour-là, Abraham était mort ») ?",
+    "a": "Parce qu'Abraham mourut ce jour-là, afin de ne pas voir Ésaü tomber dans le mal",
+    "w": [
+     "Parce que Jacob avait empoisonné son frère",
+     "Parce qu'Ésaü était rentré de la guerre",
+     "Parce que la famine avait frappé le pays"
+    ],
+    "ref": "25:30",
+    "proof": [
+     "אותו היום מת אברהם"
+    ],
+    "x": "Rachi sur Genèse 25:30 : ce jour-là Abraham mourut, pour qu'il ne voie pas Ésaü, son petit-fils, se tourner vers une mauvaise voie."
+   },
+   {
+    "q": "Selon Rachi, que montre « Ésaü méprisa le droit d'aînesse » ?",
+    "a": "Qu'il dédaigna le service de Dieu",
+    "w": [
+     "Qu'il dédaigna son père Isaac",
+     "Qu'il dédaigna son frère Jacob",
+     "Qu'il dédaigna le pays de Canaan"
+    ],
+    "ref": "25:34",
+    "proof": [
+     "שבזה עבודתו של מקום"
+    ],
+    "x": "Rachi sur Genèse 25:34 : l'Écriture témoigne de sa méchanceté : il a méprisé le service de Dieu."
+   }
+  ]
+ }
+}
