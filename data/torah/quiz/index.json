@@ -100,6 +100,33 @@
     "3": 5
    }
   },
+  "choftim": {
+   "index": 47,
+   "fr": "Choftim",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "devarim": {
+   "index": 43,
+   "fr": "Devarim",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "ekev": {
+   "index": 45,
+   "fr": "Ékev",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
   "emor": {
    "index": 30,
    "fr": "Emor",
@@ -109,9 +136,36 @@
     "3": 5
    }
   },
+  "ha-azinou": {
+   "index": 52,
+   "fr": "Ha'azinou",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
   "houqat": {
    "index": 38,
    "fr": "'Houqat",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "ki-tavo": {
+   "index": 49,
+   "fr": "Ki Tavo",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "ki-tetse": {
+   "index": 48,
+   "fr": "Ki Tetsé",
    "counts": {
     "1": 5,
     "2": 5,
@@ -181,6 +235,15 @@
     "3": 5
    }
   },
+  "nitsavim": {
+   "index": 50,
+   "fr": "Nitsavim",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
   "pekoude": {
    "index": 22,
    "fr": "Pekoudé",
@@ -211,6 +274,15 @@
   "qora-h": {
    "index": 37,
    "fr": "Qora'h",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "re-e": {
+   "index": 46,
+   "fr": "Ré'é",
    "counts": {
     "1": 5,
     "2": 5,
@@ -262,6 +334,15 @@
     "3": 5
    }
   },
+  "va-et-hanan": {
+   "index": 44,
+   "fr": "Va'et'hanan",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
   "vayaqhel": {
    "index": 21,
    "fr": "Vayaqhel",
@@ -283,6 +364,15 @@
   "vayechev": {
    "index": 8,
    "fr": "Vayéchev",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "vayelekh": {
+   "index": 51,
+   "fr": "Vayélekh",
    "counts": {
     "1": 5,
     "2": 5,
@@ -319,6 +409,15 @@
   "vayikra": {
    "index": 23,
    "fr": "Vayikra",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "vezot-ha-berakha": {
+   "index": 53,
+   "fr": "Vézot Ha-Bérakha",
    "counts": {
     "1": 5,
     "2": 5,
