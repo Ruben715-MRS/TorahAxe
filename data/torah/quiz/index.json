@@ -1,9 +1,36 @@
 {
  "v": 1,
  "parashot": {
+  "a-hare-mot": {
+   "index": 28,
+   "fr": "A'hare Mot",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
   "bechalla-h": {
    "index": 15,
    "fr": "Béchalla'h",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "behar": {
+   "index": 31,
+   "fr": "Béhar",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "behoukotai": {
+   "index": 32,
+   "fr": "Béhoukotaï",
    "counts": {
     "1": 5,
     "2": 5,
@@ -19,6 +46,15 @@
     "3": 5
    }
   },
+  "chemini": {
+   "index": 25,
+   "fr": "Chemini",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
   "chemot": {
    "index": 12,
    "fr": "Chemot",
@@ -28,9 +64,27 @@
     "3": 5
    }
   },
+  "emor": {
+   "index": 30,
+   "fr": "Emor",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
   "ki-tissa": {
    "index": 20,
    "fr": "Ki Tissa",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "metsora": {
+   "index": 27,
+   "fr": "Metsora",
    "counts": {
     "1": 5,
     "2": 5,
@@ -64,6 +118,24 @@
     "3": 5
    }
   },
+  "qedoshim": {
+   "index": 29,
+   "fr": "Qedoshim",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "tazria": {
+   "index": 26,
+   "fr": "Tazria",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
   "terouma": {
    "index": 18,
    "fr": "Térouma",
@@ -76,6 +148,15 @@
   "tetsave": {
    "index": 19,
    "fr": "Tétsavé",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "tsav": {
+   "index": 24,
+   "fr": "Tsav",
    "counts": {
     "1": 5,
     "2": 5,
@@ -139,6 +220,15 @@
   "vayigach": {
    "index": 10,
    "fr": "Vayigach",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "vayikra": {
+   "index": 23,
+   "fr": "Vayikra",
    "counts": {
     "1": 5,
     "2": 5,

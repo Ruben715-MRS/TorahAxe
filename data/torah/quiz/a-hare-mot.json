@@ -1,0 +1,237 @@
+{
+ "v": 1,
+ "parasha": "A'hare Mot",
+ "levels": {
+  "1": [
+   {
+    "q": "Quel jour du septième mois est le jour des expiations ?",
+    "a": "Le dixième jour",
+    "w": [
+     "Le premier jour",
+     "Le quinzième jour",
+     "Le septième jour"
+    ],
+    "ref": "16:29",
+    "proof": [
+     "dixième jour du mois"
+    ],
+    "x": "On mortifie alors ses personnes et l'on ne fait aucun ouvrage, indigène comme étranger."
+   },
+   {
+    "q": "Pour qui est le second lot, quand Aaron tire au sort entre les deux boucs ?",
+    "a": {
+     "t": "Azazel",
+     "he": "עֲזָאזֵל"
+    },
+    "w": [
+     {
+      "t": "Amalek",
+      "he": "עֲמָלֵק"
+     },
+     {
+      "t": "Édom",
+      "he": "אֱדוֹם"
+     },
+     {
+      "t": "Moab",
+      "he": "מוֹאָב"
+     }
+    ],
+    "ref": "16:8",
+    "proof": [
+     "Azazel"
+    ],
+    "x": "Un lot est pour l'Éternel, un lot pour Azazel."
+   },
+   {
+    "q": "Avec quels animaux Aaron entre-t-il dans le sanctuaire ?",
+    "a": "Un jeune taureau pour l'expiatoire et un bélier pour l'holocauste",
+    "w": [
+     "Un bouc pour l'expiatoire et un agneau pour l'holocauste",
+     "Deux béliers pour l'expiatoire et un veau pour l'holocauste",
+     "Une génisse pour l'expiatoire et un bouc pour l'holocauste"
+    ],
+    "ref": "16:3",
+    "proof": [
+     "jeune taureau comme expiatoire",
+     "bélier comme holocauste"
+    ],
+    "x": "Il y entre ainsi pour obtenir grâce pour lui-même et pour sa maison."
+   },
+   {
+    "q": "Que doivent faire les enfants d'Israël ce jour-là, selon la loi perpétuelle ?",
+    "a": "Mortifier leurs personnes et ne faire aucun ouvrage",
+    "w": [
+     "Offrir une double offrande et chanter des psaumes au sanctuaire",
+     "Quitter le camp pour la journée entière, vers le désert",
+     "Porter des vêtements de lin et couvrir leur tête de cendres"
+    ],
+    "ref": "16:29",
+    "proof": [
+     "mortifierez vos personnes"
+    ],
+    "x": "Cette règle vaut pour l'indigène comme pour l'étranger séjournant parmi eux."
+   },
+   {
+    "q": "Où gît, selon la Torah, le principe vital de la chair ?",
+    "a": "Dans le sang",
+    "w": [
+     "Dans le cœur",
+     "Dans la graisse",
+     "Dans le souffle"
+    ],
+    "ref": "17:11",
+    "proof": [
+     "principe vital de la chair gît dans le sang"
+    ],
+    "x": "C'est pourquoi Dieu l'a accordé sur l'autel pour procurer l'expiation."
+   }
+  ],
+  "2": [
+   {
+    "q": "Que fait Aaron sur la tête du bouc vivant, avant de l'envoyer dans le désert ?",
+    "a": "Il appuie ses deux mains et confesse toutes les fautes des enfants d'Israël",
+    "w": [
+     "Il y verse de l'huile d'onction et prononce une bénédiction",
+     "Il y attache un fil d'écarlate et le bénit",
+     "Il lui coupe une mèche de poil et la brûle"
+    ],
+    "ref": "16:21",
+    "proof": [
+     "appuiera ses deux mains",
+     "confessera"
+    ],
+    "x": "Il l'envoie sous la conduite d'un exprès."
+   },
+   {
+    "q": "Que prend Aaron avec l'encensoir plein de charbons ardents, pour entrer derrière le voile ?",
+    "a": "Deux pleines poignées d'aromates pilés menu",
+    "w": [
+     "Une poignée de sel et de farine",
+     "Deux pleines poignées de fleur de farine",
+     "Une mesure d'huile d'onction"
+    ],
+    "ref": "16:12",
+    "proof": [
+     "deux pleines poignées d'aromates"
+    ],
+    "x": "Les charbons sont pris sur l'autel qui est devant le Seigneur."
+   },
+   {
+    "q": "Où la Torah demande-t-elle d'amener désormais les victimes, plutôt que de les sacrifier en plein champ ?",
+    "a": "À l'entrée de la Tente d'assignation, auprès du pontife",
+    "w": [
+     "Au pied de la montagne de Sinaï, auprès de Moïse",
+     "Au centre du camp, auprès des anciens",
+     "À la porte de chaque tente, auprès du père de famille"
+    ],
+    "ref": "17:5",
+    "proof": [
+     "à l'entrée de la Tente d'assignation"
+    ],
+    "x": "Ils les égorgent comme victimes rémunératoires en l'honneur de l'Éternel."
+   },
+   {
+    "q": "Quelles pratiques les Israélites ne doivent-ils pas imiter ?",
+    "a": "Celles du pays d'Égypte et celles du pays de Canaan",
+    "w": [
+     "Celles de Madian et celles du pays d'Amalek voisin",
+     "Celles des Philistins et celles du pays de Moab",
+     "Celles du désert de Sinaï et celles de l'Égypte seule"
+    ],
+    "ref": "18:3",
+    "proof": [
+     "pays d'Égypte",
+     "pays de Canaan"
+    ],
+    "x": "« Ne vous conformez point à leurs lois. »"
+   },
+   {
+    "q": "Qu'arriverait-il à Aaron s'il entrait à toute heure dans le sanctuaire, derrière le voile ?",
+    "a": "Il encourrait la mort, car Dieu se manifeste dans un nuage au-dessus du propitiatoire",
+    "w": [
+     "Il perdrait le sacerdoce pour toute sa descendance",
+     "Il serait banni du camp pour sept jours",
+     "Il devrait offrir un taureau supplémentaire"
+    ],
+    "ref": "16:2",
+    "proof": [
+     "encourir la mort"
+    ],
+    "x": "Dieu se manifeste dans un nuage, au-dessus du propitiatoire."
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, que montre la parabole du médecin appliquée à l'avertissement fait à Aaron ?",
+    "a": "Que la menace fonctionne mieux avec l'exemple de la mort de ses fils",
+    "w": [
+     "Que le prêtre ne doit entrer qu'un jour par an",
+     "Que le sacrifice vaut mieux que la prière",
+     "Que Dieu pardonne toujours après la faute"
+    ],
+    "ref": "16:1",
+    "proof": [
+     "משל לחולה"
+    ],
+    "x": "Rachi sur Lévitique 16:1 : rabbi Éléazar ben Azaria raconte une parabole : un médecin dit au malade « ne mange pas de froid » ; un second ajoute « comme a fait untel, qui en est mort » : le second est plus efficace."
+   },
+   {
+    "q": "Selon Rachi, que désigne « Azazel » ?",
+    "a": "Un rocher dur et escarpé",
+    "w": [
+     "Un esprit mauvais du désert",
+     "Un nom de lieu à l'est du camp",
+     "Un prêtre idolâtre de Madian"
+    ],
+    "ref": "16:8",
+    "proof": [
+     "הר עז וקשה"
+    ],
+    "x": "Rachi sur Lévitique 16:8 : Azazel est une montagne dure et escarpée, un rocher élevé."
+   },
+   {
+    "q": "Selon Rachi, pourquoi la Torah dit-elle « le bouc se tiendra vivant » devant l'Éternel ?",
+    "a": "Pour qu'il reste en vie jusqu'à ce qu'on l'envoie",
+    "w": [
+     "Pour qu'il soit sacrifié avant le coucher du soleil",
+     "Pour qu'il soit offert à la place du taureau",
+     "Pour qu'il ne soit pas touché par les anciens"
+    ],
+    "ref": "16:10",
+    "proof": [
+     "עד שישתלח"
+    ],
+    "x": "Rachi sur Lévitique 16:10 : on ne savait pas si son envoyé le mènerait à la mort ou à la vie ; aussi est-il dit qu'il reste vivant jusqu'à ce qu'on l'envoie."
+   },
+   {
+    "q": "Selon Rachi, que montre l'avertissement « ne faites pas comme en Égypte et à Canaan » ?",
+    "a": "Que les Égyptiens et les Cananéens étaient les plus corrompus de tous les peuples",
+    "w": [
+     "Que les Égyptiens étaient plus cultivés que les Israélites",
+     "Que les Cananéens avaient une loi plus claire",
+     "Que seuls les Égyptiens étaient idolâtres"
+    ],
+    "ref": "18:3",
+    "proof": [
+     "מקלקלים מכל האמות"
+    ],
+    "x": "Rachi sur Lévitique 18:3 : les actes des Égyptiens et des Cananéens étaient plus corrompus que ceux de toutes les nations."
+   },
+   {
+    "q": "Selon Rachi, à quelle vie fait allusion « et il vivra par eux » ?",
+    "a": "À la vie du monde futur",
+    "w": [
+     "À la vie dans ce monde seulement",
+     "À une longue vie dans le pays de Canaan",
+     "À la vie des enfants après la mort du père"
+    ],
+    "ref": "18:5",
+    "proof": [
+     "לעולם הבא"
+    ],
+    "x": "Rachi sur Lévitique 18:5 : « il vivra par eux » : dans le monde futur ; car si l'on disait « dans ce monde », ne meurt-il pas à la fin ?"
+   }
+  ]
+ }
+}
