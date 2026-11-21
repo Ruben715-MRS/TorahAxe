@@ -40,6 +40,7 @@ const HOME_ENTRIES = {
     statuts: { he: 'עריות', fr: 'Unions', desc: 'Statuts et unions permises : cohen, lévi, mamzer, guer…', kw: 'statuts mariage mamzer cohen halal guer', run: homeTool('statuts') },
     foodlaws: { he: 'כשרות', fr: 'Cacherout', desc: 'Les animaux purs et impurs, les mélanges interdits', kw: 'casher kasher aliments sauterelles oiseaux poissons', run: homeTool('foodlaws') },
     benedictions: { he: 'ברכות', fr: 'Bénédictions', desc: 'Quelle bénédiction dire sur quel aliment : 290 aliments, avec les notes (Beth Loubavitch)', kw: 'bracha berakha brakha berakhot aliment manger boire haets haadama mezonot chehakol hamotsi haguafen fruit légume pain vin birkhot hanehenin', run: homeTool('benedictions') },
+    periods: { he: 'זמנים', fr: 'Périodes', desc: 'Omer, Trois Semaines, Kippour : ce qui est interdit, permis ou obligatoire, selon votre rite', kw: 'omer ben hametsarim trois semaines tamouz av kippour interdit permis deuil coutumes musique coiffure cheveux barbe mariage viande vin rite', run: homeTool('periods') },
     measures: { he: 'מידות', fr: 'Mesures', desc: 'Poids, volumes, distances et monnaies de la Bible', kw: 'coudée poids volumes monnaies chékel', run: homeTool('measures') },
     personalDates: { he: 'תאריכים', fr: 'Dates personnelles', desc: 'Hazkara, anniversaires hébraïques, bar et bat-mitsva, avec rappels', kw: 'hazkara azkara yahrzeit yartzeit yahrtzeit anniversaire décès naissance bar mitsva bat mitsva date hébraïque rappel notification', run: () => openDates('screen-main') },
     progress: { he: 'התקדמות', fr: 'Ma progression', desc: 'Série de jours, niveaux par domaine et badges', kw: 'progression série jours niveaux badges statistiques succès', run: () => openProgress('screen-main') },
@@ -70,7 +71,7 @@ const HOME_LAYOUT = {
     explorer: [
         { title: 'Maîtres et lignées', as: 'tiles', cols: 3, ids: ['genealogy', 'transmission', 'hassidout'] },
         { title: 'Lieux et temps', as: 'tiles', cols: 2, ids: ['chronologie', 'biblical', 'mishkan', 'hebrewCalendar'] },
-        { title: 'Lois et pratique', as: 'tiles', cols: 3, ids: ['korbanot', 'tsaraat', 'statuts', 'foodlaws', 'benedictions', 'measures', 'kotel', 'personalDates'] },
+        { title: 'Lois et pratique', as: 'tiles', cols: 3, ids: ['korbanot', 'tsaraat', 'statuts', 'foodlaws', 'benedictions', 'periods', 'measures', 'kotel', 'personalDates'] },
         { promo: 'tools' }
     ],
     // Les jeux sont rangés par thème (Hébreu, Tanakh, Sages, Halakha, Histoire) : un jeu de plus = un id dans la bonne section. Une section sans jeu n'est
@@ -637,6 +638,20 @@ function homeRenderToday(content) {
             orow.appendChild(homeInfoCard(t('omer.card_label'), t('omer.card_value', { n: oc.n }), t(oc.tonight ? 'omer.card_sub_tonight' : 'omer.card_sub'), () => openOmer('screen-main')));
             orow.firstChild.classList.add('home-card-wide');
             content.appendChild(orow);
+        }
+    }
+
+    // Les périodes à usages particuliers (Omer, Trois Semaines, Kippour) : une carte pleine largeur par période en cours ou qui commence demain, qui ouvre ses règles.
+    if (typeof periodsTodayCards === 'function') {
+        const per = periodsTodayCards(day);
+        if (per.length) {
+            const prow = hEl('div', 'home-cards');
+            per.forEach(c => {
+                const card = homeInfoCard(c.label, c.value, c.sub, () => openPeriod(c.id, 'screen-main'));
+                card.classList.add('home-card-wide');
+                prow.appendChild(card);
+            });
+            content.appendChild(prow);
         }
     }
 
