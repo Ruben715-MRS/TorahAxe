@@ -321,3 +321,8 @@ test('Anénou aux jeûnes mineurs, téfilines de Souccot : selon le rite', () =>
     assert.strictEqual(find(C.view('souccot', { rite: 'sefarade', phase: 'p2' }), 'sc-tefillin').st, 'no');
     assert.strictEqual(find(C.view('souccot', { rite: 'ashkenaze', phase: 'p2' }), 'sc-tefillin').st, 'custom');
 });
+
+test('Hallel de Roch \'Hodech : une obligation (partiel), pas un usage', () => {
+    assert.strictEqual(find(C.view('roshhodesh', { rite: 'sefarade' }), 'rh-hallel').st, 'must');
+    assert.strictEqual(find(C.view('chabbatot', { rite: 'ashkenaze', phase: 'roshhodesh' }), 'chs-rh-hallel').st, 'must');
+});

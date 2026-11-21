@@ -283,7 +283,7 @@
                   src: 'Choulhan Aroukh, Ora’h ’Haïm 419 et 424', review: true },
                 { id: 'rh-torah', grp: 'À faire', fr: 'Lire la Torah (Nombres 28:1-15) avec quatre montées', st: 'must',
                   src: 'Nombres 28:1-15 ; Meguila 21a', review: true },
-                { id: 'rh-hallel', grp: 'À faire', fr: 'Dire le Hallel après Chaharit', st: 'custom',
+                { id: 'rh-hallel', grp: 'À faire', fr: 'Dire le Hallel après Chaharit', st: 'must',
                   note: 'Un Hallel partiel, dont on omet quelques passages.',
                   src: 'Arakhin 10b ; Choulhan Aroukh, Ora’h ’Haïm 422', review: true },
                 { id: 'rh-repas', grp: 'Usages', fr: 'Faire un repas un peu plus festif', st: 'custom',
@@ -747,7 +747,7 @@
                   st: only(['roshhodesh'], 'must'),
                   note: { roshhodesh: 'Haftara : Isaïe 66:1-24.' },
                   src: 'Meguila 29b ; Choulhan Aroukh, Ora’h ’Haïm 425', review: true },
-                { id: 'chs-rh-hallel', grp: 'Lumières et prières', fr: 'Dire le Hallel après Chaharit', st: only(['roshhodesh'], 'custom'),
+                { id: 'chs-rh-hallel', grp: 'Lumières et prières', fr: 'Dire le Hallel après Chaharit', st: only(['roshhodesh'], 'must'),
                   note: { roshhodesh: 'Un Hallel partiel, dont on omet quelques passages.' },
                   src: 'Choulhan Aroukh, Ora’h ’Haïm 422', review: true },
                 // --- Mévarkhim ---
