@@ -529,6 +529,12 @@ function homeOpenHallah() {
     setTimeout(() => { const el = document.getElementById('cmd-hallah-calc'); if (el) el.scrollIntoView({ block: 'center' }); }, 150);
 }
 
+function homeOpenNidda() {
+    openTool('commandments', 'screen-main');
+    if (typeof toolCommandmentsPick === 'function') toolCommandmentsPick('femmes');
+    setTimeout(() => { const el = document.getElementById('cmd-nidda-calc'); if (el) el.scrollIntoView({ block: 'center' }); }, 150);
+}
+
 function homeOpenWomen() {
     openTool('commandments', 'screen-main');
     if (typeof toolCommandmentsPick === 'function') toolCommandmentsPick('femmes');
@@ -739,6 +745,7 @@ function homeRenderToday(content) {
     content.appendChild(hEl('h2', 'home-section-title', 'Pratique'));
     const practice = [Object.assign({ id: 'kotel' }, HOME_ENTRIES.kotel)];
     if (typeof profileGender === 'function' && profileGender() === 'f') practice.push({ id: 'hallah', he: 'הפרשת חלה', fr: 'Hafrachat halla', desc: t('hallah.row_desc'), run: () => homeOpenHallah() });
+    if (typeof profileGender === 'function' && profileGender() === 'f') practice.push({ id: 'nidda', he: 'נידה', fr: 'Pureté familiale', desc: t('nidda.row_desc'), run: () => homeOpenNidda() });
     practice.push(Object.assign({ id: 'personalDates' }, HOME_ENTRIES.personalDates));
     content.appendChild(homeRows(practice, { personalDates: datesTodaySub() }));
     homeGamesSection(content, day);

@@ -7889,5 +7889,20 @@
     "rem_other_morning_body": "Aujourd'hui, {years} ans.",
     "card_none": "Dates personnelles",
     "row_desc": "Hazkara, anniversaires hébraïques, bar et bat-mitsva, avec rappels"
+  },
+  "nidda": {
+    "title": "Calculer : les dates de la pureté familiale",
+    "onset": "Premier jour des règles",
+    "last": "Dernier jour où elles ont été vues (si elles ont duré plus longtemps)",
+    "hint": "Saisissez le premier jour des règles pour voir les dates.",
+    "nidda": "Sept jours de nidda : du {from} au {to}.",
+    "clean": "Sept jours blancs : du {from} au {to}.",
+    "tevila": "Immersion (tevila) : le soir du {date}, après la tombée de la nuit.",
+    "err_onset": "Le premier jour des règles n'est pas une date valide.",
+    "err_order": "Le dernier jour vu doit être le même jour ou après le premier.",
+    "err_span": "Ces dates sont trop éloignées pour un seul cycle : vérifiez-les.",
+    "clear": "Effacer les dates",
+    "row_desc": "Sept jours de nidda, sept jours blancs, le soir de l'immersion",
+    "note": "Calcul indicatif, à vérifier avec un rabbin : les usages diffèrent. Ne sont pas pris en compte : la vestot (cycle régulier), les jours de pureté, les saignements hors cycle et l'hefsek tahara. Les dates restent sur cet appareil uniquement, elles ne sont jamais envoyées."
   }
 }

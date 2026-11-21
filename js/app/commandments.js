@@ -134,6 +134,7 @@ function renderCommandments() {
             number++;
             const item = commandmentItem(set.id, itemId, hebrew, !group.hideRefs);
             if (set.id === 'femmes' && itemId === 'hallah') item.appendChild(hallahCalculator());
+            if (set.id === 'femmes' && itemId === 'nidda' && typeof profileGender === 'function' && profileGender() === 'f') item.appendChild(niddaCalculator());
             list.appendChild(item);
         });
         section.appendChild(list);
@@ -455,6 +456,70 @@ function hallahCalculator() {
     note.className = 'tool-small';
     note.textContent = t('hallah.note');
     box.append(h, row, out, note);
+    render();
+    return box;
+}
+
+// --- Pureté familiale (nidda) : les dates clés d'après les dates saisies (js/niddaCore.js). Profil Femme seulement. Les dates restent sur l'appareil ------------
+const NIDDA_KEY = 'torahaxe_nidda_v1';
+function niddaLoad() {
+    try { const raw = JSON.parse(localStorage.getItem(NIDDA_KEY) || 'null'); return raw && typeof raw === 'object' ? raw : { onset: '', last: '' }; } catch (e) { return { onset: '', last: '' }; }
+}
+function niddaSave(v) { try { localStorage.setItem(NIDDA_KEY, JSON.stringify(v)); } catch (e) { /* stockage indisponible : les dates ne sont pas gardées */ } }
+function niddaFr(iso) {
+    const n = NiddaCore.dayNumber(iso);
+    return n === null ? '' : new Date(n * 86400000).toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', timeZone: 'UTC' });
+}
+function niddaCalculator() {
+    const box = document.createElement('div');
+    box.className = 'cmd-hallah';
+    box.id = 'cmd-nidda-calc';
+    const h = document.createElement('strong');
+    h.className = 'cmd-name';
+    h.textContent = t('nidda.title');
+    const saved = niddaLoad();
+    const fields = document.createElement('div');
+    fields.className = 'cmd-nidda-fields';
+    const field = (label, value) => {
+        const l = document.createElement('label');
+        l.className = 'cmd-nidda-field';
+        const s = document.createElement('span');
+        s.className = 'tool-small';
+        s.textContent = label;
+        const i = document.createElement('input');
+        i.type = 'date';
+        i.className = 'cmd-hallah-input';
+        i.value = value || '';
+        l.append(s, i);
+        fields.appendChild(l);
+        return i;
+    };
+    const onset = field(t('nidda.onset'), saved.onset);
+    const last = field(t('nidda.last'), saved.last);
+    const out = document.createElement('div');
+    out.setAttribute('aria-live', 'polite');
+    const line = (text, strong) => { const p = document.createElement('p'); p.className = strong ? 'cmd-hallah-result' : 'tool-small'; p.textContent = text; out.appendChild(p); };
+    const render = () => {
+        out.textContent = '';
+        if (!onset.value) { line(t('nidda.hint')); return; }
+        const r = NiddaCore.compute(onset.value, last.value || null);
+        if (!r.ok) { line(t('nidda.err_' + r.reason)); return; }
+        line(t('nidda.nidda', { from: niddaFr(r.nidda.from), to: niddaFr(r.nidda.to) }), false);
+        line(t('nidda.clean', { from: niddaFr(r.clean.from), to: niddaFr(r.clean.to) }), false);
+        line(t('nidda.tevila', { date: niddaFr(r.tevila) }), true);
+    };
+    const clear = document.createElement('button');
+    clear.type = 'button';
+    clear.className = 'tool-history-chip';
+    clear.textContent = t('nidda.clear');
+    clear.onclick = () => { onset.value = ''; last.value = ''; niddaSave({ onset: '', last: '' }); render(); };
+    const persist = () => { niddaSave({ onset: onset.value, last: last.value }); render(); };
+    onset.oninput = persist;
+    last.oninput = persist;
+    const note = document.createElement('p');
+    note.className = 'tool-small';
+    note.textContent = t('nidda.note');
+    box.append(h, fields, out, clear, note);
     render();
     return box;
 }
