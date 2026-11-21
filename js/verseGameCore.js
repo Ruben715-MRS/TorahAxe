@@ -10,6 +10,9 @@
 // distingués, et les cinq derniers versets de la Torah (il faut pouvoir donner cinq indices). Les versets cités en indice, eux, sont tous permis.
 // Le texte est celui de data/tanakh/<livre>.json (hébreu vocalisé et traduction de la Bible du Rabbinat) ; `books` : les cinq fichiers chargés, dans l'ordre.
 // La mécanique de partie vient de js/quizCore.js, les références de js/torahRefs.js.
+//
+// Mode « Contenu » (createContentGame) : au lieu d'un verset, le résumé de la paracha est affiché (tools.cmd_parachiot_*_text) ; il faut dire quelle paracha
+// il résume. Pas d'indice ; cinq essais, donc 100, 80, 60, 40 puis 20 points : le cinquième essai raté dévoile la paracha (0 point). Cinq paracha tirées au hasard, distinctes.
 (function (root, factory) {
     if (typeof module === 'object' && module.exports) module.exports = factory(require('./quizCore.js'), require('./torahRefs.js'));
     else root.VerseGameCore = factory(root.QuizCore, root.TorahRefs);
@@ -22,6 +25,8 @@
     var WRONG_COST = 20;      // par mauvaise réponse
     var MAX_HINTS = 5;        // donc six versets au plus (le dernier fait tomber les points à zéro)
     var FORMULA = 'וידבר יהוה אל משה לאמר';
+    var CONTENT_TRIES = 5;    // mode Contenu : essais par paracha ; 100 - 4 × 20 = 20 points au cinquième
+    var CONTENT_CFG = { start: START_POINTS, hintCost: 0, wrongCost: WRONG_COST, maxHints: 0 };   // pas d'indice dans ce mode
 
     // --- Le texte --------------------------------------------------------------------------------------------------------------------------
     // Le verset tel qu'on le lit : sans les marques de paragraphe « (פ) » et « (ס) » (y compris au milieu d'un verset : Exode 20:13), avec le qere à la place du
@@ -83,10 +88,41 @@
     function createGame(options) {
         var o = options || {};
         var indices = o.indices || pick(o.books, o.rng, o.rounds || Quiz.roundsFor(ROUNDS));
-        var state = Quiz.createState(indices.map(function (i) { return makeQuestion(o.parashot, i); }), {});
+        var state = Quiz.createState(indices.map(function (i) { return makeQuestion(o.parashot, i); }), { cfg: CFG });
         Quiz.resetRound(state, CFG);
         return state;
     }
+
+    // --- Mode « Contenu » -------------------------------------------------------------------------------------------------------------------
+    // Une question : { type: 'content', id, parasha (indice dans parashot.json), parashaFr, parashaHe, book, label : '' }.
+    function makeContentQuestion(parashot, p) {
+        return { type: 'content', id: 'p' + p, parasha: p, parashaFr: parashot.parashot[p].fr, parashaHe: parashot.parashot[p].he, book: parashot.parashot[p].book, label: '' };
+    }
+
+    // `rounds` paracha distinctes, tirées au hasard parmi les 54 (chacune a la même chance).
+    function pickParashot(parashot, rng, rounds) {
+        var random = rng || Math.random;
+        var total = parashot.parashot.length;
+        var out = [];
+        var guard = 0;
+        while (out.length < rounds && guard++ < 100000) {
+            var p = Math.floor(random() * total);
+            if (out.indexOf(p) < 0) out.push(p);
+        }
+        return out;
+    }
+
+    // options : { parashot, rng, rounds, indices } ; `indices` (indices de paracha) fixe les questions (tests).
+    function createContentGame(options) {
+        var o = options || {};
+        var indices = o.indices || pickParashot(o.parashot, o.rng, o.rounds || Quiz.roundsFor(ROUNDS));
+        var state = Quiz.createState(indices.map(function (p) { return makeContentQuestion(o.parashot, p); }), { cfg: CONTENT_CFG, mode: 'content' });
+        Quiz.resetRound(state, CONTENT_CFG);
+        return state;
+    }
+
+    // La configuration de la partie (celle du mode), ou celle du verset par défaut.
+    function cfgOf(state) { return state.cfg || CFG; }
 
     function question(state) { return Quiz.question(state); }
 
@@ -100,26 +136,27 @@
 
     // Un indice : le verset suivant, pour 20 points. ['hint'], et ['revealed'] en plus quand les points tombent à zéro (la paracha est alors dévoilée) ;
     // [] si le verset est déjà résolu ou si les cinq indices sont donnés.
-    function hint(state) { return Quiz.roundHint(state, CFG); }
+    function hint(state) { return Quiz.roundHint(state, cfgOf(state)); }
 
     // Une réponse : l'indice de la paracha (dans parashot.json). ['right'] (les points restants sont gagnés), ['wrong'] (20 points de moins, la paracha est écartée),
     // ['wrong', 'revealed'] quand cette erreur fait tomber les points à zéro ; [] si rien ne se passe (verset résolu, paracha déjà essayée).
     function guess(state, parasha) {
         var q = question(state);
         if (!q || !(parasha >= 0)) return [];
-        return Quiz.roundGuess(state, parasha, parasha === q.parasha, CFG);
+        return Quiz.roundGuess(state, parasha, parasha === q.parasha, cfgOf(state));
     }
 
     // Verset suivant : ['done'] à la fin de la partie, [] sinon.
     function next(state) {
         var events = Quiz.next(state);
-        if (!events.length && !state.over) Quiz.resetRound(state, CFG);
+        if (!events.length && !state.over) Quiz.resetRound(state, cfgOf(state));
         return events;
     }
 
     return {
         ROUNDS: ROUNDS, START_POINTS: START_POINTS, HINT_COST: HINT_COST, WRONG_COST: WRONG_COST, MAX_HINTS: MAX_HINTS,
         cleanVerse: cleanVerse, consonants: consonants, isFormula: isFormula, verse: verse, eligible: eligible, makeQuestion: makeQuestion, pick: pick,
-        createGame: createGame, question: question, shownVerses: shownVerses, hint: hint, guess: guess, next: next
+        createGame: createGame, question: question, shownVerses: shownVerses, hint: hint, guess: guess, next: next,
+        CONTENT_TRIES: CONTENT_TRIES, CONTENT_CFG: CONTENT_CFG, makeContentQuestion: makeContentQuestion, pickParashot: pickParashot, createContentGame: createContentGame
     };
 }));

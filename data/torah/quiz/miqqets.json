@@ -1,0 +1,265 @@
+{
+ "v": 1,
+ "parasha": "Miqqets",
+ "levels": {
+  "1": [
+   {
+    "q": "Que voit Pharaon sortir du fleuve dans son premier songe ?",
+    "a": "Sept vaches belles et grasses",
+    "w": [
+     "Sept brebis blanches",
+     "Sept épis pleins",
+     "Douze vaches maigres"
+    ],
+    "ref": "41:2",
+    "proof": [
+     "sept vaches belles et grasses"
+    ],
+    "x": "Sept vaches belles et grasses sortent du fleuve et paissent ; sept vaches chétives les dévorent ensuite."
+   },
+   {
+    "q": "Quel âge Joseph a-t-il lorsqu'il paraît devant Pharaon ?",
+    "a": "Trente ans",
+    "w": [
+     "Vingt ans",
+     "Quarante ans",
+     "Dix-sept ans"
+    ],
+    "ref": "41:46",
+    "proof": [
+     "trente ans"
+    ],
+    "x": "Joseph avait trente ans lorsqu'il parut devant Pharaon, roi d'Égypte."
+   },
+   {
+    "q": "Comment Joseph appelle-t-il son premier fils ?",
+    "a": {
+     "t": "Manassé",
+     "he": "מְנַשֶּׁה"
+    },
+    "w": [
+     {
+      "t": "Éphraïm",
+      "he": "אֶפְרַיִם"
+     },
+     {
+      "t": "Benjamin",
+      "he": "בִנְיָמִן"
+     },
+     {
+      "t": "Siméon",
+      "he": "שִׁמְעוֹן"
+     }
+    ],
+    "ref": "41:51",
+    "proof": [
+     "Manassé"
+    ],
+    "x": "« Car Dieu m'a fait oublier toutes mes tribulations et toute la maison de mon père. »"
+   },
+   {
+    "q": "Lequel des frères Joseph fait-il incarcérer en leur présence ?",
+    "a": {
+     "t": "Siméon",
+     "he": "שִׁמְעוֹן"
+    },
+    "w": [
+     {
+      "t": "Ruben",
+      "he": "רְאוּבֵן"
+     },
+     {
+      "t": "Juda",
+      "he": "יְהוּדָה"
+     },
+     {
+      "t": "Lévi",
+      "he": "לֵוִי"
+     }
+    ],
+    "ref": "42:24",
+    "proof": [
+     "Siméon"
+    ],
+    "x": "Il sépara d'eux Siméon, qu'il fit incarcérer en leur présence."
+   },
+   {
+    "q": "Quel frère Jacob refuse-t-il de laisser partir avec les autres en Égypte ?",
+    "a": {
+     "t": "Benjamin",
+     "he": "בִנְיָמִן"
+    },
+    "w": [
+     {
+      "t": "Ruben",
+      "he": "רְאוּבֵן"
+     },
+     {
+      "t": "Juda",
+      "he": "יְהוּדָה"
+     },
+     {
+      "t": "Lévi",
+      "he": "לֵוִי"
+     }
+    ],
+    "ref": "42:36-38",
+    "proof": [
+     "Benjamin",
+     "n’ira point"
+    ],
+    "x": "« Mon fils n'ira point avec vous ; car son frère n'est plus et lui seul reste encore. »"
+   }
+  ],
+  "2": [
+   {
+    "q": "Que représentent les sept vaches maigres et les sept épis vides du songe de Pharaon ?",
+    "a": "Sept années de famine",
+    "w": [
+     "Sept rois d'Égypte",
+     "Sept mois de sécheresse",
+     "Sept ennemis de Pharaon"
+    ],
+    "ref": "41:27",
+    "proof": [
+     "sept années de famine"
+    ],
+    "x": "Joseph explique à Pharaon que ces deux songes n'en font qu'un : sept années d'abondance, puis sept années de famine."
+   },
+   {
+    "q": "Combien de frères de Joseph descendent en Égypte acheter du blé ?",
+    "a": "Dix",
+    "w": [
+     "Onze",
+     "Neuf",
+     "Douze"
+    ],
+    "ref": "42:3",
+    "proof": [
+     "à dix"
+    ],
+    "x": "Les frères de Joseph partirent à dix pour acheter du grain en Égypte ; Jacob garda Benjamin auprès de lui."
+   },
+   {
+    "q": "Qu'est-ce que chacun des frères retrouve dans son sac sur le chemin du retour ?",
+    "a": "Son argent",
+    "w": [
+     "Une coupe d'argent",
+     "Une bague de Pharaon",
+     "Un message de Joseph"
+    ],
+    "ref": "42:35",
+    "proof": [
+     "argent",
+     "sac"
+    ],
+    "x": "À la vue de cet argent, eux et leur père frémirent."
+   },
+   {
+    "q": "Que fait Joseph quand il entend ses frères regretter leur faute ?",
+    "a": "Il s'éloigne d'eux et pleure",
+    "w": [
+     "Il éclate de rire",
+     "Il se met en colère et les chasse",
+     "Il leur pardonne aussitôt"
+    ],
+    "ref": "42:24",
+    "proof": [
+     "pleura"
+    ],
+    "x": "Il s'éloigna d'eux et pleura ; puis il revint à eux et leur parla."
+   },
+   {
+    "q": "Où Joseph fait-il déposer sa coupe d'argent ?",
+    "a": "À l'entrée du sac du plus jeune",
+    "w": [
+     "Dans le sac de Juda",
+     "Sous le blé de Siméon",
+     "Dans la charrette de Jacob"
+    ],
+    "ref": "44:2",
+    "proof": [
+     "coupe d'argent",
+     "sac du plus jeune"
+    ],
+    "x": "« Ma coupe, la coupe d'argent, tu la mettras à l'entrée du sac du plus jeune, avec le prix de son blé. »"
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, pourquoi aucun des mages ne parvient-il à interpréter les songes de Pharaon ?",
+    "a": "Ils les interprétaient, mais pas d'une façon qui plaise à Pharaon (« tu auras sept filles et tu en enterreras sept »)",
+    "w": [
+     "Ils ne se souvenaient pas des songes que Pharaon avait oubliés",
+     "Ils n'osaient pas parler devant les prêtres d'Égypte",
+     "Les songes étaient écrits dans une langue qu'ils ne connaissaient pas"
+    ],
+    "ref": "41:8",
+    "proof": [
+     "לפרעה",
+     "בנות"
+    ],
+    "x": "Rachi sur Genèse 41:8 : ils les interprétaient, mais pas pour Pharaon, dont l'oreille ne pouvait accepter leurs explications."
+   },
+   {
+    "q": "Selon Rachi, que reproche Jacob à ses fils en leur disant « pourquoi vous regardez-vous ? » ?",
+    "a": "De se montrer rassasiés devant les fils d'Ismaël et d'Ésaü alors qu'il leur restait encore du blé",
+    "w": [
+     "De rester là à pleurer Joseph au lieu d'agir",
+     "De se disputer devant les voisins affamés",
+     "De ne pas avoir prié avant de partir pour l'Égypte"
+    ],
+    "ref": "42:1",
+    "proof": [
+     "שבעים",
+     "בני ישמעאל"
+    ],
+    "x": "Rachi sur Genèse 42:1 : pourquoi vous montrer rassasiés devant les fils d'Ismaël et d'Ésaü ?"
+   },
+   {
+    "q": "Selon Rachi, pourquoi les frères ne reconnaissent-ils pas Joseph ?",
+    "a": "Ils l'avaient quitté sans barbe, et il revenait avec une barbe",
+    "w": [
+     "Il portait un voile et parlait par un interprète",
+     "Il avait changé de langue et de nom",
+     "Il avait vieilli de vingt ans en une seule nuit"
+    ],
+    "ref": "42:8",
+    "proof": [
+     "זקן"
+    ],
+    "x": "Rachi sur Genèse 42:8 : Joseph les avait laissés « sans la marque de la barbe », il se présentait maintenant avec la barbe."
+   },
+   {
+    "q": "Selon Rachi, pourquoi Joseph choisit-il Siméon pour le garder en prison ?",
+    "a": "C'est lui qui avait jeté Joseph dans la citerne et dit à Lévi : « Voici le maître des songes qui arrive »",
+    "w": [
+     "C'est lui qui avait vendu Joseph aux Ismaélites",
+     "C'est lui le plus âgé après Ruben",
+     "C'est lui qui avait déchiré la tunique de Joseph"
+    ],
+    "ref": "42:24",
+    "proof": [
+     "השליכו לבור",
+     "בעל החלמות"
+    ],
+    "x": "Rachi sur Genèse 42:24 : Siméon est celui qui l'avait jeté dans la citerne et avait lancé : « Voici le maître des songes. »"
+   },
+   {
+    "q": "Selon Rachi, comment Joseph traite-t-il Siméon une fois ses frères partis ?",
+    "a": "Il ne l'avait enchaîné que devant eux ; ensuite il le libère, le nourrit et lui donne à boire",
+    "w": [
+     "Il le garde enchaîné dans un cachot sans lumière",
+     "Il l'envoie travailler dans les champs de Pharaon",
+     "Il le confie à Putiphar pour qu'il le surveille"
+    ],
+    "ref": "42:24",
+    "proof": [
+     "לעיניהם",
+     "והאכילו"
+    ],
+    "x": "Rachi sur Genèse 42:24 : il ne l'enchaîna que sous leurs yeux ; dès qu'ils furent partis, il le fit sortir, le nourrit et le fit boire."
+   }
+  ]
+ }
+}

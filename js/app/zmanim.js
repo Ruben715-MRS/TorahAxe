@@ -1047,14 +1047,18 @@ function zmShabbatView(body) {
         const sab = HaftarotCore.sabbathInfo(TorahCore.parashaForDate(null, new Date(s.saturday.year, s.saturday.month - 1, s.saturday.day), zmStoredIsrael()), zmHaftarot, new Date(s.saturday.year, s.saturday.month - 1, s.saturday.day));
         const refs = sab && sab.haftara ? (sab.haftara.s || sab.haftara.a) : null;
         if (refs && refs.length) {
-            const row = zmEl('div', 'home-row zm-haftara');
+            const row = zmEl('button', 'home-row zm-haftara');
+            row.type = 'button';
             row.id = 'zm-haftara';
             const he = zmEl('span', 'he', 'הפטרה');
             he.lang = 'he'; he.dir = 'rtl';
             const text = zmEl('span');
             text.appendChild(zmEl('span', 'fr', 'Haftara : ' + HaftarotCore.refsLabel(refs)));
             text.appendChild(zmEl('span', 'desc', (sab.haftara.s ? 'Rite séfarade' : 'Même lecture dans tous les rites') + (sab.why ? ' · ' + sab.why : '')));
-            row.appendChild(he); row.appendChild(text); row.appendChild(zmEl('span'));
+            row.appendChild(he); row.appendChild(text); row.appendChild(zmEl('span', 'chev', '›'));
+            // ouvre la haftara dans le Tanakh (livre des Prophètes), au rite affiché
+            const rite = sab.haftara.s ? 's' : '';
+            row.onclick = () => tanakhOpenHaftaraFrom({ refs: refs, title: par ? par.name : '', rite: rite }, 'screen-tool-zmanim');
             rows.appendChild(row);
         }
     }

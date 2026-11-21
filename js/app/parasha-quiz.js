@@ -2,8 +2,9 @@
 // === « QUIZ DE LA PARACHA » : LE QUIZ PAR NIVEAUX (onglet « Jouer », carte « Aujourd'hui ») ===
 // =========================================================================
 // Les règles sont dans js/parashaQuizCore.js (pur, testé) ; les questions de chaque paracha, dans data/torah/quiz/<paracha>.json (index.json : la liste). L'écran et son déroulé viennent
-// de js/app/quiz-ui.js (préfixe `pquiz`). Ici : le choix de la paracha (celle de la semaine d'abord), le choix du NIVEAU avant chaque question (1 : 100 points, 2 : 200, 3 : 300), la question,
-// la fiche (la réponse, l'explication, la référence, un lien vers le chapitre) et, à plusieurs, la question volée au joueur précédent. Les questions d'une paracha sont chargées une fois.
+// de js/app/quiz-ui.js (préfixe `pquiz`). Ici : le choix de la paracha (celle de la semaine d'abord), le choix du NIVEAU avant de commencer (1 : 100 points, 2 : 200, 3 : 300) : on y reste
+// jusqu'au bout, la question (avec l'écriture hébraïque sous chaque réponse quand ce sont des noms), la fiche (la réponse, l'explication, la référence, un lien vers le chapitre) et, à
+// plusieurs, la question volée au joueur précédent. Les questions d'une paracha sont chargées une fois.
 // Tout ce qui vient des données passe par textContent.
 
 let pquiz = null;
@@ -13,6 +14,7 @@ let pquizParashot = null;         // data/torah/parashot.json
 let pquizData = {};               // slug → le fichier de questions, une fois chargé
 let pquizLoading = false;
 let pquizSlug = '';               // la paracha choisie
+let pquizLevel = 1;               // le niveau choisi (1, 2 ou 3)
 let pquizPendingSlug = '';        // une paracha demandée par un autre écran (la carte « Aujourd'hui »)
 
 const PQUIZ_PREFS_KEY = 'torahaxe_pquiz_prefs_v1';
@@ -60,6 +62,9 @@ function pquizDefault() {
 function pquizSetup() {
     pquiz = null;
     QuizUI.phase('pquiz', 'setup');
+    const raw = QuizUI.loadPrefs(PQUIZ_PREFS_KEY);
+    if (raw && ParashaQuizCore.LEVELS.indexOf(raw.level) >= 0) pquizLevel = raw.level;
+    pquizDrawLevels();
     const note = document.getElementById('pquiz-load');
     const start = document.getElementById('pquiz-start');
     const multi = document.getElementById('pquiz-multi-open');
@@ -112,11 +117,10 @@ function pquizChoose(slug) {
     start.classList.add('hidden');
     if (multi) multi.classList.add('hidden');
     if (!slug) { note.textContent = t('pquiz.none'); return; }
-    QuizUI.savePrefs(PQUIZ_PREFS_KEY, { slug: slug });
+    pquizSavePrefs();
     const ready = () => {
         if (pquizSlug !== slug) return;
-        const c = ParashaQuizCore.counts(pquizData[slug]);
-        note.textContent = t('pquiz.counts', { n: c[1] + c[2] + c[3] });
+        pquizCountNote();
         start.classList.remove('hidden');
         if (multi) multi.classList.remove('hidden');
     };
@@ -125,10 +129,33 @@ function pquizChoose(slug) {
     pquizJson('data/torah/quiz/' + slug + '.json').then(data => { pquizData[slug] = data; ready(); }).catch(() => { note.textContent = t('pquiz.load_error'); });
 }
 
+function pquizSavePrefs() { QuizUI.savePrefs(PQUIZ_PREFS_KEY, { slug: pquizSlug, level: pquizLevel }); }
+
+// Les trois niveaux, à choisir avant de commencer : on y reste jusqu'au bout.
+function pquizDrawLevels() {
+    QuizUI.chips('pquiz', ParashaQuizCore.LEVELS.map(level => ({ id: String(level), label: t('pquiz.level_chip_' + level, { points: ParashaQuizCore.pointsOf(level) }) })), String(pquizLevel), id => pquizSetLevel(Number(id)));
+}
+
+function pquizSetLevel(level) {
+    if (ParashaQuizCore.LEVELS.indexOf(level) < 0) return;
+    pquizLevel = level;
+    pquizSavePrefs();
+    pquizDrawLevels();
+    pquizCountNote();
+}
+
+// « 5 questions de niveau 2 (200 points chacune) », une fois les questions de la paracha chargées.
+function pquizCountNote() {
+    const note = document.getElementById('pquiz-load');
+    if (!pquizSlug || !pquizData[pquizSlug]) return;
+    const n = ParashaQuizCore.poolOf(pquizData[pquizSlug], pquizLevel).length;
+    note.textContent = t('pquiz.counts', { n: n, level: pquizLevel, points: ParashaQuizCore.pointsOf(pquizLevel) });
+}
+
 // Lance la partie (à plusieurs, `QuizUI.multiStartWith` l'appelle après avoir annoncé les joueurs : la partie doit donc être créée ici, tout de suite).
 function pquizStart() {
     if (!pquizSlug || !pquizData[pquizSlug]) return;
-    pquiz = ParashaQuizCore.createGame({ data: pquizData[pquizSlug] });
+    pquiz = ParashaQuizCore.createGame({ data: pquizData[pquizSlug], level: pquizLevel });
     QuizUI.phase('pquiz', 'play');
     pquizRender();
 }
@@ -136,52 +163,22 @@ function pquizStart() {
 // --- Le déroulé -------------------------------------------------------------------------------------------------------------------------------
 function pquizEl(id) { return document.getElementById('pquiz-' + id); }
 
-// Le tour en cours : le choix du niveau, ou la question (déjà là : tirée, ou volée au joueur précédent).
+// La question en cours (la suivante du niveau choisi, ou celle que le joueur précédent a ratée et qu'on lui vole).
 function pquizRender() {
     const g = pquiz;
     QuizUI.status('pquiz', g);
     pquizEl('feedback').classList.add('hidden');
-    if (ParashaQuizCore.pending(g)) {
-        if (!ParashaQuizCore.playable(g)) { QuizUI.finish('pquiz', g, 'pquiz'); return; }
-        pquizDrawLevels();
-        return;
-    }
     pquizDrawQuestion();
-}
-
-function pquizDrawLevels() {
-    const g = pquiz;
-    const box = pquizEl('levels');
-    const left = ParashaQuizCore.available(g);
-    toolClear(box);
-    pquizEl('badge').textContent = '';
-    pquizEl('question').textContent = t('pquiz.choose_level');
-    toolClear(pquizEl('options'));
-    ParashaQuizCore.LEVELS.forEach(level => {
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'quiz-option cause-card pquiz-level pquiz-level-' + level;
-        btn.disabled = left[level] === 0;
-        const title = document.createElement('strong');
-        title.textContent = t('pquiz.level', { n: level }) + ' ' + PQUIZ_STARS[level - 1];
-        const sub = document.createElement('span');
-        sub.textContent = t('pquiz.level_sub_' + level, { points: ParashaQuizCore.pointsOf(level) });
-        btn.appendChild(title);
-        btn.appendChild(sub);
-        btn.setAttribute('aria-label', t('pquiz.level_aria', { n: level, points: ParashaQuizCore.pointsOf(level), left: left[level] }));
-        btn.onclick = () => { ParashaQuizCore.choose(g, level); pquizDrawQuestion(); };
-        box.appendChild(btn);
-    });
 }
 
 function pquizDrawQuestion() {
     const g = pquiz;
     const q = ParashaQuizCore.question(g);
-    toolClear(pquizEl('levels'));
     const stars = t('pquiz.badge', { n: q.level, stars: PQUIZ_STARS[q.level - 1], points: ParashaQuizCore.pointsOf(q.level) });
     pquizEl('badge').textContent = q.steal ? t('pquiz.steal', { name: pquizStolenFrom() }) + ' · ' + stars : stars;
     pquizEl('question').textContent = q.q;
-    QuizUI.options('pquiz', q, option => ({ label: option.label }), pquizAnswer);
+    // Les noms de personnes et de lieux ont leur écriture hébraïque sous le nom (QuizUI.options l'affiche).
+    QuizUI.options('pquiz', q, option => ({ label: option.label, he: option.he || '' }), pquizAnswer);
 }
 
 // Le joueur à qui la question a été volée : celui du tour précédent.
@@ -194,8 +191,9 @@ function pquizStolenFrom() {
 // La fiche : la bonne réponse (et les points), l'explication, la source.
 function pquizInfo(q, right) {
     const where = LibraryRefs.label(q.ref);
+    const a = q.ah ? q.a + ' (' + q.ah + ')' : q.a;
     return {
-        line: right ? t('pquiz.right_line', { a: q.a, points: ParashaQuizCore.pointsOf(q.level) }) : t('pquiz.wrong_line', { a: q.a }),
+        line: right ? t('pquiz.right_line', { a: a, points: ParashaQuizCore.pointsOf(q.level) }) : t('pquiz.wrong_line', { a: a }),
         extra: q.x,
         note: q.rashi ? t('pquiz.source_rashi', { ref: where }) : t('pquiz.source', { ref: where })
     };

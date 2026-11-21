@@ -1,9 +1,54 @@
 {
  "v": 1,
  "parashot": {
+  "miqqets": {
+   "index": 9,
+   "fr": "Miqqets",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "vaye-hi": {
+   "index": 11,
+   "fr": "Vayé'hi",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "vayechev": {
+   "index": 8,
+   "fr": "Vayéchev",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
   "vayetse": {
    "index": 6,
    "fr": "Vayétsé",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "vayichla-h": {
+   "index": 7,
+   "fr": "Vayichla'h",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "vayigach": {
+   "index": 10,
+   "fr": "Vayigach",
    "counts": {
     "1": 5,
     "2": 5,

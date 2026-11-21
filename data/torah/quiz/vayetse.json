@@ -5,11 +5,23 @@
   "1": [
    {
     "q": "Quel nom Jacob donne-t-il à l'endroit où il a rêvé de l'échelle ?",
-    "a": "Béthel",
+    "a": {
+     "t": "Béthel",
+     "he": "בֵּית־אֵל"
+    },
     "w": [
-     "Mahanayim",
-     "Galed",
-     "Miçpa"
+     {
+      "t": "Mahanayim",
+      "he": "מַחֲנָיִם"
+     },
+     {
+      "t": "Galed",
+      "he": "גַּלְעֵד"
+     },
+     {
+      "t": "Péniel",
+      "he": "פְּנִיאֵל"
+     }
     ],
     "ref": "28:19",
     "proof": [
@@ -19,11 +31,23 @@
    },
    {
     "q": "Qui vient abreuver son troupeau au puits pendant que Jacob parle avec les bergers ?",
-    "a": "Rachel",
+    "a": {
+     "t": "Rachel",
+     "he": "רָחֵל"
+    },
     "w": [
-     "Léa",
-     "Rébecca",
-     "Dina"
+     {
+      "t": "Léa",
+      "he": "לֵאָה"
+     },
+     {
+      "t": "Rébecca",
+      "he": "רִבְקָה"
+     },
+     {
+      "t": "Dina",
+      "he": "דִּינָה"
+     }
     ],
     "ref": "29:9",
     "proof": [
@@ -48,11 +72,23 @@
    },
    {
     "q": "Quelle fille de Laban est amenée à Jacob le soir du mariage ?",
-    "a": "Léa",
+    "a": {
+     "t": "Léa",
+     "he": "לֵאָה"
+    },
     "w": [
-     "Rachel",
-     "Dina",
-     "Bilha"
+     {
+      "t": "Rachel",
+      "he": "רָחֵל"
+     },
+     {
+      "t": "Dina",
+      "he": "דִּינָה"
+     },
+     {
+      "t": "Bilha",
+      "he": "בִלְהָה"
+     }
     ],
     "ref": "29:23",
     "proof": [
@@ -62,11 +98,23 @@
    },
    {
     "q": "Comment s'appelle le premier fils que Léa met au monde ?",
-    "a": "Ruben",
+    "a": {
+     "t": "Ruben",
+     "he": "רְאוּבֵן"
+    },
     "w": [
-     "Siméon",
-     "Lévi",
-     "Juda"
+     {
+      "t": "Siméon",
+      "he": "שִׁמְעוֹן"
+     },
+     {
+      "t": "Lévi",
+      "he": "לֵוִי"
+     },
+     {
+      "t": "Juda",
+      "he": "יְהוּדָה"
+     }
     ],
     "ref": "29:32",
     "proof": [

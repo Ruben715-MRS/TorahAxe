@@ -64,7 +64,7 @@
         ['aseret', /עשרת ימי תשובה/],
         ['roshHashana', /בראש השנה|^ברה ש$/],
         ['moadim', /^במועדים/],
-        ['rc', /בראש (חדש|חודש)|(^|\s)בר ?ח(\s|$)/],
+        ['rc', /בראש (חדש|חודש)|בליל ראש (חדש|חודש)|(^|\s)בר ?ח(\s|$)/],
         ['chPesach', /(חוה מ|חול המועד) פסח/],
         ['chSukkot', /(חוה מ|חול המועד) סוכות/],
         ['ch', /חול המועד|חוה מ\b|חוהמ/],
@@ -121,7 +121,7 @@
         if (atoms.indexOf('chPesach') !== -1 || atoms.indexOf('chSukkot') !== -1) atoms = atoms.filter(function (x) { return x !== 'ch'; });
         for (var si = 0; si < SHABBAT_ATOMS.length; si++) if (SHABBAT_ATOMS[si][1].test(r.head)) { atoms = [SHABBAT_ATOMS[si][0]]; break; }
         if (!atoms.length) return null;
-        return { atoms: atoms, endsWithColon: r.endsWithColon, hasBody: r.hasBody, insert: /(אומר|אומרים|מוסיפים|מוסיף) כאן/.test(r.head) };
+        return { atoms: atoms, endsWithColon: r.endsWithColon, hasBody: r.hasBody, insert: /(אומר|אומרים|מוסיפים|מוסיף) כאן/.test(r.head), psalm: /מזמור זה/.test(r.head) };
     }
 
     // « été / hiver » : la même consigne sert à deux choses (Machiv haRouah / Morid hatal, et Barekh alénou / Barekhénou). Le corps du texte les distingue.
@@ -200,12 +200,15 @@
             var tree = trees[i];
             var text = plain(tree);
             var cond = onlySmall(tree) && !/[֑-ׇ]/.test(text) ? conditionOf(text) : null;
-            if (!cond || !(cond.endsWithColon || cond.insert) || cond.hasBody) { i++; continue; }
+            if (!cond || !(cond.endsWithColon || cond.insert || cond.psalm) || cond.hasBody) { i++; continue; }
             var from = i + 1;
             if (from >= segments.length) { i++; continue; }
             var next = trees[from];
             var to;
-            if (!onlySmall(next)) {
+            if (cond.psalm) {                                                // « …לומר מזמור זה » : le psaume (vocalisé) est le segment suivant, seul
+                if (!/[֑-ׇ]/.test(plain(next))) { i++; continue; }
+                to = from;
+            } else if (!onlySmall(next)) {
                 to = from;                                                   // le corps est un seul segment de texte (été / hiver)
             } else {
                 to = from;
@@ -481,7 +484,37 @@
         return plain;      // Min'ha : les sections de la semaine (Yaalé véyavo, Al hanissim sont dans l'Amida)
     }
 
+    // --- Birkat haMazon et Mé'en chaloch : repères de lecture (sans DOM) ---------------------------------------------------------------------
+    // Le Zimoun : qui parle ? `bare` est le segment sans voyelles ni ponctuation. Retourne 'lead' (l'officiant), 'resp' (les assistants),
+    // 'again' (l'officiant reprend), 'go' (l'officiant poursuit), 'fast' (celui qui n'a pas mangé), ou null.
+    function zimounRole(bare) {
+        if (/^(ויאמר המזמן|ואומר המזמן|המזמן אומר)$/.test(bare)) return 'lead';
+        if (/^(והמסובים עונים|המסובים עונים|ועונין המסובין)$/.test(bare)) return 'resp';
+        if (/^וחוזר המזמן$/.test(bare)) return 'again';
+        if (/^וממשיך$/.test(bare)) return 'go';
+        if (/^מי שלא אכל עונה$/.test(bare)) return 'fast';
+        return null;
+    }
+
+    // Mé'en chaloch : une ligne du menu « selon ce qu'on a mangé » → 0 (céréales), 1 (vin), 2 (sept espèces), ou -1.
+    function mcRowKind(bare) {
+        if (/^(אם אכל מזונות|על חמשת מיני דגן)/.test(bare)) return 0;
+        if (/^(אם שתה יין|על היין)/.test(bare)) return 1;
+        if (/^(אם אכל פרות משבעת|פירות שבעת המינים|על פירות משבעת המינים)/.test(bare)) return 2;
+        return -1;
+    }
+
+    // Les suites de trois lignes (céréales, vin, sept espèces) : chacune devient un tableau. `bares` : les segments sans voyelles.
+    function mcTables(bares) {
+        var out = [];
+        for (var i = 0; i + 2 < bares.length; i++) {
+            if (mcRowKind(bares[i]) === 0 && mcRowKind(bares[i + 1]) === 1 && mcRowKind(bares[i + 2]) === 2) { out.push({ from: i, to: i + 2 }); i += 2; }
+        }
+        return out;
+    }
+
     return {
+        zimounRole: zimounRole, mcRowKind: mcRowKind, mcTables: mcTables,
         RC_SECTIONS: RC_SECTIONS, OCCASIONS: OCCASIONS, OCC_HE: OCC_HE, HALLEL_TAIL_FROM: HALLEL_TAIL_FROM, occasionsOf: occasionsOf, shabbatOccasionsOf: shabbatOccasionsOf, isRoshChodeshWeekday: isRoshChodeshWeekday, officeFor: officeFor,
         fingerprint: fingerprint, parse: parse, plain: plain, stripNiqqud: stripNiqqud, conditionOf: conditionOf, analyseSegment: analyseSegment, groups: groups,
         contextFor: contextFor, mevarchim: mevarchim, evaluate: evaluate, hebrewDayFixed: hebrewDayFixed, notesFor: notesFor, omerSegment: omerSegment, decemberStart: decemberStart, dayPsalm: dayPsalm

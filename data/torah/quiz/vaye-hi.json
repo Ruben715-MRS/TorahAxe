@@ -1,0 +1,278 @@
+{
+ "v": 1,
+ "parasha": "Vayé'hi",
+ "levels": {
+  "1": [
+   {
+    "q": "Combien d'années Jacob vit-il en Égypte ?",
+    "a": "Dix-sept ans",
+    "w": [
+     "Sept ans",
+     "Trente ans",
+     "Cent ans"
+    ],
+    "ref": "47:28",
+    "proof": [
+     "dix-sept"
+    ],
+    "x": "Jacob vécut dix-sept ans en Égypte ; les jours de sa vie furent de cent quarante-sept ans."
+   },
+   {
+    "q": "Qui Jacob appelle-t-il avant de mourir pour lui faire jurer de ne pas l'enterrer en Égypte ?",
+    "a": {
+     "t": "Joseph",
+     "he": "יוֹסֵף"
+    },
+    "w": [
+     {
+      "t": "Juda",
+      "he": "יְהוּדָה"
+     },
+     {
+      "t": "Ruben",
+      "he": "רְאוּבֵן"
+     },
+     {
+      "t": "Benjamin",
+      "he": "בִנְיָמִן"
+     }
+    ],
+    "ref": "47:29",
+    "proof": [
+     "Joseph"
+    ],
+    "x": "Israël appela son fils Joseph : « Je t'en prie, ne m'ensevelis pas en Égypte. »"
+   },
+   {
+    "q": "Sur la tête duquel de ses deux petits-fils Jacob pose-t-il sa main droite ?",
+    "a": {
+     "t": "Éphraïm",
+     "he": "אֶפְרַיִם"
+    },
+    "w": [
+     {
+      "t": "Manassé",
+      "he": "מְנַשֶּׁה"
+     },
+     {
+      "t": "Ruben",
+      "he": "רְאוּבֵן"
+     },
+     {
+      "t": "Siméon",
+      "he": "שִׁמְעוֹן"
+     }
+    ],
+    "ref": "48:14",
+    "proof": [
+     "Éphraïm",
+     "main droite"
+    ],
+    "x": "Jacob croisa ses mains : sa main droite sur Éphraïm, le plus jeune, et sa gauche sur Manassé, l'aîné."
+   },
+   {
+    "q": "Auquel de ses fils Jacob dit-il : « Juda est un jeune lion » ?",
+    "a": {
+     "t": "Juda",
+     "he": "יְהוּדָה"
+    },
+    "w": [
+     {
+      "t": "Dan",
+      "he": "דָּן"
+     },
+     {
+      "t": "Naphtali",
+      "he": "נַפְתָּלִי"
+     },
+     {
+      "t": "Siméon",
+      "he": "שִׁמְעוֹן"
+     }
+    ],
+    "ref": "49:9",
+    "proof": [
+     "lion",
+     "Juda"
+    ],
+    "x": "« Juda est un jeune lion : tu t'es relevé de la proie, mon fils. »"
+   },
+   {
+    "q": "Où Jacob demande-t-il à être enseveli ?",
+    "a": "Dans la grotte de Makhpéla, avec ses pères",
+    "w": [
+     "En Égypte, près de Joseph",
+     "À Béthel, près du lieu de son songe",
+     "À Bethléem, près de Rachel"
+    ],
+    "ref": "49:29-30",
+    "proof": [
+     "Makhpêla"
+    ],
+    "x": "« Ensevelissez-moi près de mes pères, dans la grotte du champ d'Éfrôn le Héthéen, la grotte du champ de Makhpêla. »"
+   }
+  ],
+  "2": [
+   {
+    "q": "Combien de jours les Égyptiens pleurent-ils Jacob ?",
+    "a": "Soixante-dix jours",
+    "w": [
+     "Quarante jours",
+     "Trente jours",
+     "Sept jours"
+    ],
+    "ref": "50:3",
+    "proof": [
+     "soixante-dix jours"
+    ],
+    "x": "Quarante jours furent nécessaires pour l'embaumement, et les Égyptiens le pleurèrent soixante-dix jours."
+   },
+   {
+    "q": "Quel âge Joseph a-t-il à sa mort ?",
+    "a": "Cent dix ans",
+    "w": [
+     "Cent vingt ans",
+     "Cent sept ans",
+     "Cent quarante-sept ans"
+    ],
+    "ref": "50:26",
+    "proof": [
+     "cent dix ans"
+    ],
+    "x": "Joseph mourut à l'âge de cent dix ans ; on l'embauma et on le déposa dans un cercueil en Égypte."
+   },
+   {
+    "q": "À qui Abraham avait-il acheté le champ de Makhpéla, où Jacob est enseveli ?",
+    "a": {
+     "t": "Éfrôn",
+     "he": "עֶפְרֹן"
+    },
+    "w": [
+     {
+      "t": "Hamor",
+      "he": "חֲמוֹר"
+     },
+     {
+      "t": "Laban",
+      "he": "לָבָן"
+     },
+     {
+      "t": "Abimélech",
+      "he": "אֲבִימֶלֶךְ"
+     }
+    ],
+    "ref": "50:13",
+    "proof": [
+     "Éfrôn"
+    ],
+    "x": "Ses fils l'ensevelirent dans la grotte du champ de Makhpêla, qu'Abraham avait acquise d'Éfrôn le Héthéen."
+   },
+   {
+    "q": "Que répond Joseph à ses frères qui craignent sa vengeance après la mort de Jacob ?",
+    "a": "Qu'ils avaient médité le mal contre lui, mais que Dieu l'avait combiné pour le bien",
+    "w": [
+     "Qu'il leur pardonnait parce que Jacob le lui avait demandé",
+     "Qu'ils resteraient ses esclaves en Égypte",
+     "Qu'il les pardonnerait s'ils retournaient en Canaan"
+    ],
+    "ref": "50:19-20",
+    "proof": [
+     "médité contre moi le mal",
+     "pour le bien"
+    ],
+    "x": "« Soyez sans crainte ; car suis-je à la place de Dieu ? Vous aviez médité contre moi le mal : Dieu l'a combiné pour le bien. »"
+   },
+   {
+    "q": "Quelle formule de bénédiction Jacob dit-il que l'on prononcera en Israël ?",
+    "a": "« Que Dieu te rende semblable à Éphraïm et à Manassé »",
+    "w": [
+     "« Que Dieu te rende semblable à Abraham, Isaac et Jacob »",
+     "« Que Dieu te rende semblable à Juda et à Joseph »",
+     "« Que Dieu te donne la rosée du ciel et la graisse de la terre »"
+    ],
+    "ref": "48:20",
+    "proof": [
+     "Éphraïm et Manassé"
+    ],
+    "x": "« C'est par toi qu'Israël bénira, en disant : Dieu te rende semblable à Éphraïm et à Manassé. »"
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, pourquoi Jacob ne veut-il pas être enseveli en Égypte ?",
+    "a": "Entre autres raisons, de peur que les Égyptiens ne fassent de lui une idole",
+    "w": [
+     "Parce que la terre d'Égypte appartenait à Pharaon",
+     "Parce que Rachel n'y était pas ensevelie",
+     "Parce que l'embaumement égyptien était interdit aux Hébreux"
+    ],
+    "ref": "47:29",
+    "proof": [
+     "עבודה זרה",
+     "במצרים"
+    ],
+    "x": "Rachi sur Genèse 47:29 : il craignait notamment que les Égyptiens fassent de lui une idole ; il pensait aussi aux vers et aux souffrances des morts enterrés hors de la terre d'Israël."
+   },
+   {
+    "q": "Selon Rachi, pourquoi Jacob demande-t-il à Joseph « une bonté de vérité » ?",
+    "a": "Parce que la bonté envers les morts est une bonté de vérité : on n'en attend aucune récompense",
+    "w": [
+     "Parce que Joseph devait jurer sur la vérité de Dieu",
+     "Parce que la bonté de Joseph envers ses frères était sincère",
+     "Parce que cette demande ne devait jamais être trahie"
+    ],
+    "ref": "47:29",
+    "proof": [
+     "חסד של אמת",
+     "תשלום גמול"
+    ],
+    "x": "Rachi sur Genèse 47:29 : la bonté que l'on fait aux morts est une bonté de vérité, car on n'en attend pas de récompense."
+   },
+   {
+    "q": "Selon Rachi, comment Jacob croise-t-il ses mains en bénissant Éphraïm et Manassé ?",
+    "a": "Avec sagesse et en connaissance de cause : il savait que Manassé était l'aîné",
+    "w": [
+     "Par erreur, car il ne voyait presque plus",
+     "Parce que Joseph avait mal placé ses fils",
+     "Pour montrer qu'Éphraïm et Manassé étaient jumeaux"
+    ],
+    "ref": "48:14",
+    "proof": [
+     "הבכור",
+     "בהשכל"
+    ],
+    "x": "Rachi sur Genèse 48:14 : il croisa ses mains avec sagesse et intention, sachant bien que Manassé était le premier-né."
+   },
+   {
+    "q": "Selon Rachi, qui est « Chilo » dans la bénédiction de Juda ?",
+    "a": "Le roi Machia'h, à qui appartient la royauté",
+    "w": [
+     "Le prophète Samuel, qui oint les rois",
+     "La ville de Silo, où se tient le Tabernacle",
+     "Le roi David, premier roi de Juda"
+    ],
+    "ref": "49:10",
+    "proof": [
+     "מלך המשיח",
+     "שילה"
+    ],
+    "x": "Rachi sur Genèse 49:10 : « jusqu'à ce que vienne Chilo » : le roi Machia'h, à qui appartient la royauté."
+   },
+   {
+    "q": "Selon Rachi, pourquoi les Égyptiens pleurent-ils Jacob soixante-dix jours ?",
+    "a": "Une bénédiction leur était venue grâce à lui : la famine avait cessé et le Nil était béni",
+    "w": [
+     "Parce que Jacob avait sauvé l'Égypte d'une invasion",
+     "Parce que Pharaon l'avait ordonné pour honorer Joseph",
+     "Parce que Jacob était devenu l'un des leurs"
+    ],
+    "ref": "50:3",
+    "proof": [
+     "ברכה",
+     "הרעב"
+    ],
+    "x": "Rachi sur Genèse 50:3 : quarante jours pour l'embaumement, trente pour le deuil, car une bénédiction leur était venue à cause de lui : la famine avait pris fin."
+   }
+  ]
+ }
+}

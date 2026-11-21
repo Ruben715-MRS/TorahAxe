@@ -12,12 +12,16 @@
 
 const SD_PREFS_KEY = 'siddurPrefs';
 const SD_DATA = 'data/siddur/';
+// Le rite 'Habad a son propre siddour : le Tehilat Hachem (data/siddur/habad/, scripts/build_siddur_habad.js). Les autres rites lisent celui d'Edot HaMizrach.
+const SD_DATA_HABAD = 'data/siddur/habad/';
+function sdBase() { return typeof riteFull === 'function' && riteFull() === 'habad' ? SD_DATA_HABAD : SD_DATA; }
+let sdIndexBase = null;     // le dossier dont vient sdIndex
 
 let sdIndex = null;
 const sdCache = {};
 // v : version des réglages. En v2, la police par défaut passe de Noto Serif à Frank Ruhl Libre (la seule à avoir un vrai gras) ;
 // un « noto-serif » enregistré avant la v2 n'était que l'ancien défaut, pas un choix : il est remplacé.
-let sdPrefs = { v: 2, size: 2, niqqud: true, all: false, fr: false, font: 'frank', heRub: false, jx: true, name: 'adonai', fab: true, hideOff: false };
+let sdPrefs = { v: 2, size: 2, niqqud: true, all: false, fr: false, font: 'frank', heRub: false, jx: true, name: 'adonai', fab: true, hideOff: false, zim: 3, zimForm: 'a', zimWed: false };
 // Polices livrées avec leurs vraies graisses (fonts.css) : le gras y est dessiné par la police, pas simulé par un contour.
 const SD_REAL_BOLD = ['frank'];
 let sdView = { mode: 'home', ids: [], title: '' };
@@ -62,6 +66,9 @@ function sdLoadPrefs() {
         if (typeof p.fab === 'boolean') sdPrefs.fab = p.fab;
         if (typeof p.hideOff === 'boolean') sdPrefs.hideOff = p.hideOff;
         if (p.guest && typeof p.guest === 'object') sdPrefs.guest = p.guest;
+        if (p.zim === 1 || p.zim === 3 || p.zim === 10) sdPrefs.zim = p.zim;
+        if (p.zimForm === 'a' || p.zimForm === 'b') sdPrefs.zimForm = p.zimForm;
+        if (typeof p.zimWed === 'boolean') sdPrefs.zimWed = p.zimWed;
         if (p.name === 'source' || p.name === 'adonai') sdPrefs.name = p.name;
         if (typeof p.font === 'string' && sdFontById(p.font) && (p.v >= 2 || p.font !== 'noto-serif')) sdPrefs.font = p.font;
     } catch (e) { /* stockage indisponible : réglages par défaut */ }
@@ -128,17 +135,21 @@ function sdFetchJson(url) {
 }
 function sdLoadIndex() {
     if (sdIndex) return Promise.resolve(sdIndex);
-    return sdFetchJson(SD_DATA + 'index.json').then(index => { sdIndex = index; sdApplyRite(); return index; });
+    const base = sdBase();
+    return sdFetchJson(base + 'index.json').then(index => { sdIndex = index; sdIndexBase = base; sdApplyRite(); return index; });
 }
 function sdLoadSection(id) {
-    if (sdCache[id]) return Promise.resolve(sdCache[id]);
-    return sdFetchJson(SD_DATA + id + '.json').then(section => { sdCache[id] = section; return section; });
+    const base = sdBase();
+    if (sdCache[base + id]) return Promise.resolve(sdCache[base + id]);
+    return sdFetchJson(base + id + '.json').then(section => { sdCache[base + id] = section; return section; });
 }
 // La traduction française d'une section (facultative) : { indice : [empreinte, texte] }, ou null s'il n'y en a pas.
 const sdFrCache = {};
 function sdLoadFr(id) {
-    if (id in sdFrCache) return Promise.resolve(sdFrCache[id]);
-    return sdFetchJson(SD_DATA + 'fr/' + id + '.json').then(d => d.t || null).catch(() => null).then(t => { sdFrCache[id] = t; return t; });
+    const base = sdBase();
+    if ((base + id) in sdFrCache) return Promise.resolve(sdFrCache[base + id]);
+    // Le Tehilat Hachem n'a pas (encore) de traduction française : le fichier manque, la section s'affiche en hébreu seul.
+    return sdFetchJson(base + 'fr/' + id + '.json').then(d => d.t || null).catch(() => null).then(t => { sdFrCache[base + id] = t; return t; });
 }
 function sdFindSection(id) {
     for (const g of sdIndex.groups) for (const s of g.sections) if (s.id === id) return { group: g, section: s };
@@ -161,6 +172,8 @@ function sdRiteFamily(id) { return SD_RITE_FAMILIES.find(f => Object.keys(f.ids)
 function sdRiteId(id) { const f = sdRiteFamily(id); return f ? f.ids[sdRite()] || id : id; }
 function sdApplyRite() {
     if (!sdIndex) return;
+    // Passage vers ou depuis 'Habad : on recharge le siddour du nouveau rite.
+    if (sdIndexBase !== sdBase()) { sdIndex = null; sdIndexBase = null; sdRiteOrig = null; sdRiteHidden = []; sdPrecacheStarted = false; sdLoadIndex().catch(() => {}); return; }
     if (!sdRiteOrig) {
         sdRiteOrig = {};
         sdIndex.groups.forEach(g => { if (g.sections.some(x => sdRiteFamily(x.id))) sdRiteOrig[g.id] = g.sections.map(x => Object.assign({}, x)); });
@@ -194,11 +207,12 @@ function sdPrecache() {
     sdPrecacheStarted = true;
     try { localStorage.removeItem('siddurOffline'); } catch (e) { /* l'ancien drapeau « prêt hors-ligne », qui ne prouvait rien */ }
     // Toutes les sections, y compris les versions des autres rites (ouvertes depuis l'écran Bénédictions), et les petits fichiers dont le lecteur a besoin.
-    const urls = [SD_DATA + 'index.json', SD_DATA + 'fr/index.json', SD_DATA + 'interruptions.json', 'data/torah/weekday.json', 'data/torah/parashot.json'];
-    sdIndex.groups.forEach(g => g.sections.forEach(s => urls.push(SD_DATA + s.id + '.json')));
-    sdRiteHidden.forEach(h => urls.push(SD_DATA + h.section.id + '.json'));
-    sdFetchJson(SD_DATA + 'fr/index.json').catch(() => ({}))
-        .then(idx => Object.keys((idx && idx.sections) || {}).forEach(id => urls.push(SD_DATA + 'fr/' + id + '.json')))
+    const base = sdBase();
+    const urls = [base + 'index.json', base + 'fr/index.json', SD_DATA + 'interruptions.json', 'data/torah/weekday.json', 'data/torah/parashot.json'];
+    sdIndex.groups.forEach(g => g.sections.forEach(s => urls.push(base + s.id + '.json')));
+    sdRiteHidden.forEach(h => urls.push(base + h.section.id + '.json'));
+    sdFetchJson(base + 'fr/index.json').catch(() => ({}))
+        .then(idx => Object.keys((idx && idx.sections) || {}).forEach(id => urls.push(base + 'fr/' + id + '.json')))
         .then(() => TorahOffline.precache(urls))
         .then(r => { if (!r || r.failed) sdPrecacheStarted = false; });   // interrompu ou hors réseau : on réessaiera à la prochaine ouverture
 }
@@ -1668,6 +1682,12 @@ function sdRubricEl(tree, fr) {
 // Le segment : un titre, une consigne seule, ou du texte. Une variante assez longue (une phrase) ou un segment fait seulement de variantes
 // (été / hiver) passe en blocs ; les variantes d'un mot ou deux (« הַשָּׁלוֹם ») restent dans la ligne.
 function sdRenderSegment(tree, index, fr) {   // tree peut être remplacé par son contenu (segment tout en gras)
+    // Une consigne mise en gras dans la source (<b><small>…</small></b>) est une consigne comme les autres : on la lit à travers le gras, pour la montrer en français.
+    const outer = tree.c.filter(k => !sdBlank(k));
+    if (index > 0 && outer.length === 1 && outer[0].t === 'tag' && outer[0].n === 'b' && !SD_HAS_NIQQUD.test(SiddurCore.plain(tree))) {
+        const inner = outer[0].c.filter(k => !sdBlank(k));
+        if (inner.length && inner.every(k => k.t === 'tag' && k.n === 'small')) tree = { t: 'tag', n: 'root', c: outer[0].c };
+    }
     const kids = tree.c.filter(k => !sdBlank(k));
     const isTitle = index === 0 && kids[0] && kids[0].t === 'tag' && kids[0].n === 'big';
     if (!isTitle && kids.length && kids.every(k => k.t === 'tag' && k.n === 'small') && !SD_HAS_NIQQUD.test(SiddurCore.plain(tree))) return sdRubricEl(tree, fr);
@@ -1761,7 +1781,79 @@ const SD_BERAKHOT = [
 ];
 function sdIsAmida(id) { return /amida|moussaf/.test(id); }
 function sdBare(tree) { return SiddurCore.stripNiqqud(SiddurCore.plain(tree)).replace(/[,.:;־\-–]/g, ' ').replace(/\s+/g, ' ').trim(); }
-function sdBerakhaStart(bare) { return SD_BERAKHOT.find(b => b.start.test(bare)) || null; }
+function sdBerakhaStart(bare, list) { return (list || SD_BERAKHOT).find(b => b.start.test(bare)) || null; }
+
+// Birkat haMazon : les quatre bénédictions, comme dans le Maguen Avot : leur nom, qui les a instituées, la traduction de leur conclusion.
+// Repérage par les premiers mots (sans voyelles), valable pour les trois rites. Noms, notes et traductions écrits pour l'application : **à relire**.
+const SD_BH = [
+    { id: 'hazan', he: 'ברכת הזן', fr: 'La nourriture (Birkat haZan)', start: /^ברוך אתה יהוה אלהינו מלך העולם (האל )?הזן/, end: /הזן את ?הכל/, hat: 'qui nourrit tout',
+      origin: 'La première bérakha fut instituée par Moché rabbénou, en remerciement de la manne.' },
+    { id: 'haarets', he: 'ברכת הארץ', fr: 'La Terre (Birkat haArets)', start: /^נודה לך/, end: /על הארץ ועל המזון/, hat: 'pour la terre et pour la nourriture',
+      origin: 'La deuxième bérakha fut instituée par Yéhochoua bin Noun à l\'entrée en Terre d\'Israël, en remerciement de la Terre et de ses fruits.' },
+    { id: 'yerouchalayim', he: 'בונה ירושלים', fr: 'Jérusalem (Boné Yérouchalayim)', start: /^רחם (נא )?יהוה אלהינו/, end: /בונה (ברחמיו )?ירושלים|מנחם ציון/, hat: 'qui construit Jérusalem', hatTishaBav: 'qui console Sion et réédifie Jérusalem',
+      origin: 'La troisième bérakha fut instituée par David haMélèkh pour Israël et Jérusalem, et complétée par Chélomo haMélèkh pour le Temple.' },
+    { id: 'hatov', he: 'הטוב והמטיב', fr: 'La bonté (Hatov véhaMétiv)', start: /^ברוך אתה יהוה אלהינו מלך העולם( לעד)? האל אבינו/,
+      origin: 'La quatrième bérakha fut instituée par les sages de Yavné quand les morts de Bétar purent enfin être enterrés : « Hatov », car leurs corps ne s\'étaient pas décomposés ; « Véhamétiv », car on leur donna une sépulture.',
+      endNote: 'Fin de la quatrième bérakha.' }
+];
+// Dans l'édition ashkénaze, la source porte déjà la note d'origine devant la bénédiction : on ne la double pas.
+const SD_BH_SRC_NOTE = /^(ברכה זו|בונה ירושלים דוד|הטוב והמטיב ביבנה)/;
+function sdBerakhotFor(id) { return sdIsAmida(id) ? SD_BERAKHOT : /^birkat-hamazon/.test(id) ? SD_BH : null; }
+
+// Le Zimoun : qui parle (SiddurCore.zimounRole). L'étiquette remplace la consigne : « L'officiant », « Les assistants ».
+const SD_ROLES = { lead: 'L\'officiant', resp: 'Les assistants', again: 'L\'officiant reprend après eux', go: 'L\'officiant poursuit', fast: 'Celui qui n\'a pas mangé répond' };
+
+// Le bandeau d'une section : le nom en français et en hébreu, une phrase pour dire quand on la dit, et parfois la règle (quantités, délais).
+const SD_BANNERS = [
+    { id: /^birkat-hamazon/, fr: 'Birkat haMazon', sub: 'Bénédictions après le repas', he: 'בִּרְכַּת הַמָּזוֹן' },
+    { id: /^al-hamihya/, fr: 'Mé\'en Chaloch', sub: 'Bénédiction après un aliment des sept espèces, une pâtisserie ou du vin', he: 'בִּרְכַּת מֵעֵין שָׁלוֹשׁ',
+      intro: 'Après avoir mangé un fruit des sept espèces (olives, dattes, raisins, figues, grenades), un aliment à base de l\'une des cinq céréales (pâtisserie, pâtes…) ou bu du vin, on dit cette bérakha. Il faut avoir mangé un kazayit (environ 30 g) dans le temps d\'une \'akhilat prass (environ 7,5 minutes), ou bu un révi\'it (environ 86 ml) de vin dans le temps d\'un chtiyat révi\'it. Sinon, ou pour un autre aliment, on dit Boré néfachot.' }
+];
+// Les autres bénédictions : bandeau de chaque section (le nom, quand on la dit). Noms et phrases écrits pour l'application : **à relire**.
+SD_BANNERS.push(
+    { id: /^birkhot-hanehenin$/, fr: 'Birkot haNéhénin', sub: 'Bénédictions avant de manger ou de boire', he: 'בִּרְכוֹת הַנֶּהֱנִין' },
+    { id: /^birkhot-hareach$/, fr: 'Bénédictions sur les parfums', sub: 'Birkot haRéa\'h : avant de sentir', he: 'בִּרְכוֹת הָרֵיחַ',
+      legend: [['Ni arbre ni plante, ou doute', 'musc, rue, parfum synthétique en flacon…'], ['Plantes, herbes', 'menthe, géranium…'], ['Arbres, arbustes', 'clous de girofle, roses, jasmin, romarin, basilic, bâtons de cannelle…']] },
+    { id: /^chehehyanou$/, fr: 'Chéhé\'héyanou', sub: 'Vêtement neuf, fruit de saison, nouvelle maison', he: 'בִּרְכַּת שֶׁהֶחֱיָנוּ' },
+    { id: /^mezouza$/, fr: 'Pose de la mézouza', sub: 'Avant de la fixer', he: 'בִּרְכַּת הַמְּזוּזָה' },
+    { id: /^arc-en-ciel$/, fr: 'À la vue d\'un arc-en-ciel', sub: '', he: 'בִּרְכַּת הַקֶּשֶׁת' },
+    { id: /^eclairs-tonnerre$/, fr: 'Éclairs et tonnerre', sub: 'Dès qu\'on les voit ou qu\'on les entend', he: 'בִּרְכַּת בְּרָקִים וּרְעָמִים' },
+    { id: /^hala$/, fr: 'Prélèvement de la \'hala', sub: 'Séparer une part de la pâte', he: 'הַפְרָשַׁת חַלָּה' },
+    { id: /^maake$/, fr: 'Pose d\'un parapet', sub: 'Avant de fixer le parapet du toit', he: 'בִּרְכַּת הַמַּעֲקֶה' },
+    { id: /^tevilat-kelim$/, fr: 'Immersion de la vaisselle', sub: 'Ustensiles achetés à un non-Juif', he: 'בִּרְכַּת טְבִילַת כֵּלִים' },
+    { id: /^tefilat-haderekh$/, fr: 'Prière du voyageur', sub: 'En sortant de la ville', he: 'תְּפִלַּת הַדֶּרֶךְ' },
+    { id: /^birkhot-hareiyot$/, fr: 'Bénédictions « à la vue de… »', sub: 'Birkhot haRéyiyot', he: 'בִּרְכוֹת הָרְאִיָּה' },
+    { id: /^dayan-haemet$/, fr: 'Dayan haEmet et Hatov véhaMétiv', sub: 'À l\'annonce d\'une mauvaise ou d\'une bonne nouvelle', he: 'דַּיַּן הָאֱמֶת' }
+);
+
+// La traduction de la conclusion, entre crochets, sous chaque bénédiction courte (comme « [… qui crée le fruit de la vigne.] » du Maguen Avot). Repérage par la fin du segment, sans voyelles.
+const SD_SHORT_HAT_IDS = /^(birkhot-hanehenin|birkhot-hareach|chehehyanou|mezouza|arc-en-ciel|eclairs-tonnerre|maake|hala|tevilat-kelim|birkhot-hareiyot|dayan-haemet)$/;
+const SD_SHORT_HATS = [
+    [/בורא מיני מזונות$/, 'qui crée toutes sortes de nourritures'], [/בורא פרי הגפן$/, 'qui crée le fruit de la vigne'], [/בורא פרי העץ$/, 'qui crée le fruit de l\'arbre'],
+    [/בורא פרי האדמה$/, 'qui crée le fruit de la terre'], [/שהכל נהיה בדברו$/, 'par la parole de qui tout fut'],
+    [/בורא עצי בשמים$/, 'qui crée des arbustes aromatiques'], [/בורא עשבי בשמים$/, 'qui crée des herbes aromatiques'], [/בורא מיני בשמים$/, 'qui crée toutes sortes d\'aromates'],
+    [/הנותן ריח טוב בפרות$/, 'qui donne une bonne odeur aux fruits'], [/שהחי+נו וקימנו והגיענו לזמן הזה$/, 'qui nous a fait vivre, nous a fait subsister et nous a fait parvenir à ce moment'],
+    [/וצונו לקבע מזוזה$/, 'et nous a ordonné de fixer une mézouza'], [/וצונו לעשות מעקה$/, 'et nous a ordonné de faire un parapet'], [/וצונו להפריש חלה תרומה$/, 'et nous a ordonné de prélever la \'hala en offrande'],
+    [/וצונו על טבילת כלי/, 'et nous a ordonné l\'immersion des ustensiles (de l\'ustensile)'],
+    [/זוכר הברית נאמן בבריתו וקים במאמרו$/, 'qui se souvient de l\'alliance, fidèle à Son alliance et qui tient Sa parole'],
+    [/עושה מעשה בראשית$/, 'qui accomplit l\'œuvre de la Création'], [/שכחו וגבורתו מלא עולם$/, 'dont la force et la puissance remplissent le monde'],
+    [/דין האמת$/, 'le véritable Juge'], [/הטוב והמטיב$/, 'qui est bon et fait le bien'],
+    [/חכם הרזים$/, 'qui connaît les secrets'], [/מציב גבול אלמנה$/, 'qui fixe la frontière de la veuve'], [/שעשה נסים לאבותינו במקום הזה$/, 'qui a fait des miracles à nos pères en ce lieu'],
+    [/שככה לו בעולמו$/, 'qui a de tels êtres dans Son monde'], [/משנה הבריות$/, 'qui varie les créatures'], [/עשה את הים הגדול$/, 'qui a fait la Grande Mer'],
+    [/שחלק מחכמתו ליראיו$/, 'qui a partagé de Sa sagesse avec ceux qui Le craignent'], [/שנתן מחכמתו לבשר ודם$/, 'qui a donné de Sa sagesse à des êtres de chair et de sang'],
+    [/שחלק מכבודו ליראיו$/, 'qui a partagé de Sa gloire avec ceux qui Le craignent'], [/שנתן מכבודו לבשר ודם$/, 'qui a donné de Sa gloire à des êtres de chair et de sang']
+];
+function sdShortHat(id, bare) {
+    if (!SD_SHORT_HAT_IDS.test(id) || !/^ברוך אתה/.test(bare)) return null;
+    const h = SD_SHORT_HATS.find(x => x[0].test(bare));
+    return h ? h[1] : null;
+}
+
+function sdBannerFor(id) { return SD_BANNERS.find(b => b.id.test(id)) || null; }
+
+// Mé'en chaloch : le tableau d'une suite de trois lignes (céréales, vin, sept espèces), dans l'ordre du livre : de droite à gauche.
+const SD_MC_HEADS = ['Céréales (pâtisserie, pâtes…)', 'Vin', 'Les sept espèces'];
+const SD_MC_LABELS = { 'בחו"ל': 'Hors d\'Israël', 'וי"א גם': 'Certains ajoutent' };
 
 // Les inclinaisons (usage séfarade) : au début et à la conclusion de la 1re bénédiction, et de la bénédiction de reconnaissance (Modim).
 // Le signe est un nœud { t: 'text', v: '', k: 'bow' } glissé dans l'arbre avant le mot (le texte, lui, n'est pas modifié).
@@ -1933,7 +2025,9 @@ const SD_DAY_RULES = [
     // Arvit : « Ata 'honantanou » à la sortie de Chabbat et de fête ; Kaddich Titqabal les autres soirs ; ajouts de la sortie de Chabbat.
     { id: 'arvit-amida', head: /^במוצאי שבת ויום טוב מוסיפים/, label: 'Sortie de Chabbat ou de fête : « Ata \'honantanou »', on: c => c.weekday === 0 || sdPrevYomTov(c) },
     { id: 'arvit-amida', head: /^בכל לילות החול מלבד מוצאי שבת/, usual: true, label: 'Kaddich Titqabal (sauf à la sortie de Chabbat)', on: c => c.weekday !== 0 },
-    { id: 'arvit-amida', head: /^במוצאי שבת/, label: 'Sortie de Chabbat : Vihi noam, Véata kadoch…', on: c => c.weekday === 0, until: /^שיר למעלות/ },
+    // La sortie de Chabbat commence à « Chouva » ; la requête facultative qui le précède (« לפני שובה ») est repliée à part, « selon le cas ».
+    { id: 'arvit-amida', head: /^במוצאי שבת/, label: 'Sortie de Chabbat : « Chouva »', on: c => c.weekday === 0, until: /^שיר למעלות/,
+        optional: { head: /^לפני .?שובה.? יש נוהגים/, until: /^שובה/, label: 'Requête facultative avant « Chouva »' } },
     // Birkhot hacha'har : pas de « chéassa li kol tsorki » le 9 Av et à Kippour.
     { id: 'birkhot-hachahar', head: /^בתשעה באב וביום הכיפורים/, usual: true, label: '« Chéassa li kol tsorki » (sauf 9 Av et Kippour)', on: c => !c.flags.tishaBav && !(c.hebrew.month === 'Tishri' && c.hebrew.day === 10) },
     // Les passages qui ne se disent que les jours avec Tahanoun, ou seulement les jours sans.
@@ -1968,10 +2062,21 @@ function sdMonThuBlock(sectionId, bares, i) {
     const r = SD_DAY_RULES.find(x => (x.id instanceof RegExp ? x.id.test(sectionId) : x.id === sectionId) && x.head.test(bares[i]));
     if (!r || i + 1 >= bares.length) return null;
     if (r.usual && r.on(sdCtx)) return null;
-    let to = i + 1;
+    const state = r.on(sdCtx) ? 'on' : 'off';
+    let from = i + 1;
+    // Un passage facultatif annoncé au début du bloc (le jour où il s'applique) : replié à part, « selon le cas », et hors du bloc.
+    const pre = [];
+    if (state === 'on' && r.optional && r.optional.head.test(bares[from])) {
+        let to = from + 1;
+        while (to + 1 < bares.length && !r.optional.until.test(bares[to + 1])) to++;
+        pre.push({ from: from + 1, to, label: r.optional.label, state: 'fold-unknown' });
+        from = to + 1;
+    }
+    if (from >= bares.length) return null;
+    let to = from;
     if (r.toEnd) to = bares.length - 1;
     else if (r.until) { while (to + 1 < bares.length && !r.until.test(bares[to + 1])) to++; }
-    return { from: i + 1, to, label: r.label, state: r.on(sdCtx) ? 'on' : 'off' };
+    return { from: from, to, label: r.label, state: state, pre: pre };
 }
 
 // Ce qui se dit avec un minyan (Kaddich, Qédoucha) : dans un bloc gris, marqué « Avec minyan ».
@@ -2045,10 +2150,209 @@ function sdAboutCard(about) {
     return card;
 }
 
+// Birkat haMazon : un « Harahaman » par ligne (la source en met plusieurs dans un segment, séparés par « * » ou par un point).
+const SD_HARAHAMAN = /([.:])\s+(?=ה[֑-ׇ]*ר[֑-ׇ]*ח[֑-ׇ]*מ[֑-ׇ]*ן)/g;
+function sdSplitHarahaman(node) {
+    if (!node.c) return;
+    const out = [];
+    node.c.forEach(k => {
+        if (k.t !== 'text' || (!/\*/.test(k.v) && !SD_HARAHAMAN.test(k.v))) { if (k.t === 'tag') sdSplitHarahaman(k); out.push(k); return; }
+        SD_HARAHAMAN.lastIndex = 0;
+        const parts = k.v.replace(SD_HARAHAMAN, '$1\u0001').split(/\s*\*\s*|\u0001/);
+        parts.forEach(part => {
+            if (!part.trim()) return;
+            if (out.length) out.push({ t: 'tag', n: 'br', c: [] });
+            out.push({ t: 'text', v: part.trim(), m: k.m });
+        });
+    });
+    node.c = out;
+}
+
+// Le Zimoun : avec dix hommes ou plus, on ajoute « Élohénou ». La source le met entre parenthèses (« (בעשרה ויותר: אלהינו) ») : on garde le mot ou on l'enlève.
+function sdApplyMinyan(node, ten) {
+    if (!node.c) return;
+    const out = [];
+    for (let n = 0; n < node.c.length; n++) {
+        const k = node.c[n];
+        const txt = k.t === 'tag' ? SiddurCore.plain(k).replace(/\s+/g, ' ').trim() : '';
+        if (k.t === 'tag' && k.n === 'small' && /^\(בעשרה/.test(txt) && /\)$/.test(txt)) {          // « (בעשרה ויותר: אלהינו) » tout entier dans le <small>
+            const b = k.c.filter(x => x.t === 'tag' && x.n === 'b')[0];
+            if (ten && b) out.push(b);
+            continue;
+        }
+        if (k.t === 'tag' && k.n === 'small' && txt === 'בעשרה') {                                    // « (<small>בעשרה</small> אלהינו) » : les parenthèses sont dans le texte autour
+            const prev = out[out.length - 1], next = node.c[n + 1];
+            if (prev && prev.t === 'text' && /\(\s*$/.test(prev.v) && next && next.t === 'text' && /\)/.test(next.v)) {
+                const at = next.v.indexOf(')');
+                prev.v = prev.v.replace(/\(\s*$/, '');
+                next.v = (ten ? next.v.slice(0, at) : '') + next.v.slice(at + 1);
+                continue;
+            }
+        }
+        if (k.t === 'tag') sdApplyMinyan(k, ten);
+        out.push(k);
+    }
+    node.c = out;
+}
+
+// Les réglages du Zimoun : le nombre d'hommes (3 à 9, dix ou plus) et, chez les Séfarades, la formule d'ouverture.
+function sdZimounControls(withForm) {
+    const box = sdEl('div', 'sd-guest-ctrls sd-zim-ctrls');
+    const row = (label, key, opts) => {
+        const r = sdEl('div', 'sd-guest-row');
+        r.appendChild(sdEl('span', 'sd-guest-lab', label));
+        const seg = sdEl('div', 'sd-seg-btns');
+        seg.setAttribute('role', 'group');
+        seg.setAttribute('aria-label', label);
+        opts.forEach(([v, txt]) => {
+            const b = sdEl('button', '', txt);
+            b.type = 'button';
+            b.setAttribute('aria-pressed', String(sdPrefs[key]) === String(v) ? 'true' : 'false');
+            b.onclick = () => { sdPrefs[key] = typeof v === 'number' ? v : v; sdSavePrefs(); sdRerender(); };
+            seg.appendChild(b);
+        });
+        r.appendChild(seg);
+        box.appendChild(r);
+    };
+    row('Hommes ayant mangé ensemble', 'zim', [[1, '1 ou 2'], [3, '3 à 9'], [10, '10 ou plus']]);
+    if (withForm && sdPrefs.zim !== 1) row('Formule d\'ouverture', 'zimForm', [['a', 'Hav lan…'], ['b', 'Birchoutkhèm…']]);
+    if (withForm && sdPrefs.zim !== 1) {
+        const lab = sdEl('label', 'sd-check');
+        const box1 = sdEl('input');
+        box1.type = 'checkbox';
+        box1.checked = !!sdPrefs.zimWed;
+        box1.onchange = () => { sdPrefs.zimWed = box1.checked; sdSavePrefs(); sdRerender(); };
+        lab.appendChild(box1);
+        lab.appendChild(sdEl('span', '', 'Mariage (ou Chéva Berakhot des sept jours qui suivent)'));
+        box.appendChild(lab);
+    }
+    const note = sdEl('p', 'sd-origin', sdPrefs.zim === 1 ? 'Seul ou à deux, on ne fait pas de Zimoun : on commence directement par la première bénédiction.' : 'Trois hommes adultes au moins doivent avoir mangé ensemble pour faire le Zimoun. À dix (minyan), on ajoute « Élohénou » et au moins sept d\'entre eux doivent avoir mangé du pain. Une fois que dix hommes ont mangé ensemble, il est interdit de se séparer en petits groupes pour le Zimoun.');
+    note.lang = 'fr';
+    box.appendChild(note);
+    return box;
+}
+function sdRoleEl(kind) { const r = sdEl('p', 'sd-role is-' + kind, SD_ROLES[kind]); r.lang = 'fr'; return r; }
+function sdHeLine(chunks) {
+    const p = sdEl('p', 'sd-seg'); p.lang = 'he'; p.dir = 'rtl';
+    chunks.forEach(c => { if (typeof c === 'string') p.appendChild(sdTextNode(c)); else if (c.ten === 10 && sdPrefs.zim === 10) { const b = sdEl('b'); b.appendChild(sdTextNode(c.he)); p.appendChild(b); } });
+    return p;
+}
+// Le Zimoun séfarade, dans l'ordre : l'officiant ouvre, l'assistance répond, l'officiant demande la permission, l'assistance bénit, l'officiant reprend.
+function sdZimounSefarade() {
+    const box = sdEl('div', 'sd-zimoun');
+    box.appendChild(sdZimounControls(true));
+    if (sdPrefs.zim === 1) return box;
+    const a = sdPrefs.zimForm !== 'b';
+    const ten = { ten: 10, he: ' אֱלֹהֵינוּ' };
+    if (sdPrefs.zimWed) {       // le Zimoun d'un mariage : « chéhassim'ha bim'ono », le poème d'ouverture, et la suite des sept bénédictions
+        const wl = (t) => { const e = sdEl('p', 'sd-origin', t); e.lang = 'fr'; return e; };
+        box.appendChild(sdRoleEl('lead'));
+        box.appendChild(wl('Le meneur tient une coupe de vin (kos chel bérakha) dans la main droite. Poème d\'ouverture, dit ou chanté avant le Zimoun :'));
+        box.appendChild(sdHeLine(['דְּוַי הָסֵר וְגַם חָרוֹן. וְאָז אִלֵּם בְּשִׁיר יָרוֹן. נְחֵנוּ בְּמַעְגְּלֵי צֶדֶק. שְׁעֵה בִּרְכַּת יְשׁוּרוּן.']));
+        box.appendChild(sdRoleEl('lead'));
+        box.appendChild(sdHeLine([a ? 'הַב לָן וְנִבְרִיךְ לְמַלְכָּא עִלָּאָה קַדִּישָׁא' : 'בִּרְשׁוּתְכֶם הַב לָן נְבָרֵךְ']));
+        box.appendChild(sdRoleEl('resp'));
+        box.appendChild(sdHeLine([a ? 'שָׁמַיִם' : 'נְבָרֵךְ']));
+        box.appendChild(sdRoleEl('lead'));
+        box.appendChild(sdHeLine(['בִּרְשׁוּת מַלְכָּא עִלָּאָה קַדִּישָׁא, וּבִרְשׁוּת מָרָנָן וְרַבָּנָן וְרַבּוֹתַי, וּבִרְשׁוּת הֶחָתָן וְהַכַּלָּה, נְבָרֵךְ', ten, ' שֶׁהַשִּׂמְחָה בִּמְעוֹנוֹ שֶׁאָכַלְנוּ מִשֶּׁלּוֹ']));
+        box.appendChild(sdRoleEl('resp'));
+        box.appendChild(sdHeLine(['בָּרוּךְ', ten, ' שֶׁהַשִּׂמְחָה בִּמְעוֹנוֹ שֶׁאָכַלְנוּ מִשֶּׁלּוֹ וּבְטוּבוֹ חָיִינוּ']));
+        box.appendChild(sdRoleEl('again'));
+        box.appendChild(sdHeLine(['בָּרוּךְ', ten, ' שֶׁהַשִּׂמְחָה בִּמְעוֹנוֹ שֶׁאָכַלְנוּ מִשֶּׁלּוֹ וּבְטוּבוֹ חָיִינוּ']));
+        box.appendChild(wl('Puis l\'officiant dit le Birkat haMazon à voix haute. Avec trois à neuf hommes, c\'est la même formule, sans « Élohénou ».'));
+        const fold = sdEl('details', 'sd-about');
+        fold.appendChild(sdEl('summary', '', 'Règles propres au mariage et aux Chéva Berakhot'));
+        [['Les sept bénédictions', 'À la fin du Birkat haMazon, on récite les sept bénédictions nuptiales sur une coupe de vin, souvent distribuées entre des invités que l\'on veut honorer. La bénédiction sur le vin (Boré péri haguéfen) se dit avant ou à la fin, selon l\'usage ; puis le marié, la mariée et les convives boivent.'],
+         ['Conditions', 'Pour dire les sept bénédictions complètes après le Zimoun : la présence d\'un minyan (dix hommes, dont le marié), celle des deux époux, et un repas pris chez le couple ou dans la salle de réception.'],
+         ['Partir avant la fin', 'Tous les invités de la salle forment un seul groupe pour le Zimoun. Comme les mariages se prolongent tard, un invité qui doit partir avant le Birkat haMazon général peut faire un Zimoun à trois avec d\'autres personnes qui partent aussi, ou dire son Birkat haMazon seul en cas de nécessité.']].forEach(r => {
+            const row = sdEl('p', 'sd-about-row');
+            row.lang = 'fr';
+            row.appendChild(sdEl('strong', '', r[0] + '. '));
+            row.appendChild(document.createTextNode(r[1]));
+            fold.appendChild(row);
+        });
+        box.appendChild(fold);
+        return box;
+    }
+    box.appendChild(sdRoleEl('lead'));
+    box.appendChild(sdHeLine([a ? 'הַב לָן וְנִבְרִיךְ לְמַלְכָּא עִלָּאָה קַדִּישָׁא' : 'בִּרְשׁוּתְכֶם הַב לָן נְבָרֵךְ']));
+    box.appendChild(sdRoleEl('resp'));
+    box.appendChild(sdHeLine([a ? 'שָׁמַיִם' : 'נְבָרֵךְ']));
+    box.appendChild(sdRoleEl('lead'));
+    box.appendChild(sdHeLine(['בִּרְשׁוּת מַלְכָּא עִלָּאָה קַדִּישָׁא, וּבִרְשׁוּת מָרָנָן וְרַבָּנָן וְרַבּוֹתַי, נְבָרֵךְ', ten, ' שֶׁאָכַלְנוּ מִשֶּׁלּוֹ']));
+    const more = sdEl('p', 'sd-origin', 'Selon l\'assistance, on ajoute aussi la permission du maître de maison (« birchout ba\'al habayit »), et des invités s\'il y en a.');
+    more.lang = 'fr';
+    box.appendChild(more);
+    box.appendChild(sdRoleEl('resp'));
+    box.appendChild(sdHeLine(['בָּרוּךְ', ten, ' שֶׁאָכַלְנוּ מִשֶּׁלּוֹ וּבְטוּבוֹ חָיִינוּ']));
+    box.appendChild(sdRoleEl('again'));
+    box.appendChild(sdHeLine(['בָּרוּךְ', ten, ' שֶׁאָכַלְנוּ מִשֶּׁלּוֹ וּבְטוּבוֹ חָיִינוּ']));
+    return box;
+}
+
+// Mé'en chaloch séfarade : les ajouts des jours particuliers (« בשבת » + texte, dans le même segment) deviennent des blocs « selon le jour », comme chez les Ashkénazes.
+const SD_MC_DAYS = [
+    { re: /^בשבת /, atoms: ['shabbat'], label: 'Chabbat' }, { re: /^בראש ?חודש /, atoms: ['rc'], label: 'Roch \'Hodech' },
+    { re: /^בראש ?השנה /, atoms: ['roshHashana'], label: 'Roch Hachana' }, { re: /^בפסח /, atoms: ['pesach'], label: 'Pessa\'h' },
+    { re: /^בשבועות /, atoms: ['shavuot'], label: 'Chavouot' }, { re: /^בסוכות /, atoms: ['sukkot'], label: 'Souccot' },
+    { re: /^בשמיני עצרת /, atoms: ['shemini'], label: 'Chémini Atséret' }
+];
+
+// Le bandeau d'une section (voir SD_BANNERS).
+function sdBannerEl(b) {
+    const box = sdEl('header', 'sd-banner');
+    box.appendChild(sdEl('p', 'sd-banner-fr', b.fr));
+    if (b.sub) box.appendChild(sdEl('p', 'sd-banner-sub', b.sub));
+    const he = sdEl('h4', 'sd-title');
+    he.lang = 'he'; he.dir = 'rtl';
+    he.appendChild(sdTextNode(b.he));
+    box.appendChild(he);
+    if (b.intro) { const p = sdEl('p', 'sd-banner-intro', b.intro); p.lang = 'fr'; box.appendChild(p); }
+    if (b.legend) {
+        const g = sdEl('div', 'sd-vtab sd-vtab-fr');
+        b.legend.forEach(c => { const h = sdEl('div', 'sd-vtab-head', c[0]); h.lang = 'fr'; g.appendChild(h); });
+        b.legend.forEach((c, n) => { const e = sdEl('div', 'sd-vtab-cell' + (n === 0 ? ' is-first' : ''), c[1]); e.lang = 'fr'; g.appendChild(e); });
+        box.appendChild(g);
+    }
+    return box;
+}
+
+// Mé'en chaloch : le tableau de trois lignes (céréales, vin, sept espèces). Chaque ligne est « consigne + texte » (séfarade : « אם אכל מזונות יאמר » puis
+// le texte ; avec « של ארץ ישראל » au milieu, deux textes : hors d'Israël puis Terre d'Israël) ou « consigne— texte » (ashkénaze, avec ses variantes entre parenthèses).
+function sdMcCells(tree) {
+    const kids = tree.c.filter(k => !sdBlank(k));
+    const smalls = kids.filter(k => k.t === 'tag' && k.n === 'small');
+    if (smalls.length >= 4 && SiddurCore.plain(smalls[2]).replace(/\s+/g, ' ').trim() === 'של ארץ ישראל') return [smalls[1].c, smalls[3].c];
+    if (smalls.length === 2 && kids.length === 2) return [smalls[1].c];                    // consigne + texte, chacun dans son <small>
+    const rest = kids.slice(1);                                                           // la consigne vient en premier
+    return [rest.map(k => k.t === 'text' ? { t: 'text', v: k.v.replace(/[—()]/g, ''), m: k.m } : k)];
+}
+function sdMcTable(trees) {
+    const cols = trees.map(sdMcCells);
+    const rows = Math.max.apply(null, cols.map(c => c.length));
+    const box = sdEl('div', 'sd-vtab');
+    box.dir = 'rtl';
+    SD_MC_HEADS.forEach(h => { const e = sdEl('div', 'sd-vtab-head', h); e.lang = 'fr'; e.dir = 'ltr'; box.appendChild(e); });
+    for (let r = 0; r < rows; r++) {
+        if (rows > 1) { const cap = sdEl('div', 'sd-vtab-cap', r === 0 ? 'Si la nourriture ne provient pas d\'Israël' : 'Si la nourriture provient d\'Israël'); cap.lang = 'fr'; cap.dir = 'ltr'; box.appendChild(cap); }
+        cols.forEach((c, n) => {
+            const cell = sdEl('div', 'sd-vtab-cell' + (n === 0 ? ' is-first' : '')); cell.lang = 'he'; cell.dir = 'rtl';
+            (c[r] || []).forEach(k => {
+                const lab = k.t === 'tag' && k.n === 'small' ? SD_MC_LABELS[SiddurCore.plain(k).replace(/\s+/g, ' ').trim()] : null;
+                if (lab) { const l = sdEl('span', 'sd-vtab-lab', lab); l.lang = 'fr'; l.dir = 'ltr'; cell.appendChild(l); }
+                else sdRenderNodes([k], cell, true);
+            });
+            box.appendChild(cell);
+        });
+    }
+    return box;
+}
+
 function sdRenderSection(section) {
     const box = sdEl('section', 'sd-section-box');
     box.id = 'sd-sec-' + section.id;
-    if (sdView.ids.length > 1) {
+    const banner = sdBannerFor(section.id);
+    if (sdView.ids.length > 1 && !banner) {
         const head = sdEl('h4', 'sd-sec-head');
         head.appendChild(sdEl('span', '', section.fr));
         const he = sdEl('span', 'sd-sec-head-he', section.he);
@@ -2065,9 +2369,14 @@ function sdRenderSection(section) {
     if (Number.isInteger(trimFrom)) for (let k = trimFrom; k < section.segments.length; k++) prof.hidden.add(k);
     const trees = prof.segments.map(html => SiddurCore.analyseSegment(html, counter));
     const amida = sdIsAmida(section.id);
+    const bkList = sdBerakhotFor(section.id);           // les bénédictions à titrer (Amida, Birkat haMazon), ou null
     const bares = trees.map(sdBare);
+    const bhSection = /^birkat-hamazon/.test(section.id);
+    const mcAt = {};
+    if (/^al-hamihya/.test(section.id)) SiddurCore.mcTables(bares).forEach(tb => { mcAt[tb.from] = tb; });
     let bows = 0;
     trees.forEach((tr, k) => { if (amida) bows += sdAddBows(tr, bares[k]); sdMarkNames(tr); });
+    if (bhSection) trees.forEach(tr => { sdApplyMinyan(tr, sdPrefs.zim === 10); sdSplitHarahaman(tr); });
     const groups = SiddurCore.groups(section.segments);
     const byHeader = {};
     groups.forEach(g => { byHeader[g.header] = g; });
@@ -2079,6 +2388,8 @@ function sdRenderSection(section) {
     const frOf = (i) => { const tr = frAll && frAll[i]; return tr && tr[0] === SiddurCore.fingerprint(section.segments[i]) ? ProfileCore.adaptFr(tr[1], gender) : null; };
     if (sdPrefs.fr && !frAll) box.appendChild(sdEl('p', 'sd-fr-missing', t('tools.sd_fr_missing')));
     const seg = (i) => {
+        const role = /^birkat-hamazon/.test(section.id) ? SiddurCore.zimounRole(bares[i]) : null;
+        if (role) { const r = sdEl('p', 'sd-role is-' + role, SD_ROLES[role]); r.lang = 'fr'; return r; }
         const fr = frOf(i);
         let el = sdRenderSegment(trees[i], i, fr);
         if (amida && sdPrefs.jx && /^(אדני שפתי|ברוך אתה .*אלהינו ואלהי אבותינו)/.test(bares[i])) {
@@ -2099,10 +2410,12 @@ function sdRenderSection(section) {
     // La Qédoucha de la répétition : dans un bloc gris, de son titre jusqu'à la bénédiction suivante.
     let out = box;
     let open = null;
+    let pendingEnd = null;     // « Fin de la quatrième bérakha » : après le segment qui la porte
+    const flushEnd = () => { if (!pendingEnd) return; const p = sdEl('p', 'sd-hat', '(' + pendingEnd + ')'); p.lang = 'fr'; out.appendChild(p); pendingEnd = null; };
     const headFor = (from, to) => {
-        if (!amida) return;
+        if (!bkList) return;
         for (let k = from; k <= to; k++) {
-            const b = sdBerakhaStart(bares[k]);
+            const b = sdBerakhaStart(bares[k], bkList);
             if (!b || seen[b.id]) continue;
             seen[b.id] = true;
             out = box;
@@ -2121,6 +2434,8 @@ function sdRenderSection(section) {
             he.lang = 'he'; he.dir = 'rtl';
             h.appendChild(he);
             out.appendChild(h);
+            if (b.origin && !(k > 0 && SD_BH_SRC_NOTE.test(bares[k - 1]))) { const o = sdEl('p', 'sd-origin', b.origin); o.lang = 'fr'; out.appendChild(o); }
+            pendingEnd = b.endNote || null;
             open = b.hat ? b : null;
             return;
         }
@@ -2142,6 +2457,27 @@ function sdRenderSection(section) {
     let i = 0;
     while (i < trees.length) {
         if (prof.hidden.has(i)) { i++; continue; }       // la version de l'autre profil
+        if (i === 0 && banner) { box.appendChild(sdBannerEl(banner)); i++; continue; }
+        if (mcAt[i]) { out.appendChild(sdMcTable(trees.slice(i, mcAt[i].to + 1))); i = mcAt[i].to + 1; continue; }
+        if (section.id === 'birkat-hamazon' && i === 4 && /^אם המסובים שלושה/.test(bares[4]) && /^ברוך אתה/.test(bares[15] || '')) { out.appendChild(sdZimounSefarade()); i = 15; continue; }
+        if (bhSection && section.id !== 'birkat-hamazon' && /^שלושה שאכלו/.test(bares[i])) {
+            out.appendChild(sdZimounControls(false));
+            if (sdPrefs.zim === 1) {                       // sans Zimoun : on saute jusqu'à la première bénédiction (avec la note d'origine de la source, s'il y en a une)
+                let j = bares.findIndex(b => SD_BH[0].start.test(b));
+                if (j > i) { if (SD_BH_SRC_NOTE.test(bares[j - 1])) j--; i = j; continue; }
+            }
+        }
+        const mcDay = section.id === 'al-hamihya' ? SD_MC_DAYS.find(d => d.re.test(bares[i])) : null;
+        if (mcDay) {
+            const smalls = trees[i].c.filter(k => k.t === 'tag' && k.n === 'small').slice(1);
+            out.appendChild(sdVarBlock(mcDay.atoms, mcDay.label, SiddurCore.plain(smalls), host => {
+                const p = sdEl('p', 'sd-seg'); p.lang = 'he'; p.dir = 'rtl';
+                smalls.forEach((sm, n) => { if (n) p.appendChild(document.createTextNode(' ')); sdRenderNodes(sm.c, p); });
+                host.appendChild(p);
+            }));
+            i++;
+            continue;
+        }
         if (amida && out === box && /^קדושה/.test(bares[i])) { out = sdMinyanBox('Qédoucha'); box.appendChild(out); }
         const ps = psalmDay && i + 1 < trees.length ? SiddurCore.dayPsalm(SiddurCore.plain(trees[i]), sdCtx) : null;
         if (ps) {
@@ -2193,13 +2529,16 @@ function sdRenderSection(section) {
         if (kEnd >= 0) { const kb = sdMinyanBox('Kaddich'); for (let k = i; k <= kEnd; k++) kb.appendChild(seg(k)); out.appendChild(kb); i = kEnd + 1; continue; }
         const mt = sdMonThuBlock(section.id, bares, i);
         if (mt) {
+            mt.pre.forEach(p => out.appendChild(sdVarBlock([], p.label, SiddurCore.plain(trees.slice(p.from, p.to + 1)), host => sdAppendSegs(host, p.from, p.to, bares, byHeader, seg), p.state)));
             out.appendChild(sdVarBlock([], mt.label, SiddurCore.plain(trees.slice(mt.from, mt.to + 1)), host => sdAppendSegs(host, mt.from, mt.to, bares, byHeader, seg), mt.state));
             i = mt.to + 1;
             continue;
         }
         const g = byHeader[i];
         if (!g) {
-            headFor(i, i); out.appendChild(seg(i)); hatAfter(i, i);
+            headFor(i, i); out.appendChild(seg(i)); hatAfter(i, i); flushEnd();
+            const sh = sdPrefs.fr ? null : sdShortHat(section.id, bares[i]);
+            if (sh) { const hp = sdEl('p', 'sd-hat', '[… ' + sh + '.]'); hp.lang = 'fr'; out.appendChild(hp); }
             if (section.id === 'birkat-hamazon' && /^הרחמן הוא יטע תורתו/.test(bares[i])) out.appendChild(sdGuestBlock());
             if (section.id === 'chacharit-tora' && /אשר בחר בנו מכל העמים/.test(bares[i])) out.appendChild(sdReadingButton());
             i++; continue;
@@ -2224,8 +2563,19 @@ function sdRenderSection(section) {
         }
         // été / hiver de Barekh alénou : deux blocs de suite, la conclusion vient après le second
         const nextG = byHeader[g.to + 1];
-        hatAfter(g.from, g.to, !!(nextG && sdBerakhaStart(bares[nextG.from]) && open && sdBerakhaStart(bares[nextG.from]).id === open.id));
+        hatAfter(g.from, g.to, !!(nextG && sdBerakhaStart(bares[nextG.from], bkList) && open && sdBerakhaStart(bares[nextG.from], bkList).id === open.id));
         i = g.to + 1;
+    }
+    if (section.id === 'birkat-hamazon' && sdPrefs.zimWed && sdPrefs.zim !== 1) {
+        const note = sdEl('div', 'sd-chevaberakhot');
+        const tx = sdEl('p', 'sd-origin', 'Repas de mariage : on récite maintenant les sept bénédictions nuptiales sur une coupe de vin (voir le texte).');
+        tx.lang = 'fr';
+        note.appendChild(tx);
+        const btn = sdEl('button', 'tool-history-chip', 'Ouvrir les sept bénédictions');
+        btn.type = 'button';
+        btn.onclick = () => sdOpen(['cheva-berakhot'], 'Chéva berakhot');
+        note.appendChild(btn);
+        box.appendChild(note);
     }
     return box;
 }

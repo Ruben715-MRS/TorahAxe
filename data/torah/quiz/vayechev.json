@@ -1,0 +1,269 @@
+{
+ "v": 1,
+ "parasha": "Vayéchev",
+ "levels": {
+  "1": [
+   {
+    "q": "Quel présent Jacob fait-il à Joseph, qui provoque la jalousie de ses frères ?",
+    "a": "Une tunique à rayures",
+    "w": [
+     "Un troupeau de brebis",
+     "Une tente à part",
+     "Un bâton de berger"
+    ],
+    "ref": "37:3",
+    "proof": [
+     "tunique à rayures"
+    ],
+    "x": "Israël préférait Joseph, le fils de sa vieillesse, et lui fit une tunique à rayures."
+   },
+   {
+    "q": "Que voit Joseph se prosterner devant lui dans son second songe ?",
+    "a": "Le soleil, la lune et onze étoiles",
+    "w": [
+     "Onze gerbes de blé",
+     "Douze étoiles et la lune",
+     "Le soleil et sept étoiles"
+    ],
+    "ref": "37:9",
+    "proof": [
+     "soleil",
+     "onze étoiles"
+    ],
+    "x": "Dans le premier songe, ce sont les gerbes de ses frères qui se prosternent ; dans le second, le soleil, la lune et onze étoiles."
+   },
+   {
+    "q": "Pour combien de pièces d'argent Joseph est-il vendu aux Ismaélites ?",
+    "a": "Vingt pièces d'argent",
+    "w": [
+     "Dix pièces d'argent",
+     "Trente pièces d'argent",
+     "Cent pièces d'argent"
+    ],
+    "ref": "37:28",
+    "proof": [
+     "vingt pièces d'argent"
+    ],
+    "x": "Des marchands madianites tirèrent Joseph de la citerne et le vendirent aux Ismaélites pour vingt pièces d'argent."
+   },
+   {
+    "q": "Chez qui Joseph est-il vendu en Égypte ?",
+    "a": {
+     "t": "Putiphar",
+     "he": "פּוֹטִיפַר"
+    },
+    "w": [
+     {
+      "t": "Pharaon",
+      "he": "פַּרְעֹה"
+     },
+     {
+      "t": "Hamor",
+      "he": "חֲמוֹר"
+     },
+     {
+      "t": "Laban",
+      "he": "לָבָן"
+     }
+    ],
+    "ref": "37:36",
+    "proof": [
+     "Putiphar"
+    ],
+    "x": "Les Madianites le vendirent en Égypte à Putiphar, officier de Pharaon, chef des gardes."
+   },
+   {
+    "q": "Comment s'appelle la belle-fille de Juda dont il reconnaît : « Elle est plus juste que moi » ?",
+    "a": {
+     "t": "Thamar",
+     "he": "תָּמָר"
+    },
+    "w": [
+     {
+      "t": "Bilha",
+      "he": "בִלְהָה"
+     },
+     {
+      "t": "Zilpa",
+      "he": "זִלְפָּה"
+     },
+     {
+      "t": "Dina",
+      "he": "דִּינָה"
+     }
+    ],
+    "ref": "38:24-26",
+    "proof": [
+     "Thamar",
+     "plus juste que moi"
+    ],
+    "x": "Juda reconnaît son sceau, son cordon et son bâton, et dit : « Elle est plus juste que moi. »"
+   }
+  ],
+  "2": [
+   {
+    "q": "Quel gage Thamar demande-t-elle à Juda ?",
+    "a": "Son sceau, son cordon et son bâton",
+    "w": [
+     "Sa ceinture, son manteau et son anneau",
+     "Sa coupe, son sceau et son manteau",
+     "Son bâton, sa tunique et ses sandales"
+    ],
+    "ref": "38:18",
+    "proof": [
+     "sceau",
+     "cordon",
+     "bâton"
+    ],
+    "x": "Il les lui donna, il approcha d'elle et elle conçut de son fait."
+   },
+   {
+    "q": "Qu'est-ce que Thamar met au monde ?",
+    "a": "Des jumeaux",
+    "w": [
+     "Un seul fils",
+     "Trois fils",
+     "Une fille"
+    ],
+    "ref": "38:27",
+    "proof": [
+     "jumeaux"
+    ],
+    "x": "Lors de son enfantement, il se trouva qu'elle portait des jumeaux dans son sein."
+   },
+   {
+    "q": "Dans quel état est la citerne où les frères jettent Joseph ?",
+    "a": "Elle est vide, sans une goutte d'eau",
+    "w": [
+     "Elle est à moitié pleine d'eau",
+     "Elle est remplie de ronces",
+     "Elle est pleine de sable"
+    ],
+    "ref": "37:24",
+    "proof": [
+     "vide",
+     "sans eau"
+    ],
+    "x": "« Cette citerne était vide et sans eau. »"
+   },
+   {
+    "q": "Lequel des frères propose de jeter Joseph dans la citerne pour le sauver de leurs mains ?",
+    "a": {
+     "t": "Ruben",
+     "he": "רְאוּבֵן"
+    },
+    "w": [
+     {
+      "t": "Juda",
+      "he": "יְהוּדָה"
+     },
+     {
+      "t": "Siméon",
+      "he": "שִׁמְעוֹן"
+     },
+     {
+      "t": "Lévi",
+      "he": "לֵוִי"
+     }
+    ],
+    "ref": "37:21-22",
+    "proof": [
+     "Ruben",
+     "citerne"
+    ],
+    "x": "Ruben voulait le sauver de leurs mains et le ramener à son père."
+   },
+   {
+    "q": "Quels deux officiers de Pharaon sont détenus avec Joseph et font un rêve la même nuit ?",
+    "a": "L'échanson et le panetier",
+    "w": [
+     "Le chef des gardes et le scribe",
+     "Le maître des chevaux et l'échanson",
+     "Le chef des mages et le panetier"
+    ],
+    "ref": "40:1-2",
+    "proof": [
+     "échanson",
+     "panetier"
+    ],
+    "x": "L'échanson et le panetier du roi d'Égypte avaient offensé leur maître."
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, qui est l'« homme » qui trouve Joseph errant dans les champs de Sichem ?",
+    "a": "L'ange Gabriel",
+    "w": [
+     "Le prophète Élie",
+     "Un berger de Sichem",
+     "L'ange Raphaël"
+    ],
+    "ref": "37:15",
+    "proof": [
+     "גבריאל"
+    ],
+    "x": "Rachi sur Genèse 37:15 : cet homme est Gabriel."
+   },
+   {
+    "q": "Selon Rachi, que signifie que la citerne est « vide, sans eau » ?",
+    "a": "Qu'elle n'avait pas d'eau, mais qu'elle contenait des serpents et des scorpions",
+    "w": [
+     "Qu'elle n'avait pas d'eau, mais qu'elle était remplie de sable",
+     "Qu'elle n'avait pas d'eau, mais qu'elle était pleine d'ossements",
+     "Qu'elle n'avait pas d'eau, mais qu'une lumière l'éclairait"
+    ],
+    "ref": "37:24",
+    "proof": [
+     "נחשים",
+     "עקרבים"
+    ],
+    "x": "Rachi sur Genèse 37:24 : « sans eau », mais il y avait des serpents et des scorpions."
+   },
+   {
+    "q": "Selon Rachi, comment comprendre que Joseph soit vendu tantôt aux Madianites, tantôt aux Ismaélites ?",
+    "a": "Il a été vendu plusieurs fois : par ses frères aux Ismaélites, par ceux-ci aux Madianites, puis aux Égyptiens",
+    "w": [
+     "Les Ismaélites et les Madianites formaient une seule caravane",
+     "Les frères l'ont vendu aux Madianites, qui l'ont revendu à Putiphar sans passer par d'autres",
+     "Il a d'abord été vendu aux Égyptiens, puis racheté par des Ismaélites"
+    ],
+    "ref": "37:28",
+    "proof": [
+     "לישמעאלים",
+     "למדינים"
+    ],
+    "x": "Rachi sur Genèse 37:28 : ses frères le vendirent aux Ismaélites, les Ismaélites aux Madianites, et les Madianites aux Égyptiens."
+   },
+   {
+    "q": "Selon Rachi, pourquoi Thamar dit-elle « à qui appartiennent ces objets » sans nommer Juda ?",
+    "a": "Pour ne pas le faire rougir en public : s'il avouait, il avouerait de lui-même, sinon elle préférait être brûlée",
+    "w": [
+     "Pour que Juda ne puisse pas la faire taire avant le jugement",
+     "Parce qu'elle ne savait pas qui était le propriétaire du sceau",
+     "Pour que les juges découvrent eux-mêmes le coupable"
+    ],
+    "ref": "38:25",
+    "proof": [
+     "להלבין",
+     "פניו"
+    ],
+    "x": "Rachi sur Genèse 38:25 : elle ne voulut pas faire rougir Juda ; mieux vaut se jeter dans la fournaise que faire rougir son prochain en public."
+   },
+   {
+    "q": "Selon Rachi, pourquoi Joseph reste-t-il deux années de plus en prison après avoir demandé à l'échanson de se souvenir de lui ?",
+    "a": "Parce qu'il a compté sur l'échanson, au lieu de placer sa confiance en Dieu seul",
+    "w": [
+     "Parce que Pharaon avait ordonné de prolonger sa peine",
+     "Parce qu'il avait manqué de respect à l'échanson",
+     "Parce que le panetier avait témoigné contre lui"
+    ],
+    "ref": "40:23",
+    "proof": [
+     "שתי שנים",
+     "מבטחו"
+    ],
+    "x": "Rachi sur Genèse 40:23 : pour avoir mis sa confiance dans l'échanson, Joseph dut rester emprisonné deux ans de plus."
+   }
+  ]
+ }
+}
