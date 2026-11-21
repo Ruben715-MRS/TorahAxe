@@ -1,0 +1,236 @@
+{
+ "v": 1,
+ "parasha": "Béha'alotekha",
+ "levels": {
+  "1": [
+   {
+    "q": "Combien de lampes Aaron dispose-t-il face au candélabre ?",
+    "a": "Sept lampes",
+    "w": [
+     "Six lampes, une pour chaque branche",
+     "Douze lampes, une pour chaque tribu",
+     "Trois lampes sur chaque côté"
+    ],
+    "ref": "8:2",
+    "proof": [
+     "sept lampes"
+    ],
+    "x": "Elles projettent la lumière vis-à-vis de la face du candélabre."
+   },
+   {
+    "q": "À partir de quel âge un Lévite est-il admis au service de la tente d'assignation ?",
+    "a": "À partir de vingt-cinq ans",
+    "w": [
+     "À partir de treize ans, âge de la majorité",
+     "À partir de trente ans, comme les autres Lévites",
+     "À partir de quarante ans, âge de la sagesse"
+    ],
+    "ref": "8:24",
+    "proof": [
+     "vingt-cinq ans"
+    ],
+    "x": "Ceci concerne les Lévites : à cinquante ans, ils se retirent du service."
+   },
+   {
+    "q": "Que doit fabriquer Moïse pour convoquer la communauté et faire décamper les légions ?",
+    "a": "Deux trompettes d'argent, d'une seule pièce",
+    "w": [
+     "Deux cors de bélier, sertis d'argent",
+     "Deux trompettes de cuivre, ornées d'or",
+     "Deux tambours d'argent, tendus de peaux"
+    ],
+    "ref": "10:2",
+    "proof": [
+     "deux trompettes d'argent"
+    ],
+    "x": "Elles seront façonnées d'une seule pièce."
+   },
+   {
+    "q": "Comment la Torah décrit-elle Moïse ?",
+    "a": "Fort humble, plus qu'aucun homme sur la terre",
+    "w": [
+     "Fort savant, plus qu'aucun homme sur la terre",
+     "Fort patient, plus qu'aucun homme du désert",
+     "Fort juste, plus que tous les anciens d'Israël"
+    ],
+    "ref": "12:3",
+    "proof": [
+     "fort humble"
+    ],
+    "x": "Cette phrase suit la médisance de Miryam et d'Aaron."
+   },
+   {
+    "q": "Combien de jours Miryam est-elle séquestrée hors du camp, après avoir été frappée de lèpre ?",
+    "a": "Sept jours",
+    "w": [
+     "Trois jours",
+     "Quarante jours",
+     "Quatorze jours"
+    ],
+    "ref": "12:15",
+    "proof": [
+     "sept jours"
+    ],
+    "x": "Le peuple ne repart que lorsque Miryam est réintégrée."
+   }
+  ],
+  "2": [
+   {
+    "q": "À quelle date ceux qui n'ont pu faire la Pâque, souillés ou en voyage lointain, la font-ils ?",
+    "a": "Au deuxième mois, le quatorzième jour, vers le soir",
+    "w": [
+     "Au premier mois, le quinzième jour, au matin",
+     "Au septième mois, le dixième jour, à midi",
+     "Au troisième mois, le sixième jour, vers le soir"
+    ],
+    "ref": "9:11",
+    "proof": [
+     "deuxième mois, le quatorzième jour"
+    ],
+    "x": "Ils la mangent avec des azymes et des herbes amères."
+   },
+   {
+    "q": "Combien d'anciens Moïse doit-il assembler devant la tente d'assignation ?",
+    "a": "Soixante-dix hommes",
+    "w": [
+     "Douze hommes, un par tribu",
+     "Soixante hommes, dix par légion",
+     "Soixante-douze hommes, six par tribu"
+    ],
+    "ref": "11:16",
+    "proof": [
+     "soixante-dix hommes"
+    ],
+    "x": "Dieu détourne une partie de l'esprit de Moïse et la reporte sur eux."
+   },
+   {
+    "q": "Qui prophétise dans le camp avec Médad, selon le jeune homme qui l'annonce à Moïse ?",
+    "a": {
+     "t": "Eldad",
+     "he": "אֶלְדָּד"
+    },
+    "w": [
+     {
+      "t": "Nahchôn",
+      "he": "נַחְשׁוֹן"
+     },
+     {
+      "t": "Nethanel",
+      "he": "נְתַנְאֵל"
+     },
+     {
+      "t": "Ahira",
+      "he": "אֲחִירַע"
+     }
+    ],
+    "ref": "11:27",
+    "proof": [
+     "Eldad et Médad"
+    ],
+    "x": "Un jeune homme court l'annoncer à Moïse."
+   },
+   {
+    "q": "Combien d'omer celui qui en recueillit le moins ramasse-t-il de cailles ?",
+    "a": "Dix omer",
+    "w": [
+     "Un seul omer",
+     "Sept omer",
+     "Cent omer"
+    ],
+    "ref": "11:32",
+    "proof": [
+     "dix omer"
+    ],
+    "x": "Le peuple ramasse les cailles tout ce jour-là, toute la nuit et toute la journée du lendemain."
+   },
+   {
+    "q": "À quelle hauteur les cailles tombent-elles sur le sol autour du camp ?",
+    "a": "Environ deux coudées",
+    "w": [
+     "Environ une coudée seulement",
+     "Environ dix coudées",
+     "Environ une journée de marche"
+    ],
+    "ref": "11:31",
+    "proof": [
+     "deux coudées"
+    ],
+    "x": "Un vent les suscite du côté de la mer, dans un rayon d'une journée de part et d'autre."
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, pourquoi la section du candélabre suit-elle celle des offrandes des phylarques ?",
+    "a": "Parce qu'Aaron était affligé de n'avoir pas pris part à l'inauguration, et Dieu lui promet une part plus grande",
+    "w": [
+     "Parce que les chefs avaient offert le candélabre lui-même",
+     "Parce que le candélabre est le premier objet à inaugurer",
+     "Parce que la lumière annonce la fin des offrandes"
+    ],
+    "ref": "8:2",
+    "proof": [
+     "חייך שלך גדולה משלהם"
+    ],
+    "x": "Rachi sur Nombres 8:2 : Aaron se découragea en voyant l'inauguration des chefs ; Dieu lui dit : « par ta vie, la tienne est plus grande que la leur : tu allumes et prépares les lampes »."
+   },
+   {
+    "q": "Selon Rachi, que signifie « voici l'ouvrage du candélabre » (vezeh), à propos du candélabre ?",
+    "a": "Que Dieu le lui a montré du doigt, car Moïse avait de la peine à le comprendre",
+    "w": [
+     "Que Moïse l'a taillé de ses propres mains dans l'or",
+     "Que le candélabre est un symbole de la lumière divine",
+     "Que les Lévites l'ont fabriqué sous la direction d'Aaron"
+    ],
+    "ref": "8:4",
+    "proof": [
+     "נתקשה",
+     "באצבע"
+    ],
+    "x": "Rachi sur Nombres 8:4 : Dieu le lui a montré du doigt car Moïse avait eu de la peine à le réaliser ; c'est pourquoi « et ceci »."
+   },
+   {
+    "q": "Selon Rachi, que signifie « le peuple fut comme des gens qui se plaignent » (kemitonenim) ?",
+    "a": "Qu'ils cherchaient un prétexte pour se détourner de Dieu",
+    "w": [
+     "Qu'ils se plaignaient de la fatigue du voyage seulement",
+     "Qu'ils se plaignaient de manquer d'eau",
+     "Qu'ils se plaignaient du chef Moïse seul"
+    ],
+    "ref": "11:1",
+    "proof": [
+     "עלילה"
+    ],
+    "x": "Rachi sur Nombres 11:1 : « mitonenim » est un langage de prétexte : ils cherchaient un prétexte pour s'éloigner de Dieu."
+   },
+   {
+    "q": "Selon Rachi, comment Miryam a-t-elle appris que Moïse s'était séparé de sa femme ?",
+    "a": "Elle était à côté de Tsippora quand on annonça à Moïse qu'Eldad et Médad prophétisaient",
+    "w": [
+     "Elle l'a vu elle-même en passant devant sa tente",
+     "Aaron le lui a dit en secret",
+     "Tsippora le lui a raconté à Madian"
+    ],
+    "ref": "12:1",
+    "proof": [
+     "צפורה",
+     "אלדד ומידד"
+    ],
+    "x": "Rachi sur Nombres 12:1 : rabbi Nathan dit : Miryam était à côté de Tsippora quand on dit à Moïse « Eldad et Médad prophétisent »."
+   },
+   {
+    "q": "Selon Rachi, pourquoi Moïse prie-t-il « qu'elle ne soit pas comme un mort » ?",
+    "a": "Parce que le lépreux est considéré comme un mort",
+    "w": [
+     "Parce que Miryam était sur le point de mourir",
+     "Parce que la lèpre venait d'un ange de la mort",
+     "Parce que la lèpre était une malédiction héréditaire"
+    ],
+    "ref": "12:12",
+    "proof": [
+     "המצרע חשוב כמת"
+    ],
+    "x": "Rachi sur Nombres 12:12 : le lépreux est considéré comme un mort ; comme le mort, il rend impur par l'entrée sous son toit."
+   }
+  ]
+ }
+}

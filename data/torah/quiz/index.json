@@ -10,9 +10,36 @@
     "3": 5
    }
   },
+  "balaq": {
+   "index": 39,
+   "fr": "Balaq",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "bamidbar": {
+   "index": 33,
+   "fr": "Bamidbar",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
   "bechalla-h": {
    "index": 15,
    "fr": "Béchalla'h",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "beha-alotekha": {
+   "index": 35,
+   "fr": "Béha'alotekha",
    "counts": {
     "1": 5,
     "2": 5,
@@ -46,6 +73,15 @@
     "3": 5
    }
   },
+  "chela-h": {
+   "index": 36,
+   "fr": "Chela'h",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
   "chemini": {
    "index": 25,
    "fr": "Chemini",
@@ -73,9 +109,36 @@
     "3": 5
    }
   },
+  "houqat": {
+   "index": 38,
+   "fr": "'Houqat",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
   "ki-tissa": {
    "index": 20,
    "fr": "Ki Tissa",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "mase": {
+   "index": 42,
+   "fr": "Masé",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "matot": {
+   "index": 41,
+   "fr": "Matot",
    "counts": {
     "1": 5,
     "2": 5,
@@ -109,6 +172,15 @@
     "3": 5
    }
   },
+  "nasso": {
+   "index": 34,
+   "fr": "Nasso",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
   "pekoude": {
    "index": 22,
    "fr": "Pekoudé",
@@ -118,9 +190,27 @@
     "3": 5
    }
   },
+  "pinh-as": {
+   "index": 40,
+   "fr": "Pinh'as",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
   "qedoshim": {
    "index": 29,
    "fr": "Qedoshim",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "qora-h": {
+   "index": 37,
+   "fr": "Qora'h",
    "counts": {
     "1": 5,
     "2": 5,
