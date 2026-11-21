@@ -448,7 +448,7 @@
         {"id": 427, "n": "Pain au chocolat", "b": "mezonot", "alt": ["chocolatine"], "notes": [16]},
         {"id": 189, "n": "Pain complet", "b": "hamotsi", "alt": ["pain intégral"]},
         {"id": 190, "n": "Pain de dattes", "b": "mezonot"},
-        {"id": 423, "n": "Pain de mie", "b": "hamotsi", "alt": ["pain toasté","pain sandwich"]},
+        {"id": 423, "n": "Pain de mie", "b": "hamotsi", "alt": ["pain toasté", "pain sandwich"], "notes": [46]},
         {"id": 191, "n": "Pain de seigle", "b": "hamotsi"},
         {"id": 424, "n": "Pain grillé (toast)", "b": "hamotsi", "alt": ["toast","toasts"]},
         {"id": 192, "n": "Pain italien", "b": "hamotsi"},
@@ -686,6 +686,7 @@
         40: "Tcholente : Chéhakol pour une recette simple (pommes de terre, viande, haricots, peu ou pas d'orge). Si l'orge y est en quantité notable et reconnaissable, beaucoup de poskim disent Mezonot, même en minorité. Si les grains restent entiers et non écrasés, certains disent Haadama. Chez 'Habad, en cas de doute, manger dans un repas introduit par Hamotsi. À demander à un rav selon la composition exacte et le minhag.",
         43: "Pita frite : si la pâte est frite dans une grande quantité d'huile (et non cuite au four ou sur une plaque sèche), son statut change : Mezonot, sans lavage des mains préalable. À faire relire par un rav.",
         44: "Pita sucrée (Pat Habaah Békissanin) : si la pâte est faite au jus de fruits, au lait, au miel ou au sucre à la place de l'eau, et que le goût sucré est net, la pita devient une pâtisserie. En petite quantité (collation, moins d'environ 216 g, selon la majorité des décisionnaires) : Mezonot, puis Al Hamihya après. En grande quantité (un repas, plus d'environ 216 à 230 g) : elle redevient du pain, avec Hamotsi, Nétilat Yadaïm et Birkat Hamazon. Une pita légèrement sucrée (eau et un peu de sucre) reste du pain : Hamotsi, quelle que soit la quantité. À faire relire par un rav.",
+        46: "Pain de mie : la bénédiction dépend de la recette, de la quantité et du rite. Hamotsi pour le pain de mie ordinaire, et dès qu'on en mange une grande quantité en repas (environ 200 à 216 g, selon les avis). Selon le rite séfarade, Mezonot si la pâte est sucrée ou enrichie (sucre, lait, beurre, jus de fruit) et que le goût est net, en consommation modérée. Selon l'usage ashkénaze, Mezonot seulement si les ingrédients riches dépassent en proportion la farine et l'eau, ou selon l'avis suivi. Une mention Mezonot sur l'emballage ne tranche pas la question. À faire relire par un rav.",
         45: "Fricassé : la pâte est frite (et non cuite au four), donc Mezonot, que la pâte soit sucrée ou non (Choul'han 'Aroukh 168, 13, selon la source retenue ; à vérifier). On dit Al Hamihya après l'avoir consommé. À faire relire par un rav.",
         42: "Tchoutchouka (chakchouka) : au cours d'un repas introduit par Hamotsi, aucune bénédiction particulière : Hamotsi couvre les plats qui l'accompagnent. Sans pain, la bénédiction dépend de la préparation (voir les étapes). Le cas de la purée lisse est un avis de certains décisionnaires : à faire relire par un rav.",
         41: "Kneidlach (boulettes de matsa) : Mezonot, selon l'usage courant. Certains avis plus anciens pourraient pencher vers Hamotsi si les boulettes sont grosses. La bénédiction de la matsa elle-même dépend du rite : à vérifier selon la communauté.",
@@ -736,6 +737,13 @@
         'Banane': {
             sefarade: { note: 'Haadama, de façon claire et certaine : pas de doute de Haets, contrairement à ce que dit la note 2 pour \'Habad. Si l\'on a dit Haets par erreur, de nombreux décisionnaires considèrent qu\'on est quitte.' },
             ashkenaze: { note: 'Haadama, comme chez \'Habad : le doute de Haets que mentionne la note 2 reste théorique, et la pratique courante est Haadama.' }
+        },
+        'Pain de mie': {
+            sefarade: { steps: [
+                { t: 'Pâte sucrée ou enrichie (sucre, lait, beurre, jus de fruit), goût net, consommation modérée : Mezonot, puis Al Hamihya après', b: 'mezonot' },
+                { t: 'Pâte ordinaire, ou grande quantité en repas : Hamotsi, avec Netilat Yadaïm et Birkat Hamazon après', b: 'hamotsi' }
+            ], note: 'Mezonot si la pâte est sucrée ou enrichie et que le goût est net ; sinon Hamotsi, surtout en grande quantité. Pas de lavage des mains préalable pour le Mezonot, sauf si l\'on fait un repas complet.' },
+            ashkenaze: { note: 'Hamotsi. Mezonot seulement si les ingrédients riches (sucre, lait, beurre…) dépassent en proportion la farine et l\'eau, ou selon l\'avis rabbinique suivi.' }
         },
         'Petit pain': {
             sefarade: { note: 'Hamotsi, sauf si la douceur est notable (goût sucré net, comme beaucoup de challot modernes au sucre ou aux raisins) : on dit alors Mezonot. Un Séfarade invité chez des Ashkénazes ou des \'Habad peut demander une challa non sucrée, ou apporter la sienne. ' + JUS_PAIN },

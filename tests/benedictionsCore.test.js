@@ -5,9 +5,9 @@ const C = require('../js/benedictionsCore.js');
 
 const find = (name) => D.FOODS.filter(f => f.n === name)[0];
 
-test('les données : 581 entrées, 44 notes, toutes les bénédictions connues', () => {
+test('les données : 581 entrées, 45 notes, toutes les bénédictions connues', () => {
     assert.strictEqual(D.FOODS.length, 581);
-    assert.strictEqual(Object.keys(D.NOTES).length, 44);
+    assert.strictEqual(Object.keys(D.NOTES).length, 45);
     D.FOODS.forEach(f => {
         C.blessingsOf(f).forEach(b => assert.ok(D.BLESSINGS[b] || b === 'aucune', f.n + ' : ' + b));
         C.notesOf(f).forEach(n => assert.ok(D.NOTES[n], f.n + ' : note ' + n));
@@ -116,7 +116,7 @@ test('les rites : le filtre et les compteurs suivent le rite', () => {
     const chehakolSef = C.filterFoods({ b: 'chehakol', rite: 'sefarade' }).map(f => f.n);
     assert.ok(chehakolHabad.indexOf('Riz') !== -1 && chehakolSef.indexOf('Riz') === -1);
     assert.ok(C.filterFoods({ b: 'mezonot', rite: 'sefarade' }).some(f => f.n === 'Riz'));
-    assert.strictEqual(C.countByBlessing('sefarade').mezonot, C.countByBlessing('habad').mezonot + 4);
+    assert.strictEqual(C.countByBlessing('sefarade').mezonot, C.countByBlessing('habad').mezonot + 5);
 });
 
 test('les écarts de rite ne désignent que des aliments qui existent', () => {
@@ -279,4 +279,12 @@ test('le fricassé : pâte frite, donc Mezonot et Al Hamihya après, sucrée ou 
     assert.strictEqual(f.b, 'mezonot');
     assert.deepStrictEqual(C.finalsOf(f, 'habad'), ['hamihya']);
     assert.deepStrictEqual(C.notesOf(f), [45]);
+});
+
+test('le pain de mie : Hamotsi, Mezonot en séfarade si la pâte est sucrée et le goût net', () => {
+    const f = find('Pain de mie');
+    assert.deepStrictEqual(C.blessingsOf(f, 'sefarade'), ['mezonot', 'hamotsi']);
+    assert.deepStrictEqual(C.blessingsOf(f, 'ashkenaze'), ['hamotsi']);
+    assert.deepStrictEqual(C.blessingsOf(f, 'habad'), ['hamotsi']);
+    assert.deepStrictEqual(C.finalsOf(f, 'sefarade'), ['hamihya', 'hamazon']);
 });
