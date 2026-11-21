@@ -1,9 +1,63 @@
 {
  "v": 1,
  "parashot": {
+  "a-hare-mot": {
+   "index": 28,
+   "fr": "A'hare Mot",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "balaq": {
+   "index": 39,
+   "fr": "Balaq",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "bamidbar": {
+   "index": 33,
+   "fr": "Bamidbar",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
   "bechalla-h": {
    "index": 15,
    "fr": "Béchalla'h",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "beha-alotekha": {
+   "index": 35,
+   "fr": "Béha'alotekha",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "behar": {
+   "index": 31,
+   "fr": "Béhar",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "behoukotai": {
+   "index": 32,
+   "fr": "Béhoukotaï",
    "counts": {
     "1": 5,
     "2": 5,
@@ -19,6 +73,24 @@
     "3": 5
    }
   },
+  "chela-h": {
+   "index": 36,
+   "fr": "Chela'h",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "chemini": {
+   "index": 25,
+   "fr": "Chemini",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
   "chemot": {
    "index": 12,
    "fr": "Chemot",
@@ -28,9 +100,108 @@
     "3": 5
    }
   },
+  "choftim": {
+   "index": 47,
+   "fr": "Choftim",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "devarim": {
+   "index": 43,
+   "fr": "Devarim",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "ekev": {
+   "index": 45,
+   "fr": "Ékev",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "emor": {
+   "index": 30,
+   "fr": "Emor",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "ha-azinou": {
+   "index": 52,
+   "fr": "Ha'azinou",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "houqat": {
+   "index": 38,
+   "fr": "'Houqat",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "ki-tavo": {
+   "index": 49,
+   "fr": "Ki Tavo",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "ki-tetse": {
+   "index": 48,
+   "fr": "Ki Tetsé",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
   "ki-tissa": {
    "index": 20,
    "fr": "Ki Tissa",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "mase": {
+   "index": 42,
+   "fr": "Masé",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "matot": {
+   "index": 41,
+   "fr": "Matot",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "metsora": {
+   "index": 27,
+   "fr": "Metsora",
    "counts": {
     "1": 5,
     "2": 5,
@@ -55,9 +226,72 @@
     "3": 5
    }
   },
+  "nasso": {
+   "index": 34,
+   "fr": "Nasso",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "nitsavim": {
+   "index": 50,
+   "fr": "Nitsavim",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
   "pekoude": {
    "index": 22,
    "fr": "Pekoudé",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "pinh-as": {
+   "index": 40,
+   "fr": "Pinh'as",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "qedoshim": {
+   "index": 29,
+   "fr": "Qedoshim",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "qora-h": {
+   "index": 37,
+   "fr": "Qora'h",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "re-e": {
+   "index": 46,
+   "fr": "Ré'é",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "tazria": {
+   "index": 26,
+   "fr": "Tazria",
    "counts": {
     "1": 5,
     "2": 5,
@@ -82,9 +316,27 @@
     "3": 5
    }
   },
+  "tsav": {
+   "index": 24,
+   "fr": "Tsav",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
   "va-era": {
    "index": 13,
    "fr": "Va'éra",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "va-et-hanan": {
+   "index": 44,
+   "fr": "Va'et'hanan",
    "counts": {
     "1": 5,
     "2": 5,
@@ -118,6 +370,15 @@
     "3": 5
    }
   },
+  "vayelekh": {
+   "index": 51,
+   "fr": "Vayélekh",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
   "vayetse": {
    "index": 6,
    "fr": "Vayétsé",
@@ -139,6 +400,24 @@
   "vayigach": {
    "index": 10,
    "fr": "Vayigach",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "vayikra": {
+   "index": 23,
+   "fr": "Vayikra",
+   "counts": {
+    "1": 5,
+    "2": 5,
+    "3": 5
+   }
+  },
+  "vezot-ha-berakha": {
+   "index": 53,
+   "fr": "Vézot Ha-Bérakha",
    "counts": {
     "1": 5,
     "2": 5,

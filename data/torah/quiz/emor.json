@@ -1,0 +1,238 @@
+{
+ "v": 1,
+ "parasha": "Emor",
+ "levels": {
+  "1": [
+   {
+    "q": "Pour quels défunts un prêtre peut-il se rendre impur ?",
+    "a": "Pour ses parents les plus proches : mère, père, fils, fille ou frère",
+    "w": [
+     "Pour tous ses concitoyens et amis du camp",
+     "Pour tout homme mort dans le camp d'Israël, sans exception",
+     "Pour aucun défunt, quel qu'il soit"
+    ],
+    "ref": "21:1-2",
+    "proof": [
+     "ses parents les plus proches"
+    ],
+    "x": "Hors de ces proches, nul prêtre ne doit se souiller par le cadavre d'un de ses concitoyens."
+   },
+   {
+    "q": "Quel jour du premier mois la Pâque est-elle offerte au Seigneur ?",
+    "a": "Le quatorze, vers le soir",
+    "w": [
+     "Le quinze, au matin",
+     "Le premier, à l'aube",
+     "Le dix, au coucher du soleil"
+    ],
+    "ref": "23:5",
+    "proof": [
+     "le quatorze du mois"
+    ],
+    "x": "Le quinzième jour commence la fête des Azymes, durant sept jours."
+   },
+   {
+    "q": "Combien de semaines compte-t-on entre l'offrande de l'ômer et la fête suivante ?",
+    "a": "Sept semaines entières",
+    "w": [
+     "Cinq semaines entières",
+     "Sept jours seulement",
+     "Quarante jours entiers"
+    ],
+    "ref": "23:15",
+    "proof": [
+     "sept semaines"
+    ],
+    "x": "On compte à partir du lendemain de la fête, le jour de l'ômer du balancement."
+   },
+   {
+    "q": "Combien de jours demeure-t-on sous des tentes à la fête du septième mois ?",
+    "a": "Sept jours",
+    "w": [
+     "Trois jours",
+     "Huit jours seulement",
+     "Quarante jours"
+    ],
+    "ref": "23:42",
+    "proof": [
+     "sept jours"
+    ],
+    "x": "« Tout indigène en Israël demeurera sous la tente. »"
+   },
+   {
+    "q": "Que fait-on du blasphémateur, selon l'ordre donné à Moïse ?",
+    "a": "On l'emmène hors du camp et on le lapide",
+    "w": [
+     "On l'enferme dans le sanctuaire sept jours",
+     "On le renvoie en Égypte avec sa famille",
+     "On le brûle devant l'autel d'airain"
+    ],
+    "ref": "24:14",
+    "proof": [
+     "hors du camp",
+     "lapide"
+    ],
+    "x": "Ceux qui l'ont entendu imposent leurs mains sur sa tête."
+   }
+  ],
+  "2": [
+   {
+    "q": "Combien de jours compte-t-on jusqu'au lendemain de la septième semaine ?",
+    "a": "Cinquante jours",
+    "w": [
+     "Quarante-neuf jours",
+     "Quarante jours",
+     "Soixante jours"
+    ],
+    "ref": "23:16",
+    "proof": [
+     "cinquante jours"
+    ],
+    "x": "On offre alors à l'Éternel une oblation nouvelle."
+   },
+   {
+    "q": "Qu'a-t-on le premier jour du septième mois, selon la Torah ?",
+    "a": "Un repos solennel, commémoré par une fanfare",
+    "w": [
+     "Un jeûne complet avec mortification des personnes",
+     "Une fête de sept jours sous des tentes",
+     "Un pèlerinage au sanctuaire de Silo"
+    ],
+    "ref": "23:24",
+    "proof": [
+     "fanfare"
+    ],
+    "x": "Ce jour-là est une convocation sainte."
+   },
+   {
+    "q": "Quelles branches prend-on le premier jour, selon le verset 23:40 ?",
+    "a": "Du fruit de l'arbre hadar, des branches de palmier, des rameaux d'aboth et des saules de rivière",
+    "w": [
+     "Du blé nouveau, des rameaux d'olivier, de la vigne et du figuier",
+     "Des fleurs de lin, des branches de cèdre et des feuilles de vigne",
+     "Des jeunes pousses de cèdre, du roseau et du lotus du Nil"
+    ],
+    "ref": "23:40",
+    "proof": [
+     "arbre hadar",
+     "saules de rivière"
+    ],
+    "x": "On se réjouit en présence de l'Éternel pendant sept jours."
+   },
+   {
+    "q": "Combien de gâteaux prépare-t-on pour la table des pains de proposition, et combien chacun contient-il ?",
+    "a": "Douze gâteaux de deux dixièmes chacun",
+    "w": [
+     "Sept gâteaux de dix dixièmes chacun",
+     "Douze gâteaux d'un dixième chacun",
+     "Six gâteaux de trois dixièmes chacun"
+    ],
+    "ref": "24:5",
+    "proof": [
+     "douze gâteaux",
+     "deux dixièmes"
+    ],
+    "x": "Ils sont faits de fleur de farine."
+   },
+   {
+    "q": "Comment s'appelle la mère du blasphémateur, de la tribu de Dan ?",
+    "a": {
+     "t": "Chelomith",
+     "he": "שְׁלֹמִית"
+    },
+    "w": [
+     {
+      "t": "Dina",
+      "he": "דִּינָה"
+     },
+     {
+      "t": "Myriam",
+      "he": "מִרְיָם"
+     },
+     {
+      "t": "Tamar",
+      "he": "תָּמָר"
+     }
+    ],
+    "ref": "24:11",
+    "proof": [
+     "Chelomith"
+    ],
+    "x": "Elle est fille de Dibri."
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, que montre la répétition « dis… et tu leur diras » à propos des prêtres ?",
+    "a": "Que les adultes doivent veiller sur les enfants pour les avertir",
+    "w": [
+     "Que seuls les prêtres doivent être avertis",
+     "Que les prêtres doivent répéter la loi chaque jour",
+     "Que l'avertissement vaut pour les femmes"
+    ],
+    "ref": "21:1",
+    "proof": [
+     "להזהיר גדולים על הקטנים"
+    ],
+    "x": "Rachi sur Lévitique 21:1 : « dis… et dis-leur » : pour avertir les grands à propos des petits."
+   },
+   {
+    "q": "Selon Rachi, pourquoi balance-t-on la gerbe de l'ômer dans toutes les directions ?",
+    "a": "Pour arrêter les mauvais vents, et vers le haut et le bas pour arrêter les mauvaises rosées",
+    "w": [
+     "Pour montrer que Dieu est partout dans le monde",
+     "Pour que la gerbe soit bien sèche avant l'offrande",
+     "Pour que le pontife puisse la compter plus facilement"
+    ],
+    "ref": "23:11",
+    "proof": [
+     "רוחות רעות"
+    ],
+    "x": "Rachi sur Lévitique 23:11 : on la fait aller et venir pour arrêter les mauvais vents, monter et descendre pour arrêter les mauvaises rosées."
+   },
+   {
+    "q": "Selon Rachi, quel fruit est « le fruit de l'arbre hadar » ?",
+    "a": "L'étrog (cédrat), fruit qui reste sur l'arbre d'une année à l'autre",
+    "w": [
+     "La grenade, fruit des sept espèces",
+     "La datte, fruit du palmier",
+     "La figue, fruit de la saison"
+    ],
+    "ref": "23:40",
+    "proof": [
+     "אתרוג"
+    ],
+    "x": "Rachi sur Lévitique 23:40 : « hadar » : celui qui demeure (hadar) sur l'arbre d'une année à l'autre : c'est l'étrog."
+   },
+   {
+    "q": "Selon Rachi, que sont les « tentes » dans lesquelles Dieu a fait demeurer les enfants d'Israël ?",
+    "a": "Les nuées de gloire",
+    "w": [
+     "Les tentes de peaux de bélier",
+     "Les huttes de branchages du désert",
+     "Les tentes des anciens"
+    ],
+    "ref": "23:43",
+    "proof": [
+     "ענני כבוד"
+    ],
+    "x": "Rachi sur Lévitique 23:43 : « car dans des cabanes j'ai fait habiter » : ce sont les nuées de gloire."
+   },
+   {
+    "q": "Selon Rachi, pourquoi la mère du blasphémateur s'appelle-t-elle Chelomith, fille de Dibri ?",
+    "a": "Parce qu'elle bavardait et saluait tout le monde, d'où sa faute",
+    "w": [
+     "Parce qu'elle était née en Égypte, fille d'un prêtre",
+     "Parce qu'elle venait de la tribu de Juda",
+     "Parce qu'elle avait quitté son mari par colère"
+    ],
+    "ref": "24:11",
+    "proof": [
+     "שלמית",
+     "דברנית"
+    ],
+    "x": "Rachi sur Lévitique 24:11 : elle bavardait, saluait tout le monde (« chalom aleikh ») et parlait avec chacun ; c'est pourquoi elle a failli."
+   }
+  ]
+ }
+}

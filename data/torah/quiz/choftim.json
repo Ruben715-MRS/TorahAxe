@@ -1,0 +1,224 @@
+{
+ "v": 1,
+ "parasha": "Choftim",
+ "levels": {
+  "1": [
+   {
+    "q": "Que doit instituer Israël dans toutes les villes que l'Éternel lui donnera, dans chaque tribu ?",
+    "a": "Des juges et des magistrats",
+    "w": [
+     "Des prêtres et des Lévites pour chaque ville",
+     "Des chefs militaires et des scribes pour chaque tribu",
+     "Des prophètes et des anciens dans chaque ville"
+    ],
+    "ref": "16:18",
+    "proof": [
+     "juges et des magistrats"
+    ],
+    "x": "Ils devront juger le peuple selon la justice."
+   },
+   {
+    "q": "Combien de témoins faut-il au minimum pour condamner à mort quelqu'un ?",
+    "a": "Deux ou trois témoins",
+    "w": [
+     "Un seul témoin suffit, s'il est un juge reconnu",
+     "Sept témoins, comme pour un serment solennel",
+     "Douze témoins, un par tribu d'Israël"
+    ],
+    "ref": "17:6",
+    "proof": [
+     "deux ou de trois témoins"
+    ],
+    "x": "Il ne peut être supplicié sur le dire d'un seul témoin."
+   },
+   {
+    "q": "De quoi le roi d'Israël doit-il se garder d'amasser en excès ?",
+    "a": "De chevaux, de femmes, d'argent et d'or",
+    "w": [
+     "De terres, de maisons, de vignes et de bétail",
+     "D'armes, de chars, de soldats et de serviteurs",
+     "De livres, de rouleaux, de trésors et d'huile"
+    ],
+    "ref": "17:16-17",
+    "proof": [
+     "beaucoup de chevaux",
+     "beaucoup de femmes"
+    ],
+    "x": "Il ne doit pas non plus ramener le peuple en Égypte."
+   },
+   {
+    "q": "Combien de villes de refuge Israël doit-il se réserver dans le pays ?",
+    "a": "Trois villes",
+    "w": [
+     "Six villes, trois de chaque côté du Jourdain",
+     "Douze villes, une pour chaque tribu d'Israël",
+     "Une seule ville, au centre du pays promis"
+    ],
+    "ref": "19:2",
+    "proof": [
+     "trois villes"
+    ],
+    "x": "Elles sont à réserver dans le pays dont Dieu accorde la possession."
+   },
+   {
+    "q": "Quelle règle de réparation la Torah énonce-t-elle à propos du faux témoin ?",
+    "a": "Vie pour vie, œil pour œil, dent pour dent",
+    "w": [
+     "Une amende de vingt sicles d'argent par témoin fautif",
+     "Le bannissement hors du pays pendant sept années entières",
+     "La restitution du double de la valeur du bien contesté"
+    ],
+    "ref": "19:21",
+    "proof": [
+     "œil pour œil"
+    ],
+    "x": "Il ne faut pas laisser s'attendrir son regard."
+   }
+  ],
+  "2": [
+   {
+    "q": "Que doit écrire le roi, quand il occupe le siège royal ?",
+    "a": "Une copie de la Loi dans un livre",
+    "w": [
+     "Une liste des tribus et de leurs chefs",
+     "Un traité d'alliance avec les nations voisines",
+     "Un récit de ses victoires militaires"
+    ],
+    "ref": "17:18",
+    "proof": [
+     "une copie de cette doctrine"
+    ],
+    "x": "Il l'écrit en s'inspirant des pontifes descendants de Lévi."
+   },
+   {
+    "q": "Que ne doit pas détruire celui qui assiège longtemps une ville ?",
+    "a": "Les arbres fruitiers, qu'il ne doit pas abattre à coups de cognée",
+    "w": [
+     "Les maisons des habitants, qu'il peut épargner s'il le veut",
+     "Les puits de la ville assiégée, qui servent à tous les habitants",
+     "Les troupeaux des bergers étrangers qui habitent la ville"
+    ],
+    "ref": "20:19",
+    "proof": [
+     "arbres",
+     "cognée"
+    ],
+    "x": "Ces arbres le nourrissent : il ne doit pas les abattre."
+   },
+   {
+    "q": "Qu'est-ce que la Torah dit de l'héritage de la tribu de Lévi ?",
+    "a": "Dieu est leur héritage : ils n'ont point de part au milieu de leurs frères",
+    "w": [
+     "Les Lévites reçoivent la moitié du pays, au centre de tout Israël",
+     "Les Lévites reçoivent le tiers de chaque tribu du pays",
+     "Les Lévites reçoivent les villes du nord, au pied du Hermon"
+    ],
+    "ref": "18:2",
+    "proof": [
+     "c'est Dieu qui est leur héritage"
+    ],
+    "x": "Ils n'ont ni part ni héritage comme le reste d'Israël."
+   },
+   {
+    "q": "Que ne doit-on pas faire de son fils ou de sa fille, selon l'interdiction de la divination ?",
+    "a": "Les faire passer par le feu",
+    "w": [
+     "Les envoyer au loin en exil",
+     "Les consacrer au sanctuaire contre leur gré",
+     "Les marier avant l'âge de treize ans"
+    ],
+    "ref": "18:10",
+    "proof": [
+     "fasse passer par le feu son fils ou sa fille"
+    ],
+    "x": "Il ne doit se trouver chez toi personne qui pratique les enchantements."
+   },
+   {
+    "q": "Qui Israël peut-il se donner pour roi ?",
+    "a": "Un de ses frères, pas un étranger",
+    "w": [
+     "Un étranger respecté par les nations voisines",
+     "Le fils aîné du pontife seulement",
+     "Le plus riche des chefs de tribus"
+    ],
+    "ref": "17:15",
+    "proof": [
+     "c'est un de tes frères"
+    ],
+    "x": "Il doit être celui dont l'Éternel, ton Dieu, approuvera le choix."
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, que sont les « chotrim » (magistrats) à côté des juges ?",
+    "a": "Ceux qui font exécuter le jugement, au bâton et à la lanière",
+    "w": [
+     "Ceux qui enregistrent par écrit les jugements",
+     "Ceux qui conseillent les juges avant le jugement",
+     "Ceux qui gardent les prisons de chaque ville"
+    ],
+    "ref": "16:18",
+    "proof": [
+     "במקל וברצועה"
+    ],
+    "x": "Rachi sur Deutéronome 16:18 : les chotrim châtient le peuple selon leur ordre, avec un bâton et une lanière, jusqu'à ce qu'il accepte le jugement."
+   },
+   {
+    "q": "Selon Rachi, pourquoi ne faut-il pas accepter de pot-de-vin, même pour juger avec justice ?",
+    "a": "Parce qu'on penche alors vers le donateur",
+    "w": [
+     "Parce que le pot-de-vin est puni de mort",
+     "Parce que le juge ne peut pas posséder de bien",
+     "Parce que le pot-de-vin appartient au sanctuaire"
+    ],
+    "ref": "16:19",
+    "proof": [
+     "אפלו לשפט צדק"
+    ],
+    "x": "Rachi sur Deutéronome 16:19 : même pour juger avec justice ; dès qu'on a reçu le pot-de-vin, on penche son cœur vers lui."
+   },
+   {
+    "q": "Selon Rachi, combien de rouleaux de la Torah le roi doit-il avoir ?",
+    "a": "Deux : un au trésor, un avec lui",
+    "w": [
+     "Un seul, déposé dans le sanctuaire",
+     "Trois, dont un dans chaque tribu",
+     "Sept, un pour chaque jour de la semaine"
+    ],
+    "ref": "17:18",
+    "proof": [
+     "שתי ספרי תורה"
+    ],
+    "x": "Rachi sur Deutéronome 17:18 : deux rouleaux : l'un déposé dans sa trésorerie, l'autre qui entre et sort avec lui."
+   },
+   {
+    "q": "Selon Rachi, que signifie « tu seras intègre avec l'Éternel, ton Dieu » ?",
+    "a": "Marche avec lui sans sonder l'avenir",
+    "w": [
+     "Marche avec lui en silence, sans parler à personne",
+     "Marche avec lui en guerre, sans craindre l'ennemi",
+     "Marche avec lui dans le sanctuaire, sans quitter le seuil"
+    ],
+    "ref": "18:13",
+    "proof": [
+     "ולא תחקר אחר העתידות"
+    ],
+    "x": "Rachi sur Deutéronome 18:13 : tout ce qui t'arrive, accepte-le avec intégrité ; alors tu seras avec lui et à sa part."
+   },
+   {
+    "q": "Selon Rachi, combien de jours avant le Chabbat peut-on assiéger une ville des nations ?",
+    "a": "Pas moins de trois jours avant le Chabbat",
+    "w": [
+     "Pas moins de sept jours avant le Chabbat",
+     "Pas plus d'un jour avant le Chabbat",
+     "Pas plus de deux jours avant la fête"
+    ],
+    "ref": "20:19",
+    "proof": [
+     "פחות משלושה ימים קדם לשבת"
+    ],
+    "x": "Rachi sur Deutéronome 20:19 : on n'assiège pas les villes des nations moins de trois jours avant le Chabbat."
+   }
+  ]
+ }
+}

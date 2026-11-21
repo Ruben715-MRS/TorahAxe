@@ -1,0 +1,235 @@
+{
+ "v": 1,
+ "parasha": "Masé",
+ "levels": {
+  "1": [
+   {
+    "q": "Quel jour les enfants d'Israël partent-ils de Ramsès ?",
+    "a": "Le quinzième jour du premier mois, le lendemain de la Pâque",
+    "w": [
+     "Le premier jour du premier mois, à l'aube de l'année",
+     "Le quatorzième jour du premier mois, vers le soir",
+     "Le quinzième jour du septième mois, à la fête de la récolte"
+    ],
+    "ref": "33:3",
+    "proof": [
+     "quinzième jour du premier mois",
+     "lendemain de la Pâque"
+    ],
+    "x": "Ils sortent triomphants, à la vue de toute l'Égypte."
+   },
+   {
+    "q": "Quel âge avait Aaron lorsqu'il mourut à Hor-la-Montagne ?",
+    "a": "Cent vingt-trois ans",
+    "w": [
+     "Cent vingt ans",
+     "Cent trente-sept ans",
+     "Cent cinq ans"
+    ],
+    "ref": "33:39",
+    "proof": [
+     "cent vingt-trois ans"
+    ],
+    "x": "Aaron monte sur la montagne par ordre de l'Éternel et y meurt."
+   },
+   {
+    "q": "Combien de villes de refuge les Israélites doivent-ils donner aux Lévites, pour le meurtrier ?",
+    "a": "Six villes",
+    "w": [
+     "Trois villes",
+     "Douze villes",
+     "Quarante-huit villes"
+    ],
+    "ref": "35:6",
+    "proof": [
+     "six villes de refuge"
+    ],
+    "x": "Le meurtrier s'y retire."
+   },
+   {
+    "q": "Combien de villes les Israélites ajoutent-ils aux six villes de refuge, pour les Lévites ?",
+    "a": "Quarante-deux villes",
+    "w": [
+     "Douze villes",
+     "Trente-six villes",
+     "Quarante-huit villes"
+    ],
+    "ref": "35:6",
+    "proof": [
+     "quarante-deux villes"
+    ],
+    "x": "Les Lévites ont ainsi quarante-huit villes en tout, avec leurs banlieues."
+   },
+   {
+    "q": "Que ne peut pas faire un témoin unique, dans un cas d'homicide ?",
+    "a": "Faire condamner une personne à mort par sa déposition",
+    "w": [
+     "Faire acquitter un accusé de meurtre",
+     "Reconnaître le meurtrier dans le camp",
+     "Convoquer l'assemblée du peuple"
+    ],
+    "ref": "35:30",
+    "proof": [
+     "témoin unique"
+    ],
+    "x": "C'est sur une déclaration de témoins qu'on fait mourir l'assassin."
+   }
+  ],
+  "2": [
+   {
+    "q": "À quelle date Aaron meurt-il, la quarantième année du départ d'Égypte ?",
+    "a": "Le premier jour du cinquième mois",
+    "w": [
+     "Le premier jour du septième mois",
+     "Le dixième jour du premier mois",
+     "Le quinzième jour du cinquième mois"
+    ],
+    "ref": "33:38",
+    "proof": [
+     "premier jour du cinquième mois"
+    ],
+    "x": "C'est la quarantième année du départ des Israélites du pays d'Égypte."
+   },
+   {
+    "q": "Quel désert forme le côté méridional du pays de Canaan, sur la lisière d'Édom ?",
+    "a": {
+     "t": "Cîn",
+     "he": "צִן"
+    },
+    "w": [
+     {
+      "t": "Pharan",
+      "he": "פָּארָן"
+     },
+     {
+      "t": "Sinaï",
+      "he": "סִינָי"
+     },
+     {
+      "t": "Arad",
+      "he": "עֲרָד"
+     }
+    ],
+    "ref": "34:3",
+    "proof": [
+     "désert de Cîn"
+    ],
+    "x": "Cette limite du midi commence à la pointe orientale de la mer Salée."
+   },
+   {
+    "q": "Quelle est la frontière occidentale du pays de Canaan ?",
+    "a": "La grande mer",
+    "w": [
+     "Le Jourdain",
+     "La mer Salée",
+     "La mer de Kinnéreth"
+    ],
+    "ref": "34:6",
+    "proof": [
+     "grande mer"
+    ],
+    "x": "La grande mer sert de frontière occidentale."
+   },
+   {
+    "q": "Combien de villes de refuge sont données en deçà du Jourdain, et combien en Canaan ?",
+    "a": "Trois en deçà du Jourdain et trois dans le pays de Canaan",
+    "w": [
+     "Deux en deçà du Jourdain et quatre en Canaan",
+     "Six en deçà du Jourdain et aucune en Canaan",
+     "Quatre en deçà du Jourdain et deux en Canaan"
+    ],
+    "ref": "35:14",
+    "proof": [
+     "trois de ces villes en deçà du Jourdain"
+    ],
+    "x": "Elles seront villes de refuge."
+   },
+   {
+    "q": "Qui apprend l'arrivée des enfants d'Israël, alors qu'il habite au midi du pays de Canaan ?",
+    "a": "Le Cananéen, roi d'Arad",
+    "w": [
+     "Le roi d'Édom, frère d'Israël",
+     "Le roi de Moab, fils de Cippor",
+     "Le roi des Amorréens, à Hesbon"
+    ],
+    "ref": "33:40",
+    "proof": [
+     "roi d'Arad"
+    ],
+    "x": "Il apprend l'arrivée des enfants d'Israël."
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, pourquoi la Torah écrit-elle la liste des étapes du désert ?",
+    "a": "Pour montrer la bonté de Dieu, qui ne les a pas fait errer sans cesse pendant quarante ans",
+    "w": [
+     "Pour montrer que le peuple a péché à chaque étape",
+     "Pour fixer le calendrier des fêtes du désert",
+     "Pour établir les limites du camp de chaque tribu"
+    ],
+    "ref": "33:1",
+    "proof": [
+     "חסדיו של מקום"
+    ],
+    "x": "Rachi sur Nombres 33:1 : pour faire connaître les bontés de Dieu : bien qu'il ait décrété de les faire errer, ils n'ont pas été ballottés d'étape en étape pendant les quarante années."
+   },
+   {
+    "q": "Selon Rachi, que signifie « Aaron mourut sur l'ordre de l'Éternel » ?",
+    "a": "Qu'il est mort par un baiser divin",
+    "w": [
+     "Qu'il est mort sur un ordre de Moïse",
+     "Qu'il est mort dans son sommeil",
+     "Qu'il est mort après avoir transmis le sacerdoce"
+    ],
+    "ref": "33:38",
+    "proof": [
+     "מת בנשיקה"
+    ],
+    "x": "Rachi sur Nombres 33:38 : « sur l'ordre de l'Éternel » nous enseigne qu'il est mort par un baiser."
+   },
+   {
+    "q": "Selon Rachi, pourquoi la Torah indique-t-elle les limites du pays ?",
+    "a": "Parce que de nombreuses mitsvot ne s'appliquent que dans le pays, il faut en connaître les frontières",
+    "w": [
+     "Parce que Moïse devait tracer la carte des tribus",
+     "Parce que les nations voisines devaient reconnaître les frontières",
+     "Parce que les Cananéens devaient quitter leurs terres"
+    ],
+    "ref": "34:2",
+    "proof": [
+     "מצות נוהגות בארץ"
+    ],
+    "x": "Rachi sur Nombres 34:2 : puisque de nombreuses mitsvot s'appliquent dans le pays et non hors du pays, il fallait écrire les limites pour dire : de ces frontières vers l'intérieur."
+   },
+   {
+    "q": "Selon Rachi, que ne peut-on pas faire dans la banlieue (migrach) des villes lévitiques ?",
+    "a": "Y construire une maison, y planter une vigne ou y semer",
+    "w": [
+     "Y faire paître du bétail ou y marcher",
+     "Y enterrer un mort ou y habiter",
+     "Y vendre ou y échanger des biens"
+    ],
+    "ref": "35:2",
+    "proof": [
+     "אין רשאין לבנות"
+    ],
+    "x": "Rachi sur Nombres 35:2 : la banlieue est un espace libre autour de la ville, pour l'embellir : on n'a pas le droit d'y bâtir une maison, d'y planter une vigne ni d'y semer."
+   },
+   {
+    "q": "Selon Rachi, pourquoi le meurtrier reste-t-il dans la ville de refuge jusqu'à la mort du grand prêtre ?",
+    "a": "Parce que le grand prêtre fait résider la Présence et allonge les jours, alors que le meurtrier les raccourcit",
+    "w": [
+     "Parce que le grand prêtre doit juger chaque meurtrier",
+     "Parce que le grand prêtre est le gardien des villes de refuge",
+     "Parce que le grand prêtre est oint le même jour que lui"
+    ],
+    "ref": "35:25",
+    "proof": [
+     "להשרות שכינה"
+    ],
+    "x": "Rachi sur Nombres 35:25 : le grand prêtre est là pour faire résider la Présence en Israël et pour prolonger leurs jours ; le meurtrier raccourcit la vie : il ne mérite pas de paraître devant lui."
+   }
+  ]
+ }
+}

@@ -1,0 +1,259 @@
+{
+ "v": 1,
+ "parasha": "Ha'azinou",
+ "levels": {
+  "1": [
+   {
+    "q": "À quoi Moïse compare-t-il son enseignement, au début du cantique ?",
+    "a": "À la pluie et à la rosée",
+    "w": [
+     "À la lumière du soleil et de la lune",
+     "À un fleuve qui descend de la montagne",
+     "À un feu qui consume les broussailles"
+    ],
+    "ref": "32:2",
+    "proof": [
+     "comme la pluie",
+     "comme la rosée"
+    ],
+    "x": "« Que mon enseignement s'épande comme la pluie. »"
+   },
+   {
+    "q": "Quel oiseau veille sur son nid, plane sur ses petits et les porte sur ses ailes, image de Dieu avec Israël ?",
+    "a": "L'aigle",
+    "w": [
+     "Le faucon",
+     "La colombe",
+     "Le vautour"
+    ],
+    "ref": "32:11",
+    "proof": [
+     "l'aigle veille sur son nid"
+    ],
+    "x": "Il déploie ses ailes pour les recueillir."
+   },
+   {
+    "q": "Comment le cantique appelle-t-il Dieu, dont l'œuvre est parfaite ?",
+    "a": "Notre rocher",
+    "w": [
+     "Notre berger",
+     "Notre roi",
+     "Notre pasteur"
+    ],
+    "ref": "32:4",
+    "proof": [
+     "notre rocher, son œuvre est parfaite"
+    ],
+    "x": "Toutes ses voies sont la justice même."
+   },
+   {
+    "q": "Sur quel mont Dieu dit-il à Moïse de monter pour contempler le pays de Canaan ?",
+    "a": {
+     "t": "Nébo",
+     "he": "נְבוֹ"
+    },
+    "w": [
+     {
+      "t": "Pisga",
+      "he": "פִּסְגָּה"
+     },
+     {
+      "t": "Sinaï",
+      "he": "סִינָי"
+     },
+     {
+      "t": "Hermon",
+      "he": "חֶרְמוֹן"
+     }
+    ],
+    "ref": "32:49",
+    "proof": [
+     "mont Nébo"
+    ],
+    "x": "Il est situé dans le pays de Moab, en face de Jéricho."
+   },
+   {
+    "q": "Qui est mort à Hor-la-Montagne, comme Moïse mourra sur sa propre montagne ?",
+    "a": {
+     "t": "Aaron",
+     "he": "אַהֲרֹן"
+    },
+    "w": [
+     {
+      "t": "Josué",
+      "he": "יְהוֹשֻׁעַ"
+     },
+     {
+      "t": "Caleb",
+      "he": "כָּלֵב"
+     },
+     {
+      "t": "Balaam",
+      "he": "בִּלְעָם"
+     }
+    ],
+    "ref": "32:50",
+    "proof": [
+     "ton frère Aaron est mort"
+    ],
+    "x": "Il est allé rejoindre ses pères."
+   }
+  ],
+  "2": [
+   {
+    "q": "D'après quoi Dieu a-t-il fixé les limites des peuples, quand il sépara les enfants d'Adam ?",
+    "a": "D'après le nombre des enfants d'Israël",
+    "w": [
+     "D'après le nombre des étoiles du ciel",
+     "D'après le nombre des jours de l'année",
+     "D'après le nombre des tribus de Jacob et d'Ésaü"
+    ],
+    "ref": "32:8",
+    "proof": [
+     "nombre des enfants d'Israël"
+    ],
+    "x": "Jacob est le lot de son héritage."
+   },
+   {
+    "q": "À quoi Dieu compare-t-il la protection d'Israël dans les solitudes du désert ?",
+    "a": "À la prunelle de son œil",
+    "w": [
+     "À un bouclier de cuivre",
+     "À une muraille de feu",
+     "À un manteau de laine"
+    ],
+    "ref": "32:10",
+    "proof": [
+     "prunelle de son œil"
+    ],
+    "x": "Il le protège, il veille sur lui."
+   },
+   {
+    "q": "Qui accompagne Moïse pour faire entendre le cantique au peuple ?",
+    "a": {
+     "t": "Hoschéa",
+     "he": "הוֹשֵׁעַ"
+    },
+    "w": [
+     {
+      "t": "Caleb",
+      "he": "כָּלֵב"
+     },
+     {
+      "t": "Aaron",
+      "he": "אַהֲרֹן"
+     },
+     {
+      "t": "Éléazar",
+      "he": "אֶלְעָזָר"
+     }
+    ],
+    "ref": "32:44",
+    "proof": [
+     "Hoschéa, fils de Noun"
+    ],
+    "x": "Hoschéa est Josué, fils de Noun."
+   },
+   {
+    "q": "Que dit Dieu de lui-même, à la fin du cantique ?",
+    "a": "Que seul il fait mourir et vivre, blesse et guérit",
+    "w": [
+     "Qu'il règne seul sur toute la terre et les cieux",
+     "Qu'il envoie la pluie et la rosée aux justes",
+     "Qu'il voit tout et qu'il juge tous les hommes"
+    ],
+    "ref": "32:39",
+    "proof": [
+     "je fais mourir et vivre"
+    ],
+    "x": "« Nul dieu à côté de moi ! »"
+   },
+   {
+    "q": "À cause de quel épisode Moïse ne peut-il entrer dans le pays ?",
+    "a": "Les eaux de Meriba, à Kadêch, dans le désert de Cîn",
+    "w": [
+     "L'épisode du veau d'or, au pied du Sinaï",
+     "L'épisode des explorateurs, à Kadéch-Barnéa",
+     "L'épisode de Baal-Peor, dans les plaines de Moab"
+    ],
+    "ref": "32:51",
+    "proof": [
+     "eaux de Meriba à Kadêch"
+    ],
+    "x": "Ce n'est qu'à distance qu'il verra le pays."
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, pourquoi Moïse prend-il à témoin le ciel et la terre ?",
+    "a": "Parce qu'ils sont des témoins durables, qui verront ce qui arrive à Israël",
+    "w": [
+     "Parce qu'il n'y a pas d'autres témoins dans le désert",
+     "Parce que Dieu l'a demandé au buisson",
+     "Parce que le peuple a juré par eux"
+    ],
+    "ref": "32:1",
+    "proof": [
+     "שאני מתרה בהם בישראל"
+    ],
+    "x": "Rachi sur Deutéronome 32:1 : je les avertis au sujet d'Israël, et vous serez témoins de la chose."
+   },
+   {
+    "q": "Selon Rachi, que montre la comparaison de la Torah à la pluie ?",
+    "a": "Que la Torah donne la vie pour toujours, comme la pluie",
+    "w": [
+     "Que la Torah vient du ciel, comme la pluie",
+     "Que la Torah se répand partout, comme la pluie",
+     "Que la Torah est rare, comme la pluie"
+    ],
+    "ref": "32:2",
+    "proof": [
+     "חיים לעולם"
+    ],
+    "x": "Rachi sur Deutéronome 32:2 : la Torah que j'ai donnée à Israël est vie pour toujours, comme la pluie."
+   },
+   {
+    "q": "Selon Rachi, que signifie « le nombre des enfants d'Israël » pour les peuples ?",
+    "a": "Soixante-dix peuples, selon les soixante-dix âmes descendues en Égypte",
+    "w": [
+     "Douze peuples, selon les douze tribus",
+     "Sept peuples, selon les sept nations de Canaan",
+     "Quarante peuples, selon les quarante ans du désert"
+    ],
+    "ref": "32:8",
+    "proof": [
+     "שבעים נפש"
+    ],
+    "x": "Rachi sur Deutéronome 32:8 : les limites des peuples ont été fixées selon le nombre de soixante-dix âmes."
+   },
+   {
+    "q": "Selon Rachi, que montre le comportement de l'aigle envers ses petits ?",
+    "a": "Que Dieu conduit Israël avec miséricorde et tendresse",
+    "w": [
+     "Que Dieu punit Israël avec sévérité",
+     "Que Dieu éloigne Israël de ses ennemis",
+     "Que Dieu abandonne Israël à lui-même"
+    ],
+    "ref": "32:11",
+    "proof": [
+     "רחמני על בניו"
+    ],
+    "x": "Rachi sur Deutéronome 32:11 : il les conduit avec miséricorde et compassion, comme l'aigle est compatissant envers ses petits."
+   },
+   {
+    "q": "Selon Rachi, que montre « comme est mort Aaron ton frère » ?",
+    "a": "Que Moïse a vu son frère mourir dans l'honneur, vêtant son fils de ses habits",
+    "w": [
+     "Que Moïse a vu son frère mourir dans la solitude",
+     "Que Moïse a vu son frère mourir au combat",
+     "Que Moïse a vu son frère mourir sans successeur"
+    ],
+    "ref": "32:50",
+    "proof": [
+     "בגד ראשון והלבישו לאלעזר"
+    ],
+    "x": "Rachi sur Deutéronome 32:50 : cette mort que tu as vue et enviée : Moïse a dépouillé Aaron d'un vêtement et en a revêtu Éléazar, et Aaron a vu son fils dans la gloire."
+   }
+  ]
+ }
+}

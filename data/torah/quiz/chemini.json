@@ -1,0 +1,248 @@
+{
+ "v": 1,
+ "parasha": "Chemini",
+ "levels": {
+  "1": [
+   {
+    "q": "Quel jour Moïse convoque-t-il Aaron, ses fils et les anciens d'Israël ?",
+    "a": "Le huitième jour",
+    "w": [
+     "Le septième jour",
+     "Le troisième jour",
+     "Le quarantième jour"
+    ],
+    "ref": "9:1",
+    "proof": [
+     "huitième jour"
+    ],
+    "x": "C'est le jour de l'inauguration du culte au Tabernacle."
+   },
+   {
+    "q": "Quel fils d'Aaron meurt avec Nadab, après avoir apporté devant le Seigneur un feu profane ?",
+    "a": {
+     "t": "Abihou",
+     "he": "אֲבִיהוּא"
+    },
+    "w": [
+     {
+      "t": "Éléazar",
+      "he": "אֶלְעָזָר"
+     },
+     {
+      "t": "Ithamar",
+      "he": "אִיתָמָר"
+     },
+     {
+      "t": "Michaël",
+      "he": "מִישָׁאֵל"
+     }
+    ],
+    "ref": "10:1",
+    "proof": [
+     "Nadab et Abihou"
+    ],
+    "x": "Chacun avait pris son encensoir, y avait mis du feu et de l'encens, sans que Dieu l'eût commandé."
+   },
+   {
+    "q": "Comment le peuple réagit-il en voyant le feu consumer l'holocauste sur l'autel ?",
+    "a": "Il jette des cris de joie et tombe sur ses faces",
+    "w": [
+     "Il s'enfuit hors du camp en silence",
+     "Il entonne un chant de louange avec des harpes",
+     "Il se couvre de cendres et jeûne"
+    ],
+    "ref": "9:24",
+    "proof": [
+     "cris de joie",
+     "tombèrent sur leurs faces"
+    ],
+    "x": "Un feu s'élance de devant le Seigneur et consume l'holocauste et les graisses."
+   },
+   {
+    "q": "Quel animal a le pied corné et le sabot bifurqué, mais ne rumine point ?",
+    "a": "Le porc",
+    "w": [
+     "Le chameau",
+     "Le lièvre",
+     "Le bœuf"
+    ],
+    "ref": "11:7",
+    "proof": [
+     "le porc"
+    ],
+    "x": "Il sera immonde pour vous."
+   },
+   {
+    "q": "Que doit avoir un animal aquatique pour pouvoir être mangé ?",
+    "a": "Des nageoires et des écailles",
+    "w": [
+     "Des nageoires seulement",
+     "Des écailles seulement",
+     "Un corps allongé et lisse"
+    ],
+    "ref": "11:9-10",
+    "proof": [
+     "nageoires et d'écailles"
+    ],
+    "x": "Tout ce qui, dans les eaux, en est privé est une abomination."
+   }
+  ],
+  "2": [
+   {
+    "q": "Dont Michaël et Elçafan, que Moïse appelle pour emporter Nadab et Abihou hors du camp, sont-ils les fils ?",
+    "a": {
+     "t": "Ouzziel",
+     "he": "עֻזִּיאֵל"
+    },
+    "w": [
+     {
+      "t": "Amram",
+      "he": "עַמְרָם"
+     },
+     {
+      "t": "Kehath",
+      "he": "קְהָת"
+     },
+     {
+      "t": "Hour",
+      "he": "חוּר"
+     }
+    ],
+    "ref": "10:4",
+    "proof": [
+     "fils d'Ouzziel"
+    ],
+    "x": "Ouzziel est l'oncle d'Aaron."
+   },
+   {
+    "q": "Quel animal les enfants d'Israël doivent-ils prendre pour l'expiatoire du peuple ?",
+    "a": "Un bouc",
+    "w": [
+     "Un veau adulte",
+     "Un bélier",
+     "Une colombe"
+    ],
+    "ref": "9:3",
+    "proof": [
+     "un bouc pour expiatoire"
+    ],
+    "x": "Aaron, lui, prend un veau adulte pour son propre expiatoire."
+   },
+   {
+    "q": "Que Moïse interdit-il à Aaron et à ses fils après la mort de Nadab et Abihou ?",
+    "a": "De découvrir leurs têtes et de déchirer leurs vêtements",
+    "w": [
+     "De quitter l'entrée de la Tente pendant sept jours",
+     "De manger de l'oblation en lieu saint",
+     "De s'approcher de l'autel du parfum"
+    ],
+    "ref": "10:6",
+    "proof": [
+     "Ne découvrez point vos têtes"
+    ],
+    "x": "Il leur dit de ne pas mourir et d'attirer la colère divine sur la communauté ; c'est aux frères et à la maison d'Israël de pleurer."
+   },
+   {
+    "q": "Que fait Aaron après avoir offert l'expiatoire, l'holocauste et le rémunératoire ?",
+    "a": "Il étend ses mains vers le peuple et le bénit",
+    "w": [
+     "Il verse l'huile d'onction sur la tête du peuple",
+     "Il s'incline devant l'arche du Statut",
+     "Il quitte le camp et monte vers la montagne"
+    ],
+    "ref": "9:22",
+    "proof": [
+     "étendit ses mains vers le peuple"
+    ],
+    "x": "Puis il redescend de l'autel."
+   },
+   {
+    "q": "Que ne doivent pas boire Aaron et ses fils quand ils entrent dans la Tente d'assignation ?",
+    "a": "Ni vin ni liqueur forte",
+    "w": [
+     "Ni eau ni lait",
+     "Ni vin ni eau pendant le jeûne",
+     "Ni huile ni miel dans la cuve"
+    ],
+    "ref": "10:9",
+    "proof": [
+     "ni vin ni liqueur forte"
+    ],
+    "x": "Afin qu'ils ne meurent pas : règle perpétuelle pour toutes les générations."
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, pourquoi le huitième jour est-il si important ?",
+    "a": "Il est le premier de Nissan, jour où le Tabernacle est dressé, et il reçoit dix couronnes",
+    "w": [
+     "Il est le jour de Chavouot, quand la Torah est donnée",
+     "Il est le jour où Aaron est installé grand prêtre pour toujours",
+     "Il est le jour de la mort des fils d'Aaron seulement"
+    ],
+    "ref": "9:1",
+    "proof": [
+     "עשר עטרות",
+     "ראש חדש ניסן"
+    ],
+    "x": "Rachi sur Lévitique 9:1 : c'est le premier Nissan, jour où le Tabernacle fut dressé ; il reçut dix couronnes."
+   },
+   {
+    "q": "Selon Rachi, pourquoi Aaron doit-il prendre un veau pour son expiatoire ?",
+    "a": "Pour que Dieu lui pardonne la faute du veau d'or",
+    "w": [
+     "Parce que le veau est l'animal le plus pur",
+     "Parce que le veau représente la tribu de Lévi",
+     "Parce que le peuple avait demandé un veau"
+    ],
+    "ref": "9:2",
+    "proof": [
+     "מעשה העגל"
+    ],
+    "x": "Rachi sur Lévitique 9:2 : pour annoncer que Dieu lui a pardonné, par ce veau, l'affaire du veau d'or."
+   },
+   {
+    "q": "Selon Rachi, pour quelle faute Nadab et Abihou meurent-ils, selon rabbi Ismaël ?",
+    "a": "Ils sont entrés dans le Sanctuaire après avoir bu du vin",
+    "w": [
+     "Ils ont enseigné la loi en présence de Moïse",
+     "Ils ont offert un sacrifice avant l'heure",
+     "Ils ont refusé de se marier"
+    ],
+    "ref": "10:2",
+    "proof": [
+     "שתויי יין"
+    ],
+    "x": "Rachi sur Lévitique 10:2 : rabbi Éliézer dit qu'ils ont décidé de la loi devant leur maître ; rabbi Ismaël dit qu'ils sont entrés ivres dans le Sanctuaire."
+   },
+   {
+    "q": "Selon Rachi, quelle récompense Aaron reçoit-il pour avoir gardé le silence ?",
+    "a": "Que Dieu lui parle à lui seul, pour lui donner l'interdit de l'ivresse",
+    "w": [
+     "Qu'il devienne le chef du Sanhédrin",
+     "Que ses fils lui succèdent sans limite de temps",
+     "Que son nom soit gravé sur le pectoral"
+    ],
+    "ref": "10:3",
+    "proof": [
+     "שנתיחד עמו הדבור"
+    ],
+    "x": "Rachi sur Lévitique 10:3 : il reçut un salaire pour son silence : la parole se tourna vers lui seul, pour la section de l'interdit du vin."
+   },
+   {
+    "q": "Selon Rachi, combien de séries de coups reçoit celui qui mange une fourmi ?",
+    "a": "Cinq séries de coups, une par interdit transgressé",
+    "w": [
+     "Quatre séries de coups, comme pour un insecte rampant",
+     "Six séries de coups, comme pour une guêpe",
+     "Une seule série de coups, comme pour un reptile"
+    ],
+    "ref": "11:44",
+    "proof": [
+     "נמלה לוקה חמש"
+    ],
+    "x": "Rachi sur Lévitique 11:44 : celui qui mange un ver reçoit quatre séries, une fourmi cinq, une guêpe six."
+   }
+  ]
+ }
+}

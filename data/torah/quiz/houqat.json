@@ -1,0 +1,259 @@
+{
+ "v": 1,
+ "parasha": "'Houqat",
+ "levels": {
+  "1": [
+   {
+    "q": "Quel animal les enfants d'Israël doivent-ils choisir pour la loi de la purification ?",
+    "a": "Une vache rousse, intacte, qui n'a pas porté le joug",
+    "w": [
+     "Un taureau blanc, sans défaut, qui n'a jamais été attelé",
+     "Une génisse noire, âgée de trois ans, sans aucune tache",
+     "Un bélier roux, de première année, sans tache ni défaut"
+    ],
+    "ref": "19:2",
+    "proof": [
+     "vache rousse"
+    ],
+    "x": "Elle doit être sans aucun défaut."
+   },
+   {
+    "q": "Que jette le pontife dans le feu où se consume la vache ?",
+    "a": "Du bois de cèdre, de l'hysope et de l'écarlate",
+    "w": [
+     "Du sel, de la farine fine et de l'huile d'olive pure",
+     "De l'encens, de la myrrhe franche et du miel du pays",
+     "Du lin retors, de la laine blanche et de l'azur"
+    ],
+    "ref": "19:6",
+    "proof": [
+     "bois de cèdre, de l'hysope et de l'écarlate"
+    ],
+    "x": "On brûle la vache sous les yeux du pontife, avec sa peau, sa chair, son sang et sa fiente."
+   },
+   {
+    "q": "Qui meurt à Kadêch, où le peuple s'est arrêté, et y est ensevelie ?",
+    "a": {
+     "t": "Miryam",
+     "he": "מִרְיָם"
+    },
+    "w": [
+     {
+      "t": "Aaron",
+      "he": "אַהֲרֹן"
+     },
+     {
+      "t": "Éléazar",
+      "he": "אֶלְעָזָר"
+     },
+     {
+      "t": "Caleb",
+      "he": "כָּלֵב"
+     }
+    ],
+    "ref": "20:1",
+    "proof": [
+     "Miryam mourut"
+    ],
+    "x": "Le peuple s'arrête à Kadêch, dans le désert de Cîn, au premier mois."
+   },
+   {
+    "q": "Combien de fois Moïse frappe-t-il le rocher de sa verge ?",
+    "a": "Deux fois",
+    "w": [
+     "Une fois",
+     "Trois fois",
+     "Sept fois"
+    ],
+    "ref": "20:11",
+    "proof": [
+     "par deux fois"
+    ],
+    "x": "Il en sort de l'eau en abondance, et la communauté et ses bêtes en boivent."
+   },
+   {
+    "q": "Que fait Moïse pour guérir les Israélites mordus par les serpents brûlants ?",
+    "a": "Il fait un serpent d'airain et le fixe sur une perche",
+    "w": [
+     "Il ordonne de faire un sacrifice d'expiation devant l'autel",
+     "Il leur fait boire de l'eau de la source de Beer",
+     "Il les envoie se laver dans les eaux du Jourdain"
+    ],
+    "ref": "21:9",
+    "proof": [
+     "serpent d'airain",
+     "perche"
+    ],
+    "x": "Quiconque lève les yeux vers lui est sauvé."
+   }
+  ],
+  "2": [
+   {
+    "q": "Pourquoi Dieu interdit-il à Moïse et à Aaron de conduire le peuple dans le pays ?",
+    "a": "Parce qu'ils n'ont pas assez cru en lui pour le sanctifier aux yeux d'Israël",
+    "w": [
+     "Parce qu'ils ont frappé un Égyptien dans le désert",
+     "Parce qu'ils ont désobéi à l'ordre de brûler la vache rousse",
+     "Parce qu'ils ont laissé le peuple faire le veau d'or"
+    ],
+    "ref": "20:12",
+    "proof": [
+     "pas assez cru en moi"
+    ],
+    "x": "Ainsi ils ne conduisent pas ce peuple dans le pays que Dieu leur a donné."
+   },
+   {
+    "q": "Qui Moïse fait-il revêtir du costume d'Aaron, avant la mort de ce dernier ?",
+    "a": {
+     "t": "Éléazar",
+     "he": "אֶלְעָזָר"
+    },
+    "w": [
+     {
+      "t": "Ithamar",
+      "he": "אִיתָמָר"
+     },
+     {
+      "t": "Caleb",
+      "he": "כָּלֵב"
+     },
+     {
+      "t": "Aaron",
+      "he": "אַהֲרֹן"
+     }
+    ],
+    "ref": "20:28",
+    "proof": [
+     "Eléazar, son fils"
+    ],
+    "x": "Aaron meurt là, au sommet de la montagne."
+   },
+   {
+    "q": "Que répond le roi d'Édom à la demande de passage pacifique des Israélites ?",
+    "a": "« Tu ne traverseras point mon pays, car je me porterais en armes à ta rencontre »",
+    "w": [
+     "« Tu traverseras mon pays, mais sans boire de mon eau ni toucher aux vignes »",
+     "« Tu traverseras mon pays par la chaussée sans rien payer à mes sujets »",
+     "« Tu ne traverseras mon pays qu'en laissant tes fils en otages chez moi »"
+    ],
+    "ref": "20:18",
+    "proof": [
+     "Tu ne traverseras point mon pays"
+    ],
+    "x": "Moïse lui avait envoyé des députés, de Kadêch."
+   },
+   {
+    "q": "Où Og, roi du Basan, s'avance-t-il à la rencontre des Israélites pour leur livrer bataille ?",
+    "a": {
+     "t": "Edréi",
+     "he": "אֶדְרֶעִי"
+    },
+    "w": [
+     {
+      "t": "Hesbon",
+      "he": "חֶשְׁבּוֹן"
+     },
+     {
+      "t": "Arnon",
+      "he": "אַרְנוֹן"
+     },
+     {
+      "t": "Jaboc",
+      "he": "יַבֹּק"
+     }
+    ],
+    "ref": "21:33",
+    "proof": [
+     "Edréi"
+    ],
+    "x": "Dieu dit à Moïse : « Ne le crains point, je le livre en tes mains. »"
+   },
+   {
+    "q": "Entre quelles deux rivières Israël conquiert-il le pays de Sihôn, roi des Amorréens ?",
+    "a": "Entre l'Arnon et le Jaboc",
+    "w": [
+     "Entre l'Arnon et le Jourdain",
+     "Entre le Jaboc et le Basan",
+     "Entre la mer des Joncs et l'Arnon"
+    ],
+    "ref": "21:24",
+    "proof": [
+     "depuis l'Arnon jusqu'au Jaboc"
+    ],
+    "x": "Il le passe au fil de l'épée, jusqu'aux possessions des Ammonites."
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, pourquoi la Torah appelle-t-elle la loi de la vache rousse un « statut » (houqa) ?",
+    "a": "Parce que c'est un décret de Dieu, sans permission de remettre en question",
+    "w": [
+     "Parce que c'est une loi inventée par Moïse et acceptée par le peuple",
+     "Parce que c'est une loi trop difficile à comprendre pour les nations",
+     "Parce que c'est une loi réservée aux seuls prêtres d'Aaron"
+    ],
+    "ref": "19:2",
+    "proof": [
+     "גזרה היא מלפני"
+    ],
+    "x": "Rachi sur Nombres 19:2 : Satan et les nations demandent : quelle est cette loi et quel est son sens ? D'où le mot « statut » : c'est un décret de ma part, nul n'a le droit d'en douter."
+   },
+   {
+    "q": "Selon Rachi, pourquoi la vache est-elle toujours appelée du nom de Moïse ?",
+    "a": "Parce que c'est la vache que Moïse a préparée dans le désert",
+    "w": [
+     "Parce que Moïse a reçu la loi sur le mont Sinaï en premier",
+     "Parce que Moïse a brûlé lui-même la première vache rousse",
+     "Parce que Moïse en a hérité de ses pères, à Madian"
+    ],
+    "ref": "19:2",
+    "proof": [
+     "פרה שעשה משה במדבר"
+    ],
+    "x": "Rachi sur Nombres 19:2 : elle est toujours appelée du nom de Moïse : c'est la vache que Moïse a préparée dans le désert."
+   },
+   {
+    "q": "Selon Rachi, pourquoi la mort de Miryam suit-elle la loi de la vache rousse ?",
+    "a": "Pour enseigner que la mort des justes expie, comme les sacrifices",
+    "w": [
+     "Pour enseigner que Miryam a elle-même offert la vache rousse",
+     "Pour enseigner que Miryam était prêtresse du sanctuaire",
+     "Pour enseigner que Miryam est morte en état d'impureté"
+    ],
+    "ref": "20:1",
+    "proof": [
+     "מיתת צדיקים מכפרת"
+    ],
+    "x": "Rachi sur Nombres 20:1 : pourquoi la mort de Miryam suit-elle la section de la vache ? Pour dire que, comme les sacrifices, la mort des justes expie."
+   },
+   {
+    "q": "Selon Rachi, qu'aurait dû faire Moïse pour sanctifier le nom de Dieu au rocher ?",
+    "a": "Parler au rocher, qui aurait donné de l'eau sans être frappé",
+    "w": [
+     "Frapper le rocher une seule fois, avec la verge d'Aaron",
+     "Offrir un sacrifice devant tout le peuple rassemblé",
+     "Prier trois jours entiers dans la tente d'assignation"
+    ],
+    "ref": "20:12",
+    "proof": [
+     "אל הסלע"
+    ],
+    "x": "Rachi sur Nombres 20:12 : s'ils avaient parlé au rocher et qu'il avait donné de l'eau, Dieu aurait été sanctifié aux yeux de la communauté."
+   },
+   {
+    "q": "Selon Rachi, pourquoi Dieu envoie-t-il des serpents contre le peuple qui a médit ?",
+    "a": "Parce que le serpent, puni pour sa médisance, punit ceux qui médisent",
+    "w": [
+     "Parce que les serpents vivent dans le désert",
+     "Parce que les serpents sont les ennemis d'Israël",
+     "Parce que les serpents sont les gardiens du sanctuaire"
+    ],
+    "ref": "21:6",
+    "proof": [
+     "נחש שלקה על הוצאת דבה"
+    ],
+    "x": "Rachi sur Nombres 21:6 : que vienne le serpent, qui fut puni pour avoir médit, et qu'il punisse ceux qui médisent."
+   }
+  ]
+ }
+}

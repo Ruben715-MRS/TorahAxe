@@ -1,0 +1,248 @@
+{
+ "v": 1,
+ "parasha": "Matot",
+ "levels": {
+  "1": [
+   {
+    "q": "Que dit la Torah d'un homme qui fait un vœu au Seigneur ou s'impose un serment ?",
+    "a": "Il ne peut violer sa parole : il doit l'accomplir",
+    "w": [
+     "Il peut l'annuler en offrant un sacrifice au sanctuaire",
+     "Il peut le reporter à l'année suivante sans autre peine",
+     "Il peut l'annuler devant les anciens du peuple assemblés"
+    ],
+    "ref": "30:3",
+    "proof": [
+     "il ne peut violer sa parole"
+    ],
+    "x": "Tout ce qu'a proféré sa bouche, il doit l'accomplir."
+   },
+   {
+    "q": "Combien d'hommes au total sont recrutés pour l'expédition contre Madian ?",
+    "a": "Douze mille, mille par tribu",
+    "w": [
+     "Six mille, cinq cents par tribu, pour l'expédition",
+     "Douze cents, cent par tribu, équipés pour le combat",
+     "Vingt-quatre mille, deux mille par tribu d'Israël"
+    ],
+    "ref": "31:5",
+    "proof": [
+     "mille hommes par tribu",
+     "douze mille"
+    ],
+    "x": "Ils sont équipés pour le combat."
+   },
+   {
+    "q": "Quel homme, fils de Beor, périt par le glaive avec les cinq rois de Madian ?",
+    "a": {
+     "t": "Balaam",
+     "he": "בִּלְעָם"
+    },
+    "w": [
+     {
+      "t": "Balak",
+      "he": "בָּלָק"
+     },
+     {
+      "t": "Sihôn",
+      "he": "סִיחוֹן"
+     },
+     {
+      "t": "Og",
+      "he": "עוֹג"
+     }
+    ],
+    "ref": "31:8",
+    "proof": [
+     "Balaam, fils de Beor"
+    ],
+    "x": "Les rois de Madian sont Evi, Rékem, Cour, Heur et Réba."
+   },
+   {
+    "q": "Quelle tribu, avec Ruben, possède de nombreux troupeaux et trouve le pays de Galaad avantageux ?",
+    "a": {
+     "t": "Gad",
+     "he": "גָד"
+    },
+    "w": [
+     {
+      "t": "Dan",
+      "he": "דָן"
+     },
+     {
+      "t": "Zabulon",
+      "he": "זְבוּלֻן"
+     },
+     {
+      "t": "Juda",
+      "he": "יְהוּדָה"
+     }
+    ],
+    "ref": "32:1",
+    "proof": [
+     "Ruben et ceux de Gad"
+    ],
+    "x": "Ils voient le pays de Yazer et celui de Galaad."
+   },
+   {
+    "q": "Combien de jours doivent rester hors du camp ceux qui ont tué une personne ou touché un cadavre ?",
+    "a": "Sept jours",
+    "w": [
+     "Trois jours, puis un lavage rituel complet",
+     "Un jour entier, jusqu'au coucher du soleil",
+     "Quarante jours, comme le séjour de Moïse sur la montagne"
+    ],
+    "ref": "31:19",
+    "proof": [
+     "sept jours hors du camp"
+    ],
+    "x": "Ils se purifient le troisième et le septième jour."
+   }
+  ],
+  "2": [
+   {
+    "q": "Quelle part du butin des gens de guerre est prélevée comme tribut pour le Seigneur ?",
+    "a": "Une tête sur cinq cents",
+    "w": [
+     "Une tête sur cent, pour chaque tribu",
+     "Une tête sur dix, comme la dîme du bétail",
+     "Une tête sur cinquante, parmi les vaincus"
+    ],
+    "ref": "31:28",
+    "proof": [
+     "une tête sur cinq cents"
+    ],
+    "x": "Cela comprend les individus humains, bœufs, ânes et menu bétail."
+   },
+   {
+    "q": "Combien de pièces de menu bétail composent le butin pris à Madian ?",
+    "a": "Six cent soixante-quinze mille",
+    "w": [
+     "Six cent mille, comme les hommes du recensement",
+     "Soixante-quinze mille, comme les ânes de la capture",
+     "Six cent cinquante mille, selon la moitié du butin"
+    ],
+    "ref": "31:32",
+    "proof": [
+     "six cent soixante-quinze mille"
+    ],
+    "x": "C'est la capture, complément de ce qu'avaient pillé les gens de guerre."
+   },
+   {
+    "q": "Combien d'ânes composent la capture, au total ?",
+    "a": "Soixante et un mille",
+    "w": [
+     "Trente mille cinq cents",
+     "Soixante-quinze mille",
+     "Trente-six mille"
+    ],
+    "ref": "31:34",
+    "proof": [
+     "ânes, soixante et un mille"
+    ],
+    "x": "La moitié revenant aux gens de guerre compte trente mille cinq cents ânes."
+   },
+   {
+    "q": "Que apportent en hommage à l'Éternel les officiers de l'armée, pour racheter leurs personnes ?",
+    "a": "Les joyaux d'or qu'ils ont trouvés : chaînettes, bracelets, bagues, boucles et colliers",
+    "w": [
+     "Des bœufs et des brebis tirés du butin de Madian",
+     "Des fils d'argent et des étoffes brodées",
+     "Des gerbes de la moisson de l'année"
+    ],
+    "ref": "31:50",
+    "proof": [
+     "joyaux d'or"
+    ],
+    "x": "Ils offrent à l'Éternel ce que chacun d'eux a trouvé."
+   },
+   {
+    "q": "Que demandent Ruben et Gad de construire en Transjordanie ?",
+    "a": "Des parcs à brebis pour leur bétail et des villes pour leurs familles",
+    "w": [
+     "Des autels pour le service de l'Éternel et des tentes",
+     "Des forteresses contre Sihôn et des puits",
+     "Des maisons pour les Lévites et des enclos"
+    ],
+    "ref": "32:16",
+    "proof": [
+     "parcs à brebis",
+     "villes pour nos familles"
+    ],
+    "x": "Ils veulent que ce pays soit donné en propriété à leurs serviteurs, sans passer le Jourdain."
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, que signifie « voici la chose » (zeh hadavar) à propos des vœux ?",
+    "a": "Que Moïse a prophétisé avec une expression plus forte que celle des autres prophètes",
+    "w": [
+     "Que le vœu est une parole sacrée comme les dix paroles du Sinaï",
+     "Que le vœu s'applique à toute chose permise par la Torah",
+     "Que seuls les chefs de tribus peuvent annuler un vœu en public"
+    ],
+    "ref": "30:2",
+    "proof": [
+     "זה הדבר"
+    ],
+    "x": "Rachi sur Nombres 30:2 : Moïse a prophétisé par « ainsi dit l'Éternel », les prophètes aussi ; mais Moïse a ajouté « voici la chose »."
+   },
+   {
+    "q": "Selon Rachi, pourquoi la guerre est-elle menée contre Madian et non contre Moab ?",
+    "a": "Parce que Moab s'est mêlé de cette affaire par crainte, tandis que Madian l'a fait par haine",
+    "w": [
+     "Parce que Moab était un peuple allié d'Israël depuis Abraham",
+     "Parce que Moab était trop puissant pour être attaqué sans risque",
+     "Parce que Moab descendait de Lot, neveu d'Abraham, et d'une fille"
+    ],
+    "ref": "31:2",
+    "proof": [
+     "מאת המדינים"
+    ],
+    "x": "Rachi sur Nombres 31:2 : « des Madianites » et non des Moabites : car Moab s'est engagé par crainte d'être pillés ; Madian l'a fait pour semer la discorde."
+   },
+   {
+    "q": "Selon Rachi, que prouve le choix de Phinéas, et non d'Éléazar, pour conduire l'expédition ?",
+    "a": "Que Phinéas équivalait à tous les autres, et que celui qui a commencé le commandement doit l'achever",
+    "w": [
+     "Que Phinéas était plus âgé qu'Éléazar et plus savant",
+     "Que Phinéas connaissait mieux Madian et ses chemins",
+     "Que Phinéas était un guerrier expérimenté du camp d'Israël"
+    ],
+    "ref": "31:6",
+    "proof": [
+     "שקול כנגד כלם"
+    ],
+    "x": "Rachi sur Nombres 31:6 : Phinéas équivalait à eux tous ; celui qui a commencé la mitsva en tuant Kozbi, fille de Tsour, l'achève."
+   },
+   {
+    "q": "Selon Rachi, comment Balaam faisait-il voler les rois de Madian ?",
+    "a": "Par la magie, il les faisait voler dans les airs avec lui",
+    "w": [
+     "Par des chars attelés de chevaux ailés",
+     "Par des cordes tendues entre les montagnes",
+     "Par des nuages obscurs obéissant à ses ordres"
+    ],
+    "ref": "31:6",
+    "proof": [
+     "בכשפים"
+    ],
+    "x": "Rachi sur Nombres 31:6 : Balaam les faisait voler par magie, volant avec eux ; on lui présenta alors la plaque portant le Nom, et ils sont tombés."
+   },
+   {
+    "q": "Selon Rachi, que montre Ruben et Gad en construisant d'abord des parcs pour leur bétail, puis des villes pour leurs enfants ?",
+    "a": "Qu'ils tenaient davantage à leurs biens qu'à leurs fils et filles",
+    "w": [
+     "Qu'ils voulaient sauver leur bétail de la guerre",
+     "Qu'ils voulaient éviter le combat contre Canaan",
+     "Qu'ils voulaient s'installer avant les autres tribus"
+    ],
+    "ref": "32:16",
+    "proof": [
+     "חסים היו על ממונם"
+    ],
+    "x": "Rachi sur Nombres 32:16 : ils tenaient plus à leurs biens qu'à leurs fils et filles ; Moïse leur dit : faites de l'essentiel l'essentiel, et du secondaire le secondaire."
+   }
+  ]
+ }
+}
