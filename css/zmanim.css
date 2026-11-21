@@ -102,8 +102,6 @@
 
 /* --- Vue Chabbat --- */
 .zm-shabbat-rows { margin-top: 0; }
-.zm-haftara { cursor: default; }
-.zm-haftara .chev { visibility: hidden; }
 
 /* --- Vue Semaine --- */
 .zm-week-range { margin: 2px 4px -4px; font-size: 14px; font-weight: 700; color: var(--text-dark); }
