@@ -153,3 +153,51 @@ test('createGame au hasard : cinq versets, 500 points au plus', () => {
     while (!g.over) { V.guess(g, V.question(g).parasha); V.next(g); }
     assert.strictEqual(g.score, 500);
 });
+
+// --- Mode « Contenu » : le résumé d'une paracha, cinq essais (100, 80, 60, 40, 20 points), pas d'indice ----------------------------------
+test('Contenu : cinq paracha distinctes, tirées parmi les 54', () => {
+    const g = V.createContentGame({ parashot: PAR, rng: seeded(7) });
+    assert.strictEqual(g.questions.length, V.ROUNDS);
+    const ids = g.questions.map(q => q.parasha);
+    assert.strictEqual(new Set(ids).size, ids.length);
+    ids.forEach(p => assert.ok(p >= 0 && p < PAR.parashot.length));
+    assert.strictEqual(g.questions[0].type, 'content');
+});
+
+test('Contenu : la bonne réponse rapporte 100 points au premier essai, 60 au troisième', () => {
+    const g = V.createContentGame({ parashot: PAR, indices: [0, 1] });
+    assert.deepStrictEqual(V.guess(g, 0), ['right']);
+    assert.strictEqual(g.score, 100);
+    V.next(g);
+    const wrong = [40, 41];
+    assert.deepStrictEqual(V.guess(g, wrong[0]), ['wrong']);
+    assert.deepStrictEqual(V.guess(g, wrong[1]), ['wrong']);
+    assert.strictEqual(g.points, 60);
+    assert.deepStrictEqual(V.guess(g, 1), ['right']);
+    assert.strictEqual(g.score, 160);
+});
+
+test('Contenu : cinq essais ratés dévoilent la paracha à zéro point ; pas d\'indice', () => {
+    const g = V.createContentGame({ parashot: PAR, indices: [5] });
+    assert.deepStrictEqual(V.hint(g), []);
+    const answers = [50, 51, 52, 53, 49];                       // aucune n'est la paracha 5
+    const events = answers.map(a => V.guess(g, a));
+    assert.deepStrictEqual(events.slice(0, 4), [['wrong'], ['wrong'], ['wrong'], ['wrong']]);
+    assert.deepStrictEqual(events[4], ['wrong', 'revealed']);
+    assert.strictEqual(g.points, 0);
+    assert.strictEqual(g.resolved, 'revealed');
+    assert.strictEqual(g.score, 0);
+});
+
+test('Contenu : au cinquième essai, la bonne réponse vaut 20 points', () => {
+    const g = V.createContentGame({ parashot: PAR, indices: [9] });
+    [0, 1, 2, 3].forEach(a => V.guess(g, a));
+    assert.deepStrictEqual(V.guess(g, 9), ['right']);
+    assert.strictEqual(g.score, 20);
+});
+
+test('Verset (mode inchangé) : la partie garde ses indices', () => {
+    const g = V.createGame({ books: BOOKS, parashot: PAR, indices: [idx(1, 1, 1)] });
+    assert.deepStrictEqual(V.hint(g), ['hint']);
+    assert.strictEqual(g.points, 80);
+});

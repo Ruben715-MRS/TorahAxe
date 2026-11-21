@@ -12,6 +12,7 @@ let versegameData = null;        // { books: [5 fichiers], parashot }, une fois 
 let versegameBook = 0;           // le livre dont on voit les parachiot (0 : aucun)
 let versegameFr = false;         // afficher aussi la traduction
 let versegameLoading = false;
+let versegameMode = 'verse';     // 'verse' : un verset à identifier ; 'content' : le résumé d'une paracha à identifier (VerseGameCore.createContentGame)
 
 const VERSEGAME_PREFS_KEY = 'torahaxe_versegame_prefs_v1';
 
@@ -20,8 +21,23 @@ function openVerseGame(fromScreen) {
     showScreen('screen-parashagame', 'forward');
     const raw = QuizUI.loadPrefs(VERSEGAME_PREFS_KEY);
     versegameFr = !!(raw && raw.fr);
+    versegameMode = raw && raw.mode === 'content' ? 'content' : 'verse';
     document.getElementById('parashagame-fr').checked = versegameFr;
     versegameSetup();
+}
+
+// Le mode du jeu (« Verset » ou « Contenu ») : mémorisé sur l'appareil.
+function parashagameMode(mode) {
+    versegameMode = mode === 'content' ? 'content' : 'verse';
+    QuizUI.savePrefs(VERSEGAME_PREFS_KEY, { fr: versegameFr, mode: versegameMode });
+    versegameDrawModes();
+}
+
+function versegameDrawModes() {
+    ['verse', 'content'].forEach(m => {
+        const b = document.getElementById('parashagame-mode-' + m);
+        if (b) b.setAttribute('aria-pressed', m === versegameMode ? 'true' : 'false');
+    });
 }
 
 function parashagameBack() { gamesBackTo(versegameReturn); }
@@ -51,6 +67,7 @@ function versegameSetup() {
     QuizUI.phase('parashagame', 'setup');
     const start = document.getElementById('parashagame-start');
     const note = document.getElementById('parashagame-load');
+    versegameDrawModes();
     if (versegameData) { note.textContent = ''; start.classList.remove('hidden'); return; }
     start.classList.add('hidden');
     versegameLoad(() => { if (!document.getElementById('screen-parashagame').classList.contains('hidden') && !versegame) versegameSetup(); });
@@ -58,18 +75,36 @@ function versegameSetup() {
 
 function parashagameStart() {
     if (!versegameData) return;
-    versegame = VerseGameCore.createGame({ books: versegameData.books, parashot: versegameData.parashot });
+    versegame = versegameMode === 'content'
+        ? VerseGameCore.createContentGame({ parashot: versegameData.parashot })
+        : VerseGameCore.createGame({ books: versegameData.books, parashot: versegameData.parashot });
     QuizUI.phase('parashagame', 'play');
     versegameRender();
+}
+
+// Le résumé d'une paracha (ui/fr.json, tools.cmd_parachiot_<livre><rang>_text : le même texte que dans le Tanakh), pour le mode Contenu.
+function versegameSummaryOf(i) {
+    const P = versegameData.parashot.parashot;
+    const p = P[i];
+    const rank = P.slice(0, i).filter(x => x.book === p.book).length + 1;
+    return t('tools.cmd_parachiot_' + ['g', 'e', 'l', 'n', 'd'][p.book - 1] + rank + '_text');
+}
+
+// Le statut : « Verset n sur 5 » ou « Résumé n sur 5 » selon le mode.
+function versegameStatus(g) {
+    QuizUI.status('parashagame', g);
+    if (g.cfg === VerseGameCore.CONTENT_CFG) document.getElementById('parashagame-status').textContent = t('parashagame.status_content', { n: g.index + 1, total: g.questions.length, score: g.score });
 }
 
 // --- Un verset --------------------------------------------------------------------------------------------------------------------------------
 function versegameRender() {
     const g = versegame;
     versegameBook = 0;
-    QuizUI.status('parashagame', g);
+    versegameStatus(g);
     document.getElementById('parashagame-feedback').classList.add('hidden');
-    document.getElementById('parashagame-ask').textContent = t('parashagame.ask');
+    const q = VerseGameCore.question(g);
+    // Mode Contenu : l'intitulé de la question est le résumé de la paracha.
+    document.getElementById('parashagame-ask').textContent = q && q.type === 'content' ? versegameSummaryOf(q.parasha) : t('parashagame.ask');
     versegameDrawVerses(false);
     versegameDrawControls();
     versegameDrawParashot();
@@ -80,6 +115,7 @@ function versegameDrawVerses(scroll) {
     const g = versegame;
     const box = document.getElementById('parashagame-verses');
     toolClear(box);
+    if (g.cfg === VerseGameCore.CONTENT_CFG) return;     // mode Contenu : pas de verset, le résumé est dans l'intitulé
     VerseGameCore.shownVerses(versegameData.books, g).forEach((v, i) => {
         const card = document.createElement('div');
         card.className = 'parashagame-verse';
@@ -109,6 +145,7 @@ function versegameDrawControls() {
     const g = versegame;
     document.getElementById('parashagame-points').textContent = t('parashagame.points', { n: g.points });
     const hint = document.getElementById('parashagame-hint');
+    if (g.cfg === VerseGameCore.CONTENT_CFG) { hint.classList.add('hidden'); return; }     // mode Contenu : pas d'indice
     const left = VerseGameCore.MAX_HINTS - (g.shown - 1);
     hint.disabled = !!g.resolved || left <= 0;
     hint.classList.toggle('hidden', !!g.resolved);
@@ -182,15 +219,16 @@ function versegameResolve(guessed) {
     const g = versegame;
     const q = VerseGameCore.question(g);
     const right = g.resolved === 'right';
-    QuizUI.status('parashagame', g);
+    versegameStatus(g);
     versegameDrawVerses(false);
     versegameDrawControls();
     versegameDrawParashot();
     document.getElementById('parashagame-feedback').classList.toggle('is-wrong', !right);
     document.getElementById('parashagame-feedback-title').textContent = right ? t('parashagame.right', { n: g.points }) : t('parashagame.revealed');
-    document.getElementById('parashagame-feedback-text').textContent = t('parashagame.answer_is', {
-        fr: '⁨' + q.parashaFr + '⁩', he: '⁨' + q.parashaHe + '⁩', book: TorahRefs.BOOK_NAMES[q.book - 1] + ' ⁨' + versegameData.parashot.books[q.book - 1] + '⁩', ref: q.label
-    });
+    const bookName = TorahRefs.BOOK_NAMES[q.book - 1] + ' ⁨' + versegameData.parashot.books[q.book - 1] + '⁩';
+    document.getElementById('parashagame-feedback-text').textContent = q.type === 'content'
+        ? t('parashagame.answer_is_content', { fr: '⁨' + q.parashaFr + '⁩', he: '⁨' + q.parashaHe + '⁩', book: bookName })
+        : t('parashagame.answer_is', { fr: '⁨' + q.parashaFr + '⁩', he: '⁨' + q.parashaHe + '⁩', book: bookName, ref: q.label });
     const note = document.getElementById('parashagame-feedback-note');
     note.textContent = '';
     note.classList.add('hidden');
