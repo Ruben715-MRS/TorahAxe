@@ -20,6 +20,13 @@ const book = n => BOOKS[n] || (BOOKS[n] = {
 const fr = s => String(s).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[’']/g, ' ').replace(/[^a-z0-9]+/g, ' ').trim();
 const he = s => String(s).replace(/<[^>]+>/g, ' ').replace(/[֑-ׇ]/g, '').replace(/[^א-ת]+/g, ' ').trim();
 
+// Les consonnes hébraïques d'un texte, sans espaces ni voyelles (pour chercher un nom dans un verset ou dans toute la Torah).
+const heFlat = s => String(s).replace(/<[^>]+>/g, '').replace(/[֑-ׇ]/g, '').replace(/[^א-ת]/g, '');
+let TORAH_FLAT = null;
+const torahFlat = () => TORAH_FLAT || (TORAH_FLAT = [1, 2, 3, 4, 5].map(n => book(n).text.chapters.map(c => c.join(' ')).join(' ')).map(heFlat).join('|'));
+const textOf = Core.textOf;
+const hebrewOf = Core.hebrewOf;
+
 // Les versets d'une paracha : [{ book, c, v }] du premier à celui qui précède la paracha suivante.
 function versesOf(p) {
     const start = Refs.indexOf({ book: parashot[p].book, chapter: parashot[p].c, verse: parashot[p].v });
@@ -77,12 +84,20 @@ files.forEach(f => {
             assert.ok(pool.length >= 5, 'niveau ' + level + ' : ' + pool.length + ' questions');
             pool.forEach(q => {
                 const where = 'niveau ' + level + ' « ' + q.q + ' »';
-                ['q', 'a', 'x', 'ref'].forEach(k => assert.ok(typeof q[k] === 'string' && q[k].trim().length > 0, where + ' : ' + k));
+                ['q', 'x', 'ref'].forEach(k => assert.ok(typeof q[k] === 'string' && q[k].trim().length > 0, where + ' : ' + k));
+                [q.a].concat(q.w || []).forEach(x => assert.ok(x && (typeof x === 'string' ? x : x.t) && String(textOf(x)).trim().length > 0, where + ' : une réponse est vide'));
                 assert.ok(q.q.trim().endsWith('?'), where + ' : pas une question');
                 assert.ok(Array.isArray(q.w) && q.w.length === 3, where + ' : trois mauvaises réponses');
-                const four = [q.a].concat(q.w).map(fr);
+                const four = [q.a].concat(q.w).map(x => fr(textOf(x)));
                 assert.strictEqual(new Set(four).size, 4, where + ' : réponses identiques');
-                [q.a].concat(q.w).forEach(x => assert.ok(x.length >= 2 && x.length <= 140, where + ' : réponse trop courte ou trop longue : ' + x));
+                [q.a].concat(q.w).map(textOf).forEach(x => assert.ok(x.length >= 2 && x.length <= 140, where + ' : réponse trop courte ou trop longue : ' + x));
+                // L'hébreu des noms : sur les quatre réponses ou sur aucune ; écrit en lettres, voyelles et maqaf ; chaque nom existe dans la Torah (une faute de frappe y serait introuvable).
+                const hes = [q.a].concat(q.w).map(hebrewOf);
+                assert.ok(hes.every(Boolean) || hes.every(h => !h), where + ' : l\'hébreu doit figurer sur les quatre réponses ou sur aucune');
+                hes.filter(Boolean).forEach(h => {
+                    assert.ok(/^[א-תְ-ׇ־]+$/.test(h), where + ' : hébreu mal écrit : ' + h);
+                    assert.ok(torahFlat().includes(heFlat(h)), where + ' : « ' + h + ' » ne se trouve pas dans la Torah');
+                });
                 assert.ok(Array.isArray(q.proof) && q.proof.length >= 1 && q.proof.every(w => typeof w === 'string' && w.trim()), where + ' : mots-preuves');
                 if (level === 3) {
                     assert.ok(/^Selon Rachi/.test(q.q), where + ' : le niveau 3 s\'appuie sur Rachi');
@@ -94,7 +109,7 @@ files.forEach(f => {
         const questions = all.map(q => fr(q.q));
         assert.strictEqual(new Set(questions).size, questions.length, 'deux questions identiques');
         // La bonne réponse n'est pas toujours la plus longue (on ne la trouverait pas sans lire la question).
-        const longest = all.filter(q => q.w.every(x => q.a.length > x.length)).length;
+        const longest = all.filter(q => q.w.every(x => textOf(q.a).length > textOf(x).length)).length;
         assert.ok(longest / all.length <= 0.6, 'la bonne réponse est la plus longue dans ' + longest + ' questions sur ' + all.length);
     });
 
@@ -107,6 +122,11 @@ files.forEach(f => {
             const verses = versesOfRef(bookNumber, q.ref);
             assert.ok(verses.length >= 1 && verses.length <= 6, where + ' : référence trop large');
             verses.forEach(v => assert.ok(range.has(Refs.indexOf({ book: v.book, chapter: v.c, verse: v.v })), where + ' : hors de la paracha'));
+            // Le nom de la bonne réponse s'écrit, en hébreu, dans les versets cités (ou, au niveau 3, dans Rachi).
+            if (hebrewOf(q.a)) {
+                const hebrew = heFlat(verses.map(v => book(v.book).text.chapters[v.c - 1][v.v - 1]).join(' ') + (level === 3 ? verses.map(v => ((book(v.book).rashi.chapters[v.c - 1] || [])[v.v - 1] || []).join(' ')).join(' ') : ''));
+                assert.ok(hebrew.includes(heFlat(hebrewOf(q.a))), where + ' : « ' + hebrewOf(q.a) + ' » absent des versets cités');
+            }
             if (level < 3) {
                 const text = fr(verses.map(v => book(v.book).text.french[v.c - 1][v.v - 1]).join(' '));
                 q.proof.forEach(w => assert.ok(text.includes(fr(w)), where + ' : « ' + w + ' » absent du verset'));
