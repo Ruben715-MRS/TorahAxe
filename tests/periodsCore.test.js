@@ -7,8 +7,8 @@ const H = require('../js/hebrewCalendarCore.js');
 const fixed = (y, m, d) => H.fixedOfGregorian(y, m, d);
 const find = (view, id) => view.groups.reduce((a, g) => a.concat(g.items), []).filter(i => i.id === id)[0];
 
-test('les données : treize périodes, des règles bien formées, un champ review partout', () => {
-    assert.deepStrictEqual(D.PERIODS.map(p => p.id), ['omer', 'troissemaines', 'kippour', 'chabbat', 'roshhodesh', 'pessah', 'roshhachana', 'souccot', 'chavouot', 'hanouka', 'pourim', 'jeunes', 'tichabav']);
+test('les données : quinze périodes, des règles bien formées, un champ review partout', () => {
+    assert.deepStrictEqual(D.PERIODS.map(p => p.id), ['omer', 'troissemaines', 'kippour', 'chabbat', 'roshhodesh', 'pessah', 'roshhachana', 'souccot', 'chavouot', 'hanouka', 'pourim', 'jeunes', 'tichabav', 'cheminiatseret', 'chabbatot']);
     const ids = [];
     D.PERIODS.forEach(p => {
         p.rules.concat(p.days || []).forEach(r => {
@@ -235,4 +235,78 @@ test('toute période a au moins une occurrence calculable pour 40 ans', () => {
             }));
         }
     });
+});
+
+test('Chemini Atseret et Simhat Torah 5787 : 22 et 23 Tichri dans la diaspora, un seul jour en Israël', () => {
+    const d = C.rangeOf('cheminiatseret', 5787, { israel: false }), i = C.rangeOf('cheminiatseret', 5787, { israel: true });
+    assert.strictEqual(d.start, fixed(2026, 10, 3));
+    assert.strictEqual(d.end, fixed(2026, 10, 4));
+    assert.strictEqual(i.end, i.start);
+    assert.strictEqual(find(C.view('cheminiatseret', { rite: 'sefarade' }), 'ca-geshem').st, 'must');
+});
+
+test('Chabbatot particuliers 5786 : les dates de la tradition', () => {
+    const r = C.phaseRanges('chabbatot', fixed(2026, 1, 1), {});
+    const day = (id) => r[id].start;
+    assert.strictEqual(day('chekalim'), fixed(2026, 2, 14));
+    assert.strictEqual(day('zakhor'), fixed(2026, 2, 28));      // le chabbat qui précède Pourim (mardi 3 mars)
+    assert.strictEqual(day('para'), fixed(2026, 3, 7));
+    assert.strictEqual(day('hahodesh'), fixed(2026, 3, 14));
+    assert.strictEqual(day('hagadol'), fixed(2026, 3, 28));     // Pessah : jeudi 2 avril
+    assert.strictEqual(day('chazon'), fixed(2026, 7, 18));      // le 9 Av est le jeudi 23
+    assert.strictEqual(day('nahamou'), fixed(2026, 7, 25));
+    assert.strictEqual(day('chouva'), fixed(2026, 9, 19));
+    assert.strictEqual(day('para') + 7, day('hahodesh'));
+    Object.keys(r).forEach(id => assert.strictEqual(H.weekdayOf(r[id].start), 6, id + ' : un samedi'));
+    assert.strictEqual(day('roshhodesh'), fixed(2026, 4, 18));  // Roch 'Hodech Iyar : le vendredi 17 et le chabbat 18 avril
+    assert.strictEqual(C.phaseRanges('chabbatot', fixed(2026, 7, 1), {}).mevarchim.start, fixed(2026, 7, 11));   // avant Roch 'Hodech Av (mercredi 15)
+    assert.strictEqual(C.phaseRanges('chabbatot', fixed(2026, 9, 1), {}).hanouka.start, fixed(2026, 12, 5));     // Hanouka 5787 : du 5 au 12 décembre
+});
+
+test('Chabbatot particuliers : un chabbat à deux sortes est une seule occurrence, à deux sous-périodes', () => {
+    let found = null;
+    for (let f = fixed(2026, 9, 1); f < fixed(2026 + 40, 9, 1) && !found; f += 7) {   // un chabbat sur deux ou trois années du cycle suffit
+        const s = C.stateOf('chabbatot', f, {});
+        if (s.range.phases.length > 1) found = s;
+    }
+    assert.ok(found, 'au moins un chabbat double en 40 ans');
+    const now = C.stateOf('chabbatot', found.range.start, {});
+    assert.strictEqual(now.state, 'active');
+    assert.ok(now.phasesNow.length > 1);
+    assert.strictEqual(now.phase, now.phasesNow[0]);
+});
+
+test('Chabbat Hanouka : la Havdala et les lumières, selon le rite', () => {
+    const v = (rite) => C.view('chabbatot', { rite, phase: 'hanouka' });
+    assert.match(find(v('sefarade'), 'chs-hn-havdala').note, /d’abord la Havdala/);
+    assert.match(find(v('ashkenaze'), 'chs-hn-havdala').note, /d’abord les lumières/);
+    assert.match(find(v('habad'), 'chs-hn-havdala').note, /d’abord les lumières/);
+    assert.strictEqual(find(v('sefarade'), 'chs-hn-chabbat').st, 'no');
+    assert.strictEqual(find(v('sefarade'), 'chs-ch-lecture'), undefined);   // règle d'un autre chabbat : masquée
+});
+
+test('Chabbatot particuliers : la haftara change selon le rite', () => {
+    const note = (rite, phase, id) => find(C.view('chabbatot', { rite, phase }), id).note;
+    assert.match(note('ashkenaze', 'chekalim', 'chs-ch-lecture'), /Rois II 12:1-17/);
+    assert.match(note('sefarade', 'chekalim', 'chs-ch-lecture'), /11:17-12:17/);
+    assert.match(note('sefarade', 'zakhor', 'chs-zk-lecture'), /15:1-34/);
+    assert.match(note('habad', 'zakhor', 'chs-zk-lecture'), /15:2-34/);
+    assert.match(note('sefarade', 'hahodesh', 'chs-ho-lecture'), /45:18-46:15/);
+    assert.match(note('ashkenaze', 'para', 'chs-pa-lecture'), /36:16-38/);
+    assert.strictEqual(C.view('chabbatot', { rite: 'sefarade', phase: 'inconnue' }).phase, 'hanouka');
+});
+
+test('Hol Hamoed affiné : mêmes règles à Pessah et à Souccot, masquées hors de Hol Hamoed', () => {
+    ['pessah', 'souccot'].forEach(id => {
+        const p = id === 'pessah' ? 'pe' : 'sc';
+        const hm = C.view(id, { rite: 'sefarade', phase: 'p2' }), fete = C.view(id, { rite: 'sefarade', phase: 'p1' });
+        assert.strictEqual(find(hm, p + '-hm-cuisiner').st, 'ok', id);
+        assert.strictEqual(find(hm, p + '-hm-laver').st, 'ok', id);
+        assert.strictEqual(find(hm, p + '-hm-commerce').st, 'no', id);
+        assert.strictEqual(find(hm, p + '-simha').st, 'must', id);
+        assert.strictEqual(find(fete, p + '-hm-cuisiner'), undefined, id);
+        assert.strictEqual(find(fete, p + '-simha').st, 'must', id);
+    });
+    assert.ok(find(C.view('pessah', { rite: 'sefarade', phase: 'p0' }), 'pe-eruv'));
+    assert.ok(find(C.view('souccot', { rite: 'sefarade', phase: 'p2' }), 'sc-eruv') && !find(C.view('souccot', { rite: 'sefarade', phase: 'p1' }), 'sc-eruv'));
 });

@@ -60,6 +60,7 @@ function perOccName(range) {
     const p = PeriodsCore.periodById(range.id);
     if (range.feast && p && p.feasts && p.feasts.length > 1) return t('tools.hcal_f_' + range.feast + '_name');
     if (range.month) return t('tools.per_rc_of', { month: hcalMonthName(range.year, range.month) });
+    if (p && p.kind === 'shabbatot') return range.phases.map(ph => p.phases.filter(x => x.id === ph.id)[0].fr).join(' · ');
     return '';
 }
 
@@ -98,7 +99,8 @@ function perPick(id) {
     if (!PeriodsCore.periodById(id)) return;
     const s = PeriodsCore.stateOf(id, perDay().fixed, perCtx());
     perState.id = id;
-    perState.phase = s && s.phase ? s.phase : null;   // la sous-période en cours, sinon la première (la vue la choisit)
+    // La sous-période en cours, sinon la première de la prochaine occurrence (pour les Chabbatot particuliers : le prochain), sinon la vue choisit la première.
+    perState.phase = s && s.phase ? s.phase : (s && s.range.phases[0] ? s.range.phases[0].id : null);
     perState.filter = 'all';
     perRender();
     const screen = toolEl('screen-tool-periods');
@@ -208,18 +210,25 @@ function perRenderDetail(body) {
         if (view.until) body.appendChild(perNode('p', 'tool-small per-dates', t('tools.per_until', { until: view.until })));
     }
 
-    // Les sous-périodes : un choix, avec leurs dates ; celle qui est en cours est signalée.
+    // Les sous-périodes : un choix, avec leurs dates ; celle qui est en cours est signalée. Les Chabbatot particuliers sont rangés par date, chacun avec la sienne.
     if (view.phases.length) {
+        const own = view.kind === 'shabbatot';
+        const dates = own ? PeriodsCore.phaseRanges(perState.id, ctx.fixed, ctx)
+            : (state ? state.range.phases.reduce((m, x) => { m[x.id] = x; return m; }, {}) : {});
+        const now = state ? state.phasesNow : [];
+        const phases = view.phases.slice();
+        if (own) phases.sort((a, b) => (dates[a.id] ? dates[a.id].start : Infinity) - (dates[b.id] ? dates[b.id].start : Infinity));
         const chips = perNode('div', 'tool-history-chips');
         chips.setAttribute('role', 'group');
         chips.setAttribute('aria-label', t('tools.per_phase_aria'));
-        view.phases.forEach(ph => {
-            const now = state && state.phase === ph.id;
-            chips.appendChild(perChip('per-phase-' + ph.id, ph.short + (now ? ' · ' + t('tools.per_phase_now') : ''), ph.id === view.phase, () => { perState.phase = ph.id; perRender(); }));
+        phases.forEach(ph => {
+            let label = ph.short;
+            if (own && dates[ph.id]) label += ' · ' + hcalGregorianText(dates[ph.id].start, { weekday: undefined, day: 'numeric', month: 'short', year: undefined });
+            if (now.indexOf(ph.id) >= 0) label += ' · ' + t('tools.per_phase_now');
+            chips.appendChild(perChip('per-phase-' + ph.id, label, ph.id === view.phase, () => { perState.phase = ph.id; perRender(); }));
         });
         body.appendChild(chips);
-        const range = state ? state.range : PeriodsCore.rangeOf(perState.id, HebrewCalendarCore.hebrewFromFixed(ctx.fixed).year, ctx);
-        const sub = range && range.phases.filter(x => x.id === view.phase)[0];
+        const sub = dates[view.phase];
         const info = view.phases.filter(x => x.id === view.phase)[0];
         if (sub && info) body.appendChild(perNode('p', 'tool-small per-dates', info.fr + ' : ' + perRangeText(sub)));
     }
@@ -281,13 +290,16 @@ function perRule(item) {
 // Une carte par période en cours (ou qui commence demain) : [{ id, label, value, sub }]. `day` est celui de homeDay().
 function periodsTodayCards(day) {
     const ctx = perCtx({ fixed: day.ctx.fixed, israel: day.israel });
-    return PeriodsCore.todayView(ctx.fixed, ctx).map(s => {
+    // Un Chabbat particulier remplace la carte du Chabbat ordinaire : sa fiche renvoie aux règles de Chabbat, qui restent valables.
+    const states = PeriodsCore.todayView(ctx.fixed, ctx);
+    const special = states.some(x => x.id === 'chabbatot');
+    return states.filter(x => !(special && x.id === 'chabbat')).map(s => {
         const p = PeriodsCore.periodById(s.id);
         const v = PeriodsCore.view(s.id, { rite: ctx.rite, sex: ctx.sex, phase: s.phase });
         let sub;
         if (s.state === 'active') {
             const ph = v.phases.filter(x => x.id === v.phase)[0];
-            sub = ph ? ph.fr : (perOccName(s.range) || v.until || p.sum);
+            sub = p.kind === 'shabbatot' ? perOccName(s.range) : (ph ? ph.fr : (perOccName(s.range) || v.until || p.sum));
         } else sub = perWhenText(s);
         return { id: s.id, label: t(s.state === 'active' ? 'tools.per_card_label' : 'tools.per_card_soon'), value: p.fr, sub: sub };
     });

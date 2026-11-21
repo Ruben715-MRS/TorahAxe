@@ -69,6 +69,48 @@
         return [];
     }
 
+    // Les Roch 'Hodech d'une année (sans Tichri, qui est Roch Hachana) : [{ id (du mois), first (le 1er du mois), start (le 30 qui précède, s'il y en a un), end }].
+    function roshHodeshOf(year) {
+        var months = HC.monthsOf(year), out = [];
+        for (var i = 1; i < months.length; i++) {
+            var first = fixedOf(year, { m: months[i].id, d: 1 });
+            if (first !== null) out.push({ id: months[i].id, first: first, start: months[i - 1].days === 30 ? first - 1 : first, end: first });
+        }
+        return out;
+    }
+
+    // Le premier samedi entre deux jours (inclus), ou null ; le dernier samedi qui précède ou est un jour donné.
+    function saturdayIn(from, to) {
+        var s = from + ((6 - HC.weekdayOf(from) + 7) % 7);
+        return s <= to ? s : null;
+    }
+    function saturdayOnOrBefore(day) { return day - ((HC.weekdayOf(day) + 1) % 7); }
+
+    // Les Chabbatot particuliers d'une année : [{ type, day }]. Les règles de calendrier sont celles de la tradition :
+    //  Chekalim : le chabbat qui précède Roch 'Hodech Adar (ou qui l'est) ; Zakhor : celui qui précède Pourim ; Hahodech : celui qui précède Roch 'Hodech Nissan (ou qui l'est) ;
+    //  Para : le chabbat avant Hahodech ; Chouva : entre Roch Hachana et Kippour ; Hagadol : celui qui précède Pessah ; Hazon : celui qui précède Tich'a BeAv (ou qui l'est) ; Nahamou : celui qui le suit.
+    function specialSabbaths(year) {
+        var out = [];
+        function add(type, day) { if (day !== null && day !== undefined) out.push({ type: type, day: day }); }
+        var adar = fixedOf(year, { m: HC.leap(year) ? 'AdarII' : 'Adar', d: 1 });
+        var purim = HC.feastsOf(year, false).filter(function (f) { return f.id === 'pourim'; })[0];
+        var nisan = fixedOf(year, { m: 'Nisan', d: 1 });
+        var hanouka = HC.feastsOf(year, false).filter(function (f) { return f.id === 'hanouka'; })[0];
+        if (adar !== null) add('chekalim', saturdayOnOrBefore(adar));
+        if (purim) add('zakhor', saturdayOnOrBefore(purim.fixed - 1));
+        if (nisan !== null) { add('hahodesh', saturdayOnOrBefore(nisan)); add('para', saturdayOnOrBefore(nisan) - 7); }
+        add('chouva', saturdayIn(fixedOf(year, { m: 'Tishri', d: 3 }), fixedOf(year, { m: 'Tishri', d: 9 })));
+        add('hagadol', saturdayIn(fixedOf(year, { m: 'Nisan', d: 8 }), fixedOf(year, { m: 'Nisan', d: 14 })));
+        add('chazon', saturdayIn(fixedOf(year, { m: 'Av', d: 3 }), fixedOf(year, { m: 'Av', d: 9 })));
+        add('nahamou', saturdayIn(fixedOf(year, { m: 'Av', d: 10 }), fixedOf(year, { m: 'Av', d: 16 })));
+        if (hanouka) for (var d = saturdayIn(hanouka.fixed, hanouka.last); d !== null && d <= hanouka.last; d += 7) add('hanouka', d);
+        roshHodeshOf(year).forEach(function (rc) {
+            add('roshhodesh', saturdayIn(rc.start, rc.end));
+            add('mevarchim', saturdayIn(rc.first - 7 - (rc.start < rc.first ? 1 : 0), rc.start - 1));
+        });
+        return out;
+    }
+
     // Les occurrences d'une période dans une année hébraïque : [{ id, year (hébraïque), start, end, phases: [{ id, start, end }], feast?, month? }].
     //  `feast` : l'identifiant de la fête quand une période en regroupe plusieurs (les jeûnes) ; `month` : le mois d'un Roch 'Hodech.
     // `ctx` : { rite, israel }. Une période hebdomadaire (Chabbat) n'a pas d'occurrence par année : voir stateOf.
@@ -83,13 +125,17 @@
             });
         }
         if (kind === 'monthly') {
-            var months = HC.monthsOf(year), out = [];
-            for (var i = 1; i < months.length; i++) {   // Tichri (rang 0) est Roch Hachana, pas un Roch 'Hodech
-                var first = fixedOf(year, { m: months[i].id, d: 1 });
-                if (first === null) continue;
-                out.push({ id: p.id, year: year, start: months[i - 1].days === 30 ? first - 1 : first, end: first, phases: [], month: months[i].id });
-            }
-            return out;
+            return roshHodeshOf(year).map(function (rc) { return { id: p.id, year: year, start: rc.start, end: rc.end, phases: [], month: rc.id }; });
+        }
+        if (kind === 'shabbatot') {   // un chabbat qui est à la fois deux sortes (Roch 'Hodech et Chekalim) n'est qu'une occurrence, à deux sous-périodes
+            var byDay = {}, list = [];
+            specialSabbaths(year).forEach(function (x) {
+                if (!byDay[x.day]) { byDay[x.day] = { id: p.id, year: year, start: x.day, end: x.day, phases: [] }; list.push(byDay[x.day]); }
+                byDay[x.day].phases.push({ id: x.type, start: x.day, end: x.day });
+            });
+            var order = p.phases.map(function (ph) { return ph.id; });
+            list.forEach(function (r) { r.phases.sort(function (a, b) { return order.indexOf(a.id) - order.indexOf(b.id); }); });
+            return list.sort(function (a, b) { return a.start - b.start; });
         }
         if (kind === 'weekly') return [];
         var start = fixedOf(year, p.from);
@@ -107,6 +153,26 @@
     function phaseAt(range, fixed) {
         for (var i = 0; i < range.phases.length; i++) if (fixed >= range.phases[i].start && fixed <= range.phases[i].end) return range.phases[i].id;
         return null;
+    }
+
+    // Toutes les sous-périodes en cours un jour donné (un chabbat peut en avoir plusieurs : Roch 'Hodech et Chekalim).
+    function phasesAt(range, fixed) {
+        return range.phases.filter(function (ph) { return fixed >= ph.start && fixed <= ph.end; }).map(function (ph) { return ph.id; });
+    }
+
+    // Les dates de chaque sous-période, pour sa prochaine occurrence (ou celle en cours) : { id : { start, end } }. Pour les Chabbatot particuliers, chacun a sa date.
+    function phaseRanges(id, fixed, ctx) {
+        var p = periodById(id), h = HC.hebrewFromFixed(fixed), out = {};
+        if (!p || !h || !p.phases) return out;
+        [h.year, h.year + 1].forEach(function (y) {
+            occurrences(p, y, ctx).forEach(function (r) {
+                r.phases.forEach(function (ph) {
+                    if (ph.end < fixed) return;
+                    if (!out[ph.id] || ph.start < out[ph.id].start) out[ph.id] = { start: ph.start, end: ph.end };
+                });
+            });
+        });
+        return out;
     }
 
     // L'état d'une période un jour donné, ou null si elle est hors des bornes du calendrier.
@@ -134,7 +200,7 @@
         var daysTo = active ? 0 : best.start - fixed;
         return {
             id: id, state: active ? 'active' : (daysTo <= (p.lead_days || 0) ? 'soon' : 'upcoming'),
-            range: best, daysTo: daysTo, phase: active ? phaseAt(best, fixed) : null
+            range: best, daysTo: daysTo, phase: active ? phaseAt(best, fixed) : null, phasesNow: active ? phasesAt(best, fixed) : []
         };
     }
 
@@ -227,7 +293,7 @@
             byGrp[rule.grp].items.push(item);
         });
         return {
-            id: p.id, he: p.he, fr: p.fr, lead: p.lead, src: p.src, until: p.until ? p.until[rite] : '',
+            id: p.id, kind: p.kind || 'range', he: p.he, fr: p.fr, lead: p.lead, src: p.src, until: p.until ? p.until[rite] : '',
             phases: phases.map(function (x) { return { id: x.id, fr: x.fr, short: x.short }; }), phase: phase,
             groups: groups, total: total,
             days: (p.days || []).map(function (d) { return { id: d.id, fr: d.fr, date: d.date, text: d.text, src: d.src || '' }; })
@@ -244,7 +310,7 @@
     }
 
     return {
-        riteOf: riteOf, periodById: periodById, rangeOf: rangeOf, phaseAt: phaseAt, stateOf: stateOf, listView: listView, todayView: todayView,
+        riteOf: riteOf, periodById: periodById, rangeOf: rangeOf, phaseAt: phaseAt, phasesAt: phasesAt, phaseRanges: phaseRanges, stateOf: stateOf, listView: listView, todayView: todayView,
         resolve: resolve, others: others, view: view, reviewList: reviewList
     };
 }));
