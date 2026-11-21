@@ -12,9 +12,14 @@
 
 const SD_PREFS_KEY = 'siddurPrefs';
 const SD_DATA = 'data/siddur/';
-// Le rite 'Habad a son propre siddour : le Tehilat Hachem (data/siddur/habad/, scripts/build_siddur_habad.js). Les autres rites lisent celui d'Edot HaMizrach.
-const SD_DATA_HABAD = 'data/siddur/habad/';
-function sdBase() { return typeof riteFull === 'function' && riteFull() === 'habad' ? SD_DATA_HABAD : SD_DATA; }
+// Chaque rite a son siddour : séfarade = Edot HaMizrach (data/siddur/), ashkénaze = Siddur Ashkenaz (data/siddur/ashkenaz/, scripts/build_siddur_ashkenaz.js),
+// 'Habad = Tehilat Hachem (data/siddur/habad/, scripts/build_siddur_habad.js). Ce que le siddour d'un rite n'a pas (Chabbat de 'Habad, zemirot, Pourim…) est repris
+// du siddour d'Edot HaMizrach : ces sections portent `from: 'sefarade'` dans l'index (scripts/merge_siddur_fallback.js) et se lisent dans data/siddur/.
+const SD_DATA_RITES = { habad: SD_DATA + 'habad/', ashkenaze: SD_DATA + 'ashkenaz/' };
+function sdBase() { const r = typeof riteFull === 'function' ? riteFull() : 'sefarade'; return SD_DATA_RITES[r] || SD_DATA; }
+// Le dossier où lire une section (ou sa traduction) : celui du rite, sauf pour une section reprise du siddour séfarade.
+let sdFromSefarade = new Set();
+function sdBaseOf(id) { return sdFromSefarade.has(id) ? SD_DATA : sdBase(); }
 let sdIndexBase = null;     // le dossier dont vient sdIndex
 
 let sdIndex = null;
@@ -136,19 +141,19 @@ function sdFetchJson(url) {
 function sdLoadIndex() {
     if (sdIndex) return Promise.resolve(sdIndex);
     const base = sdBase();
-    return sdFetchJson(base + 'index.json').then(index => { sdIndex = index; sdIndexBase = base; sdApplyRite(); return index; });
+    return sdFetchJson(base + 'index.json').then(index => { sdIndex = index; sdIndexBase = base; sdFromSefarade = new Set(); index.groups.forEach(g => g.sections.forEach(x => { if (x.from) sdFromSefarade.add(x.id); })); sdApplyRite(); return index; });
 }
 function sdLoadSection(id) {
-    const base = sdBase();
+    const base = sdBaseOf(id);
     if (sdCache[base + id]) return Promise.resolve(sdCache[base + id]);
     return sdFetchJson(base + id + '.json').then(section => { sdCache[base + id] = section; return section; });
 }
 // La traduction française d'une section (facultative) : { indice : [empreinte, texte] }, ou null s'il n'y en a pas.
 const sdFrCache = {};
 function sdLoadFr(id) {
-    const base = sdBase();
+    const base = sdBaseOf(id);
     if ((base + id) in sdFrCache) return Promise.resolve(sdFrCache[base + id]);
-    // Le Tehilat Hachem n'a pas (encore) de traduction française : le fichier manque, la section s'affiche en hébreu seul.
+    // Les siddourim ashkénaze et 'Habad n'ont pas (encore) de traduction française : le fichier manque, la section s'affiche en hébreu seul.
     return sdFetchJson(base + 'fr/' + id + '.json').then(d => d.t || null).catch(() => null).then(t => { sdFrCache[base + id] = t; return t; });
 }
 function sdFindSection(id) {
@@ -208,11 +213,13 @@ function sdPrecache() {
     try { localStorage.removeItem('siddurOffline'); } catch (e) { /* l'ancien drapeau « prêt hors-ligne », qui ne prouvait rien */ }
     // Toutes les sections, y compris les versions des autres rites (ouvertes depuis l'écran Bénédictions), et les petits fichiers dont le lecteur a besoin.
     const base = sdBase();
-    const urls = [base + 'index.json', base + 'fr/index.json', SD_DATA + 'interruptions.json', 'data/torah/weekday.json', 'data/torah/parashot.json'];
-    sdIndex.groups.forEach(g => g.sections.forEach(s => urls.push(base + s.id + '.json')));
-    sdRiteHidden.forEach(h => urls.push(base + h.section.id + '.json'));
-    sdFetchJson(base + 'fr/index.json').catch(() => ({}))
-        .then(idx => Object.keys((idx && idx.sections) || {}).forEach(id => urls.push(base + 'fr/' + id + '.json')))
+    const urls = [base + 'index.json', SD_DATA + 'interruptions.json', 'data/torah/weekday.json', 'data/torah/parashot.json'];
+    sdIndex.groups.forEach(g => g.sections.forEach(s => urls.push(sdBaseOf(s.id) + s.id + '.json')));
+    sdRiteHidden.forEach(h => urls.push(sdBaseOf(h.section.id) + h.section.id + '.json'));
+    // Les traductions françaises n'existent que pour le siddour d'Edot HaMizrach (et les sections qu'un autre rite en reprend).
+    urls.push(SD_DATA + 'fr/index.json');
+    sdFetchJson(SD_DATA + 'fr/index.json').catch(() => ({}))
+        .then(idx => Object.keys((idx && idx.sections) || {}).forEach(id => { if (base === SD_DATA || sdFromSefarade.has(id)) urls.push(SD_DATA + 'fr/' + id + '.json'); }))
         .then(() => TorahOffline.precache(urls))
         .then(r => { if (!r || r.failed) sdPrecacheStarted = false; });   // interrompu ou hors réseau : on réessaiera à la prochaine ouverture
 }

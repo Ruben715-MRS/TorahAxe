@@ -1,0 +1,260 @@
+{
+ "v": 1,
+ "parasha": "Bamidbar",
+ "levels": {
+  "1": [
+   {
+    "q": "Dans quel désert Dieu parle-t-il à Moïse au début du livre des Nombres ?",
+    "a": {
+     "t": "Sinaï",
+     "he": "סִינָי"
+    },
+    "w": [
+     {
+      "t": "Pharan",
+      "he": "פָּארָן"
+     },
+     {
+      "t": "Tsin",
+      "he": "צִן"
+     },
+     {
+      "t": "Moab",
+      "he": "מוֹאָב"
+     }
+    ],
+    "ref": "1:1",
+    "proof": [
+     "désert de Sinaï"
+    ],
+    "x": "Dieu parle dans la tente d'assignation, le premier jour du second mois de la deuxième année après la sortie d'Égypte."
+   },
+   {
+    "q": "À partir de quel âge compte-t-on les Israélites aptes au service dans l'armée ?",
+    "a": "À partir de vingt ans",
+    "w": [
+     "À partir de treize ans",
+     "À partir de trente ans",
+     "À partir de quarante ans"
+    ],
+    "ref": "1:3",
+    "proof": [
+     "vingt ans et au-delà"
+    ],
+    "x": "Moïse et Aaron les classent selon leurs légions."
+   },
+   {
+    "q": "Quel est le total des Israélites recensés, hors les Lévites ?",
+    "a": "Six cent trois mille cinq cent cinquante",
+    "w": [
+     "Six cent mille",
+     "Six cent trois mille deux cent cinquante",
+     "Six cent cinq mille cinq cent trente"
+    ],
+    "ref": "1:46",
+    "proof": [
+     "six cent trois mille cinq cent cinquante"
+    ],
+    "x": "C'est le total de tous les recensés, âgés de vingt ans et plus."
+   },
+   {
+    "q": "Qui est le chef de la tribu de Juda, parmi les chefs de tribus ?",
+    "a": {
+     "t": "Nahchôn",
+     "he": "נַחְשׁוֹן"
+    },
+    "w": [
+     {
+      "t": "Nethanel",
+      "he": "נְתַנְאֵל"
+     },
+     {
+      "t": "Eliçour",
+      "he": "אֱלִיצוּר"
+     },
+     {
+      "t": "Elichama",
+      "he": "אֱלִישָׁמָע"
+     }
+    ],
+    "ref": "1:7",
+    "proof": [
+     "Nahchôn"
+    ],
+    "x": "Il est fils d'Amminadab."
+   },
+   {
+    "q": "Pourquoi les Lévites campent-ils autour du tabernacle ?",
+    "a": "Pour que la colère divine ne sévisse point sur la communauté d'Israël",
+    "w": [
+     "Pour que le tabernacle soit protégé des animaux du désert",
+     "Pour que les Israélites puissent les compter plus facilement",
+     "Pour que les prêtres puissent les surveiller de près"
+    ],
+    "ref": "1:53",
+    "proof": [
+     "colère divine"
+    ],
+    "x": "Les Lévites ont la garde du tabernacle du statut."
+   }
+  ],
+  "2": [
+   {
+    "q": "Combien d'hommes compte la légion du camp de Juda ?",
+    "a": "Soixante-quatorze mille six cents",
+    "w": [
+     "Soixante-deux mille sept cents",
+     "Cinquante-quatre mille quatre cents",
+     "Cinquante-trois mille quatre cents"
+    ],
+    "ref": "2:3-4",
+    "proof": [
+     "soixante-quatorze mille six cents"
+    ],
+    "x": "La bannière de Juda campe en avant, à l'orient."
+   },
+   {
+    "q": "Combien de Lévites mâles, d'un mois et plus, sont dénombrés ?",
+    "a": "Vingt-deux mille",
+    "w": [
+     "Vingt-deux mille deux cent soixante-treize",
+     "Huit mille six cents",
+     "Douze mille"
+    ],
+    "ref": "3:39",
+    "proof": [
+     "vingt-deux mille"
+    ],
+    "x": "Ils sont recensés par Moïse et Aaron sur l'ordre de l'Éternel."
+   },
+   {
+    "q": "Combien de premiers-nés mâles sont dénombrés, depuis l'âge d'un mois et au-delà ?",
+    "a": "Vingt-deux mille deux cent soixante-treize",
+    "w": [
+     "Vingt-deux mille",
+     "Vingt-deux mille cent quatre-vingts",
+     "Vingt-trois mille deux cent soixante-treize"
+    ],
+    "ref": "3:43",
+    "proof": [
+     "vingt-deux mille deux cent soixante-treize"
+    ],
+    "x": "Ils dépassent de 273 le nombre des Lévites."
+   },
+   {
+    "q": "Quel âge faut-il avoir pour effectuer le service des Kehathites dans la tente d'assignation ?",
+    "a": "Entre trente et cinquante ans",
+    "w": [
+     "Entre vingt et soixante ans",
+     "Entre vingt-cinq et quarante ans",
+     "Entre treize et trente ans"
+    ],
+    "ref": "4:3",
+    "proof": [
+     "trente ans et plus",
+     "cinquante ans"
+    ],
+    "x": "Quiconque est admissible à l'exécution d'une tâche dans la tente d'assignation."
+   },
+   {
+    "q": "Qui est le chef général des Lévites, chargé de l'inspection du sanctuaire ?",
+    "a": {
+     "t": "Éléazar",
+     "he": "אֶלְעָזָר"
+    },
+    "w": [
+     {
+      "t": "Ithamar",
+      "he": "אִיתָמָר"
+     },
+     {
+      "t": "Elyaçaf",
+      "he": "אֶלִיצָפָן"
+     },
+     {
+      "t": "Nahchôn",
+      "he": "נַחְשׁוֹן"
+     }
+    ],
+    "ref": "3:32",
+    "proof": [
+     "Eléazar, fils d'Aaron"
+    ],
+    "x": "Il est fils d'Aaron, le pontife."
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, pourquoi Dieu compte-t-il si souvent les Israélites ?",
+    "a": "Par affection pour eux, il les compte à chaque grande étape",
+    "w": [
+     "Pour connaître leur nombre exact, car il l'ignore",
+     "Pour préparer la guerre contre Canaan",
+     "Pour fixer l'impôt dû au sanctuaire"
+    ],
+    "ref": "1:1",
+    "proof": [
+     "חבתן"
+    ],
+    "x": "Rachi sur Nombres 1:1 : par affection pour eux, il les compte à tout moment : à la sortie d'Égypte, après le veau d'or, et quand il vint faire résider sa présence parmi eux."
+   },
+   {
+    "q": "Selon Rachi, pourquoi ne compte-t-on pas ceux de moins de vingt ans parmi ceux qui sortent en armée ?",
+    "a": "Car on ne sort à l'armée qu'à partir de vingt ans",
+    "w": [
+     "Car les jeunes ne sont pas aptes à l'étude",
+     "Car les jeunes sont comptés avec leurs pères",
+     "Car les jeunes ne sont pas encore circoncis"
+    ],
+    "ref": "1:3",
+    "proof": [
+     "פחות מבן עשרים"
+    ],
+    "x": "Rachi sur Nombres 1:3 : « tout homme apte à l'armée » : on ne sort à l'armée qu'à partir de vingt ans."
+   },
+   {
+    "q": "Selon Rachi, comment chaque bannière (degel) se distinguait-elle ?",
+    "a": "Par un drap d'une couleur propre, comme la pierre de la tribu sur le pectoral",
+    "w": [
+     "Par un animal gravé sur un poteau d'or",
+     "Par un son de trompette différent",
+     "Par une tenture brodée du nom du chef"
+    ],
+    "ref": "2:2",
+    "proof": [
+     "צבעו",
+     "בחשן"
+    ],
+    "x": "Rachi sur Nombres 2:2 : chaque bannière avait un drap de couleur différente, selon la pierre de la tribu sur le pectoral."
+   },
+   {
+    "q": "Selon Rachi, pourquoi la Torah appelle-t-elle les fils d'Aaron aussi « fils de Moïse » ?",
+    "a": "Parce que Moïse leur a enseigné la Torah, et celui qui enseigne est comme le père",
+    "w": [
+     "Parce que Moïse les a adoptés après la mort d'Aaron",
+     "Parce que Moïse les a oints de l'huile d'onction",
+     "Parce que Moïse a épousé leur mère"
+    ],
+    "ref": "3:1",
+    "proof": [
+     "המלמד את בן חברו"
+    ],
+    "x": "Rachi sur Nombres 3:1 : celui qui enseigne la Torah au fils de son prochain, l'Écriture le considère comme s'il l'avait engendré."
+   },
+   {
+    "q": "Selon Rachi, pourquoi les tribus d'Issachar et de Zabulon sont-elles devenues grandes en Torah ?",
+    "a": "Parce qu'elles campaient à côté de Juda, voisin de Moïse qui étudiait la Torah",
+    "w": [
+     "Parce qu'elles recevaient la dîme des Lévites",
+     "Parce qu'elles gardaient l'arche du témoignage",
+     "Parce qu'elles avaient reçu la bénédiction de Jacob"
+    ],
+    "ref": "3:38",
+    "proof": [
+     "טוב לצדיק טוב לשכנו"
+    ],
+    "x": "Rachi sur Nombres 3:38 : bon pour le juste, bon pour son voisin : elles étaient voisines de Moïse qui étudiait la Torah, et sont devenues grandes en Torah."
+   }
+  ]
+ }
+}

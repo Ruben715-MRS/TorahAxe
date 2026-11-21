@@ -1,0 +1,232 @@
+{
+ "v": 1,
+ "parasha": "Bo",
+ "levels": {
+  "1": [
+   {
+    "q": "Quelle est la huitième plaie d'Égypte ?",
+    "a": "Les sauterelles",
+    "w": [
+     "La grêle",
+     "Les ténèbres",
+     "La peste du bétail"
+    ],
+    "ref": "10:12",
+    "proof": [
+     "sauterelles"
+    ],
+    "x": "Moïse étendit sa verge ; un vent d'est amena les sauterelles sur tout le pays d'Égypte."
+   },
+   {
+    "q": "Pendant combien de jours les épaisses ténèbres couvrent-elles l'Égypte ?",
+    "a": "Trois jours",
+    "w": [
+     "Sept jours",
+     "Quarante jours",
+     "Une seule nuit"
+    ],
+    "ref": "10:22",
+    "proof": [
+     "trois jours"
+    ],
+    "x": "On ne se voyait pas l'un l'autre ; mais tous les enfants d'Israël jouissaient de la lumière dans leurs demeures."
+   },
+   {
+    "q": "Que doit se procurer chaque famille le dixième jour du mois ?",
+    "a": "Un agneau",
+    "w": [
+     "Un taureau",
+     "Une colombe",
+     "Un bélier et un chevreau"
+    ],
+    "ref": "12:3",
+    "proof": [
+     "agneau",
+     "dixième jour"
+    ],
+    "x": "« Au dixième jour de ce mois, que chacun se procure un agneau pour sa famille paternelle. »"
+   },
+   {
+    "q": "Combien d'hommes quittent Ramsès pour Soukkoth, sans compter les enfants ?",
+    "a": "Environ six cent mille",
+    "w": [
+     "Environ soixante mille",
+     "Environ trois cent mille",
+     "Environ douze mille"
+    ],
+    "ref": "12:37",
+    "proof": [
+     "six cent mille"
+    ],
+    "x": "Les enfants d'Israël partirent de Ramsès, dans la direction de Soukkoth."
+   },
+   {
+    "q": "Combien de temps le séjour des Israélites en Égypte a-t-il duré, selon le texte ?",
+    "a": "Quatre cent trente ans",
+    "w": [
+     "Quatre cents ans",
+     "Deux cent dix ans",
+     "Cent trente ans"
+    ],
+    "ref": "12:40",
+    "proof": [
+     "quatre cent trente ans"
+    ],
+    "x": "Au bout de quatre cent trente ans, précisément le même jour, toutes les milices du Seigneur sortirent du pays d'Égypte."
+   }
+  ],
+  "2": [
+   {
+    "q": "Comment doit être l'animal destiné à la pâque ?",
+    "a": "Sans défaut, mâle, dans sa première année",
+    "w": [
+     "Sans défaut, femelle, de deux ans",
+     "Mâle, de trois ans, ayant déjà porté le joug",
+     "Blanc, sans une seule tache, de la plus grande taille"
+    ],
+    "ref": "12:5",
+    "proof": [
+     "sans défaut",
+     "première année"
+    ],
+    "x": "On le choisit parmi les brebis ou les chèvres."
+   },
+   {
+    "q": "Jusqu'à quel jour l'animal est-il tenu en réserve avant d'être immolé ?",
+    "a": "Jusqu'au quatorzième jour du mois",
+    "w": [
+     "Jusqu'au quinzième jour",
+     "Jusqu'au vingtième jour",
+     "Jusqu'au premier jour du mois suivant"
+    ],
+    "ref": "12:6",
+    "proof": [
+     "quatorzième jour"
+    ],
+    "x": "Toute la communauté d'Israël l'immolera vers le soir."
+   },
+   {
+    "q": "Comment doit-on manger la pâque ?",
+    "a": "La ceinture aux reins, la chaussure aux pieds, le bâton à la main, à la hâte",
+    "w": [
+     "Assis à table, une couronne sur la tête",
+     "Pieds nus, la tête couverte d'un voile",
+     "Debout, sans prononcer une parole"
+    ],
+    "ref": "12:11",
+    "proof": [
+     "ceinture aux reins",
+     "à la hâte"
+    ],
+    "x": "« C'est la pâque en l'honneur de l'Éternel. »"
+   },
+   {
+    "q": "Avec quoi mange-t-on la chair de l'agneau pascal ?",
+    "a": "Avec des azymes et des herbes amères",
+    "w": [
+     "Avec du pain levé et du vin",
+     "Avec des olives et du miel",
+     "Avec des fruits secs et du lait"
+    ],
+    "ref": "12:8",
+    "proof": [
+     "azymes",
+     "herbes amères"
+    ],
+    "x": "On la mange cette même nuit, rôtie au feu."
+   },
+   {
+    "q": "Pendant combien de jours mange-t-on des pains azymes ?",
+    "a": "Sept jours",
+    "w": [
+     "Trois jours",
+     "Dix jours",
+     "Quarante jours"
+    ],
+    "ref": "12:15",
+    "proof": [
+     "sept jours",
+     "azymes"
+    ],
+    "x": "Sept jours durant, on mange des azymes ; le levain doit disparaître des maisons."
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, pourquoi Dieu demande-t-il à Moïse « de grâce » de parler au peuple pour qu'ils demandent de l'or et de l'argent aux Égyptiens ?",
+    "a": "Pour qu'Abraham ne puisse pas dire que la promesse de sortir avec de grandes richesses n'avait pas été tenue",
+    "w": [
+     "Pour que les Égyptiens ne se mettent pas en colère",
+     "Pour qu'Israël ne manque pas d'or pour construire le Tabernacle",
+     "Pour que Pharaon n'ait pas à payer lui-même"
+    ],
+    "ref": "11:2",
+    "proof": [
+     "אברהם",
+     "ברכש גדול"
+    ],
+    "x": "Rachi sur Exode 11:2 : il fallait accomplir la promesse faite à Abraham : « ensuite ils sortiront avec de grandes richesses »."
+   },
+   {
+    "q": "Selon Rachi, que montre Dieu à Moïse en lui disant « ce mois-ci est pour vous le commencement des mois » ?",
+    "a": "La lune dans son renouvellement : « vois ainsi, et sanctifie »",
+    "w": [
+     "Une étoile qui annonce le printemps",
+     "Le soleil à son lever dans la constellation du Bélier",
+     "Un épi d'orge en train de mûrir"
+    ],
+    "ref": "12:2",
+    "proof": [
+     "הלבנה",
+     "כזה ראה וקדש"
+    ],
+    "x": "Rachi sur Exode 12:2 : il lui montra la lune à son renouvellement et lui dit : « vois ainsi, et sanctifie. »"
+   },
+   {
+    "q": "Selon Rachi, que signifie « je passerai par-dessus » les maisons d'Israël ?",
+    "a": "Dieu saute par-dessus les maisons des Israélites pour aller d'une maison égyptienne à l'autre",
+    "w": [
+     "Dieu épargne en détournant le regard de chaque porte",
+     "Dieu envoie un ange qui efface la marque de sang",
+     "Dieu passe par les toits plutôt que par les portes"
+    ],
+    "ref": "12:13",
+    "proof": [
+     "דלוג",
+     "בתי ישראל"
+    ],
+    "x": "Rachi sur Exode 12:13 : il sautait des maisons d'Israël aux maisons d'Égypte, qui étaient mêlées les unes aux autres."
+   },
+   {
+    "q": "Selon Rachi, pourquoi les Israélites ne doivent-ils pas sortir de leurs maisons cette nuit-là ?",
+    "a": "Parce que, une fois le destructeur autorisé à frapper, il ne distingue plus le juste du méchant",
+    "w": [
+     "Parce que les rues d'Égypte étaient gardées par les soldats de Pharaon",
+     "Parce qu'ils devaient veiller à voix basse jusqu'au matin",
+     "Parce que le sang sur les poteaux risquait de s'effacer"
+    ],
+    "ref": "12:22",
+    "proof": [
+     "מבחין",
+     "לרשע"
+    ],
+    "x": "Rachi sur Exode 12:22 : dès que le destructeur a le droit de frapper, il ne distingue plus entre juste et méchant ; et la nuit est le temps des destructeurs."
+   },
+   {
+    "q": "Selon Rachi, combien de tiges forment la « botte » d'hysope avec laquelle on applique le sang ?",
+    "a": "Trois tiges",
+    "w": [
+     "Sept tiges",
+     "Une seule tige",
+     "Douze tiges"
+    ],
+    "ref": "12:22",
+    "proof": [
+     "שלושה",
+     "אגדה"
+    ],
+    "x": "Rachi sur Exode 12:22 : trois tiges sont appelées une botte."
+   }
+  ]
+ }
+}

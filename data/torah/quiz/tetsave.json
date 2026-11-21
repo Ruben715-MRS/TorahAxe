@@ -1,0 +1,239 @@
+{
+ "v": 1,
+ "parasha": "Tétsavé",
+ "levels": {
+  "1": [
+   {
+    "q": "Quelle huile les Israélites doivent-ils apporter pour alimenter les lampes du candélabre ?",
+    "a": "Une huile pure d'olives concassées",
+    "w": [
+     "Une huile parfumée de myrrhe et de cannelle",
+     "Une huile de lin pressée à froid",
+     "Une huile d'olives mûries au soleil du désert"
+    ],
+    "ref": "27:20",
+    "proof": [
+     "olives concassées"
+    ],
+    "x": "C'est pour le luminaire, afin d'alimenter les lampes en permanence."
+   },
+   {
+    "q": "Quel est le quatrième fils d'Aaron, cité après Nadab, Abihou et Éléazar ?",
+    "a": {
+     "t": "Ithamar",
+     "he": "אִיתָמָר"
+    },
+    "w": [
+     {
+      "t": "Gershon",
+      "he": "גֵרְשׁוֹן"
+     },
+     {
+      "t": "Kehath",
+      "he": "קְהָת"
+     },
+     {
+      "t": "Mérari",
+      "he": "מְרָרִי"
+     }
+    ],
+    "ref": "28:1",
+    "proof": [
+     "Ithamar"
+    ],
+    "x": "Aaron avait quatre fils : Nadab, Abihou, Éléazar et Ithamar."
+   },
+   {
+    "q": "En combien de rangées les pierres précieuses du pectoral sont-elles disposées ?",
+    "a": "Quatre rangées de trois pierres",
+    "w": [
+     "Trois rangées de quatre pierres",
+     "Douze rangées d'une seule pierre",
+     "Deux rangées de six pierres"
+    ],
+    "ref": "28:17",
+    "proof": [
+     "quatre rangées"
+    ],
+    "x": "Les douze pierres portent le nom de chacune des douze tribus."
+   },
+   {
+    "q": "Quelle inscription est gravée sur la plaque d'or pur placée sur la tiare ?",
+    "a": "« Consacré au Seigneur »",
+    "w": [
+     "« L'Éternel est un »",
+     "« Écoute, Israël »",
+     "« Gloire à la maison d'Aaron »"
+    ],
+    "ref": "28:36",
+    "proof": [
+     "Consacré au Seigneur"
+    ],
+    "x": "La plaque est fixée par un ruban d'azur, sur le front d'Aaron."
+   },
+   {
+    "q": "Quels animaux prend-on pour la consécration des prêtres ?",
+    "a": "Un jeune taureau et deux béliers sans défaut",
+    "w": [
+     "Deux taureaux et un bélier sans défaut",
+     "Un agneau et deux chevreaux de l'année",
+     "Sept béliers et un jeune taureau"
+    ],
+    "ref": "29:1",
+    "proof": [
+     "jeune taureau et deux béliers"
+    ],
+    "x": "On apporte aussi des pains azymes, des gâteaux azymes et des galettes azymes, de la plus pure farine."
+   }
+  ],
+  "2": [
+   {
+    "q": "Combien de noms de fils d'Israël sont gravés sur chacune des deux pierres de choham ?",
+    "a": "Six noms sur chaque pierre, selon l'ordre de naissance",
+    "w": [
+     "Douze noms sur chaque pierre, dans l'ordre alphabétique",
+     "Six noms sur la première, douze sur la seconde",
+     "Trois noms sur chacune des quatre pierres"
+    ],
+    "ref": "28:10",
+    "proof": [
+     "six de leurs noms sur une pierre"
+    ],
+    "x": "Ces pierres sont fixées aux épaulières de l'éphod, comme pierres commémoratives."
+   },
+   {
+    "q": "Quelles sont les dimensions du pectoral, plié en deux ?",
+    "a": "Un empan de longueur et un empan de largeur",
+    "w": [
+     "Une coudée de longueur et une demi-coudée de largeur",
+     "Deux empans de longueur et un empan de largeur",
+     "Une coudée de longueur et une coudée de largeur"
+    ],
+    "ref": "28:16",
+    "proof": [
+     "un empan sera sa longueur"
+    ],
+    "x": "Le pectoral est carré, artistement ouvragé, à la façon de l'éphod."
+   },
+   {
+    "q": "Qu'est-ce qui alterne avec les clochettes d'or au bas de la robe de l'éphod ?",
+    "a": "Des grenades",
+    "w": [
+     "Des chérubins brodés",
+     "Des anneaux d'argent",
+     "Des petites cornes d'azur"
+    ],
+    "ref": "28:34",
+    "proof": [
+     "grenade"
+    ],
+    "x": "Une clochette d'or, puis une grenade : afin que le son s'entende quand Aaron entre dans le saint lieu."
+   },
+   {
+    "q": "Combien d'agneaux de première année offre-t-on chaque jour sur l'autel ?",
+    "a": "Deux : l'un le matin, l'autre vers le soir",
+    "w": [
+     "Un seul, offert au lever du soleil",
+     "Quatre : deux le matin, deux le soir",
+     "Sept, un pour chaque jour de la semaine"
+    ],
+    "ref": "29:38-39",
+    "proof": [
+     "deux par jour",
+     "le matin"
+    ],
+    "x": "Ce sacrifice est offert constamment."
+   },
+   {
+    "q": "Quand Aaron fait-il l'encensement sur l'autel des parfums ?",
+    "a": "Chaque matin, lorsqu'il accommode les lampes",
+    "w": [
+     "Chaque soir, après le coucher du soleil",
+     "Une seule fois par an, au jour des expiations",
+     "Chaque Chabbat, avant l'offrande du matin"
+    ],
+    "ref": "30:7",
+    "proof": [
+     "Chaque matin",
+     "lampes"
+    ],
+    "x": "L'autel des parfums est fait en bois de chittîm."
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, que signifie que l'huile doit être « pure » ?",
+    "a": "Sans lie ni dépôt",
+    "w": [
+     "Sans mélange d'une autre huile",
+     "Sans avoir été offerte auparavant",
+     "Sans avoir été touchée par un étranger"
+    ],
+    "ref": "27:20",
+    "proof": [
+     "שמרים"
+    ],
+    "x": "Rachi sur Exode 27:20 : pure, c'est-à-dire sans lie."
+   },
+   {
+    "q": "Selon Rachi, que sont les « ourîm et toummîm » placés dans le pectoral ?",
+    "a": "Un écrit portant le Nom explicite de Dieu, glissé dans les replis du pectoral",
+    "w": [
+     "Deux pierres supplémentaires, gravées du nom d'Aaron",
+     "Deux clochettes d'or fixées sur les épaulières",
+     "Un cordon d'azur qui retient le pectoral à l'éphod"
+    ],
+    "ref": "28:30",
+    "proof": [
+     "שם המפרש",
+     "כפלי החשן"
+    ],
+    "x": "Rachi sur Exode 28:30 : c'est un écrit du Nom explicite, placé dans les replis du pectoral, par lequel le pectoral éclairait ses paroles."
+   },
+   {
+    "q": "Selon Rachi, que signifie « Aaron se chargera des péchés des consécrations » ?",
+    "a": "Qu'il obtient le pardon pour les offrandes devenues impures",
+    "w": [
+     "Qu'il doit jeûner pour les fautes du peuple",
+     "Qu'il porte la faute des prêtres qui l'ont précédé",
+     "Qu'il est puni à la place des fautifs"
+    ],
+    "ref": "28:38",
+    "proof": [
+     "סליחה",
+     "הקדשים"
+    ],
+    "x": "Rachi sur Exode 28:38 : « porter » a ici le sens de pardonner : la plaque obtient l'agrément pour le sang et la graisse offerts en état d'impureté."
+   },
+   {
+    "q": "Selon Rachi, de combien de vêtements le grand prêtre est-il habillé ?",
+    "a": "Huit vêtements, contre quatre pour un prêtre ordinaire",
+    "w": [
+     "Douze vêtements, comme les tribus d'Israël",
+     "Sept vêtements, comme les jours de la semaine",
+     "Quatre vêtements, comme le prêtre ordinaire"
+    ],
+    "ref": "28:42",
+    "proof": [
+     "שמונה בגדים",
+     "ארבעה"
+    ],
+    "x": "Rachi sur Exode 28:42 : huit vêtements pour le grand prêtre et quatre pour le prêtre ordinaire."
+   },
+   {
+    "q": "Selon Rachi, pour quelle faute le jeune taureau de la consécration fait-il expiation ?",
+    "a": "Pour la faute du veau d'or",
+    "w": [
+     "Pour la faute des explorateurs",
+     "Pour la faute de Nadab et Abihou",
+     "Pour la faute de la source de Mériba"
+    ],
+    "ref": "29:1",
+    "proof": [
+     "מעשה העגל"
+    ],
+    "x": "Rachi sur Exode 29:1 : un taureau, pour réparer l'affaire du veau, qui est un jeune taureau."
+   }
+  ]
+ }
+}

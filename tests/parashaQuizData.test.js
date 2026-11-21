@@ -116,25 +116,27 @@ files.forEach(f => {
     test(id + ' : chaque référence est dans la paracha, chaque mot-preuve est dans le verset (niveaux 1 et 2) ou dans Rachi (niveau 3)', () => {
         const range = new Set(versesOf(p).map(v => v.i));
         const bookNumber = parashot[p].book;
+        const problems = [];                    // tous les défauts d'un coup : on les corrige ensemble
         Core.LEVELS.forEach(level => Core.poolOf(data, level).forEach(q => {
             const where = 'niveau ' + level + ' « ' + q.q + ' » (' + q.ref + ')';
-            assert.ok(Core.parseRef(q.ref), where + ' : référence illisible');
+            if (!Core.parseRef(q.ref)) { problems.push(where + ' : référence illisible'); return; }
             const verses = versesOfRef(bookNumber, q.ref);
-            assert.ok(verses.length >= 1 && verses.length <= 6, where + ' : référence trop large');
-            verses.forEach(v => assert.ok(range.has(Refs.indexOf({ book: v.book, chapter: v.c, verse: v.v })), where + ' : hors de la paracha'));
+            if (!(verses.length >= 1 && verses.length <= 6)) problems.push(where + ' : référence trop large');
+            if (verses.some(v => !range.has(Refs.indexOf({ book: v.book, chapter: v.c, verse: v.v })))) { problems.push(where + ' : hors de la paracha'); return; }
             // Le nom de la bonne réponse s'écrit, en hébreu, dans les versets cités (ou, au niveau 3, dans Rachi).
             if (hebrewOf(q.a)) {
                 const hebrew = heFlat(verses.map(v => book(v.book).text.chapters[v.c - 1][v.v - 1]).join(' ') + (level === 3 ? verses.map(v => ((book(v.book).rashi.chapters[v.c - 1] || [])[v.v - 1] || []).join(' ')).join(' ') : ''));
-                assert.ok(hebrew.includes(heFlat(hebrewOf(q.a))), where + ' : « ' + hebrewOf(q.a) + ' » absent des versets cités');
+                if (!hebrew.includes(heFlat(hebrewOf(q.a)))) problems.push(where + ' : « ' + hebrewOf(q.a) + ' » absent des versets cités');
             }
             if (level < 3) {
                 const text = fr(verses.map(v => book(v.book).text.french[v.c - 1][v.v - 1]).join(' '));
-                q.proof.forEach(w => assert.ok(text.includes(fr(w)), where + ' : « ' + w + ' » absent du verset'));
+                q.proof.forEach(w => { if (!text.includes(fr(w))) problems.push(where + ' : « ' + w + ' » absent du verset'); });
             } else {
                 const text = he(verses.map(v => ((book(v.book).rashi.chapters[v.c - 1] || [])[v.v - 1] || []).join(' ')).join(' '));
-                assert.ok(text.length > 0, where + ' : pas de Rachi sur ces versets');
-                q.proof.forEach(w => assert.ok(text.includes(he(w)), where + ' : « ' + w + ' » absent de Rachi'));
+                if (!text.length) problems.push(where + ' : pas de Rachi sur ces versets');
+                q.proof.forEach(w => { if (!text.includes(he(w))) problems.push(where + ' : « ' + w + ' » absent de Rachi'); });
             }
         }));
+        assert.deepStrictEqual(problems, []);
     });
 });

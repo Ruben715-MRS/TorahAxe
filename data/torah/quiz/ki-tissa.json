@@ -1,0 +1,236 @@
+{
+ "v": 1,
+ "parasha": "Ki Tissa",
+ "levels": {
+  "1": [
+   {
+    "q": "Que donne chaque homme de vingt ans et plus lors du dénombrement, pour racheter sa personne ?",
+    "a": "Un demi-sicle",
+    "w": [
+     "Un sicle entier",
+     "Un agneau d'un an",
+     "Une mesure de farine fine"
+    ],
+    "ref": "30:13",
+    "proof": [
+     "demi-sicle"
+    ],
+    "x": "Le riche ne donne pas plus, le pauvre pas moins : afin qu'il n'y ait point de mortalité lors du dénombrement."
+   },
+   {
+    "q": "Qui est « désigné expressément », de la tribu de Juda, pour diriger les travaux du Tabernacle ?",
+    "a": {
+     "t": "Beçalêl",
+     "he": "בְּצַלְאֵל"
+    },
+    "w": [
+     {
+      "t": "Oholiab",
+      "he": "אָהֳלִיאָב"
+     },
+     {
+      "t": "Hour",
+      "he": "חוּר"
+     },
+     {
+      "t": "Josué",
+      "he": "יְהוֹשֻׁעַ"
+     }
+    ],
+    "ref": "31:2",
+    "proof": [
+     "Beçalêl"
+    ],
+    "x": "Beçalêl, fils d'Ouri, fils de Hour, est rempli d'une inspiration divine, d'habileté et de science."
+   },
+   {
+    "q": "Avec quoi Aaron fabrique-t-il le veau de métal ?",
+    "a": "Avec les pendants d'or que le peuple détache de ses oreilles",
+    "w": [
+     "Avec les ornements d'argent pris aux Égyptiens",
+     "Avec le cuivre de la cuve et de son support",
+     "Avec les pierres précieuses du pectoral"
+    ],
+    "ref": "32:2-4",
+    "proof": [
+     "pendants d'or",
+     "veau de métal"
+    ],
+    "x": "Aaron jette l'or en moule, et le peuple dit : « Voilà tes dieux, ô Israël ! »"
+   },
+   {
+    "q": "Que fait Moïse des tables de la Loi en voyant le veau et les danses ?",
+    "a": "Il les jette de ses mains et les brise au pied de la montagne",
+    "w": [
+     "Il les cache dans la cavité du roc",
+     "Il les dépose dans l'arche du Statut",
+     "Il les rend à Aaron en silence"
+    ],
+    "ref": "32:19",
+    "proof": [
+     "les brisa au pied de la montagne"
+    ],
+    "x": "Le courroux de Moïse s'alluma à l'approche du camp."
+   },
+   {
+    "q": "Que fait Moïse lorsqu'il a achevé de parler au peuple, après sa descente du Sinaï ?",
+    "a": "Il couvre son visage d'un voile",
+    "w": [
+     "Il s'enferme dans sa tente trois jours",
+     "Il se lave les mains et les pieds à la cuve",
+     "Il remonte aussitôt sur la montagne"
+    ],
+    "ref": "34:33",
+    "proof": [
+     "couvrit son visage d'un voile"
+    ],
+    "x": "Sa peau était devenue rayonnante lorsque Dieu lui avait parlé."
+   }
+  ],
+  "2": [
+   {
+    "q": "Combien de ghéra comprend le sicle du sanctuaire ?",
+    "a": "Vingt ghéra",
+    "w": [
+     "Dix ghéra",
+     "Douze ghéra",
+     "Cinquante ghéra"
+    ],
+    "ref": "30:13",
+    "proof": [
+     "vingt ghéra"
+    ],
+    "x": "La moitié du sicle, soit dix ghéra, est l'offrande réservée à l'Éternel."
+   },
+   {
+    "q": "Quelle quantité de myrrhe franche entre dans l'huile de l'onction sainte ?",
+    "a": "Cinq cents sicles",
+    "w": [
+     "Deux cent cinquante sicles",
+     "Cent sicles",
+     "Mille sicles"
+    ],
+    "ref": "30:23",
+    "proof": [
+     "myrrhe franche, cinq cents sicles"
+    ],
+    "x": "On y ajoute du cinnamone, du jonc aromatique, de la casse et un hîn d'huile d'olive."
+   },
+   {
+    "q": "Où place-t-on la cuve de cuivre destinée aux ablutions ?",
+    "a": "Entre la Tente d'assignation et l'autel",
+    "w": [
+     "Devant l'entrée du camp",
+     "Derrière le voile, près de l'arche",
+     "À côté du candélabre d'or"
+    ],
+    "ref": "30:18",
+    "proof": [
+     "entre la Tente d'assignation et l'autel"
+    ],
+    "x": "Aaron et ses fils s'y lavent les mains et les pieds pour ne pas mourir."
+   },
+   {
+    "q": "Combien d'hommes périssent dans le peuple, le jour où les Lévites se groupent autour de Moïse ?",
+    "a": "Environ trois mille hommes",
+    "w": [
+     "Environ trois cents hommes",
+     "Environ douze mille hommes",
+     "Environ six cents hommes"
+    ],
+    "ref": "32:28",
+    "proof": [
+     "trois mille hommes"
+    ],
+    "x": "Les enfants de Lévi se conforment à l'ordre de Moïse."
+   },
+   {
+    "q": "Où Dieu cache-t-il Moïse, lorsque passe sa gloire ?",
+    "a": "Dans la cavité du roc, abrité de sa main",
+    "w": [
+     "Dans la Tente d'assignation, sous la nuée",
+     "Dans un nuage au sommet de la montagne",
+     "Derrière le voile, près de la table"
+    ],
+    "ref": "33:22",
+    "proof": [
+     "cavité du roc"
+    ],
+    "x": "Dieu retire ensuite sa main : Moïse le voit par derrière, mais sa face ne peut être vue."
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, que montre Dieu à Moïse pour illustrer le demi-sicle ?",
+    "a": "Une pièce de feu pesant un demi-sicle",
+    "w": [
+     "Une balance d'or tenue par un ange",
+     "Une tablette gravée avec la somme",
+     "Un sicle entier tiré du sanctuaire"
+    ],
+    "ref": "30:13",
+    "proof": [
+     "מטבע של אש"
+    ],
+    "x": "Rachi sur Exode 30:13 : Dieu lui montra une sorte de monnaie de feu, pesant un demi-sicle, en disant : « comme celle-ci ils donneront »."
+   },
+   {
+    "q": "Selon Rachi, que signifie « Moïse tardait » (boshesh) à descendre de la montagne ?",
+    "a": "Que les Israélites avaient compté les six heures du jour de la montée, et s'étaient trompés dans le calcul",
+    "w": [
+     "Que Moïse avait promis de revenir au bout de sept jours",
+     "Que Moïse s'était endormi sous la nuée",
+     "Que le peuple attendait un signe du ciel"
+    ],
+    "ref": "32:1",
+    "proof": [
+     "שש שעות"
+    ],
+    "x": "Rachi sur Exode 32:1 : Moïse avait dit : « au bout de quarante jours, je viendrai dans les six heures »."
+   },
+   {
+    "q": "Selon Rachi, qui a fabriqué le veau de métal à partir de l'or jeté au feu ?",
+    "a": "Les sorciers de la multitude hétéroclite sortie d'Égypte avec Israël",
+    "w": [
+     "Les Lévites, sur ordre des chefs de tribus",
+     "Les anciens, à l'insu d'Aaron",
+     "Les artisans de la tribu de Juda"
+    ],
+    "ref": "32:4",
+    "proof": [
+     "ערב רב",
+     "מכשפי"
+    ],
+    "x": "Rachi sur Exode 32:4 : quand l'or fut jeté dans le feu, les sorciers de la multitude mêlée l'ont façonné par la magie."
+   },
+   {
+    "q": "Selon Rachi, pourquoi Aaron proclame-t-il « à demain une solennité pour l'Éternel » ?",
+    "a": "Dans l'espoir que Moïse arrive avant que le peuple n'adore le veau",
+    "w": [
+     "Pour laisser au peuple le temps de rassembler plus d'or",
+     "Pour préparer en secret une fête de consécration",
+     "Pour attendre l'arrivée des Lévites"
+    ],
+    "ref": "32:5",
+    "proof": [
+     "שמא יבא משה"
+    ],
+    "x": "Rachi sur Exode 32:5 : « demain » et non aujourd'hui, de peur que Moïse ne vienne avant qu'ils ne l'aient adoré."
+   },
+   {
+    "q": "Selon Rachi, que montre Dieu à Moïse par derrière quand il lui dit « tu me verras par derrière » ?",
+    "a": "Le nœud des tefillin",
+    "w": [
+     "La nuée qui précède le peuple",
+     "Le rocher de l'Horeb",
+     "La colonne de feu de la nuit"
+    ],
+    "ref": "33:23",
+    "proof": [
+     "קשר של תפלין"
+    ],
+    "x": "Rachi sur Exode 33:23 : il lui montra le nœud des tefillin (traité Bérakhot)."
+   }
+  ]
+ }
+}

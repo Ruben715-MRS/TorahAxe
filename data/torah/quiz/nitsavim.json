@@ -1,0 +1,223 @@
+{
+ "v": 1,
+ "parasha": "Nitsavim",
+ "levels": {
+  "1": [
+   {
+    "q": "Jusqu'à qui s'étend l'alliance, « depuis le fendeur de bois » ?",
+    "a": "Jusqu'au puiseur d'eau",
+    "w": [
+     "Jusqu'au berger du troupeau",
+     "Jusqu'au scribe du camp",
+     "Jusqu'au potier du village"
+    ],
+    "ref": "29:10",
+    "proof": [
+     "depuis le fendeur de bois jusqu'au puiseur d'eau"
+    ],
+    "x": "Tout le peuple est placé en présence de l'Éternel."
+   },
+   {
+    "q": "À quelles villes la terre d'Israël désolée est-elle comparée ?",
+    "a": "Sodome et Gomorrhe, Adma et Séboïm",
+    "w": [
+     "Ninive et Babylone, Tyr et Sidon",
+     "Jéricho et Aï, Hébron et Hesbon",
+     "Sichem et Bethel, Silo et Gilgal"
+    ],
+    "ref": "29:22",
+    "proof": [
+     "Sodome et Gomorrhe, Adma et Séboïm"
+    ],
+    "x": "Une terre de soufre et de sel, inculte et improductive."
+   },
+   {
+    "q": "Où se trouve la loi, selon Moïse : elle n'est ni dans le ciel, ni au-delà de l'océan ?",
+    "a": "Tout près de toi, dans ta bouche et dans ton cœur",
+    "w": [
+     "Dans le sanctuaire, auprès de l'arche",
+     "Chez les prêtres, qui l'enseignent au peuple",
+     "Sur les tables de pierre, au Horeb"
+    ],
+    "ref": "30:14",
+    "proof": [
+     "dans la bouche et dans le cœur"
+    ],
+    "x": "Pour pouvoir l'observer."
+   },
+   {
+    "q": "Que dit Moïse de placer devant Israël, en prenant à témoin le ciel et la terre ?",
+    "a": "La vie et la mort, le bonheur et la calamité",
+    "w": [
+     "Le jour et la nuit, la lumière et l'ombre",
+     "La paix et la guerre, le pain et la faim",
+     "La bénédiction et la malédiction, la loi et le péché"
+    ],
+    "ref": "30:19",
+    "proof": [
+     "la vie et la mort"
+    ],
+    "x": "« Choisis la vie ! Et tu vivras alors, toi et ta postérité. »"
+   },
+   {
+    "q": "À qui appartiennent les choses cachées, selon la Torah ?",
+    "a": "Au Seigneur, notre Dieu",
+    "w": [
+     "Aux prophètes, qui les révèlent",
+     "Aux anciens, qui les gardent",
+     "Aux prêtres, qui les enseignent"
+    ],
+    "ref": "29:28",
+    "proof": [
+     "Les choses cachées appartiennent au Seigneur"
+    ],
+    "x": "Les choses révélées importent à nous et à nos enfants jusqu'aux derniers âges."
+   }
+  ],
+  "2": [
+   {
+    "q": "Avec qui l'alliance est-elle instituée, outre ceux qui sont présents ce jour-là ?",
+    "a": "Avec ceux qui ne sont pas là, à côté de nous, en ce jour",
+    "w": [
+     "Avec les nations voisines d'Israël",
+     "Avec les seuls descendants des prêtres",
+     "Avec les générations qui oublieront la Loi"
+    ],
+    "ref": "29:13-14",
+    "proof": [
+     "ceux qui ne sont pas ici"
+    ],
+    "x": "Ce n'est pas avec les seuls présents que Dieu institue cette alliance."
+   },
+   {
+    "q": "Selon Moïse, où la loi ne se trouve-t-elle pas, de sorte que nul ne doive aller la quérir ?",
+    "a": "Ni dans le ciel, ni au-delà de l'océan",
+    "w": [
+     "Ni dans le désert, ni dans les montagnes",
+     "Ni dans la tente, ni dans le sanctuaire",
+     "Ni dans le ciel, ni dans les villes du pays"
+    ],
+    "ref": "30:12-13",
+    "proof": [
+     "pas dans le ciel",
+     "au delà de l'océan"
+    ],
+    "x": "Elle est tout près : dans la bouche et dans le cœur."
+   },
+   {
+    "q": "Qui prend-on à témoin, en ce jour, contre Israël ?",
+    "a": "Le ciel et la terre",
+    "w": [
+     "Le soleil et la lune",
+     "Les anciens et les prêtres",
+     "L'arche et les tables"
+    ],
+    "ref": "30:19",
+    "proof": [
+     "le ciel et la terre"
+    ],
+    "x": "« J'en atteste sur vous, en ce jour. »"
+   },
+   {
+    "q": "Que fera l'Éternel, quand Israël retournera à lui de tout son cœur ?",
+    "a": "Il mettra un terme à son exil et le rassemblera du sein des peuples",
+    "w": [
+     "Il enverra un roi pour le guider vers le pays",
+     "Il détruira les nations qui l'ont dispersé",
+     "Il le conduira vers le Jourdain en silence"
+    ],
+    "ref": "30:3",
+    "proof": [
+     "mettra un terme à ton exil"
+    ],
+    "x": "Il le prend en pitié."
+   },
+   {
+    "q": "Que doit faire Israël pour se maintenir dans le pays que l'Éternel a juré à ses pères ?",
+    "a": "Aimer l'Éternel, écouter sa voix et lui rester fidèle",
+    "w": [
+     "Offrir chaque jour deux agneaux sur l'autel",
+     "Garder les villes de refuge avec soin",
+     "Écrire la Loi sur des pierres enduites de chaux"
+    ],
+    "ref": "30:20",
+    "proof": [
+     "Aime l'Éternel, ton Dieu, écoute sa voix, reste-lui fidèle"
+    ],
+    "x": "C'est là la condition de sa vie et de sa longévité."
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, quand Moïse a-t-il réuni le peuple devant Dieu pour l'introduire dans l'alliance ?",
+    "a": "Le jour de sa mort",
+    "w": [
+     "Le jour de la sortie d'Égypte",
+     "Le jour du don de la Torah",
+     "Le jour de l'entrée dans le pays"
+    ],
+    "ref": "29:9",
+    "proof": [
+     "ביום מותו"
+    ],
+    "x": "Rachi sur Deutéronome 29:9 : il les a rassemblés devant Dieu le jour de sa mort, pour les faire entrer dans l'alliance."
+   },
+   {
+    "q": "Selon Rachi, pourquoi les chefs sont-ils nommés avant les autres ?",
+    "a": "Parce que le plus important passe d'abord, puis tout homme d'Israël",
+    "w": [
+     "Parce que les chefs sont plus nombreux que les autres",
+     "Parce que les chefs sont les plus âgés du camp",
+     "Parce que les chefs ont reçu la Torah d'abord"
+    ],
+    "ref": "29:9",
+    "proof": [
+     "החשוב חשוב קודם"
+    ],
+    "x": "Rachi sur Deutéronome 29:9 : le plus éminent passe en premier, puis tout homme d'Israël."
+   },
+   {
+    "q": "Selon Rachi, que montre « elle n'est pas dans le ciel » ?",
+    "a": "Que si elle y était, il faudrait monter pour l'y apprendre",
+    "w": [
+     "Que la Torah n'est pas un texte du ciel",
+     "Que seuls les prophètes peuvent la comprendre",
+     "Que la Torah n'est pas difficile à lire"
+    ],
+    "ref": "30:12",
+    "proof": [
+     "אלו היתה בשמים"
+    ],
+    "x": "Rachi sur Deutéronome 30:12 : si elle était dans le ciel, tu devrais y monter pour l'apprendre."
+   },
+   {
+    "q": "Selon Rachi, que signifie « elle est tout près de toi » ?",
+    "a": "Que la Torah vous a été donnée par écrit et oralement",
+    "w": [
+     "Que la Torah est lue chaque jour au tabernacle",
+     "Que la Torah est connue par cœur de tout Israël",
+     "Que la Torah est enseignée à tous par les prêtres"
+    ],
+    "ref": "30:14",
+    "proof": [
+     "בכתב ובעל פה"
+    ],
+    "x": "Rachi sur Deutéronome 30:14 : la Torah vous a été donnée par écrit et oralement."
+   },
+   {
+    "q": "Selon Rachi, pourquoi prend-on à témoin le ciel et la terre ?",
+    "a": "Parce qu'ils existent pour toujours et seront témoins si le malheur survient",
+    "w": [
+     "Parce qu'ils sont les plus grands témoins de la création",
+     "Parce qu'ils sont présents partout où Israël habite",
+     "Parce qu'ils sont désignés par les prophètes comme juges"
+    ],
+    "ref": "30:19",
+    "proof": [
+     "שהם קימים לעולם"
+    ],
+    "x": "Rachi sur Deutéronome 30:19 : parce qu'ils existent pour toujours ; quand le malheur vous frappera, ils seront témoins que je vous ai avertis."
+   }
+  ]
+ }
+}

@@ -18626,3 +18626,38 @@ button.autoscroll-mode { height: 48px; padding: 0 12px; border: 1px dashed var(-
     .first-profile-card .settings-group { margin-bottom: 10px; }
 }
 .profile-travel { margin: 8px 2px 0; padding: 8px 12px; border-radius: 12px; background: var(--selected-tint); color: var(--text-dark); font-size: 12.5px; line-height: 1.45; }
+
+/* --- Périodes et usages (js/app/periods.js) : la liste des périodes, puis les règles d'une période avec leur statut --- */
+.per-rite { display: flex; flex-direction: column; gap: 4px; margin-bottom: 12px; }
+.per-list { display: flex; flex-direction: column; gap: 10px; }
+.per-card { display: flex; flex-direction: column; align-items: stretch; gap: 6px; padding: 12px 14px; border: 1px solid var(--border-soft); border-radius: 14px; background: var(--surface); color: var(--text-dark); font: inherit; text-align: left; cursor: pointer; }
+.per-card.is-active { border-color: var(--text-dark); box-shadow: var(--card-shadow); }
+.per-card:focus-visible, .per-back:focus-visible { outline: 2px solid var(--text-dark); outline-offset: 2px; }
+.per-card-head, .per-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px 12px; }
+.per-card-name, .per-title { font-size: 17px; line-height: 1.25; margin: 0; font-weight: 800; }
+.per-card-he { font-size: 18px; color: var(--muted-text); }
+.per-card-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; }
+.per-badge { display: inline-block; padding: 2px 10px; border: 1px solid var(--border-soft); border-radius: 999px; background: var(--surface-2); font-size: 12px; font-weight: 700; }
+.per-badge-active { border-color: var(--success-text); color: var(--success-text); }
+.per-badge-soon { border-color: var(--favorite-yellow); }
+.per-back { align-self: flex-start; margin-bottom: 8px; }
+.per-dates { margin: 2px 0; }
+.per-group { margin: 18px 0 8px; font-size: 14px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted-text); }
+.per-rule { gap: 6px; }
+.per-rule-head { display: flex; align-items: flex-start; gap: 10px; }
+.per-rule-text { flex: 1; min-width: 0; line-height: 1.35; }
+.per-mark { flex: none; display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; border: 2px solid currentColor; font-weight: 800; font-size: 15px; line-height: 1; }
+.per-mark-no { color: var(--danger-red-text); }
+.per-mark-ok { color: var(--success-text); }
+.per-mark-avoid { color: var(--favorite-yellow); }
+.per-mark-must { color: var(--text-dark); background: var(--selected-tint); }
+.per-mark-custom { color: var(--muted-text); }
+.per-status { flex: none; font-size: 12px; font-weight: 800; }
+.per-status-no { color: var(--danger-red-text); }
+.per-status-ok { color: var(--success-text); }
+.per-status-avoid, .per-status-custom { color: var(--muted-text); }
+.per-note { font-size: 13.5px; line-height: 1.45; }
+.per-others, .per-src { font-size: 12.5px; line-height: 1.4; color: var(--muted-text); }
+.per-others { font-style: italic; }
+.per-disclaimer { margin-top: 16px; }
+.per-day { gap: 6px; }

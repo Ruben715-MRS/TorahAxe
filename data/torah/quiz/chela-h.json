@@ -1,0 +1,246 @@
+{
+ "v": 1,
+ "parasha": "Chela'h",
+ "levels": {
+  "1": [
+   {
+    "q": "Combien de temps dure l'exploration du pays de Canaan par les explorateurs ?",
+    "a": "Quarante jours",
+    "w": [
+     "Sept jours",
+     "Trois mois",
+     "Quarante années"
+    ],
+    "ref": "13:25",
+    "proof": [
+     "quarante jours"
+    ],
+    "x": "Ils reviennent de cette exploration au bout de quarante jours."
+   },
+   {
+    "q": "Quel explorateur de la tribu de Juda, fils de Yefounné, calme le peuple devant Moïse ?",
+    "a": {
+     "t": "Caleb",
+     "he": "כָּלֵב"
+    },
+    "w": [
+     {
+      "t": "Josué",
+      "he": "יְהוֹשֻׁעַ"
+     },
+     {
+      "t": "Chammoûa",
+      "he": "שָׁמוֹעַ"
+     },
+     {
+      "t": "Ammïel",
+      "he": "עַמִּיאֵל"
+     }
+    ],
+    "ref": "13:6",
+    "proof": [
+     "Caleb, fils de Yefounné"
+    ],
+    "x": "Avec Josué, il déchire ses vêtements et affirme que le pays est excellent."
+   },
+   {
+    "q": "Quel était le nom de Josué, avant que Moïse le renomme, parmi les explorateurs ?",
+    "a": {
+     "t": "Hochéa",
+     "he": "הוֹשֵׁעַ"
+    },
+    "w": [
+     {
+      "t": "Yefounné",
+      "he": "יְפֻנֶּה"
+     },
+     {
+      "t": "Chammoûa",
+      "he": "שָׁמוֹעַ"
+     },
+     {
+      "t": "Ammïel",
+      "he": "עַמִּיאֵל"
+     }
+    ],
+    "ref": "13:16",
+    "proof": [
+     "Hochéa, fils de Noun"
+    ],
+    "x": "Moïse l'avait nommé Josué, fils de Noun, de la tribu d'Éphraïm."
+   },
+   {
+    "q": "Comment les explorateurs portent-ils la grappe de raisin coupée dans la vallée d'Echkol ?",
+    "a": "À deux, au moyen d'une perche",
+    "w": [
+     "Dans un panier tressé de roseaux",
+     "Sur le dos d'un âne de bât",
+     "Entourée de feuilles de vigne"
+    ],
+    "ref": "13:23",
+    "proof": [
+     "portèrent à deux au moyen d'une perche"
+    ],
+    "x": "Ils rapportent aussi quelques grenades et quelques figues."
+   },
+   {
+    "q": "Que doit-on ajouter à la frange de chaque coin du vêtement ?",
+    "a": "Un cordon d'azur",
+    "w": [
+     "Un cordon de pourpre",
+     "Un fil d'or",
+     "Un cordon de lin blanc"
+    ],
+    "ref": "15:38",
+    "proof": [
+     "cordon d'azur"
+    ],
+    "x": "Les enfants d'Israël se font des franges aux coins de leurs vêtements."
+   }
+  ],
+  "2": [
+   {
+    "q": "Combien d'années avant Tanis d'Égypte Hébrôn a-t-elle été bâtie ?",
+    "a": "Sept ans",
+    "w": [
+     "Quarante ans",
+     "Cent ans",
+     "Trois ans"
+    ],
+    "ref": "13:22",
+    "proof": [
+     "sept ans avant Tanis"
+    ],
+    "x": "Des descendants d'Anak y demeurent : Ahimân, Chêchaï et Talmaï."
+   },
+   {
+    "q": "Combien d'années les Israélites devront-ils errer dans le désert, selon le décret divin ?",
+    "a": "Quarante années, une par jour d'exploration",
+    "w": [
+     "Quarante jours, autant que dura l'exploration",
+     "Sept années, comme les années sabbatiques",
+     "Trente-neuf années, en comptant le dimanche"
+    ],
+    "ref": "14:34",
+    "proof": [
+     "quarante années"
+    ],
+    "x": "Autant de jours d'exploration, autant d'années de peine."
+   },
+   {
+    "q": "Quelle oblation offre-t-on avec un bélier, selon la loi donnée pour le pays ?",
+    "a": "Deux dixièmes de fleur de farine pétrie avec un tiers de hîn d'huile",
+    "w": [
+     "Un dixième de fleur de farine pétri avec un quart de hîn d'huile",
+     "Trois dixièmes de fleur de farine pétris avec un demi-hîn d'huile",
+     "Deux dixièmes d'orge grillée pétris avec un tiers de hîn de vin"
+    ],
+    "ref": "15:6",
+    "proof": [
+     "deux dixièmes de fleur de farine"
+    ],
+    "x": "Un tiers de hîn d'huile accompagne le bélier."
+   },
+   {
+    "q": "Que faisait l'homme que les Israélites ont trouvé dans le désert, et qu'on a conduit devant Moïse ?",
+    "a": "Il ramassait du bois le jour du Sabbat",
+    "w": [
+     "Il allumait un feu sur le mont Sinaï",
+     "Il partait à la chasse la nuit",
+     "Il récoltait la manne au septième jour"
+    ],
+    "ref": "15:32",
+    "proof": [
+     "ramassant du bois le jour du Sabbat"
+    ],
+    "x": "On le mit en lieu sûr, car on ignorait comment agir à son égard."
+   },
+   {
+    "q": "Que doit-on prélever, comme prémices de la pâte, une fois dans le pays ?",
+    "a": "Un gâteau en tribut",
+    "w": [
+     "Un dixième de la pâte en farine",
+     "Une miche pour le sanctuaire",
+     "Une poignée de levain"
+    ],
+    "ref": "15:20",
+    "proof": [
+     "gâteau en tribut"
+    ],
+    "x": "Ce prélèvement se fait à l'instar du tribut de la grange."
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, pourquoi la section des explorateurs suit-elle celle de Miryam ?",
+    "a": "Parce que Miryam fut frappée pour avoir médit, et que ces méchants n'ont pas tiré la leçon",
+    "w": [
+     "Parce que Miryam a conseillé d'envoyer les explorateurs",
+     "Parce que Miryam est restée dans le camp sept jours",
+     "Parce que Miryam était la sœur de Caleb"
+    ],
+    "ref": "13:2",
+    "proof": [
+     "לקתה על עסקי דבה"
+    ],
+    "x": "Rachi sur Nombres 13:2 : elle fut frappée à cause de la médisance contre son frère, et ces méchants l'ont vu et n'ont pas appris."
+   },
+   {
+    "q": "Selon Rachi, que fait Moïse en renommant Hochéa Josué ?",
+    "a": "Il prie pour lui : que Dieu le sauve du conseil des explorateurs",
+    "w": [
+     "Il lui donne le nom de son père",
+     "Il lui confie la direction des douze tribus",
+     "Il le choisit comme futur chef des Lévites"
+    ],
+    "ref": "13:16",
+    "proof": [
+     "יה יושיעך"
+    ],
+    "x": "Rachi sur Nombres 13:16 : il pria pour lui : « que Dieu te sauve du conseil des explorateurs »."
+   },
+   {
+    "q": "Selon Rachi, que fait Caleb seul lorsqu'il arrive à Hébrôn ?",
+    "a": "Il se prosterne sur les tombeaux des patriarches, pour ne pas être entraîné dans le complot",
+    "w": [
+     "Il y bâtit un autel pour remercier Dieu",
+     "Il y mesure les murailles de la ville",
+     "Il y rencontre en secret les descendants d'Anak"
+    ],
+    "ref": "13:22",
+    "proof": [
+     "קברי אבות"
+    ],
+    "x": "Rachi sur Nombres 13:22 : Caleb seul y alla et se prosterna sur les tombeaux des pères, pour ne pas être entraîné dans le conseil de ses compagnons."
+   },
+   {
+    "q": "Selon Rachi, que signifie « un autre esprit » en parlant de Caleb ?",
+    "a": "Deux esprits : un dans la bouche, un dans le cœur",
+    "w": [
+     "Un esprit plus ancien que celui des explorateurs",
+     "Un esprit de prophétie venu du ciel",
+     "Un esprit de colère contre Moïse"
+    ],
+    "ref": "14:24",
+    "proof": [
+     "שתי רוחות"
+    ],
+    "x": "Rachi sur Nombres 14:24 : deux esprits, un dans la bouche et un dans le cœur : aux explorateurs il dit « je suis avec vous », mais dans son cœur il voulait dire la vérité."
+   },
+   {
+    "q": "Selon Rachi, que représentent la valeur du mot tsitsit, ses huit fils et ses cinq nœuds ?",
+    "a": "Six cent treize, le nombre des commandements",
+    "w": [
+     "Quarante, le nombre des années du désert",
+     "Soixante-dix, le nombre des nations",
+     "Trois cent soixante-cinq, le nombre des jours"
+    ],
+    "ref": "15:39",
+    "proof": [
+     "שמונה חוטין וחמשה קשרים"
+    ],
+    "x": "Rachi sur Nombres 15:39 : la valeur numérique de tsitsit est six cents, plus huit fils et cinq nœuds : cela fait 613."
+   }
+  ]
+ }
+}

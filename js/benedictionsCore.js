@@ -87,9 +87,10 @@
             return words.every(function (w) { return hay.indexOf(w) !== -1; });
         });
         if (!words.length) return found;
-        // Avec une recherche : les noms les plus courts d'abord (le nom exact, « Pâtes », est le plus court), puis les plus longs ; à longueur égale, l'ordre du guide.
-        return found.map(function (food, i) { return { food: food, len: food.n.length, i: i }; })
-            .sort(function (a, b) { return a.len - b.len || a.i - b.i; })
+        // Avec une recherche : le nom exact d'abord, puis les noms les plus courts (le nom exact, « Pâtes », est le plus court), puis les plus longs ; à longueur égale, l'ordre du guide.
+        var q = stemmed(f.query);
+        return found.map(function (food, i) { return { food: food, exact: stemmed(food.n) === q ? 0 : 1, len: food.n.length, i: i }; })
+            .sort(function (a, b) { return a.exact - b.exact || a.len - b.len || a.i - b.i; })
             .map(function (x) { return x.food; });
     }
 

@@ -1,0 +1,246 @@
+{
+ "v": 1,
+ "parasha": "Vayéra",
+ "levels": {
+  "1": [
+   {
+    "q": "Combien de personnages Abraham voit-il debout près de lui, à l'entrée de sa tente ?",
+    "a": "Trois",
+    "w": [
+     "Deux",
+     "Sept",
+     "Douze"
+    ],
+    "ref": "18:2",
+    "proof": [
+     "trois personnages"
+    ],
+    "x": "Il court à eux du seuil de la tente et se prosterne contre terre."
+   },
+   {
+    "q": "Comment Sara réagit-elle en entendant l'annonce d'un fils ?",
+    "a": "Elle rit en elle-même",
+    "w": [
+     "Elle pleure en silence",
+     "Elle se prosterne devant l'envoyé",
+     "Elle quitte aussitôt la tente"
+    ],
+    "ref": "18:12",
+    "proof": [
+     "Sara rit en elle-même"
+    ],
+    "x": "Elle se dit : « Flétrie par l'âge, ce bonheur me serait réservé ! »"
+   },
+   {
+    "q": "Au bout de combien de justes Abraham s'arrête-t-il dans sa prière pour Sodome ?",
+    "a": "Dix",
+    "w": [
+     "Cinquante",
+     "Trente",
+     "Cinq"
+    ],
+    "ref": "18:32",
+    "proof": [
+     "Peut-être s'en trouvera-t-il dix"
+    ],
+    "x": "Dieu répond qu'il renoncera à détruire en faveur des dix."
+   },
+   {
+    "q": "Que devient la femme de Loth, ayant regardé en arrière ?",
+    "a": "Une statue de sel",
+    "w": [
+     "Une colonne de feu",
+     "Une pierre de la montagne",
+     "Un nuage de fumée"
+    ],
+    "ref": "19:26",
+    "proof": [
+     "statue de sel"
+    ],
+    "x": "Elle regarde derrière elle malgré l'ordre reçu."
+   },
+   {
+    "q": "Quel âge Abraham a-t-il lorsque son fils Isaac vient au monde ?",
+    "a": "Cent ans",
+    "w": [
+     "Quatre-vingt-dix-neuf ans",
+     "Quatre-vingt-six ans",
+     "Cent vingt ans"
+    ],
+    "ref": "21:5",
+    "proof": [
+     "âgé de cent ans"
+    ],
+    "x": "Abraham nomma le fils qui venait de lui naître Isaac."
+   }
+  ],
+  "2": [
+   {
+    "q": "Que fait pleuvoir l'Éternel sur Sodome et Gommorrhe ?",
+    "a": "Du soufre et du feu",
+    "w": [
+     "De l'eau et des grêlons",
+     "Du sang et des cendres",
+     "De la poussière et du sable"
+    ],
+    "ref": "19:24",
+    "proof": [
+     "soufre et du feu"
+    ],
+    "x": "Il fait pleuvoir du haut des cieux."
+   },
+   {
+    "q": "Quel roi de Gherar envoie prendre Sara, après qu'Abraham l'a présentée comme sa sœur ?",
+    "a": {
+     "t": "Abimélec",
+     "he": "אֲבִימֶלֶךְ"
+    },
+    "w": [
+     {
+      "t": "Pharaon",
+      "he": "פַּרְעֹה"
+     },
+     {
+      "t": "Balak",
+      "he": "בָּלָק"
+     },
+     {
+      "t": "Sihôn",
+      "he": "סִיחוֹן"
+     }
+    ],
+    "ref": "20:2",
+    "proof": [
+     "Abimélec, roi de Gherar"
+    ],
+    "x": "Le Seigneur visite ce roi dans un songe nocturne."
+   },
+   {
+    "q": "Que remet Abraham à Agar en la renvoyant avec l'enfant ?",
+    "a": "Du pain et une outre pleine d'eau",
+    "w": [
+     "Des dattes et un sac de farine",
+     "Du lait et un peu de miel",
+     "Une tente et deux ânes"
+    ],
+    "ref": "21:14",
+    "proof": [
+     "pain et une outre pleine d'eau"
+    ],
+    "x": "Il les pose sur son épaule."
+   },
+   {
+    "q": "Pourquoi appelle-t-on l'endroit Beer Shava ?",
+    "a": "Parce que là ils jurèrent l'un et l'autre",
+    "w": [
+     "Parce que là ils trouvèrent sept puits",
+     "Parce que là ils sacrifièrent sept brebis",
+     "Parce que là ils dormirent sept nuits"
+    ],
+    "ref": "21:31",
+    "proof": [
+     "là ils jurèrent"
+    ],
+    "x": "Abraham et Abimélec y concluent une alliance."
+   },
+   {
+    "q": "Vers quelle terre Dieu demande-t-il à Abraham de s'acheminer pour offrir Isaac en holocauste ?",
+    "a": {
+     "t": "Moria",
+     "he": "מֹּרִיָּה"
+    },
+    "w": [
+     {
+      "t": "Canaan",
+      "he": "כְּנָעַן"
+     },
+     {
+      "t": "Moab",
+      "he": "מוֹאָב"
+     },
+     {
+      "t": "Gherar",
+      "he": "גְּרָר"
+     }
+    ],
+    "ref": "22:2",
+    "proof": [
+     "terre de Moria"
+    ],
+    "x": "Sur une montagne que Dieu lui désignera."
+   }
+  ],
+  "3": [
+   {
+    "q": "Selon Rachi, pourquoi Dieu se révèle-t-il à Abraham dans les plaines de Mamré ?",
+    "a": "Pour visiter le malade : c'était le troisième jour après sa circoncision",
+    "w": [
+     "Pour renouveler l'alliance sous le chêne",
+     "Pour annoncer la naissance d'Isaac",
+     "Pour lui demander d'offrir un sacrifice"
+    ],
+    "ref": "18:1",
+    "proof": [
+     "לבקר את החולה"
+    ],
+    "x": "Rachi sur Genèse 18:1 : pour visiter le malade : c'était le troisième jour après sa circoncision, et Dieu vint s'enquérir de sa santé."
+   },
+   {
+    "q": "Selon Rachi, pourquoi y a-t-il trois messagers qui visitent Abraham ?",
+    "a": "Parce qu'un ange ne remplit pas deux missions : annoncer à Sara, détruire Sodome et guérir Abraham",
+    "w": [
+     "Parce que trois anges gardent les trois patriarches",
+     "Parce que trois anges portent la voix de Dieu",
+     "Parce que trois anges viennent du ciel, de la terre et de la mer"
+    ],
+    "ref": "18:2",
+    "proof": [
+     "אחד לבשר את שרה"
+    ],
+    "x": "Rachi sur Genèse 18:2 : l'un pour annoncer à Sara, l'un pour retourner Sodome, l'un pour guérir Abraham ; un ange n'a pas deux missions."
+   },
+   {
+    "q": "Selon Rachi, pourquoi la femme de Loth est-elle devenue une statue de sel ?",
+    "a": "Parce qu'elle avait failli par le sel et fut punie par le sel",
+    "w": [
+     "Parce qu'elle avait désobéi à l'ordre de ne pas manger",
+     "Parce qu'elle avait pleuré sur Sodome",
+     "Parce qu'elle avait caché le sel aux visiteurs"
+    ],
+    "ref": "19:26",
+    "proof": [
+     "במלח חטאה ובמלח לקתה"
+    ],
+    "x": "Rachi sur Genèse 19:26 : elle avait péché par le sel et fut frappée par le sel : Loth lui dit « donne un peu de sel aux hôtes » ; elle répondit : « tu veux ici encore instaurer cette mauvaise coutume ? »"
+   },
+   {
+    "q": "Selon Rachi, quelle est la « terre de Moria » dont Dieu parle à Abraham ?",
+    "a": "Jérusalem, où sera bâti le Temple",
+    "w": [
+     "Hébron, où sont enterrés les patriarches",
+     "Sichem, où Abraham a bâti un autel",
+     "Bethel, où Jacob a vu l'échelle"
+    ],
+    "ref": "22:2",
+    "proof": [
+     "ירושלים"
+    ],
+    "x": "Rachi sur Genèse 22:2 : c'est Jérusalem, comme il est dit : « pour bâtir la maison de l'Éternel à Jérusalem, au mont Moria »."
+   },
+   {
+    "q": "Selon Rachi, que signifie « ne porte pas la main sur ce jeune homme » (al tishlah) ?",
+    "a": "Ne l'immole pas, mais ne lui fais pas non plus la moindre blessure",
+    "w": [
+     "Ne le touche pas, car il est consacré à Dieu",
+     "Ne le lie pas, car il est libre",
+     "Ne le renvoie pas, car il t'appartient"
+    ],
+    "ref": "22:12",
+    "proof": [
+     "אל תעש בו מום"
+    ],
+    "x": "Rachi sur Genèse 22:12 : « ne l'égorge pas » ; Abraham dit : « donc je suis venu pour rien ? Je ferai une blessure, un peu de sang » ; Dieu répond : « ne lui fais aucun mal »."
+   }
+  ]
+ }
+}
