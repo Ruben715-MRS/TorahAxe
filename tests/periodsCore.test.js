@@ -184,7 +184,9 @@ test('Pessah : hamets, kitniyot, téfilines selon le rite et la sous-période', 
     assert.strictEqual(find(v('sefarade', 'p1'), 'pe-kitniyot').st, 'ok');
     assert.strictEqual(find(v('ashkenaze', 'p1'), 'pe-kitniyot').st, 'no');
     assert.strictEqual(find(v('habad', 'p2'), 'pe-kitniyot').st, 'no');
-    assert.strictEqual(find(v('sefarade', 'p2'), 'pe-tefillin').st, 'must');
+    assert.strictEqual(find(v('sefarade', 'p2'), 'pe-tefillin').st, 'no');   // les séfarades ne mettent pas les téfilines à Hol Hamoed
+    assert.strictEqual(find(v('ashkenaze', 'p2'), 'pe-tefillin').st, 'custom');
+    assert.match(find(v('ashkenaze', 'p2'), 'pe-tefillin').note, /Rema/);
     assert.strictEqual(find(v('habad', 'p2'), 'pe-tefillin').st, 'no');
     assert.strictEqual(find(v('sefarade', 'p1'), 'pe-tefillin'), undefined);   // règle sans statut hors de ses sous-périodes : masquée
     assert.ok(find(v('sefarade', 'p0'), 'pe-biour') && !find(v('sefarade', 'p1'), 'pe-biour'));
@@ -309,4 +311,13 @@ test('Hol Hamoed affiné : mêmes règles à Pessah et à Souccot, masquées hor
     });
     assert.ok(find(C.view('pessah', { rite: 'sefarade', phase: 'p0' }), 'pe-eruv'));
     assert.ok(find(C.view('souccot', { rite: 'sefarade', phase: 'p2' }), 'sc-eruv') && !find(C.view('souccot', { rite: 'sefarade', phase: 'p1' }), 'sc-eruv'));
+});
+
+test('Anénou aux jeûnes mineurs, téfilines de Souccot : selon le rite', () => {
+    const v = rite => C.view('jeunes', { rite });
+    assert.match(find(v('sefarade'), 'jn-prieres').note, /Chaharit et à Minha/);
+    assert.match(find(v('ashkenaze'), 'jn-prieres').note, /seulement à Minha/);
+    assert.match(find(v('habad'), 'jn-prieres').note, /seulement à Minha/);
+    assert.strictEqual(find(C.view('souccot', { rite: 'sefarade', phase: 'p2' }), 'sc-tefillin').st, 'no');
+    assert.strictEqual(find(C.view('souccot', { rite: 'ashkenaze', phase: 'p2' }), 'sc-tefillin').st, 'custom');
 });
