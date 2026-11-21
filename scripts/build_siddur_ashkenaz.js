@@ -7,7 +7,13 @@ const fs = require('fs');
 const path = require('path');
 const DIR = path.resolve(__dirname, '..', 'data', 'siddur', 'ashkenaz');
 const BOOK = 'Siddur Ashkenaz';
-const VERSIONS = ['hebrew|The Metsudah siddur, 1981', 'hebrew|Daat Siddur Ashkenaz'];
+const VERSIONS = ['hebrew|The Metsudah siddur, 1981', 'hebrew|Daat Siddur Ashkenaz', 'hebrew|Torat Emet 357', 'hebrew'];
+// Quelques textes n'ont pas de version propre à leur place dans Sefaria : on prend le même texte ailleurs dans le livre (identique mot pour mot).
+const ALIAS = {
+    'Shabbat/Shacharit/Amidah/Holiness of God': 'Weekday/Shacharit/Amidah/Holiness of God',
+    'Shabbat/Shacharit/Pesukei Dezimra/Mizmor Letoda': 'Weekday/Shacharit/Pesukei Dezimra/Mizmor Letoda',
+    'Weekday/Minchah/Post Amidah/Vidui and 13 Middot': 'Weekday/Shacharit/Post Amidah/Vidui and 13 Middot'
+};
 
 // Groupes : identifiant → nom français (les identifiants sont ceux des rayons de js/app/siddur.js)
 const GROUPS = {
@@ -129,7 +135,8 @@ function resolve(root, part) {
     return parent.kids.slice(ia, ib + 1).reduce((acc, k) => acc.concat(k.leaf ? [{ trail: base.concat(k.en), node: k }] : leaves(k, base.concat(k.en))), []);
 }
 async function leafText(trail) {
-    const ref = BOOK + ', ' + trail.join(', ');
+    const alias = ALIAS[trail.join('/')];
+    const ref = BOOK + ', ' + (alias ? alias.split('/') : trail).join(', ');
     for (const v of VERSIONS) {
         await new Promise(r => setTimeout(r, 1000));
         const d = await getJson('https://www.sefaria.org/api/v3/texts/' + encodeURIComponent(ref) + '?version=' + encodeURIComponent(v) + '&return_format=default');
