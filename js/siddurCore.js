@@ -64,7 +64,7 @@
         ['aseret', /עשרת ימי תשובה/],
         ['roshHashana', /בראש השנה|^ברה ש$/],
         ['moadim', /^במועדים/],
-        ['rc', /בראש (חדש|חודש)|(^|\s)בר ?ח(\s|$)/],
+        ['rc', /בראש (חדש|חודש)|בליל ראש (חדש|חודש)|(^|\s)בר ?ח(\s|$)/],
         ['chPesach', /(חוה מ|חול המועד) פסח/],
         ['chSukkot', /(חוה מ|חול המועד) סוכות/],
         ['ch', /חול המועד|חוה מ\b|חוהמ/],
@@ -121,7 +121,7 @@
         if (atoms.indexOf('chPesach') !== -1 || atoms.indexOf('chSukkot') !== -1) atoms = atoms.filter(function (x) { return x !== 'ch'; });
         for (var si = 0; si < SHABBAT_ATOMS.length; si++) if (SHABBAT_ATOMS[si][1].test(r.head)) { atoms = [SHABBAT_ATOMS[si][0]]; break; }
         if (!atoms.length) return null;
-        return { atoms: atoms, endsWithColon: r.endsWithColon, hasBody: r.hasBody, insert: /(אומר|אומרים|מוסיפים|מוסיף) כאן/.test(r.head) };
+        return { atoms: atoms, endsWithColon: r.endsWithColon, hasBody: r.hasBody, insert: /(אומר|אומרים|מוסיפים|מוסיף) כאן/.test(r.head), psalm: /מזמור זה/.test(r.head) };
     }
 
     // « été / hiver » : la même consigne sert à deux choses (Machiv haRouah / Morid hatal, et Barekh alénou / Barekhénou). Le corps du texte les distingue.
@@ -200,12 +200,15 @@
             var tree = trees[i];
             var text = plain(tree);
             var cond = onlySmall(tree) && !/[֑-ׇ]/.test(text) ? conditionOf(text) : null;
-            if (!cond || !(cond.endsWithColon || cond.insert) || cond.hasBody) { i++; continue; }
+            if (!cond || !(cond.endsWithColon || cond.insert || cond.psalm) || cond.hasBody) { i++; continue; }
             var from = i + 1;
             if (from >= segments.length) { i++; continue; }
             var next = trees[from];
             var to;
-            if (!onlySmall(next)) {
+            if (cond.psalm) {                                                // « …לומר מזמור זה » : le psaume (vocalisé) est le segment suivant, seul
+                if (!/[֑-ׇ]/.test(plain(next))) { i++; continue; }
+                to = from;
+            } else if (!onlySmall(next)) {
                 to = from;                                                   // le corps est un seul segment de texte (été / hiver)
             } else {
                 to = from;
