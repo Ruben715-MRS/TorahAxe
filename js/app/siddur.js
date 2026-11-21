@@ -12,6 +12,10 @@
 
 const SD_PREFS_KEY = 'siddurPrefs';
 const SD_DATA = 'data/siddur/';
+// Le rite 'Habad a son propre siddour : le Tehilat Hachem (data/siddur/habad/, scripts/build_siddur_habad.js). Les autres rites lisent celui d'Edot HaMizrach.
+const SD_DATA_HABAD = 'data/siddur/habad/';
+function sdBase() { return typeof riteFull === 'function' && riteFull() === 'habad' ? SD_DATA_HABAD : SD_DATA; }
+let sdIndexBase = null;     // le dossier dont vient sdIndex
 
 let sdIndex = null;
 const sdCache = {};
@@ -131,17 +135,21 @@ function sdFetchJson(url) {
 }
 function sdLoadIndex() {
     if (sdIndex) return Promise.resolve(sdIndex);
-    return sdFetchJson(SD_DATA + 'index.json').then(index => { sdIndex = index; sdApplyRite(); return index; });
+    const base = sdBase();
+    return sdFetchJson(base + 'index.json').then(index => { sdIndex = index; sdIndexBase = base; sdApplyRite(); return index; });
 }
 function sdLoadSection(id) {
-    if (sdCache[id]) return Promise.resolve(sdCache[id]);
-    return sdFetchJson(SD_DATA + id + '.json').then(section => { sdCache[id] = section; return section; });
+    const base = sdBase();
+    if (sdCache[base + id]) return Promise.resolve(sdCache[base + id]);
+    return sdFetchJson(base + id + '.json').then(section => { sdCache[base + id] = section; return section; });
 }
 // La traduction française d'une section (facultative) : { indice : [empreinte, texte] }, ou null s'il n'y en a pas.
 const sdFrCache = {};
 function sdLoadFr(id) {
-    if (id in sdFrCache) return Promise.resolve(sdFrCache[id]);
-    return sdFetchJson(SD_DATA + 'fr/' + id + '.json').then(d => d.t || null).catch(() => null).then(t => { sdFrCache[id] = t; return t; });
+    const base = sdBase();
+    if ((base + id) in sdFrCache) return Promise.resolve(sdFrCache[base + id]);
+    // Le Tehilat Hachem n'a pas (encore) de traduction française : le fichier manque, la section s'affiche en hébreu seul.
+    return sdFetchJson(base + 'fr/' + id + '.json').then(d => d.t || null).catch(() => null).then(t => { sdFrCache[base + id] = t; return t; });
 }
 function sdFindSection(id) {
     for (const g of sdIndex.groups) for (const s of g.sections) if (s.id === id) return { group: g, section: s };
@@ -164,6 +172,8 @@ function sdRiteFamily(id) { return SD_RITE_FAMILIES.find(f => Object.keys(f.ids)
 function sdRiteId(id) { const f = sdRiteFamily(id); return f ? f.ids[sdRite()] || id : id; }
 function sdApplyRite() {
     if (!sdIndex) return;
+    // Passage vers ou depuis 'Habad : on recharge le siddour du nouveau rite.
+    if (sdIndexBase !== sdBase()) { sdIndex = null; sdIndexBase = null; sdRiteOrig = null; sdRiteHidden = []; sdPrecacheStarted = false; sdLoadIndex().catch(() => {}); return; }
     if (!sdRiteOrig) {
         sdRiteOrig = {};
         sdIndex.groups.forEach(g => { if (g.sections.some(x => sdRiteFamily(x.id))) sdRiteOrig[g.id] = g.sections.map(x => Object.assign({}, x)); });
@@ -197,11 +207,12 @@ function sdPrecache() {
     sdPrecacheStarted = true;
     try { localStorage.removeItem('siddurOffline'); } catch (e) { /* l'ancien drapeau « prêt hors-ligne », qui ne prouvait rien */ }
     // Toutes les sections, y compris les versions des autres rites (ouvertes depuis l'écran Bénédictions), et les petits fichiers dont le lecteur a besoin.
-    const urls = [SD_DATA + 'index.json', SD_DATA + 'fr/index.json', SD_DATA + 'interruptions.json', 'data/torah/weekday.json', 'data/torah/parashot.json'];
-    sdIndex.groups.forEach(g => g.sections.forEach(s => urls.push(SD_DATA + s.id + '.json')));
-    sdRiteHidden.forEach(h => urls.push(SD_DATA + h.section.id + '.json'));
-    sdFetchJson(SD_DATA + 'fr/index.json').catch(() => ({}))
-        .then(idx => Object.keys((idx && idx.sections) || {}).forEach(id => urls.push(SD_DATA + 'fr/' + id + '.json')))
+    const base = sdBase();
+    const urls = [base + 'index.json', base + 'fr/index.json', SD_DATA + 'interruptions.json', 'data/torah/weekday.json', 'data/torah/parashot.json'];
+    sdIndex.groups.forEach(g => g.sections.forEach(s => urls.push(base + s.id + '.json')));
+    sdRiteHidden.forEach(h => urls.push(base + h.section.id + '.json'));
+    sdFetchJson(base + 'fr/index.json').catch(() => ({}))
+        .then(idx => Object.keys((idx && idx.sections) || {}).forEach(id => urls.push(base + 'fr/' + id + '.json')))
         .then(() => TorahOffline.precache(urls))
         .then(r => { if (!r || r.failed) sdPrecacheStarted = false; });   // interrompu ou hors réseau : on réessaiera à la prochaine ouverture
 }
