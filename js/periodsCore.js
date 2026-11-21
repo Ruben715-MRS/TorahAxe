@@ -53,16 +53,55 @@
         ];
     }
 
-    // Une occurrence : { id, year (hébraïque), start, end, phases: [{ id, start, end }] } ou null (année hors des bornes du calendrier).
-    // `ctx` : { rite, israel }.
+    // Les sous-périodes d'une fête, d'après le premier jour `first`, le dernier `last` et le nombre de jours de fête au début et à la fin (1 en Israël, 2 dans la diaspora).
+    //  Pessah : la veille (14 Nissan), les premiers jours de fête, Hol Hamoed, les derniers jours de fête. Souccot : les premiers jours de fête, puis Hol Hamoed jusqu'à Hochana Rabba.
+    function feastPhases(id, first, last, israel) {
+        var n = israel ? 1 : 2;
+        if (id === 'pessah') {
+            return [
+                { id: 'p0', start: first - 1, end: first - 1 },
+                { id: 'p1', start: first, end: first + n - 1 },
+                { id: 'p2', start: first + n, end: last - n },
+                { id: 'p3', start: last - n + 1, end: last }
+            ];
+        }
+        if (id === 'souccot') return [{ id: 'p1', start: first, end: first + n - 1 }, { id: 'p2', start: first + n, end: last }];
+        return [];
+    }
+
+    // Les occurrences d'une période dans une année hébraïque : [{ id, year (hébraïque), start, end, phases: [{ id, start, end }], feast?, month? }].
+    //  `feast` : l'identifiant de la fête quand une période en regroupe plusieurs (les jeûnes) ; `month` : le mois d'un Roch 'Hodech.
+    // `ctx` : { rite, israel }. Une période hebdomadaire (Chabbat) n'a pas d'occurrence par année : voir stateOf.
+    function occurrences(p, year, ctx) {
+        ctx = ctx || {};
+        var israel = !!ctx.israel;
+        var kind = p.kind || 'range';
+        if (kind === 'feasts') {
+            return HC.feastsOf(year, israel).filter(function (f) { return p.feasts.indexOf(f.id) >= 0; }).map(function (f) {
+                var start = f.fixed - (p.pre || 0);
+                return { id: p.id, year: year, start: start, end: f.last, phases: p.phases ? feastPhases(p.id, f.fixed, f.last, israel) : [], feast: f.id };
+            });
+        }
+        if (kind === 'monthly') {
+            var months = HC.monthsOf(year), out = [];
+            for (var i = 1; i < months.length; i++) {   // Tichri (rang 0) est Roch Hachana, pas un Roch 'Hodech
+                var first = fixedOf(year, { m: months[i].id, d: 1 });
+                if (first === null) continue;
+                out.push({ id: p.id, year: year, start: months[i - 1].days === 30 ? first - 1 : first, end: first, phases: [], month: months[i].id });
+            }
+            return out;
+        }
+        if (kind === 'weekly') return [];
+        var start = fixedOf(year, p.from);
+        var end = endOf(p, year, riteOf(ctx.rite), israel);
+        if (start === null || end === null) return [];
+        return [{ id: p.id, year: year, start: start, end: end, phases: p.phases ? threeWeeksPhases(year, start, end) : [] }];
+    }
+
+    // La première occurrence d'une année, ou null (année hors des bornes, période hebdomadaire).
     function rangeOf(id, year, ctx) {
         var p = periodById(id);
-        if (!p) return null;
-        ctx = ctx || {};
-        var start = fixedOf(year, p.from);
-        var end = endOf(p, year, riteOf(ctx.rite), ctx.israel);
-        if (start === null || end === null) return null;
-        return { id: id, year: year, start: start, end: end, phases: p.phases ? threeWeeksPhases(year, start, end) : [] };
+        return p ? (occurrences(p, year, ctx)[0] || null) : null;
     }
 
     function phaseAt(range, fixed) {
@@ -72,18 +111,24 @@
 
     // L'état d'une période un jour donné, ou null si elle est hors des bornes du calendrier.
     //  'active' : en cours ; 'soon' : commence dans `lead_days` jours au plus ; 'upcoming' : plus tard.
-    // { id, state, range, daysTo (jours avant le début ; 0 si en cours), phase (sous-période en cours ou null) }.
-    // L'année hébraïque de `fixed` et la suivante suffisent : toute période de la liste commence et finit dans une même année hébraïque.
+    // { id, state, range (l'occurrence en cours ou la prochaine), daysTo (jours avant le début ; 0 si en cours), phase (sous-période en cours ou null) }.
+    // L'année hébraïque de `fixed` et la suivante suffisent : toute occurrence commence et finit dans une même année hébraïque, et la prochaine est toujours dans l'une des deux.
     function stateOf(id, fixed, ctx) {
         var p = periodById(id);
         var h = HC.hebrewFromFixed(fixed);
         if (!p || !h) return null;
         var best = null;
-        [h.year, h.year + 1].forEach(function (y) {
-            var r = rangeOf(id, y, ctx);
-            if (!r || r.end < fixed) return;
-            if (!best || r.start < best.start) best = r;
-        });
+        if (p.kind === 'weekly') {   // chaque samedi (jour 6)
+            var saturday = fixed + ((6 - HC.weekdayOf(fixed) + 7) % 7);
+            best = { id: id, year: h.year, start: saturday, end: saturday, phases: [] };
+        } else {
+            [h.year, h.year + 1].forEach(function (y) {
+                occurrences(p, y, ctx).forEach(function (r) {
+                    if (r.end < fixed) return;
+                    if (!best || r.start < best.start) best = r;
+                });
+            });
+        }
         if (!best) return null;
         var active = best.start <= fixed;
         var daysTo = active ? 0 : best.start - fixed;
@@ -95,7 +140,7 @@
 
     // Toutes les périodes, dans l'ordre de l'écran : celles en cours, puis les plus proches.
     function listView(fixed, ctx) {
-        var rank = { active: 0, soon: 1, upcoming: 2 };
+        var rank = { active: 0, soon: 0, upcoming: 1 };
         return Data.PERIODS.map(function (p) { return stateOf(p.id, fixed, ctx); }).filter(Boolean)
             .sort(function (a, b) { return rank[a.state] - rank[b.state] || a.range.start - b.range.start; });
     }

@@ -55,6 +55,14 @@ function perRangeText(range) {
     return t('tools.per_dates', { start: perDateText(range.start), end: perDateText(range.end) });
 }
 
+// Le nom de l'occurrence quand une période en regroupe plusieurs : « Jeûne du 10 Tévet », « Roch 'Hodech Kislev ». Sinon vide.
+function perOccName(range) {
+    const p = PeriodsCore.periodById(range.id);
+    if (range.feast && p && p.feasts && p.feasts.length > 1) return t('tools.hcal_f_' + range.feast + '_name');
+    if (range.month) return t('tools.per_rc_of', { month: hcalMonthName(range.year, range.month) });
+    return '';
+}
+
 function perWhenText(s) {
     if (s.state === 'active') return t('tools.per_state_active');
     if (s.daysTo === 1) return t('tools.per_in_one_day');
@@ -129,28 +137,41 @@ function perRiteBar() {
 
 function perRenderList(body) {
     const ctx = perCtx();
-    const list = perNode('div', 'per-list');
-    PeriodsCore.listView(ctx.fixed, ctx).forEach(s => {
-        const p = PeriodsCore.periodById(s.id);
-        const card = perNode('button', 'per-card' + (s.state === 'active' ? ' is-active' : ''));
-        card.type = 'button';
-        card.id = 'per-card-' + s.id;
-        card.setAttribute('aria-label', t('tools.per_open_aria', { name: p.fr }));
-        const head = perNode('div', 'per-card-head');
-        head.appendChild(perNode('strong', 'per-card-name', p.fr));
-        head.appendChild(perHebrew('span', p.he, 'per-card-he'));
-        card.appendChild(head);
-        const meta = perNode('div', 'per-card-meta');
-        const badge = perNode('span', 'per-badge per-badge-' + s.state, s.state === 'upcoming' ? perWhenText(s) : (s.state === 'soon' ? t('tools.per_state_soon') + ' · ' + perWhenText(s) : perWhenText(s)));
-        meta.appendChild(badge);
-        meta.appendChild(perNode('span', 'tool-small', perRangeText(s.range)));
-        card.appendChild(meta);
-        card.appendChild(perNode('span', 'tool-small', p.sum));
-        card.onclick = () => perPick(s.id);
-        list.appendChild(card);
+    const states = PeriodsCore.listView(ctx.fixed, ctx);
+    const sections = [
+        { id: 'now', title: t('tools.per_section_now'), items: states.filter(s => s.state !== 'upcoming') },
+        { id: 'next', title: t('tools.per_section_next'), items: states.filter(s => s.state === 'upcoming') }
+    ];
+    sections.forEach(sec => {
+        if (!sec.items.length) return;
+        body.appendChild(perNode('h4', 'per-group', sec.title));
+        const list = perNode('div', 'per-list');
+        sec.items.forEach(s => list.appendChild(perCard(s)));
+        body.appendChild(list);
     });
-    body.appendChild(list);
     body.appendChild(perNode('p', 'tool-small per-disclaimer', t('tools.per_disclaimer')));
+}
+
+function perCard(s) {
+    const p = PeriodsCore.periodById(s.id);
+    const card = perNode('button', 'per-card' + (s.state === 'active' ? ' is-active' : ''));
+    card.type = 'button';
+    card.id = 'per-card-' + s.id;
+    card.setAttribute('aria-label', t('tools.per_open_aria', { name: p.fr }));
+    const head = perNode('div', 'per-card-head');
+    head.appendChild(perNode('strong', 'per-card-name', p.fr));
+    head.appendChild(perHebrew('span', p.he, 'per-card-he'));
+    card.appendChild(head);
+    const occ = perOccName(s.range);
+    if (occ) card.appendChild(perNode('span', 'per-occ', occ));
+    const meta = perNode('div', 'per-card-meta');
+    const when = s.state === 'soon' ? t('tools.per_state_soon') + ' · ' + perWhenText(s) : perWhenText(s);
+    meta.appendChild(perNode('span', 'per-badge per-badge-' + s.state, when));
+    meta.appendChild(perNode('span', 'tool-small', perRangeText(s.range)));
+    card.appendChild(meta);
+    card.appendChild(perNode('span', 'tool-small', p.sum));
+    card.onclick = () => perPick(s.id);
+    return card;
 }
 
 // --- Le détail d'une période -----------------------------------------------------------------------------------------------------------------------------
@@ -181,6 +202,8 @@ function perRenderDetail(body) {
     body.appendChild(head);
     body.appendChild(perNode('p', 'tool-small', view.lead));
     if (state) {
+        const occ = perOccName(state.range);
+        if (occ) body.appendChild(perNode('p', 'per-occ', occ));
         body.appendChild(perNode('p', 'tool-small per-dates', perRangeText(state.range)));
         if (view.until) body.appendChild(perNode('p', 'tool-small per-dates', t('tools.per_until', { until: view.until })));
     }
@@ -264,7 +287,7 @@ function periodsTodayCards(day) {
         let sub;
         if (s.state === 'active') {
             const ph = v.phases.filter(x => x.id === v.phase)[0];
-            sub = ph ? ph.fr : v.until;
+            sub = ph ? ph.fr : (perOccName(s.range) || v.until || p.sum);
         } else sub = perWhenText(s);
         return { id: s.id, label: t(s.state === 'active' ? 'tools.per_card_label' : 'tools.per_card_soon'), value: p.fr, sub: sub };
     });

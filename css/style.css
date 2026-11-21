@@ -18661,3 +18661,4 @@ button.autoscroll-mode { height: 48px; padding: 0 12px; border: 1px dashed var(-
 .per-others { font-style: italic; }
 .per-disclaimer { margin-top: 16px; }
 .per-day { gap: 6px; }
+.per-occ { font-size: 13px; font-weight: 700; color: var(--muted-text); margin: 0; }
