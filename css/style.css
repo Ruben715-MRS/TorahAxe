@@ -17374,6 +17374,10 @@ body[data-view-profile="religieux"] .league-btn {
 .lib-he { font-family: 'Frank Ruhl Libre', 'SBL Hebrew', serif; font-size: 1.05em; opacity: 0.85; }
 .lib-body { padding: 0 12px 10px; }
 .lib-trad { font-style: italic; }
+.lib-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.lib-actions:empty { display: none; }
+.lib-actions .btn { width: auto; min-height: 0; margin: 0; padding: 7px 12px; border-radius: 10px; font-size: 13.5px; font-weight: 600; line-height: 1.25; text-align: left; background: transparent; color: var(--text-dark); border: 1.5px solid var(--lib-c, var(--border-soft)); }
+.lib-actions .btn:hover { background: var(--surface-2); }
 .lib-facts { display: grid; grid-template-columns: auto 1fr; gap: 3px 12px; margin: 6px 0 8px; font-size: 0.85em; }
 .lib-facts dt { opacity: 0.65; } .lib-facts dd { margin: 0; font-weight: 500; }
 .lib-pill, .lib-count-pill { display: inline-block; font-size: 0.8em; font-weight: 600; padding: 1px 8px; border-radius: 999px; color: var(--lib-c); border: 1px solid var(--lib-c); font-variant-numeric: tabular-nums; }

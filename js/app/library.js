@@ -318,19 +318,22 @@ function libItem(x) {
         libFact(dl, t('tools.library_f_place'), x.place);
         body.appendChild(dl);
         if (x.trad) body.appendChild(libNode('p', 'tool-small lib-trad', t('tools.library_trad', { trad: x.trad })));
+        // Les boutons de la fiche, côte à côte et à leur taille (ils se mettent à la ligne s'il faut).
+        const actions = libNode('div', 'lib-actions');
+        body.appendChild(actions);
         const who = x.authorId && typeof TransmissionCore !== 'undefined' ? TransmissionCore.byId(x.authorId) : null;
         if (who) {
             const b = libNode('button', 'btn', t('tools.library_open_chain', { name: who.fr }));
             b.type = 'button';
             b.onclick = () => libOpenAuthor(who);
-            body.appendChild(b);
+            actions.appendChild(b);
         }
         card.appendChild(body);
         // « Situer dans la chronologie » : la période où l'œuvre a été écrite.
         if (typeof ChronologieCore !== 'undefined' && typeof chrLoadModel === 'function') {
             chrLoadModel().then(model => {
                 const button = chrButton(ChronologieCore.forYears(x.fr, x.from, x.to), 'screen-tool-library');
-                if (button && body.isConnected) body.appendChild(button);
+                if (button && body.isConnected) actions.appendChild(button);
             }).catch(() => {});
         }
     }
