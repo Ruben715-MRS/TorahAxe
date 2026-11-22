@@ -18182,6 +18182,9 @@ button.zm-study-link:focus-visible { outline: 2px solid var(--primary-blue); out
 .sd-seg strong, .sd-title strong, .sd-big strong { font-synthesis: none; }
 .sd-content[data-bold="real"] :is(.sd-seg strong, .sd-title, .sd-title strong, .sd-big strong) { font-weight: 700; }
 .sd-content:not([data-bold="real"]) :is(.sd-seg strong, .sd-title, .sd-title strong, .sd-big strong) { font-weight: 400; text-shadow: 0.35px 0 0 currentColor, -0.35px 0 0 currentColor, 0 0.2px 0 currentColor; }
+/* Le psaume en forme de ménora : une image sombre sur fond blanc, posée comme une carte, quel que soit le thème. */
+.sd-figure { margin: 14px auto; max-width: 520px; }
+.sd-figure img { display: block; width: 100%; height: auto; background: #fff; border-radius: 12px; border: 1px solid var(--border-soft); }
 /* Les sons particuliers (gros kamats, chéva na, daguèch dur) : la lettre entière en gras, comme le gras du livre ci-dessus. */
 .sd-snd { font-synthesis: none; }
 .sd-content[data-bold="real"] .sd-snd { font-weight: 700; }

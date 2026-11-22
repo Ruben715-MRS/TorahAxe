@@ -2630,6 +2630,17 @@ function sdVowelTitles(root) {
         });
     });
 }
+const SD_MENORA_SECTIONS = /^(chacharit-hodou|minha-vidoui)$/;
+function sdMenoraFigure() {
+    const fig = sdEl('figure', 'sd-figure sd-menora');
+    const img = document.createElement('img');
+    img.src = 'assets/images/menora-psaume.jpg';
+    img.loading = 'lazy';
+    img.width = 700; img.height = 700;
+    img.alt = 'Le psaume « Lamnatséa\'h binguinot » écrit en forme de ménora';
+    fig.appendChild(img);
+    return fig;
+}
 function sdRenderSection(section) {
     const box = sdEl('section', 'sd-section-box');
     box.id = 'sd-sec-' + section.id;
@@ -2670,7 +2681,7 @@ function sdRenderSection(section) {
     const frAll = section.fr_t || null;
     const frOf = (i) => { const tr = frAll && frAll[i]; return tr && tr[0] === SiddurCore.fingerprint(section.segments[i]) ? ProfileCore.adaptFr(tr[1], gender) : null; };
     if (sdPrefs.fr && !frAll) box.appendChild(sdEl('p', 'sd-fr-missing', t('tools.sd_fr_missing')));
-    const seg = (i) => {
+    const seg0 = (i) => {
         const role = /^birkat-hamazon/.test(section.id) ? SiddurCore.zimounRole(bares[i]) : null;
         if (role) { const r = sdEl('p', 'sd-role is-' + role, SD_ROLES[role]); r.lang = 'fr'; return r; }
         const fr = frOf(i);
@@ -2686,6 +2697,16 @@ function sdRenderSection(section) {
         const frEl = sdEl('p', 'sd-fr-seg', fr);
         frEl.lang = 'fr';
         wrap.appendChild(frEl);
+        return wrap;
+    };
+    // Le psaume « Lamnatséa'h binguinot » (Hodou, Min'ha) est suivi de son image en forme de ménora (assets/images/menora-psaume.jpg).
+    const seg = (i) => {
+        const r = seg0(i);
+        if (!SD_MENORA_SECTIONS.test(section.id) || !/^למנצח בנגינ/.test(bares[i])) return r;
+        if (r.nodeType === 11 && !r.childNodes.length) return r;      // le segment est masqué (« masquer les passages pas aujourd'hui »)
+        const wrap = document.createDocumentFragment();
+        wrap.appendChild(r);
+        wrap.appendChild(sdMenoraFigure());
         return wrap;
     };
     // Amida : le nom de la bénédiction avant elle, la traduction de sa conclusion après le segment qui la contient.
