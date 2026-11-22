@@ -2248,6 +2248,29 @@ const SD_BH_FORGOT = [
     { re: /רצה והחליצנו/, label: 'Oubli de « Agrée-nous » (Chabbat)' },
     { re: /יעלה ויבוא/, label: 'Oubli de « Yaalé véyavo » (Roch \'Hodech)' }
 ];
+// L'encadré de Halakha de Mayim Aharonim (Choul'han Aroukh, Ora'h 'Haïm 181), sous la consigne qui le mentionne.
+function sdMayimHalakha() {
+    const fold = sdEl('details', 'sd-about');
+    fold.appendChild(sdEl('summary', '', 'Halakha : Mayim Aharonim'));
+    [['De quoi s\'agit-il ?', 'Mayim Aharonim (« les dernières eaux ») est le lavage du bout des doigts à la fin d\'un repas avec du pain, juste avant le Birkat haMazon.'],
+     ['Pourquoi ?', 'D\'après le Talmud (Houllin 105a), on utilisait à table du sel de Sodome, très corrosif : des doigts qui en gardaient pouvaient abîmer les yeux. Selon le Zohar, le lavage ôte aussi des doigts une influence négative (Roua\'h Ra\'a) qui s\'y attache pendant le repas, pour bénir les mains propres.'],
+     ['Est-ce obligatoire aujourd\'hui ?', 'Séfarades : oui, c\'est une obligation (\'hova), même sans sel de Sodome, pour la raison kabbalistique et parce qu\'une ordonnance rabbinique reste en vigueur quand sa cause a disparu. Selon le Yalkout Yossef, les femmes qui ont mangé du pain y sont tenues aussi. Ashkénazes : le Rema (181:10) note que beaucoup ne le font pas aujourd\'hui, mais la Michna Beroura et de nombreux décisionnaires recommandent de le faire, surtout à Chabbat et aux fêtes, ou si les mains sont sales. Les femmes ashkénazes ne le font généralement pas.'],
+     ['Comment faire', 'Aucune bénédiction. On lave les doigts jusqu\'à la deuxième phalange (certains disent toute leur longueur, et plus haut si les mains sont salies plus haut), les doigts dirigés vers le bas. Peu d\'eau suffit (pas besoin d\'un Revi\'it), froide ou tiède, pas chaude. Pas besoin d\'un verre rituel ni de verser à la main : le robinet convient. On ne verse pas cette eau sur un sol où l\'on marche, car un Roua\'h Ra\'a y réside ; un bol laissé à table se retire ou se couvre avant le Birkat haMazon.'],
+     ['Essuyage', 'On s\'essuie les mains avant le Birkat haMazon. Selon le Zohar et certains usages (séfarades, \'Habad), on passe d\'abord les doigts encore humides sur les lèvres (sauf à Pessa\'h selon l\'usage \'Habad).'],
+     ['Sans interruption', 'On commence le Birkat haMazon tout de suite après le lavage et l\'essuyage, sans parler ni s\'interrompre. En cas d\'interruption ou de parole inutile, on refait Mayim Aharonim.'],
+     ['À plusieurs', 'Avec Zimoun (trois hommes ou plus), si l\'assemblée compte cinq personnes ou plus, on donne Mayim Aharonim en premier à celui qui dirige le Zimoun, pour qu\'il se prépare pendant que les autres se lavent les mains.']].forEach(r => {
+        const row = sdEl('p', 'sd-about-row');
+        row.lang = 'fr';
+        row.appendChild(sdEl('strong', '', r[0] + (/\?$/.test(r[0]) ? ' ' : '. ')));
+        row.appendChild(document.createTextNode(r[1]));
+        fold.appendChild(row);
+    });
+    const src = sdEl('p', 'sd-about-note', 'Source : Choul\'han Aroukh, Ora\'h \'Haïm 181. En cas de doute, demandez à votre rav : les usages varient selon les communautés.');
+    src.lang = 'fr';
+    fold.appendChild(src);
+    return fold;
+}
+
 // Les personnes à table dont le meneur demande la permission (« birchout… »), dans l'ordre où on les nomme avant « mes maîtres ».
 // `sub` : un choix qui apparaît quand la case est cochée (un Cohen ou plusieurs, maître ou maîtresse de maison) ; `cohen` : la case « je suis moi-même Cohen » la neutralise.
 const SD_ZIM_WHO = {
@@ -2665,6 +2688,7 @@ function sdRenderSection(section) {
             headFor(i, i); out.appendChild(seg(i)); hatAfter(i, i); flushEnd();
             const sh = sdPrefs.fr ? null : sdShortHat(section.id, bares[i]);
             if (sh) { const hp = sdEl('p', 'sd-hat', '[… ' + sh + '.]'); hp.lang = 'fr'; out.appendChild(hp); }
+            if (/^birkat-hamazon/.test(section.id) && /מים אחרונים/.test(bares[i]) && i < 8) out.appendChild(sdMayimHalakha());
             if (section.id === 'birkat-hamazon' && /^הרחמן הוא יטע תורתו/.test(bares[i])) { out.appendChild(sdGuestBlock()); out.appendChild(sdOccasionBlocks()); }
             if (section.id === 'chacharit-tora' && /אשר בחר בנו מכל העמים/.test(bares[i])) out.appendChild(sdReadingButton());
             i++; continue;
