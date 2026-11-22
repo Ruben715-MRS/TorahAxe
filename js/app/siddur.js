@@ -2249,7 +2249,7 @@ const SD_ZIM_WHO = {
     cohen: { fr: 'Cohen', cohen: true, sub: { key: 'zimCohen', label: 'Combien de Cohanim ?', opts: [['one', 'Seul'], ['many', '2 ou plus']], he: { one: 'בִּרְשׁוּת הַכֹּהֵן', many: 'בִּרְשׁוּת הַכֹּהֲנִים' } } },
     pere:  { fr: 'Mon père ou mon beau-père', he: 'בִּרְשׁוּת אָבִי מוֹרִי' },
     bh:    { fr: 'Maître ou maîtresse de maison (je suis invité)', sub: { key: 'zimHost', label: 'Qui reçoit ?', opts: [['m', 'Maître'], ['f', 'Maîtresse']], he: { m: 'בִּרְשׁוּת בַּעַל הַבַּיִת', f: 'בִּרְשׁוּת בַּעֲלַת הַבַּיִת' } } },
-    brit:  { fr: 'Brit Mila : le père du bébé (ouvre les bénédictions du repas)', he: 'בִּרְשׁוּת אֲבִי הַבֵּן' },
+    brit:  { fr: 'Brit Mila : le père du bébé', he: 'בִּרְשׁוּת אֲבִי הַבֵּן' },
     simha: { fr: 'Celui qui fête sa Bar Mitsva', he: 'בִּרְשׁוּת בַּעַל הַשִּׂמְחָה' }
 };
 function sdZimounHe(k) { const w = SD_ZIM_WHO[k]; return w.sub ? w.sub.he[sdPrefs[w.sub.key]] : w.he; }
