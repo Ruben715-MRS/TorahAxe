@@ -150,6 +150,32 @@
     // tzeit : la sortie des étoiles ; havdalah : la fin de Chabbat et des fêtes ; rabbenuTam : la nuit de Rabénou Tam.
     var DEFAULTS = { elevation: 'yes', dawn: 'deg161', maBasis: 'deg161', tzeit: 'deg7083', havdalah: 'deg85', rabbenuTam: 'deg161', misheyakir: 'deg11', guedola: 'lahumra', chatzotLayla: 'chatzot12', candles: 'auto' };
 
+    // Les profils : un jeu d'opinions qui va ensemble, selon l'autorité suivie (fiche « Zmanim Diffusion », Siddour Maguen Avot).
+    //  posen : les défauts (degrés sous l'horizon) ; ovadia : minutes zmaniyot (« proportionnelles ») et Minha Guedola une demi-heure zmanit après midi.
+    // Ne touchent que ces six clés : l'altitude, les bougies, la fin de Chabbat et 'Hatsot laïla restent ceux de l'utilisateur.
+    var PROFILE_KEYS = ['dawn', 'maBasis', 'misheyakir', 'tzeit', 'rabbenuTam', 'guedola'];
+    var PROFILES = {
+        posen: { dawn: 'deg161', maBasis: 'deg161', misheyakir: 'deg11', tzeit: 'deg7083', rabbenuTam: 'deg161', guedola: 'lahumra' },
+        ovadia: { dawn: 'prop72', maBasis: 'prop72', misheyakir: 'alot6', tzeit: 'zm135', rabbenuTam: 'prop72', guedola: 'halfHour' }
+    };
+    // Le profil que décrivent les opinions (réglages partiels complétés par les défauts) : 'posen', 'ovadia' ou 'custom'.
+    function profileOf(opts) {
+        var o = Object.assign({}, DEFAULTS, opts || {});
+        var ids = Object.keys(PROFILES);
+        for (var i = 0; i < ids.length; i++) {
+            var p = PROFILES[ids[i]];
+            if (PROFILE_KEYS.every(function (k) { return o[k] === p[k]; })) return ids[i];
+        }
+        return 'custom';
+    }
+    // Les opinions après le choix d'un profil : les six clés du profil remplacées, le reste conservé.
+    function applyProfile(opts, id) {
+        var out = Object.assign({}, opts || {});
+        if (!PROFILES[id]) return out;
+        PROFILE_KEYS.forEach(function (k) { out[k] = PROFILES[id][k]; });
+        return out;
+    }
+
     // Un lieu en Israël (cadre grossier) : sert aux défauts (bougies, jours de fête, Tahanoun), jamais à un calcul d'horaire.
     function inIsrael(place) {
         return place.lat >= 29.45 && place.lat <= 33.35 && place.lon >= 34.2 && place.lon <= 35.9;
@@ -208,6 +234,10 @@
         if (o.misheyakir === 'alot6') out.misheyakir = alot === null || seaRise === null || seaSet === null ? null : alot + 6 * (seaSet - seaRise) / 12 / 60;   // 6 minutes zmaniyot après l'aube
         else out.misheyakir = solarEvent(place, y, m, d, -misheyakirDeg, true);
         out.tzeit = at(place, y, m, d, starsRule, false, seaRise, seaSet);
+        // Début de la Chéma du soir : trois petites étoiles dispersées, 7,083° (fixe, comme sur la fiche Zmanim Diffusion).
+        out.shemaNight = solarEvent(place, y, m, d, -7.083, false);
+        // Fin des jeûnes dérabanan (sauf Kippour) : 20 minutes zmaniyot après le coucher.
+        out.fastEnd = at(place, y, m, d, { zm: 20 }, false, seaRise, seaSet);
         out.rabbenuTam = at(place, y, m, d, tam, false, seaRise, seaSet);
 
         if (seaRise !== null && seaSet !== null) {
@@ -220,10 +250,11 @@
             out.minchaGedola = o.guedola === 'halfHour' ? out.chatzot + gra / 2 : o.guedola === 'fixed30' ? out.chatzot + 30 * MIN : out.chatzot + Math.max(30 * MIN, gra / 2);
             out.minchaKetana = seaRise + 9.5 * gra;
             out.plag = seaRise + 10.75 * gra;
+            out.plagMa = out.tzeit === null ? null : out.tzeit - 1.25 * gra;   // Plag selon Magen Avraham : 1 h 15 (zmanit du Gra) avant la sortie des étoiles choisie
             out.chatzotLayla = out.chatzot + 12 * HOUR;
             if (o.chatzotLayla === 'stars6') out.chatzotLayla = out.tzeit === null ? null : out.tzeit + 6 * HOUR;   // Breslev : 6 heures après la sortie des étoiles
         } else {
-            ['shemaGra', 'tefilaGra', 'chatzot', 'minchaGedola', 'minchaKetana', 'plag', 'chatzotLayla'].forEach(function (k) { out[k] = null; });
+            ['shemaGra', 'tefilaGra', 'chatzot', 'minchaGedola', 'minchaKetana', 'plag', 'plagMa', 'chatzotLayla'].forEach(function (k) { out[k] = null; });
         }
         if (maDawn !== null && maDusk !== null) {
             var ma = (maDusk - maDawn) / 12;
@@ -274,7 +305,7 @@
     // Le sens d'arrondi de chaque horaire (voir l'en-tête) : prudence.
     var ROUNDING = {
         alot: 'ceil', misheyakir: 'ceil', netz: 'ceil', shemaMa: 'floor', shemaGra: 'floor', tefilaMa: 'floor', tefilaGra: 'floor',
-        chatzot: 'round', minchaGedola: 'ceil', minchaKetana: 'ceil', plag: 'ceil', shkia: 'floor', tzeit: 'ceil', rabbenuTam: 'ceil',
+        chatzot: 'round', minchaGedola: 'ceil', minchaKetana: 'ceil', plag: 'ceil', plagMa: 'ceil', shemaNight: 'ceil', fastEnd: 'ceil', shkia: 'floor', tzeit: 'ceil', rabbenuTam: 'ceil',
         chatzotLayla: 'round', candles: 'floor', havdalah: 'ceil'
     };
     function rounded(z, key) { return roundMinute(z[key], ROUNDING[key] || 'round'); }
@@ -490,7 +521,7 @@
     function sameSpot(a, b) { return distanceKm(a.lat, a.lon, b.lat, b.lon) < 1; }
 
     return {
-        DEFAULTS: DEFAULTS, DAWN_OPINIONS: DAWN_OPINIONS, NIGHT_OPINIONS: NIGHT_OPINIONS, GUEDOLA_OPINIONS: GUEDOLA_OPINIONS, MISHEYAKIR_OPINIONS: MISHEYAKIR_OPINIONS,
+        DEFAULTS: DEFAULTS, PROFILES: PROFILES, PROFILE_KEYS: PROFILE_KEYS, profileOf: profileOf, applyProfile: applyProfile, DAWN_OPINIONS: DAWN_OPINIONS, NIGHT_OPINIONS: NIGHT_OPINIONS, GUEDOLA_OPINIONS: GUEDOLA_OPINIONS, MISHEYAKIR_OPINIONS: MISHEYAKIR_OPINIONS,
         MASECHTOT: MASECHTOT, DAF_CYCLE_LENGTH: DAF_CYCLE_LENGTH, TEHILIM_DAYS: TEHILIM_DAYS,
         isValidTimeZone: isValidTimeZone, tzOffsetMs: tzOffsetMs, localToUtc: localToUtc, civilDateOf: civilDateOf,
         solarEvent: solarEvent, solarNoon: solarNoon, inIsrael: inIsrael, candleMinutes: candleMinutes,
