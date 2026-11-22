@@ -680,7 +680,7 @@ function tanakhSetMode(mode) {
 // Hébreu et français, hébreu seul, ou français seul.
 function tanakhRenderShow() {
     const box = toolEl('tool-tanakh-show');
-    tanakhSegment(box, [['both', t('tools.tanakh_show_both')], ['he', t('tools.tanakh_show_he')], ['fr', t('tools.tanakh_show_fr')]], tanakhState.show, mode => { tanakhState.show = mode; tanakhRender(); });
+    tanakhSegment(box, [['he', t('tools.tanakh_show_he')], ['fr', t('tools.tanakh_show_fr')], ['both', t('tools.tanakh_show_both')]], tanakhState.show, mode => { tanakhState.show = mode; tanakhRender(); });
 }
 
 // Verset par verset, ou texte continu. La préférence est gardée sur l'appareil ; une note rappelle ce que le texte continu ne montre pas.
