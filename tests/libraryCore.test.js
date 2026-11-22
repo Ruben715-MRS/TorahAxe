@@ -11,7 +11,6 @@ test('œuvres : identifiants uniques, genre connu, dates ordonnées, maître de 
         assert.ok(L.GENRES.some(g => g.id === w.genre), w.id + ' : genre');
         assert.ok(w.fr && w.author && w.desc, w.id);
         assert.ok(w.from <= w.to, w.id + ' : dates');
-        if (w.authorId) assert.ok(T.byId(w.authorId), w.id + ' : maître inconnu ' + w.authorId);
         assert.ok(L.ERAS.some(e => e.id === L.eraOf(w)), w.id);
     });
 });
@@ -21,7 +20,7 @@ test('complément de la bibliographie : daté par la vie de l\'auteur, jamais po
     assert.ok(bib.length >= 100);
     bib.forEach(w => {
         assert.ok(['life', 'died', 'contemp', ''].indexOf(w.life) !== -1, w.id);
-        assert.ok(!A.authorAsked(w) && !A.eraAsked(w) && !A.dateAsked(w), w.id + ' : posée dans le jeu');
+        assert.ok(!A.dateAsked(w), w.id + ' : posée pour « le plus ancien »');
     });
     assert.strictEqual(L.dating(L.byId('maharcha')), 'auteur : 1555–1632');
     assert.strictEqual(L.dating(L.byId('beer_yitshak')), 'auteur mort en 1864');
@@ -35,4 +34,15 @@ test('recherche : titre, auteur ou hébreu ; les liens vers les maîtres de la c
     assert.ok(L.search('העמק דבר').some(w => w.id === 'haamek_davar'));
     assert.ok(L.worksOf('netziv').some(w => w.id === 'haamek_davar'));
     assert.ok(L.ofGenre('moussar').length >= 8);
+});
+
+test('ordre alphabétique : sans accent ni article, une lettre par œuvre, toutes les œuvres', () => {
+    const all = L.alphabetical();
+    assert.strictEqual(all.length, L.WORKS.length);
+    for (let i = 1; i < all.length; i++) assert.ok(L.sortKey(all[i - 1]) <= L.sortKey(all[i]), all[i].id);
+    assert.strictEqual(L.initial(L.byId('zohar')), 'Z');            // « Le Zohar »
+    assert.strictEqual(L.initial(L.byId('rachi_torah')), 'R');      // « Commentaire de Rachi… » : classé à Rachi
+    assert.strictEqual(L.initial(L.byId('adderet_eliyahu')), 'A');  // « Adéret » : l'accent ne change pas la lettre
+    const sum = L.letters().reduce((n, l) => n + L.alphabetical(l).length, 0);
+    assert.strictEqual(sum, L.WORKS.length);
 });

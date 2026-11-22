@@ -18731,3 +18731,4 @@ button.autoscroll-mode { height: 48px; padding: 0 12px; border: 1px dashed var(-
 :root[data-theme="dark"] .mes-badge-opinion, :root[data-theme="dark"] .mes-verdict[data-verdict="presume"] { background: #78350f; color: #fef3c7; }
 :root[data-theme="dark"] .mes-badge-tradition { background: #312e81; color: #e0e7ff; }
 :root[data-theme="dark"] .mes-verdict[data-verdict="not"] { background: #7f1d1d; color: #fee2e2; }
+.lib-letter { margin: 12px 2px 2px; font-size: 1.05em; font-weight: 700; color: #4f46e5; border-bottom: 1px solid var(--border, #cbd5e1); }

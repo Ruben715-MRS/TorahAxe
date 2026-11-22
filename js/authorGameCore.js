@@ -9,7 +9,7 @@
 // Trois séries : tout, les Richonim (1040-1500), les 'Aharonim (depuis 1500). (Avant 1040, trop peu d'œuvres ont un auteur unique et connu pour faire une série à part.)
 // La mécanique de partie (questions, score, suite, jeu à plusieurs) est celle de js/quizCore.js.
 //
-// SEULS DES CAS SANS DISCUSSION. Les œuvres du complément de la Bibliothèque (bib : true), datées par la vie de leur auteur, ne sont jamais posées. La Bibliothèque garde toutes les nuances (école, anonyme, attribution traditionnelle) ; le jeu, lui, n'interroge que :
+// SEULS DES CAS SANS DISCUSSION. Les œuvres du complément de la Bibliothèque (bib : true), datées par la vie de leur auteur, sont posées pour « qui a écrit ? » et « quelle époque ? » (si toute la vie de l'auteur tient dans une époque), jamais pour « le plus ancien ». La Bibliothèque garde toutes les nuances (école, anonyme, attribution traditionnelle) ; le jeu, lui, n'interroge que :
 //  - pour « qui a écrit ? » et « lequel a écrit ? » : les œuvres d'un auteur unique et connu (celles de AUTHORS ci-dessous), sans attribution traditionnelle qui diffère des historiens
 //    (le Zohar, le Séfer HaHinoukh, le Bahir… sont exclus), et dont le titre ne contient pas le nom de l'auteur (« Commentaire de Rachi » n'est pas une question) ;
 //  - pour « quelle époque ? » : les œuvres datées sur moins de soixante ans, tout entières dans une époque et à trente ans au moins d'une frontière entre deux époques ;
@@ -85,10 +85,62 @@
         kook: { name: 'Rabbi Avraham Yitzhak Kook', alias: ['kook'] },
         joseph_solov: { name: 'Rabbi Yossef Dov Soloveitchik', alias: ['soloveitchik'] },
         ovadia_yossef: { name: 'Rabbi Ovadia Yossef', alias: ['ovadia yossef'] },
-        feinstein: { name: 'Rabbi Moché Feinstein', alias: ['feinstein'] }
+        feinstein: { name: 'Rabbi Moché Feinstein', alias: ['feinstein'] },
+        // Complément de la Bibliographie du Commentaire (œuvres datées par la vie de l'auteur)
+        avraham_saba: { name: 'Rabbi Avraham Saba', alias: ['saba'] },
+        lunshitz: { name: 'Rabbi Chlomo Efraïm Lunshitz', alias: ['lunshitz'] },
+        tsidkiya_harofe: { name: 'Rabbi Tsidkiya HaRofé de Rome', alias: ['tsidkiya'] },
+        pinhas_horowitz: { name: 'Rabbi Pin’has Horowitz', alias: ['pin has horowitz'] },
+        netziv: { name: 'Le Nétsiv (Rabbi Naftali Tsvi Yéhouda Berlin)', alias: ['netsiv', 'netziv'] },
+        mecklenburg: { name: 'Rabbi Yaakov Tsvi Mecklenburg', alias: ['mecklenburg'] },
+        sorotzkin: { name: 'Rabbi Zalman Sorotzkin', alias: ['sorotzkin'] },
+        kamenetsky: { name: 'Rabbi Yaakov Kamenetsky', alias: ['kamenetsky'] },
+        rabinowitz: { name: 'Rabbi Haïm D. Rabinowitz', alias: ['rabinowitz'] },
+        munk: { name: 'Rabbi Elie Munk', alias: ['munk'] },
+        kasher: { name: 'Rabbi Mena’hem Kasher', alias: ['kasher'] },
+        bass: { name: 'Rabbi Chabtaï Bass', alias: ['bass'] },
+        taz: { name: 'Le Taz (Rabbi David HaLévi Segal)', alias: ['taz'] },
+        pardo: { name: 'Rabbi David Pardo', alias: ['pardo'] },
+        danon: { name: 'Rabbi Méïr Binyamin Ménachem Danon', alias: ['danon'] },
+        heidenheim: { name: 'Rabbi Wolf Heidenheim', alias: ['heidenheim'] },
+        david_adeni: { name: 'Rabbi David el Adéni', alias: ['adeni'] },
+        zekharia_harofe: { name: 'Rabbi Zékharia ben Chlomo HaRofé', alias: ['zekharia'] },
+        tovia: { name: 'Rabbi Tovia ben Eliézer', alias: ['tovia'] },
+        menahem_italie: { name: 'Rabbi Menachem ben Chlomo d’Italie', alias: ['menachem ben chlomo'] },
+        yissakhar_ber: { name: 'Rabbi Yissakhar Ber HaCohen', alias: ['yissakhar'] },
+        gombiner: { name: 'Rabbi Avraham Gombiner', alias: ['gombiner'] },
+        teomim: { name: 'Rabbi Yossef Téomim', alias: ['teomim'] },
+        eisenstadt: { name: 'Rabbi Avraham Tsvi Hirsch Eisenstadt', alias: ['eisenstadt'] },
+        kluger: { name: 'Rabbi Chlomo Kluger', alias: ['kluger'] },
+        borenstein: { name: 'Rabbi Avraham Borenstein de Sochachov', alias: ['borenstein', 'avnei nezer', 'sochachov'] },
+        steipler: { name: 'Rabbi Yaakov Yisraël Kanievsky (le Steipler)', alias: ['steipler', 'kanievsky'] },
+        farhi: { name: 'Rabbi Echtori HaFar’hi', alias: ['far hi'] },
+        schwartz: { name: 'Rabbi Yéhossef Schwartz', alias: ['schwartz'] },
+        ibn_janah: { name: 'Rabbi Yona ibn Jana’h', alias: ['ibn janah', 'jana h'] },
+        maharshal: { name: 'Le Maharchal (Rabbi Chlomo Louria)', alias: ['maharchal', 'maharshal'] },
+        aharon_ibn_haim: { name: 'Rabbi Aharon ibn Haïm', alias: ['aharon ibn haim'] },
+        lipschutz: { name: 'Rabbi Israël Lipschutz', alias: ['lipschutz'] },
+        loerberbaum: { name: 'Rabbi Yaakov Lœrberbaum', alias: ['loerberbaum'] },
+        arama: { name: 'Rabbi Yits’hak Arama', alias: ['arama'] },
+        finkel: { name: 'Rabbi Nathan Tsvi Finkel (l’Alter de Slabodka)', alias: ['finkel', 'slabodka'] },
+        alter_kelm: { name: 'Rabbi Sim’ha Zissel Ziv (l’Alter de Kelm)', alias: ['kelm', 'zissel'] },
+        dessler: { name: 'Rabbi Eliyahou Eliézer Dessler', alias: ['dessler'] },
+        hutner: { name: 'Rabbi Yits’hak Hutner', alias: ['hutner'] },
+        schorr: { name: 'Rabbi Guédaliah Schorr', alias: ['schorr'] },
+        wolbe: { name: 'Rabbi Chlomo Wolbe', alias: ['wolbe'] },
+        kitov: { name: 'Rabbi Eliyahou Kitov', alias: ['kitov'] },
+        krantz: { name: 'Le Maguid de Doubno (Rabbi Yaakov Krantz)', alias: ['krantz', 'maguid de doubno'] },
+        eybeschutz: { name: 'Rabbi Yéhonathan Eybeschutz', alias: ['eybeschutz'] },
+        sudylkov: { name: 'Rabbi Moché ’Haïm Efraïm de Sudylkov', alias: ['sudylkov'] },
+        simhah_bunem: { name: 'Rabbi Sim’ha Bounem de Pschiskha', alias: ['bounem', 'pschiskha'] },
+        sochatchov: { name: 'Rabbi Chemouel de Sochatchov', alias: ['sochatchov'] },
+        israel_ruzhin: { name: 'Rabbi Israël de Rizhin', alias: ['rizhin'] },
+        haim_tyer: { name: 'Rabbi ’Haïm Tyer de Czernowitz', alias: ['czernowitz'] },
+        ozharov: { name: 'Rabbi Moché Yé’hiel d’Ozharov', alias: ['ozharov'] },
+        tsadok_hacohen: { name: 'Rabbi Tsadok HaCohen de Lublin', alias: ['tsadok'] }
     };
     // Les œuvres de la Bibliothèque que l'on n'interroge pas, bien qu'un auteur soit nommé : plusieurs auteurs, ou une attribution discutée.
-    var EXCLUDED = { tosafot: true, taz_shakh: true, bavli: true, yerouchalmi: true, tosefta: true, mekhilta: true, sifra: true, yonatan: true, pirke_rabbi_eliezer: true, bahir: true, zohar: true };
+    var EXCLUDED = { beer_mayim_haim_betsalel: true, beer_mayim_haim_czernowitz: true, tosafot: true, taz_shakh: true, bavli: true, yerouchalmi: true, tosefta: true, mekhilta: true, sifra: true, yonatan: true, pirke_rabbi_eliezer: true, bahir: true, zohar: true };
 
     function normalize(text) {
         return String(text == null ? '' : text).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/œ/g, 'oe').replace(/[^a-z0-9]+/g, ' ').trim();
@@ -114,11 +166,15 @@
     }
 
     // Une œuvre dont on peut demander l'auteur : auteur unique et connu, pas d'attribution traditionnelle à part, titre qui ne donne pas la réponse.
-    function authorAsked(work) { return !work.bib && !!AUTHORS[work.authorId] && !work.trad && !EXCLUDED[work.id] && !leaks(work); }
+    function authorAsked(work) { return !!AUTHORS[work.authorId] && !work.trad && !EXCLUDED[work.id] && !leaks(work); }
 
-    // Une œuvre dont on peut demander l'époque : datée sur moins de soixante ans, tout entière dans une époque, loin des frontières.
+    // Une œuvre dont on peut demander l'époque : datée sur moins de soixante ans (ou, pour le complément de la Bibliothèque, par une vie d'auteur tout entière dans une époque), loin des frontières.
     function eraAsked(work) {
-        if (work.bib || work.trad || EXCLUDED[work.id] || work.to - work.from > MAX_SPAN || eraIndex(work.from) !== eraIndex(work.to)) return false;
+        if (work.trad || EXCLUDED[work.id]) return false;
+        // Une œuvre datée par la vie de son auteur (« life ») : sûre seulement si toute cette vie tient dans une même époque ; les dates « vers », « mort en » et « contemporain » ne suffisent pas.
+        if (work.bib) { if (work.life !== 'life' || work.approx) return false; }
+        else if (work.to - work.from > MAX_SPAN) return false;
+        if (eraIndex(work.from) !== eraIndex(work.to)) return false;
         return BOUNDARIES.every(function (b) { return Math.abs(work.from - b) >= BOUNDARY_MARGIN && Math.abs(work.to - b) >= BOUNDARY_MARGIN; });
     }
 
