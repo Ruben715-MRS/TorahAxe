@@ -4084,13 +4084,14 @@
     "genealogy_nation": "Nation n° {n} sur 70",
     "genealogy_ex": "mort en Canaan",
     "library_title": "Bibliothèque juive",
-    "library_desc": "Qui a écrit quoi, quand et où : Michna, Talmud, Midrach, codes, commentaires, Kabbale.",
-    "library_intro": "Les grandes œuvres de la tradition juive après la Bible, de la Michna à nos jours : l'auteur, la date, le lieu, ce que c'est. Touchez une œuvre pour sa fiche. Dates approximatives (« vers ») et attributions traditionnelles sont signalées.",
+    "library_desc": "Qui a écrit quoi, quand et où : Michna, Talmud, Midrach, codes, commentaires, Moussar, Kabbale, Hassidout.",
+    "library_intro": "Les grandes œuvres de la tradition juive après la Bible, de la Michna à nos jours : codes, commentaires, midrachim, Moussar, Hassidout. L'auteur, la date, le lieu, ce que c'est. Touchez une œuvre pour sa fiche. Dates approximatives (« vers »), attributions traditionnelles et œuvres datées par la vie de leur auteur sont signalées.",
     "library_search": "Chercher une œuvre ou un auteur",
     "library_modes_aria": "Classer par",
     "library_filters_aria": "Filtrer",
     "library_mode_era": "Par période",
     "library_mode_genre": "Par genre",
+    "library_mode_alpha": "A–Z",
     "library_all": "Tout",
     "library_count": "{n} œuvres",
     "library_author_only": "Œuvres de {name}",
@@ -7701,7 +7702,7 @@
     "finish": "Voir le score",
     "found": "{found} bonnes réponses sur {total} : {score} points.",
     "how": "Dix questions, 100 points chacune, tirées de la Bibliothèque : qui a écrit cette œuvre ? lequel de ces livres a été écrit par tel maître ? à quelle époque ? lequel est le plus ancien ? Chaque réponse rappelle l'œuvre, sa date et son lieu.",
-    "how_sure": "Seules les œuvres d'un auteur unique et connu sont posées, et dont le titre ne donne pas déjà le nom (« Commentaire de Rachi » n'est pas une question). Le Zohar, le Séfer HaHinoukh, les Tossafot… et les œuvres dont l'attribution est discutée ne sont pas posés. Les dates sont celles de la Bibliothèque. Outil d'étude."
+    "how_sure": "Seules les œuvres d'un auteur unique et connu sont posées (les œuvres dont on ne connaît que la vie de l'auteur ne servent que pour « qui a écrit ? » et, si cette vie tient dans une époque, pour « quelle époque ? »), et dont le titre ne donne pas déjà le nom (« Commentaire de Rachi » n'est pas une question). Le Zohar, le Séfer HaHinoukh, les Tossafot… et les œuvres dont l'attribution est discutée ne sont pas posés. Les dates sont celles de la Bibliothèque. Outil d'étude."
   },
   "gimgame": {
     "title": "Défi guématria",

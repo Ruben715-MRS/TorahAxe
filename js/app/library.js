@@ -5,7 +5,7 @@
 // attribution traditionnelle). Le lien vers l'auteur ouvre la chaîne de transmission (ou la carte Hassidout) sur sa fiche, et la fiche d'un maître de la
 // chaîne ouvre ses œuvres ici. Les données sont dans js/libraryCore.js (testé). Tout passe par textContent, jamais par du HTML.
 
-let libMode = 'era';        // 'era' | 'genre'
+let libMode = 'era';        // 'era' | 'genre' | 'alpha'
 let libFilter = 'all';      // l'identifiant de la période ou du genre choisi, ou 'all'
 let libAuthor = '';         // un maître de la chaîne : seules ses œuvres s'affichent
 let libSelected = '';
@@ -40,7 +40,7 @@ function openLibrary(from, authorId) {
 }
 
 function libSetMode(mode) {
-    libMode = mode === 'genre' ? 'genre' : 'era';
+    libMode = mode === 'genre' || mode === 'alpha' ? mode : 'era';
     libFilter = 'all';
     libRender();
 }
@@ -61,14 +61,15 @@ function libVisible() {
     return LibraryCore.search(query).filter(x => {
         if (libAuthor && x.authorId !== libAuthor) return false;
         if (libFilter === 'all') return true;
+        if (libMode === 'alpha') return LibraryCore.initial(x) === libFilter;
         return libMode === 'genre' ? x.genre === libFilter : LibraryCore.eraOf(x) === libFilter;
-    });
+    }).sort(libMode === 'alpha' ? (a, b) => (LibraryCore.sortKey(a) < LibraryCore.sortKey(b) ? -1 : LibraryCore.sortKey(a) > LibraryCore.sortKey(b) ? 1 : 0) : () => 0);
 }
 
 function libRender() {
     const modes = toolEl('tool-lib-modes');
     toolClear(modes);
-    [['era', 'tools.library_mode_era'], ['genre', 'tools.library_mode_genre']].forEach(([id, key]) => {
+    [['era', 'tools.library_mode_era'], ['genre', 'tools.library_mode_genre'], ['alpha', 'tools.library_mode_alpha']].forEach(([id, key]) => {
         const b = libNode('button', 'tool-history-chip', t(key));
         b.type = 'button';
         b.setAttribute('aria-pressed', libMode === id ? 'true' : 'false');
@@ -77,7 +78,7 @@ function libRender() {
     });
     const chips = toolEl('tool-lib-filters');
     toolClear(chips);
-    const items = libMode === 'genre' ? LibraryCore.GENRES : LibraryCore.ERAS;
+    const items = libMode === 'genre' ? LibraryCore.GENRES : libMode === 'alpha' ? LibraryCore.letters().map(l => ({ id: l, fr: l })) : LibraryCore.ERAS;
     [{ id: 'all', fr: t('tools.library_all') }].concat(items).forEach(item => {
         const b = libNode('button', 'tool-history-chip', item.fr);
         b.type = 'button';
@@ -101,7 +102,15 @@ function libRender() {
     toolClear(list);
     const works = libVisible();
     toolEl('tool-lib-count').textContent = t('tools.library_count', { n: works.length });
-    works.forEach(x => list.appendChild(libItem(x)));
+    let lastLetter = '';
+    works.forEach(x => {
+        // Par ordre alphabétique, un intitulé à chaque nouvelle lettre.
+        if (libMode === 'alpha' && LibraryCore.initial(x) !== lastLetter) {
+            lastLetter = LibraryCore.initial(x);
+            list.appendChild(libNode('h3', 'lib-letter', lastLetter));
+        }
+        list.appendChild(libItem(x));
+    });
 }
 
 function libItem(x) {
@@ -112,10 +121,12 @@ function libItem(x) {
     head.setAttribute('aria-expanded', open ? 'true' : 'false');
     const names = libNode('span', 'lib-names');
     names.appendChild(libNode('strong', 'lib-fr', x.fr));
-    const he = libNode('span', 'lib-he', x.he);
-    he.setAttribute('lang', 'he');
-    he.setAttribute('dir', 'rtl');
-    names.appendChild(he);
+    if (x.he) {
+        const he = libNode('span', 'lib-he', x.he);
+        he.setAttribute('lang', 'he');
+        he.setAttribute('dir', 'rtl');
+        names.appendChild(he);
+    }
     head.appendChild(names);
     head.appendChild(libNode('span', 'tool-small lib-meta', x.author + ' · ' + LibraryCore.dating(x)));
     head.onclick = () => { libSelected = open ? '' : x.id; libRender(); };
