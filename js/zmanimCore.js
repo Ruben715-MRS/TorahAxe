@@ -234,8 +234,6 @@
         if (o.misheyakir === 'alot6') out.misheyakir = alot === null || seaRise === null || seaSet === null ? null : alot + 6 * (seaSet - seaRise) / 12 / 60;   // 6 minutes zmaniyot après l'aube
         else out.misheyakir = solarEvent(place, y, m, d, -misheyakirDeg, true);
         out.tzeit = at(place, y, m, d, starsRule, false, seaRise, seaSet);
-        // Début de la Chéma du soir : trois petites étoiles dispersées, 7,083° (fixe, comme sur la fiche Zmanim Diffusion).
-        out.shemaNight = solarEvent(place, y, m, d, -7.083, false);
         // Fin des jeûnes dérabanan (sauf Kippour) : 20 minutes zmaniyot après le coucher.
         out.fastEnd = at(place, y, m, d, { zm: 20 }, false, seaRise, seaSet);
         out.rabbenuTam = at(place, y, m, d, tam, false, seaRise, seaSet);
@@ -305,7 +303,7 @@
     // Le sens d'arrondi de chaque horaire (voir l'en-tête) : prudence.
     var ROUNDING = {
         alot: 'ceil', misheyakir: 'ceil', netz: 'ceil', shemaMa: 'floor', shemaGra: 'floor', tefilaMa: 'floor', tefilaGra: 'floor',
-        chatzot: 'round', minchaGedola: 'ceil', minchaKetana: 'ceil', plag: 'ceil', plagMa: 'ceil', shemaNight: 'ceil', fastEnd: 'ceil', shkia: 'floor', tzeit: 'ceil', rabbenuTam: 'ceil',
+        chatzot: 'round', minchaGedola: 'ceil', minchaKetana: 'ceil', plag: 'ceil', plagMa: 'ceil', fastEnd: 'ceil', shkia: 'floor', tzeit: 'ceil', rabbenuTam: 'ceil',
         chatzotLayla: 'round', candles: 'floor', havdalah: 'ceil'
     };
     function rounded(z, key) { return roundMinute(z[key], ROUNDING[key] || 'round'); }

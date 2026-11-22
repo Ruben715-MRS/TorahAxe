@@ -112,11 +112,6 @@ DAYS.forEach(([y, m, d]) => {
             assert.ok(z.plagMa < z.plag + 40 * MIN && z.plagMa > z.plag - 40 * MIN);
         });
     });
-    test('fiche, ' + label + ' : début de la Chéma du soir à 7,083°, entre le coucher et la nuit de Rabénou Tam', () => {
-        const z = Z.zmanim(JLM, y, m, d, {});
-        assert.ok(z.shemaNight > z.shkia && z.shemaNight < z.rabbenuTam);
-        assert.strictEqual(z.shemaNight, z.tzeit, 'le défaut du profil Rav Posen est déjà 7,083°');
-    });
 });
 
 test('fiche : fin de Chabbat à 30 minutes après le coucher (Israël)', () => {
@@ -129,5 +124,4 @@ test('plag Magen Avraham et fin des jeûnes : null quand la nuit n\'existe pas (
     const z = Z.zmanim(tromso, 2026, 6, 21, {});
     assert.strictEqual(z.plagMa, null);
     assert.strictEqual(z.fastEnd, null);
-    assert.strictEqual(z.shemaNight, null);
 });

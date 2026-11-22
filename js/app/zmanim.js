@@ -33,21 +33,21 @@ let zmRem = null;            // les réglages des rappels (voir js/zmanimReminde
 const ZM_GROUPS = [
     { id: 'morning', icon: '🌅', rows: [['alot'], ['misheyakir'], ['netz'], ['shemaMa', 'shemaGra'], ['tefilaMa', 'tefilaGra']] },
     { id: 'day', icon: '☀️', rows: [['chatzot'], ['minchaGedola'], ['minchaKetana'], ['plagMa', 'plag'], ['shkia']] },
-    { id: 'night', icon: '🌙', rows: [['fastEnd'], ['tzeit'], ['shemaNight'], ['rabbenuTam'], ['chatzotLayla']] }
+    { id: 'night', icon: '🌙', rows: [['fastEnd'], ['tzeit'], ['rabbenuTam'], ['chatzotLayla']] }
 ];
 // Le nom court de chaque horaire (clé i18n) ; les lignes à deux colonnes partagent un nom.
 const ZM_LABEL = {
     alot: 'alot', misheyakir: 'misheyakir', netz: 'netz', shemaMa: 'shema', shemaGra: 'shema', tefilaMa: 'tefila', tefilaGra: 'tefila', chatzot: 'chatzot',
-    minchaGedola: 'guedola', minchaKetana: 'ketana', plag: 'plag', plagMa: 'plag', shemaNight: 'shema_night', fastEnd: 'fast_end', shkia: 'shkia', tzeit: 'tzeit', rabbenuTam: 'tam', chatzotLayla: 'chatzot_layla'
+    minchaGedola: 'guedola', minchaKetana: 'ketana', plag: 'plag', plagMa: 'plag', fastEnd: 'fast_end', shkia: 'shkia', tzeit: 'tzeit', rabbenuTam: 'tam', chatzotLayla: 'chatzot_layla'
 };
 // Les usages de chaque horaire : de quoi il marque le début (zm_ub_<id>) et la fin (zm_ue_<id>), d'après la fiche de calcul de Zmanim Diffusion.
 // Un horaire absent d'une liste n'a pas de ligne correspondante ; « tam » n'a qu'une remarque (zm_use_tam).
-const ZM_USE_BEGIN = ['shema_night', 'alot', 'misheyakir', 'netz', 'guedola', 'ketana', 'plag', 'shkia', 'tzeit', 'chatzot_layla'];
+const ZM_USE_BEGIN = ['alot', 'misheyakir', 'netz', 'guedola', 'ketana', 'plag', 'shkia', 'tzeit', 'chatzot_layla'];
 const ZM_USE_END = ['fast_end', 'alot', 'netz', 'shema', 'tefila', 'chatzot', 'shkia', 'tzeit', 'chatzot_layla'];
 // Les libellés en hébreu (bouton « A / א »). Les noms sont ceux de la tradition ; ils ne passent pas par i18n (l'hébreu n'est pas traduit).
 const ZM_HE = {
     alot: 'עלות השחר', misheyakir: 'משיכיר (זמן טלית ותפילין)', netz: 'הנץ החמה', shema: 'סוף זמן קריאת שמע', tefila: 'סוף זמן תפילה', chatzot: 'חצות היום',
-    shema_night: 'תחילת זמן קריאת שמע של ערבית', fast_end: 'סיום הצום', guedola: 'מנחה גדולה', ketana: 'מנחה קטנה', plag: 'פלג המנחה', shkia: 'שקיעת החמה', tzeit: 'צאת הכוכבים', tam: 'צאת רבנו תם', chatzot_layla: 'חצות הלילה',
+    fast_end: 'סיום הצום', guedola: 'מנחה גדולה', ketana: 'מנחה קטנה', plag: 'פלג המנחה', shkia: 'שקיעת החמה', tzeit: 'צאת הכוכבים', tam: 'צאת רבנו תם', chatzot_layla: 'חצות הלילה',
     morning: 'בוקר', day: 'יום', night: 'ערב ולילה', gra: 'גר״א', ma: 'מג״א', hours: 'שעה זמנית', shabbat: 'שבת', candles: 'הדלקת נרות', havdalah: 'צאת השבת',
     daf: 'דף יומי', tehilim: 'תהילים', tachanun: 'אומרים תחנון', tachanun_morning: 'תחנון בבוקר', rosh_chodesh: 'ראש חודש', no_tachanun: 'אין אומרים תחנון', next: 'הזמן הבא', levana: 'ברכת הלבנה', today: 'היום'
 };
@@ -875,7 +875,7 @@ function zmHebrewDay(date) {
 
 // Les horaires triés d'un jour pour la mise en avant du prochain : [{ key, ms }].
 function zmTimeline(z, fastDay) {
-    const keys = ['alot', 'misheyakir', 'netz', 'shemaMa', 'shemaGra', 'tefilaMa', 'tefilaGra', 'chatzot', 'minchaGedola', 'minchaKetana', 'plagMa', 'plag', 'shkia', 'tzeit', 'shemaNight', 'fastEnd', 'rabbenuTam', 'chatzotLayla'];
+    const keys = ['alot', 'misheyakir', 'netz', 'shemaMa', 'shemaGra', 'tefilaMa', 'tefilaGra', 'chatzot', 'minchaGedola', 'minchaKetana', 'plagMa', 'plag', 'shkia', 'tzeit', 'fastEnd', 'rabbenuTam', 'chatzotLayla'];
     return keys.filter(key => key !== 'fastEnd' || fastDay).map(key => ({ key, ms: ZmanimCore.rounded(z, key) })).filter(e => e.ms !== null).sort((a, b) => a.ms - b.ms);
 }
 
