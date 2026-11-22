@@ -80,7 +80,15 @@ function sprRender() {
         title.appendChild(sprHebrew('span', group.he, 'spr-group-he'));
         section.appendChild(title);
         const list = sprEl('div', 'spr-list');
-        items.forEach(item => list.appendChild(sprCard(item)));
+        // Les jours d'une même fête (« 'Hol HaMoèd » de Souccot, de Pessa'h, Hanouca) tiennent dans un seul cadre, une ligne par jour.
+        const merged = {};
+        items.forEach(item => {
+            const key = sprMergeKey(item);
+            if (!key) { list.appendChild(sprCard(item)); return; }
+            if (!merged[key]) { merged[key] = []; list.appendChild(sprMergedCard(key, merged[key])); }
+            merged[key].push(item);
+        });
+        Object.keys(merged).forEach(key => sprFillMerged(list.querySelector('[data-merge="' + key + '"]'), key, merged[key]));
         section.appendChild(list);
         body.appendChild(section);
     });
@@ -97,6 +105,45 @@ function sprRenderTabs() {
         b.onclick = () => { sprGroup = tab.id; sprRender(); };
         box.appendChild(b);
     });
+}
+
+const SPR_MERGED = {
+    'souccot-hm': { fr: "Souccot, 'Hol HaMoèd", he: 'חול המועד סוכות' },
+    'pessah-hm': { fr: "Pessa'h, 'Hol HaMoèd", he: 'חול המועד פסח' },
+    'hanouca': { fr: 'Hanouca', he: 'חנוכה' }
+};
+function sprMergeKey(item) {
+    if (/^souccot-hm-\d/.test(item.id)) return 'souccot-hm';
+    if (/^pessah-hm-\d/.test(item.id)) return 'pessah-hm';
+    if (/^hanouca-\d/.test(item.id)) return 'hanouca';
+    return null;
+}
+function sprMergedCard(key) {
+    const card = sprEl('article', 'spr-card spr-merged');
+    card.dataset.merge = key;
+    return card;
+}
+// Le cadre commun : le nom de la fête, puis une ligne par jour (« 3e jour » + sa référence de Torah).
+function sprFillMerged(card, key, items) {
+    const C = SpecialReadingsCore, he = sprHeMode();
+    const head = sprEl('div', 'spr-card-head');
+    head.appendChild(sprEl('h4', 'spr-name', SPR_MERGED[key].fr));
+    head.appendChild(sprHebrew('span', SPR_MERGED[key].he, 'spr-he'));
+    card.appendChild(head);
+    const rows = sprEl('div', 'spr-options');
+    items.forEach(item => {
+        const line = sprEl('div', 'spr-option' + (he ? ' is-he' : ''));
+        const label = he ? item.he.replace(/^.* – /, '') : item.fr.replace(/^[^,]*, /, '');
+        const lab = sprEl('span', 'spr-option-lab', label);
+        if (he) { lab.lang = 'he'; lab.dir = 'rtl'; }
+        line.appendChild(lab);
+        const refs = sprEl('div', 'spr-refs');
+        item.torah.forEach((block, i) => refs.appendChild(sprRef(he ? C.rangesLabelHe(block.r) : C.rangesLabel(block.r), () => sprMenu(item, { kind: 'torah', ranges: block.r, block: i }))));
+        line.appendChild(refs);
+        rows.appendChild(line);
+    });
+    card.appendChild(rows);
+    (items[0].notes || []).forEach(note => card.appendChild(sprEl('p', 'spr-note', note)));
 }
 
 // Une occasion : son nom, puis une ligne pour la Torah, le maftir et la haftara (celles qui n'existent pas ne sont pas affichées).
