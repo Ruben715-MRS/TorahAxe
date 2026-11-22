@@ -18182,6 +18182,10 @@ button.zm-study-link:focus-visible { outline: 2px solid var(--primary-blue); out
 .sd-seg strong, .sd-title strong, .sd-big strong { font-synthesis: none; }
 .sd-content[data-bold="real"] :is(.sd-seg strong, .sd-title, .sd-title strong, .sd-big strong) { font-weight: 700; }
 .sd-content:not([data-bold="real"]) :is(.sd-seg strong, .sd-title, .sd-title strong, .sd-big strong) { font-weight: 400; text-shadow: 0.35px 0 0 currentColor, -0.35px 0 0 currentColor, 0 0.2px 0 currentColor; }
+/* Les sons particuliers (gros kamats, chéva na, daguèch dur) : la lettre entière en gras, comme le gras du livre ci-dessus. */
+.sd-snd { font-synthesis: none; }
+.sd-content[data-bold="real"] .sd-snd { font-weight: 700; }
+.sd-content:not([data-bold="real"]) .sd-snd { text-shadow: 0.35px 0 0 currentColor, -0.35px 0 0 currentColor, 0 0.2px 0 currentColor; }
 .sd-font-list { display: flex; flex-direction: column; gap: 6px; margin: 8px 0 4px; }
 .sd-font-option { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; padding: 8px 14px; border: 1px solid var(--border-soft); border-radius: 12px; background: var(--surface); color: var(--text-dark); cursor: pointer; text-align: start; font: inherit; }
 .sd-font-option[aria-checked="true"] { border-color: var(--primary-blue); background: var(--selected-tint); }

@@ -143,6 +143,16 @@ function rdNiqqud() {
     const p = rdReadJson('siddurPrefs');
     return typeof p.niqqud === 'boolean' ? p.niqqud : true;
 }
+function rdSounds() {
+    const p = rdReadJson('siddurPrefs');
+    return p.sounds === true;
+}
+function rdSetSounds(on) {
+    const p = rdReadJson('siddurPrefs');
+    p.sounds = on;
+    try { localStorage.setItem('siddurPrefs', JSON.stringify(p)); } catch (e) { /* valable pour cette séance */ }
+    apRender();
+}
 function rdSpeed() {
     return typeof autoScrollStoredSpeed === 'function' ? autoScrollStoredSpeed() : 2;
 }
@@ -221,6 +231,14 @@ function rdRender(body) {
     vow.setAttribute('aria-label', 'Voyelles dans le Siddour');
     vow.append(rdChip('Avec voyelles', nq, function () { rdSetNiqqud(true); }), rdChip('Sans voyelles', !nq, function () { rdSetNiqqud(false); }));
     rdGroup(body, 'Voyelles (nikoud) dans le Siddour', vow, 'Se change aussi depuis l\'affichage du Siddour.');
+
+    const sn = rdSounds();
+    const snd = document.createElement('div');
+    snd.className = 'segmented';
+    snd.setAttribute('role', 'group');
+    snd.setAttribute('aria-label', 'Sons particuliers en gras dans le Siddour');
+    snd.append(rdChip('En gras', sn, function () { rdSetSounds(true); }), rdChip('Normal', !sn, function () { rdSetSounds(false); }));
+    rdGroup(body, 'Sons particuliers en gras (Siddour)', snd, 'Gros kamats [o], chéva na [é] et daguèch dur : la lettre entière est en gras. Seuls les cas sûrs sont marqués.');
 
     const sp = rdSpeed();
     const spd = document.createElement('div');

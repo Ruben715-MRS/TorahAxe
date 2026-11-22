@@ -72,7 +72,8 @@
         ['pesach', /^בפסח|ובפסח|, בפסח|^לפסח/],
         ['shavuot', /בשבועות/],
         ['sukkot', /^בסוכות|ובסוכות|^לסוכות|^לסכות/],
-        ['yomTov', /ביום טוב|ביו ט|יום טוב|וביו ט/],
+        ['yomTov', /ביום טוב|ביו ט|יום טוב|וביו ט|ויו ט/],
+        ['musafDay', /ביום שמתפללים( בו)? מוסף/],        // Chabbat, fête, Roch 'Hodesh, 'Hol haMoed : tous les jours de Moussaf
         ['hanukkah', /חנוכה/],
         ['purim', /פורים/],
         ['tishaBav', /תשעה באב/],
@@ -276,6 +277,7 @@
             roshHashana: roshHashana, moadim: pesach || sukkot || shavuot || shemini, chPesach: chPesach, chSukkot: chSukkot, ch: chPesach || chSukkot,
             shemini: shemini, pesach: pesach, shavuot: shavuot, sukkot: sukkot, yomTov: yomTov,
             hanukkah: inFeast('hanouka'), purim: h.month === purimId && h.day === 14,
+            musafDay: shabbat || yomTov || h.day === 1 || h.day === 30 || chPesach || chSukkot,
             tishaBav: !!fastDay && fastDay.id === 'tichabav', fastPublic: !!fastDay, shabbat: shabbat,
             noTachanun: Z.noTachanun(fixed, israel),
             tachanunMorning: Z.tachanunStatus(fixed, israel) === 'morning'
