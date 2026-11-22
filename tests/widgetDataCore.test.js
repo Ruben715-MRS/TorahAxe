@@ -169,3 +169,14 @@ test('Dates personnelles : les prochaines, avec leur date hébraïque', () => {
     assert.deepStrictEqual(r.dates, [{ name: 'Papa', type: 'hazkara', kind: 'Hazkara', years: '17 ans depuis le décès', hebrew: '3 Tévet', day: '2026-12-13', label: 'dimanche 13 décembre' }]);
     assert.deepStrictEqual(W.build({ nowMs: Date.UTC(2026, 10, 20), days: 1 }).dates, []);
 });
+
+test('widgets : « Fin du jeûne » seulement les jours de jeûne (17 Tamouz 5786 = jeudi 2 juillet 2026)', () => {
+    const W = require('../js/widgetDataCore.js');
+    const Z = require('../js/zmanimCore.js');
+    const place = Z.normalizePlace({ name: 'Marseille', lat: 43.2965, lon: 5.3698, elevation: 0, tz: 'Europe/Paris' });
+    const r = W.build({ place, opts: {}, nowMs: Date.parse('2026-06-30T10:00:00+02:00'), days: 10 });
+    const fast = r.zmanim.filter(z => z.key === 'fastEnd');
+    assert.strictEqual(fast.length, 1);
+    assert.strictEqual(fast[0].day, '2026-07-02');
+    assert.ok(fast[0].at > r.zmanim.find(z => z.key === 'shkia' && z.day === '2026-07-02').at);
+});

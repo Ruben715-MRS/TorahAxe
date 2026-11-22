@@ -47,6 +47,7 @@
         { key: 'minchaGedola', label: 'Minha Guédola', short: 'Minha' },
         { key: 'plag', label: 'Plag haMinha', short: 'Plag' },
         { key: 'shkia', label: 'Coucher', short: 'Couch.' },
+        { key: 'fastEnd', label: 'Fin du jeûne', short: 'Jeûne', fastOnly: true },   // seulement les jours de jeûne
         { key: 'tzeit', label: 'Sortie des étoiles', short: 'Étoil.' },
         { key: 'chatzotLayla', label: 'Minuit', short: 'Minuit' }
     ];
@@ -353,7 +354,9 @@
             if (night === null) night = midnight + DAY_MS;
             bounds.push({ fixed: firstFixed + i + 1, start: night });
             if (i === 0 || i > days) continue;   // la veille et le lendemain du dernier jour ne servent qu'aux bornes
+            var fastDay = HC.dayInfo(firstFixed + i, israel).feasts.some(function (f) { return f.kind === 'fast'; });
             ZMANIM.forEach(function (item) {
+                if (item.fastOnly && !fastDay) return;
                 var ms = Z.rounded(z, item.key);
                 if (ms === null || ms === undefined) return;
                 zmanim.push({ key: item.key, label: labels[item.key] || item.label, short: item.short, at: ms, time: Z.formatTime(ms, tz, 'fr'), day: dayKeyOf(civil) });
