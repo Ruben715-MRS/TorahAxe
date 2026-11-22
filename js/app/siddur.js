@@ -1600,6 +1600,9 @@ function sdRenderNodes(nodes, parent, skipMark) {
             return;
         } else {
             // <small> : une consigne (sans voyelles) passe en police d'interface ; un texte de prière en <small> (vocalisé) garde presque sa taille.
+            // Une consigne courte restée dans la ligne, sans voyelles et sans variante : sa traduction française (sauf si l'on a demandé les consignes en hébreu).
+            const inlineFr = node.n === 'small' && !m && !sdPrefs.heRub && !SD_HAS_NIQQUD.test(SiddurCore.plain(node)) ? sdInlineRubricFr(SiddurCore.plain(node)) : null;
+            if (inlineFr) { const r = sdEl('span', 'sd-small sd-small-rub', inlineFr); r.lang = 'fr'; r.dir = 'ltr'; parent.appendChild(r); return; }
             const smallCls = SD_HAS_NIQQUD.test(SiddurCore.plain(node)) ? 'sd-small sd-small-text' : 'sd-small sd-small-rub';
             el = sdEl(node.n === 'b' ? 'strong' : 'span', node.n === 'small' ? smallCls : node.n === 'big' ? 'sd-big' : '');
             if (m) el.className = (el.className + ' ' + sdVariantClass(m)).trim();
@@ -1619,6 +1622,31 @@ function sdRenderNodes(nodes, parent, skipMark) {
 // français et ses premiers mots), avec, s'il y en a une, la règle en cas d'erreur. Les consignes du livre (hébreu sans voyelles) sont montrées
 // par leur traduction française (data/siddur/fr/). Rien n'est supprimé : tout se déplie, et « Tout afficher » montre tout comme le livre.
 const SD_HAS_NIQQUD = /[ְ-ׇ]/;
+// Les consignes courtes restées dans une ligne de prière (« ואומר בלחש », « קהל: », « ג״פ »…) : leur traduction française. Clé : l'hébreu sans parenthèses,
+// guillemets normalisés, sans « : » final (on le remet). Ce que la liste ne connaît pas reste en hébreu.
+const SD_INLINE_RUBRICS = {
+    'ואומר בלחש': 'À voix basse', 'בלחש': 'À voix basse', 'בקול': 'À voix haute', 'יפסיק מעט': 'On marque une courte pause',
+    'שתי פעמים': 'Deux fois', 'ב\' פעמים': 'Deux fois', 'ג"פ': 'Trois fois', 'ג\' פעמים': 'Trois fois',
+    'קהל': 'Assemblée', 'הקהל': 'L\'assemblée', 'חזן': 'Officiant', 'אבל': 'Endeuillé', 'קהל וחזן': 'Assemblée et officiant', 'קהל ואבל': 'Assemblée et endeuillé',
+    'והקהל עונים': 'L\'assemblée répond', 'ועונים הקהל': 'L\'assemblée répond', 'הקהל עונים': 'L\'assemblée répond', 'והציבור עונים': 'L\'assemblée répond',
+    'ועונים': 'Et l\'on répond', 'ומשיבים': 'Et l\'on répond',
+    'ואומר החזן': 'L\'officiant dit', 'וחוזר החזן': 'L\'officiant répète', 'המברך אומר': 'Celui qui dirige dit',
+    'מסובים עונים': 'Les convives répondent', 'המסובים עונים': 'Les convives répondent', 'ומי שלא אכל עונה': 'Celui qui n\'a pas mangé répond',
+    'משתחוה בברוך וזוקף בשם': 'On s\'incline à « Baroukh » et l\'on se redresse au Nom',
+    'האומרים קדיש פוסעים שלוש פסיעות לאחור': 'Ceux qui disent le Kaddich font trois pas en arrière',
+    'ויש המוסיפים': 'Certains ajoutent', 'וי"א גם': 'Certains disent aussi', 'או': 'ou',
+    'בחו"ל': 'En diaspora', 'בחוץ לארץ מוסיפים': 'En diaspora, on ajoute'
+};
+function sdInlineRubricFr(he) {
+    let k = String(he).replace(/[״“”]/g, '"').replace(/[׳‘’]/g, '\'').replace(/\s+/g, ' ').trim();
+    const paren = /^\(.*\)$/.test(k);
+    if (paren) k = k.slice(1, -1).trim();
+    const colon = /\s*:$/.test(k);
+    k = k.replace(/\s*:$/, '').trim();
+    const fr = SD_INLINE_RUBRICS[k];
+    if (!fr) return null;
+    return (paren ? '(' : '') + fr + (colon ? ' :' : '') + (paren ? ')' : '');
+}
 function sdTextNode(v) {
     const n = document.createTextNode(sdText(v));
     sdOrigText.set(n, v);
