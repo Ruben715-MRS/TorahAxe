@@ -1932,6 +1932,14 @@ const SD_MC_LABELS = { 'בחו"ל': 'Hors d\'Israël', 'וי"א גם': 'Certains
 
 // Les inclinaisons (usage séfarade) : au début et à la conclusion de la 1re bénédiction, et de la bénédiction de reconnaissance (Modim).
 // Le signe est un nœud { t: 'text', v: '', k: 'bow' } glissé dans l'arbre avant le mot (le texte, lui, n'est pas modifié).
+// Le Chir chel yom (séfarade) : la phrase d'introduction (« היום יום אחד בשבת קודש… ») n'est pas vocalisée dans la source ; on la vocalise ici, pour que sa
+// traduction (liée au texte de la source) ne change pas. Une phrase déjà vocalisée, ou que l'on ne reconnaît pas, reste telle quelle.
+const SD_DAY_INTRO_DAYS = { 'אחד': 'אֶחָד', 'שני': 'שֵׁנִי', 'שלישי': 'שְׁלִישִׁי', 'רביעי': 'רְבִיעִי', 'חמישי': 'חֲמִישִׁי', 'השישי': 'הַשִּׁשִּׁי', 'ששי': 'שִׁשִּׁי' };
+function sdVowelDayIntro(he) {
+    const m = /^היום יום (אחד|שני|שלישי|רביעי|חמישי|השישי|ששי) בשבת קודש(,? השיר שהיו הלוים אומרים על הדוכן)?\s*(:?)$/.exec(he.replace(/\s+/g, ' ').trim());
+    if (!m) return he;
+    return 'הַיּוֹם יוֹם ' + SD_DAY_INTRO_DAYS[m[1]] + ' בְּשַׁבָּת קֹדֶשׁ' + (m[2] ? ', הַשִּׁיר שֶׁהָיוּ הַלְוִיִּם אוֹמְרִים עַל הַדּוּכָן' : '') + m[3];
+}
 function sdWordAt(str, word, last) {
     let bare = '';
     const map = [];
@@ -2678,7 +2686,7 @@ function sdRenderSection(section) {
             const head = SiddurCore.plain(trees[h]).replace(/\s+/g, ' ').trim();
             const at = sdWordAt(head, 'היום', false);
             out.appendChild(sdVarBlock([], label, SiddurCore.plain(trees[h + 1]), host => {
-                if (at >= 0) { const p = sdEl('p', 'sd-seg'); p.lang = 'he'; p.dir = 'rtl'; p.appendChild(sdTextNode(head.slice(at))); host.appendChild(p); }
+                if (at >= 0) { const p = sdEl('p', 'sd-seg'); p.lang = 'he'; p.dir = 'rtl'; p.appendChild(sdTextNode(sdVowelDayIntro(head.slice(at)))); host.appendChild(p); }
                 host.appendChild(seg(h + 1));
             }, ps === 'unknown' ? 'fold-unknown' : ps));
             i += 2;
