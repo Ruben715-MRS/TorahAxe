@@ -125,7 +125,7 @@
         goldAltar: { he: 'מזבח הקטרת', fr: "L'autel d'or (de l'encens)", ref: 'Exode 30:1-10 ; 37:25-28',
             dims: '1 × 1 × 2 coudées',
             text: "Petit autel carré de bois d'acacia plaqué d'or, avec des cornes d'une pièce, une bordure d'or, des anneaux et des barres. On y brûle l'encens (ketoret) chaque matin et chaque soir, en préparant les lampes. Il se tient devant la parokhet (30:6). Une fois par an, à Yom Kippour, on y met du sang (30:10).",
-            facts: ['Aucun sacrifice d\'animal ni d\'offrande de farine dessus (30:9)', 'Encens : matin et soir (30:7-8)'] },
+            facts: ['Aucun sacrifice d\'animal ni d\'offrande de farine dessus (30:9)', 'Encens : matin et soir (30:7-8)', 'Voir l\'onglet « Kétoret » pour la composition de l\'encens'] },
         altar: { he: 'מזבח העולה', fr: "L'autel de cuivre (des holocaustes)", ref: 'Exode 27:1-8 ; 38:1-7',
             dims: '5 × 5 × 3 coudées',
             text: "L'autel du plein air, devant l'entrée du Tabernacle : un coffre creux de planches d'acacia (27:8) plaqué de cuivre, carré, avec des cornes aux quatre angles faites d'une pièce avec lui (27:2). À mi-hauteur : un contour (karkov) et une grille de cuivre en réseau (mikhbar) ; quatre anneaux et deux barres. On y offre les sacrifices (korbanot). Pas de marches : « tu ne monteras pas par des degrés à mon autel » (Exode 20:23), donc une rampe.",
@@ -312,6 +312,57 @@
         { id: 'holies', he: 'קדש הקדשים', fr: 'Le Saint des saints', text: "Seul le grand prêtre y pénètre, le jour de Yom Kippour, au cours du service." }
     ];
 
+    // Le plan du Temple vu du dessus (est à droite), redessiné d'après le tableau « Degrés de sainteté » de l'Appendice A (Mesorah, 2018). Pas à l'échelle :
+    // il suit les proportions de ce tableau. Repère : 240 × 104, origine en (0, -6). `holiness` : le degré (voir HOLINESS) que la zone illustre.
+    var TEMPLE_PLAN = {
+        viewBox: [0, -6, 240, 104],
+        mount: { x: 0, y: -6, w: 240, h: 104 },
+        wall: { x: 4, y: 4, w: 200, h: 88.3 },
+        zones: [
+            { id: 'women', x: 120.4, y: 4, w: 83.7, h: 88.3, badge: [162, 48] },
+            { id: 'israelites', x: 110.5, y: 4, w: 9.9, h: 88.3, badge: [115.5, 22] },
+            { id: 'priests', x: 88, y: 4, w: 22.5, h: 88.3, badge: [99, 14] },
+            { id: 'between', x: 74.1, y: 4, w: 13.9, h: 88.3, badge: [81, 50] },
+            { id: 'sanctuary', part: 'ulam', x: 61.2, y: 19.6, w: 13, h: 58.9, badge: [67.7, 50] },
+            { id: 'sanctuary', part: 'heikhal', x: 36, y: 29.1, w: 25.1, h: 45.9, badge: [48.5, 52] },
+            { id: 'holies', x: 13.5, y: 29.1, w: 22.5, h: 45.9, badge: [24.7, 52] }
+        ],
+        // Les degrés 1 à 3 (le pays, les villes fortifiées, Jérusalem) entourent le Temple : ils n'ont pas de zone sur ce plan.
+        hel: { x: 204.6, y: -4.7, w: 3.5, h: 96.1, badge: [216, 70] },
+        mountBadge: [226, 44],
+        altar: { x: 90.3, y: 48.2, w: 16.5, h: 16.5 }, ramp: { x: 91.5, y: 65.1, w: 11.3, h: 20.3 },
+        chambers: [[121.8, 6.6, 24.2, 18.2], [178.9, 6.6, 23.4, 18.2], [121.8, 62.9, 24.2, 27.7], [178.9, 62.9, 23.4, 27.7]],
+        towers: [[55.4, -2.1, 18.7, 19.1], [109.7, -4.7, 9.9, 10.4]],
+        gate: { x: 201.8, y: 43, w: 2.3, h: 6.1 }, room: { x: 208.4, y: 27.4, w: 7.8, h: 7.8 }
+    };
+
+    // --- Les recensements par camp (Nombres 1-2 ; 26) ------------------------------------------------------------------------------
+    var CAMP_ORDER = ['east', 'south', 'west', 'north'];   // l'ordre de Nombres 2 : Juda, Ruben, Éphraïm, Dan
+    var LEVI_CENSUS = { nb1: 22300, nb26: 23000 };          // les mâles d'un mois et plus : somme des trois familles (3:39 en donne 22 000), puis 26:62
+    var FIRSTBORN = { israel: 22273, levites: 22000, shekels: 5 };   // Nombres 3:43-51 : l'excédent de 273 premiers-nés se rachète à 5 sicles chacun
+
+    // Le tableau des camps : pour chaque camp, ses trois tribus et son total ; puis le total d'Israël.
+    function campTable() {
+        var camps = CAMP_ORDER.map(function (side) {
+            var tribes = tribesOf(side);
+            var nb1 = sum(tribes, 'nb1'), nb26 = sum(tribes, 'nb26');
+            return { side: side, head: CAMP_SIDES[side].head, tribes: tribes, nb1: nb1, nb26: nb26, diff: nb26 - nb1 };
+        });
+        var total1 = sum(camps, 'nb1'), total26 = sum(camps, 'nb26');
+        return { camps: camps, total: { nb1: total1, nb26: total26, diff: total26 - total1 },
+            levi: { nb1: LEVI_CENSUS.nb1, nb26: LEVI_CENSUS.nb26, diff: LEVI_CENSUS.nb26 - LEVI_CENSUS.nb1 } };
+    }
+    // Les Lévites : par famille, les mâles d'un mois et plus, et ceux de trente à cinquante ans ; avec le total des familles.
+    function levitesTable() {
+        var fam = LEVITES.filter(function (l) { return l.month; });
+        return { families: fam, month: sum(fam, 'month'), work: sum(fam, 'work') };
+    }
+    // Le rachat de l'excédent des premiers-nés d'Israël sur les Lévites.
+    function redemption() {
+        var surplus = FIRSTBORN.israel - FIRSTBORN.levites;
+        return { surplus: surplus, shekels: surplus * FIRSTBORN.shekels };
+    }
+
     // --- La conversion en mètres --------------------------------------------------------------------------------------------
     // Trois avis sur la longueur de la coudée (voir js/measuresCore.js) : on lui demande la valeur plutôt que de la recopier.
     var CUBIT_OPINIONS = ['nae', 'feinstein', 'hazon'];
@@ -356,6 +407,7 @@
         PLAN: PLAN, SIZES: SIZES, HOSHEN_STONES: HOSHEN_STONES, displayColumn: displayColumn, readableOn: readableOn, CURTAINS: CURTAINS, ITEMS: ITEMS, UTENSIL_ORDER: UTENSIL_ORDER, STRUCTURE: STRUCTURE, STRUCTURE_ORDER: STRUCTURE_ORDER, LAYERS: LAYERS,
         GARMENTS: GARMENTS, YOM_KIPPUR_GARMENTS: YOM_KIPPUR_GARMENTS, ZOOM_GARMENTS: ZOOM_GARMENTS, TSITS: TSITS, EFOD_STONES: EFOD_STONES, ROBE_HEM: ROBE_HEM,
         TRIBES: TRIBES, CAMP_SIDES: CAMP_SIDES, LEVITES: LEVITES, LEVITES_TOTAL_TEXT: LEVITES_TOTAL_TEXT, tribe: tribe, tribesOf: tribesOf, campTotal: campTotal, HOLINESS: HOLINESS,
+        TEMPLE_PLAN: TEMPLE_PLAN, CAMP_ORDER: CAMP_ORDER, LEVI_CENSUS: LEVI_CENSUS, FIRSTBORN: FIRSTBORN, campTable: campTable, levitesTable: levitesTable, redemption: redemption,
         TEMPLE_COLUMNS: TEMPLE_COLUMNS, TEMPLE_ROWS: TEMPLE_ROWS, TEMPLE_QUOTE: TEMPLE_QUOTE, TEMPLE_CALENDAR: TEMPLE_CALENDAR,
         CUBIT_OPINIONS: CUBIT_OPINIONS, cubitMetres: cubitMetres, metres: metres, planItem: planItem, overlaps: overlaps,
         garmentsOf: garmentsOf, plankCount: plankCount, socketCount: socketCount

@@ -57,7 +57,16 @@ test('époque : seules les œuvres sûres sont posées (datées sur moins de soi
     assert.ok(!A.eraAsked(L.byId('michna')), 'tout près de 220');
     assert.ok(!A.eraAsked(L.byId('tosafot')), 'deux siècles');
     assert.ok(!A.eraAsked(L.byId('zohar')), 'attribution traditionnelle');
-    L.WORKS.filter(A.eraAsked).forEach(w => assert.ok(w.to - w.from <= A.MAX_SPAN, w.id));
+    L.WORKS.filter(A.eraAsked).forEach(w => assert.ok(w.bib || w.to - w.from <= A.MAX_SPAN, w.id));
+    // Une œuvre datée par la vie de son auteur : posée seulement si cette vie tient dans une époque, sans « vers » ; jamais pour « le plus ancien ».
+    assert.ok(A.eraAsked(L.byId('haamek_davar')));
+    assert.ok(!A.eraAsked(L.byId('tsror_hamor')), 'vers : jamais posée');
+    assert.ok(!A.eraAsked(L.byId('beer_yitshak')), 'mort en : pas de vie');
+    assert.ok(!A.eraAsked(L.byId('ale_shour')), 'contemporain');
+    L.WORKS.filter(w => w.bib).forEach(w => assert.ok(!A.dateAsked(w), w.id));
+    assert.ok(A.authorAsked(L.byId('adderet_eliyahu')) && A.authorAsked(L.byId('magen_avraham')) && A.authorAsked(L.byId('mikhtav_meeliyahou')));
+    assert.ok(!A.authorAsked(L.byId('beer_mayim_haim_czernowitz')), 'deux œuvres du même titre');
+    assert.ok(!A.authorAsked(L.byId('malbim')), 'le titre donne l\'auteur');
 });
 
 test('questions : quatre propositions distinctes, une seule bonne, de la bonne façon, pour chaque série et chaque tirage', () => {
