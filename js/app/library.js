@@ -78,8 +78,8 @@ function libGenre(x) { return LibraryCore.GENRES.find(g => g.id === x.genre); }
 function libRender() {
     const modes = toolEl('tool-lib-modes');
     toolClear(modes);
-    [['era', 'tools.library_mode_era'], ['genre', 'tools.library_mode_genre'], ['alpha', 'tools.library_mode_alpha'], ['author', 'tools.library_mode_author']].forEach(([id, key]) => {
-        const b = libNode('button', 'tool-history-chip', t(key));
+    [['era', 'tools.library_mode_era'], ['genre', 'tools.library_mode_genre'], ['author', 'tools.library_mode_author'], ['alpha', 'tools.library_mode_alpha']].forEach(([id, key]) => {
+        const b = libNode('button', 'ben-rite', t(key));
         b.type = 'button';
         b.setAttribute('aria-pressed', libMode === id ? 'true' : 'false');
         b.onclick = () => libSetMode(id);

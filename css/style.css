@@ -18782,6 +18782,6 @@ button.autoscroll-mode { height: 48px; padding: 0 12px; border: 1px dashed var(-
 :root[data-theme="dark"] .mes-badge-opinion, :root[data-theme="dark"] .mes-verdict[data-verdict="presume"] { background: #78350f; color: #fef3c7; }
 :root[data-theme="dark"] .mes-badge-tradition { background: #312e81; color: #e0e7ff; }
 :root[data-theme="dark"] .mes-verdict[data-verdict="not"] { background: #7f1d1d; color: #fee2e2; }
-/* Bibliothèque : les quatre modes de classement tiennent sur une ligne */
-#tool-lib-modes { flex-wrap: nowrap; gap: 6px; }
-#tool-lib-modes .tool-history-chip { padding-inline: 11px; flex: 0 1 auto; white-space: nowrap; }
+/* Bibliothèque : les quatre modes de classement, dans l'habillage de la bande des rites du guide des bénédictions (.ben-rites) */
+.lib-modes { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.lib-modes .ben-rite { padding-inline: 2px; white-space: nowrap; }
