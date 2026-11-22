@@ -2248,15 +2248,23 @@ const SD_BH_FORGOT = [
     { re: /רצה והחליצנו/, label: 'Oubli de « Agrée-nous » (Chabbat)' },
     { re: /יעלה ויבוא/, label: 'Oubli de « Yaalé véyavo » (Roch \'Hodech)' }
 ];
-// L'encadré de Halakha de Mayim Aharonim (Choul'han Aroukh, Ora'h 'Haïm 181), sous la consigne qui le mentionne.
+// L'encadré de Halakha de Mayim Aharonim (Choul'han Aroukh, Ora'h 'Haïm 181) : les règles communes, puis ce qui est propre au rite du lecteur.
 function sdMayimHalakha() {
+    const rite = sdRite();
     const fold = sdEl('details', 'sd-about');
     fold.appendChild(sdEl('summary', '', 'Halakha : Mayim Aharonim'));
+    const oblig = rite === 'ashkenaze'
+        ? 'Le Rema (181:10) note que beaucoup ont l\'habitude de ne pas le faire aujourd\'hui, faute de sel de Sodome (et comme on mange avec des couverts). Mais la Michna Beroura et de nombreux décisionnaires ashkénazes recommandent d\'être rigoureux et de le faire, surtout à Chabbat et aux fêtes, ou si les mains sont sales. Les femmes ashkénazes n\'ont généralement pas l\'usage de le faire.'
+        : rite === 'habad'
+        ? 'Chez \'Habad, c\'est une obligation (\'hova), comme l\'indique le siddour, même sans sel de Sodome : pour la raison kabbalistique, et parce qu\'une ordonnance rabbinique reste en vigueur quand sa cause a disparu.'
+        : 'Chez les Séfarades, c\'est une obligation (\'hova), même sans sel de Sodome : pour la raison kabbalistique, et parce qu\'une ordonnance rabbinique reste en vigueur quand sa cause a disparu. Selon le Yalkout Yossef, les femmes qui ont mangé du pain y sont tenues aussi.';
+    const lips = rite === 'ashkenaze' ? ''
+        : ' Selon le Zohar et certains usages (' + (rite === 'habad' ? '\'Habad' : 'séfarades') + '), on passe d\'abord les doigts encore humides sur les lèvres' + (rite === 'habad' ? ' (sauf à Pessa\'h)' : '') + '.';
     [['De quoi s\'agit-il ?', 'Mayim Aharonim (« les dernières eaux ») est le lavage du bout des doigts à la fin d\'un repas avec du pain, juste avant le Birkat haMazon.'],
      ['Pourquoi ?', 'D\'après le Talmud (Houllin 105a), on utilisait à table du sel de Sodome, très corrosif : des doigts qui en gardaient pouvaient abîmer les yeux. Selon le Zohar, le lavage ôte aussi des doigts une influence négative (Roua\'h Ra\'a) qui s\'y attache pendant le repas, pour bénir les mains propres.'],
-     ['Est-ce obligatoire aujourd\'hui ?', 'Séfarades : oui, c\'est une obligation (\'hova), même sans sel de Sodome, pour la raison kabbalistique et parce qu\'une ordonnance rabbinique reste en vigueur quand sa cause a disparu. Selon le Yalkout Yossef, les femmes qui ont mangé du pain y sont tenues aussi. Ashkénazes : le Rema (181:10) note que beaucoup ne le font pas aujourd\'hui, mais la Michna Beroura et de nombreux décisionnaires recommandent de le faire, surtout à Chabbat et aux fêtes, ou si les mains sont sales. Les femmes ashkénazes ne le font généralement pas.'],
+     ['Est-ce obligatoire aujourd\'hui ?', oblig],
      ['Comment faire', 'Aucune bénédiction. On lave les doigts jusqu\'à la deuxième phalange (certains disent toute leur longueur, et plus haut si les mains sont salies plus haut), les doigts dirigés vers le bas. Peu d\'eau suffit (pas besoin d\'un Revi\'it), froide ou tiède, pas chaude. Pas besoin d\'un verre rituel ni de verser à la main : le robinet convient. On ne verse pas cette eau sur un sol où l\'on marche, car un Roua\'h Ra\'a y réside ; un bol laissé à table se retire ou se couvre avant le Birkat haMazon.'],
-     ['Essuyage', 'On s\'essuie les mains avant le Birkat haMazon. Selon le Zohar et certains usages (séfarades, \'Habad), on passe d\'abord les doigts encore humides sur les lèvres (sauf à Pessa\'h selon l\'usage \'Habad).'],
+     ['Essuyage', 'On s\'essuie les mains avant le Birkat haMazon, pour ne pas bénir avec des mains mouillées ou souillées.' + lips],
      ['Sans interruption', 'On commence le Birkat haMazon tout de suite après le lavage et l\'essuyage, sans parler ni s\'interrompre. En cas d\'interruption ou de parole inutile, on refait Mayim Aharonim.'],
      ['À plusieurs', 'Avec Zimoun (trois hommes ou plus), si l\'assemblée compte cinq personnes ou plus, on donne Mayim Aharonim en premier à celui qui dirige le Zimoun, pour qu\'il se prépare pendant que les autres se lavent les mains.']].forEach(r => {
         const row = sdEl('p', 'sd-about-row');
@@ -2603,6 +2611,7 @@ function sdRenderSection(section) {
         if (mcAt[i]) { out.appendChild(sdMcTable(trees.slice(i, mcAt[i].to + 1))); i = mcAt[i].to + 1; continue; }
         if (section.id === 'birkat-hamazon' && i === 4 && /^אם המסובים שלושה/.test(bares[4]) && /^ברוך אתה/.test(bares[15] || '')) { out.appendChild(sdZimounSefarade()); i = 15; continue; }
         if (bhSection && section.id !== 'birkat-hamazon' && /^שלושה שאכלו/.test(bares[i])) {
+            if (section.id === 'birkat-hamazon-ashkenaze') out.appendChild(sdMayimHalakha());     // ce siddour n'a pas de consigne pour Mayim Aharonim : on place le dépliant avant le Zimoun
             out.appendChild(sdZimounControls(false));
             if (sdPrefs.zim === 1) {                       // sans Zimoun : on saute jusqu'à la première bénédiction (avec la note d'origine de la source, s'il y en a une)
                 let j = bares.findIndex(b => SD_BH[0].start.test(b));
