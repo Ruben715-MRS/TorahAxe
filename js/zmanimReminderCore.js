@@ -24,7 +24,7 @@
     var MIN = 60000, DAY = 86400000;
 
     // Les horaires qu'on peut rappeler (les clés de ZmanimCore.zmanim), dans l'ordre de la journée.
-    var CUSTOM_KEYS = ['alot', 'misheyakir', 'netz', 'shemaMa', 'shemaGra', 'tefilaMa', 'tefilaGra', 'chatzot', 'minchaGedola', 'minchaKetana', 'plagMa', 'plag', 'shkia', 'fastEnd', 'tzeit', 'shemaNight', 'rabbenuTam', 'chatzotLayla'];
+    var CUSTOM_KEYS = ['alot', 'misheyakir', 'netz', 'shemaMa', 'shemaGra', 'tefilaMa', 'tefilaGra', 'chatzot', 'minchaGedola', 'minchaKetana', 'plagMa', 'plag', 'shkia', 'fastEnd', 'tzeit', 'rabbenuTam', 'chatzotLayla'];
     var CANDLE_BEFORE = [15, 20, 30, 45, 60, 90];                 // minutes avant l'allumage
     var OFFSETS = [-30, -20, -15, -10, -5, 0, 5, 10, 15, 20, 30, 45, 60];   // minutes AVANT l'horaire (0 : à l'heure ; négatif : APRÈS, comme le « +20 min » de CalJ)
     var MAX_PENDING = 40;                                         // iOS : 64 notifications en attente au plus, partagées avec le reste de l'app

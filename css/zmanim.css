@@ -66,7 +66,7 @@
 .zm-r.is-open .zm-r-use { display: block; }
 .zm-r-use p { margin: 4px 0 0; }
 .zm-r-use strong { color: var(--home-gold, #96621a); font-weight: 700; }
-.zm-use-note { margin: 8px 0 0; }
+.zm-use-note { margin: 6px 16px 8px; padding-top: 10px; border-top: 1px solid var(--border-soft); font-size: 11.5px; line-height: 1.45; }
 .zm-r.is-past .zm-r-name, .zm-r.is-past .zm-r-time b { color: var(--muted-text); font-weight: 500; }
 .zm-r.is-next { background: var(--selected-tint); }
 .zm-r.is-next .zm-r-time b { color: var(--primary-blue); }

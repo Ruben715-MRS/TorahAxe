@@ -26,7 +26,7 @@ let sdIndex = null;
 const sdCache = {};
 // v : version des réglages. En v2, la police par défaut passe de Noto Serif à Frank Ruhl Libre (la seule à avoir un vrai gras) ;
 // un « noto-serif » enregistré avant la v2 n'était que l'ancien défaut, pas un choix : il est remplacé.
-let sdPrefs = { v: 2, size: 2, niqqud: true, all: false, fr: false, font: 'frank', heRub: false, jx: true, name: 'adonai', fab: true, hideOff: false, zim: 1, zimForm: 'a', zimWed: false, zimWho: {}, zimCohen: 'one', zimHost: 'm' };
+let sdPrefs = { v: 2, size: 2, niqqud: true, sounds: false, all: false, fr: false, font: 'frank', heRub: false, jx: true, name: 'adonai', fab: true, hideOff: false, zim: 1, zimForm: 'a', zimWed: false, zimWho: {}, zimCohen: 'one', zimHost: 'm' };
 // Polices livrées avec leurs vraies graisses (fonts.css) : le gras y est dessiné par la police, pas simulé par un contour.
 const SD_REAL_BOLD = ['frank'];
 let sdView = { mode: 'home', ids: [], title: '' };
@@ -64,6 +64,7 @@ function sdLoadPrefs() {
         const p = JSON.parse(localStorage.getItem(SD_PREFS_KEY) || '{}');
         if (Number.isInteger(p.size) && p.size >= 0 && p.size < SD_SIZES.length) sdPrefs.size = p.size;
         if (typeof p.niqqud === 'boolean') sdPrefs.niqqud = p.niqqud;
+        if (typeof p.sounds === 'boolean') sdPrefs.sounds = p.sounds;
         if (typeof p.all === 'boolean') sdPrefs.all = p.all;
         if (typeof p.fr === 'boolean') sdPrefs.fr = p.fr;
         if (typeof p.heRub === 'boolean') sdPrefs.heRub = p.heRub;
@@ -1348,12 +1349,36 @@ function sdContentEl() { return toolEl('screen-tool-siddur').querySelector('.sd-
 function sdApplyNiqqud() {
     const content = sdContentEl();
     if (!content) return;
+    if (sdPrefs.sounds) { sdRerender(); return; }      // les lettres en gras sont à redessiner : on refait le rendu, en retrouvant la place
     const walker = document.createTreeWalker(content, NodeFilter.SHOW_TEXT);
     let n;
     while ((n = walker.nextNode())) {
         const original = sdOrigText.get(n);
         if (original !== undefined) n.nodeValue = sdText(original);
     }
+}
+
+// Les sons particuliers en gras (js/siddurSoundsCore.js) : la lettre entière (avec ses voyelles) passe dans un <span class="sd-snd">. Fait après le rendu,
+// sur les nœuds de texte hébreux vocalisés (pas la traduction, les consignes, le Nom divin) ; un changement du réglage redessine la lecture (sdRerender).
+const SD_SOUND_SKIP = '.sd-fr-seg, .sd-fr-note, .sd-rub, .sd-small-rub, .sd-jx-f, .sd-name, [lang="fr"]';
+function sdMarkSounds(root) {
+    if (!sdPrefs.sounds || !sdPrefs.niqqud || typeof SiddurSounds === 'undefined') return;
+    const nodes = [];
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(n => {
+        if (!SD_HAS_NIQQUD.test(n.nodeValue)) return;
+        const parent = n.parentElement;
+        if (!parent || parent.closest(SD_SOUND_SKIP)) return;
+        const chunks = SiddurSounds.split(n.nodeValue);
+        if (chunks.length === 1 && typeof chunks[0] === 'string') return;
+        const frag = document.createDocumentFragment();
+        chunks.forEach(c => {
+            if (typeof c === 'string') frag.appendChild(document.createTextNode(c));
+            else { const b = sdEl('span', 'sd-snd', c.s); b.dataset.snd = c.k; frag.appendChild(b); }
+        });
+        n.replaceWith(frag);
+    });
 }
 
 function sdApplySizeAndFont() {
@@ -1391,6 +1416,9 @@ function sdOpenDisplay() {
         const vowels = sdSwitch('Voyelles (nikoud)', sdPrefs.niqqud, (on) => { sdPrefs.niqqud = on; sdSavePrefs(); sdApplyNiqqud(); });
         vowels.querySelector('button').id = 'sd-niqqud';
         body.appendChild(vowels);
+        const sounds = sdSwitch('Sons particuliers en gras (gros kamats, chéva na, daguèch dur)', sdPrefs.sounds, (on) => { sdPrefs.sounds = on; sdSavePrefs(); sdRerender(); });
+        sounds.querySelector('button').id = 'sd-sounds';
+        body.appendChild(sounds);
         const fr = sdSwitch('Traduction française', sdPrefs.fr, (on) => { sdPrefs.fr = on; sdSavePrefs(); sdRerender(); });
         fr.querySelector('button').id = 'sd-fr';
         body.appendChild(fr);
@@ -1530,6 +1558,7 @@ function sdRenderReader(body) {
         if (sdShabbatNote) content.appendChild(sdEl('p', 'sd-fr-note', sdShabbatNote));
         if (sdPrefs.fr) content.appendChild(sdEl('p', 'sd-fr-note', t('tools.sd_fr_note')));
         sections.forEach(section => { const sec = sdRenderSection(section); sdVowelTitles(sec); content.appendChild(sec); });
+        sdMarkSounds(content);
         sdAddNav(wrap);
         sdAddInterFab(wrap);
         if (!bar.querySelector('.sd-parts')) { const tabs = sdPartsNav(); if (tabs) bar.insertBefore(tabs, bar.querySelector('.sd-read-prog')); }
