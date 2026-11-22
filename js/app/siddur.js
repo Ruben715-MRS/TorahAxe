@@ -26,7 +26,7 @@ let sdIndex = null;
 const sdCache = {};
 // v : version des réglages. En v2, la police par défaut passe de Noto Serif à Frank Ruhl Libre (la seule à avoir un vrai gras) ;
 // un « noto-serif » enregistré avant la v2 n'était que l'ancien défaut, pas un choix : il est remplacé.
-let sdPrefs = { v: 2, size: 2, niqqud: true, sounds: false, all: false, fr: false, font: 'frank', heRub: false, jx: true, name: 'adonai', fab: true, hideOff: false, zim: 1, zimForm: 'a', zimWed: false, zimWho: {}, zimCohen: 'one', zimHost: 'm' };
+let sdPrefs = { v: 2, size: 2, niqqud: true, sounds: false, menora: true, all: false, fr: false, font: 'frank', heRub: false, jx: true, name: 'adonai', fab: true, hideOff: false, zim: 1, zimForm: 'a', zimWed: false, zimWho: {}, zimCohen: 'one', zimHost: 'm' };
 // Polices livrées avec leurs vraies graisses (fonts.css) : le gras y est dessiné par la police, pas simulé par un contour.
 const SD_REAL_BOLD = ['frank'];
 let sdView = { mode: 'home', ids: [], title: '' };
@@ -57,6 +57,7 @@ function sdFontStack() {
 function sdSetFont(content) {
     content.style.setProperty('--sd-font', sdFontStack());
     content.dataset.bold = SD_REAL_BOLD.indexOf(sdPrefs.font) >= 0 ? 'real' : 'faux';
+    content.classList.toggle('menora-off', !sdPrefs.menora);      // l'image du psaume en ménora : masquée (la croix) ou affichée (le bouton 🕎)
 }
 
 function sdLoadPrefs() {
@@ -65,6 +66,7 @@ function sdLoadPrefs() {
         if (Number.isInteger(p.size) && p.size >= 0 && p.size < SD_SIZES.length) sdPrefs.size = p.size;
         if (typeof p.niqqud === 'boolean') sdPrefs.niqqud = p.niqqud;
         if (typeof p.sounds === 'boolean') sdPrefs.sounds = p.sounds;
+        if (typeof p.menora === 'boolean') sdPrefs.menora = p.menora;
         if (typeof p.all === 'boolean') sdPrefs.all = p.all;
         if (typeof p.fr === 'boolean') sdPrefs.fr = p.fr;
         if (typeof p.heRub === 'boolean') sdPrefs.heRub = p.heRub;
@@ -2632,7 +2634,15 @@ function sdVowelTitles(root) {
 }
 // Partout où le psaume (Ps 67) est un segment à lui seul : Hodou, Min'ha, Omer, Birkat haMazon, Birkat haLévana, Tikoun Léa, Arvit de Chabbat (ashkénaze).
 const SD_MENORA_PSALM = /^למנצח בנגינ/;
+// Masquer / afficher toutes les images de ménora d'un coup, sans redessiner la lecture : la classe « menora-off » du contenu (sdSetFont) fait le reste.
+function sdSetMenora(on) {
+    sdPrefs.menora = on;
+    sdSavePrefs();
+    const content = sdContentEl();
+    if (content) sdSetFont(content);
+}
 function sdMenoraFigure() {
+    const wrap = document.createDocumentFragment();
     const fig = sdEl('figure', 'sd-figure sd-menora');
     const img = document.createElement('img');
     img.src = 'assets/images/menora-psaume.jpg';
@@ -2640,7 +2650,20 @@ function sdMenoraFigure() {
     img.width = 700; img.height = 700;
     img.alt = 'Le psaume « Lamnatséa\'h binguinot » écrit en forme de ménora';
     fig.appendChild(img);
-    return fig;
+    const close = sdEl('button', 'sd-menora-close', '×');
+    close.type = 'button';
+    close.setAttribute('aria-label', 'Masquer l\'image de la ménora');
+    close.title = 'Masquer l\'image';
+    close.onclick = () => sdSetMenora(false);
+    fig.appendChild(close);
+    wrap.appendChild(fig);
+    const show = sdEl('button', 'sd-menora-btn', '🕎');
+    show.type = 'button';
+    show.setAttribute('aria-label', 'Afficher le psaume en forme de ménora');
+    show.title = 'Afficher l\'image de la ménora';
+    show.onclick = () => sdSetMenora(true);
+    wrap.appendChild(show);
+    return wrap;
 }
 function sdRenderSection(section) {
     const box = sdEl('section', 'sd-section-box');

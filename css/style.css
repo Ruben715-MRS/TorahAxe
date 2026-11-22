@@ -18183,7 +18183,12 @@ button.zm-study-link:focus-visible { outline: 2px solid var(--primary-blue); out
 .sd-content[data-bold="real"] :is(.sd-seg strong, .sd-title, .sd-title strong, .sd-big strong) { font-weight: 700; }
 .sd-content:not([data-bold="real"]) :is(.sd-seg strong, .sd-title, .sd-title strong, .sd-big strong) { font-weight: 400; text-shadow: 0.35px 0 0 currentColor, -0.35px 0 0 currentColor, 0 0.2px 0 currentColor; }
 /* Le psaume en forme de ménora : une image sombre sur fond blanc, posée comme une carte, quel que soit le thème. */
-.sd-figure { margin: 14px auto; max-width: 520px; }
+.sd-figure { margin: 14px auto; max-width: 520px; position: relative; }
+.sd-menora-close { position: absolute; top: 6px; right: 6px; width: 30px; height: 30px; padding: 0; border: 1px solid var(--border-soft); border-radius: 50%; background: rgba(255,255,255,0.92); color: #333; font: 20px/1 var(--font-main, sans-serif); cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.sd-menora-close:focus-visible, .sd-menora-btn:focus-visible { outline: 3px solid var(--favorite-yellow, #d4a017); outline-offset: 2px; }
+.sd-menora-btn { display: none; margin: 4px 0 8px; padding: 4px 10px; border: 1px solid var(--border-soft); border-radius: 999px; background: var(--surface); font-size: 20px; line-height: 1.2; cursor: pointer; }
+.sd-content.menora-off .sd-menora { display: none; }
+.sd-content.menora-off .sd-menora-btn { display: inline-block; }
 .sd-figure img { display: block; width: 100%; height: auto; background: #fff; border-radius: 12px; border: 1px solid var(--border-soft); }
 /* Les sons particuliers (gros kamats, chéva na, daguèch dur) : la lettre entière en gras, comme le gras du livre ci-dessus. */
 .sd-snd { font-synthesis: none; }
