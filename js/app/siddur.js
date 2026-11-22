@@ -216,10 +216,12 @@ function sdPrecache() {
     const urls = [base + 'index.json', SD_DATA + 'interruptions.json', 'data/torah/weekday.json', 'data/torah/parashot.json'];
     sdIndex.groups.forEach(g => g.sections.forEach(s => urls.push(sdBaseOf(s.id) + s.id + '.json')));
     sdRiteHidden.forEach(h => urls.push(sdBaseOf(h.section.id) + h.section.id + '.json'));
-    // Les traductions françaises n'existent que pour le siddour d'Edot HaMizrach (et les sections qu'un autre rite en reprend).
-    urls.push(SD_DATA + 'fr/index.json');
-    sdFetchJson(SD_DATA + 'fr/index.json').catch(() => ({}))
-        .then(idx => Object.keys((idx && idx.sections) || {}).forEach(id => { if (base === SD_DATA || sdFromSefarade.has(id)) urls.push(SD_DATA + 'fr/' + id + '.json'); }))
+    // Les traductions françaises : celles du siddour du rite (fr/ dans son dossier), et celles d'Edot HaMizrach pour le rite séfarade et pour les sections reprises de lui.
+    const frIndex = dir => sdFetchJson(dir + 'fr/index.json').catch(() => ({})).then(idx => ({ dir, ids: Object.keys((idx && idx.sections) || {}) }));
+    const dirs = base === SD_DATA ? [SD_DATA] : [base, SD_DATA];
+    dirs.forEach(d => urls.push(d + 'fr/index.json'));
+    Promise.all(dirs.map(frIndex))
+        .then(list => list.forEach(x => x.ids.forEach(id => { if (x.dir === base || sdFromSefarade.has(id)) urls.push(x.dir + 'fr/' + id + '.json'); })))
         .then(() => TorahOffline.precache(urls))
         .then(r => { if (!r || r.failed) sdPrecacheStarted = false; });   // interrompu ou hors réseau : on réessaiera à la prochaine ouverture
 }

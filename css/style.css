@@ -18606,6 +18606,9 @@ button.autoscroll-mode { height: 48px; padding: 0 12px; border: 1px dashed var(-
 .cmd-hallah-row { display: flex; gap: 8px; align-items: center; margin: 8px 0; }
 .cmd-hallah-input { flex: 1; min-width: 0; font: inherit; font-size: 16px; padding: 10px 12px; border: 1px solid var(--rule); border-radius: 12px; background: var(--surface); color: var(--ink); }
 .cmd-hallah-unit { width: 110px; }
+.cmd-nidda-fields { display: grid; gap: 10px; margin: 8px 0; }
+.cmd-nidda-field { display: flex; flex-direction: column; gap: 4px; }
+.cmd-nidda-field .cmd-hallah-input { flex: none; width: 100%; }
 .cmd-hallah-result { font-weight: 700; margin: 8px 0; }
 /* La bénédiction et la formule : un bloc chacune, l'hébreu au-dessus de sa phonétique et de sa traduction. */
 .cmd-hallah-block { margin: 14px 0 0; padding: 12px 14px; background: var(--surface-2); border-radius: 12px; }
@@ -18658,3 +18661,4 @@ button.autoscroll-mode { height: 48px; padding: 0 12px; border: 1px dashed var(-
 .per-others { font-style: italic; }
 .per-disclaimer { margin-top: 16px; }
 .per-day { gap: 6px; }
+.per-occ { font-size: 13px; font-weight: 700; color: var(--muted-text); margin: 0; }
