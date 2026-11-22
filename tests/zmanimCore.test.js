@@ -100,3 +100,34 @@ test('le profil Rav Ovadia décale l\'aube plus tard en hiver qu\'en été par r
     const summer = Z.zmanim(JLM, 2026, 6, 21, Z.applyProfile({}, 'ovadia'));
     assert.ok((winter.netz - winter.alot) < (summer.netz - summer.alot));
 });
+
+DAYS.forEach(([y, m, d]) => {
+    const label = y + '-' + m + '-' + d;
+    test('fiche, ' + label + ' : plag Magen Avraham = nuit F − 1,25 I ; fin des jeûnes = coucher + 20 min zmaniyot', () => {
+        [{}, Z.applyProfile({}, 'ovadia')].forEach(opts => {
+            const z = Z.zmanim(JLM, y, m, d, opts);
+            const I = (z.shkia - z.netz) / 12;
+            assert.ok(Math.abs(z.plagMa - (z.tzeit - 1.25 * I)) < 1);
+            assert.ok(Math.abs(z.fastEnd - (z.shkia + I / 60 * 20)) < 1);
+            assert.ok(z.plagMa < z.plag + 40 * MIN && z.plagMa > z.plag - 40 * MIN);
+        });
+    });
+    test('fiche, ' + label + ' : début de la Chéma du soir à 7,083°, entre le coucher et la nuit de Rabénou Tam', () => {
+        const z = Z.zmanim(JLM, y, m, d, {});
+        assert.ok(z.shemaNight > z.shkia && z.shemaNight < z.rabbenuTam);
+        assert.strictEqual(z.shemaNight, z.tzeit, 'le défaut du profil Rav Posen est déjà 7,083°');
+    });
+});
+
+test('fiche : fin de Chabbat à 30 minutes après le coucher (Israël)', () => {
+    const z = Z.zmanim(JLM, 2026, 3, 21, { havdalah: 'min30' });
+    assert.ok(Math.abs(z.havdalah - (z.shkia + 30 * MIN)) < 1);
+});
+
+test('plag Magen Avraham et fin des jeûnes : null quand la nuit n\'existe pas (été à Tromsø)', () => {
+    const tromso = { name: 'Tromsø', lat: 69.65, lon: 18.96, elevation: 0, tz: 'Europe/Oslo' };
+    const z = Z.zmanim(tromso, 2026, 6, 21, {});
+    assert.strictEqual(z.plagMa, null);
+    assert.strictEqual(z.fastEnd, null);
+    assert.strictEqual(z.shemaNight, null);
+});

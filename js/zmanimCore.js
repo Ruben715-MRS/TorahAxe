@@ -234,6 +234,10 @@
         if (o.misheyakir === 'alot6') out.misheyakir = alot === null || seaRise === null || seaSet === null ? null : alot + 6 * (seaSet - seaRise) / 12 / 60;   // 6 minutes zmaniyot après l'aube
         else out.misheyakir = solarEvent(place, y, m, d, -misheyakirDeg, true);
         out.tzeit = at(place, y, m, d, starsRule, false, seaRise, seaSet);
+        // Début de la Chéma du soir : trois petites étoiles dispersées, 7,083° (fixe, comme sur la fiche Zmanim Diffusion).
+        out.shemaNight = solarEvent(place, y, m, d, -7.083, false);
+        // Fin des jeûnes dérabanan (sauf Kippour) : 20 minutes zmaniyot après le coucher.
+        out.fastEnd = at(place, y, m, d, { zm: 20 }, false, seaRise, seaSet);
         out.rabbenuTam = at(place, y, m, d, tam, false, seaRise, seaSet);
 
         if (seaRise !== null && seaSet !== null) {
@@ -246,10 +250,11 @@
             out.minchaGedola = o.guedola === 'halfHour' ? out.chatzot + gra / 2 : o.guedola === 'fixed30' ? out.chatzot + 30 * MIN : out.chatzot + Math.max(30 * MIN, gra / 2);
             out.minchaKetana = seaRise + 9.5 * gra;
             out.plag = seaRise + 10.75 * gra;
+            out.plagMa = out.tzeit === null ? null : out.tzeit - 1.25 * gra;   // Plag selon Magen Avraham : 1 h 15 (zmanit du Gra) avant la sortie des étoiles choisie
             out.chatzotLayla = out.chatzot + 12 * HOUR;
             if (o.chatzotLayla === 'stars6') out.chatzotLayla = out.tzeit === null ? null : out.tzeit + 6 * HOUR;   // Breslev : 6 heures après la sortie des étoiles
         } else {
-            ['shemaGra', 'tefilaGra', 'chatzot', 'minchaGedola', 'minchaKetana', 'plag', 'chatzotLayla'].forEach(function (k) { out[k] = null; });
+            ['shemaGra', 'tefilaGra', 'chatzot', 'minchaGedola', 'minchaKetana', 'plag', 'plagMa', 'chatzotLayla'].forEach(function (k) { out[k] = null; });
         }
         if (maDawn !== null && maDusk !== null) {
             var ma = (maDusk - maDawn) / 12;
@@ -300,7 +305,7 @@
     // Le sens d'arrondi de chaque horaire (voir l'en-tête) : prudence.
     var ROUNDING = {
         alot: 'ceil', misheyakir: 'ceil', netz: 'ceil', shemaMa: 'floor', shemaGra: 'floor', tefilaMa: 'floor', tefilaGra: 'floor',
-        chatzot: 'round', minchaGedola: 'ceil', minchaKetana: 'ceil', plag: 'ceil', shkia: 'floor', tzeit: 'ceil', rabbenuTam: 'ceil',
+        chatzot: 'round', minchaGedola: 'ceil', minchaKetana: 'ceil', plag: 'ceil', plagMa: 'ceil', shemaNight: 'ceil', fastEnd: 'ceil', shkia: 'floor', tzeit: 'ceil', rabbenuTam: 'ceil',
         chatzotLayla: 'round', candles: 'floor', havdalah: 'ceil'
     };
     function rounded(z, key) { return roundMinute(z[key], ROUNDING[key] || 'round'); }
