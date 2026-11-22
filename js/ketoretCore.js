@@ -125,7 +125,7 @@
     // `siddur` : l'identifiant de la section du siddour de l'application (data/siddur) ; null quand l'application n'a pas cette section dans ce rite.
     var TODAY = [
         { id: 'sefarade', fr: 'Séfarade', text: "Le matin, à la fin de la prière de chaque jour ; le Chabbat et à Roch 'Hodech, dans le Moussaf. Beaucoup de communautés le disent aussi le soir.", siddur: ['chacharit-ketoret'] },
-        { id: 'ashkenaz', fr: 'Achkénaze', text: "Dans les Korbanot du matin en semaine, et après le Moussaf le Chabbat et les fêtes.", siddur: null }
+        { id: 'ashkenaz', fr: 'Achkénaze', text: "Les versets de la kétoret (Exode 30:34-38 et la baraïta sur sa préparation) sont dits dans les Korbanot du matin, y compris en semaine. Le Pitoum haQétoret lui-même se dit après la prière : selon le Rema (Choulhan Aroukh, Orah 'Haïm 132:2), certains ne le disent pas en semaine, de peur qu'une personne pressée n'en omette une partie ; l'usage achkénaze répandu est de le dire le Chabbat et les fêtes, après le Moussaf. Les siddourim achkénazes ne sont pas uniformes : à faire confirmer par un rav.", siddur: null }
     ];
     var TODAY_NOTE = "Les usages particuliers des différentes communautés ne sont pas détaillés ici : suivez le vôtre. La tradition rapporte que lire ce texte avec attention a une grande force ; on le lit à voix haute et lentement.";
     // --- Les chiffres clés ---------------------------------------------------------------------------
