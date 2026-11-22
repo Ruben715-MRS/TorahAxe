@@ -404,3 +404,8 @@
 .sd-check input { width: 22px; height: 22px; flex: none; accent-color: var(--primary-blue, #1d3566); }
 .sd-chevaberakhot { margin: 14px 0 6px; padding: 8px 12px 12px; border-radius: 12px; border: 1px solid var(--border-soft); background: var(--surface); }
 .sd-zimoun > .sd-about { margin: 12px 0; }
+
+/* Qui est à table : une case par personne dont on demande la permission avant « Névarekh ». */
+.sd-zim-who { margin: 6px 0 2px; }
+.sd-zim-who .sd-guest-lab { display: block; margin-bottom: 2px; }
+.sd-zim-who .sd-check { font-weight: 500; }

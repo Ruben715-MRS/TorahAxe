@@ -26,7 +26,7 @@ let sdIndex = null;
 const sdCache = {};
 // v : version des réglages. En v2, la police par défaut passe de Noto Serif à Frank Ruhl Libre (la seule à avoir un vrai gras) ;
 // un « noto-serif » enregistré avant la v2 n'était que l'ancien défaut, pas un choix : il est remplacé.
-let sdPrefs = { v: 2, size: 2, niqqud: true, all: false, fr: false, font: 'frank', heRub: false, jx: true, name: 'adonai', fab: true, hideOff: false, zim: 3, zimForm: 'a', zimWed: false };
+let sdPrefs = { v: 2, size: 2, niqqud: true, all: false, fr: false, font: 'frank', heRub: false, jx: true, name: 'adonai', fab: true, hideOff: false, zim: 3, zimForm: 'a', zimWed: false, zimWho: {} };
 // Polices livrées avec leurs vraies graisses (fonts.css) : le gras y est dessiné par la police, pas simulé par un contour.
 const SD_REAL_BOLD = ['frank'];
 let sdView = { mode: 'home', ids: [], title: '' };
@@ -74,6 +74,7 @@ function sdLoadPrefs() {
         if (p.zim === 1 || p.zim === 3 || p.zim === 10) sdPrefs.zim = p.zim;
         if (p.zimForm === 'a' || p.zimForm === 'b') sdPrefs.zimForm = p.zimForm;
         if (typeof p.zimWed === 'boolean') sdPrefs.zimWed = p.zimWed;
+        if (p.zimWho && typeof p.zimWho === 'object') Object.keys(SD_ZIM_WHO).concat('meCohen').forEach(k => { if (p.zimWho[k] === true) sdPrefs.zimWho[k] = true; });
         if (p.name === 'source' || p.name === 'adonai') sdPrefs.name = p.name;
         if (typeof p.font === 'string' && sdFontById(p.font) && (p.v >= 2 || p.font !== 'noto-serif')) sdPrefs.font = p.font;
     } catch (e) { /* stockage indisponible : réglages par défaut */ }
@@ -2204,6 +2205,58 @@ function sdApplyMinyan(node, ten) {
     node.c = out;
 }
 
+// Les personnes à table dont le meneur demande la permission (« birchout… »), dans l'ordre où on les nomme avant « mes maîtres ».
+// `excl` : l'autre case du même couple (un Cohen ou plusieurs, maître ou maîtresse de maison) ; `off` : la case « je suis moi-même Cohen » les neutralise.
+const SD_ZIM_WHO = {
+    rav:     { fr: 'Un rabbin ou un maître (Rav)', he: 'בִּרְשׁוּת הָרַב' },
+    cohen:   { fr: 'Un Cohen', he: 'בִּרְשׁוּת הַכֹּהֵן', excl: 'cohanim', cohen: true },
+    cohanim: { fr: 'Plusieurs Cohanim', he: 'בִּרְשׁוּת הַכֹּהֲנִים', excl: 'cohen', cohen: true },
+    pere:    { fr: 'Mon père ou mon beau-père', he: 'בִּרְשׁוּת אָבִי מוֹרִי' },
+    bh:      { fr: 'Le maître de maison (je suis invité)', he: 'בִּרְשׁוּת בַּעַל הַבַּיִת', excl: 'bhf' },
+    bhf:     { fr: 'La maîtresse de maison (je suis invité)', he: 'בִּרְשׁוּת בַּעֲלַת הַבַּיִת', excl: 'bh' },
+    brit:    { fr: 'Le père du bébé (Brit Mila)', he: 'בִּרְשׁוּת אֲבִי הַבֵּן' },
+    simha:   { fr: 'Celui qui fête sa Bar Mitsva', he: 'בִּרְשׁוּת בַּעַל הַשִּׂמְחָה' }
+};
+function sdZimounWho() {
+    const w = sdPrefs.zimWho || {};
+    return Object.keys(SD_ZIM_WHO).filter(k => w[k] && !(SD_ZIM_WHO[k].cohen && w.meCohen));
+}
+function sdZimounCheck(key, label) {
+    const lab = sdEl('label', 'sd-check');
+    const inp = sdEl('input');
+    inp.type = 'checkbox';
+    inp.checked = !!(sdPrefs.zimWho || {})[key];
+    inp.onchange = () => {
+        sdPrefs.zimWho = sdPrefs.zimWho || {};
+        sdPrefs.zimWho[key] = inp.checked;
+        const ex = SD_ZIM_WHO[key] && SD_ZIM_WHO[key].excl;
+        if (inp.checked && ex) sdPrefs.zimWho[ex] = false;
+        sdSavePrefs(); sdRerender();
+    };
+    lab.appendChild(inp);
+    lab.appendChild(sdEl('span', '', label));
+    return lab;
+}
+// L'encadré de Halakha du Zimoun (Choul'han Aroukh, Ora'h 'Haïm 201) : qui dirige, à qui demander la permission.
+function sdZimounHalakha() {
+    const fold = sdEl('details', 'sd-about');
+    fold.appendChild(sdEl('summary', '', 'Halakha : qui dirige le Zimoun ?'));
+    [['Ordre d\'usage', 'Chez lui, le maître de maison dirige (il peut céder l\'honneur à un invité). Sinon, à érudition comparable : le Cohen (« vékidachto »), puis le Lévi, puis l\'Israël, le père avant son fils. Le plus grand en Torah passe avant : en pratique, on cède presque toujours la place au Rav. À niveau égal entre deux érudits, le Cohen l\'emporte.'],
+     ['Demander la permission', 'Celui qui dirige demande la permission (« birchout… ») aux personnes à honorer avant « Névarekh » : Rav, Cohen (ou Cohanim), père, maître de maison. S\'il est lui-même Cohen, il ne mentionne pas le Cohen. Un érudit qui dirige n\'a pas à demander au Cohen moins instruit, mais beaucoup le font par courtoisie.'],
+     ['Père et fils', 'Chez son père, le fils lui laisse diriger. Si le père est invité chez son fils, celui-ci lui cède l\'honneur par respect (kiboud av), sauf si le fils est un grand Rav et que son père lui cède la place.'],
+     ['Fêtes', 'Au mariage ou à une Brit Mila, c\'est en général le marié ou le père du bébé qui dirige, ou le Rav à qui ils cèdent. Un invité de marque honoré par le maître de maison dirige à sa place ; il le bénit ensuite (« Haraḥaman hou yévarekh et ba\'al habayit hazé »).']].forEach(r => {
+        const row = sdEl('p', 'sd-about-row');
+        row.lang = 'fr';
+        row.appendChild(sdEl('strong', '', r[0] + '. '));
+        row.appendChild(document.createTextNode(r[1]));
+        fold.appendChild(row);
+    });
+    const src = sdEl('p', 'sd-about-note', 'Source : Choul\'han Aroukh, Ora\'h \'Haïm 201. En cas de doute, demandez à votre rav : les usages varient selon les communautés.');
+    src.lang = 'fr';
+    fold.appendChild(src);
+    return fold;
+}
+
 // Les réglages du Zimoun : le nombre d'hommes (3 à 9, dix ou plus) et, chez les Séfarades, la formule d'ouverture.
 function sdZimounControls(withForm) {
     const box = sdEl('div', 'sd-guest-ctrls sd-zim-ctrls');
@@ -2235,9 +2288,19 @@ function sdZimounControls(withForm) {
         lab.appendChild(sdEl('span', '', 'Mariage (ou Chéva Berakhot des sept jours qui suivent)'));
         box.appendChild(lab);
     }
+    if (withForm && sdPrefs.zim !== 1) {
+        const g = sdEl('div', 'sd-zim-who');
+        g.setAttribute('role', 'group');
+        g.setAttribute('aria-label', 'Qui est à table');
+        g.appendChild(sdEl('span', 'sd-guest-lab', 'Qui est à table ? (on demande leur permission)'));
+        Object.keys(SD_ZIM_WHO).forEach(k => g.appendChild(sdZimounCheck(k, SD_ZIM_WHO[k].fr)));
+        if ((sdPrefs.zimWho || {}).cohen || (sdPrefs.zimWho || {}).cohanim || (sdPrefs.zimWho || {}).meCohen) g.appendChild(sdZimounCheck('meCohen', 'Je dirige et je suis moi-même Cohen (pas de permission à demander)'));
+        box.appendChild(g);
+    }
     const note = sdEl('p', 'sd-origin', sdPrefs.zim === 1 ? 'Seul ou à deux, on ne fait pas de Zimoun : on commence directement par la première bénédiction.' : 'Trois hommes adultes au moins doivent avoir mangé ensemble pour faire le Zimoun. À dix (minyan), on ajoute « Élohénou » et au moins sept d\'entre eux doivent avoir mangé du pain. Une fois que dix hommes ont mangé ensemble, il est interdit de se séparer en petits groupes pour le Zimoun.');
     note.lang = 'fr';
     box.appendChild(note);
+    if (sdPrefs.zim !== 1) box.appendChild(sdZimounHalakha());
     return box;
 }
 function sdRoleEl(kind) { const r = sdEl('p', 'sd-role is-' + kind, SD_ROLES[kind]); r.lang = 'fr'; return r; }
@@ -2253,6 +2316,7 @@ function sdZimounSefarade() {
     if (sdPrefs.zim === 1) return box;
     const a = sdPrefs.zimForm !== 'b';
     const ten = { ten: 10, he: ' אֱלֹהֵינוּ' };
+    const who = sdZimounWho().map(k => SD_ZIM_WHO[k].he + ', ').join('');      // « בִּרְשׁוּת הָרַב, בִּרְשׁוּת הַכֹּהֲנִים, … » dans l'ordre de préséance
     if (sdPrefs.zimWed) {       // le Zimoun d'un mariage : « chéhassim'ha bim'ono », le poème d'ouverture, et la suite des sept bénédictions
         const wl = (t) => { const e = sdEl('p', 'sd-origin', t); e.lang = 'fr'; return e; };
         box.appendChild(sdRoleEl('lead'));
@@ -2263,7 +2327,7 @@ function sdZimounSefarade() {
         box.appendChild(sdRoleEl('resp'));
         box.appendChild(sdHeLine([a ? 'שָׁמַיִם' : 'נְבָרֵךְ']));
         box.appendChild(sdRoleEl('lead'));
-        box.appendChild(sdHeLine(['בִּרְשׁוּת מַלְכָּא עִלָּאָה קַדִּישָׁא, וּבִרְשׁוּת מָרָנָן וְרַבָּנָן וְרַבּוֹתַי, וּבִרְשׁוּת הֶחָתָן וְהַכַּלָּה, נְבָרֵךְ', ten, ' שֶׁהַשִּׂמְחָה בִּמְעוֹנוֹ שֶׁאָכַלְנוּ מִשֶּׁלּוֹ']));
+        box.appendChild(sdHeLine(['בִּרְשׁוּת מַלְכָּא עִלָּאָה קַדִּישָׁא, ' + who + 'וּבִרְשׁוּת מָרָנָן וְרַבָּנָן וְרַבּוֹתַי, וּבִרְשׁוּת הֶחָתָן וְהַכַּלָּה, נְבָרֵךְ', ten, ' שֶׁהַשִּׂמְחָה בִּמְעוֹנוֹ שֶׁאָכַלְנוּ מִשֶּׁלּוֹ']));
         box.appendChild(sdRoleEl('resp'));
         box.appendChild(sdHeLine(['בָּרוּךְ', ten, ' שֶׁהַשִּׂמְחָה בִּמְעוֹנוֹ שֶׁאָכַלְנוּ מִשֶּׁלּוֹ וּבְטוּבוֹ חָיִינוּ']));
         box.appendChild(sdRoleEl('again'));
@@ -2288,10 +2352,12 @@ function sdZimounSefarade() {
     box.appendChild(sdRoleEl('resp'));
     box.appendChild(sdHeLine([a ? 'שָׁמַיִם' : 'נְבָרֵךְ']));
     box.appendChild(sdRoleEl('lead'));
-    box.appendChild(sdHeLine(['בִּרְשׁוּת מַלְכָּא עִלָּאָה קַדִּישָׁא, וּבִרְשׁוּת מָרָנָן וְרַבָּנָן וְרַבּוֹתַי, נְבָרֵךְ', ten, ' שֶׁאָכַלְנוּ מִשֶּׁלּוֹ']));
-    const more = sdEl('p', 'sd-origin', 'Selon l\'assistance, on ajoute aussi la permission du maître de maison (« birchout ba\'al habayit »), et des invités s\'il y en a.');
-    more.lang = 'fr';
-    box.appendChild(more);
+    box.appendChild(sdHeLine(['בִּרְשׁוּת מַלְכָּא עִלָּאָה קַדִּישָׁא, ' + who + 'וּבִרְשׁוּת מָרָנָן וְרַבָּנָן וְרַבּוֹתַי, נְבָרֵךְ', ten, ' שֶׁאָכַלְנוּ מִשֶּׁלּוֹ']));
+    if (!who) {
+        const more = sdEl('p', 'sd-origin', 'Selon l\'assistance, cochez plus haut les personnes présentes : leur permission (« birchout… ») s\'ajoute alors ici.');
+        more.lang = 'fr';
+        box.appendChild(more);
+    }
     box.appendChild(sdRoleEl('resp'));
     box.appendChild(sdHeLine(['בָּרוּךְ', ten, ' שֶׁאָכַלְנוּ מִשֶּׁלּוֹ וּבְטוּבוֹ חָיִינוּ']));
     box.appendChild(sdRoleEl('again'));
