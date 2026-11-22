@@ -123,7 +123,9 @@ function sprCard(item) {
             const open = () => sprMenu(item, { kind: 'maftir', ranges: [m.r], label: m.lab });
             if (!m.lab) { maftir.appendChild(sprRef(rangesText([m.r]), open)); return; }
             const line = sprEl('div', 'spr-option');
-            line.appendChild(sprEl('span', 'spr-option-lab', m.lab));
+            const lab = sprEl('span', 'spr-option-lab', he ? sprDayHe(m.lab) : m.lab);
+            if (he) { lab.lang = 'he'; lab.dir = 'rtl'; }
+            line.appendChild(lab);
             line.appendChild(sprRef(rangesText([m.r]), open));
             maftir.appendChild(line);
         });
@@ -138,6 +140,12 @@ function sprCard(item) {
     }
     (item.notes || []).forEach(note => card.appendChild(sprEl('p', 'spr-note', note)));
     return card;
+}
+
+// « 3e jour » → « יום ג׳ ».
+function sprDayHe(label) {
+    const m = /^(\d+)(?:er|e) jour$/.exec(label);
+    return m ? 'יום ' + SpecialReadingsCore.numeral(+m[1]) + '׳' : label;
 }
 
 function sprText(text) {
