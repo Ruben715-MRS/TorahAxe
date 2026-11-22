@@ -265,3 +265,12 @@ test('Chabbat : la consigne de la nuit de Roch \'Hodech ne fait pas de bloc (le 
     const sh = require('../data/siddur/chabbat-arvit-barekhou.json').segments;
     assert.deepStrictEqual(S.groups(sh), []);
 });
+
+test('Jours de Moussaf : Chabbat, fête, Roch \'Hodesh, \'Hol haMoed (Migdol / Magdil)', () => {
+    assert.deepStrictEqual(S.conditionOf('בשבת ויו"ט וביום שמתפללים מוסף יאמר: מגדול').atoms.sort(), ['musafDay', 'shabbat', 'yomTov']);
+    assert.strictEqual(flags(2026, 11, 21).musafDay, true);          // Chabbat
+    assert.strictEqual(flags(2026, 11, 18).musafDay, false);         // mercredi ordinaire
+    assert.strictEqual(flags(2027, 1, 9).musafDay, true);            // Chabbat Roch 'Hodesh
+    assert.strictEqual(flags(2026, 10, 1).musafDay, true);           // 'Hol haMoed Souccot
+    assert.strictEqual(S.evaluate(['yomTov', 'musafDay', 'shabbat'], S.contextFor(CY.gregorianToFixed(2026, 11, 18), false)), 'off');
+});

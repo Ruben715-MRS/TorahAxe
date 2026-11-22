@@ -1580,18 +1580,46 @@ function sdVariantClass(mark) {
 }
 
 // skipMark : les nœuds de premier niveau sont le corps d'une variante déjà mise en bloc (sdVarBlock) : on ne les estompe pas une seconde fois.
+// Une variante courte qui remplace le mot précédent (« מגדיל » → « מגדול », « עושה שלום » → « עושה השלום », « האל » → « המלך ») : les jours où elle s'applique,
+// on retire le mot qu'elle remplace, au lieu d'afficher les deux.
+const SD_SUBSTITUTES = { 'מגדיל': 'מגדול', 'שלום': 'השלום', 'האל': 'המלך' };
+function sdBareWords(s) { return SiddurCore.stripNiqqud(s).replace(/[^א-ת\s]/g, ' ').trim().split(/\s+/).filter(Boolean); }
+function sdApplySubstitutions(nodes) {
+    let out = null;
+    nodes.forEach((n, i) => {
+        if (!n.m || n.m.role !== 'self' || sdPrefs.all || SiddurCore.evaluate(n.m.atoms, sdCtx) !== 'on') return;
+        const full = SiddurCore.plain(n);
+        const body = sdBareWords(full.slice(full.indexOf(':') + 1));
+        if (body.length !== 1) return;
+        let j = i - 1;
+        while (j >= 0 && sdBlank((out || nodes)[j])) j--;
+        if (j < 0) return;
+        const prev = (out || nodes)[j];
+        const words = sdBareWords(prev.t === 'text' ? prev.v : SiddurCore.plain(prev));
+        if (!words.length || SD_SUBSTITUTES[words[words.length - 1]] !== body[0]) return;
+        if (!out) out = nodes.slice();
+        out[j] = prev.t === 'text' ? Object.assign({}, prev, { v: prev.v.replace(/\s*[֑-ׇא-ת"']+(\s*)$/, '$1') }) : { t: 'text', v: '' };
+        out[i] = Object.assign({}, n, { replaces: true });
+    });
+    return out || nodes;
+}
 function sdRenderNodes(nodes, parent, skipMark) {
+    if (!skipMark) nodes = sdApplySubstitutions(nodes);
     nodes.forEach(node => {
         const m = skipMark ? null : node.m;
+        // Une variante en ligne qui ne s'applique pas aujourd'hui : on ne l'affiche pas (le texte ordinaire suffit) ; « Tout afficher » la montre.
+        if (m && (m.role === 'self' || m.role === 'marker' || m.role === 'body') && !sdPrefs.all && SiddurCore.evaluate(m.atoms, sdCtx) === 'off') return;
         // Une variante courte restée dans la ligne : sa consigne hébraïque (« בעשרת ימי תשובה: ») devient une petite étiquette française.
         if (m && (m.role === 'marker' || m.role === 'self')) {
             const state = SiddurCore.evaluate(m.atoms, sdCtx);
             const full = SiddurCore.plain(node);
-            const lab = sdEl('span', 'sd-v-lab' + (state === 'on' ? ' is-on' : state === 'off' && !sdPrefs.all ? ' is-off' : ''), sdCap(sdAtomsLabel(m.atoms)) + ' :');
-            lab.lang = 'fr';
-            lab.dir = 'ltr';
-            lab.title = full.split(':')[0].trim();
-            parent.appendChild(lab);
+            if (!node.replaces) {
+                const lab = sdEl('span', 'sd-v-lab' + (state === 'on' ? ' is-on' : state === 'off' && !sdPrefs.all ? ' is-off' : ''), sdCap(sdAtomsLabel(m.atoms)) + ' :');
+                lab.lang = 'fr';
+                lab.dir = 'ltr';
+                lab.title = full.split(':')[0].trim();
+                parent.appendChild(lab);
+            }
             if (m.role === 'self') {
                 const body = sdEl('span', sdVariantClass(m));
                 body.appendChild(sdTextNode(full.slice(full.indexOf(':') + 1).replace(/^\s+/, ' ')));
