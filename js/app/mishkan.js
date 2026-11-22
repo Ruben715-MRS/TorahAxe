@@ -1,8 +1,8 @@
 // =========================================================================
 // === LE MICHKAN ET LE MIKDASH (écran de l'Atelier) ===
 // =========================================================================
-// Cinq onglets : le plan (la cour, puis le Tabernacle de l'intérieur), les ustensiles, la structure (planches, tentures), les vêtements des
-// prêtres, et les Temples. Les données et les mesures sont dans js/mishkanCore.js (pur, testé). Les schémas sont dessinés ici, en SVG, en
+// Six onglets : le plan (la cour, puis le Tabernacle de l'intérieur), les ustensiles, la structure (planches, tentures), les vêtements des
+// prêtres, la kétoret (l'encens) et les Temples. Les données et les mesures sont dans js/mishkanCore.js (pur, testé). Les schémas sont dessinés ici, en SVG, en
 // coudées : aucune image de livre. Tout ce qui vient des données passe par textContent, jamais par du HTML.
 
 let mknTab = 'plan';
@@ -14,7 +14,7 @@ let mknHoliness = null;    // le lieu choisi dans l'échelle des degrés de sain
 let mknWho = 'high';       // le groupe de vêtements affiché : 'all' (prêtre), 'high' (grand prêtre), 'kippur' (lin blanc)
 const MKN_TABS = [
     { id: 'plan', icon: '🗺️' }, { id: 'utensils', icon: '🕯️' }, { id: 'structure', icon: '🏕️' },
-    { id: 'cohen', icon: '👘' }, { id: 'mikdash', icon: '🏛️' }
+    { id: 'cohen', icon: '👘' }, { id: 'ketoret', icon: '💨' }, { id: 'mikdash', icon: '🏛️' }
 ];
 // Les numéros des éléments sur le plan, par vue.
 const MKN_NUMBERS = {
@@ -80,7 +80,7 @@ function toolMishkanInit() {
 function mknRender() {
     const body = toolEl('tool-mkn-body');
     toolClear(body);
-    ({ plan: mknPlanTab, utensils: mknUtensilsTab, structure: mknStructureTab, cohen: mknCohenTab, mikdash: mknMikdashTab }[mknTab])(body);
+    ({ plan: mknPlanTab, utensils: mknUtensilsTab, structure: mknStructureTab, cohen: mknCohenTab, ketoret: mknKetoretTab, mikdash: mknMikdashTab }[mknTab])(body);
 }
 
 // =========================================================================
@@ -168,7 +168,7 @@ function mknPlanTab(body) {
         legend.appendChild(btn);
     });
     panel.appendChild(legend);
-    if (mknView === 'camp') mknPara(panel, t('tools.mkn_camp_levites_note'));
+    if (mknView === 'camp') { mknPara(panel, t('tools.mkn_camp_levites_note')); mknCampTables(panel); }
     else mknOpinionControl(panel, () => { mknRender(); });
     body.appendChild(panel);
 
@@ -187,7 +187,7 @@ function mknFillPlanSheet(box, id) {
 
 function mknSelect(id) {
     mknSelected = id;
-    document.querySelectorAll('#tool-mkn-body .mkn-item').forEach(g => g.classList.toggle('is-selected', g.dataset.id === id));
+    document.querySelectorAll('#tool-mkn-body .mkn-item, #tool-mkn-body .mkn-table tr[data-id]').forEach(g => g.classList.toggle('is-selected', g.dataset.id === id));
     document.querySelectorAll('#tool-mkn-body .mkn-legend-btn').forEach(b => b.setAttribute('aria-pressed', b.dataset.id === id ? 'true' : 'false'));
     const sheet = toolEl('tool-mkn-sheet');
     if (sheet) mknFillPlanSheet(sheet, id);
@@ -367,6 +367,78 @@ function mknCampSvg() {
 }
 
 function mknFmtInt(n) { return n.toLocaleString('fr-FR').replace(/ | /g, ' '); }
+
+// La différence entre les deux recensements, avec son signe (le vrai moins, pas le tiret).
+function mknSigned(n) { return n === 0 ? '0' : (n > 0 ? '+' : '−') + mknFmtInt(Math.abs(n)); }
+
+// Un tableau dans son cadre défilant. `rows` : [{ cells: [...], cls, span }] ; une ligne `span` est un intertitre sur toute la largeur.
+function mknTable(parent, caption, heads, rows) {
+    const wrap = mknEl('div', 'measures-table-wrap');
+    const table = mknEl('table', 'tool-table measures-table is-matrix mkn-table');
+    table.appendChild(mknEl('caption', '', caption));
+    const thead = mknEl('thead');
+    const hr = mknEl('tr');
+    heads.forEach(h => { const th = mknEl('th', '', h); th.scope = 'col'; hr.appendChild(th); });
+    thead.appendChild(hr);
+    table.appendChild(thead);
+    const tbody = mknEl('tbody');
+    rows.forEach(r => {
+        const tr = mknEl('tr', (r.cls || '') + (r.id && r.id === mknSelected ? ' is-selected' : ''));
+        if (r.id) tr.dataset.id = r.id;
+        if (r.span) {
+            const th = mknEl('th', 'mkn-table-group', r.span);
+            th.colSpan = heads.length;
+            th.scope = 'colgroup';
+            tr.appendChild(th);
+        } else {
+            r.cells.forEach((c, i) => {
+                const cell = mknEl(i === 0 ? 'th' : 'td', '', c);
+                if (i === 0) cell.scope = 'row';
+                tr.appendChild(cell);
+            });
+        }
+        tbody.appendChild(tr);
+    });
+    table.appendChild(tbody);
+    wrap.appendChild(table);
+    parent.appendChild(wrap);
+}
+
+// Les comptes des camps : les douze tribus par camp avec le total de chaque camp, le total d'Israël, Lévi, puis les Lévites et le rachat des premiers-nés.
+function mknCampTables(panel) {
+    const M = MishkanCore;
+    const T = M.campTable();
+    const heads = [t('tools.mkn_ct_tribe'), t('tools.mkn_ct_nb1'), t('tools.mkn_ct_nb26'), t('tools.mkn_ct_diff')];
+    const rows = [];
+    T.camps.forEach(c => {
+        rows.push({ span: t('tools.mkn_camp_' + c.side) + ' · ' + t('tools.mkn_ct_banner', { head: M.tribe(c.head).fr }) });
+        c.tribes.forEach(tr => rows.push({ id: tr.id, cells: [tr.fr, mknFmtInt(tr.nb1), mknFmtInt(tr.nb26), mknSigned(tr.nb26 - tr.nb1)] }));
+        rows.push({ cls: 'mkn-table-sub', cells: [t('tools.mkn_ct_camp_total'), mknFmtInt(c.nb1), mknFmtInt(c.nb26), mknSigned(c.diff)] });
+    });
+    rows.push({ cls: 'mkn-table-total', cells: [t('tools.mkn_ct_total'), mknFmtInt(T.total.nb1), mknFmtInt(T.total.nb26), mknSigned(T.total.diff)] });
+    rows.push({ span: t('tools.mkn_ct_levi_group') });
+    rows.push({ cells: [t('tools.mkn_ct_levi'), mknFmtInt(T.levi.nb1), mknFmtInt(T.levi.nb26), mknSigned(T.levi.diff)] });
+    mknTable(panel, t('tools.mkn_ct_title'), heads, rows);
+    mknPara(panel, t('tools.mkn_ct_note'));
+
+    const L = M.levitesTable();
+    const lrows = L.families.map(f => ({ id: f.id, cells: [f.fr, mknFmtInt(f.month), mknFmtInt(f.work)] }));
+    lrows.push({ cls: 'mkn-table-total', cells: [t('tools.mkn_ct_total'), mknFmtInt(L.month), mknFmtInt(L.work)] });
+    mknTable(panel, t('tools.mkn_lt_title'), [t('tools.mkn_lt_family'), t('tools.mkn_lt_month'), t('tools.mkn_lt_work')], lrows);
+
+    const R = M.redemption();
+    const F = M.FIRSTBORN;
+    mknTable(panel, t('tools.mkn_rd_title'), [t('tools.mkn_rd_item'), t('tools.mkn_rd_n')], [
+        { cells: [t('tools.mkn_rd_levites'), mknFmtInt(M.LEVI_CENSUS.nb1)] },
+        { cells: [t('tools.mkn_rd_levi_firstborn'), '− ' + mknFmtInt(M.LEVI_CENSUS.nb1 - F.levites)] },
+        { cls: 'mkn-table-sub', cells: [t('tools.mkn_rd_levites_free'), mknFmtInt(F.levites)] },
+        { cells: [t('tools.mkn_rd_israel'), mknFmtInt(F.israel)] },
+        { cells: [t('tools.mkn_rd_levites_free'), '− ' + mknFmtInt(F.levites)] },
+        { cls: 'mkn-table-sub', cells: [t('tools.mkn_rd_surplus'), mknFmtInt(R.surplus)] },
+        { cells: [t('tools.mkn_rd_each'), '× ' + mknFmtInt(F.shekels)] },
+        { cls: 'mkn-table-total', cells: [t('tools.mkn_rd_sum'), mknFmtInt(R.shekels)] }
+    ]);
+}
 
 function mknFillCampSheet(box, id) {
     const M = MishkanCore;
@@ -853,6 +925,114 @@ function mknFigureSvg() {
 }
 
 // =========================================================================
+// Onglet « Kétoret » (l'encens) : données et calculs dans js/ketoretCore.js
+// =========================================================================
+function mknKetoretTab(body) {
+    const K = KetoretCore;
+    const intro = mknEl('section', 'tool-panel');
+    mknPara(intro, t('tools.mkn_ket_intro'));
+    mknHe(intro, 'פִּטּוּם הַקְּטֹרֶת');
+    const quote = mknEl('blockquote', 'mkn-quote', t('tools.mkn_ket_quote'));
+    intro.appendChild(quote);
+    mknPara(intro, t('tools.mkn_source', { src: 'Exode 30:34-38' }), 'tool-small hcal-source');
+    body.appendChild(intro);
+    body.appendChild(mknKetoretSpices(K));
+    const prep = mknEl('section', 'tool-panel');
+    prep.appendChild(mknEl('h3', 'tool-h', t('tools.mkn_ket_prep_title')));
+    mknPara(prep, t('tools.mkn_ket_prep_intro'));
+    const adds = mknEl('div', 'hcal-feasts');
+    K.ADDITIVES.forEach(a => adds.appendChild(mknCard({ fr: a.fr, he: a.he, dims: a.amount + (a.opinion ? ' (' + a.opinion + ')' : ''), text: a.text, ref: 'Kéritot 6a' }, null, false)));
+    prep.appendChild(adds);
+    const rules = mknEl('ul', 'hcal-list');
+    K.RULES.forEach(r => rules.appendChild(mknEl('li', '', r.text)));
+    prep.appendChild(rules);
+    body.appendChild(prep);
+    const service = mknEl('section', 'tool-panel');
+    service.appendChild(mknEl('h3', 'tool-h', t('tools.mkn_ket_service_title')));
+    const steps = mknEl('div', 'hcal-feasts');
+    K.SERVICE.forEach(st => steps.appendChild(mknCard(st, null, false)));
+    const kip = mknEl('details', 'hcal-feast mkn-card');
+    const ks = document.createElement('summary');
+    const kh = mknEl('span', 'hcal-feast-head');
+    kh.appendChild(mknEl('strong', 'hcal-feast-name', K.KIPPUR.fr));
+    ks.appendChild(kh);
+    kip.appendChild(ks);
+    const kb = mknEl('div', 'hcal-feast-body');
+    const ol = mknEl('ol', 'hcal-list');
+    K.KIPPUR.steps.forEach(x => ol.appendChild(mknEl('li', '', x)));
+    kb.appendChild(ol);
+    mknPara(kb, t('tools.mkn_source', { src: K.KIPPUR.ref }), 'tool-small hcal-source');
+    kip.appendChild(kb);
+    steps.appendChild(kip);
+    service.appendChild(steps);
+    body.appendChild(service);
+    const meaning = mknEl('section', 'tool-panel');
+    meaning.appendChild(mknEl('h3', 'tool-h', t('tools.mkn_ket_meaning_title')));
+    mknPara(meaning, t('tools.mkn_ket_meaning_intro'));
+    const ml = mknEl('div', 'hcal-feasts');
+    K.MEANINGS.forEach(m => ml.appendChild(mknCard({ fr: m.fr, he: m.he, text: m.text, ref: m.who }, null, false)));
+    meaning.appendChild(ml);
+    body.appendChild(meaning);
+    body.appendChild(mknKetoretToday(K));
+}
+
+// Les onze aromates : une barre par aromate (au prorata des maneh), la Torah en or, les Sages en bleu ; toucher une ligne ouvre sa fiche.
+function mknKetoretSpices(K) {
+    const panel = mknEl('section', 'tool-panel');
+    panel.id = 'tool-mkn-ket-spices';
+    panel.appendChild(mknEl('h3', 'tool-h', t('tools.mkn_ket_spices_title')));
+    mknPara(panel, t('tools.mkn_ket_spices_intro', { all: K.SUMMARY.all, torah: K.SUMMARY.torah, sages: K.SUMMARY.sages }));
+    const max = Math.max.apply(null, K.SPICES.map(s => s.maneh));
+    const list = mknEl('div', 'mkn-legend');
+    const sheet = mknEl('div', 'mkn-sheet-inline');
+    const pick = id => {
+        list.querySelectorAll('.mkn-legend-btn').forEach(b => b.setAttribute('aria-pressed', b.dataset.id === id ? 'true' : 'false'));
+        const sp = K.spice(id);
+        const facts = [t('tools.mkn_ket_spice_weight', { n: sp.maneh, pct: mknNum(K.share(sp)) })];
+        if (sp.torah) facts.push(t('tools.mkn_ket_spice_torah', { word: sp.torah }));
+        else facts.push(t('tools.mkn_ket_spice_sages'));
+        if (sp.debated) facts.push(t('tools.mkn_ket_spice_debated'));
+        mknFillSheet(sheet, { fr: sp.fr, he: sp.he, ref: 'Kéritot 6a', text: sp.identification, facts: facts });
+    };
+    K.byWeight().forEach(sp => {
+        const btn = mknEl('button', 'mkn-legend-btn', sp.fr + ' (' + sp.he + ') · ' + sp.maneh);
+        btn.type = 'button';
+        btn.dataset.id = sp.id;
+        btn.setAttribute('aria-pressed', 'false');
+        btn.style.borderInlineStart = '6px solid ' + (sp.torah ? '#d4a017' : '#4a6fb5');
+        btn.style.backgroundImage = 'linear-gradient(to right, rgba(212,160,23,0.16) ' + Math.round(sp.maneh / max * 100) + '%, transparent 0)';
+        btn.onclick = () => pick(sp.id);
+        list.appendChild(btn);
+    });
+    panel.appendChild(list);
+    panel.appendChild(sheet);
+    mknFillSheet(sheet, null);
+    mknPara(panel, t('tools.mkn_ket_total', { total: K.TOTAL_MANEH, days: K.DAYS, extra: K.KIPPUR_EXTRA }));
+    return panel;
+}
+
+// Aujourd'hui : où dire le Pitoum haQétoret, avec un lien vers le texte du siddour de l'application (rite séfarade).
+function mknKetoretToday(K) {
+    const panel = mknEl('section', 'tool-panel');
+    panel.id = 'tool-mkn-ket-today';
+    panel.appendChild(mknEl('h3', 'tool-h', t('tools.mkn_ket_today_title')));
+    K.TODAY.forEach(r => {
+        const p = mknEl('p', 'tool-small');
+        p.appendChild(mknEl('strong', '', r.fr + ' : '));
+        p.appendChild(document.createTextNode(r.text));
+        panel.appendChild(p);
+        if (r.siddur && typeof openSiddurSections === 'function') {
+            const btn = mknEl('button', 'btn', t('tools.mkn_ket_read'));
+            btn.type = 'button';
+            btn.onclick = () => openSiddurSections(r.siddur, t('tools.mkn_ket_siddur_title'));
+            panel.appendChild(btn);
+        }
+    });
+    mknPara(panel, K.TODAY_NOTE);
+    return panel;
+}
+
+// =========================================================================
 // Onglet « Mikdash »
 // =========================================================================
 function mknMikdashTab(body) {
@@ -905,8 +1085,58 @@ function mknMikdashTab(body) {
 function mknOpen(toolId) { openTool(toolId, 'screen-tool-mishkan'); }
 
 
+// Le plan du Temple vu du dessus (est à droite), refait d'après le tableau « Degrés de sainteté » du livre. Chaque zone est un degré de la liste ;
+// le numéro dans le médaillon est celui de la liste (les degrés 1 à 3 entourent le Temple et n'ont pas de zone).
+function mknTemplePlanSvg(pick) {
+    const M = MishkanCore, P = M.TEMPLE_PLAN;
+    const svg = mknRoot(P.viewBox.join(' '), t('tools.mkn_holy_title'));
+    const rank = id => M.HOLINESS.findIndex(h => h.id === id) + 1;
+    const holyItem = (id) => {
+        const h = M.HOLINESS.find(x => x.id === id);
+        const g = mknSvg('g', { 'class': 'mkn-item' + (mknHoliness === id ? ' is-selected' : ''), 'data-id': id, tabindex: '0', role: 'button', 'aria-label': rank(id) + ' · ' + h.fr }, svg);
+        g.addEventListener('click', () => pick(id));
+        g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(id); } });
+        return g;
+    };
+    const rect = (parent, r, cls, fill) => mknSvg('rect', { x: r.x !== undefined ? r.x : r[0], y: r.y !== undefined ? r.y : r[1], width: r.w !== undefined ? r.w : r[2], height: r.h !== undefined ? r.h : r[3], 'class': cls, fill: fill }, parent);
+    const badge = (g, id, xy) => mknBadge(g, rank(id), xy[0], xy[1], 4.2);
+
+    // Le mont du Temple : tout le fond, avec une salle à l'est ; le 'hel, la bande qui longe le mur oriental.
+    const mount = holyItem('mount');
+    rect(mount, P.mount, 'mkn-holy-zone', '#f0dcd6');
+    rect(mount, P.room, 'mkn-holy-zone', '#b4533c');
+    badge(mount, 'mount', P.mountBadge);
+    const hel = holyItem('hel');
+    rect(hel, P.hel, 'mkn-holy-zone', '#d99aa2');
+    badge(hel, 'hel', P.hel.badge);
+
+    // Le parvis des femmes : la croix claire de la cour et ses quatre chambres d'angle.
+    const women = holyItem('women');
+    const wz = P.zones.find(z => z.id === 'women');
+    rect(women, wz, 'mkn-holy-zone', '#fbeaa4');
+    P.chambers.forEach(c => rect(women, c, 'mkn-holy-zone', '#f5d76a'));
+    badge(women, 'women', wz.badge);
+
+    const fills = { israelites: '#eab28f', priests: '#d98a5c', between: '#b9683a', holies: '#363a9c', sanctuary: '#7c80d6' };
+    P.zones.filter(z => z.id !== 'women').forEach(z => {
+        const g = holyItem(z.id);
+        rect(g, z, 'mkn-holy-zone', z.part === 'ulam' ? '#a9b3ec' : fills[z.id]);
+        badge(g, z.id, z.badge);
+    });
+    // Ce qui n'est pas un degré : les chambres du nord, la porte de l'est, l'autel et sa rampe.
+    const deco = mknSvg('g', { 'class': 'mkn-holy-deco', 'aria-hidden': 'true' }, svg);
+    P.towers.forEach(r => rect(deco, r, 'mkn-holy-zone', '#b4533c'));
+    rect(deco, P.gate, 'mkn-holy-zone', '#fbeaa4');
+    rect(deco, P.ramp, 'mkn-holy-zone', '#d4d4d4');
+    rect(deco, P.altar, 'mkn-holy-zone', '#ffffff');
+    mknSvg('text', { x: P.altar.x + P.altar.w / 2, y: P.altar.y + P.altar.h / 2 + 1.2, 'font-size': 3.4, 'text-anchor': 'middle', 'class': 'mkn-room-name' }, deco, t('tools.mkn_holy_altar'));
+    mknSvg('rect', { x: P.wall.x, y: P.wall.y, width: P.wall.w, height: P.wall.h, 'class': 'mkn-walls', 'pointer-events': 'none' }, svg);
+    [['O', 8, 'start'], ['E', 232, 'end']].forEach(c => mknSvg('text', { x: c[1], y: 97.5, 'font-size': 5, 'text-anchor': c[2], 'class': 'mkn-compass' }, svg, c[0]));
+    return svg;
+}
+
 // =========================================================================
-// Les lieux, du plus large au plus saint (Michna, Kélim 1:6-9) : une échelle, pas un plan à l'échelle
+// Les lieux, du plus large au plus saint (Michna, Kélim 1:6-9) : le plan du Temple, pas à l'échelle
 // =========================================================================
 function mknHolinessPanel() {
     const M = MishkanCore;
@@ -914,8 +1144,6 @@ function mknHolinessPanel() {
     panel.id = 'tool-mkn-holiness';
     panel.appendChild(mknEl('h3', 'tool-h', t('tools.mkn_holy_title')));
     mknPara(panel, t('tools.mkn_holy_intro'));
-    // Onze marches de plus en plus hautes, du plus clair (la terre d'Israël) au plus doré (le Saint des saints).
-    const svg = mknRoot('0 0 220 112', t('tools.mkn_holy_title'));
     const list = mknEl('div', 'mkn-legend');
     const sheet = mknEl('div', 'mkn-sheet-inline');
     const pick = id => {
@@ -925,15 +1153,8 @@ function mknHolinessPanel() {
         const h = M.HOLINESS.find(x => x.id === id);
         mknFillSheet(sheet, { fr: h.fr, he: h.he, ref: t('tools.mkn_holy_ref'), text: h.text });
     };
-    M.HOLINESS.forEach((h, i) => {
-        const w = 18, x = 6 + i * w, height = 14 + i * 8.4, y = 104 - height;
-        const g = mknSvg('g', { 'class': 'mkn-item' + (mknHoliness === h.id ? ' is-selected' : ''), 'data-id': h.id, tabindex: '0', role: 'button', 'aria-label': h.fr }, svg);
-        mknSvg('rect', { x: x, y: y, width: w - 1, height: height, fill: 'hsl(' + (48 - i) + ', ' + (30 + i * 5) + '%, ' + (90 - i * 4.6) + '%)', class: 'mkn-step' }, g);
-        mknSvg('text', { x: x + (w - 1) / 2, y: y + 8, 'font-size': 7, 'text-anchor': 'middle', class: 'mkn-badge-text' }, g, String(i + 1));
-        g.addEventListener('click', () => pick(h.id));
-        g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(h.id); } });
-    });
-    panel.appendChild(svg);
+    panel.appendChild(mknTemplePlanSvg(pick));
+    mknPara(panel, t('tools.mkn_holy_plan_note'));
     M.HOLINESS.forEach((h, i) => {
         const btn = mknEl('button', 'mkn-legend-btn', (i + 1) + ' · ' + h.fr);
         btn.type = 'button';

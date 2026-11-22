@@ -232,10 +232,10 @@
 <div id="screen-tool-library" class="list-screen hidden">
         <button class="back-btn" onclick="toolBack('library')" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
         <h2 class="header-title" data-i18n="tools.library_title">Bibliothèque juive</h2>
-        <p class="modes-header-subtitle" data-i18n="tools.library_intro">Les grandes œuvres de la tradition juive après la Bible, de la Michna à nos jours : l'auteur, la date, le lieu, ce que c'est. Touchez une œuvre pour sa fiche. Dates approximatives (« vers ») et attributions traditionnelles sont signalées.</p>
+        <p class="modes-header-subtitle" data-i18n="tools.library_intro">Les grandes œuvres de la tradition juive après la Bible, de la Michna à nos jours : codes, commentaires, midrachim, Moussar, Hassidout. L'auteur, la date, le lieu, ce que c'est. Touchez une œuvre pour sa fiche. Dates approximatives (« vers »), attributions traditionnelles et œuvres datées par la vie de leur auteur sont signalées.</p>
         <div class="tool-panel">
             <input type="search" id="tool-lib-search" class="tool-input" autocomplete="off" placeholder="Chercher une œuvre ou un auteur" aria-label="Chercher une œuvre ou un auteur" data-i18n-attr="placeholder:tools.library_search;aria-label:tools.library_search">
-            <div class="tool-history-chips" id="tool-lib-modes" role="group" aria-label="Classer par" data-i18n-attr="aria-label:tools.library_modes_aria"></div>
+            <div class="ben-rites lib-modes" id="tool-lib-modes" role="group" aria-label="Classer par" data-i18n-attr="aria-label:tools.library_modes_aria"></div>
             <div class="tool-history-chips is-scroll" id="tool-lib-filters" role="group" aria-label="Filtrer" data-i18n-attr="aria-label:tools.library_filters_aria"></div>
             <div class="tool-history-chips hidden" id="tool-lib-author"></div>
             <p class="tool-small" id="tool-lib-count" aria-live="polite"></p>
@@ -283,6 +283,16 @@
             <div class="tool-history-chips" id="tool-food-tabs" role="group" aria-label="Choisir une partie" data-i18n-attr="aria-label:tools.food_tabs_aria"></div>
             <div class="food-today-row hidden" id="tool-food-today" role="group" aria-label="Liste contemporaine" data-i18n-attr="aria-label:tools.food_tab_today"></div>
             <div id="tool-food-body" class="kor-body"></div>
+        </div>
+    </div>
+
+<div id="screen-tool-messiah" class="list-screen hidden">
+        <button class="back-btn" onclick="toolBack('messiah')" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title" data-i18n="tools.mes_title">Le Machiah et la résurrection</h2>
+        <p class="modes-header-subtitle" data-i18n="tools.mes_intro">Qui est le Machiah, comment le reconnaître, les étapes de sa venue et la résurrection des morts, d'après la Torah, les Prophètes, le Talmud et le Rambam. Chaque point porte un badge : consensus, opinion d'un maître ou tradition d'aggada. Outil d'étude, pas une décision de halakha.</p>
+        <div class="tool-panel kor-panel">
+            <div class="tool-history-chips" id="tool-mes-tabs" role="group" aria-label="Choisir une partie" data-i18n-attr="aria-label:tools.mes_tabs_aria"></div>
+            <div id="tool-mes-body" class="kor-body"></div>
         </div>
     </div>
 
@@ -455,7 +465,7 @@
         <h2 class="header-title" data-i18n="tools.mkn_title">Michkan et Mikdash</h2>
         <p class="modes-header-subtitle" data-i18n="tools.mkn_intro">Le Tabernacle est construit sur l'ordre donné à Moïse (Exode 25-31 ; 35-40), avec des mesures en coudées. Touchez un élément pour lire sa fiche, et choisissez l'avis sur la longueur de la coudée pour voir les mètres.</p>
         <div class="tool-panel">
-            <div class="tool-history-chips" id="tool-mkn-tabs" role="group" aria-label="Plan, ustensiles, structure, vêtements ou Temples" data-i18n-attr="aria-label:tools.mkn_tabs_aria"></div>
+            <div class="tool-history-chips" id="tool-mkn-tabs" role="group" aria-label="Plan, ustensiles, structure, vêtements, kétoret ou Temples" data-i18n-attr="aria-label:tools.mkn_tabs_aria"></div>
             <div id="tool-mkn-body" class="mkn-body"></div>
         </div>
         <div class="arcade-menu hcal-game">
@@ -543,21 +553,46 @@
         <h2 class="header-title" data-i18n="tools.gematria_title">Guématria</h2>
         <p class="modes-header-subtitle" data-i18n="tools.gematria_intro">Tapez un mot en hébreu : chaque lettre s'affiche avec sa valeur, puis l'addition. Les voyelles sont ignorées.</p>
         <div class="tool-panel">
-            <div class="tool-field">
-                <label for="tool-gematria-input" data-i18n="tools.gematria_label">Un mot ou une phrase en hébreu</label>
-                <input type="text" id="tool-gematria-input" class="tool-input gem-input" lang="he" dir="rtl" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="שלום" oninput="toolGematriaUpdate()">
-            </div>
             <div class="tool-history-chips" id="tool-gematria-modes" role="group" aria-label="Mode de calcul" data-i18n-attr="aria-label:tools.gematria_modes_aria"></div>
             <p class="tool-small" id="tool-gematria-help"></p>
             <label class="gem-reduce"><input type="checkbox" id="tool-gematria-gadol" onchange="toolGematriaUpdate()"> <span data-i18n="tools.gematria_gadol">Lettres finales de 500 à 900 (mispar gadol)</span></label>
             <p class="tool-small" id="tool-gematria-gadol-note"></p>
             <label class="gem-reduce"><input type="checkbox" id="tool-gematria-reduce" onchange="toolGematriaUpdate()"> <span data-i18n="tools.gematria_reduce">Réduire à un seul chiffre</span></label>
-            <p class="tool-msg" id="tool-gematria-msg" role="status"></p>
-            <div class="tool-result hidden" id="tool-gematria-result">
-                <p class="tool-big" id="tool-gematria-big"></p>
-                <div class="tool-chips gem-chips" id="tool-gematria-parts" role="list" dir="rtl"></div>
-                <p class="tool-small" id="tool-gematria-sum"></p>
-                <p class="tool-small" id="tool-gematria-reduced"></p>
+            <div class="gem-actions">
+                <button type="button" class="tool-history-chip" id="tool-gematria-compare-btn" aria-pressed="false" aria-controls="tool-gematria-slot-b" onclick="toolGematriaToggleCompare()"></button>
+            </div>
+            <div class="gem-pair" id="tool-gematria-pair">
+                <section class="gem-slot gem-slot-a" aria-labelledby="tool-gematria-label">
+                    <div class="tool-field">
+                        <label id="tool-gematria-label" for="tool-gematria-input" data-i18n="tools.gematria_label">Un mot ou une phrase en hébreu</label>
+                        <input type="text" id="tool-gematria-input" class="tool-input gem-input" lang="he" dir="rtl" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="שלום" oninput="toolGematriaUpdate()">
+                    </div>
+                    <p class="tool-msg" id="tool-gematria-msg" role="status"></p>
+                    <div class="tool-result hidden" id="tool-gematria-result">
+                        <p class="tool-big" id="tool-gematria-big"></p>
+                        <div class="tool-chips gem-chips" id="tool-gematria-parts" role="list" dir="rtl"></div>
+                        <p class="tool-small" id="tool-gematria-sum"></p>
+                        <p class="tool-small" id="tool-gematria-reduced"></p>
+                    </div>
+                </section>
+                <div class="gem-compare hidden" id="tool-gematria-compare" role="status" aria-live="polite">
+                    <p class="gem-compare-main" id="tool-gematria-compare-main" dir="ltr"></p>
+                    <p class="tool-small gem-compare-detail" id="tool-gematria-compare-detail"></p>
+                    <button type="button" class="tool-history-chip" id="tool-gematria-swap" onclick="toolGematriaSwap()"></button>
+                </div>
+                <section class="gem-slot gem-slot-b hidden" id="tool-gematria-slot-b" aria-labelledby="tool-gematria-label-b">
+                    <div class="tool-field">
+                        <label id="tool-gematria-label-b" for="tool-gematria-input-b" data-i18n="tools.gematria_label_b">Second mot ou phrase en hébreu</label>
+                        <input type="text" id="tool-gematria-input-b" class="tool-input gem-input" lang="he" dir="rtl" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="שלם" oninput="toolGematriaUpdate()">
+                    </div>
+                    <p class="tool-msg" id="tool-gematria-msg-b" role="status"></p>
+                    <div class="tool-result hidden" id="tool-gematria-result-b">
+                        <p class="tool-big" id="tool-gematria-big-b"></p>
+                        <div class="tool-chips gem-chips" id="tool-gematria-parts-b" role="list" dir="rtl"></div>
+                        <p class="tool-small" id="tool-gematria-sum-b"></p>
+                        <p class="tool-small" id="tool-gematria-reduced-b"></p>
+                    </div>
+                </section>
             </div>
         </div>
     </div>
@@ -698,7 +733,7 @@
         <p class="modes-header-subtitle" data-i18n="tools.tanakh_intro">Les livres de la Bible hébraïque. Un verset par paragraphe, numéroté.</p>
         <div class="tool-panel">
             <div id="tool-tanakh-books" aria-label="Livres" data-i18n-attr="aria-label:tools.torah_book_label"></div>
-            <div class="tool-history-chips" id="tool-tanakh-mode" role="group" aria-label="Choix par chapitre ou par paracha" data-i18n-attr="aria-label:tools.tanakh_mode_label" hidden></div>
+            <div class="ben-rites" id="tool-tanakh-mode" role="group" aria-label="Choix par chapitre ou par paracha" data-i18n-attr="aria-label:tools.tanakh_mode_label" hidden></div>
             <div class="torah-nav">
                 <button type="button" class="tool-history-chip" id="tool-tanakh-prev" onclick="tanakhGoChapter(-1)" aria-label="Chapitre précédent" data-i18n-attr="aria-label:tools.torah_prev">‹</button>
                 <select id="tool-tanakh-chapter" class="tool-input torah-chapter" aria-label="Chapitre" data-i18n-attr="aria-label:tools.torah_chapter_label" onchange="tanakhSelectChapter(this.value)"></select>
@@ -707,11 +742,9 @@
             <div class="tool-history-chips" id="tool-tanakh-aliyah" role="group" aria-label="Aliyot" data-i18n-attr="aria-label:tools.tanakh_aliyah_label" hidden></div>
             <div class="tanakh-cycle" id="tool-tanakh-cycle" hidden></div>
             <div class="tanakh-cycle" id="tool-tanakh-summary" hidden></div>
-            <div class="tool-history-chips" id="tool-tanakh-show" role="group" aria-label="Langues affichées" data-i18n-attr="aria-label:tools.tanakh_show_label"></div>
-            <hr class="tanakh-chips-sep" aria-hidden="true">
-            <div class="tool-history-chips" id="tool-tanakh-vowels" role="group" aria-label="Affichage du texte" data-i18n-attr="aria-label:tools.torah_vowels_label"></div>
-            <hr class="tanakh-chips-sep" aria-hidden="true">
-            <div class="tool-history-chips" id="tool-tanakh-flow" role="group" aria-label="Mise en page du texte" data-i18n-attr="aria-label:tools.tanakh_flow_label"></div>
+            <div class="ben-rites" id="tool-tanakh-show" role="group" aria-label="Langues affichées" data-i18n-attr="aria-label:tools.tanakh_show_label"></div>
+            <div class="ben-rites" id="tool-tanakh-vowels" role="group" aria-label="Affichage du texte" data-i18n-attr="aria-label:tools.torah_vowels_label"></div>
+            <div class="ben-rites" id="tool-tanakh-flow" role="group" aria-label="Mise en page du texte" data-i18n-attr="aria-label:tools.tanakh_flow_label"></div>
             <p class="tool-small" id="tool-tanakh-flow-note" hidden></p>
             <button type="button" class="tool-history-chip tanakh-auto-btn" id="tool-tanakh-auto" aria-pressed="false" onclick="autoScrollToggle('tanakh')" data-i18n="autoscroll.start" data-i18n-attr="title:autoscroll.help" title="Le texte défile tout seul ; vous réglez la vitesse">▶︎ Défilement automatique</button>
             <details class="tanakh-comm-panel" id="tool-tanakh-comm" hidden>
@@ -774,6 +807,7 @@
     <script src="js/app/siddur.js"></script>
     <script src="js/app/kotel.js"></script>
     <script src="js/mishkanCore.js"></script>
+    <script src="js/ketoretCore.js"></script>
     <script src="js/app/mishkan.js"></script>
     <script src="js/biblicalMapsCore.js"></script>
     <script src="js/app/biblical-base.js"></script>
@@ -789,6 +823,9 @@
     <script src="js/foodLawsData.js"></script>
     <script src="js/foodLawsCore.js"></script>
     <script src="js/app/foodlaws.js"></script>
+    <script src="js/messiahData.js"></script>
+    <script src="js/messiahCore.js"></script>
+    <script src="js/app/messiah.js"></script>
     <script src="js/benedictionsData.js"></script>
     <script src="js/benedictionsCore.js"></script>
     <script src="js/app/benedictions.js"></script>

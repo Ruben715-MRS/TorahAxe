@@ -144,8 +144,31 @@
         return { mode: m, gadol: g, letters: letters, ignored: parsed.ignored, total: total, reduced: reduce && letters.length ? reduceSteps(total) : null };
     }
 
+    // Compare deux calculs (résultats de `compute`) : { equal, difference, larger: 'a' | 'b' | null, multiple, sameReduced, common }.
+    //  - difference : l'écart absolu entre les deux totaux ;
+    //  - multiple : si les totaux sont différents et que le plus grand est un multiple entier du plus petit (≥ 2), ce rapport ; sinon null ;
+    //  - sameReduced : si les totaux diffèrent mais que la réduction à un chiffre donne le même nombre, ce nombre ; sinon null ;
+    //  - common : les lettres ordinaires présentes dans les deux textes (ך et כ comptent pour la même), dans l'ordre de l'alphabet.
+    function compare(a, b) {
+        var ta = a.total, tb = b.total;
+        var inA = {}, inB = {};
+        a.letters.forEach(function (l) { inA[l.base] = true; });
+        b.letters.forEach(function (l) { inB[l.base] = true; });
+        var hi = Math.max(ta, tb), lo = Math.min(ta, tb);
+        var ra = a.reduced ? a.reduced[a.reduced.length - 1] : null;
+        var rb = b.reduced ? b.reduced[b.reduced.length - 1] : null;
+        return {
+            equal: ta === tb,
+            difference: hi - lo,
+            larger: ta > tb ? 'a' : (tb > ta ? 'b' : null),
+            multiple: ta !== tb && lo > 0 && hi % lo === 0 ? hi / lo : null,
+            sameReduced: ta !== tb && ra !== null && ra === rb ? ra : null,
+            common: LETTERS.map(function (l) { return l.letter; }).filter(function (c) { return inA[c] && inB[c]; })
+        };
+    }
+
     return {
         LETTERS: LETTERS, FINALS: FINALS, GADOL: GADOL, MODES: MODES,
-        baseLetter: baseLetter, parse: parse, letterValue: letterValue, reduceSteps: reduceSteps, compute: compute
+        baseLetter: baseLetter, parse: parse, letterValue: letterValue, reduceSteps: reduceSteps, compute: compute, compare: compare
     };
 });

@@ -637,6 +637,21 @@ function tanakhPartOf(book, i) {
     return current;
 }
 
+// Une bande de choix (même habillage que les rites du guide des bénédictions) : une case par option, de largeur égale.
+function tanakhSegment(box, options, current, onPick) {
+    toolClear(box);
+    box.className = 'ben-rites seg-' + options.length;
+    options.forEach(([mode, label]) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'ben-rite';
+        btn.setAttribute('aria-pressed', mode === current ? 'true' : 'false');
+        btn.textContent = label;
+        btn.onclick = () => onPick(mode);
+        box.appendChild(btn);
+    });
+}
+
 // « Par chapitre » ou « Par paracha » : visible pour un livre de la Torah dont la liste des parachiot est chargée. Passer d'un mode à l'autre
 // garde la place : la paracha qui contient le début du chapitre, ou le chapitre où commence la paracha.
 function tanakhRenderMode() {
@@ -644,15 +659,7 @@ function tanakhRenderMode() {
     toolClear(box);
     box.hidden = !tanakhHasParashot();
     if (box.hidden) return;
-    [['chapter', 'tools.tanakh_mode_chapter'], ['parasha', 'tools.tanakh_mode_parasha']].forEach(([mode, key]) => {
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'tool-history-chip';
-        btn.setAttribute('aria-pressed', mode === tanakhMode() ? 'true' : 'false');
-        btn.textContent = t(key);
-        btn.onclick = () => tanakhSetMode(mode);
-        box.appendChild(btn);
-    });
+    tanakhSegment(box, [['chapter', t('tools.tanakh_mode_chapter')], ['parasha', t('tools.tanakh_mode_parasha')]], tanakhMode(), tanakhSetMode);
 }
 
 function tanakhSetMode(mode) {
@@ -673,31 +680,13 @@ function tanakhSetMode(mode) {
 // Hébreu et français, hébreu seul, ou français seul.
 function tanakhRenderShow() {
     const box = toolEl('tool-tanakh-show');
-    toolClear(box);
-    [['both', 'tools.tanakh_show_both'], ['he', 'tools.tanakh_show_he'], ['fr', 'tools.tanakh_show_fr']].forEach(([mode, key]) => {
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'tool-history-chip';
-        btn.setAttribute('aria-pressed', mode === tanakhState.show ? 'true' : 'false');
-        btn.textContent = t(key);
-        btn.onclick = () => { tanakhState.show = mode; tanakhRender(); };
-        box.appendChild(btn);
-    });
+    tanakhSegment(box, [['he', t('tools.tanakh_show_he')], ['fr', t('tools.tanakh_show_fr')], ['both', t('tools.tanakh_show_both')]], tanakhState.show, mode => { tanakhState.show = mode; tanakhRender(); });
 }
 
 // Verset par verset, ou texte continu. La préférence est gardée sur l'appareil ; une note rappelle ce que le texte continu ne montre pas.
 function tanakhRenderFlow() {
     const box = toolEl('tool-tanakh-flow');
-    toolClear(box);
-    [['verses', 'tools.tanakh_flow_verses'], ['text', 'tools.tanakh_flow_text']].forEach(([mode, key]) => {
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'tool-history-chip';
-        btn.setAttribute('aria-pressed', mode === tanakhState.flow ? 'true' : 'false');
-        btn.textContent = t(key);
-        btn.onclick = () => tanakhSetFlow(mode);
-        box.appendChild(btn);
-    });
+    tanakhSegment(box, [['verses', t('tools.tanakh_flow_verses')], ['text', t('tools.tanakh_flow_text')]], tanakhState.flow, tanakhSetFlow);
     const note = toolEl('tool-tanakh-flow-note');
     note.hidden = !tanakhFlowOn();
     note.textContent = t('tools.tanakh_flow_note');
@@ -756,16 +745,7 @@ function tanakhRenderCommPanel() {
 
 function tanakhRenderVowels() {
     const box = toolEl('tool-tanakh-vowels');
-    toolClear(box);
-    [['full', 'tools.tanakh_vowels_full'], ['consonants', 'tools.tanakh_vowels_consonants']].forEach(([mode, key]) => {
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'tool-history-chip';
-        btn.setAttribute('aria-pressed', mode === tanakhState.vowels ? 'true' : 'false');
-        btn.textContent = t(key);
-        btn.onclick = () => { tanakhState.vowels = mode; tanakhRender(); };
-        box.appendChild(btn);
-    });
+    tanakhSegment(box, [['full', t('tools.tanakh_vowels_full')], ['consonants', t('tools.tanakh_vowels_consonants')]], tanakhState.vowels, mode => { tanakhState.vowels = mode; tanakhRender(); });
 }
 
 // Le texte hébreu d'un verset : le qere est lu ; « sans voyelles » garde les consonnes du ketiv.

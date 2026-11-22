@@ -143,9 +143,18 @@ function sdBetweenShkiaAndTzeit() {
 function sdFetchJson(url) {
     return fetch(url).then(res => { if (!res.ok) throw new Error('http ' + res.status); return res.json(); });
 }
+// Les titres du siddour, vocalisés (data/siddur/titles-niqqud.json : titre sans voyelles → titre vocalisé). Facultatif : sans ce fichier, les titres restent comme dans la source.
+let sdTitles = {};
+function sdTitleNiqqud(he) {
+    const k = String(he).replace(/\s+/g, ' ').trim();
+    if (sdTitles[k]) return sdTitles[k];
+    if (k.indexOf('›') >= 0) return k.split('›').map(p => sdTitles[p.trim()] || p.trim()).join(' › ');
+    return he;
+}
 function sdLoadIndex() {
     if (sdIndex) return Promise.resolve(sdIndex);
     const base = sdBase();
+    sdFetchJson(SD_DATA + 'titles-niqqud.json').then(m => { sdTitles = m || {}; }).catch(() => {});
     return sdFetchJson(base + 'index.json').then(index => { sdIndex = index; sdIndexBase = base; sdFromSefarade = new Set(); index.groups.forEach(g => g.sections.forEach(x => { if (x.from) sdFromSefarade.add(x.id); })); sdApplyRite(); return index; });
 }
 function sdLoadSection(id) {
@@ -490,7 +499,7 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && sdSheetE
 function sdRowButton(info, onclick, extra) {
     const b = sdEl('button', 'home-row');
     b.type = 'button';
-    const he = sdEl('span', 'he', info.he);
+    const he = sdEl('span', 'he', sdTitleNiqqud(info.he));
     he.lang = 'he'; he.dir = 'rtl';
     const text = sdEl('span');
     text.appendChild(sdEl('span', 'fr', info.title));
@@ -930,7 +939,7 @@ function sdBindScroll() {
     sdScrollBound = true;
 }
 
-function sdShortHe(he) { return String(he).split('›').pop().trim(); }
+function sdShortHe(he) { return sdTitleNiqqud(String(he).split('›').pop().trim()); }
 
 // La barre du lecteur : le texte en cours (titre et rang dans la prière) et le filet de progression.
 function sdUpdateReadBar() {
@@ -1520,7 +1529,7 @@ function sdRenderReader(body) {
         toolClear(content);
         if (sdShabbatNote) content.appendChild(sdEl('p', 'sd-fr-note', sdShabbatNote));
         if (sdPrefs.fr) content.appendChild(sdEl('p', 'sd-fr-note', t('tools.sd_fr_note')));
-        sections.forEach(section => content.appendChild(sdRenderSection(section)));
+        sections.forEach(section => { const sec = sdRenderSection(section); sdVowelTitles(sec); content.appendChild(sec); });
         sdAddNav(wrap);
         sdAddInterFab(wrap);
         if (!bar.querySelector('.sd-parts')) { const tabs = sdPartsNav(); if (tabs) bar.insertBefore(tabs, bar.querySelector('.sd-read-prog')); }
@@ -1600,6 +1609,9 @@ function sdRenderNodes(nodes, parent, skipMark) {
             return;
         } else {
             // <small> : une consigne (sans voyelles) passe en police d'interface ; un texte de prière en <small> (vocalisé) garde presque sa taille.
+            // Une consigne courte restée dans la ligne, sans voyelles et sans variante : sa traduction française (sauf si l'on a demandé les consignes en hébreu).
+            const inlineFr = node.n === 'small' && !m && !sdPrefs.heRub && !SD_HAS_NIQQUD.test(SiddurCore.plain(node)) ? sdInlineRubricFr(SiddurCore.plain(node)) : null;
+            if (inlineFr) { const r = sdEl('span', 'sd-small sd-small-rub', inlineFr); r.lang = 'fr'; r.dir = 'ltr'; parent.appendChild(r); return; }
             const smallCls = SD_HAS_NIQQUD.test(SiddurCore.plain(node)) ? 'sd-small sd-small-text' : 'sd-small sd-small-rub';
             el = sdEl(node.n === 'b' ? 'strong' : 'span', node.n === 'small' ? smallCls : node.n === 'big' ? 'sd-big' : '');
             if (m) el.className = (el.className + ' ' + sdVariantClass(m)).trim();
@@ -1619,6 +1631,31 @@ function sdRenderNodes(nodes, parent, skipMark) {
 // français et ses premiers mots), avec, s'il y en a une, la règle en cas d'erreur. Les consignes du livre (hébreu sans voyelles) sont montrées
 // par leur traduction française (data/siddur/fr/). Rien n'est supprimé : tout se déplie, et « Tout afficher » montre tout comme le livre.
 const SD_HAS_NIQQUD = /[ְ-ׇ]/;
+// Les consignes courtes restées dans une ligne de prière (« ואומר בלחש », « קהל: », « ג״פ »…) : leur traduction française. Clé : l'hébreu sans parenthèses,
+// guillemets normalisés, sans « : » final (on le remet). Ce que la liste ne connaît pas reste en hébreu.
+const SD_INLINE_RUBRICS = {
+    'ואומר בלחש': 'À voix basse', 'בלחש': 'À voix basse', 'בקול': 'À voix haute', 'יפסיק מעט': 'On marque une courte pause',
+    'שתי פעמים': 'Deux fois', 'ב\' פעמים': 'Deux fois', 'ג"פ': 'Trois fois', 'ג\' פעמים': 'Trois fois',
+    'קהל': 'Assemblée', 'הקהל': 'L\'assemblée', 'חזן': 'Officiant', 'אבל': 'Endeuillé', 'קהל וחזן': 'Assemblée et officiant', 'קהל ואבל': 'Assemblée et endeuillé',
+    'והקהל עונים': 'L\'assemblée répond', 'ועונים הקהל': 'L\'assemblée répond', 'הקהל עונים': 'L\'assemblée répond', 'והציבור עונים': 'L\'assemblée répond',
+    'ועונים': 'Et l\'on répond', 'ומשיבים': 'Et l\'on répond',
+    'ואומר החזן': 'L\'officiant dit', 'וחוזר החזן': 'L\'officiant répète', 'המברך אומר': 'Celui qui dirige dit',
+    'מסובים עונים': 'Les convives répondent', 'המסובים עונים': 'Les convives répondent', 'ומי שלא אכל עונה': 'Celui qui n\'a pas mangé répond',
+    'משתחוה בברוך וזוקף בשם': 'On s\'incline à « Baroukh » et l\'on se redresse au Nom',
+    'האומרים קדיש פוסעים שלוש פסיעות לאחור': 'Ceux qui disent le Kaddich font trois pas en arrière',
+    'ויש המוסיפים': 'Certains ajoutent', 'וי"א גם': 'Certains disent aussi', 'או': 'ou',
+    'בחו"ל': 'En diaspora', 'בחוץ לארץ מוסיפים': 'En diaspora, on ajoute'
+};
+function sdInlineRubricFr(he) {
+    let k = String(he).replace(/[״“”]/g, '"').replace(/[׳‘’]/g, '\'').replace(/\s+/g, ' ').trim();
+    const paren = /^\(.*\)$/.test(k);
+    if (paren) k = k.slice(1, -1).trim();
+    const colon = /\s*:$/.test(k);
+    k = k.replace(/\s*:$/, '').trim();
+    const fr = SD_INLINE_RUBRICS[k];
+    if (!fr) return null;
+    return (paren ? '(' : '') + fr + (colon ? ' :' : '') + (paren ? ')' : '');
+}
 function sdTextNode(v) {
     const n = document.createTextNode(sdText(v));
     sdOrigText.set(n, v);
@@ -1904,6 +1941,14 @@ const SD_MC_LABELS = { 'בחו"ל': 'Hors d\'Israël', 'וי"א גם': 'Certains
 
 // Les inclinaisons (usage séfarade) : au début et à la conclusion de la 1re bénédiction, et de la bénédiction de reconnaissance (Modim).
 // Le signe est un nœud { t: 'text', v: '', k: 'bow' } glissé dans l'arbre avant le mot (le texte, lui, n'est pas modifié).
+// Le Chir chel yom (séfarade) : la phrase d'introduction (« היום יום אחד בשבת קודש… ») n'est pas vocalisée dans la source ; on la vocalise ici, pour que sa
+// traduction (liée au texte de la source) ne change pas. Une phrase déjà vocalisée, ou que l'on ne reconnaît pas, reste telle quelle.
+const SD_DAY_INTRO_DAYS = { 'אחד': 'אֶחָד', 'שני': 'שֵׁנִי', 'שלישי': 'שְׁלִישִׁי', 'רביעי': 'רְבִיעִי', 'חמישי': 'חֲמִישִׁי', 'השישי': 'הַשִּׁשִּׁי', 'ששי': 'שִׁשִּׁי' };
+function sdVowelDayIntro(he) {
+    const m = /^היום יום (אחד|שני|שלישי|רביעי|חמישי|השישי|ששי) בשבת קודש(,? השיר שהיו הלוים אומרים על הדוכן)?\s*(:?)$/.exec(he.replace(/\s+/g, ' ').trim());
+    if (!m) return he;
+    return 'הַיּוֹם יוֹם ' + SD_DAY_INTRO_DAYS[m[1]] + ' בְּשַׁבָּת קֹדֶשׁ' + (m[2] ? ', הַשִּׁיר שֶׁהָיוּ הַלְוִיִּם אוֹמְרִים עַל הַדּוּכָן' : '') + m[3];
+}
 function sdWordAt(str, word, last) {
     let bare = '';
     const map = [];
@@ -2215,6 +2260,16 @@ function sdSplitHarahaman(node) {
     node.c = out;
 }
 
+// « הרחמן הוא יוליכנו מהרה קוממיות בארצנו » : en Israël, « dans notre pays » ; en diaspora, « לארצנו » (vers notre pays). Seul le texte séfarade porte « בארצנו ».
+const SD_BEARTZENU = /(^|\s)ב([\u0591-\u05c7]*)(?=א[\u0591-\u05c7]*ר[\u0591-\u05c7]*צ[\u0591-\u05c7]*נ[\u0591-\u05c7]*ו[\u0591-\u05c7]*(\s|$|[,.:;]))/;
+function sdApplyDiaspora(node) {
+    if (!node.c) return;
+    node.c.forEach(k => {
+        if (k.t === 'tag') sdApplyDiaspora(k);
+        else if (k.t === 'text') k.v = k.v.replace(SD_BEARTZENU, '$1\u05DC\u05B0');
+    });
+}
+
 // Le Zimoun : avec dix hommes ou plus, on ajoute « Élohénou ». La source le met entre parenthèses (« (בעשרה ויותר: אלהינו) ») : on garde le mot ou on l'enlève.
 function sdApplyMinyan(node, ten) {
     if (!node.c) return;
@@ -2248,15 +2303,23 @@ const SD_BH_FORGOT = [
     { re: /רצה והחליצנו/, label: 'Oubli de « Agrée-nous » (Chabbat)' },
     { re: /יעלה ויבוא/, label: 'Oubli de « Yaalé véyavo » (Roch \'Hodech)' }
 ];
-// L'encadré de Halakha de Mayim Aharonim (Choul'han Aroukh, Ora'h 'Haïm 181), sous la consigne qui le mentionne.
+// L'encadré de Halakha de Mayim Aharonim (Choul'han Aroukh, Ora'h 'Haïm 181) : les règles communes, puis ce qui est propre au rite du lecteur.
 function sdMayimHalakha() {
+    const rite = sdRite();
     const fold = sdEl('details', 'sd-about');
     fold.appendChild(sdEl('summary', '', 'Halakha : Mayim Aharonim'));
+    const oblig = rite === 'ashkenaze'
+        ? 'Le Rema (181:10) note que beaucoup ont l\'habitude de ne pas le faire aujourd\'hui, faute de sel de Sodome (et comme on mange avec des couverts). Mais la Michna Beroura et de nombreux décisionnaires ashkénazes recommandent d\'être rigoureux et de le faire, surtout à Chabbat et aux fêtes, ou si les mains sont sales. Les femmes ashkénazes n\'ont généralement pas l\'usage de le faire.'
+        : rite === 'habad'
+        ? 'Chez \'Habad, c\'est une obligation (\'hova), comme l\'indique le siddour, même sans sel de Sodome : pour la raison kabbalistique, et parce qu\'une ordonnance rabbinique reste en vigueur quand sa cause a disparu.'
+        : 'Chez les Séfarades, c\'est une obligation (\'hova), même sans sel de Sodome : pour la raison kabbalistique, et parce qu\'une ordonnance rabbinique reste en vigueur quand sa cause a disparu. Selon le Yalkout Yossef, les femmes qui ont mangé du pain y sont tenues aussi.';
+    const lips = rite === 'ashkenaze' ? ''
+        : ' Selon le Zohar et certains usages (' + (rite === 'habad' ? '\'Habad' : 'séfarades') + '), on passe d\'abord les doigts encore humides sur les lèvres' + (rite === 'habad' ? ' (sauf à Pessa\'h)' : '') + '.';
     [['De quoi s\'agit-il ?', 'Mayim Aharonim (« les dernières eaux ») est le lavage du bout des doigts à la fin d\'un repas avec du pain, juste avant le Birkat haMazon.'],
      ['Pourquoi ?', 'D\'après le Talmud (Houllin 105a), on utilisait à table du sel de Sodome, très corrosif : des doigts qui en gardaient pouvaient abîmer les yeux. Selon le Zohar, le lavage ôte aussi des doigts une influence négative (Roua\'h Ra\'a) qui s\'y attache pendant le repas, pour bénir les mains propres.'],
-     ['Est-ce obligatoire aujourd\'hui ?', 'Séfarades : oui, c\'est une obligation (\'hova), même sans sel de Sodome, pour la raison kabbalistique et parce qu\'une ordonnance rabbinique reste en vigueur quand sa cause a disparu. Selon le Yalkout Yossef, les femmes qui ont mangé du pain y sont tenues aussi. Ashkénazes : le Rema (181:10) note que beaucoup ne le font pas aujourd\'hui, mais la Michna Beroura et de nombreux décisionnaires recommandent de le faire, surtout à Chabbat et aux fêtes, ou si les mains sont sales. Les femmes ashkénazes ne le font généralement pas.'],
+     ['Est-ce obligatoire aujourd\'hui ?', oblig],
      ['Comment faire', 'Aucune bénédiction. On lave les doigts jusqu\'à la deuxième phalange (certains disent toute leur longueur, et plus haut si les mains sont salies plus haut), les doigts dirigés vers le bas. Peu d\'eau suffit (pas besoin d\'un Revi\'it), froide ou tiède, pas chaude. Pas besoin d\'un verre rituel ni de verser à la main : le robinet convient. On ne verse pas cette eau sur un sol où l\'on marche, car un Roua\'h Ra\'a y réside ; un bol laissé à table se retire ou se couvre avant le Birkat haMazon.'],
-     ['Essuyage', 'On s\'essuie les mains avant le Birkat haMazon. Selon le Zohar et certains usages (séfarades, \'Habad), on passe d\'abord les doigts encore humides sur les lèvres (sauf à Pessa\'h selon l\'usage \'Habad).'],
+     ['Essuyage', 'On s\'essuie les mains avant le Birkat haMazon, pour ne pas bénir avec des mains mouillées ou souillées.' + lips],
      ['Sans interruption', 'On commence le Birkat haMazon tout de suite après le lavage et l\'essuyage, sans parler ni s\'interrompre. En cas d\'interruption ou de parole inutile, on refait Mayim Aharonim.'],
      ['À plusieurs', 'Avec Zimoun (trois hommes ou plus), si l\'assemblée compte cinq personnes ou plus, on donne Mayim Aharonim en premier à celui qui dirige le Zimoun, pour qu\'il se prépare pendant que les autres se lavent les mains.']].forEach(r => {
         const row = sdEl('p', 'sd-about-row');
@@ -2490,6 +2553,26 @@ function sdMcTable(trees) {
     return box;
 }
 
+// Les intertitres du texte (<h4 class="sd-title">) : leurs mots sont remplacés un à un par leur forme vocalisée, sans toucher à la mise en forme.
+function sdVowelTitles(root) {
+    root.querySelectorAll('h4.sd-title').forEach(h => {
+        const full = h.textContent.replace(/\s+/g, ' ').trim();
+        if (!full || SD_HAS_NIQQUD.test(full)) return;
+        const v = sdTitleNiqqud(full);
+        if (v === full) return;
+        const words = v.split(' ');
+        if (words.length !== full.split(' ').length) return;
+        let n = 0;
+        const walker = document.createTreeWalker(h, NodeFilter.SHOW_TEXT);
+        const nodes = [];
+        while (walker.nextNode()) nodes.push(walker.currentNode);
+        nodes.forEach(tn => {
+            const out = tn.data.replace(/\S+/g, () => words[n++] || '');
+            sdOrigText.set(tn, out);
+            tn.data = sdText(out);
+        });
+    });
+}
 function sdRenderSection(section) {
     const box = sdEl('section', 'sd-section-box');
     box.id = 'sd-sec-' + section.id;
@@ -2519,6 +2602,7 @@ function sdRenderSection(section) {
     let bows = 0;
     trees.forEach((tr, k) => { if (amida) bows += sdAddBows(tr, bares[k]); sdMarkNames(tr); });
     if (bhSection) trees.forEach(tr => { sdApplyMinyan(tr, sdPrefs.zim === 10); sdSplitHarahaman(tr); });
+    if (section.id === 'birkat-hamazon' && !(sdCtx && sdCtx.israel)) trees.forEach(sdApplyDiaspora);
     const groups = SiddurCore.groups(section.segments);
     const byHeader = {};
     groups.forEach(g => { byHeader[g.header] = g; });
@@ -2603,6 +2687,7 @@ function sdRenderSection(section) {
         if (mcAt[i]) { out.appendChild(sdMcTable(trees.slice(i, mcAt[i].to + 1))); i = mcAt[i].to + 1; continue; }
         if (section.id === 'birkat-hamazon' && i === 4 && /^אם המסובים שלושה/.test(bares[4]) && /^ברוך אתה/.test(bares[15] || '')) { out.appendChild(sdZimounSefarade()); i = 15; continue; }
         if (bhSection && section.id !== 'birkat-hamazon' && /^שלושה שאכלו/.test(bares[i])) {
+            if (section.id === 'birkat-hamazon-ashkenaze') out.appendChild(sdMayimHalakha());     // ce siddour n'a pas de consigne pour Mayim Aharonim : on place le dépliant avant le Zimoun
             out.appendChild(sdZimounControls(false));
             if (sdPrefs.zim === 1) {                       // sans Zimoun : on saute jusqu'à la première bénédiction (avec la note d'origine de la source, s'il y en a une)
                 let j = bares.findIndex(b => SD_BH[0].start.test(b));
@@ -2630,7 +2715,7 @@ function sdRenderSection(section) {
             const head = SiddurCore.plain(trees[h]).replace(/\s+/g, ' ').trim();
             const at = sdWordAt(head, 'היום', false);
             out.appendChild(sdVarBlock([], label, SiddurCore.plain(trees[h + 1]), host => {
-                if (at >= 0) { const p = sdEl('p', 'sd-seg'); p.lang = 'he'; p.dir = 'rtl'; p.appendChild(sdTextNode(head.slice(at))); host.appendChild(p); }
+                if (at >= 0) { const p = sdEl('p', 'sd-seg'); p.lang = 'he'; p.dir = 'rtl'; p.appendChild(sdTextNode(sdVowelDayIntro(head.slice(at)))); host.appendChild(p); }
                 host.appendChild(seg(h + 1));
             }, ps === 'unknown' ? 'fold-unknown' : ps));
             i += 2;

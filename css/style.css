@@ -16336,7 +16336,16 @@ body[data-view-profile="religieux"] .league-btn {
 .mkn-onyx { fill: #353839; stroke-width: .8px; }
 .mkn-name { fill: #f3e6b0; font-family: var(--torah-font); font-weight: 700; }
 .mkn-weave { stroke: var(--mkn-gold); stroke-width: 1px; stroke-opacity: .75; fill: none; }
-.mkn-step { stroke-width: 1px; }
+.mkn-holy-zone { stroke-width: 1px; }
+.mkn-holy-deco { pointer-events: none; }
+.mkn-table { min-width: 100%; }
+.mkn-table td { font-weight: 400; }
+.mkn-table tr.mkn-table-sub td, .mkn-table tr.mkn-table-total td { font-weight: 700; }
+.mkn-table th.mkn-table-group { background: var(--surface-2); color: var(--muted-text); font-size: 12px; text-align: left; }
+.mkn-table tr.mkn-table-sub th, .mkn-table tr.mkn-table-sub td { font-weight: 700; background: var(--surface-2); }
+.mkn-table tr.mkn-table-total th, .mkn-table tr.mkn-table-total td { font-weight: 700; color: var(--text-dark); border-top: 2px solid var(--border-soft); }
+.mkn-table tr.is-selected th, .mkn-table tr.is-selected td { background: #f6d84e; color: #1b1b1b; }
+.mkn-table .mkn-table-group { white-space: normal; }
 .mkn-sheet-inline { margin-top: 10px; }
 .mkn-tsits-view { margin: 8px 0; padding-left: 10px; border-left: 3px solid var(--border-soft); }
 .mkn-tsits-view.is-current { border-left-color: var(--mkn-gold); }
@@ -16467,6 +16476,27 @@ body[data-view-profile="religieux"] .league-btn {
 .gem-chip strong { font-size: 24px; line-height: 1.2; }
 .gem-chip .gem-via { font-size: 13px; direction: ltr; unicode-bidi: isolate; }
 .gem-chip .gem-value { font-size: 13px; font-weight: 700; color: var(--text-dark); direction: ltr; }
+/* Comparer : deux textes (A et B) empilés, avec le bandeau de comparaison dessous ; côte à côte dès qu'il y a la place (tablette, ordinateur). */
+.gem-actions { display: flex; }
+.gem-pair { display: flex; flex-direction: column; gap: 14px; }
+.gem-slot { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.gem-slot-a { order: 1; }
+.gem-slot-b { order: 2; }
+.gem-compare { order: 3; }
+.gem-compare { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; padding: 12px 14px; border: 1px solid var(--border-soft); border-radius: 14px; background: var(--surface); }
+.gem-compare.hidden, .gem-slot.hidden { display: none; }
+.gem-compare-main { margin: 0; font-size: 26px; font-weight: 800; line-height: 1.2; color: var(--text-dark); }
+.gem-compare-detail { white-space: pre-line; }
+.gem-compare.is-equal { border-color: var(--progress-green); }
+.gem-compare.is-equal .gem-compare-main { color: var(--success-text); }
+/* Lettres communes aux deux textes : liseré et fond or, lisibles en clair comme en sombre. */
+.gem-chip.gem-common { border-color: var(--favorite-yellow); background: rgba(212, 160, 23, 0.18); box-shadow: inset 0 0 0 1px var(--favorite-yellow); }
+@media (min-width: 720px) {
+    .gem-pair.is-comparing { display: grid; grid-template-columns: 1fr 1fr; align-items: start; gap: 14px; }
+    .gem-pair.is-comparing .gem-slot-a { order: 0; grid-column: 1; grid-row: 1; }
+    .gem-pair.is-comparing .gem-slot-b { order: 0; grid-column: 2; grid-row: 1; }
+    .gem-pair.is-comparing .gem-compare { order: 0; grid-column: 1 / -1; grid-row: 2; }
+}
 
 /* === Dictionnaire français – hébreu (js/app/lexicon.js) : une carte par mot ; l'hébreu se lit de droite à gauche === */
 .lex-list { display: flex; flex-direction: column; gap: 10px; }
@@ -17347,14 +17377,60 @@ body[data-view-profile="religieux"] .league-btn {
 :root[data-theme="dark"] .phys-mastery.is-weak { color: #fbbf24; }
 
 /* --- Bibliothèque juive --- */
+/* Une couleur par genre (bande des rangées, point de la frise, étagère) ; le nom du genre est toujours écrit à côté. */
+.lib-g-michna { --lib-c: #8b5e34; } .lib-g-talmud { --lib-c: #c2410c; } .lib-g-midrash { --lib-c: #ca8a04; } .lib-g-gueonim { --lib-c: #57534e; }
+.lib-g-halakha { --lib-c: #15803d; } .lib-g-commentaire { --lib-c: #2563eb; } .lib-g-philosophie { --lib-c: #4f46e5; } .lib-g-moussar { --lib-c: #0e7490; }
+.lib-g-kabbale { --lib-c: #7e22ce; } .lib-g-hassidout { --lib-c: #be185d; } .lib-g-reference { --lib-c: #6b7280; }
+:root[data-theme="dark"] .lib-g-michna { --lib-c: #d6a26b; } :root[data-theme="dark"] .lib-g-talmud { --lib-c: #fb923c; } :root[data-theme="dark"] .lib-g-midrash { --lib-c: #facc15; }
+:root[data-theme="dark"] .lib-g-gueonim { --lib-c: #a8a29e; } :root[data-theme="dark"] .lib-g-halakha { --lib-c: #4ade80; } :root[data-theme="dark"] .lib-g-commentaire { --lib-c: #7ea2ff; }
+:root[data-theme="dark"] .lib-g-philosophie { --lib-c: #a5b4fc; } :root[data-theme="dark"] .lib-g-moussar { --lib-c: #5fd0da; } :root[data-theme="dark"] .lib-g-kabbale { --lib-c: #d8b4fe; }
+:root[data-theme="dark"] .lib-g-hassidout { --lib-c: #f9a8d4; } :root[data-theme="dark"] .lib-g-reference { --lib-c: #9ca3af; }
+
 .lib-list { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
-.lib-item { border: 1px solid var(--border, #cbd5e1); border-radius: 10px; background: var(--card-bg, #fff); overflow: hidden; }
-.lib-item.is-open { border-color: #4f46e5; }
+.lib-item { border: 1px solid var(--border, #cbd5e1); border-left: 5px solid var(--lib-c, #94a3b8); border-radius: 10px; background: var(--card-bg, #fff); overflow: hidden; }
+.lib-item.is-open { border-color: var(--lib-c, #4f46e5); }
 .lib-head { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: 100%; padding: 8px 12px; background: none; border: 0; text-align: left; font: inherit; color: inherit; cursor: pointer; }
-.lib-names { display: flex; justify-content: space-between; gap: 8px; width: 100%; align-items: baseline; }
+.lib-names { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0 8px; width: 100%; align-items: baseline; }
+.lib-names .lib-he { margin-left: auto; }
 .lib-he { font-family: 'Frank Ruhl Libre', 'SBL Hebrew', serif; font-size: 1.05em; opacity: 0.85; }
 .lib-body { padding: 0 12px 10px; }
 .lib-trad { font-style: italic; }
+.lib-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.lib-actions:empty { display: none; }
+.lib-actions .btn { width: auto; min-height: 0; margin: 0; padding: 7px 12px; border-radius: 10px; font-size: 13.5px; font-weight: 600; line-height: 1.25; text-align: left; background: transparent; color: var(--text-dark); border: 1.5px solid var(--lib-c, var(--border-soft)); }
+.lib-actions .btn:hover { background: var(--surface-2); }
+.lib-facts { display: grid; grid-template-columns: auto 1fr; gap: 3px 12px; margin: 6px 0 8px; font-size: 0.85em; }
+.lib-facts dt { opacity: 0.65; } .lib-facts dd { margin: 0; font-weight: 500; }
+.lib-pill, .lib-count-pill { display: inline-block; font-size: 0.8em; font-weight: 600; padding: 1px 8px; border-radius: 999px; color: var(--lib-c); border: 1px solid var(--lib-c); font-variant-numeric: tabular-nums; }
+
+/* La frise : l'axe est à gauche, les titres et les intitulés de période commencent à sa droite. */
+.lib-timeline { position: relative; display: flex; flex-direction: column; gap: 8px; padding-left: 62px; }
+.lib-timeline::before { content: ""; position: absolute; left: 46px; top: 4px; bottom: 4px; width: 2px; background: var(--border, #cbd5e1); }
+.lib-era { margin: 10px 0 0; font-size: 0.95em; font-weight: 700; }
+.lib-step { position: relative; }
+.lib-dot { position: absolute; left: -22px; top: 14px; width: 12px; height: 12px; border-radius: 50%; background: var(--lib-c); border: 2px solid var(--card-bg, #fff); box-shadow: 0 0 0 1px var(--border, #cbd5e1); }
+.lib-year { position: absolute; left: -62px; top: 12px; width: 34px; text-align: right; font-size: 0.7em; opacity: 0.7; font-variant-numeric: tabular-nums; }
+
+/* Les étagères (par genre) et les auteurs */
+.lib-shelf, .lib-author { border: 1px solid var(--border, #cbd5e1); border-left: 5px solid var(--lib-c); border-radius: 12px; background: var(--card-bg, #fff); overflow: hidden; }
+.lib-shelf-head, .lib-author-head { display: flex; align-items: center; gap: 10px; width: 100%; padding: 10px 12px; background: none; border: 0; font: inherit; color: inherit; text-align: left; cursor: pointer; }
+.lib-shelf-name { flex: 1; min-width: 0; }
+.lib-preview { display: flex; flex-wrap: wrap; gap: 5px; padding: 0 12px 10px; }
+.lib-preview-item { font-size: 0.75em; border: 1px solid var(--border, #cbd5e1); border-radius: 6px; padding: 2px 7px; }
+.lib-preview-item.is-more { border-style: dashed; opacity: 0.7; }
+.lib-shelf-rows { display: flex; flex-direction: column; gap: 6px; padding: 0 8px 8px; }
+.lib-avatar { flex: none; width: 38px; height: 38px; border-radius: 50%; border: 2px solid var(--lib-c); color: var(--lib-c); display: grid; place-items: center; font-weight: 700; font-size: 0.8em; }
+.lib-author-names { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.lib-author-names .tool-small { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* A–Z et Auteurs : la liste et son index */
+.lib-with-rail { display: grid; grid-template-columns: minmax(0, 1fr) 20px; gap: 6px; align-items: start; }
+.lib-col { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.lib-letter { margin: 12px 2px 2px; font-size: 1.05em; font-weight: 700; color: #4f46e5; border-bottom: 1px solid var(--border, #cbd5e1); scroll-margin-top: 8px; }
+:root[data-theme="dark"] .lib-letter { color: #a5b4fc; }
+.lib-rail { position: sticky; top: 12px; display: flex; flex-direction: column; align-items: center; max-height: 80vh; overflow: hidden; }
+.lib-rail-letter { background: none; border: 0; padding: 1px 0; width: 20px; font: inherit; font-size: 0.68em; font-weight: 700; color: #4f46e5; cursor: pointer; line-height: 1.35; }
+:root[data-theme="dark"] .lib-rail-letter { color: #a5b4fc; }
 
 /* === Zmanim (écran de l'Atelier, js/app/zmanim.js) : une carte « ciel » en tête, puis les horaires par moment de la journée ===
    Fond marine et or du design « Tailored Executive » (ui/tailored_executive/DESIGN.md) ; les autres surfaces suivent le thème (jetons). */
@@ -18713,3 +18789,31 @@ button.autoscroll-mode { height: 48px; padding: 0 12px; border: 1px dashed var(-
 .spr-merged .spr-option.is-he { direction: rtl; }
 .spr-merged .spr-option-lab { width: 7.5em; padding-top: 10px; }
 .spr-extra-lab { width: 8.5em; padding-top: 0; }
+
+/* Le Machiah et la résurrection (js/app/messiah.js). Réutilise les briques « kor- » ; ici, les badges de niveau et les étapes. */
+.mes-badge { font-weight: 700; }
+.mes-badge-consensus { background: #dcfce7; color: #14532d; }
+.mes-badge-opinion { background: #fef3c7; color: #78350f; }
+.mes-badge-tradition { background: #e0e7ff; color: #312e81; }
+.mes-steps { gap: 8px; }
+.mes-step-sum { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
+.mes-step-n { flex: none; width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--surface-2); border: 1px solid var(--border-soft); font-size: 13px; font-weight: 700; }
+.mes-step-title { flex: 1 1 140px; min-width: 0; }
+.mes-verdict { margin: 0; font-weight: 700; color: var(--text-dark); }
+.mes-verdict[data-verdict="certain"] { background: #dcfce7; color: #14532d; }
+.mes-verdict[data-verdict="presume"] { background: #fef3c7; color: #78350f; }
+.mes-verdict[data-verdict="not"] { background: #fee2e2; color: #7f1d1d; }
+:root[data-theme="dark"] .mes-badge-consensus, :root[data-theme="dark"] .mes-verdict[data-verdict="certain"] { background: #14532d; color: #dcfce7; }
+:root[data-theme="dark"] .mes-badge-opinion, :root[data-theme="dark"] .mes-verdict[data-verdict="presume"] { background: #78350f; color: #fef3c7; }
+:root[data-theme="dark"] .mes-badge-tradition { background: #312e81; color: #e0e7ff; }
+:root[data-theme="dark"] .mes-verdict[data-verdict="not"] { background: #7f1d1d; color: #fee2e2; }
+/* Bibliothèque : les quatre modes de classement, dans l'habillage de la bande des rites du guide des bénédictions (.ben-rites) */
+.lib-modes { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+/* Tanakh : bandes de 2 ou 3 cases ; `hidden` reste honoré malgré le display: grid ; l'espace entre les bandes remplace les anciens traits */
+.ben-rites.seg-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.ben-rites[hidden] { display: none; }
+#screen-tool-tanakh .ben-rites { margin: 10px 0; }
+#screen-tool-tanakh .ben-rite { white-space: nowrap; font-size: 13.5px; }
+/* En sombre, la case active prend le bleu des contrôles segmentés des réglages (sinon elle se fond dans la bande). */
+:root[data-theme="dark"] .ben-rite[aria-pressed="true"] { background: #2F5BC4; color: #fff; }
+.lib-modes .ben-rite { padding-inline: 2px; white-space: nowrap; }
