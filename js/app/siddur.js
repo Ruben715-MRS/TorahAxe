@@ -2215,6 +2215,16 @@ function sdSplitHarahaman(node) {
     node.c = out;
 }
 
+// « הרחמן הוא יוליכנו מהרה קוממיות בארצנו » : en Israël, « dans notre pays » ; en diaspora, « לארצנו » (vers notre pays). Seul le texte séfarade porte « בארצנו ».
+const SD_BEARTZENU = /(^|\s)ב([\u0591-\u05c7]*)(?=א[\u0591-\u05c7]*ר[\u0591-\u05c7]*צ[\u0591-\u05c7]*נ[\u0591-\u05c7]*ו[\u0591-\u05c7]*(\s|$|[,.:;]))/;
+function sdApplyDiaspora(node) {
+    if (!node.c) return;
+    node.c.forEach(k => {
+        if (k.t === 'tag') sdApplyDiaspora(k);
+        else if (k.t === 'text') k.v = k.v.replace(SD_BEARTZENU, '$1\u05DC\u05B0');
+    });
+}
+
 // Le Zimoun : avec dix hommes ou plus, on ajoute « Élohénou ». La source le met entre parenthèses (« (בעשרה ויותר: אלהינו) ») : on garde le mot ou on l'enlève.
 function sdApplyMinyan(node, ten) {
     if (!node.c) return;
@@ -2527,6 +2537,7 @@ function sdRenderSection(section) {
     let bows = 0;
     trees.forEach((tr, k) => { if (amida) bows += sdAddBows(tr, bares[k]); sdMarkNames(tr); });
     if (bhSection) trees.forEach(tr => { sdApplyMinyan(tr, sdPrefs.zim === 10); sdSplitHarahaman(tr); });
+    if (section.id === 'birkat-hamazon' && !(sdCtx && sdCtx.israel)) trees.forEach(sdApplyDiaspora);
     const groups = SiddurCore.groups(section.segments);
     const byHeader = {};
     groups.forEach(g => { byHeader[g.header] = g; });
