@@ -88,6 +88,7 @@
                     var n = { id: ID_BASE + i, title: text.title, body: text.body, schedule: { at: new Date(item.at), allowWhileIdle: true } };
                     // Ce qu'on ouvre en touchant la notification (voir onOpen)
                     if (item.kind === 'omer') n.extra = { route: 'omer', mode: item.when === 'morning' ? 'morning' : 'evening', day: item.day };
+                    else if (item.kind === 'hanouka') n.extra = { route: 'hanouka', night: item.night, friday: !!item.friday };
                     else if (item.kind === 'personal') n.extra = { route: 'dates' };
                     return n;
                 });
@@ -102,7 +103,7 @@
         return chain;
     }
 
-    // Quand on touche une de nos notifications : handler(extra) avec { route: 'omer', mode, day } ou { route: 'dates' }. Sans plugin : rien.
+    // Quand on touche une de nos notifications : handler(extra) avec { route: 'omer', mode, day }, { route: 'hanouka', night, friday } ou { route: 'dates' }. Sans plugin : rien.
     function onOpen(handler) {
         var p = deps.plugin();
         if (!p || typeof p.addListener !== 'function') return false;

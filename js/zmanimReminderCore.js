@@ -7,6 +7,7 @@
 //
 // Les rappels, comme dans CalJ (« Réglages › Rappels ») :
 //  - bougies de Chabbat et de fête : un délai avant l'allumage ;
+//  - Hanouka : chaque soir, à la sortie des étoiles (le vendredi : avant les bougies de Chabbat), avec le nombre de bougies ;
 //  - compte de l'Omer : à la sortie des étoiles ou au coucher, avec le texte du compte ou un simple rappel ;
 //  - Roch 'Hodesh : la veille au soir, ou le matin ;
 //  - Birkat haLévana : le premier soir possible, et le dernier ;
@@ -32,6 +33,7 @@
         return {
             on: false,
             candles: { on: false, before: 60 },
+            hanouka: { on: true },                                // chaque soir de Hanouka, avec le nombre de bougies
             omer: { on: true, at: 'tzeit', text: 'count', morning: false },   // at : 'tzeit' | 'shkia' (la veille au soir, avec bénédiction) ; text : 'count' (le compte) | 'simple' ; morning : rappel du matin (sans bénédiction)
             roshChodesh: { on: false, when: 'eve' },              // when : 'eve' (la veille au soir) | 'morning'
             levana: { on: false, every: true },     // every : un rappel chaque soir de la fenêtre (sinon, seulement le premier et le dernier soir)
@@ -50,6 +52,7 @@
             out.candles.on = raw.candles.on === true;
             out.candles.before = CANDLE_BEFORE.indexOf(raw.candles.before) !== -1 ? raw.candles.before : d.candles.before;
         }
+        if (raw.hanouka && typeof raw.hanouka === 'object') out.hanouka.on = raw.hanouka.on !== false;
         if (raw.omer && typeof raw.omer === 'object') {
             out.omer.on = raw.omer.on === true;
             out.omer.morning = raw.omer.morning === true;
@@ -76,7 +79,7 @@
 
     // Y a-t-il quelque chose à programmer ? (le réglage général, puis au moins un rappel choisi)
     function anyEnabled(s) {
-        return s.on && (s.candles.on || s.omer.on || s.omer.morning || s.roshChodesh.on || s.levana.on || (s.days.length > 0 && Object.keys(s.custom).length > 0));
+        return s.on && (s.candles.on || s.hanouka.on || s.omer.on || s.omer.morning || s.roshChodesh.on || s.levana.on || (s.days.length > 0 && Object.keys(s.custom).length > 0));
     }
 
     function addDays(date, n) {
@@ -85,7 +88,7 @@
     }
 
     // Les rappels des `days` prochains jours civils du lieu, à partir de `fromMs` : [{ at, kind, key, offset, time, ... }] trié, au plus MAX_PENDING.
-    //  kind : 'custom' (key, offset) | 'candles' (before, yomTov) | 'omer' (day) | 'roshChodesh' (when) | 'levana' (last).
+    //  kind : 'custom' (key, offset) | 'candles' (before, yomTov) | 'hanouka' (night, friday, motsei) | 'omer' (day) | 'roshChodesh' (when) | 'levana' (last).
     //  `time` : l'horaire lui-même (instant), `at` : l'instant du rappel.
     function plan(settingsRaw, place, zmanimOpts, fromMs, days, israelOpt) {
         var s = normalize(settingsRaw);
@@ -116,6 +119,17 @@
             if (s.candles.on && (ctxNext.flags.shabbat || ctxNext.flags.yomTov) && !ctxToday.flags.yomTov) {
                 var candles = Z.rounded(z, 'candles');
                 if (candles !== null) push({ at: candles - s.candles.before * MIN, kind: 'candles', before: s.candles.before, time: candles, yomTov: ctxNext.flags.yomTov && !ctxNext.flags.shabbat });
+            }
+            // Hanouka : le soir qui commence le jour N de Hanouka, on allume N bougies (la veille du 1er jour, la 1re). Le vendredi soir on allume avant Chabbat
+            // (une demi-heure avant les bougies de Chabbat) ; le samedi soir, à la sortie de Chabbat.
+            if (s.hanouka.on && ctxNext.flags.hanukkah) {
+                var hf = HC.feastsOf(ctxNext.hebrew.year, israel).filter(function (f) { return f.id === 'hanouka'; })[0];
+                var night = hf ? fixed + 1 - hf.fixed + 1 : 0;
+                if (night >= 1 && night <= 8) {
+                    var friday = weekday === 5;
+                    var lightAt = friday ? Z.rounded(z, 'candles') : Z.rounded(z, 'tzeit');
+                    if (lightAt !== null) push({ at: friday ? lightAt - 30 * MIN : lightAt, kind: 'hanouka', night: night, friday: friday, motsei: weekday === 6, time: lightAt });
+                }
             }
             // L'Omer : le soir qui commence le jour hébraïque N
             if (s.omer.on && ctxNext.omer >= 1 && ctxNext.omer <= 49) {
@@ -191,6 +205,12 @@
             return {
                 title: tr(item.yomTov ? 'tools.zmr_candles_yt_title' : 'tools.zmr_candles_title'),
                 body: tr('tools.zmr_candles_body', { n: item.before, time: time })
+            };
+        }
+        if (item.kind === 'hanouka') {
+            return {
+                title: tr(item.night === 1 ? 'tools.zmr_han_title_1' : 'tools.zmr_han_title_n', { n: item.night }),
+                body: tr(item.friday ? 'tools.zmr_han_body_fri' : item.motsei ? 'tools.zmr_han_body_sat' : 'tools.zmr_han_body', { time: time })
             };
         }
         if (item.kind === 'omer' && item.when === 'morning') {

@@ -834,6 +834,7 @@ function remindersStart() {
     // Toucher une notification ouvre directement l'écran concerné : le compte de l'Omer, ou les dates personnelles.
     TorahAxeNotifications.onOpen(extra => {
         if (extra.route === 'omer' && typeof openOmer === 'function') openOmer('screen-main', { day: extra.day, mode: extra.mode });
+        else if (extra.route === 'hanouka' && typeof openHanouka === 'function') openHanouka('screen-main', { night: extra.night, friday: extra.friday });
         else if (extra.route === 'dates' && typeof openDates === 'function') openDates('screen-main');
     });
     try {
