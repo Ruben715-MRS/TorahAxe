@@ -72,6 +72,78 @@
      "face à face"
     ],
     "x": "Il n'a plus paru en Israël un prophète tel que Moïse."
+   },
+   {
+    "q": "Quelles montagnes l'Éternel illumine-t-il, selon le début de la bénédiction de Moïse ?",
+    "a": "Le Sinaï, le Séir et le Pharan",
+    "w": [
+     "Le Hor, le Nébo et le Pisga",
+     "Le Hermon, le Tabor et le Carmel",
+     "Le Garizim, l'Hébal et le Moriah"
+    ],
+    "ref": "33:2",
+    "proof": [
+     "Sinaï",
+     "Séir",
+     "Pharan"
+    ],
+    "x": "Il est apparu du haut du Sinaï, a brillé sur le Séir, s'est révélé sur le mont Pharan."
+   },
+   {
+    "q": "À quel animal Moïse compare-t-il Dan, dans sa bénédiction ?",
+    "a": "À un jeune lion qui s'élance du Basan",
+    "w": [
+     "À un jeune aigle qui plane au-dessus du Jourdain",
+     "À un jeune cerf qui bondit dans la plaine",
+     "À un jeune loup qui rôde dans la forêt"
+    ],
+    "ref": "33:22",
+    "proof": [
+     "jeune lion qui s'élance du Basan"
+    ],
+    "x": "C'est la bénédiction de Dan."
+   },
+   {
+    "q": "À quel animal Moïse compare-t-il Gad, qui met en pièces le bras et la tête ?",
+    "a": "À un léopard",
+    "w": [
+     "À un lion",
+     "À un loup",
+     "À un ours"
+    ],
+    "ref": "33:20",
+    "proof": [
+     "comme un léopard"
+    ],
+    "x": "Hommage à celui qui agrandit Gad."
+   },
+   {
+    "q": "Combien de jours les enfants d'Israël pleurent-ils Moïse dans les plaines de Moab ?",
+    "a": "Trente jours",
+    "w": [
+     "Sept jours",
+     "Quarante jours",
+     "Douze jours"
+    ],
+    "ref": "34:8",
+    "proof": [
+     "trente jours"
+    ],
+    "x": "Ils épuisent complètement le temps des pleurs."
+   },
+   {
+    "q": "De quoi Josué, fils de Noun, était-il plein, parce que Moïse lui avait imposé les mains ?",
+    "a": "De l'esprit de sagesse",
+    "w": [
+     "De l'esprit de force",
+     "De l'esprit de crainte",
+     "De l'esprit de justice"
+    ],
+    "ref": "34:9",
+    "proof": [
+     "esprit de sagesse"
+    ],
+    "x": "Les enfants d'Israël lui obéirent."
    }
   ],
   "2": [
@@ -145,6 +217,76 @@
      "toummîm et tes ourîm"
     ],
     "x": "Il est l'homme dévoué que Dieu a éprouvé à Massa."
+   },
+   {
+    "q": "Que dit Moïse du pays de Joseph, dans sa bénédiction ?",
+    "a": "Qu'il est béni du Seigneur, avec les dons du ciel et la rosée",
+    "w": [
+     "Qu'il est gardé du Seigneur, avec les vents du nord et le soleil",
+     "Qu'il est donné du Seigneur, avec les eaux du fleuve et le froment",
+     "Qu'il est voilé du Seigneur, avec les nuées du soir et la pluie"
+    ],
+    "ref": "33:13",
+    "proof": [
+     "Bénie du Seigneur est sa terre"
+    ],
+    "x": "Elle possède aussi les dons de l'abîme aux couches souterraines."
+   },
+   {
+    "q": "Que dit Moïse à Nephtali, quant à son héritage ?",
+    "a": "Que le couchant et le midi soient son héritage",
+    "w": [
+     "Que le levant et le nord soient son héritage",
+     "Que la mer et la plaine soient son héritage",
+     "Que la montagne et le désert soient son héritage"
+    ],
+    "ref": "33:23",
+    "proof": [
+     "couchant et le midi"
+    ],
+    "x": "Il est rassasié de grâces diverses."
+   },
+   {
+    "q": "Que dit Moïse de Dieu, à Yechouroun ?",
+    "a": "Que rien n'égale le Tout-Puissant, qui siège dans les cieux",
+    "w": [
+     "Que rien ne cache le Tout-Puissant, qui marche sur la terre",
+     "Que rien ne trouble le Tout-Puissant, qui dort dans les nuées",
+     "Que rien ne limite le Tout-Puissant, qui règne dans les mers"
+    ],
+    "ref": "33:26",
+    "proof": [
+     "Rien n'égale le Tout-Puissant"
+    ],
+    "x": "Sa majesté plane sur les nues."
+   },
+   {
+    "q": "Que dit Moïse d'Israël, en concluant sa bénédiction ?",
+    "a": "Heureux es-tu, Israël ! Qui est ton égal, peuple que protège le Seigneur ?",
+    "w": [
+     "Fort es-tu, Israël ! Qui est ton maître, peuple que conduit le Seigneur ?",
+     "Seul es-tu, Israël ! Qui est ton ami, peuple que cherche le Seigneur ?",
+     "Grand es-tu, Israël ! Qui est ton roi, peuple que nourrit le Seigneur ?"
+    ],
+    "ref": "33:29",
+    "proof": [
+     "Heureux es-tu, Israël"
+    ],
+    "x": "Il est un bouclier qui sauve et un glaive qui fait triompher."
+   },
+   {
+    "q": "Que dit l'Éternel à Moïse du pays qu'il lui fait voir ?",
+    "a": "C'est le pays promis par serment à Abraham, Isaac et Jacob",
+    "w": [
+     "C'est le pays promis par vœu à Noé, Sem et Abraham",
+     "C'est le pays donné par alliance à Isaac, Jacob et Joseph",
+     "C'est le pays promis par bénédiction à Aaron, Moïse et Josué"
+    ],
+    "ref": "34:4",
+    "proof": [
+     "promis par serment à Abraham, à Isaac et à Jacob"
+    ],
+    "x": "Mais Moïse n'y passera point."
    }
   ],
   "3": [
@@ -217,6 +359,76 @@
      "מששת ימי בראשית"
     ],
     "x": "Rachi sur Deutéronome 34:6 : sa tombe y était préparée depuis les six jours de la création, pour expier l'affaire de Peor."
+   },
+   {
+    "q": "Selon Rachi, que montre « il est venu du Sinaï » : comment Dieu est-il venu au-devant d'Israël ?",
+    "a": "Comme un fiancé qui sort à la rencontre de sa fiancée",
+    "w": [
+     "Comme un roi qui sort à la rencontre de son armée",
+     "Comme un père qui sort à la rencontre de son fils",
+     "Comme un berger qui sort à la rencontre de son troupeau"
+    ],
+    "ref": "33:2",
+    "proof": [
+     "כחתן היוצא להקביל פני כלה"
+    ],
+    "x": "Rachi sur Deutéronome 33:2 : il sortit à leur rencontre quand ils vinrent se tenir au pied de la montagne, comme un fiancé qui va à la rencontre de la mariée."
+   },
+   {
+    "q": "Selon Rachi, que signifie « de saintes myriades » : combien d'anges accompagnaient Dieu ?",
+    "a": "Une partie seulement des myriades d'anges, pas tous ni la plupart",
+    "w": [
+     "Tous les myriades d'anges, sans exception",
+     "La plupart des myriades d'anges, mais pas tous",
+     "Un seul ange, chef des myriades"
+    ],
+    "ref": "33:2",
+    "proof": [
+     "מקצת רבבות מלאכי קדש ולא כלם ולא רבם"
+    ],
+    "x": "Rachi sur Deutéronome 33:2 : il avait avec lui une partie des myriades d'anges saints, ni tous ni la plupart, contrairement à un roi de chair le jour de ses noces."
+   },
+   {
+    "q": "Selon Rachi, que signifie « que tu as éprouvé à Massa » à propos de Lévi ?",
+    "a": "Que Lévi ne s'est pas plaint avec les autres mécontents",
+    "w": [
+     "Que Lévi s'est plaint avec les autres mécontents",
+     "Que Lévi a prié avec les autres affligés",
+     "Que Lévi a jeûné avec les autres affamés"
+    ],
+    "ref": "33:8",
+    "proof": [
+     "שלא נתלוננו עם שאר המלינים"
+    ],
+    "x": "Rachi sur Deutéronome 33:8 : ils ne se sont pas plaints avec les autres plaignants."
+   },
+   {
+    "q": "Selon Rachi, pourquoi la bénédiction de Benjamin suit-elle celle de Lévi ?",
+    "a": "Parce que Lévi est lié au service des sacrifices, et Benjamin à la construction du Temple",
+    "w": [
+     "Parce que Lévi est lié au service des tribunaux, et Benjamin à la défense du camp",
+     "Parce que Lévi est lié au service des fêtes, et Benjamin à la lecture de la loi",
+     "Parce que Lévi est lié au service des prières, et Benjamin à la garde de l'arche"
+    ],
+    "ref": "33:12",
+    "proof": [
+     "בבנין בית המקדש"
+    ],
+    "x": "Rachi sur Deutéronome 33:12 : la bénédiction de Lévi concerne le service des sacrifices, et celle de Benjamin la construction du Temple dans son lot : il les a placées l'une à côté de l'autre."
+   },
+   {
+    "q": "Selon Rachi, que montre « jusqu'à Dan » dans la vision de Moïse ?",
+    "a": "Qu'il lui fit voir les fils de Dan servir une idole",
+    "w": [
+     "Qu'il lui fit voir les fils de Dan bâtir un autel",
+     "Qu'il lui fit voir les fils de Dan garder le camp",
+     "Qu'il lui fit voir les fils de Dan compter les tribus"
+    ],
+    "ref": "34:1",
+    "proof": [
+     "בני דן עובדים עבודה זרה"
+    ],
+    "x": "Rachi sur Deutéronome 34:1 : il lui montra les fils de Dan adorant une idole ; et aussi Samson qui allait sortir de lui."
    }
   ]
  }

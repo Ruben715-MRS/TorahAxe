@@ -86,6 +86,76 @@
      "premier de tous les peuples"
     ],
     "x": "Toutes les bénédictions suivantes se réalisent alors pour lui."
+   },
+   {
+    "q": "Comment l'Éternel a-t-il fait sortir Israël d'Égypte, selon la déclaration des prémices ?",
+    "a": "Avec une main puissante et un bras étendu",
+    "w": [
+     "Avec une verge puissante et un cri étendu",
+     "Avec une nuée puissante et un feu étendu",
+     "Avec une voix puissante et un vent étendu"
+    ],
+    "ref": "26:8",
+    "proof": [
+     "main puissante et un bras étendu"
+    ],
+    "x": "Il a imprimé la terreur, opéré signes et prodiges."
+   },
+   {
+    "q": "Comment la Torah décrit-elle le pays où l'Éternel a introduit Israël ?",
+    "a": "Une terre où ruissellent le lait et le miel",
+    "w": [
+     "Une terre où abondent le blé et la vigne",
+     "Une terre où coulent l'huile et le vin",
+     "Une terre où poussent le lin et la laine"
+    ],
+    "ref": "26:9",
+    "proof": [
+     "lait et le miel"
+    ],
+    "x": "Il lui a fait présent de cette terre."
+   },
+   {
+    "q": "De quelles pierres bâtit-on l'autel de l'Éternel, au mont Hébal ?",
+    "a": "De pierres que le fer n'a point touchées",
+    "w": [
+     "De pierres taillées au ciseau d'or",
+     "De pierres polies au sable fin",
+     "De pierres blanches ornées de chaux"
+    ],
+    "ref": "27:5",
+    "proof": [
+     "que le fer n'aura point touchées"
+    ],
+    "x": "On y offre des holocaustes."
+   },
+   {
+    "q": "Que dit Moïse à Israël, assisté des pontifes lévites, avant les bénédictions ?",
+    "a": "« Fais silence et écoute : en ce jour, tu es devenu le peuple de l'Éternel »",
+    "w": [
+     "« Lève-toi et obéis : en ce jour, tu es devenu le chef de l'Éternel »",
+     "« Chante et danse : en ce jour, tu es devenu le roi de l'Éternel »",
+     "« Pleure et prie : en ce jour, tu es devenu l'esclave de l'Éternel »"
+    ],
+    "ref": "27:9",
+    "proof": [
+     "Fais silence et écoute"
+    ],
+    "x": "C'est le jour où Israël devient peuple."
+   },
+   {
+    "q": "Où Israël sera-t-il béni, selon la première bénédiction ?",
+    "a": "Dans la ville et dans les champs",
+    "w": [
+     "Dans la maison et dans le désert",
+     "Dans le temple et dans la rue",
+     "Dans la tente et dans la vigne"
+    ],
+    "ref": "28:3",
+    "proof": [
+     "béni dans la ville, et béni dans les champs"
+    ],
+    "x": "Béni sera aussi le fruit de ses entrailles."
    }
   ],
   "2": [
@@ -170,6 +240,76 @@
      "Maudit soit l'homme qui ferait une image taillée"
     ],
     "x": "C'est un ouvrage de l'art humain."
+   },
+   {
+    "q": "Quelles sont les deux choses bénies, parmi les fruits, après le fruit des entrailles et du sol ?",
+    "a": "Le bétail, la progéniture des taureaux et la portée des brebis",
+    "w": [
+     "Le blé, la corbeille des gerbes et la huche du pain",
+     "Le vin, la cuve des raisins et le tonneau de l'huile",
+     "L'or, le coffre des sicles et la bourse des perles"
+    ],
+    "ref": "28:4",
+    "proof": [
+     "progéniture de tes taureaux"
+    ],
+    "x": "Béni sera aussi le fruit du sol."
+   },
+   {
+    "q": "Quelles seront bénies, avec le reste des biens, selon la Torah ?",
+    "a": "La corbeille et la huche",
+    "w": [
+     "La tente et la porte",
+     "La cruche et la coupe",
+     "La vigne et le puits"
+    ],
+    "ref": "28:5",
+    "proof": [
+     "ta corbeille et ta huche"
+    ],
+    "x": "C'est la fin de la série des bénédictions de la maison."
+   },
+   {
+    "q": "Quel rang l'Éternel fera-t-il tenir à Israël, s'il obéit à ses lois ?",
+    "a": "Le premier rang, et non le dernier",
+    "w": [
+     "Le dernier rang, et non le premier",
+     "Le rang du milieu, et non les extrêmes",
+     "Le rang des prêtres, et non des Lévites"
+    ],
+    "ref": "28:13",
+    "proof": [
+     "premier rang, et non point le dernier"
+    ],
+    "x": "Il sera constamment au faîte, sans déchoir."
+   },
+   {
+    "q": "Que dit l'Éternel du peuple qui n'aura pas servi avec joie au sein de l'abondance ?",
+    "a": "Qu'il servira ses ennemis dans la faim et la soif",
+    "w": [
+     "Qu'il ira vers ses amis dans la paix et le repos",
+     "Qu'il cherchera son maître dans l'ombre et l'exil",
+     "Qu'il gardera ses troupeaux dans le froid et la nuit"
+    ],
+    "ref": "28:47",
+    "proof": [
+     "servi l'Éternel, ton Dieu, avec joie"
+    ],
+    "x": "Il parle de joie et contentement de cœur."
+   },
+   {
+    "q": "Combien de temps le peuple a-t-il marché dans le désert sans que ses vêtements ne s'usent ?",
+    "a": "Quarante ans",
+    "w": [
+     "Trente ans",
+     "Sept ans",
+     "Cinquante ans"
+    ],
+    "ref": "29:4",
+    "proof": [
+     "quarante ans"
+    ],
+    "x": "Ni la chaussure de ses pieds ne s'est usée."
    }
   ],
   "3": [
@@ -242,6 +382,76 @@
      "שלושה מיני אבנים"
     ],
     "x": "Rachi sur Deutéronome 27:2 : il y avait trois sortes de pierres : douze dans le Jourdain, douze au lieu où ils ont passé la nuit, et celles de l'autel sur le mont Hébal."
+   },
+   {
+    "q": "Selon Rachi, que peut-on donner aux pauvres, quand « ils mangeront dans tes portes et seront rassasiés » ?",
+    "a": "De quoi les rassasier : on ne donne pas moins d'une demi-mesure de blé",
+    "w": [
+     "De quoi les nourrir : on ne donne pas moins d'une mesure entière d'orge",
+     "De quoi les vêtir : on ne donne pas moins d'une demi-mesure d'huile",
+     "De quoi les loger : on ne donne pas moins d'une mesure entière de vin"
+    ],
+    "ref": "26:12",
+    "proof": [
+     "תן להם כדי שבען"
+    ],
+    "x": "Rachi sur Deutéronome 26:12 : donne-leur de quoi les rassasier ; on ne laisse pas moins d'un demi-kav de blé à un pauvre sur l'aire."
+   },
+   {
+    "q": "Selon Rachi, que signifie « tu as fait dire à l'Éternel » (heemarta) ?",
+    "a": "Un langage de séparation : tu t'es séparé des dieux étrangers pour être à lui",
+    "w": [
+     "Un langage de louange : tu as chanté ses dieux étrangers pour être à lui",
+     "Un langage de crainte : tu as fui ses dieux étrangers pour être à lui",
+     "Un langage de serment : tu as juré ses dieux étrangers pour être à lui"
+    ],
+    "ref": "26:17",
+    "proof": [
+     "לשון הפרשה והבדלה"
+    ],
+    "x": "Rachi sur Deutéronome 26:17 : je pense que c'est un langage de séparation : tu as séparé pour toi l'Éternel des dieux étrangers pour qu'il soit ton Dieu."
+   },
+   {
+    "q": "Selon Rachi, que veut dire « aujourd'hui tu es devenu un peuple » ?",
+    "a": "Que chaque jour doit paraître comme celui où l'on est entré dans l'alliance",
+    "w": [
+     "Que chaque jour doit paraître comme celui où l'on a quitté l'Égypte",
+     "Que chaque jour doit paraître comme celui où l'on a traversé la mer",
+     "Que chaque jour doit paraître comme celui où l'on a reçu la manne"
+    ],
+    "ref": "27:9",
+    "proof": [
+     "בכל יום יהיו בעיניך כאלו היום באת עמו בברית"
+    ],
+    "x": "Rachi sur Deutéronome 27:9 : chaque jour, que ce soit à tes yeux comme si tu venais aujourd'hui avec lui dans l'alliance."
+   },
+   {
+    "q": "Selon Rachi, que signifie « Dieu ne vous a pas donné un cœur pour connaître » ?",
+    "a": "Pour reconnaître les bontés de Dieu et s'attacher à lui",
+    "w": [
+     "Pour retenir les lois de Dieu et les enseigner à ses fils",
+     "Pour craindre le nom de Dieu et le servir en secret",
+     "Pour compter les jours de Dieu et les sanctifier"
+    ],
+    "ref": "29:3",
+    "proof": [
+     "להכיר את חסדי הקב\"ה"
+    ],
+    "x": "Rachi sur Deutéronome 29:3 : pour reconnaître les bontés du Saint béni soit-il et s'attacher à lui."
+   },
+   {
+    "q": "Selon Rachi, que signifie « au sein de l'abondance » (merov kol) ?",
+    "a": "Pendant que tu avais tout bien",
+    "w": [
+     "Pendant que tu avais peu de bien",
+     "Pendant que tu avais besoin de bien",
+     "Pendant que tu cherchais du bien"
+    ],
+    "ref": "28:47",
+    "proof": [
+     "בעוד שהיה לך כל טוב"
+    ],
+    "x": "Rachi sur Deutéronome 28:47 : tant que tu avais tout bien."
    }
   ]
  }

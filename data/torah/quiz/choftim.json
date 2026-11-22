@@ -73,6 +73,76 @@
      "œil pour œil"
     ],
     "x": "Il ne faut pas laisser s'attendrir son regard."
+   },
+   {
+    "q": "Que fait la corruption, selon la Torah, aux yeux des sages ?",
+    "a": "Elle les aveugle et fausse la parole des justes",
+    "w": [
+     "Elle les ferme et trouble la mémoire des juges",
+     "Elle les éclaire et renforce la voix des témoins",
+     "Elle les rend sourds et efface le nom des pauvres"
+    ],
+    "ref": "16:19",
+    "proof": [
+     "aveugle les yeux des sages"
+    ],
+    "x": "Il ne faut pas accepter de présent corrupteur."
+   },
+   {
+    "q": "Que ne doit-on pas planter auprès de l'autel de l'Éternel ?",
+    "a": "Un bosquet ou un arbre quelconque",
+    "w": [
+     "Une vigne ou un figuier",
+     "Une pierre ou une colonne",
+     "Un puits ou une citerne"
+    ],
+    "ref": "16:21",
+    "proof": [
+     "ni bosquet ni arbre quelconque"
+    ],
+    "x": "C'est un interdit à proximité de l'autel."
+   },
+   {
+    "q": "Que dit la Torah du prophète que l'Éternel suscitera ?",
+    "a": "Qu'il sera un de leurs frères, comme Moïse : il faut l'écouter",
+    "w": [
+     "Qu'il sera un de leurs rois, comme David : il faut le suivre",
+     "Qu'il sera un de leurs prêtres, comme Aaron : il faut le servir",
+     "Qu'il sera un de leurs juges, comme Josué : il faut le craindre"
+    ],
+    "ref": "18:15",
+    "proof": [
+     "un de tes frères comme moi"
+    ],
+    "x": "Il sortira de leurs rangs."
+   },
+   {
+    "q": "Que ne doit-on pas déplacer dans son lot de terrain ?",
+    "a": "La borne du voisin, posée par les devanciers",
+    "w": [
+     "Le puits du voisin, creusé par les devanciers",
+     "La clôture du voisin, plantée par les devanciers",
+     "Le chemin du voisin, tracé par les devanciers"
+    ],
+    "ref": "19:14",
+    "proof": [
+     "Ne déplace point la borne de ton voisin"
+    ],
+    "x": "Elle est dans le lot que l'Éternel accorde."
+   },
+   {
+    "q": "De quoi Israël ne doit-il pas être effrayé, quand il part en guerre ?",
+    "a": "De la cavalerie, des chariots de guerre et d'une armée supérieure",
+    "w": [
+     "Des murailles, des tours de siège et d'une famine prolongée",
+     "Des chefs, des conseillers et d'un traître inconnu",
+     "Des signes, des songes et d'une défaite annoncée"
+    ],
+    "ref": "20:1",
+    "proof": [
+     "cavalerie et chariots de guerre"
+    ],
+    "x": "L'Éternel est avec lui."
    }
   ],
   "2": [
@@ -146,6 +216,76 @@
      "c'est un de tes frères"
     ],
     "x": "Il doit être celui dont l'Éternel, ton Dieu, approuvera le choix."
+   },
+   {
+    "q": "Vers qui le juge impuissant à trancher doit-il aller, selon la loi ?",
+    "a": "Vers les pontifes lévites ou le juge qui siège alors",
+    "w": [
+     "Vers les anciens de la ville ou le roi qui règne alors",
+     "Vers les prophètes de la tribu ou le chef qui mène alors",
+     "Vers les scribes du camp ou le témoin qui vit alors"
+    ],
+    "ref": "17:9",
+    "proof": [
+     "pontifes, descendants de Lévi"
+    ],
+    "x": "Ils éclairent sur le jugement à prononcer."
+   },
+   {
+    "q": "Que doit faire le roi toute sa vie, avec la copie de la Loi ?",
+    "a": "La lire, pour s'habituer à révérer l'Éternel",
+    "w": [
+     "La garder, pour s'habituer à régner seul",
+     "La chanter, pour s'habituer à louer l'Éternel",
+     "La cacher, pour s'habituer à craindre l'Éternel"
+    ],
+    "ref": "17:19",
+    "proof": [
+     "il doit y lire toute sa vie"
+    ],
+    "x": "Il exécute tout son contenu."
+   },
+   {
+    "q": "Qu'est-il accordé aux pontifes lévites, au lieu d'un héritage ?",
+    "a": "Les sacrifices de l'Éternel et son patrimoine",
+    "w": [
+     "Les villes de refuge et leurs banlieues",
+     "Les champs du nord et les vignes",
+     "Les dîmes de l'étranger et les dons"
+    ],
+    "ref": "18:1",
+    "proof": [
+     "sacrifices de l'Éternel"
+    ],
+    "x": "Ils n'ont ni part ni héritage comme le reste d'Israël."
+   },
+   {
+    "q": "Combien de villes Israël se réserve-t-il dans le pays que l'Éternel donne ?",
+    "a": "Trois villes",
+    "w": [
+     "Six villes",
+     "Douze villes",
+     "Une ville"
+    ],
+    "ref": "19:2",
+    "proof": [
+     "trois villes"
+    ],
+    "x": "Ce sont des villes de refuge."
+   },
+   {
+    "q": "Combien de témoins faut-il pour qu'un fait soit établi contre une personne ?",
+    "a": "Deux témoins, ou trois",
+    "w": [
+     "Un seul témoin, si c'est un juge",
+     "Sept témoins, comme pour un serment",
+     "Douze témoins, un par tribu"
+    ],
+    "ref": "19:15",
+    "proof": [
+     "deux témoins, ou de trois"
+    ],
+    "x": "Un témoignage isolé n'est pas valable."
    }
   ],
   "3": [
@@ -218,6 +358,76 @@
      "פחות משלושה ימים קדם לשבת"
     ],
     "x": "Rachi sur Deutéronome 20:19 : on n'assiège pas les villes des nations moins de trois jours avant le Chabbat."
+   },
+   {
+    "q": "Selon Rachi, que montre l'interdit de planter un arbre auprès de l'autel ?",
+    "a": "Un avertissement à celui qui plante un arbre ou bâtit une maison sur le mont du Temple",
+    "w": [
+     "Un avertissement à celui qui coupe un arbre ou rase une maison sur le mont du Temple",
+     "Un avertissement à celui qui arrose un arbre ou orne une maison sur le mont du Temple",
+     "Un avertissement à celui qui vend un arbre ou loue une maison sur le mont du Temple"
+    ],
+    "ref": "16:21",
+    "proof": [
+     "אזהרה לנוטע אילן ולבונה בית"
+    ],
+    "x": "Rachi sur Deutéronome 16:21 : un avertissement pour celui qui plante un arbre ou bâtit une maison sur le mont du Temple."
+   },
+   {
+    "q": "Selon Rachi, que montre « à droite ou à gauche » : si le tribunal te dit que la droite est la gauche ?",
+    "a": "Qu'il faut lui obéir, même s'il te dit que droite est gauche",
+    "w": [
+     "Qu'il faut lui résister, même s'il te dit que droite est droite",
+     "Qu'il faut le corriger, même s'il te dit que gauche est gauche",
+     "Qu'il faut le fuir, même s'il te dit que droite est gauche"
+    ],
+    "ref": "17:11",
+    "proof": [
+     "אפלו אומר לך על ימין שהוא שמאל"
+    ],
+    "x": "Rachi sur Deutéronome 17:11 : même s'il te dit que la droite est la gauche, et la gauche la droite, a fortiori s'il te dit de la droite qu'elle est la droite."
+   },
+   {
+    "q": "Selon Rachi, que signifie « n'avance pas la borne » (lo tasig gvoul) ?",
+    "a": "Qu'on ne recule pas la marque du champ de son voisin, pour agrandir le sien",
+    "w": [
+     "Qu'on ne creuse pas le puits du champ de son voisin, pour irriguer le sien",
+     "Qu'on ne vend pas le champ de son voisin, pour acheter le sien",
+     "Qu'on ne mesure pas le champ de son voisin, pour compter le sien"
+    ],
+    "ref": "19:14",
+    "proof": [
+     "מחזיר סימן חלקת הקרקע"
+    ],
+    "x": "Rachi sur Deutéronome 19:14 : il fait reculer le signe de la parcelle dans le champ de son prochain pour agrandir le sien."
+   },
+   {
+    "q": "Selon Rachi, que signifie « contre ton ennemi » à propos de la guerre ?",
+    "a": "Qu'ils soient à tes yeux des ennemis : n'aie pas pitié d'eux, ils n'auraient pas pitié de toi",
+    "w": [
+     "Qu'ils soient à tes yeux des frères : aie pitié d'eux, ils auraient pitié de toi",
+     "Qu'ils soient à tes yeux des étrangers : fuis-les, ils te fuiraient aussi",
+     "Qu'ils soient à tes yeux des inconnus : ignore-les, ils t'ignoreraient aussi"
+    ],
+    "ref": "20:1",
+    "proof": [
+     "אל תרחם עליהם"
+    ],
+    "x": "Rachi sur Deutéronome 20:1 : qu'ils soient pour toi comme des ennemis : ne les épargne pas, car ils ne t'épargneront pas."
+   },
+   {
+    "q": "Selon Rachi, combien de femmes le roi peut-il avoir, d'après « il n'aura pas beaucoup de femmes » ?",
+    "a": "Dix-huit",
+    "w": [
+     "Douze",
+     "Vingt-quatre",
+     "Sept"
+    ],
+    "ref": "17:17",
+    "proof": [
+     "אלא י\"ח"
+    ],
+    "x": "Rachi sur Deutéronome 17:17 : pas plus de dix-huit ; David en avait six, et il lui fut dit : « si c'est peu, j'y ajouterai autant »."
    }
   ]
  }

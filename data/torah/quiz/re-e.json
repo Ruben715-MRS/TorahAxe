@@ -86,6 +86,76 @@
      "celle des tentes"
     ],
     "x": "Ils viennent dans l'endroit que Dieu aura élu."
+   },
+   {
+    "q": "Où Israël ira-t-il invoquer l'Éternel, entre toutes ses tribus ?",
+    "a": "À l'endroit que l'Éternel aura adopté pour y attacher son nom",
+    "w": [
+     "À l'endroit que le roi aura bâti pour y fixer sa cour",
+     "À l'endroit que le peuple aura choisi pour y tenir ses fêtes",
+     "À l'endroit que le prêtre aura marqué pour y garder ses livres"
+    ],
+    "ref": "12:5",
+    "proof": [
+     "aura adopté entre toutes vos tribus"
+    ],
+    "x": "C'est le lieu de sa résidence."
+   },
+   {
+    "q": "Que doit-on faire d'un prophète qui propose de suivre des dieux étrangers, même si son signe s'accomplit ?",
+    "a": "Ne pas l'écouter : l'Éternel met Israël à l'épreuve",
+    "w": [
+     "L'écouter avec prudence : l'Éternel instruit Israël par lui",
+     "Le suivre avec soin : l'Éternel parle à Israël par lui",
+     "Le chasser aussitôt : l'Éternel punit Israël par lui"
+    ],
+    "ref": "13:4",
+    "proof": [
+     "tu n'écouteras pas"
+    ],
+    "x": "Il s'agit de savoir si Israël l'aime de tout son cœur."
+   },
+   {
+    "q": "Qui frappe le premier celui qui séduit vers des dieux étrangers ?",
+    "a": "Ta main, puis la main de tout le peuple",
+    "w": [
+     "La main du juge, puis la main du roi",
+     "La main du prêtre, puis la main des Lévites",
+     "La main de l'ancien, puis la main du témoin"
+    ],
+    "ref": "13:10",
+    "proof": [
+     "Ta main le frappera la première"
+    ],
+    "x": "Il devra être mis à mort."
+   },
+   {
+    "q": "Que fait-on d'une bête morte, selon la Torah ?",
+    "a": "On la donne à l'étranger ou on la vend, mais on ne la mange pas",
+    "w": [
+     "On la brûle hors du camp, sans la donner",
+     "On la partage au peuple, sans la vendre",
+     "On la cache sous la terre, sans la toucher"
+    ],
+    "ref": "14:21",
+    "proof": [
+     "bête morte"
+    ],
+    "x": "Car Israël est un peuple consacré à l'Éternel."
+   },
+   {
+    "q": "Que doit-on ouvrir à son frère indigent, selon la Torah ?",
+    "a": "Sa main",
+    "w": [
+     "Sa porte",
+     "Son champ",
+     "Sa tente"
+    ],
+    "ref": "15:8",
+    "proof": [
+     "Ouvre-lui plutôt ta main"
+    ],
+    "x": "On lui prête en raison de ses besoins."
    }
   ],
   "2": [
@@ -159,6 +229,76 @@
      "dîme du produit de ta semence"
     ],
     "x": "On la mange devant l'Éternel, dans le lieu qu'il choisira."
+   },
+   {
+    "q": "Que dit la Torah du peuple d'Israël, que l'Éternel a choisi entre tous les peuples ?",
+    "a": "Qu'il est un peuple consacré et spécial",
+    "w": [
+     "Qu'il est un peuple nombreux et riche",
+     "Qu'il est un peuple ancien et sage",
+     "Qu'il est un peuple fort et libre"
+    ],
+    "ref": "14:2",
+    "proof": [
+     "peuple consacré"
+    ],
+    "x": "Il est choisi entre tous les peuples répandus sur la terre."
+   },
+   {
+    "q": "Que doit faire tout créancier, selon la loi de la rémission ?",
+    "a": "Faire remise de ce qu'il a prêté à son prochain",
+    "w": [
+     "Réclamer double de ce qu'il a prêté à son prochain",
+     "Attendre un an de ce qu'il a prêté à son prochain",
+     "Changer le gage de ce qu'il a prêté à son prochain"
+    ],
+    "ref": "15:2",
+    "proof": [
+     "remise de sa créance"
+    ],
+    "x": "Il n'exerce pas de contrainte contre son frère."
+   },
+   {
+    "q": "Que dit la Torah des nécessiteux dans le pays ?",
+    "a": "Qu'il y en aura toujours, c'est pourquoi il faut ouvrir sa main",
+    "w": [
+     "Qu'il n'y en aura plus, c'est pourquoi il faut fermer sa main",
+     "Qu'il y en aura peu, c'est pourquoi il faut compter sa main",
+     "Qu'il y en aura parfois, c'est pourquoi il faut lever sa main"
+    ],
+    "ref": "15:11",
+    "proof": [
+     "toujours des nécessiteux"
+    ],
+    "x": "« Ouvre, ouvre ta main à ton frère. »"
+   },
+   {
+    "q": "De quoi Israël doit-il se souvenir, pour affranchir à son tour ?",
+    "a": "Qu'il fut esclave en Égypte, et que l'Éternel l'a affranchi",
+    "w": [
+     "Qu'il fut étranger en Canaan, et que l'Éternel l'a nourri",
+     "Qu'il fut pauvre au désert, et que l'Éternel l'a vêtu",
+     "Qu'il fut captif à Babel, et que l'Éternel l'a libéré"
+    ],
+    "ref": "15:15",
+    "proof": [
+     "tu fus esclave au pays d'Égypte"
+    ],
+    "x": "C'est pourquoi il prescrit ce commandement."
+   },
+   {
+    "q": "Qui se réjouit pendant la fête, avec le fils et la fille, le serviteur et la servante ?",
+    "a": "Le Lévite, l'étranger, l'orphelin et la veuve",
+    "w": [
+     "Le prêtre, le juge, l'ancien et le roi",
+     "Le pauvre, le voyageur, le malade et le vieillard",
+     "Le berger, le laboureur, le marchand et le scribe"
+    ],
+    "ref": "16:14",
+    "proof": [
+     "le Lévite, l'étranger, l'orphelin, la veuve"
+    ],
+    "x": "Ils sont dans tes murs."
    }
   ],
   "3": [
@@ -231,6 +371,76 @@
      "לחם שמזכיר את העני"
     ],
     "x": "Rachi sur Deutéronome 16:3 : un pain qui rappelle l'affliction que les Israélites ont subie en Égypte."
+   },
+   {
+    "q": "Selon Rachi, que désigne « sa demeure vous chercherez » (leshikhno tidreshou) ?",
+    "a": "Le tabernacle de Silo",
+    "w": [
+     "Le temple de Jérusalem",
+     "La tente du désert",
+     "L'autel de Béthel"
+    ],
+    "ref": "12:5",
+    "proof": [
+     "זה משכן שילה"
+    ],
+    "x": "Rachi sur Deutéronome 12:5 : c'est le tabernacle de Silo."
+   },
+   {
+    "q": "Selon Rachi, que signifie « car tu es un peuple saint » (ki am kadosh) ?",
+    "a": "Que tu t'es sanctifié par tes pères, et que Dieu t'a aussi choisi",
+    "w": [
+     "Que tu t'es instruit par tes maîtres, et que Dieu t'a aussi gardé",
+     "Que tu t'es éloigné par tes fautes, et que Dieu t'a aussi pardonné",
+     "Que tu t'es enrichi par tes champs, et que Dieu t'a aussi béni"
+    ],
+    "ref": "14:2",
+    "proof": [
+     "קדשת עצמך מאבותיך"
+    ],
+    "x": "Rachi sur Deutéronome 14:2 : tu es sanctifié de tes pères ; et de plus, l'Éternel t'a choisi."
+   },
+   {
+    "q": "Selon Rachi, qui est « l'étranger dans tes portes » à qui l'on donne la bête morte ?",
+    "a": "Un résident qui a accepté de ne pas servir les idoles et mange des bêtes mortes",
+    "w": [
+     "Un voyageur qui a refusé de jeûner les jours de fête et boit du vin pur",
+     "Un esclave qui a juré de ne pas quitter son maître et mange du pain sans levain",
+     "Un soldat qui a promis de ne pas combattre au sabbat et mange à la table du roi"
+    ],
+    "ref": "14:21",
+    "proof": [
+     "גר תושב שקבל עליו שלא לעבד ע\"ז"
+    ],
+    "x": "Rachi sur Deutéronome 14:21 : un « guer toshav » qui a accepté de ne pas servir l'idolâtrie, et qui mange des bêtes mortes."
+   },
+   {
+    "q": "Selon Rachi, que signifie « ne cuis pas le chevreau dans le lait de sa mère » répété ?",
+    "a": "Trois fois : interdit de cuire, de manger et de profiter",
+    "w": [
+     "Deux fois : interdit de cuire et de manger",
+     "Quatre fois : interdit de cuire, de manger, de vendre et de profiter",
+     "Une fois : interdit de cuire seulement"
+    ],
+    "ref": "14:21",
+    "proof": [
+     "שלוש פעמים"
+    ],
+    "x": "Rachi sur Deutéronome 14:21 : trois fois (Exode 23, 34 et ici) : cuire, manger et profiter."
+   },
+   {
+    "q": "Selon Rachi, que signifie « quand tu commenceras à compter dès que la faucille » ?",
+    "a": "Dès que la gerbe, prémices de la moisson, a été coupée",
+    "w": [
+     "Dès que le blé, fruit de la moisson, a été battu",
+     "Dès que le pain, produit de la moisson, a été cuit",
+     "Dès que l'orge, signe de la moisson, a été vu"
+    ],
+    "ref": "16:9",
+    "proof": [
+     "משנקצר העמר"
+    ],
+    "x": "Rachi sur Deutéronome 16:9 : à partir du moment où l'on coupe l'ômer, prémices de la moisson."
    }
   ]
  }

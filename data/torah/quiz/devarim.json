@@ -96,6 +96,76 @@
      "Caleb, fils de Yefounné"
     ],
     "x": "Dieu donnera à lui et à ses enfants le sol qu'il a foulé."
+   },
+   {
+    "q": "À qui l'Éternel a-t-il juré de donner le pays, selon Moïse ?",
+    "a": "À Abraham, Isaac et Jacob, et à leur postérité",
+    "w": [
+     "À Moïse, Aaron et Josué, et à leurs fils",
+     "À Noé, Sem et Abraham, et à leur peuple",
+     "À Isaac, Jacob et Joseph, et à leur famille"
+    ],
+    "ref": "1:8",
+    "proof": [
+     "Abraham, Isaac et Jacob"
+    ],
+    "x": "Il leur ordonne d'aller en prendre possession."
+   },
+   {
+    "q": "Où Moïse envoie-t-il une députation à Sihôn, roi de Hesbon, avec des paroles pacifiques ?",
+    "a": "Du désert de Kedêmoth",
+    "w": [
+     "Du désert de Pharan",
+     "Du désert de Cîn",
+     "Du désert de Moab"
+    ],
+    "ref": "2:26",
+    "proof": [
+     "désert de Kedêmoth"
+    ],
+    "x": "Sihôn refuse de livrer passage."
+   },
+   {
+    "q": "Que fait Israël des villes de Sihôn, après les avoir prises ?",
+    "a": "Il les frappe d'anathème, sans laisser un survivant",
+    "w": [
+     "Il les partage entre les tribus, sans laisser un exilé",
+     "Il les rend à ses habitants, sans laisser un impôt",
+     "Il les brûle entièrement, sans laisser une pierre"
+    ],
+    "ref": "2:34",
+    "proof": [
+     "frappâmes d'anathème"
+    ],
+    "x": "Il y comprend femmes et enfants."
+   },
+   {
+    "q": "Que dit Moïse de la direction à prendre, après la faute des explorateurs ?",
+    "a": "Changer de direction et aller vers le désert, du côté de la mer des Joncs",
+    "w": [
+     "Continuer tout droit et aller vers le pays, du côté du Jourdain",
+     "Revenir en arrière et aller vers l'Égypte, du côté du Nil",
+     "S'arrêter ici et aller vers le Sinaï, du côté du Horeb"
+    ],
+    "ref": "1:40",
+    "proof": [
+     "mer des Joncs"
+    ],
+    "x": "C'est un ordre donné au peuple."
+   },
+   {
+    "q": "Qui s'avance à la rencontre d'Israël, pour livrer bataille, vers Edréi ?",
+    "a": "Og, roi du Basan, avec tout son peuple",
+    "w": [
+     "Sihôn, roi de Hesbon, avec toute son armée",
+     "Balak, roi de Moab, avec tous ses chefs",
+     "Amalek, roi du Néguev, avec tous ses fils"
+    ],
+    "ref": "3:1",
+    "proof": [
+     "Og, roi du Basan"
+    ],
+    "x": "Il s'avance avec tout son peuple."
    }
   ],
   "2": [
@@ -168,6 +238,76 @@
      "hauts remparts"
     ],
     "x": "Sans compter les villes ouvertes, très nombreuses."
+   },
+   {
+    "q": "Que disent les explorateurs du peuple de Canaan, qui abat le courage d'Israël ?",
+    "a": "Une race plus grande et plus forte, avec des villes fortifiées jusqu'au ciel",
+    "w": [
+     "Une race plus riche et plus nombreuse, avec des champs étendus jusqu'au fleuve",
+     "Une race plus sage et plus ancienne, avec des temples dressés jusqu'au mont",
+     "Une race plus belle et plus douce, avec des vignes plantées jusqu'à la mer"
+    ],
+    "ref": "1:28",
+    "proof": [
+     "plus grande et plus forte"
+    ],
+    "x": "Ils ont fait trembler le cœur de leurs frères."
+   },
+   {
+    "q": "Comment Dieu a-t-il porté Israël dans le désert, selon Moïse ?",
+    "a": "Comme un père porte son fils",
+    "w": [
+     "Comme un berger porte son agneau",
+     "Comme un aigle porte son petit",
+     "Comme un roi porte son trône"
+    ],
+    "ref": "1:31",
+    "proof": [
+     "comme un père porte son fils"
+    ],
+    "x": "Il l'a porté durant tout le trajet."
+   },
+   {
+    "q": "Pourquoi Sihôn n'a-t-il pas voulu livrer passage à Israël ?",
+    "a": "Parce que l'Éternel avait raidi son esprit et endurci son cœur",
+    "w": [
+     "Parce que l'Éternel avait troublé son armée et vidé ses villes",
+     "Parce que l'Éternel avait fermé son chemin et bouché ses puits",
+     "Parce que l'Éternel avait changé son nom et divisé son peuple"
+    ],
+    "ref": "2:30",
+    "proof": [
+     "raidi son esprit"
+    ],
+    "x": "Dieu voulait le livrer à Israël."
+   },
+   {
+    "q": "Comment les Sidoniens nomment-ils le Hermon, et les Amorréens ?",
+    "a": "Les Sidoniens l'appellent Sinon, les Amorréens Senir",
+    "w": [
+     "Les Sidoniens l'appellent Senir, les Amorréens Sinon",
+     "Les Sidoniens l'appellent Hermon, les Amorréens Sion",
+     "Les Sidoniens l'appellent Sion, les Amorréens Séir"
+    ],
+    "ref": "3:9",
+    "proof": [
+     "Sidoniens nomment le Hermon Sinon"
+    ],
+    "x": "C'est un détail rapporté entre parenthèses."
+   },
+   {
+    "q": "Que dit Moïse à propos de l'Éternel, qui accompagne Israël en avant, pour la guerre ?",
+    "a": "Qu'il a combattu en leur faveur sous leurs yeux, en Égypte",
+    "w": [
+     "Qu'il a combattu contre eux sous leurs yeux, en Égypte",
+     "Qu'il a dormi parmi eux sous leurs tentes, en Égypte",
+     "Qu'il a parlé avec eux sous leurs murs, en Égypte"
+    ],
+    "ref": "1:30",
+    "proof": [
+     "combattra"
+    ],
+    "x": "Il l'a fait en Égypte, sous leurs yeux."
    }
   ],
   "3": [
@@ -240,6 +380,76 @@
      "גדלה ושכר"
     ],
     "x": "Rachi sur Deutéronome 1:6 : une grande récompense pour votre séjour : vous avez fait le Tabernacle, le candélabre, reçu la Torah, institué le Sanhédrin."
+   },
+   {
+    "q": "Selon Rachi, que reproche Moïse en rappelant les « onze jours depuis le Horeb » ?",
+    "a": "Que le peuple a parcouru en trois jours ce qui en prend onze, et a fauté",
+    "w": [
+     "Que le peuple a parcouru en onze jours ce qui en prend trois, et s'est reposé",
+     "Que le peuple a parcouru en sept jours ce qui en prend onze, et a prié",
+     "Que le peuple a parcouru en trente jours ce qui en prend onze, et a jeûné"
+    ],
+    "ref": "1:2",
+    "proof": [
+     "בשלושה ימים"
+    ],
+    "x": "Rachi sur Deutéronome 1:2 : il n'y a pas de route plus courte du Horeb à Kadéch-Barnéa que par le mont Séir, onze jours ; et ils l'ont faite en trois jours."
+   },
+   {
+    "q": "Selon Rachi, que signifie « choisissez-vous » (havou lakhem) ?",
+    "a": "Disposez-vous à parler",
+    "w": [
+     "Cachez-vous pour écouter",
+     "Levez-vous pour partir",
+     "Réunissez-vous pour manger"
+    ],
+    "ref": "1:13",
+    "proof": [
+     "הזמינו עצמכם לדבר"
+    ],
+    "x": "Rachi sur Deutéronome 1:13 : préparez-vous à parler."
+   },
+   {
+    "q": "Selon Rachi, quelle différence y a-t-il entre « sage » et « intelligent » (navon) ?",
+    "a": "Le sage est comme un changeur riche, l'intelligent comprend une chose d'une autre",
+    "w": [
+     "Le sage est comme un berger riche, l'intelligent mène une chose à une autre",
+     "Le sage est comme un juge riche, l'intelligent tranche une chose d'une autre",
+     "Le sage est comme un marchand riche, l'intelligent vend une chose à une autre"
+    ],
+    "ref": "1:13",
+    "proof": [
+     "מבינים דבר מתוך דבר"
+    ],
+    "x": "Rachi sur Deutéronome 1:13 : « nevonim » comprennent une chose à partir d'une autre ; le sage est comme un changeur riche qui examine les pièces qu'on lui apporte."
+   },
+   {
+    "q": "Selon Rachi, que montre le mot « votre faute » écrit sans yod (ashmekhem) ?",
+    "a": "Que les fautes d'Israël pèsent sur les têtes de leurs juges, qui devaient les corriger",
+    "w": [
+     "Que les fautes d'Israël pèsent sur les têtes de leurs enfants, qui devaient les subir",
+     "Que les fautes d'Israël pèsent sur les têtes de leurs voisins, qui devaient les cacher",
+     "Que les fautes d'Israël pèsent sur les têtes de leurs prêtres, qui devaient les expier"
+    ],
+    "ref": "1:13",
+    "proof": [
+     "אשמותיהם של ישראל תלויות בראשי דיניהם"
+    ],
+    "x": "Rachi sur Deutéronome 1:13 : cela enseigne que les fautes d'Israël sont suspendues aux têtes de leurs juges, qui auraient dû protester et les mettre sur la bonne voie."
+   },
+   {
+    "q": "Selon Rachi, que signifie « comme les abeilles vous poursuivirent » ?",
+    "a": "Que l'abeille qui pique l'homme meurt aussitôt, et eux aussi mouraient en les touchant",
+    "w": [
+     "Que l'abeille qui pique l'homme s'enfuit aussitôt, et eux aussi fuyaient en les touchant",
+     "Que l'abeille qui pique l'homme revient aussitôt, et eux aussi revenaient en les touchant",
+     "Que l'abeille qui pique l'homme vole aussitôt, et eux aussi volaient en les touchant"
+    ],
+    "ref": "1:44",
+    "proof": [
+     "מיד מתה"
+    ],
+    "x": "Rachi sur Deutéronome 1:44 : comme l'abeille, quand elle frappe un homme, meurt aussitôt ; ainsi, quand ils vous touchaient, ils mouraient."
    }
   ]
  }

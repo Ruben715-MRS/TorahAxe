@@ -72,6 +72,76 @@
      "Les choses cachées appartiennent au Seigneur"
     ],
     "x": "Les choses révélées importent à nous et à nos enfants jusqu'aux derniers âges."
+   },
+   {
+    "q": "Pourquoi les enfants d'Israël se tiennent-ils tous en présence de l'Éternel ce jour-là ?",
+    "a": "Pour entrer dans l'alliance de l'Éternel et dans son pacte solennel",
+    "w": [
+     "Pour compter la tribu de Lévi et reconnaître ses chefs",
+     "Pour recevoir la terre promise et la partager au sort",
+     "Pour renouveler les tables brisées et les placer dans l'arche"
+    ],
+    "ref": "29:11",
+    "proof": [
+     "entrer dans l'alliance de l'Éternel"
+    ],
+    "x": "Il traite avec eux en ce jour."
+   },
+   {
+    "q": "Que diront tous les peuples en voyant le pays désolé ?",
+    "a": "« À quel propos l'Éternel a-t-il ainsi traité ce pays ? »",
+    "w": [
+     "« À quel signe l'Éternel a-t-il ainsi frappé ce roi ? »",
+     "« À quel moment l'Éternel a-t-il ainsi quitté ce temple ? »",
+     "« À quel prix l'Éternel a-t-il ainsi vendu ce peuple ? »"
+    ],
+    "ref": "29:23",
+    "proof": [
+     "A quel propos l'Éternel a-t-il ainsi traité ce pays"
+    ],
+    "x": "Ils demanderont pourquoi cette grande colère."
+   },
+   {
+    "q": "Que fait l'Éternel des proscrits d'Israël, même à l'extrémité des cieux ?",
+    "a": "Il les rappelle de là, et les reprend",
+    "w": [
+     "Il les oublie là, et les laisse",
+     "Il les cache là, et les protège",
+     "Il les punit là, et les chasse"
+    ],
+    "ref": "30:4",
+    "proof": [
+     "te rappellerait de là"
+    ],
+    "x": "Ses proscrits ne sont pas perdus."
+   },
+   {
+    "q": "Que fera l'Éternel du cœur d'Israël et de celui de sa postérité ?",
+    "a": "Il le circoncira, pour qu'ils l'aiment de tout leur cœur",
+    "w": [
+     "Il le brisera, pour qu'ils le craignent de tout leur corps",
+     "Il le guérira, pour qu'ils le suivent de toute leur force",
+     "Il le changera, pour qu'ils le louent de toute leur voix"
+    ],
+    "ref": "30:6",
+    "proof": [
+     "circoncira ton cœur"
+    ],
+    "x": "Afin qu'ils assurent leur existence."
+   },
+   {
+    "q": "Que promet l'Éternel à celui qui aime, marche dans ses voies et garde ses lois ?",
+    "a": "Il vivra, grandira et sera béni",
+    "w": [
+     "Il régnera, vaincra et sera craint",
+     "Il voyagera, apprendra et sera sage",
+     "Il dormira, mangera et sera heureux"
+    ],
+    "ref": "30:16",
+    "proof": [
+     "tu vivras, tu grandiras et tu seras béni"
+    ],
+    "x": "Cela est dit en ce jour."
    }
   ],
   "2": [
@@ -145,6 +215,76 @@
      "Aime l'Éternel, ton Dieu, écoute sa voix, reste-lui fidèle"
     ],
     "x": "C'est là la condition de sa vie et de sa longévité."
+   },
+   {
+    "q": "Pourquoi le pays a-t-il été désolé, selon la réponse aux peuples ?",
+    "a": "Parce qu'ils sont allés servir des divinités étrangères",
+    "w": [
+     "Parce qu'ils ont oublié de compter les années sabbatiques",
+     "Parce qu'ils ont refusé de donner la dîme aux Lévites",
+     "Parce qu'ils ont cessé de célébrer les fêtes d'automne"
+    ],
+    "ref": "29:25",
+    "proof": [
+     "servir des divinités étrangères"
+    ],
+    "x": "Des divinités qu'ils ne connaissaient point."
+   },
+   {
+    "q": "Que fera l'Éternel pour tout le travail de la main d'Israël, s'il revient à lui ?",
+    "a": "Il lui prodiguera des biens et se plaira de nouveau en lui",
+    "w": [
+     "Il lui retirera des charges et se tiendra loin de lui",
+     "Il lui donnera des maîtres et se cachera derrière lui",
+     "Il lui comptera des peines et se souviendra contre lui"
+    ],
+    "ref": "30:9",
+    "proof": [
+     "te prodiguera des biens"
+    ],
+    "x": "Il se plaira de nouveau à lui faire du bien."
+   },
+   {
+    "q": "À quoi Israël doit-il revenir, de tout son cœur et de toute son âme ?",
+    "a": "À l'Éternel, son Dieu",
+    "w": [
+     "Au Sinaï, sa montagne",
+     "À Jérusalem, sa ville",
+     "À Moïse, son maître"
+    ],
+    "ref": "30:10",
+    "proof": [
+     "tu reviennes à l'Éternel"
+    ],
+    "x": "Il doit écouter sa voix et garder ses préceptes."
+   },
+   {
+    "q": "Que dit la Torah du commandement de ce jour, quant à sa proximité ?",
+    "a": "Qu'il n'est ni trop ardu ni trop loin",
+    "w": [
+     "Qu'il n'est ni trop court ni trop long",
+     "Qu'il n'est ni trop ancien ni trop nouveau",
+     "Qu'il n'est ni trop simple ni trop dur"
+    ],
+    "ref": "30:11",
+    "proof": [
+     "ni trop ardue pour toi, ni placée trop loin"
+    ],
+    "x": "Elle n'est pas au ciel, ni au-delà de l'océan."
+   },
+   {
+    "q": "Qu'est-ce que Moïse propose à Israël, d'un côté et de l'autre ?",
+    "a": "La vie avec le bien, et la mort avec le mal",
+    "w": [
+     "La paix avec le bien, et la guerre avec le mal",
+     "La joie avec le bien, et la peine avec le mal",
+     "La gloire avec le bien, et la honte avec le mal"
+    ],
+    "ref": "30:15",
+    "proof": [
+     "la vie avec le bien"
+    ],
+    "x": "C'est une proposition faite en ce jour."
    }
   ],
   "3": [
@@ -217,6 +357,76 @@
      "שהם קימים לעולם"
     ],
     "x": "Rachi sur Deutéronome 30:19 : parce qu'ils existent pour toujours ; quand le malheur vous frappera, ils seront témoins que je vous ai avertis."
+   },
+   {
+    "q": "Selon Rachi, que signifie « de peur qu'il n'y ait parmi vous » (pen yesh bakhem) ?",
+    "a": "Peut-être y en a-t-il parmi vous",
+    "w": [
+     "Sûrement y en a-t-il parmi vous",
+     "Jamais n'y en aura-t-il parmi vous",
+     "Longtemps y en aura-t-il parmi vous"
+    ],
+    "ref": "29:17",
+    "proof": [
+     "שמא יש בכם"
+    ],
+    "x": "Rachi sur Deutéronome 29:17 : peut-être y en a-t-il parmi vous."
+   },
+   {
+    "q": "Selon Rachi, que signifie « dont le cœur se détourne aujourd'hui » ?",
+    "a": "Qu'il refuse d'accepter l'alliance",
+    "w": [
+     "Qu'il oublie d'honorer le Sabbat",
+     "Qu'il craint de quitter l'Égypte",
+     "Qu'il hésite à passer le Jourdain"
+    ],
+    "ref": "29:17",
+    "proof": [
+     "מלקבל עליו הברית"
+    ],
+    "x": "Rachi sur Deutéronome 29:17 : de recevoir sur lui l'alliance."
+   },
+   {
+    "q": "Selon Rachi, que veut dire « racine qui porte du poison et de l'absinthe » ?",
+    "a": "Une racine d'herbe amère, qui fait croître la méchanceté parmi vous",
+    "w": [
+     "Une racine d'arbre doux, qui fait croître la sagesse parmi vous",
+     "Une racine de vigne forte, qui fait croître la richesse parmi vous",
+     "Une racine de blé fin, qui fait croître la paix parmi vous"
+    ],
+    "ref": "29:17",
+    "proof": [
+     "שרש מגדל עשב מר"
+    ],
+    "x": "Rachi sur Deutéronome 29:17 : une racine qui fait pousser une herbe amère : c'est-à-dire qui fructifie et multiplie le mal parmi vous."
+   },
+   {
+    "q": "Selon Rachi, que montre « et l'Éternel fera revenir ses captifs » (veshav) ?",
+    "a": "Que la Présence divine est avec Israël dans l'exil",
+    "w": [
+     "Que la Présence divine est loin d'Israël dans l'exil",
+     "Que la Présence divine est cachée à Israël dans l'exil",
+     "Que la Présence divine est oubliée d'Israël dans l'exil"
+    ],
+    "ref": "30:3",
+    "proof": [
+     "השכינה שרויה עם ישראל בצרת גלו"
+    ],
+    "x": "Rachi sur Deutéronome 30:3 : il aurait dû écrire « il fera revenir » ; nos maîtres en ont déduit que la Présence est avec Israël dans l'exil."
+   },
+   {
+    "q": "Selon Rachi, que signifie « il n'est pas caché » (lo niflet) pour le commandement ?",
+    "a": "Qu'il n'est pas caché à toi",
+    "w": [
+     "Qu'il n'est pas dur pour toi",
+     "Qu'il n'est pas long pour toi",
+     "Qu'il n'est pas faux pour toi"
+    ],
+    "ref": "30:11",
+    "proof": [
+     "לא מכסה היא ממך"
+    ],
+    "x": "Rachi sur Deutéronome 30:11 : elle n'est pas cachée de toi."
    }
   ]
  }

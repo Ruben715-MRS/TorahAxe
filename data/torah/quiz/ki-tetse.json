@@ -72,6 +72,76 @@
      "Ne muselle point le bœuf"
     ],
     "x": "Il doit pouvoir manger pendant le travail."
+   },
+   {
+    "q": "Que fait-on du fils libertin et rebelle, sourd à la voix de son père et de sa mère ?",
+    "a": "Les anciens de la ville le lapident",
+    "w": [
+     "Les anciens de la ville le chassent",
+     "Les anciens de la ville le fouettent",
+     "Les anciens de la ville le vendent"
+    ],
+    "ref": "21:21",
+    "proof": [
+     "à coups de pierres"
+    ],
+    "x": "Ses parents le traduisent devant le tribunal."
+   },
+   {
+    "q": "Que doit-on faire du bœuf ou de la brebis égarés de son frère ?",
+    "a": "Les ramener à son frère, sans s'en dérober",
+    "w": [
+     "Les garder pour soi, sans en parler",
+     "Les vendre au marché, sans en rendre compte",
+     "Les laisser au champ, sans s'en occuper"
+    ],
+    "ref": "22:1",
+    "proof": [
+     "tu es tenu de les ramener à ton frère"
+    ],
+    "x": "Il ne faut pas se dérober à eux."
+   },
+   {
+    "q": "Que doit-on faire aux quatre coins du vêtement dont on se couvre ?",
+    "a": "Des cordons en franges",
+    "w": [
+     "Des boutons en pierre",
+     "Des nœuds en laine",
+     "Des anneaux en cuivre"
+    ],
+    "ref": "22:12",
+    "proof": [
+     "cordons en franges aux quatre coins"
+    ],
+    "x": "Ce sont les franges (tsitsit)."
+   },
+   {
+    "q": "Que ne doit-on pas exiger de son frère, en prêtant ?",
+    "a": "Des intérêts",
+    "w": [
+     "Des témoins",
+     "Un gage",
+     "Un reçu"
+    ],
+    "ref": "23:20",
+    "proof": [
+     "N'exige point d'intérêts de ton frère"
+    ],
+    "x": "Ni pour argent, ni pour denrées."
+   },
+   {
+    "q": "Que peut-on manger en entrant dans la vigne de son prochain, sans les mettre dans son panier ?",
+    "a": "Des raisins à son appétit",
+    "w": [
+     "Des figues à sa guise",
+     "Des olives à sa faim",
+     "Des dattes à son goût"
+    ],
+    "ref": "23:25",
+    "proof": [
+     "raisins à ton appétit"
+    ],
+    "x": "Mais on n'en met point dans son panier."
    }
   ],
   "2": [
@@ -156,6 +226,76 @@
      "Amalec"
     ],
     "x": "Il ne craignait pas Dieu : Israël devra effacer sa mémoire."
+   },
+   {
+    "q": "Que fait la captive, une fois dans la maison, avant d'être prise pour épouse ?",
+    "a": "Elle rase sa tête et coupe ses ongles",
+    "w": [
+     "Elle brûle ses habits et lave ses cheveux",
+     "Elle prie le Seigneur et jeûne un jour",
+     "Elle quitte la maison et retourne chez elle"
+    ],
+    "ref": "21:12",
+    "proof": [
+     "se rasera la tête et se coupera les ongles"
+    ],
+    "x": "Elle se dépouille aussi de son vêtement de captive."
+   },
+   {
+    "q": "Que dit la Torah de l'Édomite et de l'Égyptien ?",
+    "a": "Qu'on ne doit pas les avoir en horreur : l'un est un frère, l'autre a accueilli Israël",
+    "w": [
+     "Qu'on doit les chasser du camp : l'un est un ennemi, l'autre a trahi Israël",
+     "Qu'on doit les compter parmi les siens : l'un est un parent, l'autre a battu Israël",
+     "Qu'on doit les craindre à jamais : l'un est un guerrier, l'autre a vaincu Israël"
+    ],
+    "ref": "23:8",
+    "proof": [
+     "N'aie pas en horreur l'lduméen"
+    ],
+    "x": "Israël a séjourné dans le pays d'Égypte."
+   },
+   {
+    "q": "Que doit écrire l'homme qui renvoie sa femme, qui a cessé de lui plaire ?",
+    "a": "Un libelle de divorce",
+    "w": [
+     "Un acte de vente",
+     "Un serment de paix",
+     "Un contrat de dette"
+    ],
+    "ref": "24:1",
+    "proof": [
+     "libelle de divorce"
+    ],
+    "x": "Il le lui remet."
+   },
+   {
+    "q": "Que ne doit-on pas saisir comme gage, parce que ce serait prendre la vie en gage ?",
+    "a": "Une meule inférieure ni une meule courante",
+    "w": [
+     "Un lit ni une couverture",
+     "Une cruche ni une coupe",
+     "Un bœuf ni un âne"
+    ],
+    "ref": "24:6",
+    "proof": [
+     "meule"
+    ],
+    "x": "On ne prend pas en gage ce qui sert à nourrir."
+   },
+   {
+    "q": "Que doit-on faire d'une javelle oubliée dans son champ, lors de la moisson ?",
+    "a": "La laisser à l'étranger, à l'orphelin et à la veuve",
+    "w": [
+     "La reprendre pour soi, avant le soir",
+     "La vendre au marché, après le Chabbat",
+     "La brûler sur l'autel, avant la fête"
+    ],
+    "ref": "24:19",
+    "proof": [
+     "qu'elle reste pour l'étranger"
+    ],
+    "x": "Ne retourne pas la prendre."
    }
   ],
   "3": [
@@ -228,6 +368,76 @@
      "מאזני מרמה"
     ],
     "x": "Rachi sur Deutéronome 25:17 : si tu as triché sur les mesures et les poids, crains l'excitation de l'ennemi : « la balance fausse est une abomination » ; et ensuite vient l'orgueilleux."
+   },
+   {
+    "q": "Selon Rachi, que signifie « libertin » (sorer) dans le fils libertin et rebelle ?",
+    "a": "Celui qui s'écarte du chemin",
+    "w": [
+     "Celui qui rejette la loi",
+     "Celui qui vole le pain",
+     "Celui qui fuit la maison"
+    ],
+    "ref": "21:18",
+    "proof": [
+     "סר מן הדרך"
+    ],
+    "x": "Rachi sur Deutéronome 21:18 : « sorer » : celui qui s'est écarté du chemin."
+   },
+   {
+    "q": "Selon Rachi, que signifie « tu te déroberas » (vehit'alamta) à propos de l'objet perdu ?",
+    "a": "Tu fermeras les yeux, comme si tu ne le voyais pas",
+    "w": [
+     "Tu ouvriras la main, comme si tu le prenais",
+     "Tu hausseras la voix, comme si tu l'appelais",
+     "Tu baisseras la tête, comme si tu le saluais"
+    ],
+    "ref": "22:1",
+    "proof": [
+     "כובש עין כאלו אינו רואהו"
+    ],
+    "x": "Rachi sur Deutéronome 22:1 : il ferme les yeux, comme s'il ne le voyait pas."
+   },
+   {
+    "q": "Selon Rachi, que sont les « mélanges » (kilayim) dans la vigne ?",
+    "a": "Du blé, de l'orge et un pépin de raisin, dans une poignée",
+    "w": [
+     "De l'orge, du seigle et un grain de blé, dans un champ",
+     "De l'huile, du vin et une goutte de miel, dans une jarre",
+     "Du lin, de la laine et un fil de soie, dans un habit"
+    ],
+    "ref": "22:9",
+    "proof": [
+     "חטה ושעורה וחרצן"
+    ],
+    "x": "Rachi sur Deutéronome 22:9 : du blé, de l'orge et un pépin de raisin, jetés d'une poignée."
+   },
+   {
+    "q": "Selon Rachi, que signifie « salaire d'une prostituée » (etnan zona) ?",
+    "a": "Un agneau qu'on lui a donné : il est impropre au sacrifice",
+    "w": [
+     "Un bœuf qu'on lui a vendu : il est interdit à la vente",
+     "Un chevreau qu'on lui a pris : il est étranger à l'autel",
+     "Un bélier qu'on lui a prêté : il est destiné à la dîme"
+    ],
+    "ref": "23:19",
+    "proof": [
+     "נתן לה טלה באתננה פסול להקרבה"
+    ],
+    "x": "Rachi sur Deutéronome 23:19 : s'il lui a donné un agneau en salaire, il est impropre à l'offrande."
+   },
+   {
+    "q": "Selon Rachi, que signifie « les pères ne seront pas mis à mort pour les fils » ?",
+    "a": "Pas sur le témoignage de leurs fils",
+    "w": [
+     "Pas pour la faute de leurs fils",
+     "Pas pour la dette de leurs fils",
+     "Pas pour l'honneur de leurs fils"
+    ],
+    "ref": "24:16",
+    "proof": [
+     "בעדות בנים"
+    ],
+    "x": "Rachi sur Deutéronome 24:16 : pas sur le témoignage des fils ; pour leur faute, il est déjà dit : « chacun mourra pour son péché »."
    }
   ]
  }

@@ -73,6 +73,76 @@
      "entre tes yeux"
     ],
     "x": "On les inscrit aussi sur les poteaux de la maison et sur les portes."
+   },
+   {
+    "q": "Que seront l'observation et la pratique des lois, aux yeux des peuples ?",
+    "a": "La sagesse et l'intelligence d'Israël",
+    "w": [
+     "La force et la richesse d'Israël",
+     "La gloire et la liberté d'Israël",
+     "La paix et la sécurité d'Israël"
+    ],
+    "ref": "4:6",
+    "proof": [
+     "votre sagesse et votre intelligence"
+    ],
+    "x": "Les peuples diront : « Cette grande nation est sage. »"
+   },
+   {
+    "q": "Comment la Torah décrit-elle l'Éternel, dans le verset sur la jalousie ?",
+    "a": "Un feu dévorant, une divinité jalouse",
+    "w": [
+     "Un roc solide, une divinité fidèle",
+     "Un berger doux, une divinité proche",
+     "Un juge sévère, une divinité juste"
+    ],
+    "ref": "4:24",
+    "proof": [
+     "feu dévorant"
+    ],
+    "x": "Moïse met Israël en garde contre l'idolâtrie."
+   },
+   {
+    "q": "Que doit faire Israël, pour retrouver l'Éternel dans l'exil ?",
+    "a": "Le chercher de tout son cœur et de toute son âme",
+    "w": [
+     "Le prier de tout son souffle et de toute sa voix",
+     "L'attendre de tout son temps et de toute sa force",
+     "Le servir de tout son bien et de tout son sang"
+    ],
+    "ref": "4:29",
+    "proof": [
+     "de tout ton cœur et de toute ton âme"
+    ],
+    "x": "Alors il aura recours à l'Éternel et le retrouvera."
+   },
+   {
+    "q": "Que dit la cinquième parole du Décalogue, à propos du père et de la mère ?",
+    "a": "« Honore ton père et ta mère »",
+    "w": [
+     "« Aime ton père et ta mère »",
+     "« Crains ton père et ta mère »",
+     "« Suis ton père et ta mère »"
+    ],
+    "ref": "5:16",
+    "proof": [
+     "Honore ton père et ta mère"
+    ],
+    "x": "Afin de prolonger ses jours et de vivre heureux."
+   },
+   {
+    "q": "Que dit la sixième parole du Décalogue ?",
+    "a": "« Ne commets point d'homicide »",
+    "w": [
+     "« Ne commets point de larcin »",
+     "« Ne commets point d'adultère »",
+     "« Ne commets point de mensonge »"
+    ],
+    "ref": "5:17",
+    "proof": [
+     "Ne commets point d'homicide"
+    ],
+    "x": "Suivent l'adultère, le larcin et le faux témoignage."
    }
   ],
   "2": [
@@ -146,6 +216,76 @@
      "le moindre de tous"
     ],
     "x": "Il est un peuple consacré à l'Éternel, un peuple spécial entre tous."
+   },
+   {
+    "q": "Quel peuple a, selon Moïse, des divinités accessibles comme l'Éternel pour Israël ?",
+    "a": "Aucun : où est le peuple assez grand pour cela ?",
+    "w": [
+     "Plusieurs : les peuples voisins ont aussi des divinités proches",
+     "Un seul : le peuple d'Égypte a une divinité proche",
+     "Tous : les peuples du monde ont des divinités proches"
+    ],
+    "ref": "4:7",
+    "proof": [
+     "où est le peuple assez grand"
+    ],
+    "x": "L'Éternel est proche toutes les fois qu'on l'invoque."
+   },
+   {
+    "q": "Qu'a appris Israël, selon Moïse, de ce qu'il a vu ?",
+    "a": "Que l'Éternel seul est Dieu, et qu'il n'en est point d'autre",
+    "w": [
+     "Que l'Éternel est un des dieux, et qu'il en est d'autres",
+     "Que l'Éternel est le plus grand, et qu'il est le dernier",
+     "Que l'Éternel est le plus proche, et qu'il est le seul"
+    ],
+    "ref": "4:35",
+    "proof": [
+     "l'Éternel seul est Dieu"
+    ],
+    "x": "Israël a été initié à cette connaissance."
+   },
+   {
+    "q": "Que dit la quatrième parole du Décalogue du Sabbat ?",
+    "a": "« Observe le jour du Sabbat pour le sanctifier »",
+    "w": [
+     "« Souviens-toi du jour du Sabbat pour le garder »",
+     "« Respecte le jour du Sabbat pour le bénir »",
+     "« Garde le jour du Sabbat pour le chômer »"
+    ],
+    "ref": "5:12",
+    "proof": [
+     "Observe le jour du Sabbat"
+    ],
+    "x": "Comme te l'a prescrit l'Éternel, ton Dieu."
+   },
+   {
+    "q": "De quoi Moïse invite-t-il Israël à se garder, dans le désert, à propos de l'Éternel ?",
+    "a": "D'oublier l'Éternel, qui l'a tiré d'Égypte",
+    "w": [
+     "De nommer l'Éternel, qui l'a conduit en Égypte",
+     "De craindre l'Éternel, qui l'a gardé en Égypte",
+     "De quitter l'Éternel, qui l'a nourri en Égypte"
+    ],
+    "ref": "6:12",
+    "proof": [
+     "garde-toi d'oublier l'Éternel"
+    ],
+    "x": "Il l'a tiré d'une maison de servitude."
+   },
+   {
+    "q": "Que dit Moïse de l'Éternel, Dieu véridique, quant à sa fidélité ?",
+    "a": "Qu'il est fidèle au pacte de bienveillance, jusqu'à la millième génération",
+    "w": [
+     "Qu'il est fidèle au pacte d'alliance, jusqu'à la septième génération",
+     "Qu'il est fidèle au pacte de justice, jusqu'à la dixième génération",
+     "Qu'il est fidèle au pacte de royauté, jusqu'à la centième génération"
+    ],
+    "ref": "7:9",
+    "proof": [
+     "pacte de bienveillance"
+    ],
+    "x": "Il l'est pour ceux qui l'aiment et obéissent à ses lois."
    }
   ],
   "3": [
@@ -218,6 +358,76 @@
      "הממעטין עצמכם"
     ],
     "x": "Rachi sur Deutéronome 7:7 : vous vous diminuez vous-mêmes : Abraham (« poussière et cendre »), Moïse et Aaron (« que sommes-nous ? »)."
+   },
+   {
+    "q": "Selon Rachi, que signifie « je demandai grâce » (vaetchanan) ?",
+    "a": "Un don gratuit : les justes ne demandent à Dieu qu'un cadeau",
+    "w": [
+     "Un paiement dû : les justes demandent à Dieu un salaire",
+     "Un droit acquis : les justes demandent à Dieu une part",
+     "Un prêt demandé : les justes demandent à Dieu un délai"
+    ],
+    "ref": "3:23",
+    "proof": [
+     "מתנת חנם"
+    ],
+    "x": "Rachi sur Deutéronome 3:23 : « hanoun » désigne toujours un don gratuit."
+   },
+   {
+    "q": "Selon Rachi, que signifie « et vous observerez » (ushmartem) dans « observez-les et pratiquez-les » ?",
+    "a": "Cela désigne la Michna, l'étude",
+    "w": [
+     "Cela désigne le jeûne, la prière",
+     "Cela désigne le repos, le sabbat",
+     "Cela désigne le sacrifice, l'offrande"
+    ],
+    "ref": "4:6",
+    "proof": [
+     "זו משנה"
+    ],
+    "x": "Rachi sur Deutéronome 4:6 : « ushmartem » : c'est la Michna."
+   },
+   {
+    "q": "Selon Rachi, que veut dire « dieu jaloux » (el kana) ?",
+    "a": "Qu'il est zélé pour punir, en s'irritant contre les idolâtres",
+    "w": [
+     "Qu'il est jaloux pour aimer, en se réjouissant avec les justes",
+     "Qu'il est fort pour sauver, en s'élevant contre les nations",
+     "Qu'il est sage pour juger, en s'éloignant des méchants"
+    ],
+    "ref": "4:24",
+    "proof": [
+     "מקנא לנקם"
+    ],
+    "x": "Rachi sur Deutéronome 4:24 : jaloux pour se venger : il s'irrite pour faire payer à ceux qui servent les idoles."
+   },
+   {
+    "q": "Selon Rachi, pourquoi « observe » (shamor) alors que le premier Décalogue disait « souviens-toi » ?",
+    "a": "Parce que les deux mots furent dits ensemble, en une seule parole et entendus en une seule fois",
+    "w": [
+     "Parce que les deux mots furent dits séparément, en deux paroles et entendus en deux fois",
+     "Parce que les deux mots furent écrits ensemble, en une seule tablette et lus en une seule fois",
+     "Parce que les deux mots furent donnés séparément, en deux jours et appris en deux fois"
+    ],
+    "ref": "5:12",
+    "proof": [
+     "שניהם בדבור אחד"
+    ],
+    "x": "Rachi sur Deutéronome 5:12 : « zakhor » et « shamor » ont été dits en une seule parole, en un seul mot, et entendus en une seule fois."
+   },
+   {
+    "q": "Selon Rachi, que signifie « aux poteaux de ta maison » (mezouzot), écrit sans vav ?",
+    "a": "Qu'un seul poteau suffit",
+    "w": [
+     "Que deux poteaux sont nécessaires",
+     "Que trois poteaux sont nécessaires",
+     "Qu'aucun poteau n'est nécessaire"
+    ],
+    "ref": "6:9",
+    "proof": [
+     "שאין צריך אלא אחת"
+    ],
+    "x": "Rachi sur Deutéronome 6:9 : « mezouzat » est écrit défectif : une seule mezouza suffit."
    }
   ]
  }

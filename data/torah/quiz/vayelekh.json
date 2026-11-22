@@ -84,6 +84,76 @@
      "à côté de l'arche d'alliance"
     ],
     "x": "Moïse ordonne cela aux Lévites, porteurs de l'arche."
+   },
+   {
+    "q": "Qui marche lui-même devant Israël, pour anéantir les peuples ?",
+    "a": "L'Éternel, ton Dieu",
+    "w": [
+     "Josué, le chef",
+     "L'ange, le messager",
+     "Aaron, le prêtre"
+    ],
+    "ref": "31:3",
+    "proof": [
+     "marche lui-même devant toi"
+    ],
+    "x": "Josué sera son guide."
+   },
+   {
+    "q": "Que promet Moïse à Israël, en lui disant d'être fort et vaillant ?",
+    "a": "Que l'Éternel marche lui-même avec lui et ne l'abandonnera point",
+    "w": [
+     "Que l'ange marche à ses côtés et ne l'abandonnera point",
+     "Que Josué marche devant lui et ne l'abandonnera point",
+     "Que le peuple marche derrière lui et ne l'abandonnera point"
+    ],
+    "ref": "31:6",
+    "proof": [
+     "marche lui-même avec toi"
+    ],
+    "x": "Il ne laissera pas succomber."
+   },
+   {
+    "q": "Où le Seigneur demande-t-il à Moïse et Josué de se présenter ?",
+    "a": "Dans la tente d'assignation",
+    "w": [
+     "Au pied du mont Nébo",
+     "Devant le peuple assemblé",
+     "À la porte du camp"
+    ],
+    "ref": "31:14",
+    "proof": [
+     "tente d'assignation"
+    ],
+    "x": "Pour qu'il donne ses ordres à Josué."
+   },
+   {
+    "q": "Que dit le Seigneur que fera le peuple, après la mort de Moïse ?",
+    "a": "Il se laissera débaucher par les divinités du pays, et abandonnera l'alliance",
+    "w": [
+     "Il retournera vers l'Égypte, et oubliera l'alliance",
+     "Il se divisera entre ses tribus, et brisera l'alliance",
+     "Il partira vers le désert, et cachera l'alliance"
+    ],
+    "ref": "31:16",
+    "proof": [
+     "abandonnera"
+    ],
+    "x": "Il brisera l'alliance de l'Éternel."
+   },
+   {
+    "q": "Que dit Moïse de la docilité du peuple, de son vivant ?",
+    "a": "Qu'il s'est déjà insurgé contre l'Éternel, alors que Moïse était avec lui",
+    "w": [
+     "Qu'il s'est toujours soumis à l'Éternel, tant que Moïse était avec lui",
+     "Qu'il s'est parfois repenti devant l'Éternel, quand Moïse priait pour lui",
+     "Qu'il s'est jamais plaint devant l'Éternel, depuis que Moïse parlait pour lui"
+    ],
+    "ref": "31:27",
+    "proof": [
+     "vous vous êtes insurgés contre l'Éternel"
+    ],
+    "x": "Que sera-ce après sa mort ?"
    }
   ],
   "2": [
@@ -157,6 +227,76 @@
      "c'est toi qui entreras avec ce peuple"
     ],
     "x": "Il doit être fort et vaillant."
+   },
+   {
+    "q": "Quel est le dernier conseil de l'Éternel à Josué, en lui parlant de marche et de présence ?",
+    "a": "« Sois sans peur et sans faiblesse »",
+    "w": [
+     "« Sois sans honte et sans orgueil »",
+     "« Sois sans colère et sans jugement »",
+     "« Sois sans repos et sans fatigue »"
+    ],
+    "ref": "31:8",
+    "proof": [
+     "sans peur et sans faiblesse"
+    ],
+    "x": "L'Éternel marchera devant lui et sera à ses côtés."
+   },
+   {
+    "q": "Que fait-on dans l'endroit que l'Éternel aura élu, quand tout Israël y comparaît ?",
+    "a": "On y lit la doctrine en présence de tout Israël",
+    "w": [
+     "On y offre les prémices en présence de tout Israël",
+     "On y compte les tribus en présence de tout Israël",
+     "On y bâtit l'autel en présence de tout Israël"
+    ],
+    "ref": "31:11",
+    "proof": [
+     "lecture de cette doctrine"
+    ],
+    "x": "Israël écoutera attentivement."
+   },
+   {
+    "q": "Que dit le Seigneur à Moïse de ses jours ?",
+    "a": "Qu'ils approchent de leur terme",
+    "w": [
+     "Qu'ils sont prolongés de sept ans",
+     "Qu'ils sont comptés à Moab",
+     "Qu'ils sont donnés à Josué"
+    ],
+    "ref": "31:14",
+    "proof": [
+     "tes jours approchent de leur terme"
+    ],
+    "x": "Il lui demande d'appeler Josué."
+   },
+   {
+    "q": "Que portera témoignage face au peuple, quand viendra la multitude de maux ?",
+    "a": "Le cantique, que sa postérité n'oubliera point",
+    "w": [
+     "La loi, que sa postérité ne comprendra point",
+     "L'arche, que sa postérité ne verra point",
+     "La verge, que sa postérité ne portera point"
+    ],
+    "ref": "31:21",
+    "proof": [
+     "cantique portera témoignage"
+    ],
+    "x": "La bouche de sa postérité ne l'oubliera point."
+   },
+   {
+    "q": "Que dit Moïse du comportement du peuple après sa mort ?",
+    "a": "Qu'il ira dégénérant et déviera du chemin prescrit",
+    "w": [
+     "Qu'il ira prospérant et gardera le chemin prescrit",
+     "Qu'il ira vieillissant et quittera le chemin prescrit",
+     "Qu'il ira se dispersant et oubliera le chemin prescrit"
+    ],
+    "ref": "31:29",
+    "proof": [
+     "irez dégénérant"
+    ],
+    "x": "Il arrivera du malheur dans la suite des temps."
    }
   ],
   "3": [
@@ -229,6 +369,76 @@
      "כמו שאיני רואה בצרתם"
     ],
     "x": "Rachi sur Deutéronome 31:17 : comme si je ne voyais pas leur détresse."
+   },
+   {
+    "q": "Selon Rachi, que signifie « il ne te laissera pas succomber » (lo yarpkha) ?",
+    "a": "Qu'il ne te laissera pas faiblir, au point d'être abandonné par lui",
+    "w": [
+     "Qu'il ne te laissera pas parler, au point d'être découvert par lui",
+     "Qu'il ne te laissera pas dormir, au point d'être surpris par lui",
+     "Qu'il ne te laissera pas courir, au point d'être devancé par lui"
+    ],
+    "ref": "31:6",
+    "proof": [
+     "לא יתן לך רפיון"
+    ],
+    "x": "Rachi sur Deutéronome 31:6 : il ne te donnera pas de faiblesse qui te ferait délaisser par lui."
+   },
+   {
+    "q": "Selon Rachi, par où le roi commence-t-il la lecture de la Torah devant tout Israël ?",
+    "a": "Depuis « voici les paroles » (le début du Deutéronome)",
+    "w": [
+     "Depuis « au commencement » (le début de la Genèse)",
+     "Depuis « écoute Israël » (le début du Chema)",
+     "Depuis « ces lois » (le début des Nombres)"
+    ],
+    "ref": "31:11",
+    "proof": [
+     "מתחלת \"אלה הדברים\""
+    ],
+    "x": "Rachi sur Deutéronome 31:11 : le roi lisait depuis « elleh haderarim », sur une estrade de bois, dans la cour du Temple."
+   },
+   {
+    "q": "Selon Rachi, que veut dire « je l'exciterai » (veatsavvennou) ?",
+    "a": "Je l'encouragerai",
+    "w": [
+     "Je l'avertirai",
+     "Je l'enverrai",
+     "Je le jugerai"
+    ],
+    "ref": "31:14",
+    "proof": [
+     "ואזרזנו"
+    ],
+    "x": "Rachi sur Deutéronome 31:14 : « je l'enhardirai »."
+   },
+   {
+    "q": "Selon Rachi, que signifient « les divinités du pays étranger » ?",
+    "a": "Les nations du pays",
+    "w": [
+     "Les rois du pays",
+     "Les arbres du pays",
+     "Les pierres du pays"
+    ],
+    "ref": "31:16",
+    "proof": [
+     "גויי הארץ"
+    ],
+    "x": "Rachi sur Deutéronome 31:16 : « nekhar haarets » : les nations de la terre."
+   },
+   {
+    "q": "Selon Rachi, que promet « sa postérité n'oubliera pas le cantique » ?",
+    "a": "Que la Torah ne sera jamais oubliée de leur descendance, complètement",
+    "w": [
+     "Que le Temple ne sera jamais détruit pour leur descendance, entièrement",
+     "Que le pays ne sera jamais perdu pour leur descendance, définitivement",
+     "Que le roi ne sera jamais absent pour leur descendance, durablement"
+    ],
+    "ref": "31:21",
+    "proof": [
+     "אין תורה משתכחת מזרעם לגמרי"
+    ],
+    "x": "Rachi sur Deutéronome 31:21 : c'est une promesse faite à Israël : la Torah ne sera jamais complètement oubliée de leur descendance."
    }
   ]
  }

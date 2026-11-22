@@ -97,6 +97,76 @@
      "ton frère Aaron est mort"
     ],
     "x": "Il est allé rejoindre ses pères."
+   },
+   {
+    "q": "Que proclame Moïse au début de son cantique, et que demande-t-il de rendre à Dieu ?",
+    "a": "Le nom de l'Éternel, et rendre hommage à notre Dieu",
+    "w": [
+     "La gloire de l'Éternel, et rendre grâce à notre Dieu",
+     "La loi de l'Éternel, et rendre justice à notre Dieu",
+     "La voix de l'Éternel, et rendre honneur à notre Dieu"
+    ],
+    "ref": "32:3",
+    "proof": [
+     "nom de l'Éternel que je proclame"
+    ],
+    "x": "Il s'adresse aux cieux et à la terre."
+   },
+   {
+    "q": "Comment Moïse reproche-t-il au peuple de payer Dieu de retour ?",
+    "a": "En l'appelant peuple insensé et peu sage, alors que Dieu est son père et son créateur",
+    "w": [
+     "En l'appelant peuple fier et très fort, alors que Dieu est son roi et son maître",
+     "En l'appelant peuple pauvre et peu riche, alors que Dieu est son juge et son gardien",
+     "En l'appelant peuple petit et peu nombreux, alors que Dieu est son frère et son ami"
+    ],
+    "ref": "32:6",
+    "proof": [
+     "peuple insensé et peu sage"
+    ],
+    "x": "N'est-il pas son père, son créateur ?"
+   },
+   {
+    "q": "Avec quoi l'Éternel a-t-il nourri Israël, selon le cantique ?",
+    "a": "Avec le miel des rochers et l'huile de la roche",
+    "w": [
+     "Avec le lait des brebis et le vin des vignes",
+     "Avec le pain du ciel et l'eau du puits",
+     "Avec le blé des champs et le lin des collines"
+    ],
+    "ref": "32:13",
+    "proof": [
+     "miel des rochers"
+    ],
+    "x": "Il l'a fait monter victorieusement sur les hauteurs."
+   },
+   {
+    "q": "Que fait Yechouroun, engraissé et trop bien nourri ?",
+    "a": "Il regimbe, abandonne Dieu et méprise son rocher",
+    "w": [
+     "Il prie, remercie Dieu et honore son rocher",
+     "Il dort, oublie Dieu et ignore son rocher",
+     "Il fuit, cherche Dieu et quitte son rocher"
+    ],
+    "ref": "32:15",
+    "proof": [
+     "Yechouroun, engraissé, regimbe"
+    ],
+    "x": "Il abandonne le Dieu qui l'a créé."
+   },
+   {
+    "q": "Que dit Moïse de la parole de la Torah, pour Israël ?",
+    "a": "Que ce n'est pas chose indifférente, c'est leur existence même",
+    "w": [
+     "Que c'est une chose lointaine, c'est leur secret même",
+     "Que c'est une chose pénible, c'est leur épreuve même",
+     "Que c'est une chose facile, c'est leur travail même"
+    ],
+    "ref": "32:47",
+    "proof": [
+     "c'est votre existence même"
+    ],
+    "x": "Par ce moyen, ils obtiendront de longs jours."
    }
   ],
   "2": [
@@ -181,6 +251,76 @@
      "eaux de Meriba à Kadêch"
     ],
     "x": "Ce n'est qu'à distance qu'il verra le pays."
+   },
+   {
+    "q": "Comment Moïse appelle-t-il les enfants qui ont corrompu l'œuvre divine ?",
+    "a": "Race perverse et tortueuse",
+    "w": [
+     "Race sage et prudente",
+     "Race fière et solitaire",
+     "Race nombreuse et libre"
+    ],
+    "ref": "32:5",
+    "proof": [
+     "race perverse et tortueuse"
+    ],
+    "x": "C'est leur propre indignité, non la condamnation de Dieu."
+   },
+   {
+    "q": "Qui est la part du Seigneur et le lot de son héritage, selon le cantique ?",
+    "a": "Ce peuple : Jacob",
+    "w": [
+     "Ce roi : David",
+     "Ce prêtre : Aaron",
+     "Ce juge : Moïse"
+    ],
+    "ref": "32:9",
+    "proof": [
+     "Jacob est le lot de son héritage"
+    ],
+    "x": "Ce peuple est la part du Seigneur."
+   },
+   {
+    "q": "Par quoi les Israélites ont-ils irrité Dieu, selon le cantique ?",
+    "a": "Par des dieux nuls et des idoles vaines",
+    "w": [
+     "Par des fêtes vaines et des sacrifices nuls",
+     "Par des paroles nulles et des prières vaines",
+     "Par des armes vaines et des rois nuls"
+    ],
+    "ref": "32:21",
+    "proof": [
+     "dieux nuls"
+    ],
+    "x": "Il les irritera par un peuple nul."
+   },
+   {
+    "q": "À qui appartiennent la vindicte et les représailles, selon le cantique ?",
+    "a": "À l'Éternel",
+    "w": [
+     "Au roi",
+     "Au juge",
+     "Au prophète"
+    ],
+    "ref": "32:35",
+    "proof": [
+     "A moi la vindicte"
+    ],
+    "x": "Le jour de leur catastrophe approche."
+   },
+   {
+    "q": "Que fait Dieu du sang de ses serviteurs, selon le dernier verset du cantique ?",
+    "a": "Il le venge, et il réhabilite sa terre et son peuple",
+    "w": [
+     "Il l'oublie, et il oppose sa terre et son peuple",
+     "Il le cache, et il recouvre sa terre et son peuple",
+     "Il le compte, et il partage sa terre et son peuple"
+    ],
+    "ref": "32:43",
+    "proof": [
+     "Dieu venge le sang de ses serviteurs"
+    ],
+    "x": "Il exerce sa vindicte sur ses ennemis."
    }
   ],
   "3": [
@@ -253,6 +393,76 @@
      "בגד ראשון והלבישו לאלעזר"
     ],
     "x": "Rachi sur Deutéronome 32:50 : cette mort que tu as vue et enviée : Moïse a dépouillé Aaron d'un vêtement et en a revêtu Éléazar, et Aaron a vu son fils dans la gloire."
+   },
+   {
+    "q": "Selon Rachi, que signifie « le rocher, son œuvre est parfaite » ?",
+    "a": "Que, même fort, il punit avec justice et non avec fureur",
+    "w": [
+     "Que, même doux, il punit avec patience et non avec colère",
+     "Que, même seul, il punit avec lenteur et non avec hâte",
+     "Que, même ancien, il punit avec sagesse et non avec doute"
+    ],
+    "ref": "32:4",
+    "proof": [
+     "לא בשטף הוא מביא כי אם בדין"
+    ],
+    "x": "Rachi sur Deutéronome 32:4 : bien qu'il soit fort, quand il fait venir la punition sur ceux qui transgressent sa volonté, il ne la fait pas venir avec fureur, mais avec justice."
+   },
+   {
+    "q": "Selon Rachi, que signifie « Dieu de fidélité » (el emouna) ?",
+    "a": "Qu'il paie aux justes leur justice dans le monde futur, même s'il retarde",
+    "w": [
+     "Qu'il paie aux justes leur justice dans ce monde, sans retarder",
+     "Qu'il paie aux justes leur justice dans leurs fils, sans retarder",
+     "Qu'il paie aux justes leur justice dans leurs rêves, sans retarder"
+    ],
+    "ref": "32:4",
+    "proof": [
+     "לשלם לצדיקים צדקתם לעולם הבא"
+    ],
+    "x": "Rachi sur Deutéronome 32:4 : pour payer aux justes leur justice dans le monde futur ; s'il retarde leur salaire, il finira par tenir sa parole."
+   },
+   {
+    "q": "Selon Rachi, que signifie « il les gardera » (yitsrenhou) dans le désert ?",
+    "a": "Du serpent, du scorpion et des nations",
+    "w": [
+     "Du froid, de la faim et de la soif",
+     "Du vent, du sable et de la nuit",
+     "Du roi, du prêtre et du juge"
+    ],
+    "ref": "32:10",
+    "proof": [
+     "מנחש שרף ועקרב ומן האמות"
+    ],
+    "x": "Rachi sur Deutéronome 32:10 : « yitsrenhou » : du serpent brûlant, du scorpion et des nations."
+   },
+   {
+    "q": "Selon Rachi, pourquoi dit-on que Dieu l'a fait « monter sur les hauteurs de la terre » ?",
+    "a": "Parce que la terre d'Israël est plus haute que tous les autres pays",
+    "w": [
+     "Parce que la terre d'Israël est plus riche que tous les autres pays",
+     "Parce que la terre d'Israël est plus sainte que tous les autres pays",
+     "Parce que la terre d'Israël est plus grande que tous les autres pays"
+    ],
+    "ref": "32:13",
+    "proof": [
+     "ארץ ישראל גבוה מכל הארצות"
+    ],
+    "x": "Rachi sur Deutéronome 32:13 : parce que la terre d'Israël est plus haute que tous les pays."
+   },
+   {
+    "q": "Selon Rachi, que signifie « ce n'est pas chose vaine pour vous » (lo davar rek) ?",
+    "a": "Que ce n'est pas pour rien qu'on s'y fatigue : une grande récompense y est attachée",
+    "w": [
+     "Que ce n'est pas par hasard qu'on s'y trompe : une grande punition y est attachée",
+     "Que ce n'est pas en vain qu'on s'y plaint : une grande vertu y est attachée",
+     "Que ce n'est pas par force qu'on s'y plie : une grande joie y est attachée"
+    ],
+    "ref": "32:47",
+    "proof": [
+     "לא לחנם אתם יגעים בה"
+    ],
+    "x": "Rachi sur Deutéronome 32:47 : vous ne vous fatiguez pas pour rien, car une grande récompense y est attachée."
    }
   ]
  }
