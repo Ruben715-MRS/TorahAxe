@@ -125,7 +125,7 @@
         goldAltar: { he: 'מזבח הקטרת', fr: "L'autel d'or (de l'encens)", ref: 'Exode 30:1-10 ; 37:25-28',
             dims: '1 × 1 × 2 coudées',
             text: "Petit autel carré de bois d'acacia plaqué d'or, avec des cornes d'une pièce, une bordure d'or, des anneaux et des barres. On y brûle l'encens (ketoret) chaque matin et chaque soir, en préparant les lampes. Il se tient devant la parokhet (30:6). Une fois par an, à Yom Kippour, on y met du sang (30:10).",
-            facts: ['Aucun sacrifice d\'animal ni d\'offrande de farine dessus (30:9)', 'Encens : matin et soir (30:7-8)'] },
+            facts: ['Aucun sacrifice d\'animal ni d\'offrande de farine dessus (30:9)', 'Encens : matin et soir (30:7-8)', 'Voir l\'onglet « Kétoret » pour la composition de l\'encens'] },
         altar: { he: 'מזבח העולה', fr: "L'autel de cuivre (des holocaustes)", ref: 'Exode 27:1-8 ; 38:1-7',
             dims: '5 × 5 × 3 coudées',
             text: "L'autel du plein air, devant l'entrée du Tabernacle : un coffre creux de planches d'acacia (27:8) plaqué de cuivre, carré, avec des cornes aux quatre angles faites d'une pièce avec lui (27:2). À mi-hauteur : un contour (karkov) et une grille de cuivre en réseau (mikhbar) ; quatre anneaux et deux barres. On y offre les sacrifices (korbanot). Pas de marches : « tu ne monteras pas par des degrés à mon autel » (Exode 20:23), donc une rampe.",

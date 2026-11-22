@@ -1,8 +1,8 @@
 // =========================================================================
 // === LE MICHKAN ET LE MIKDASH (écran de l'Atelier) ===
 // =========================================================================
-// Cinq onglets : le plan (la cour, puis le Tabernacle de l'intérieur), les ustensiles, la structure (planches, tentures), les vêtements des
-// prêtres, et les Temples. Les données et les mesures sont dans js/mishkanCore.js (pur, testé). Les schémas sont dessinés ici, en SVG, en
+// Six onglets : le plan (la cour, puis le Tabernacle de l'intérieur), les ustensiles, la structure (planches, tentures), les vêtements des
+// prêtres, la kétoret (l'encens) et les Temples. Les données et les mesures sont dans js/mishkanCore.js (pur, testé). Les schémas sont dessinés ici, en SVG, en
 // coudées : aucune image de livre. Tout ce qui vient des données passe par textContent, jamais par du HTML.
 
 let mknTab = 'plan';
@@ -14,7 +14,7 @@ let mknHoliness = null;    // le lieu choisi dans l'échelle des degrés de sain
 let mknWho = 'high';       // le groupe de vêtements affiché : 'all' (prêtre), 'high' (grand prêtre), 'kippur' (lin blanc)
 const MKN_TABS = [
     { id: 'plan', icon: '🗺️' }, { id: 'utensils', icon: '🕯️' }, { id: 'structure', icon: '🏕️' },
-    { id: 'cohen', icon: '👘' }, { id: 'mikdash', icon: '🏛️' }
+    { id: 'cohen', icon: '👘' }, { id: 'ketoret', icon: '💨' }, { id: 'mikdash', icon: '🏛️' }
 ];
 // Les numéros des éléments sur le plan, par vue.
 const MKN_NUMBERS = {
@@ -80,7 +80,7 @@ function toolMishkanInit() {
 function mknRender() {
     const body = toolEl('tool-mkn-body');
     toolClear(body);
-    ({ plan: mknPlanTab, utensils: mknUtensilsTab, structure: mknStructureTab, cohen: mknCohenTab, mikdash: mknMikdashTab }[mknTab])(body);
+    ({ plan: mknPlanTab, utensils: mknUtensilsTab, structure: mknStructureTab, cohen: mknCohenTab, ketoret: mknKetoretTab, mikdash: mknMikdashTab }[mknTab])(body);
 }
 
 // =========================================================================
@@ -850,6 +850,114 @@ function mknFigureSvg() {
         badge(id, pos[id][0], pos[id][1]);
     });
     return svg;
+}
+
+// =========================================================================
+// Onglet « Kétoret » (l'encens) : données et calculs dans js/ketoretCore.js
+// =========================================================================
+function mknKetoretTab(body) {
+    const K = KetoretCore;
+    const intro = mknEl('section', 'tool-panel');
+    mknPara(intro, t('tools.mkn_ket_intro'));
+    mknHe(intro, 'פִּטּוּם הַקְּטֹרֶת');
+    const quote = mknEl('blockquote', 'mkn-quote', t('tools.mkn_ket_quote'));
+    intro.appendChild(quote);
+    mknPara(intro, t('tools.mkn_source', { src: 'Exode 30:34-38' }), 'tool-small hcal-source');
+    body.appendChild(intro);
+    body.appendChild(mknKetoretSpices(K));
+    const prep = mknEl('section', 'tool-panel');
+    prep.appendChild(mknEl('h3', 'tool-h', t('tools.mkn_ket_prep_title')));
+    mknPara(prep, t('tools.mkn_ket_prep_intro'));
+    const adds = mknEl('div', 'hcal-feasts');
+    K.ADDITIVES.forEach(a => adds.appendChild(mknCard({ fr: a.fr, he: a.he, dims: a.amount + (a.opinion ? ' (' + a.opinion + ')' : ''), text: a.text, ref: 'Kéritot 6a' }, null, false)));
+    prep.appendChild(adds);
+    const rules = mknEl('ul', 'hcal-list');
+    K.RULES.forEach(r => rules.appendChild(mknEl('li', '', r.text)));
+    prep.appendChild(rules);
+    body.appendChild(prep);
+    const service = mknEl('section', 'tool-panel');
+    service.appendChild(mknEl('h3', 'tool-h', t('tools.mkn_ket_service_title')));
+    const steps = mknEl('div', 'hcal-feasts');
+    K.SERVICE.forEach(st => steps.appendChild(mknCard(st, null, false)));
+    const kip = mknEl('details', 'hcal-feast mkn-card');
+    const ks = document.createElement('summary');
+    const kh = mknEl('span', 'hcal-feast-head');
+    kh.appendChild(mknEl('strong', 'hcal-feast-name', K.KIPPUR.fr));
+    ks.appendChild(kh);
+    kip.appendChild(ks);
+    const kb = mknEl('div', 'hcal-feast-body');
+    const ol = mknEl('ol', 'hcal-list');
+    K.KIPPUR.steps.forEach(x => ol.appendChild(mknEl('li', '', x)));
+    kb.appendChild(ol);
+    mknPara(kb, t('tools.mkn_source', { src: K.KIPPUR.ref }), 'tool-small hcal-source');
+    kip.appendChild(kb);
+    steps.appendChild(kip);
+    service.appendChild(steps);
+    body.appendChild(service);
+    const meaning = mknEl('section', 'tool-panel');
+    meaning.appendChild(mknEl('h3', 'tool-h', t('tools.mkn_ket_meaning_title')));
+    mknPara(meaning, t('tools.mkn_ket_meaning_intro'));
+    const ml = mknEl('div', 'hcal-feasts');
+    K.MEANINGS.forEach(m => ml.appendChild(mknCard({ fr: m.fr, he: m.he, text: m.text, ref: m.who }, null, false)));
+    meaning.appendChild(ml);
+    body.appendChild(meaning);
+    body.appendChild(mknKetoretToday(K));
+}
+
+// Les onze aromates : une barre par aromate (au prorata des maneh), la Torah en or, les Sages en bleu ; toucher une ligne ouvre sa fiche.
+function mknKetoretSpices(K) {
+    const panel = mknEl('section', 'tool-panel');
+    panel.id = 'tool-mkn-ket-spices';
+    panel.appendChild(mknEl('h3', 'tool-h', t('tools.mkn_ket_spices_title')));
+    mknPara(panel, t('tools.mkn_ket_spices_intro', { all: K.SUMMARY.all, torah: K.SUMMARY.torah, sages: K.SUMMARY.sages }));
+    const max = Math.max.apply(null, K.SPICES.map(s => s.maneh));
+    const list = mknEl('div', 'mkn-legend');
+    const sheet = mknEl('div', 'mkn-sheet-inline');
+    const pick = id => {
+        list.querySelectorAll('.mkn-legend-btn').forEach(b => b.setAttribute('aria-pressed', b.dataset.id === id ? 'true' : 'false'));
+        const sp = K.spice(id);
+        const facts = [t('tools.mkn_ket_spice_weight', { n: sp.maneh, pct: mknNum(K.share(sp)) })];
+        if (sp.torah) facts.push(t('tools.mkn_ket_spice_torah', { word: sp.torah }));
+        else facts.push(t('tools.mkn_ket_spice_sages'));
+        if (sp.debated) facts.push(t('tools.mkn_ket_spice_debated'));
+        mknFillSheet(sheet, { fr: sp.fr, he: sp.he, ref: 'Kéritot 6a', text: sp.identification, facts: facts });
+    };
+    K.byWeight().forEach(sp => {
+        const btn = mknEl('button', 'mkn-legend-btn', sp.fr + ' (' + sp.he + ') · ' + sp.maneh);
+        btn.type = 'button';
+        btn.dataset.id = sp.id;
+        btn.setAttribute('aria-pressed', 'false');
+        btn.style.borderInlineStart = '6px solid ' + (sp.torah ? '#d4a017' : '#4a6fb5');
+        btn.style.backgroundImage = 'linear-gradient(to right, rgba(212,160,23,0.16) ' + Math.round(sp.maneh / max * 100) + '%, transparent 0)';
+        btn.onclick = () => pick(sp.id);
+        list.appendChild(btn);
+    });
+    panel.appendChild(list);
+    panel.appendChild(sheet);
+    mknFillSheet(sheet, null);
+    mknPara(panel, t('tools.mkn_ket_total', { total: K.TOTAL_MANEH, days: K.DAYS, extra: K.KIPPUR_EXTRA, kg: K.approxTotalKg() }));
+    return panel;
+}
+
+// Aujourd'hui : où dire le Pitoum haQétoret, avec un lien vers le texte du siddour de l'application (rite séfarade).
+function mknKetoretToday(K) {
+    const panel = mknEl('section', 'tool-panel');
+    panel.id = 'tool-mkn-ket-today';
+    panel.appendChild(mknEl('h3', 'tool-h', t('tools.mkn_ket_today_title')));
+    K.TODAY.forEach(r => {
+        const p = mknEl('p', 'tool-small');
+        p.appendChild(mknEl('strong', '', r.fr + ' : '));
+        p.appendChild(document.createTextNode(r.text));
+        panel.appendChild(p);
+        if (r.siddur && typeof openSiddurSections === 'function') {
+            const btn = mknEl('button', 'btn', t('tools.mkn_ket_read'));
+            btn.type = 'button';
+            btn.onclick = () => openSiddurSections(r.siddur, t('tools.mkn_ket_siddur_title'));
+            panel.appendChild(btn);
+        }
+    });
+    mknPara(panel, K.TODAY_NOTE);
+    return panel;
 }
 
 // =========================================================================
