@@ -16336,7 +16336,15 @@ body[data-view-profile="religieux"] .league-btn {
 .mkn-onyx { fill: #353839; stroke-width: .8px; }
 .mkn-name { fill: #f3e6b0; font-family: var(--torah-font); font-weight: 700; }
 .mkn-weave { stroke: var(--mkn-gold); stroke-width: 1px; stroke-opacity: .75; fill: none; }
-.mkn-step { stroke-width: 1px; }
+.mkn-holy-zone { stroke-width: 1px; }
+.mkn-holy-deco { pointer-events: none; }
+.mkn-table { min-width: 100%; }
+.mkn-table td { font-weight: 400; }
+.mkn-table tr.mkn-table-sub td, .mkn-table tr.mkn-table-total td { font-weight: 700; }
+.mkn-table th.mkn-table-group { background: var(--surface-2); color: var(--muted-text); font-size: 12px; text-align: left; }
+.mkn-table tr.mkn-table-sub th, .mkn-table tr.mkn-table-sub td { font-weight: 700; background: var(--surface-2); }
+.mkn-table tr.mkn-table-total th, .mkn-table tr.mkn-table-total td { font-weight: 700; color: var(--text-dark); border-top: 2px solid var(--border-soft); }
+.mkn-table .mkn-table-group { white-space: normal; }
 .mkn-sheet-inline { margin-top: 10px; }
 .mkn-tsits-view { margin: 8px 0; padding-left: 10px; border-left: 3px solid var(--border-soft); }
 .mkn-tsits-view.is-current { border-left-color: var(--mkn-gold); }
