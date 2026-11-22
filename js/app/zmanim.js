@@ -1401,6 +1401,10 @@ function zmReminders(body) {
         [['off', t('tools.zm_rem_off')]].concat(R.CANDLE_BEFORE.map(n => [n, n === 60 ? t('tools.zm_rem_before_h') : t('tools.zm_rem_before_n', { n: n })])),
         zmRem.candles.on ? zmRem.candles.before : 'off',
         v => { if (v === 'off') zmRem.candles.on = false; else { zmRem.candles.on = true; zmRem.candles.before = Number(v); } });
+    // Hanouka
+    zmRemSelect(details, 'zm-r-han', t('tools.zm_rem_han'),
+        [['off', t('tools.zm_rem_off')], ['on', t('tools.zm_rem_omer_tzeit')]],
+        zmRem.hanouka.on ? 'on' : 'off', v => { zmRem.hanouka.on = v === 'on'; });
     // Omer
     zmRemSelect(details, 'zm-r-omer', t('tools.zm_rem_omer'),
         [['off', t('tools.zm_rem_off')], ['tzeit', t('tools.zm_rem_omer_tzeit')], ['shkia', t('tools.zm_rem_omer_shkia')]],

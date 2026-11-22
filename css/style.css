@@ -18515,6 +18515,17 @@ button.autoscroll-mode { height: 48px; padding: 0 12px; border: 1px dashed var(-
 .omer-he-count { font-size: 1.8rem; font-weight: 700; text-align: center; }
 .omer-fr, .omer-translit, .omer-note, .omer-none { margin: 0; font-size: .95rem; }
 .omer-translit, .omer-note { opacity: .7; font-style: italic; }
+.han-night { font-size: 2rem; font-weight: 700; text-align: center; }
+.han-flames { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; font-size: 1.9rem; align-items: flex-end; }
+.han-shamash { margin-right: 14px; transform: translateY(-10px); }
+.han-count { text-align: center; margin: 0; font-weight: 600; }
+.han-text { display: flex; flex-direction: column; gap: 10px; }
+.han-h { margin: 12px 0 0; }
+.han-verse { display: flex; flex-direction: column; gap: 4px; }
+.han-he { font-size: 1.4rem; line-height: 1.9; margin: 0; }
+.han-fr, .han-note { margin: 0; font-size: .95rem; }
+.han-note { opacity: .75; }
+.han-warn { opacity: 1; font-weight: 600; }
 .omer-full { padding: 12px; border-radius: 12px; border: 1px solid currentColor; background: transparent; color: inherit; font: inherit; }
 
 /* --- Généalogie biblique : les trois présentations (Fiche · Lignées · Arbre), voir js/app/genealogy.js --- */
