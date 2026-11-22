@@ -475,13 +475,14 @@ function homeHero(content, day) {
     content.appendChild(hero);
 }
 
-// La prochaine fête (fête de la Torah ou fête rabbinique) : { id, in } ou { id, today }.
+// La prochaine fête (fête de la Torah, fête rabbinique ou, avec le rite 'Habad, date hassidique) : { id, in } ou { id, today }.
 function homeNextFeast(day) {
     const C = HebrewCalendarCore;
     const h = day.ctx.hebrew;
-    const list = C.feastsOf(h.year, day.israel).map(f => Object.assign({ year: h.year }, f))
-        .concat(C.feastsOf(h.year + 1, day.israel).map(f => Object.assign({ year: h.year + 1 }, f)))
-        .filter(f => (f.kind === 'moed' || f.kind === 'minor') && f.last >= day.ctx.fixed)
+    const habad = typeof riteFull === 'function' && riteFull() === 'habad';
+    const list = C.feastsOf(h.year, day.israel, habad).map(f => Object.assign({ year: h.year }, f))
+        .concat(C.feastsOf(h.year + 1, day.israel, habad).map(f => Object.assign({ year: h.year + 1 }, f)))
+        .filter(f => (f.kind === 'moed' || f.kind === 'minor' || f.kind === 'habad') && f.last >= day.ctx.fixed)
         .sort((a, b) => a.fixed - b.fixed);
     if (!list.length) return null;
     const f = list[0];
