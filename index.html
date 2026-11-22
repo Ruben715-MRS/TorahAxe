@@ -708,7 +708,7 @@
         <p class="modes-header-subtitle" data-i18n="tools.tanakh_intro">Les livres de la Bible hébraïque. Un verset par paragraphe, numéroté.</p>
         <div class="tool-panel">
             <div id="tool-tanakh-books" aria-label="Livres" data-i18n-attr="aria-label:tools.torah_book_label"></div>
-            <div class="tool-history-chips" id="tool-tanakh-mode" role="group" aria-label="Choix par chapitre ou par paracha" data-i18n-attr="aria-label:tools.tanakh_mode_label" hidden></div>
+            <div class="ben-rites" id="tool-tanakh-mode" role="group" aria-label="Choix par chapitre ou par paracha" data-i18n-attr="aria-label:tools.tanakh_mode_label" hidden></div>
             <div class="torah-nav">
                 <button type="button" class="tool-history-chip" id="tool-tanakh-prev" onclick="tanakhGoChapter(-1)" aria-label="Chapitre précédent" data-i18n-attr="aria-label:tools.torah_prev">‹</button>
                 <select id="tool-tanakh-chapter" class="tool-input torah-chapter" aria-label="Chapitre" data-i18n-attr="aria-label:tools.torah_chapter_label" onchange="tanakhSelectChapter(this.value)"></select>
@@ -717,11 +717,9 @@
             <div class="tool-history-chips" id="tool-tanakh-aliyah" role="group" aria-label="Aliyot" data-i18n-attr="aria-label:tools.tanakh_aliyah_label" hidden></div>
             <div class="tanakh-cycle" id="tool-tanakh-cycle" hidden></div>
             <div class="tanakh-cycle" id="tool-tanakh-summary" hidden></div>
-            <div class="tool-history-chips" id="tool-tanakh-show" role="group" aria-label="Langues affichées" data-i18n-attr="aria-label:tools.tanakh_show_label"></div>
-            <hr class="tanakh-chips-sep" aria-hidden="true">
-            <div class="tool-history-chips" id="tool-tanakh-vowels" role="group" aria-label="Affichage du texte" data-i18n-attr="aria-label:tools.torah_vowels_label"></div>
-            <hr class="tanakh-chips-sep" aria-hidden="true">
-            <div class="tool-history-chips" id="tool-tanakh-flow" role="group" aria-label="Mise en page du texte" data-i18n-attr="aria-label:tools.tanakh_flow_label"></div>
+            <div class="ben-rites" id="tool-tanakh-show" role="group" aria-label="Langues affichées" data-i18n-attr="aria-label:tools.tanakh_show_label"></div>
+            <div class="ben-rites" id="tool-tanakh-vowels" role="group" aria-label="Affichage du texte" data-i18n-attr="aria-label:tools.torah_vowels_label"></div>
+            <div class="ben-rites" id="tool-tanakh-flow" role="group" aria-label="Mise en page du texte" data-i18n-attr="aria-label:tools.tanakh_flow_label"></div>
             <p class="tool-small" id="tool-tanakh-flow-note" hidden></p>
             <button type="button" class="tool-history-chip tanakh-auto-btn" id="tool-tanakh-auto" aria-pressed="false" onclick="autoScrollToggle('tanakh')" data-i18n="autoscroll.start" data-i18n-attr="title:autoscroll.help" title="Le texte défile tout seul ; vous réglez la vitesse">▶︎ Défilement automatique</button>
             <details class="tanakh-comm-panel" id="tool-tanakh-comm" hidden>

@@ -18784,4 +18784,11 @@ button.autoscroll-mode { height: 48px; padding: 0 12px; border: 1px dashed var(-
 :root[data-theme="dark"] .mes-verdict[data-verdict="not"] { background: #7f1d1d; color: #fee2e2; }
 /* Bibliothèque : les quatre modes de classement, dans l'habillage de la bande des rites du guide des bénédictions (.ben-rites) */
 .lib-modes { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+/* Tanakh : bandes de 2 ou 3 cases ; `hidden` reste honoré malgré le display: grid ; l'espace entre les bandes remplace les anciens traits */
+.ben-rites.seg-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.ben-rites[hidden] { display: none; }
+#screen-tool-tanakh .ben-rites { margin: 10px 0; }
+#screen-tool-tanakh .ben-rite { white-space: nowrap; font-size: 13.5px; }
+/* En sombre, la case active prend le bleu des contrôles segmentés des réglages (sinon elle se fond dans la bande). */
+:root[data-theme="dark"] .ben-rite[aria-pressed="true"] { background: #2F5BC4; color: #fff; }
 .lib-modes .ben-rite { padding-inline: 2px; white-space: nowrap; }
