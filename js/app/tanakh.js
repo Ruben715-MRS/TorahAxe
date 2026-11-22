@@ -1150,18 +1150,18 @@ function tanakhGoParasha(gi, aliyah = 0) {
     }
 }
 
-// Ouvre une haftara : `info` = { refs, title, rite ('a' | 's' | ''), back : { id, rank } } ; plusieurs livres (rare) : le premier s'ouvre, un bouton ouvre l'autre.
+// Ouvre une haftara : `info` = { refs, title, rite ('a' | 's' | ''), back : { id, rank }, kind ('reading' : une plage de la Torah, lue à une fête, au lieu d'une haftara) } ; plusieurs livres (rare) : le premier s'ouvre, un bouton ouvre l'autre.
 // `back` est facultatif : sans lui, pas de bouton « Retour à la paracha » (la touche Retour de l'écran ramène à l'écran d'origine).
 function tanakhOpenHaftara(info, group) {
     const groups = HaftarotCore.groupByBook(info.refs);
     const g = groups[group || 0];
-    tanakhOpen(g.id, { mode: 'chapter', haftara: { refs: g.refs, all: info.refs, title: info.title, rite: info.rite, back: info.back || null, group: group || 0 } });
+    tanakhOpen(g.id, { mode: 'chapter', haftara: { refs: g.refs, all: info.refs, title: info.title, rite: info.rite, back: info.back || null, group: group || 0, kind: info.kind || null } });
 }
 
 // Une haftara demandée par un autre écran (le bouton « Haftara » de l'écran Zmanim) : { refs, title, rite }, prise au prochain toolTanakhInit.
 let tanakhPendingHaftara = null;
 function tanakhOpenHaftaraFrom(info, from) {
-    tanakhPendingHaftara = { refs: info.refs, title: info.title, rite: info.rite };
+    tanakhPendingHaftara = { refs: info.refs, title: info.title, rite: info.rite, kind: info.kind || null };
     tanakhPending = null;
     tanakhPendingParasha = null;
     openTool('tanakh', from || 'screen-main');
@@ -1195,7 +1195,7 @@ function tanakhRenderCycle() {
     if (hf) {
         box.hidden = false;
         box.classList.add('is-haftara');
-        box.appendChild(tanakhCycleNode('strong', 'tanakh-cycle-title', t('tools.tanakh_haftara_title', { name: hf.title })));
+        box.appendChild(tanakhCycleNode('strong', 'tanakh-cycle-title', t(hf.kind === 'reading' ? 'tools.tanakh_reading_title' : 'tools.tanakh_haftara_title', { name: hf.title })));
         const rite = hf.rite ? t('tools.tanakh_haftara_rite_' + hf.rite) + ' · ' : '';
         box.appendChild(tanakhCycleNode('p', 'tool-small', rite + HaftarotCore.refsLabel(hf.all)));
         const row = tanakhCycleNode('div', 'tool-history-chips');

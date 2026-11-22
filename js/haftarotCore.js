@@ -13,6 +13,12 @@
 
     // Le livre de la haftara (nom hebcal) → le livre de data/tanakh, sa partie (livres en plusieurs parties : nom dans `parts`), son nom français.
     var BOOKS = {
+        // La Torah : pas des haftarot, mais le Tanakh affiche de la même façon une plage de la Torah (les lectures spéciales : js/specialReadingsCore.js).
+        'Genesis': { id: 'genesis', part: null, fr: 'Genèse' },
+        'Exodus': { id: 'exode', part: null, fr: 'Exode' },
+        'Leviticus': { id: 'levitique', part: null, fr: 'Lévitique' },
+        'Numbers': { id: 'nombres', part: null, fr: 'Nombres' },
+        'Deuteronomy': { id: 'deuteronome', part: null, fr: 'Deutéronome' },
         'Joshua': { id: 'josue', part: null, fr: 'Josué' },
         'Judges': { id: 'juges', part: null, fr: 'Juges' },
         'I Samuel': { id: 'samuel', part: 'I Samuel', fr: '1 Samuel' },

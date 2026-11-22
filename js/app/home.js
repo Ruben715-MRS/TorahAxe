@@ -40,6 +40,7 @@ const HOME_ENTRIES = {
     statuts: { he: 'עריות', fr: 'Unions', desc: 'Statuts et unions permises : cohen, lévi, mamzer, guer…', kw: 'statuts mariage mamzer cohen halal guer', run: homeTool('statuts') },
     foodlaws: { he: 'כשרות', fr: 'Cacherout', desc: 'Les animaux purs et impurs, les mélanges interdits', kw: 'casher kasher aliments sauterelles oiseaux poissons', run: homeTool('foodlaws') },
     benedictions: { he: 'ברכות', fr: 'Bénédictions', desc: 'Quelle bénédiction dire sur quel aliment : 290 aliments, avec les notes (Beth Loubavitch)', kw: 'bracha berakha brakha berakhot aliment manger boire haets haadama mezonot chehakol hamotsi haguafen fruit légume pain vin birkhot hanehenin', run: homeTool('benedictions') },
+    specialReadings: { he: 'קריאות', fr: 'Lectures', desc: 'Torah, maftir et haftara des fêtes, des jeûnes et des Chabbatot spéciaux, avec le découpage en montées', kw: 'lectures spéciales lecture torah maftir haftara haftarot montées aliyot aliyah roch hodech roch hachana kippour souccot hol hamoed hochaana rabba chemini atseret simhat torah hanouca dix tevet chekalim zakhor para hahodech hagadol pourim jeûne guedalia esther pessah chavouot tamouz ticha beav tikkoun', run: homeTool('specialReadings') },
     periods: { he: 'זמנים', fr: 'Périodes', desc: 'Chabbat, fêtes, Omer, Trois Semaines, jeûnes : ce qui est interdit, permis ou obligatoire, selon votre rite', kw: 'chabbat chabbath shabbat roch hodech rosh chodesh pessah pessa\'h souccot chavouot hanouka pourim roch hachana kippour omer ben hametsarim trois semaines tamouz av tisha tichabav jeune interdit permis deuil coutumes musique coiffure cheveux barbe mariage viande vin hamets kitniyot rite', run: homeTool('periods') },
     measures: { he: 'מידות', fr: 'Mesures', desc: 'Poids, volumes, distances et monnaies de la Bible', kw: 'coudée poids volumes monnaies chékel', run: homeTool('measures') },
     personalDates: { he: 'תאריכים', fr: 'Dates personnelles', desc: 'Hazkara, anniversaires hébraïques, bar et bat-mitsva, avec rappels', kw: 'hazkara azkara yahrzeit yartzeit yahrtzeit anniversaire décès naissance bar mitsva bat mitsva date hébraïque rappel notification', run: () => openDates('screen-main') },
@@ -71,7 +72,7 @@ const HOME_LAYOUT = {
     explorer: [
         { title: 'Maîtres et lignées', as: 'tiles', cols: 3, ids: ['genealogy', 'transmission', 'hassidout'] },
         { title: 'Lieux et temps', as: 'tiles', cols: 2, ids: ['chronologie', 'biblical', 'mishkan', 'hebrewCalendar'] },
-        { title: 'Lois et pratique', as: 'tiles', cols: 3, ids: ['korbanot', 'tsaraat', 'statuts', 'foodlaws', 'benedictions', 'periods', 'measures', 'kotel', 'personalDates'] },
+        { title: 'Lois et pratique', as: 'tiles', cols: 3, ids: ['korbanot', 'tsaraat', 'statuts', 'foodlaws', 'benedictions', 'periods', 'specialReadings', 'measures', 'kotel', 'personalDates'] },
         { promo: 'tools' }
     ],
     // Les jeux sont rangés par thème (Hébreu, Tanakh, Sages, Halakha, Histoire) : un jeu de plus = un id dans la bonne section. Une section sans jeu n'est

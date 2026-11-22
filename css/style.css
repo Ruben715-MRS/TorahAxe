@@ -18663,3 +18663,33 @@ button.autoscroll-mode { height: 48px; padding: 0 12px; border: 1px dashed var(-
 .per-disclaimer { margin-top: 16px; }
 .per-day { gap: 6px; }
 .per-occ { font-size: 13px; font-weight: 700; color: var(--muted-text); margin: 0; }
+
+/* --- Lectures spéciales (écran de l'onglet Explorer, js/app/special-readings.js) --- */
+.spr-section { display: flex; flex-direction: column; gap: 10px; }
+.spr-group { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin: 14px 0 0; font-size: 14px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted-text); }
+.spr-group-he { font-size: 17px; letter-spacing: 0; text-transform: none; }
+.spr-list { display: flex; flex-direction: column; gap: 10px; }
+.spr-card { display: flex; flex-direction: column; gap: 8px; padding: 12px 14px; border: 1px solid var(--border-soft); border-radius: 14px; background: var(--surface); color: var(--text-dark); }
+.spr-card-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px 12px; }
+.spr-name { margin: 0; font-size: 17px; line-height: 1.25; font-weight: 800; }
+.spr-he { flex: none; font-size: 18px; color: var(--muted-text); }
+.spr-row { display: flex; align-items: flex-start; gap: 10px; }
+.spr-label { flex: none; width: 66px; padding-top: 9px; font-size: 12px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted-text); }
+.spr-refs, .spr-options { flex: 1; min-width: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; }
+.spr-options { flex-direction: column; align-items: stretch; gap: 6px; }
+.spr-option { display: flex; align-items: center; gap: 10px; }
+.spr-option-lab { flex: none; width: 4.2em; font-size: 13px; color: var(--muted-text); }
+.spr-text { flex: 1; min-width: 0; padding-top: 9px; font-size: 14.5px; line-height: 1.35; }
+.spr-refs .spr-text { padding-top: 9px; }
+.spr-ref { min-height: 40px; padding: 7px 12px; border: 1px solid var(--border-soft); border-radius: 10px; background: var(--surface-2); color: var(--text-dark); font: inherit; font-size: 14.5px; font-weight: 700; text-align: left; cursor: pointer; }
+.spr-ref:active { background: var(--selected-tint); }
+.spr-ref:focus-visible { outline: 2px solid var(--text-dark); outline-offset: 2px; }
+.spr-note { margin: 0; font-size: 12.5px; line-height: 1.4; color: var(--muted-text); }
+.spr-source { margin-top: 8px; }
+.spr-aliyot { display: flex; flex-direction: column; gap: 14px; }
+.spr-aliyah-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px 12px; margin-bottom: 4px; font-family: var(--font-main); font-size: 14px; color: var(--text-dark); direction: ltr; text-align: left; }
+.spr-aliyah-ref { font-size: 12px; color: var(--muted-text); text-align: right; }
+.spr-aliyot .sd-reading-aliya { margin: 0; }
+/* Dans une grille de trois tuiles, une dernière tuile seule prend toute la largeur au lieu de rester seule dans un coin. */
+.home-tiles.c3 .home-tile:last-child:nth-child(3n+1) { grid-column: 1 / -1; }
+#tool-lect-msg:empty { display: none; }

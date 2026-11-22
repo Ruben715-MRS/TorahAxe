@@ -108,7 +108,21 @@ function openTikkounAtParasha(index, from) {
     openTool('torahReader', from || 'screen-main');
 }
 
+// Un verset demandé par un autre écran (les lectures spéciales de l'année) : { book (1 à 5), chapter, verse }, ouvert à la prochaine ouverture du rouleau.
+let torahReaderPendingVerse = null;
+function openTikkounAtVerse(ref, from) {
+    torahReaderPendingVerse = ref;
+    torahReaderPending = null;
+    openTool('torahReader', from || 'screen-main');
+}
+
 function torahReaderOpenFirst() {
+    if (torahReaderBlocks && torahReaderPendingVerse) {
+        const v = torahReaderPendingVerse;
+        torahReaderPendingVerse = null;
+        const block = TorahCore.verseBlockIndex(torahReaderBlocks)[v.book + ':' + v.chapter + ':' + v.verse];
+        if (block !== undefined) { torahReaderGoBlock(block); torahReaderSaveEnabled = false; return; }
+    }
     if (torahReaderRanges && torahReaderPending !== null) {
         const k = torahReaderPending;
         torahReaderPending = null;

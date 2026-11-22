@@ -304,6 +304,17 @@
         </div>
     </div>
 
+<div id="screen-tool-readings" class="list-screen hidden">
+        <button class="back-btn" onclick="toolBack('specialReadings')" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title" data-i18n="tools.lect_title">Lectures spéciales</h2>
+        <p class="modes-header-subtitle" data-i18n="tools.lect_intro">La Torah, le maftir et la haftara des fêtes, des jeûnes et des Chabbatot spéciaux, selon l'usage de la Diaspora. Touchez une lecture de la Torah ou un maftir pour la lire.</p>
+        <div class="tool-panel kor-panel">
+            <div class="tool-history-chips" id="tool-lect-tabs" role="group" aria-label="Choisir une période" data-i18n-attr="aria-label:tools.lect_tabs_aria"></div>
+            <p class="tool-msg" id="tool-lect-msg" role="status"></p>
+            <div id="tool-lect-body" class="kor-body"></div>
+        </div>
+    </div>
+
 <div id="screen-tool-statuts" class="list-screen hidden">
         <button class="back-btn" onclick="toolBack('statuts')" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
         <h2 class="header-title" data-i18n="tools.statuts_title">Statuts et unions</h2>
@@ -780,6 +791,8 @@
     <script src="js/periodsData.js"></script>
     <script src="js/periodsCore.js"></script>
     <script src="js/app/periods.js"></script>
+    <script src="js/specialReadingsCore.js"></script>
+    <script src="js/app/special-readings.js"></script>
     <script src="js/statutsData.js"></script>
     <script src="js/statutsCore.js"></script>
     <script src="js/app/statuts.js"></script>

@@ -12,7 +12,8 @@ const TOOL_SCREENS = {
     statuts: 'screen-tool-statuts', tsaraat: 'screen-tool-tsaraat', gematria: 'screen-tool-gematria',
     tanakh: 'screen-tool-tanakh', michna: 'screen-tool-michna', talmud: 'screen-tool-talmud', lexicon: 'screen-tool-lexicon', gemara: 'screen-tool-gemara',
     genealogy: 'screen-tool-genealogy', transmission: 'screen-tool-transmission', hassidout: 'screen-tool-hassidout',
-    library: 'screen-tool-library', chronologie: 'screen-tool-chronologie', foodlaws: 'screen-tool-foodlaws', benedictions: 'screen-tool-benedictions', periods: 'screen-tool-periods', torahReader: 'screen-torah-reader'
+    library: 'screen-tool-library', chronologie: 'screen-tool-chronologie', foodlaws: 'screen-tool-foodlaws', benedictions: 'screen-tool-benedictions', periods: 'screen-tool-periods', torahReader: 'screen-torah-reader',
+    specialReadings: 'screen-tool-readings'
 };
 const toolReturns = {};
 
@@ -80,7 +81,7 @@ function openTool(id, from) {
         tsaraat: toolTsaraatInit, gematria: toolGematriaInit, tanakh: toolTanakhInit, michna: toolMichnaInit, talmud: toolTalmudInit, lexicon: toolLexiconInit,
         gemara: toolGemaraInit, genealogy: toolGenealogyInit, transmission: toolTransmissionInit,
         hassidout: toolHassidoutInit, library: toolLibraryInit, chronologie: toolChronologieInit, foodlaws: toolFoodLawsInit, benedictions: toolBenedictionsInit, periods: toolPeriodsInit,
-        torahReader: toolTorahReaderInit
+        torahReader: toolTorahReaderInit, specialReadings: toolSpecialReadingsInit
     }[id];
     if (init) init();
 }
