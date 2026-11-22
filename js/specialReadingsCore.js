@@ -26,8 +26,6 @@
         'Isaïe': ['Isaiah', 'ישעיהו'], 'Jérémie': ['Jeremiah', 'ירמיהו'], 'Ézéchiel': ['Ezekiel', 'יחזקאל'], 'Josué': ['Joshua', 'יהושע'],
         'Zacharie': ['Zechariah', 'זכריה'], 'Michée': ['Micah', 'מיכה'], 'Jonas': ['Jonah', 'יונה'], 'Habakkouk': ['Habakkuk', 'חבקוק'], 'Malachie': ['Malachi', 'מלאכי']
     };
-    // Là où la numérotation du livre n'est pas celle du texte du Tanakh : Jérémie 31 commence, dans le texte, par « En ce temps-là » (verset 1) ; la haftara débute au verset 2.
-    var HAFTARA_TEXT = { 'Jérémie 31:1-19': ['Jeremiah', '31:2', '31:20'] };
 
     // Un nombre en lettres hébraïques (15 et 16 : טו et טז).
     var LETTERS = [[400, 'ת'], [300, 'ש'], [200, 'ר'], [100, 'ק'], [90, 'צ'], [80, 'פ'], [70, 'ע'], [60, 'ס'], [50, 'נ'], [40, 'מ'], [30, 'ל'], [20, 'כ'], [10, 'י'],
@@ -66,7 +64,7 @@
         if (!m || !HAFTARA_BOOKS[m[1]]) return null;
         var c1 = +m[2], v1 = +m[3], c2 = m[4] ? +m[4] : c1, v2 = m[5] ? +m[5] : v1;
         var he = HAFTARA_BOOKS[m[1]][1] + ' ' + spanHe([0, c1, v1, c2, v2]);
-        var ref = HAFTARA_TEXT[text] || [HAFTARA_BOOKS[m[1]][0], c1 + ':' + v1, c2 + ':' + v2];
+        var ref = [HAFTARA_BOOKS[m[1]][0], c1 + ':' + v1, c2 + ':' + v2];
         return { ref: ref, he: he, fr: text };
     }
     function haftaraRefs(list) { return list.map(function (t) { return parseHaftara(t).ref; }); }

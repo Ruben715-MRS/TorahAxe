@@ -209,6 +209,6 @@ test('haftarot : chaque référence se lit et existe dans le Tanakh de l\'applic
         const segs = H.segments(p.ref, first, book.chapters.map(c => c.length));
         segs.forEach(s => { assert.ok(book.chapters[s.c], text); assert.ok(s.to <= book.chapters[s.c].length && s.from < s.to, text); });
     }));
-    assert.deepStrictEqual(C.haftaraRefs(['Jérémie 31:1-19'])[0], ['Jeremiah', '31:2', '31:20']);
+    assert.deepStrictEqual(C.haftaraRefs(['Jérémie 31:1-19'])[0], ['Jeremiah', '31:1', '31:19']);
     assert.strictEqual(C.haftaraLabel(['Michée 7:18-20'], true), 'מיכה ז:יח-כ');
 });
