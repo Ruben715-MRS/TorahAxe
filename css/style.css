@@ -16344,6 +16344,7 @@ body[data-view-profile="religieux"] .league-btn {
 .mkn-table th.mkn-table-group { background: var(--surface-2); color: var(--muted-text); font-size: 12px; text-align: left; }
 .mkn-table tr.mkn-table-sub th, .mkn-table tr.mkn-table-sub td { font-weight: 700; background: var(--surface-2); }
 .mkn-table tr.mkn-table-total th, .mkn-table tr.mkn-table-total td { font-weight: 700; color: var(--text-dark); border-top: 2px solid var(--border-soft); }
+.mkn-table tr.is-selected th, .mkn-table tr.is-selected td { background: #f6d84e; color: #1b1b1b; }
 .mkn-table .mkn-table-group { white-space: normal; }
 .mkn-sheet-inline { margin-top: 10px; }
 .mkn-tsits-view { margin: 8px 0; padding-left: 10px; border-left: 3px solid var(--border-soft); }
