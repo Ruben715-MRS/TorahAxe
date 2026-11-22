@@ -143,7 +143,7 @@ function sprFillMerged(card, key, items) {
         rows.appendChild(line);
     });
     card.appendChild(rows);
-    (items[0].notes || []).forEach(note => card.appendChild(sprEl('p', 'spr-note', note)));
+    Array.from(new Set([].concat(...items.map(i => i.notes || [])))).forEach(note => card.appendChild(sprEl('p', 'spr-note', note)));
 }
 
 // Une occasion : son nom, puis une ligne pour la Torah, le maftir et la haftara (celles qui n'existent pas ne sont pas affichées).
