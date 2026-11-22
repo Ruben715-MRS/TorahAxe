@@ -553,21 +553,46 @@
         <h2 class="header-title" data-i18n="tools.gematria_title">Guématria</h2>
         <p class="modes-header-subtitle" data-i18n="tools.gematria_intro">Tapez un mot en hébreu : chaque lettre s'affiche avec sa valeur, puis l'addition. Les voyelles sont ignorées.</p>
         <div class="tool-panel">
-            <div class="tool-field">
-                <label for="tool-gematria-input" data-i18n="tools.gematria_label">Un mot ou une phrase en hébreu</label>
-                <input type="text" id="tool-gematria-input" class="tool-input gem-input" lang="he" dir="rtl" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="שלום" oninput="toolGematriaUpdate()">
-            </div>
             <div class="tool-history-chips" id="tool-gematria-modes" role="group" aria-label="Mode de calcul" data-i18n-attr="aria-label:tools.gematria_modes_aria"></div>
             <p class="tool-small" id="tool-gematria-help"></p>
             <label class="gem-reduce"><input type="checkbox" id="tool-gematria-gadol" onchange="toolGematriaUpdate()"> <span data-i18n="tools.gematria_gadol">Lettres finales de 500 à 900 (mispar gadol)</span></label>
             <p class="tool-small" id="tool-gematria-gadol-note"></p>
             <label class="gem-reduce"><input type="checkbox" id="tool-gematria-reduce" onchange="toolGematriaUpdate()"> <span data-i18n="tools.gematria_reduce">Réduire à un seul chiffre</span></label>
-            <p class="tool-msg" id="tool-gematria-msg" role="status"></p>
-            <div class="tool-result hidden" id="tool-gematria-result">
-                <p class="tool-big" id="tool-gematria-big"></p>
-                <div class="tool-chips gem-chips" id="tool-gematria-parts" role="list" dir="rtl"></div>
-                <p class="tool-small" id="tool-gematria-sum"></p>
-                <p class="tool-small" id="tool-gematria-reduced"></p>
+            <div class="gem-actions">
+                <button type="button" class="tool-history-chip" id="tool-gematria-compare-btn" aria-pressed="false" aria-controls="tool-gematria-slot-b" onclick="toolGematriaToggleCompare()"></button>
+            </div>
+            <div class="gem-pair" id="tool-gematria-pair">
+                <section class="gem-slot gem-slot-a" aria-labelledby="tool-gematria-label">
+                    <div class="tool-field">
+                        <label id="tool-gematria-label" for="tool-gematria-input" data-i18n="tools.gematria_label">Un mot ou une phrase en hébreu</label>
+                        <input type="text" id="tool-gematria-input" class="tool-input gem-input" lang="he" dir="rtl" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="שלום" oninput="toolGematriaUpdate()">
+                    </div>
+                    <p class="tool-msg" id="tool-gematria-msg" role="status"></p>
+                    <div class="tool-result hidden" id="tool-gematria-result">
+                        <p class="tool-big" id="tool-gematria-big"></p>
+                        <div class="tool-chips gem-chips" id="tool-gematria-parts" role="list" dir="rtl"></div>
+                        <p class="tool-small" id="tool-gematria-sum"></p>
+                        <p class="tool-small" id="tool-gematria-reduced"></p>
+                    </div>
+                </section>
+                <div class="gem-compare hidden" id="tool-gematria-compare" role="status" aria-live="polite">
+                    <p class="gem-compare-main" id="tool-gematria-compare-main" dir="ltr"></p>
+                    <p class="tool-small gem-compare-detail" id="tool-gematria-compare-detail"></p>
+                    <button type="button" class="tool-history-chip" id="tool-gematria-swap" onclick="toolGematriaSwap()"></button>
+                </div>
+                <section class="gem-slot gem-slot-b hidden" id="tool-gematria-slot-b" aria-labelledby="tool-gematria-label-b">
+                    <div class="tool-field">
+                        <label id="tool-gematria-label-b" for="tool-gematria-input-b" data-i18n="tools.gematria_label_b">Second mot ou phrase en hébreu</label>
+                        <input type="text" id="tool-gematria-input-b" class="tool-input gem-input" lang="he" dir="rtl" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="שלם" oninput="toolGematriaUpdate()">
+                    </div>
+                    <p class="tool-msg" id="tool-gematria-msg-b" role="status"></p>
+                    <div class="tool-result hidden" id="tool-gematria-result-b">
+                        <p class="tool-big" id="tool-gematria-big-b"></p>
+                        <div class="tool-chips gem-chips" id="tool-gematria-parts-b" role="list" dir="rtl"></div>
+                        <p class="tool-small" id="tool-gematria-sum-b"></p>
+                        <p class="tool-small" id="tool-gematria-reduced-b"></p>
+                    </div>
+                </section>
             </div>
         </div>
     </div>

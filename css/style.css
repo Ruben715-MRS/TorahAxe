@@ -16476,6 +16476,27 @@ body[data-view-profile="religieux"] .league-btn {
 .gem-chip strong { font-size: 24px; line-height: 1.2; }
 .gem-chip .gem-via { font-size: 13px; direction: ltr; unicode-bidi: isolate; }
 .gem-chip .gem-value { font-size: 13px; font-weight: 700; color: var(--text-dark); direction: ltr; }
+/* Comparer : deux textes (A et B) empilés, avec le bandeau de comparaison dessous ; côte à côte dès qu'il y a la place (tablette, ordinateur). */
+.gem-actions { display: flex; }
+.gem-pair { display: flex; flex-direction: column; gap: 14px; }
+.gem-slot { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.gem-slot-a { order: 1; }
+.gem-slot-b { order: 2; }
+.gem-compare { order: 3; }
+.gem-compare { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; padding: 12px 14px; border: 1px solid var(--border-soft); border-radius: 14px; background: var(--surface); }
+.gem-compare.hidden, .gem-slot.hidden { display: none; }
+.gem-compare-main { margin: 0; font-size: 26px; font-weight: 800; line-height: 1.2; color: var(--text-dark); }
+.gem-compare-detail { white-space: pre-line; }
+.gem-compare.is-equal { border-color: var(--progress-green); }
+.gem-compare.is-equal .gem-compare-main { color: var(--success-text); }
+/* Lettres communes aux deux textes : liseré et fond or, lisibles en clair comme en sombre. */
+.gem-chip.gem-common { border-color: var(--favorite-yellow); background: rgba(212, 160, 23, 0.18); box-shadow: inset 0 0 0 1px var(--favorite-yellow); }
+@media (min-width: 720px) {
+    .gem-pair.is-comparing { display: grid; grid-template-columns: 1fr 1fr; align-items: start; gap: 14px; }
+    .gem-pair.is-comparing .gem-slot-a { order: 0; grid-column: 1; grid-row: 1; }
+    .gem-pair.is-comparing .gem-slot-b { order: 0; grid-column: 2; grid-row: 1; }
+    .gem-pair.is-comparing .gem-compare { order: 0; grid-column: 1 / -1; grid-row: 2; }
+}
 
 /* === Dictionnaire français – hébreu (js/app/lexicon.js) : une carte par mot ; l'hébreu se lit de droite à gauche === */
 .lex-list { display: flex; flex-direction: column; gap: 10px; }
