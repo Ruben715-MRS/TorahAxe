@@ -16216,6 +16216,7 @@ body[data-view-profile="religieux"] .league-btn {
 .hcal-badge { padding: 2px 8px; border: 1px solid var(--border-soft); border-radius: 999px; font-size: 11px; font-weight: 700; color: var(--muted-text); background: var(--surface-2); }
 .hcal-badge.is-fast { color: var(--danger-red-text); border-color: var(--danger-red-text); }
 .hcal-badge.is-moed { color: var(--text-dark); border-color: var(--text-dark); }
+.hcal-badge.is-habad { color: var(--success-text); border-color: var(--success-text); }
 .hcal-badge.is-next { color: var(--success-text); border-color: var(--success-text); }
 .hcal-feast-body { padding: 8px 12px 12px; }
 .hcal-feast-hebrew { font-weight: 700; }

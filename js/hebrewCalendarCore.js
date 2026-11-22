@@ -145,7 +145,7 @@
 
     // --- Les fêtes ---------------------------------------------------------------------------------------------------------------
     // kind : 'moed' (fête de la Torah), 'fast' (jeûne), 'minor' (fête rabbinique ou jour de la tradition), 'modern' (jour d'Israël depuis 1948),
-    // 'period' (une période : l'Omer). `days` : la durée, ou { israel, diaspora }. `shift` : si le jeûne tombe un chabbat, 'sun' le reporte
+    // 'habad' (date hassidique de 'Habad), 'period' (une période : l'Omer). `days` : la durée, ou { israel, diaspora }. `shift` : si le jeûne tombe un chabbat, 'sun' le reporte
     // au dimanche, 'thu' l'avance au jeudi.
     var FEASTS = [
         { id: 'rosh', month: 'Tishri', day: 1, days: 2, kind: 'moed' },
@@ -174,6 +174,33 @@
         { id: 'tubeav', month: 'Av', day: 15, kind: 'minor' }
     ];
 
+    // Les dates hassidiques de 'Habad-Loubavitch (naissances, hiloulot, libérations des Rabbis) : ajoutées seulement pour le profil 'Habad
+    // (option `habad` de feastsOf et dayInfo). Elles n'entrent pas dans feastIds(). Lag baOmer, déjà dans FEASTS, n'est pas répété.
+    var HABAD_FEASTS = [
+        { id: 'habad_6tichri', month: 'Tishri', day: 6, kind: 'habad' },
+        { id: 'habad_13tichri', month: 'Tishri', day: 13, kind: 'habad' },
+        { id: 'habad_20heshvan', month: 'Heshvan', day: 20, kind: 'habad' },
+        { id: 'habad_9kislev', month: 'Kislev', day: 9, kind: 'habad' },
+        { id: 'habad_10kislev', month: 'Kislev', day: 10, kind: 'habad' },
+        { id: 'habad_14kislev', month: 'Kislev', day: 14, kind: 'habad' },
+        { id: 'habad_19kislev', month: 'Kislev', day: 19, kind: 'habad' },
+        { id: 'habad_20kislev', month: 'Kislev', day: 20, kind: 'habad' },
+        { id: 'habad_5tevet', month: 'Tevet', day: 5, kind: 'habad' },
+        { id: 'habad_24tevet', month: 'Tevet', day: 24, kind: 'habad' },
+        { id: 'habad_10shevat', month: 'Shevat', day: 10, kind: 'habad' },
+        { id: 'habad_22shevat', month: 'Shevat', day: 22, kind: 'habad' },
+        { id: 'habad_2nisan', month: 'Nisan', day: 2, kind: 'habad' },
+        { id: 'habad_11nisan', month: 'Nisan', day: 11, kind: 'habad' },
+        { id: 'habad_13nisan', month: 'Nisan', day: 13, kind: 'habad' },
+        { id: 'habad_2iyar', month: 'Iyar', day: 2, kind: 'habad' },
+        { id: 'habad_28sivan', month: 'Sivan', day: 28, kind: 'habad' },
+        { id: 'habad_3tamuz', month: 'Tamuz', day: 3, kind: 'habad' },
+        { id: 'habad_12tamuz', month: 'Tamuz', day: 12, days: 2, kind: 'habad' },
+        { id: 'habad_20av', month: 'Av', day: 20, kind: 'habad' },
+        { id: 'habad_15elul', month: 'Elul', day: 15, kind: 'habad' },
+        { id: 'habad_18elul', month: 'Elul', day: 18, kind: 'habad' }
+    ];
+
     var SATURDAY = 6;
 
     function daysOf(feast, israel) {
@@ -184,11 +211,11 @@
 
     // Les fêtes d'une année hébraïque, dans l'ordre du calendrier civil : [{ id, kind, fixed, last, days, weekday, shifted, month, day }].
     // `fixed` est le premier jour, `last` le dernier ; `shifted` vaut vrai quand le jour a été déplacé (jeûne, jour d'Israël) ; `month` et
-    // `day` sont la date hébraïque de la règle (avant tout déplacement). `israel` : vrai pour Israël, faux pour la diaspora (jours de fête en plus).
-    function feastsOf(year, israel) {
+    // `day` sont la date hébraïque de la règle (avant tout déplacement). `habad` : vrai pour ajouter les dates hassidiques de 'Habad (kind « habad »). `israel` : vrai pour Israël, faux pour la diaspora (jours de fête en plus).
+    function feastsOf(year, israel, habad) {
         var isLeap = leap(year);
         var out = [];
-        FEASTS.forEach(function (f) {
+        (habad ? FEASTS.concat(HABAD_FEASTS) : FEASTS).forEach(function (f) {
             if (f.leapOnly && !isLeap) return;
             var month = f.month === 'Adar2' ? (isLeap ? 'AdarII' : 'Adar') : f.month;
             var base = CY.hebrewToFixed(year, month, f.day);
@@ -217,9 +244,9 @@
     }
 
     // Ce qu'un jour contient : sa date hébraïque, ses fêtes, le numéro du jour de l'Omer, et Roch 'Hodesh.
-    function dayInfo(fixed, israel) {
+    function dayInfo(fixed, israel, habad) {
         var h = hebrewFromFixed(fixed);
-        var feasts = feastsOf(h.year, israel).filter(function (f) { return f.kind !== 'period' && fixed >= f.fixed && fixed <= f.last; });
+        var feasts = feastsOf(h.year, israel, habad).filter(function (f) { return f.kind !== 'period' && fixed >= f.fixed && fixed <= f.last; });
         var omerStart = CY.hebrewToFixed(h.year, 'Nisan', 16);
         var omer = fixed >= omerStart && fixed < omerStart + 49 ? fixed - omerStart + 1 : 0;
         var roshChodesh = (h.day === 30 || (h.day === 1 && h.month !== 'Tishri'));
@@ -247,7 +274,7 @@
 
     return {
         GREGORIAN_MIN: GREGORIAN_MIN, GREGORIAN_MAX: GREGORIAN_MAX, HEBREW_MIN: HEBREW_MIN, HEBREW_MAX: HEBREW_MAX,
-        MONTHS: MONTHS, LEAP_CYCLE_YEARS: LEAP_CYCLE_YEARS, FEASTS: FEASTS,
+        MONTHS: MONTHS, LEAP_CYCLE_YEARS: LEAP_CYCLE_YEARS, FEASTS: FEASTS, HABAD_FEASTS: HABAD_FEASTS,
         monthData: monthData, leap: leap, cycleYear: cycleYear, monthsOf: monthsOf, monthLabelId: monthLabelId, monthHebrew: monthHebrew, yearInfo: yearInfo,
         hebrewFromFixed: hebrewFromFixed, gregorianToHebrew: gregorianToHebrew, hebrewToGregorian: hebrewToGregorian,
         isSupportedGregorian: isSupportedGregorian, fixedOfGregorian: fixedOfGregorian, weekdayOf: weekdayOf,

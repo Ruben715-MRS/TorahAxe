@@ -210,7 +210,7 @@ function hcalUpdateGregorian() {
 // La date hébraïque d'un jour, ses lettres, ses fêtes, le compte de l'Omer et Roch 'Hodesh.
 function hcalDescribeDay(out, fixed) {
     const C = HebrewCalendarCore;
-    const info = C.dayInfo(fixed, hcalIsrael);
+    const info = C.dayInfo(fixed, hcalIsrael, hcalHabad());
     const h = info.hebrew;
     out.appendChild(hcalEl('p', 'tool-big', hcalHebrewText(h)));
     hcalHebrewLine(out, hcalHebrewLetters(h));
@@ -400,16 +400,20 @@ function hcalYearControls(parent, withZone) {
 // =========================================================================
 // Onglet « Fêtes »
 // =========================================================================
+// Vrai si le rite choisi dans les Réglages est 'Habad : le calendrier ajoute alors les dates hassidiques.
+function hcalHabad() { return typeof riteFull === 'function' && riteFull() === 'habad'; }
+
 function hcalFeastsTab(body) {
     const C = HebrewCalendarCore;
     const today = hcalToday();
     const todayFixed = C.fixedOfGregorian(today.year, today.month, today.day);
     const panel = hcalEl('section', 'tool-panel');
     hcalYearControls(panel, true);
+    if (hcalHabad()) hcalPara(panel, t('tools.hcal_habad_note'), 'tool-small');
     body.appendChild(panel);
 
     // « À venir » : la première fête qui n'est pas finie, seulement si aujourd'hui est dans l'année affichée.
-    const feasts = C.feastsOf(hcalYear, hcalIsrael);
+    const feasts = C.feastsOf(hcalYear, hcalIsrael, hcalHabad());
     const info = C.yearInfo(hcalYear);
     const nextIndex = todayFixed >= info.start && todayFixed <= info.end ? feasts.findIndex(f => f.last >= todayFixed) : -1;
     const list = hcalEl('div', 'hcal-feasts');
