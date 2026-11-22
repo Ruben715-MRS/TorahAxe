@@ -40,6 +40,10 @@ const ZM_LABEL = {
     alot: 'alot', misheyakir: 'misheyakir', netz: 'netz', shemaMa: 'shema', shemaGra: 'shema', tefilaMa: 'tefila', tefilaGra: 'tefila', chatzot: 'chatzot',
     minchaGedola: 'guedola', minchaKetana: 'ketana', plag: 'plag', shkia: 'shkia', tzeit: 'tzeit', rabbenuTam: 'tam', chatzotLayla: 'chatzot_layla'
 };
+// Les usages de chaque horaire : de quoi il marque le début (zm_ub_<id>) et la fin (zm_ue_<id>), d'après la fiche de calcul de Zmanim Diffusion.
+// Un horaire absent d'une liste n'a pas de ligne correspondante ; « tam » n'a qu'une remarque (zm_use_tam).
+const ZM_USE_BEGIN = ['alot', 'misheyakir', 'netz', 'guedola', 'ketana', 'plag', 'shkia', 'tzeit', 'chatzot_layla'];
+const ZM_USE_END = ['alot', 'netz', 'shema', 'tefila', 'chatzot', 'shkia', 'tzeit', 'chatzot_layla'];
 // Les libellés en hébreu (bouton « A / א »). Les noms sont ceux de la tradition ; ils ne passent pas par i18n (l'hébreu n'est pas traduit).
 const ZM_HE = {
     alot: 'עלות השחר', misheyakir: 'משיכיר (זמן טלית ותפילין)', netz: 'הנץ החמה', shema: 'סוף זמן קריאת שמע', tefila: 'סוף זמן תפילה', chatzot: 'חצות היום',
@@ -940,6 +944,21 @@ function zmDay(body) {
     zmLevanaCard(body, h);
 }
 
+// Les lignes « Début de : … » et « Fin de : … » d'un horaire (null s'il n'y en a pas).
+function zmUseEl(id) {
+    const box = zmEl('div', 'zm-r-use');
+    if (ZM_USE_BEGIN.includes(id)) box.appendChild(zmUseLine('tools.zm_use_begin', 'tools.zm_ub_' + id));
+    if (ZM_USE_END.includes(id)) box.appendChild(zmUseLine('tools.zm_use_end', 'tools.zm_ue_' + id));
+    if (id === 'tam') box.appendChild(zmEl('p', '', t('tools.zm_use_tam')));
+    return box.childElementCount ? box : null;
+}
+function zmUseLine(labelKey, textKey) {
+    const p = zmEl('p', '');
+    p.appendChild(zmEl('strong', '', t(labelKey) + ' '));
+    p.appendChild(document.createTextNode(t(textKey)));
+    return p;
+}
+
 // Les horaires du jour en une seule liste : le passé estompé, le prochain mis en valeur, un repère « maintenant ».
 // L'explication de chaque horaire s'ouvre au toucher (ou reste affichée si le réglage le demande).
 function zmTimesList(body, z, state) {
@@ -974,6 +993,8 @@ function zmTimesList(body, z, state) {
             r.appendChild(times);
             if (!zmHe) {
                 r.appendChild(zmEl('em', 'zm-r-desc', t('tools.zm_d_' + ZM_LABEL[row[0]])));
+                const use = zmUseEl(ZM_LABEL[row[0]]);
+                if (use) r.appendChild(use);
                 r.setAttribute('aria-expanded', zmExplain ? 'true' : 'false');
                 r.onclick = () => { const open = r.classList.toggle('is-open'); r.setAttribute('aria-expanded', open ? 'true' : 'false'); };
             }
@@ -981,6 +1002,7 @@ function zmTimesList(body, z, state) {
         });
     });
     if (!markerPlaced) card.appendChild(zmEl('div', 'zm-nowmark', (zmHe ? 'עכשיו' : t('tools.zm_now')) + ' · ' + zmTime(state.now)));
+    if (!zmHe) card.appendChild(zmEl('p', 'tool-small zm-use-note', t('tools.zm_use_note')));
     body.appendChild(card);
 }
 
@@ -1456,11 +1478,45 @@ function zmReminders(body) {
     body.appendChild(details);
 }
 
+// Le choix du profil (Rav Posen / Rav Ovadia Yossef) : règle d'un coup les six opinions de ZmanimCore.PROFILE_KEYS.
+function zmProfileField(parent) {
+    const wrap = zmEl('div', 'tool-field');
+    const label = zmEl('label', '', t('tools.zm_s_profile'));
+    const select = zmEl('select', 'tool-input');
+    select.id = 'zm-s-profile';
+    label.htmlFor = select.id;
+    const current = ZmanimCore.profileOf(zmOpts);
+    const ids = Object.keys(ZmanimCore.PROFILES).concat(current === 'custom' ? ['custom'] : []);
+    ids.forEach(id => {
+        const o = document.createElement('option');
+        o.value = id;
+        o.textContent = t('tools.zm_o_profile_' + id);
+        select.appendChild(o);
+    });
+    select.value = current;
+    select.onchange = () => {
+        if (!ZmanimCore.PROFILES[select.value]) return;
+        const next = ZmanimCore.applyProfile(zmOpts, select.value);
+        zmOpts = {};
+        ZM_SETTINGS.forEach(([key, values]) => {   // comme zmLoad : seules les valeurs connues et différentes du défaut sont gardées
+            if (values.includes(next[key]) && next[key] !== ZmanimCore.DEFAULTS[key]) zmOpts[key] = next[key];
+        });
+        zmWrite(ZM_KEYS.opts, zmOpts);
+        zmResched();
+        zmRender(true);
+    };
+    wrap.appendChild(label);
+    wrap.appendChild(select);
+    parent.appendChild(wrap);
+    parent.appendChild(zmEl('p', 'tool-small', t('tools.zm_profile_note')));
+}
+
 function zmOptions(body) {
     body.appendChild(zmEl('h3', 'home-section-title', t('tools.zm_opts_title')));
     const details = zmEl('div', 'zm-set-card');
     details.id = 'zm-options';
     details.appendChild(zmEl('p', 'tool-small', t('tools.zm_opts_note')));
+    zmProfileField(details);
     ZM_SETTINGS.forEach(([key, values]) => {
         const wrap = zmEl('div', 'tool-field');
         const label = zmEl('label', '', t('tools.zm_s_' + key));

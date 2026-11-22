@@ -62,6 +62,11 @@
 .zm-r-time b { font-size: 18px; font-weight: 700; font-variant-numeric: tabular-nums; }
 .zm-r-desc { grid-column: 1 / -1; display: none; font-style: normal; font-size: 12.5px; line-height: 1.4; color: var(--muted-text); }
 .zm-r.is-open .zm-r-desc { display: block; }
+.zm-r-use { grid-column: 1 / -1; display: none; font-size: 12.5px; line-height: 1.4; color: var(--muted-text); }
+.zm-r.is-open .zm-r-use { display: block; }
+.zm-r-use p { margin: 4px 0 0; }
+.zm-r-use strong { color: var(--home-gold, #96621a); font-weight: 700; }
+.zm-use-note { margin: 8px 0 0; }
 .zm-r.is-past .zm-r-name, .zm-r.is-past .zm-r-time b { color: var(--muted-text); font-weight: 500; }
 .zm-r.is-next { background: var(--selected-tint); }
 .zm-r.is-next .zm-r-time b { color: var(--primary-blue); }

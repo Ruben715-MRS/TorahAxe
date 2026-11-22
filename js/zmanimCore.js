@@ -150,6 +150,32 @@
     // tzeit : la sortie des étoiles ; havdalah : la fin de Chabbat et des fêtes ; rabbenuTam : la nuit de Rabénou Tam.
     var DEFAULTS = { elevation: 'yes', dawn: 'deg161', maBasis: 'deg161', tzeit: 'deg7083', havdalah: 'deg85', rabbenuTam: 'deg161', misheyakir: 'deg11', guedola: 'lahumra', chatzotLayla: 'chatzot12', candles: 'auto' };
 
+    // Les profils : un jeu d'opinions qui va ensemble, selon l'autorité suivie (fiche « Zmanim Diffusion », Siddour Maguen Avot).
+    //  posen : les défauts (degrés sous l'horizon) ; ovadia : minutes zmaniyot (« proportionnelles ») et Minha Guedola une demi-heure zmanit après midi.
+    // Ne touchent que ces six clés : l'altitude, les bougies, la fin de Chabbat et 'Hatsot laïla restent ceux de l'utilisateur.
+    var PROFILE_KEYS = ['dawn', 'maBasis', 'misheyakir', 'tzeit', 'rabbenuTam', 'guedola'];
+    var PROFILES = {
+        posen: { dawn: 'deg161', maBasis: 'deg161', misheyakir: 'deg11', tzeit: 'deg7083', rabbenuTam: 'deg161', guedola: 'lahumra' },
+        ovadia: { dawn: 'prop72', maBasis: 'prop72', misheyakir: 'alot6', tzeit: 'zm135', rabbenuTam: 'prop72', guedola: 'halfHour' }
+    };
+    // Le profil que décrivent les opinions (réglages partiels complétés par les défauts) : 'posen', 'ovadia' ou 'custom'.
+    function profileOf(opts) {
+        var o = Object.assign({}, DEFAULTS, opts || {});
+        var ids = Object.keys(PROFILES);
+        for (var i = 0; i < ids.length; i++) {
+            var p = PROFILES[ids[i]];
+            if (PROFILE_KEYS.every(function (k) { return o[k] === p[k]; })) return ids[i];
+        }
+        return 'custom';
+    }
+    // Les opinions après le choix d'un profil : les six clés du profil remplacées, le reste conservé.
+    function applyProfile(opts, id) {
+        var out = Object.assign({}, opts || {});
+        if (!PROFILES[id]) return out;
+        PROFILE_KEYS.forEach(function (k) { out[k] = PROFILES[id][k]; });
+        return out;
+    }
+
     // Un lieu en Israël (cadre grossier) : sert aux défauts (bougies, jours de fête, Tahanoun), jamais à un calcul d'horaire.
     function inIsrael(place) {
         return place.lat >= 29.45 && place.lat <= 33.35 && place.lon >= 34.2 && place.lon <= 35.9;
@@ -490,7 +516,7 @@
     function sameSpot(a, b) { return distanceKm(a.lat, a.lon, b.lat, b.lon) < 1; }
 
     return {
-        DEFAULTS: DEFAULTS, DAWN_OPINIONS: DAWN_OPINIONS, NIGHT_OPINIONS: NIGHT_OPINIONS, GUEDOLA_OPINIONS: GUEDOLA_OPINIONS, MISHEYAKIR_OPINIONS: MISHEYAKIR_OPINIONS,
+        DEFAULTS: DEFAULTS, PROFILES: PROFILES, PROFILE_KEYS: PROFILE_KEYS, profileOf: profileOf, applyProfile: applyProfile, DAWN_OPINIONS: DAWN_OPINIONS, NIGHT_OPINIONS: NIGHT_OPINIONS, GUEDOLA_OPINIONS: GUEDOLA_OPINIONS, MISHEYAKIR_OPINIONS: MISHEYAKIR_OPINIONS,
         MASECHTOT: MASECHTOT, DAF_CYCLE_LENGTH: DAF_CYCLE_LENGTH, TEHILIM_DAYS: TEHILIM_DAYS,
         isValidTimeZone: isValidTimeZone, tzOffsetMs: tzOffsetMs, localToUtc: localToUtc, civilDateOf: civilDateOf,
         solarEvent: solarEvent, solarNoon: solarNoon, inIsrael: inIsrael, candleMinutes: candleMinutes,
