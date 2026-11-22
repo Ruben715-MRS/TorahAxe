@@ -2242,6 +2242,12 @@ function sdApplyMinyan(node, ten) {
     node.c = out;
 }
 
+// Les trois ajouts d'oubli de la fin du Birkat haMazon : le nom du bloc replié, d'après la consigne.
+const SD_BH_FORGOT = [
+    { re: /רצה והחליצנו\S{0,2} וגם/, label: 'Oubli de « Agrée-nous » et de « Yaalé véyavo » (Chabbat Roch \'Hodech)' },
+    { re: /רצה והחליצנו/, label: 'Oubli de « Agrée-nous » (Chabbat)' },
+    { re: /יעלה ויבוא/, label: 'Oubli de « Yaalé véyavo » (Roch \'Hodech)' }
+];
 // Les personnes à table dont le meneur demande la permission (« birchout… »), dans l'ordre où on les nomme avant « mes maîtres ».
 // `sub` : un choix qui apparaît quand la case est cochée (un Cohen ou plusieurs, maître ou maîtresse de maison) ; `cohen` : la case « je suis moi-même Cohen » la neutralise.
 const SD_ZIM_WHO = {
@@ -2645,6 +2651,13 @@ function sdRenderSection(section) {
             mt.pre.forEach(p => out.appendChild(sdVarBlock([], p.label, SiddurCore.plain(trees.slice(p.from, p.to + 1)), host => sdAppendSegs(host, p.from, p.to, bares, byHeader, seg), p.state)));
             out.appendChild(sdVarBlock([], mt.label, SiddurCore.plain(trees.slice(mt.from, mt.to + 1)), host => sdAppendSegs(host, mt.from, mt.to, bares, byHeader, seg), mt.state));
             i = mt.to + 1;
+            continue;
+        }
+        // Birkat haMazon : les trois ajouts d'oubli (« Agrée-nous », « Yaalé véyavo », les deux) ne servent qu'en cas d'oubli : repliés, « pas aujourd'hui ».
+        const forgot = section.id === 'birkat-hamazon' && i + 1 < trees.length && !byHeader[i] && /^אם (בשבת )?שכח/.test(bares[i]) && !/^אם/.test(bares[i + 1]) ? SD_BH_FORGOT.find(f => f.re.test(bares[i])) : null;
+        if (forgot) {
+            out.appendChild(sdVarBlock([], forgot.label, SiddurCore.plain(trees[i + 1]), host => sdAppendSegs(host, i, i + 1, bares, byHeader, seg), 'off'));
+            i += 2;
             continue;
         }
         const g = byHeader[i];
