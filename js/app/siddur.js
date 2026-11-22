@@ -2630,7 +2630,8 @@ function sdVowelTitles(root) {
         });
     });
 }
-const SD_MENORA_SECTIONS = /^(chacharit-hodou|minha-vidoui)$/;
+// Partout où le psaume (Ps 67) est un segment à lui seul : Hodou, Min'ha, Omer, Birkat haMazon, Birkat haLévana, Tikoun Léa, Arvit de Chabbat (ashkénaze).
+const SD_MENORA_PSALM = /^למנצח בנגינ/;
 function sdMenoraFigure() {
     const fig = sdEl('figure', 'sd-figure sd-menora');
     const img = document.createElement('img');
@@ -2699,10 +2700,10 @@ function sdRenderSection(section) {
         wrap.appendChild(frEl);
         return wrap;
     };
-    // Le psaume « Lamnatséa'h binguinot » (Hodou, Min'ha) est suivi de son image en forme de ménora (assets/images/menora-psaume.jpg).
+    // Le psaume « Lamnatséa'h binguinot », partout où il figure, est suivi de son image en forme de ménora (assets/images/menora-psaume.jpg).
     const seg = (i) => {
         const r = seg0(i);
-        if (!SD_MENORA_SECTIONS.test(section.id) || !/^למנצח בנגינ/.test(bares[i])) return r;
+        if (!SD_MENORA_PSALM.test(bares[i]) || bares[i].length > 400) return r;
         if (r.nodeType === 11 && !r.childNodes.length) return r;      // le segment est masqué (« masquer les passages pas aujourd'hui »)
         const wrap = document.createDocumentFragment();
         wrap.appendChild(r);
