@@ -84,6 +84,76 @@
      "mon arc dans la nue"
     ],
     "x": "C'est le signe d'une alliance perpétuelle entre Dieu et tous les êtres animés."
+   },
+   {
+    "q": "Comment la Torah décrit-elle Noé entre ses contemporains ?",
+    "a": "Un homme juste, irréprochable, qui se conduisait selon Dieu",
+    "w": [
+     "Un homme riche, puissant, que tous écoutaient",
+     "Un homme savant, patient, qui enseignait les autres",
+     "Un homme fort, courageux, qui défendait les faibles"
+    ],
+    "ref": "6:9",
+    "proof": [
+     "juste, irréprochable"
+    ],
+    "x": "Noé engendra trois fils : Sem, Cham et Japhet."
+   },
+   {
+    "q": "Combien d'êtres vivants de chaque espèce Noé recueille-t-il dans l'arche, pour les conserver ?",
+    "a": "Deux : un mâle et une femelle",
+    "w": [
+     "Sept : trois mâles et quatre femelles",
+     "Un seul : le plus fort de l'espèce",
+     "Quatre : deux mâles et deux femelles"
+    ],
+    "ref": "6:19",
+    "proof": [
+     "deux dans l'arche"
+    ],
+    "x": "Ils sont recueillis pour être conservés avec lui."
+   },
+   {
+    "q": "Quel oiseau Noé lâche-t-il en premier, après quarante jours ?",
+    "a": "Le corbeau",
+    "w": [
+     "La colombe",
+     "L'aigle",
+     "L'hirondelle"
+    ],
+    "ref": "8:7",
+    "proof": [
+     "lâcha le corbeau"
+    ],
+    "x": "Il partit, allant et revenant jusqu'à ce que les eaux eussent laissé la terre à sec."
+   },
+   {
+    "q": "Que plante Noé, d'abord cultivateur, après le déluge ?",
+    "a": "Une vigne",
+    "w": [
+     "Un olivier",
+     "Un figuier",
+     "Un champ de blé"
+    ],
+    "ref": "9:20",
+    "proof": [
+     "planta une vigne"
+    ],
+    "x": "Il but de son vin et s'enivra."
+   },
+   {
+    "q": "Quelle ville et quelle tour les hommes veulent-ils bâtir, pour ne pas se disperser ?",
+    "a": "Une ville et une tour dont le sommet atteigne le ciel",
+    "w": [
+     "Une ville et un temple dont le sommet porte un nom",
+     "Une cité et un mur dont le sommet domine la plaine",
+     "Une capitale et un palais dont le sommet soit en or"
+    ],
+    "ref": "11:4",
+    "proof": [
+     "tour dont le sommet atteigne le ciel"
+    ],
+    "x": "Ils veulent se faire un établissement durable."
    }
   ],
   "2": [
@@ -180,6 +250,88 @@
      "Nemrod"
     ],
     "x": "Le commencement de sa domination fut Babel."
+   },
+   {
+    "q": "Combien de jours la crue des eaux dure-t-elle sur la terre ?",
+    "a": "Cent cinquante jours",
+    "w": [
+     "Quarante jours",
+     "Sept jours",
+     "Trois cents jours"
+    ],
+    "ref": "7:24",
+    "proof": [
+     "cent cinquante jours"
+    ],
+    "x": "Elle suit les quarante jours de pluie."
+   },
+   {
+    "q": "Combien de jours Noé attend-il encore avant de renvoyer la colombe la seconde fois ?",
+    "a": "Sept autres jours",
+    "w": [
+     "Quarante jours",
+     "Trois jours",
+     "Quatorze jours"
+    ],
+    "ref": "8:10",
+    "proof": [
+     "sept autres jours"
+    ],
+    "x": "La colombe revient alors avec une feuille d'olivier fraîche."
+   },
+   {
+    "q": "Quel âge Tharé avait-il lorsqu'il engendra Abram, Nacor et Harân ?",
+    "a": "Soixante-dix ans",
+    "w": [
+     "Quarante ans",
+     "Cent ans",
+     "Quatre-vingt-dix ans"
+    ],
+    "ref": "11:26",
+    "proof": [
+     "soixante-dix ans"
+    ],
+    "x": "Tharé est le père d'Abram."
+   },
+   {
+    "q": "Par quelle ville commença la domination de Nemrod ?",
+    "a": {
+     "t": "Babel",
+     "he": "בָּבֶל"
+    },
+    "w": [
+     {
+      "t": "Sodome",
+      "he": "סְדֹם"
+     },
+     {
+      "t": "Hébron",
+      "he": "חֶבְרוֹן"
+     },
+     {
+      "t": "Sichem",
+      "he": "שְׁכֶם"
+     }
+    ],
+    "ref": "10:10",
+    "proof": [
+     "Babel"
+    ],
+    "x": "Puis Érec, Akkad et Kalné, dans le pays de Sennaar."
+   },
+   {
+    "q": "Comment Sem et Japhet couvrent-ils la nudité de leur père ?",
+    "a": "En marchant à reculons, sans la voir, avec une couverture sur leurs épaules",
+    "w": [
+     "En fermant les yeux, avec un manteau sur la tête",
+     "En entrant de nuit, avec une natte de jonc",
+     "En se tournant vers le mur, avec un drap de lin"
+    ],
+    "ref": "9:23",
+    "proof": [
+     "marchant à reculons"
+    ],
+    "x": "Leur visage était retourné."
    }
   ],
   "3": [
@@ -252,6 +404,77 @@
      "אין להם חלק לעולם הבא"
     ],
     "x": "Rachi sur Genèse 11:9 : il en résulte qu'ils n'ont pas de part au monde futur."
+   },
+   {
+    "q": "Selon Rachi, que montre « Noé marcha avec Dieu », comparé à Abraham ?",
+    "a": "Que Noé avait besoin d'un soutien, alors qu'Abraham marchait par sa propre force",
+    "w": [
+     "Que Noé était plus juste qu'Abraham",
+     "Que Noé a reçu plus de bénédictions qu'Abraham",
+     "Que Noé a vécu plus longtemps qu'Abraham"
+    ],
+    "ref": "6:9",
+    "proof": [
+     "צריך סעד"
+    ],
+    "x": "Rachi sur Genèse 6:9 : Noé avait besoin d'un soutien pour le fortifier, alors qu'Abraham se fortifiait et marchait dans sa justice de lui-même."
+   },
+   {
+    "q": "Selon Rachi, que désigne le mot « tsohar » donné à l'arche ?",
+    "a": "Une fenêtre, ou une pierre précieuse qui les éclairait",
+    "w": [
+     "Une porte, ou un escalier qui les protégeait",
+     "Une lampe d'huile, ou un feu qui les réchauffait",
+     "Un toit, ou une voûte qui les abritait"
+    ],
+    "ref": "6:16",
+    "proof": [
+     "חלון",
+     "אבן טובה"
+    ],
+    "x": "Rachi sur Genèse 6:16 : certains disent une fenêtre, d'autres une pierre précieuse qui leur donnait de la lumière."
+   },
+   {
+    "q": "Selon Rachi, à quoi servaient les trois étages de l'arche ?",
+    "a": "Le haut pour l'homme, le milieu pour les animaux, le bas pour les déchets",
+    "w": [
+     "Le haut pour les oiseaux, le milieu pour l'homme, le bas pour les bêtes",
+     "Le haut pour les provisions, le milieu pour l'eau, le bas pour les bêtes",
+     "Le haut pour les bêtes, le milieu pour les oiseaux, le bas pour l'homme"
+    ],
+    "ref": "6:16",
+    "proof": [
+     "עליונים לאדם"
+    ],
+    "x": "Rachi sur Genèse 6:16 : trois étages l'un sur l'autre : les supérieurs pour l'homme, ceux du milieu pour les animaux, ceux du bas pour les déchets."
+   },
+   {
+    "q": "Selon Rachi, que signifie « Noé commença » (vayahel) à cultiver la terre ?",
+    "a": "Qu'il se rendit profane, en plantant une vigne alors qu'il aurait dû planter autre chose",
+    "w": [
+     "Qu'il commença à travailler avec un tel zèle",
+     "Qu'il commença à cultiver après avoir prié",
+     "Qu'il commença à se reposer de ses travaux"
+    ],
+    "ref": "9:20",
+    "proof": [
+     "עשה עצמו חלין"
+    ],
+    "x": "Rachi sur Genèse 9:20 : il s'est rendu profane : il aurait dû commencer par une autre plantation."
+   },
+   {
+    "q": "Selon Rachi, que signifie « une seule langue » à propos de la génération de Babel ?",
+    "a": "La langue sainte, l'hébreu",
+    "w": [
+     "La langue d'Adam, perdue ensuite",
+     "La langue des anges, disparue ensuite",
+     "La langue de Noé, parlée sur l'arche"
+    ],
+    "ref": "11:1",
+    "proof": [
+     "לשון הקדש"
+    ],
+    "x": "Rachi sur Genèse 11:1 : la langue sainte."
    }
   ]
  }

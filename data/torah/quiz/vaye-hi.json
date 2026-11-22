@@ -110,6 +110,112 @@
      "Makhpêla"
     ],
     "x": "« Ensevelissez-moi près de mes pères, dans la grotte du champ d'Éfrôn le Héthéen, la grotte du champ de Makhpêla. »"
+   },
+   {
+    "q": "Quel fils de Jacob « sera un serpent sur le chemin, un aspic dans le sentier » ?",
+    "a": {
+     "t": "Dan",
+     "he": "דָן"
+    },
+    "w": [
+     {
+      "t": "Gad",
+      "he": "גָד"
+     },
+     {
+      "t": "Zabulon",
+      "he": "זְבוּלֻן"
+     },
+     {
+      "t": "Nephtali",
+      "he": "נַפְתָּלִי"
+     }
+    ],
+    "ref": "49:17",
+    "proof": [
+     "Dan, un serpent sur le chemin"
+    ],
+    "x": "Il pique le pied du cheval, et le cavalier tombe renversé."
+   },
+   {
+    "q": "Quel fils de Jacob est comparé à « une biche qui s'élance » ?",
+    "a": {
+     "t": "Nephtali",
+     "he": "נַפְתָּלִי"
+    },
+    "w": [
+     {
+      "t": "Dan",
+      "he": "דָן"
+     },
+     {
+      "t": "Gad",
+      "he": "גָד"
+     },
+     {
+      "t": "Asher",
+      "he": "אָשֵׁר"
+     }
+    ],
+    "ref": "49:21",
+    "proof": [
+     "Nephtali est une biche"
+    ],
+    "x": "Il apporte d'heureux messages."
+   },
+   {
+    "q": "Quel fils de Jacob « occupera le littoral des mers » et dont la plage atteindra Sidon ?",
+    "a": {
+     "t": "Zabulon",
+     "he": "זְבוּלֻן"
+    },
+    "w": [
+     {
+      "t": "Issachar",
+      "he": "יִשָּׂשכָר"
+     },
+     {
+      "t": "Dan",
+      "he": "דָן"
+     },
+     {
+      "t": "Gad",
+      "he": "גָד"
+     }
+    ],
+    "ref": "49:13",
+    "proof": [
+     "Zabulon occupera le littoral"
+    ],
+    "x": "Il offre des ports aux vaisseaux."
+   },
+   {
+    "q": "Que dit Jacob à Ruben, son premier-né, en commençant sa bénédiction ?",
+    "a": "« Tu fus mon premier-né, mon orgueil »",
+    "w": [
+     "« Tu es mon premier-né, ma gloire et le soutien de ma maison »",
+     "« Tu seras mon héritier, mon bras et l'espoir de mon camp »",
+     "« Tu fus mon premier fils, ma joie et la lumière de mes yeux »"
+    ],
+    "ref": "49:3",
+    "proof": [
+     "Tu fus mon premier-né"
+    ],
+    "x": "Il était le premier en dignité, le premier en puissance."
+   },
+   {
+    "q": "Qui Joseph emmène-t-il avec lui, quand on lui dit que son père est malade ?",
+    "a": "Manassé et Éphraïm, ses fils",
+    "w": [
+     "Ses deux frères, Juda et Benjamin",
+     "Ses deux sœurs, Dina et Rachel",
+     "Ses deux serviteurs, Éliézer et Hira"
+    ],
+    "ref": "48:1",
+    "proof": [
+     "ses deux fils, Manassé et Éphraïm"
+    ],
+    "x": "Il va voir son père Jacob."
    }
   ],
   "2": [
@@ -195,6 +301,88 @@
      "Éphraïm et Manassé"
     ],
     "x": "« C'est par toi qu'Israël bénira, en disant : Dieu te rende semblable à Éphraïm et à Manassé. »"
+   },
+   {
+    "q": "Que dit Jacob de Gad dans sa bénédiction ?",
+    "a": "Assailli, il assaillira à son tour",
+    "w": [
+     "Qu'il sera un lion qui dort, sans craindre ses ennemis",
+     "Qu'il sera un berger du désert, sans maître ni voisin",
+     "Qu'il sera un fleuve qui déborde, sans digue ni frein"
+    ],
+    "ref": "49:19",
+    "proof": [
+     "assailli d'ennemis"
+    ],
+    "x": "Il les assaillira à son tour."
+   },
+   {
+    "q": "Quel fils de Jacob « a livré son épaule au joug et est devenu tributaire » ?",
+    "a": {
+     "t": "Issachar",
+     "he": "יִשָּׂשכָר"
+    },
+    "w": [
+     {
+      "t": "Zabulon",
+      "he": "זְבוּלֻן"
+     },
+     {
+      "t": "Dan",
+      "he": "דָן"
+     },
+     {
+      "t": "Asher",
+      "he": "אָשֵׁר"
+     }
+    ],
+    "ref": "49:14-15",
+    "proof": [
+     "livré son épaule au joug"
+    ],
+    "x": "Il a goûté le charme du repos et les délices du pâturage."
+   },
+   {
+    "q": "Comment Jacob qualifie-t-il les armes de Siméon et de Lévi ?",
+    "a": "Des instruments de violence",
+    "w": [
+     "Des instruments de justice",
+     "Des instruments de victoire",
+     "Des instruments de sagesse"
+    ],
+    "ref": "49:5",
+    "proof": [
+     "instruments de violence"
+    ],
+    "x": "Maudite soit leur colère, car elle fut malfaisante."
+   },
+   {
+    "q": "Que dit Jacob de la mort de Rachel, quand il revint du territoire d'Aram ?",
+    "a": "Qu'elle mourut dans ses bras, en chemin",
+    "w": [
+     "Qu'elle mourut en couches à Béthel, à l'aube",
+     "Qu'elle mourut de maladie à Hébron, au soir",
+     "Qu'elle mourut de chagrin à Haran, au matin"
+    ],
+    "ref": "48:7",
+    "proof": [
+     "Rachel mourut dans mes bras"
+    ],
+    "x": "C'était à quelque distance d'Éfrath."
+   },
+   {
+    "q": "Que dit Jacob à Joseph, avant de mourir, au sujet du retour au pays ?",
+    "a": "Que Dieu les ramènera au pays de leurs aïeux",
+    "w": [
+     "Que Dieu enverra un ange et les guidera vers Hébron",
+     "Que Dieu enverra un roi et les rassemblera à Sichem",
+     "Que Dieu ouvrira la mer et les ramènera au Sinaï"
+    ],
+    "ref": "48:21",
+    "proof": [
+     "il vous ramènera au pays de vos aïeux"
+    ],
+    "x": "« Voici, je vais mourir. »"
    }
   ],
   "3": [
@@ -272,6 +460,76 @@
      "הרעב"
     ],
     "x": "Rachi sur Genèse 50:3 : quarante jours pour l'embaumement, trente pour le deuil, car une bénédiction leur était venue à cause de lui : la famine avait pris fin."
+   },
+   {
+    "q": "Selon Rachi, que signifie « Israël se prosterna sur le chevet du lit » ?",
+    "a": "Qu'il se tourna vers la Présence divine",
+    "w": [
+     "Qu'il se tourna vers la porte, pour voir Joseph",
+     "Qu'il se tourna vers le mur, pour prier seul",
+     "Qu'il se tourna vers le sud, vers la terre d'Israël"
+    ],
+    "ref": "47:31",
+    "proof": [
+     "השכינה למעלה מראשותיו של חולה"
+    ],
+    "x": "Rachi sur Genèse 47:31 : il se tourna vers la Présence : de là on a dit que la Présence se tient au-dessus du chevet du malade."
+   },
+   {
+    "q": "Selon Rachi, quelle part Jacob donne-t-il à Joseph avec « une portion de Sichem » ?",
+    "a": "Sichem même, où Joseph sera enterré",
+    "w": [
+     "Un champ voisin d'Hébron, où il sera enterré",
+     "Une ville du nord, où il sera enterré",
+     "Une terre de Jéricho, où il sera enterré"
+    ],
+    "ref": "48:22",
+    "proof": [
+     "שכם ממש"
+    ],
+    "x": "Rachi sur Genèse 48:22 : Sichem même, qui sera pour toi une part de plus que tes frères : c'est là que reposeront les os de Joseph."
+   },
+   {
+    "q": "Selon Rachi, pourquoi Jacob voulait-il révéler la fin des temps, puis changea de sujet ?",
+    "a": "Parce que la Présence le quitta",
+    "w": [
+     "Parce qu'il oublia ce qu'il voulait dire",
+     "Parce qu'il n'avait plus de force pour parler",
+     "Parce que ses fils l'interrompirent"
+    ],
+    "ref": "49:1",
+    "proof": [
+     "נסתלקה ממנו שכינה"
+    ],
+    "x": "Rachi sur Genèse 49:1 : il voulut révéler la fin ; la Présence se retira de lui, et il commença à dire autre chose."
+   },
+   {
+    "q": "Selon Rachi, que signifie « les prémices de ma vigueur » à propos de Ruben ?",
+    "a": "Qu'il fut sa première goutte",
+    "w": [
+     "Que Ruben fut son premier chef de camp",
+     "Que Ruben fut son fils le plus fort",
+     "Que Ruben fut son premier élève"
+    ],
+    "ref": "49:3",
+    "proof": [
+     "טפה ראשונה"
+    ],
+    "x": "Rachi sur Genèse 49:3 : c'est la première goutte, car il n'avait jamais vu d'émission de sa vie."
+   },
+   {
+    "q": "Selon Rachi, que signifie « les filles marchaient sur le mur » dans la bénédiction de Joseph ?",
+    "a": "Que les filles d'Égypte le regardaient",
+    "w": [
+     "Que les filles de Canaan marchaient sur le chemin",
+     "Que les filles de Jacob dansaient autour de lui",
+     "Que les filles de Pharaon couraient vers le palais"
+    ],
+    "ref": "49:22",
+    "proof": [
+     "בנות מצרים"
+    ],
+    "x": "Rachi sur Genèse 49:22 : les filles d'Égypte marchaient sur le mur pour regarder sa beauté ; chacune jetait un bijou pour qu'il la regarde."
    }
   ]
  }

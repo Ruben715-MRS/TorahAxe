@@ -98,6 +98,77 @@
      "plus juste que moi"
     ],
     "x": "Juda reconnaît son sceau, son cordon et son bâton, et dit : « Elle est plus juste que moi. »"
+   },
+   {
+    "q": "Que voit Joseph dans son premier songe, quand les gerbes des champs se dressent ?",
+    "a": "Sa gerbe se dresse, les leurs s'inclinent",
+    "w": [
+     "Les gerbes de ses frères se dressent, et la sienne s'incline devant elles",
+     "Les gerbes brûlent dans le champ, et il les sauve du feu",
+     "Les gerbes sont emportées par le vent, et il les ramasse"
+    ],
+    "ref": "37:7",
+    "proof": [
+     "ma gerbe se dressa"
+    ],
+    "x": "Ce songe provoque encore plus la haine de ses frères."
+   },
+   {
+    "q": "Que font les frères de Joseph de la robe, après l'avoir vendu ?",
+    "a": "Ils égorgent un chevreau et trempent la robe dans son sang",
+    "w": [
+     "Ils la brûlent et enterrent les cendres",
+     "Ils la déchirent et la jettent dans la citerne",
+     "Ils la lavent et la rendent à Jacob"
+    ],
+    "ref": "37:31",
+    "proof": [
+     "égorgèrent un chevreau"
+    ],
+    "x": "Ils la font porter à leur père."
+   },
+   {
+    "q": "Comment Jacob manifeste-t-il son deuil, en voyant la robe ?",
+    "a": "Il déchire ses vêtements et met un cilice sur ses reins",
+    "w": [
+     "Il se couvre de cendres et jeûne sept jours",
+     "Il se rase la tête et brise sa verge",
+     "Il quitte la tente et part dans le désert"
+    ],
+    "ref": "37:34",
+    "proof": [
+     "déchira ses vêtements",
+     "cilice"
+    ],
+    "x": "Il porta longtemps le deuil de son fils."
+   },
+   {
+    "q": "Que fait Joseph, quand la femme de Putiphar le saisit par son vêtement ?",
+    "a": "Il lui laisse son vêtement et s'enfuit",
+    "w": [
+     "Il se débat et la renverse par terre",
+     "Il appelle les serviteurs et crie au secours",
+     "Il la repousse et l'enferme dans la chambre"
+    ],
+    "ref": "39:12-13",
+    "proof": [
+     "laissé son vêtement dans sa main"
+    ],
+    "x": "Elle garde le vêtement jusqu'à ce que son maître rentre."
+   },
+   {
+    "q": "Que dit Joseph au maître panetier, en interprétant son songe ?",
+    "a": "Qu'il sera décapité puis pendu",
+    "w": [
+     "Que dans trois jours Pharaon le remettra à sa charge",
+     "Que dans trois jours Pharaon lui rendra ses biens",
+     "Que dans trois jours Pharaon l'enverra en exil"
+    ],
+    "ref": "40:19",
+    "proof": [
+     "trancher la tête"
+    ],
+    "x": "Les oiseaux viendront becqueter sa chair."
    }
   ],
   "2": [
@@ -187,6 +258,88 @@
      "panetier"
     ],
     "x": "L'échanson et le panetier du roi d'Égypte avaient offensé leur maître."
+   },
+   {
+    "q": "Qui naît le premier des deux jumeaux de Thamar, et quel nom reçoit-il ?",
+    "a": {
+     "t": "Péreç",
+     "he": "פָּרֶץ"
+    },
+    "w": [
+     {
+      "t": "Zérah",
+      "he": "זֶרַח"
+     },
+     {
+      "t": "Onân",
+      "he": "אוֹנָן"
+     },
+     {
+      "t": "Ér",
+      "he": "עֵר"
+     }
+    ],
+    "ref": "38:29",
+    "proof": [
+     "nom de Péreç"
+    ],
+    "x": "Elle dit : « Avec quelle violence tu te fais jour ! »"
+   },
+   {
+    "q": "Que fait la sage-femme, quand l'un des jumeaux avance la main ?",
+    "a": "Elle y attache un fil d'écarlate",
+    "w": [
+     "Elle y noue un ruban d'azur",
+     "Elle y met un anneau d'or",
+     "Elle y trace un signe de sang"
+    ],
+    "ref": "38:28",
+    "proof": [
+     "fil d'écarlate"
+    ],
+    "x": "Pour indiquer que celui-ci était né le premier."
+   },
+   {
+    "q": "Que signifient les trois pampres du songe de l'échanson, selon Joseph ?",
+    "a": "Trois jours",
+    "w": [
+     "Trois mois",
+     "Trois ans",
+     "Trois semaines"
+    ],
+    "ref": "40:12",
+    "proof": [
+     "trois pampres, ce sont trois jours"
+    ],
+    "x": "Dans trois jours Pharaon lui rendra sa charge."
+   },
+   {
+    "q": "Où monte Juda pour tondre ses brebis, au moment où Thamar est informée ?",
+    "a": "À Timna",
+    "w": [
+     "À Adoullam",
+     "À Hébron",
+     "À Sichem"
+    ],
+    "ref": "38:13",
+    "proof": [
+     "monte en ce moment à Timna"
+    ],
+    "x": "Thamar quitte alors ses vêtements de veuve."
+   },
+   {
+    "q": "Comment Jacob réagit-il quand tous ses fils et ses filles veulent le consoler ?",
+    "a": "Il refuse toute consolation",
+    "w": [
+     "Il accepte leur consolation, puis part à Sichem",
+     "Il demande à être seul, puis prie trois jours",
+     "Il leur ordonne de se taire, puis déchire son manteau"
+    ],
+    "ref": "37:35",
+    "proof": [
+     "refusa toute consolation"
+    ],
+    "x": "Son père le pleure."
    }
   ],
   "3": [
@@ -263,6 +416,76 @@
      "מבטחו"
     ],
     "x": "Rachi sur Genèse 40:23 : pour avoir mis sa confiance dans l'échanson, Joseph dut rester emprisonné deux ans de plus."
+   },
+   {
+    "q": "Selon Rachi, que veut dire « Joseph était un garçon » (naar) ?",
+    "a": "Qu'il arrangeait ses cheveux pour paraître beau",
+    "w": [
+     "Qu'il était encore trop jeune pour travailler",
+     "Qu'il restait avec les enfants de la maison",
+     "Qu'il était le plus petit de ses frères"
+    ],
+    "ref": "37:2",
+    "proof": [
+     "מתקן בשערו"
+    ],
+    "x": "Rachi sur Genèse 37:2 : il faisait des actes de jeunesse : il arrangeait ses cheveux, touchait ses yeux, pour paraître beau."
+   },
+   {
+    "q": "Selon Rachi, que signifie « robe de pasim » ?",
+    "a": "Un vêtement de laine fine ; ou un nom en rapport avec ses tourments, vendu à plusieurs reprises",
+    "w": [
+     "Un vêtement rayé de couleurs vives",
+     "Un vêtement brodé d'or et d'argent",
+     "Un vêtement taillé dans la peau d'un animal"
+    ],
+    "ref": "37:3",
+    "proof": [
+     "פסים"
+    ],
+    "x": "Rachi sur Genèse 37:3 : « pasim » est un tissu fin, comme « karpas » ; ou les lettres désignent ses tourments : Putiphar, les marchands, les Ismaélites, les Madianites."
+   },
+   {
+    "q": "Selon Rachi, pourquoi Jacob refuse-t-il d'être consolé ?",
+    "a": "Parce qu'on ne se console pas de quelqu'un que l'on croit mort mais qui est vivant",
+    "w": [
+     "Parce que Jacob craignait pour Benjamin",
+     "Parce que Jacob ne croyait pas à la mort de Joseph",
+     "Parce que Jacob attendait un signe de Dieu"
+    ],
+    "ref": "37:35",
+    "proof": [
+     "אין אדם מקבל תנחומין על החי"
+    ],
+    "x": "Rachi sur Genèse 37:35 : on n'accepte pas de consolation pour un vivant que l'on croit mort : le décret de l'oubli n'est fait que pour le mort."
+   },
+   {
+    "q": "Selon Rachi, pourquoi l'histoire de Juda et Thamar interrompt-elle celle de Joseph ?",
+    "a": "Parce que ses frères l'avaient abaissé de sa grandeur",
+    "w": [
+     "Pour montrer que Juda était plus important que Joseph",
+     "Pour préparer la rencontre de Joseph avec Pharaon",
+     "Pour expliquer la généalogie de la tribu de Lévi"
+    ],
+    "ref": "38:1",
+    "proof": [
+     "הורידוהו אחיו מגדלתו"
+    ],
+    "x": "Rachi sur Genèse 38:1 : pour enseigner que ses frères l'avaient fait descendre de sa grandeur quand ils virent la douleur de leur père : « c'est toi qui as dit de le vendre »."
+   },
+   {
+    "q": "Selon Rachi, que signifie « elle est plus juste que moi » (mimenni) ?",
+    "a": "Elle est enceinte de moi ; une voix du ciel dit : de moi sont sortis ces faits",
+    "w": [
+     "Elle est plus pieuse que moi",
+     "Elle est plus âgée que moi",
+     "Elle est plus sage que moi"
+    ],
+    "ref": "38:26",
+    "proof": [
+     "בת קול"
+    ],
+    "x": "Rachi sur Genèse 38:26 : « mimenni » : elle est enceinte de moi ; nos maîtres disent qu'une voix du ciel dit : « de moi viennent ces choses »."
    }
   ]
  }

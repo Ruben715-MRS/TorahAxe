@@ -121,6 +121,113 @@
      "Ruben"
     ],
     "x": "Léa le nomma Ruben : « le Seigneur a vu mon humiliation »."
+   },
+   {
+    "q": "Quel nom Rachel donne-t-elle au fils de Bilha, en disant « le Seigneur m'a jugée » ?",
+    "a": {
+     "t": "Dan",
+     "he": "דָן"
+    },
+    "w": [
+     {
+      "t": "Issachar",
+      "he": "יִשָּׂשכָר"
+     },
+     {
+      "t": "Aser",
+      "he": "אָשֵׁר"
+     },
+     {
+      "t": "Gad",
+      "he": "גָד"
+     }
+    ],
+    "ref": "30:6",
+    "proof": [
+     "le nomma Dan"
+    ],
+    "x": "Elle ajoute que le Seigneur a écouté sa voix."
+   },
+   {
+    "q": "Quel nom Rachel donne-t-elle à son fils, en disant « Dieu veuille me donner encore un second fils » ?",
+    "a": {
+     "t": "Joseph",
+     "he": "יוֹסֵף"
+    },
+    "w": [
+     {
+      "t": "Dan",
+      "he": "דָן"
+     },
+     {
+      "t": "Benjamin",
+      "he": "בִנְיָמִן"
+     },
+     {
+      "t": "Aser",
+      "he": "אָשֵׁר"
+     }
+    ],
+    "ref": "30:24",
+    "proof": [
+     "Joseph"
+    ],
+    "x": "Jacob dit ensuite à Laban : « Laisse-moi partir. »"
+   },
+   {
+    "q": "D'où Jacob sort-il pour se diriger vers Haran ?",
+    "a": "De Beer Shava",
+    "w": [
+     "De Hébron",
+     "De Béthel",
+     "De Sichem"
+    ],
+    "ref": "28:10",
+    "proof": [
+     "Jacob sortit de Beer Shava"
+    ],
+    "x": "Il se dirige vers Haran."
+   },
+   {
+    "q": "Comment la Torah décrit-elle les yeux de Léa, et la beauté de Rachel ?",
+    "a": "Léa avait les yeux faibles ; Rachel était belle de taille et de visage",
+    "w": [
+     "Léa avait les yeux brillants ; Rachel était grande et mince",
+     "Léa avait de beaux cheveux ; Rachel avait les yeux faibles",
+     "Léa était belle de visage ; Rachel avait la voix douce"
+    ],
+    "ref": "29:17",
+    "proof": [
+     "yeux faibles",
+     "belle de taille et belle de visage"
+    ],
+    "x": "Jacob s'éprend de Rachel."
+   },
+   {
+    "q": "Quelle esclave Laban donne-t-il à sa fille Léa ?",
+    "a": {
+     "t": "Zilpa",
+     "he": "זִלְפָּה"
+    },
+    "w": [
+     {
+      "t": "Bilha",
+      "he": "בִּלְהָה"
+     },
+     {
+      "t": "Agar",
+      "he": "הָגָר"
+     },
+     {
+      "t": "Ketoura",
+      "he": "קְטוּרָה"
+     }
+    ],
+    "ref": "29:24",
+    "proof": [
+     "Zilpa, son esclave"
+    ],
+    "x": "Zilpa donnera à Jacob deux fils."
    }
   ],
   "2": [
@@ -198,6 +305,76 @@
      "pénates"
     ],
     "x": "Rachel prend les pénates, les cache dans la selle du chameau et s'assoit dessus ; Laban fouille toute la tente sans les trouver."
+   },
+   {
+    "q": "Combien d'années Jacob sert-il encore chez Laban, après son mariage avec Rachel ?",
+    "a": "Sept autres années",
+    "w": [
+     "Trois autres années",
+     "Quatorze autres années",
+     "Une année"
+    ],
+    "ref": "29:30",
+    "proof": [
+     "sept autres années"
+    ],
+    "x": "Jacob persiste à aimer Rachel plus que Léa."
+   },
+   {
+    "q": "Que contient la richesse de Jacob, en plus du menu bétail et des esclaves ?",
+    "a": "Des chameaux et des ânes",
+    "w": [
+     "Des chevaux et des mulets",
+     "Des bœufs et des chèvres",
+     "De l'or et de l'argent"
+    ],
+    "ref": "30:43",
+    "proof": [
+     "des chameaux et des ânes"
+    ],
+    "x": "Cet homme s'enrichit prodigieusement."
+   },
+   {
+    "q": "Combien de fils Léa dit-elle avoir enfantés à Jacob, quand elle nomme Zabulon ?",
+    "a": "Six fils",
+    "w": [
+     "Quatre fils",
+     "Sept fils",
+     "Trois fils"
+    ],
+    "ref": "30:20",
+    "proof": [
+     "six fils"
+    ],
+    "x": "Elle espère que son mari fera d'elle sa compagne."
+   },
+   {
+    "q": "Que fait Jacob sur la montagne, avant de passer la nuit avec ses parents ?",
+    "a": "Il égorge des animaux et invite ses parents au festin",
+    "w": [
+     "Il bâtit un autel et offre un holocauste",
+     "Il dresse une stèle et la bénit",
+     "Il prie à voix haute et jeûne"
+    ],
+    "ref": "31:54",
+    "proof": [
+     "égorgea des animaux"
+    ],
+    "x": "Ils y prennent part."
+   },
+   {
+    "q": "Que dit Léa en nommant Issachar ?",
+    "a": "« Le Seigneur m'a récompensée d'avoir donné mon esclave à mon époux »",
+    "w": [
+     "« Le Seigneur m'a accordée comme un don précieux »",
+     "« Le Seigneur a entendu que j'étais dédaignée »",
+     "« Il est né pour mon bonheur »"
+    ],
+    "ref": "30:18",
+    "proof": [
+     "m'a récompensée"
+    ],
+    "x": "Elle lui donna le nom d'Issachar."
    }
   ],
   "3": [
@@ -275,6 +452,76 @@
      "אביה"
     ],
     "x": "Rachi sur Genèse 31:19 : elle voulait éloigner son père du culte des idoles."
+   },
+   {
+    "q": "Selon Rachi, que montre la mention que Jacob « sortit » de Beer Shava ?",
+    "a": "Que le départ d'un juste de sa ville laisse une empreinte",
+    "w": [
+     "Que Jacob était pressé de partir",
+     "Que Jacob fuyait la colère d'Ésaü",
+     "Que Jacob quittait sa maison par désobéissance"
+    ],
+    "ref": "28:10",
+    "proof": [
+     "יציאת צדיק מן המקום עושה רשם"
+    ],
+    "x": "Rachi sur Genèse 28:10 : le départ d'un juste d'un lieu laisse une empreinte : tant qu'il est dans la ville, il en est l'éclat, la splendeur et la grandeur."
+   },
+   {
+    "q": "Selon Rachi, que signifie « la terre sur laquelle tu es couché, je la donnerai » ?",
+    "a": "Que Dieu plia toute la terre d'Israël sous lui, pour la rendre facile à conquérir",
+    "w": [
+     "Que Dieu donnait à Jacob seulement l'endroit de son sommeil",
+     "Que Dieu agrandit la pierre sous sa tête",
+     "Que Dieu éleva la terre jusqu'au ciel"
+    ],
+    "ref": "28:13",
+    "proof": [
+     "קפל הקב\"ה כל ארץ ישראל"
+    ],
+    "x": "Rachi sur Genèse 28:13 : Dieu plia toute la terre d'Israël sous lui, pour signifier qu'elle serait facile à conquérir pour ses fils : comme quatre coudées."
+   },
+   {
+    "q": "Selon Rachi, pourquoi Léa avait-elle « les yeux faibles » ?",
+    "a": "Parce qu'elle pleurait, craignant d'échoir à Ésaü par le sort",
+    "w": [
+     "Parce qu'elle avait veillé de longues nuits",
+     "Parce qu'elle avait pleuré sur la mort de sa mère",
+     "Parce qu'elle avait la vue basse de naissance"
+    ],
+    "ref": "29:17",
+    "proof": [
+     "סבורה לעלות בגורלו של עשו"
+    ],
+    "x": "Rachi sur Genèse 29:17 : on disait : deux fils à Rébecca, deux filles à Laban : l'aînée à l'aîné ; elle pleurait de peur d'échoir à Ésaü."
+   },
+   {
+    "q": "Selon Rachi, pourquoi Jacob ne reconnut-il pas Léa la nuit ?",
+    "a": "Parce que Rachel, par pitié pour sa sœur, lui révéla les signes convenus",
+    "w": [
+     "Parce que Léa avait changé de voix",
+     "Parce que Laban avait éteint les lampes",
+     "Parce que Jacob était fatigué du voyage"
+    ],
+    "ref": "29:25",
+    "proof": [
+     "מסר יעקב סימנים לרחל"
+    ],
+    "x": "Rachi sur Genèse 29:25 : Jacob avait donné des signes à Rachel ; quand elle vit qu'on amenait Léa, elle se dit : « maintenant ma sœur sera humiliée » ; elle les lui transmit."
+   },
+   {
+    "q": "Selon Rachi, pourquoi Jacob veut-il partir après la naissance de Joseph ?",
+    "a": "Parce que Joseph est la flamme qui peut vaincre l'ennemi d'Ésaü",
+    "w": [
+     "Parce que Joseph était né à Haran",
+     "Parce que Joseph aimait son pays",
+     "Parce que Joseph avait rêvé de départ"
+    ],
+    "ref": "30:25",
+    "proof": [
+     "אש בלא להבה"
+    ],
+    "x": "Rachi sur Genèse 30:25 : dès que naquit l'adversaire d'Ésaü : « la maison de Jacob sera un feu, la maison de Joseph une flamme, la maison d'Ésaü de la paille » ; un feu sans flamme ne domine pas au loin."
    }
   ]
  }

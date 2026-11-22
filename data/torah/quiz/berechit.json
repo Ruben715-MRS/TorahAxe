@@ -85,6 +85,89 @@
      "Caïn cultiva la terre"
     ],
     "x": "Abel était pasteur de menu bétail."
+   },
+   {
+    "q": "À l'image de qui Dieu crée-t-il l'homme ?",
+    "a": "À sa propre image : mâle et femelle à la fois",
+    "w": [
+     "À l'image des anges qui l'entourent, avec des ailes",
+     "À l'image des animaux qu'il avait déjà créés",
+     "À l'image de la lumière du premier jour"
+    ],
+    "ref": "1:27",
+    "proof": [
+     "à son image"
+    ],
+    "x": "« C'est à l'image de Dieu qu'il le créa. »"
+   },
+   {
+    "q": "De quoi l'Éternel-Dieu façonne-t-il l'homme, et que fait-il pénétrer dans ses narines ?",
+    "a": "De poussière du sol, et un souffle de vie",
+    "w": [
+     "D'argile rouge, et un feu de vie",
+     "De pierre du jardin, et un esprit de force",
+     "D'eau et de terre, et une voix de vie"
+    ],
+    "ref": "2:7",
+    "proof": [
+     "poussière détachée du sol",
+     "souffle de vie"
+    ],
+    "x": "Et l'homme devint un être vivant."
+   },
+   {
+    "q": "Qui impose des noms à tous les animaux ?",
+    "a": "L'homme",
+    "w": [
+     "La femme",
+     "Dieu lui-même",
+     "Les anges"
+    ],
+    "ref": "2:20",
+    "proof": [
+     "L'homme imposa des noms"
+    ],
+    "x": "Mais pour lui-même, il ne trouva pas de compagne qui lui fût assortie."
+   },
+   {
+    "q": "Comment le serpent se déplacera-t-il, après avoir été maudit ?",
+    "a": "Il se traînera sur le ventre, et se nourrira de poussière",
+    "w": [
+     "Il marchera sur le dos, et se nourrira de terre",
+     "Il volera dans les airs, et se nourrira d'insectes",
+     "Il vivra dans l'eau, et se nourrira de poissons"
+    ],
+    "ref": "3:14",
+    "proof": [
+     "tu te traîneras sur le ventre"
+    ],
+    "x": "Il est maudit entre tous les animaux."
+   },
+   {
+    "q": "Qui trouve grâce aux yeux de l'Éternel, avant le déluge ?",
+    "a": {
+     "t": "Noé",
+     "he": "נֹחַ"
+    },
+    "w": [
+     {
+      "t": "Hénoc",
+      "he": "חֲנוֹךְ"
+     },
+     {
+      "t": "Seth",
+      "he": "שֵׁת"
+     },
+     {
+      "t": "Abel",
+      "he": "הֶבֶל"
+     }
+    ],
+    "ref": "6:8",
+    "proof": [
+     "Noé trouva grâce"
+    ],
+    "x": "C'est le dernier verset de la paracha."
    }
   ],
   "2": [
@@ -171,6 +254,76 @@
      "pour nom Seth"
     ],
     "x": "« Parce que Dieu m'a accordé une nouvelle postérité au lieu d'Abel. »"
+   },
+   {
+    "q": "Que dit Dieu de tout ce qu'il avait fait, au sixième jour ?",
+    "a": "Que c'était éminemment bien",
+    "w": [
+     "Que c'était à peu près achevé",
+     "Que c'était digne de repos",
+     "Que c'était sans défaut ni faute"
+    ],
+    "ref": "1:31",
+    "proof": [
+     "éminemment bien"
+    ],
+    "x": "Le soir se fit, puis le matin : ce fut le sixième jour."
+   },
+   {
+    "q": "Que dit Ève à la naissance de Caïn ?",
+    "a": "« J'ai fait naître un homme, conjointement avec l'Éternel ! »",
+    "w": [
+     "« J'ai donné la vie à un homme, par la grâce de Dieu seul ! »",
+     "« Dieu m'a accordé un fils, pour remplacer mon mari ! »",
+     "« J'ai mis au monde un héritier, pour garder le jardin ! »"
+    ],
+    "ref": "4:1",
+    "proof": [
+     "J'ai fait naître un homme"
+    ],
+    "x": "Elle conçut et enfanta Caïn."
+   },
+   {
+    "q": "Entre qui Dieu fera-t-il régner la haine, en maudissant le serpent ?",
+    "a": "Entre le serpent et la femme, entre leurs postérités",
+    "w": [
+     "Entre le serpent et l'homme, entre leurs maisons",
+     "Entre le serpent et les animaux, entre leurs espèces",
+     "Entre le serpent et le jardin, entre leurs terres"
+    ],
+    "ref": "3:15",
+    "proof": [
+     "entre toi et la femme"
+    ],
+    "x": "Elle te visera à la tête, et toi, tu l'attaqueras au talon."
+   },
+   {
+    "q": "Que dit la Torah de Hénoc, qui se conduisait selon Dieu ?",
+    "a": "Il disparut, Dieu l'ayant retiré du monde",
+    "w": [
+     "Il mourut à l'âge de neuf cent soixante-neuf ans",
+     "Il construisit une ville portant le nom de son fils",
+     "Il fut enseveli dans la vallée d'Éden"
+    ],
+    "ref": "5:24",
+    "proof": [
+     "il disparut"
+    ],
+    "x": "Hénoc se conduisait selon Dieu."
+   },
+   {
+    "q": "À quoi servent les corps lumineux créés le quatrième jour, selon Dieu ?",
+    "a": "À distinguer le jour de la nuit, et de signes pour les saisons, les jours et les années",
+    "w": [
+     "À éclairer seulement la nuit, et de signes pour les mois",
+     "À réchauffer la terre, et de signes pour les récoltes",
+     "À guider les voyageurs, et de signes pour les pluies"
+    ],
+    "ref": "1:14",
+    "proof": [
+     "distinguer entre le jour et la nuit"
+    ],
+    "x": "Ils servent de luminaires pour éclairer la terre."
    }
   ],
   "3": [
@@ -243,6 +396,76 @@
      "קל בדעתו לשוב להרשיע"
     ],
     "x": "Rachi sur Genèse 5:24 : il était juste mais facile à ramener au mal ; Dieu l'a hâté et fait mourir avant son temps."
+   },
+   {
+    "q": "Selon Rachi, à quoi la Présence divine est-elle comparée, au-dessus des eaux, au début de la création ?",
+    "a": "À une colombe qui plane sur son nid",
+    "w": [
+     "À un aigle qui veille sur ses petits",
+     "À un nuage qui couvre la montagne",
+     "À un feu qui éclaire la nuit"
+    ],
+    "ref": "1:2",
+    "proof": [
+     "כיונה המרחפת על הקן"
+    ],
+    "x": "Rachi sur Genèse 1:2 : le trône de gloire se tient dans l'air et plane sur les eaux, par le souffle de la bouche de Dieu, comme une colombe qui plane sur le nid."
+   },
+   {
+    "q": "Selon Rachi, pourquoi le texte dit-il « Elohim » et non le Nom de miséricorde au commencement ?",
+    "a": "Parce que Dieu pensa d'abord créer par la rigueur, puis y associa la miséricorde",
+    "w": [
+     "Parce que le Nom de miséricorde n'était pas encore révélé",
+     "Parce que la création n'exigeait que la justice",
+     "Parce que Dieu agissait seul avant les anges"
+    ],
+    "ref": "1:1",
+    "proof": [
+     "הקדים מדת רחמים"
+    ],
+    "x": "Rachi sur Genèse 1:1 : il pensa d'abord à créer le monde par la rigueur, vit qu'il ne subsisterait pas, et lui associa la miséricorde."
+   },
+   {
+    "q": "Selon Rachi, que signifie « à notre image » (betsalmenou) ?",
+    "a": "Dans notre moule, notre modèle",
+    "w": [
+     "Dans notre gloire, notre éclat",
+     "Dans notre force, notre puissance",
+     "Dans notre âge, notre durée"
+    ],
+    "ref": "1:26",
+    "proof": [
+     "בדפוס שלנו"
+    ],
+    "x": "Rachi sur Genèse 1:26 : dans notre moule."
+   },
+   {
+    "q": "Selon Rachi, que signifie l'adjectif « rusé » du serpent, par rapport à sa chute ?",
+    "a": "Qu'à la mesure de sa ruse fut sa chute : rusé plus que tous, maudit plus que tous",
+    "w": [
+     "Que sa ruse lui valut une grande récompense",
+     "Que sa ruse lui permit d'échapper à la punition",
+     "Que sa ruse était une qualité de tous les animaux"
+    ],
+    "ref": "3:1",
+    "proof": [
+     "ערום מכל ארור מכל"
+    ],
+    "x": "Rachi sur Genèse 3:1 : selon sa ruse et sa grandeur fut sa chute : rusé plus que tous, maudit plus que tous."
+   },
+   {
+    "q": "Selon Rachi, que signifie « Dieu se tourna (vayish'a) vers Abel et son offrande » ?",
+    "a": "Qu'un feu descendit et consuma son offrande",
+    "w": [
+     "Qu'un ange vint la prendre",
+     "Qu'un vent la porta vers le ciel",
+     "Qu'une voix annonça l'acceptation"
+    ],
+    "ref": "4:4",
+    "proof": [
+     "ירדה אש ולחכה מנחתו"
+    ],
+    "x": "Rachi sur Genèse 4:4 : « vayisha » signifie qu'il se tourna ; et l'on dit : un feu descendit et dévora son offrande."
    }
   ]
  }

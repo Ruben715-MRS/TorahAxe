@@ -84,6 +84,76 @@
      "l'âge de huit jours"
     ],
     "x": "Même l'enfant né dans la maison ou acheté à prix d'argent."
+   },
+   {
+    "q": "Où Abram descend-il pour séjourner, à cause de la famine ?",
+    "a": "En Égypte",
+    "w": [
+     "À Moab, au pays des fils de Loth",
+     "À Gherar, chez le roi des Philistins",
+     "À Harân, chez la famille de son père"
+    ],
+    "ref": "12:10",
+    "proof": [
+     "descendit en Égypte"
+    ],
+    "x": "La famine était excessive dans le pays."
+   },
+   {
+    "q": "Quelle région Loth choisit-il, en se séparant d'Abram ?",
+    "a": "Toute la plaine du Jourdain, du côté oriental",
+    "w": [
+     "Les montagnes du nord, du côté de Béthel",
+     "Le désert du sud, du côté de Beer Shava",
+     "La plaine de Mamré, du côté de Hébron"
+    ],
+    "ref": "13:11",
+    "proof": [
+     "plaine du Jourdain"
+    ],
+    "x": "Ils se séparèrent l'un de l'autre."
+   },
+   {
+    "q": "Que fait Abram après la promesse des étoiles, et que lui accorde l'Éternel ?",
+    "a": "Il eut foi en l'Éternel, qui lui en fit un mérite",
+    "w": [
+     "Il offrit un sacrifice, que l'Éternel accepta",
+     "Il bâtit un autel, que l'Éternel bénit",
+     "Il pria trois jours, que l'Éternel entendit"
+    ],
+    "ref": "15:6",
+    "proof": [
+     "il eut foi en l'Éternel"
+    ],
+    "x": "Ainsi sera sa descendance."
+   },
+   {
+    "q": "Quelle est la nationalité d'Agar, l'esclave de Saraï ?",
+    "a": "Égyptienne",
+    "w": [
+     "Cananéenne",
+     "Araméenne",
+     "Philistine"
+    ],
+    "ref": "16:1",
+    "proof": [
+     "esclave égyptienne nommée Agar"
+    ],
+    "x": "Saraï n'avait pas donné d'enfant à Abram."
+   },
+   {
+    "q": "Que doit-on faire à tout mâle, selon le pacte entre Dieu et Abraham ?",
+    "a": "Le circoncire",
+    "w": [
+     "Le consacrer au sanctuaire",
+     "Lui donner un nom nouveau",
+     "Lui couper les cheveux"
+    ],
+    "ref": "17:10",
+    "proof": [
+     "circoncire tout mâle"
+    ],
+    "x": "Ce sera un symbole d'alliance entre Dieu et Abraham."
    }
   ],
   "2": [
@@ -157,6 +227,88 @@
      "treize ans"
     ],
     "x": "Abraham a alors quatre-vingt-dix-neuf ans."
+   },
+   {
+    "q": "Quel roi d'Elam est cité parmi les rois qui font la guerre à Sodome ?",
+    "a": {
+     "t": "Kedorlaomer",
+     "he": "כְּדָרְלָעֹמֶר"
+    },
+    "w": [
+     {
+      "t": "Amrafel",
+      "he": "אַמְרָפֶל"
+     },
+     {
+      "t": "Béra",
+      "he": "בְּרָע"
+     },
+     {
+      "t": "Tidal",
+      "he": "תִדְעָל"
+     }
+    ],
+    "ref": "14:1",
+    "proof": [
+     "Kedorlaomer, roi d'Elam"
+    ],
+    "x": "Amrafel est roi de Sennaar."
+   },
+   {
+    "q": "Depuis combien d'années Abram demeurait-il au pays de Canaan quand Saraï lui donne Agar ?",
+    "a": "Dix ans",
+    "w": [
+     "Sept ans",
+     "Vingt-cinq ans",
+     "Un an"
+    ],
+    "ref": "16:3",
+    "proof": [
+     "dix ans"
+    ],
+    "x": "Saraï la donne à son époux pour qu'elle soit sa femme."
+   },
+   {
+    "q": "Quel âge Abram avait-il à la naissance d'Ismaël ?",
+    "a": "Quatre-vingt-six ans",
+    "w": [
+     "Soixante-quinze ans",
+     "Quatre-vingt-dix-neuf ans",
+     "Cent ans"
+    ],
+    "ref": "16:16",
+    "proof": [
+     "quatre-vingt-six"
+    ],
+    "x": "Agar lui enfante Ismaël."
+   },
+   {
+    "q": "Quel âge Abraham avait-il quand le Seigneur lui apparut pour lui prescrire la circoncision ?",
+    "a": "Quatre-vingt-dix-neuf ans",
+    "w": [
+     "Quatre-vingt-six ans",
+     "Cent ans",
+     "Quatre-vingt-dix ans"
+    ],
+    "ref": "17:1",
+    "proof": [
+     "quatre-vingt-dix-neuf ans"
+    ],
+    "x": "Le Seigneur lui dit : « Je suis le Dieu tout-puissant. »"
+   },
+   {
+    "q": "De quoi Abraham est-il puissamment riche ?",
+    "a": "De bétail, d'argent et d'or",
+    "w": [
+     "De terres, de maisons et de vignes",
+     "De serviteurs, de tentes et de puits",
+     "De blé, d'huile et de vin"
+    ],
+    "ref": "13:2",
+    "proof": [
+     "bétail, en argent et en or"
+    ],
+    "x": "Les pasteurs d'Abram et de Loth se querellent plus tard."
    }
   ],
   "3": [
@@ -229,6 +381,76 @@
      "נוטריקון"
     ],
     "x": "Rachi sur Genèse 17:5 : « av hamon goyim » : le mot est une abréviation de son nom ; le resh était déjà là, car il n'était d'abord père que d'Aram, son lieu d'origine ; maintenant il l'est de tout le monde."
+   },
+   {
+    "q": "Selon Rachi, pourquoi Dieu promet-il trois bénédictions à Abram avant son départ ?",
+    "a": "Parce que le voyage diminue la fécondité, la fortune et la renommée",
+    "w": [
+     "Parce que le voyage fatigue le corps, l'esprit et le cœur",
+     "Parce que le voyage expose à la faim, à la soif et au danger",
+     "Parce que le voyage éloigne de la famille, des amis et du pays"
+    ],
+    "ref": "12:2",
+    "proof": [
+     "ממעטת פריה ורביה"
+    ],
+    "x": "Rachi sur Genèse 12:2 : la route diminue la fécondité, la fortune et le nom ; c'est pourquoi il lui promet ces trois bénédictions."
+   },
+   {
+    "q": "Selon Rachi, qui est le « fugitif » qui vint annoncer à Abram la capture de Loth ?",
+    "a": "Og, qui avait échappé à la guerre",
+    "w": [
+     "Éliézer, le serviteur d'Abram",
+     "Amrafel, le roi de Sennaar",
+     "Melchisédec, le roi de Salem"
+    ],
+    "ref": "14:13",
+    "proof": [
+     "עוג"
+    ],
+    "x": "Rachi sur Genèse 14:13 : selon le sens simple, c'est Og, qui s'était sauvé de la guerre."
+   },
+   {
+    "q": "Selon Rachi, depuis quand compte-t-on les quatre cents ans annoncés à Abram ?",
+    "a": "Depuis la naissance d'Isaac jusqu'à la sortie d'Égypte",
+    "w": [
+     "Depuis l'arrivée de Jacob en Égypte",
+     "Depuis la mort de Joseph en Égypte",
+     "Depuis l'alliance entre les morceaux"
+    ],
+    "ref": "15:13",
+    "proof": [
+     "משנולד יצחק"
+    ],
+    "x": "Rachi sur Genèse 15:13 : depuis la naissance d'Isaac jusqu'à la sortie d'Égypte : quatre cents ans."
+   },
+   {
+    "q": "Selon Rachi, que signifie le nom « Chaddaï » (Dieu tout-puissant) ?",
+    "a": "Que la divinité de Dieu suffit à chaque créature",
+    "w": [
+     "Que Dieu est le plus puissant des dieux",
+     "Que Dieu est le maître des armées du ciel",
+     "Que Dieu est le gardien des promesses"
+    ],
+    "ref": "17:1",
+    "proof": [
+     "די באלהותי"
+    ],
+    "x": "Rachi sur Genèse 17:1 : « Je suis celui dont la divinité suffit à toute créature » : « dai » signifie suffisant."
+   },
+   {
+    "q": "Selon Rachi, pourquoi Dieu mit-il au compte d'Abram sa foi comme une justice ?",
+    "a": "Parce qu'il a cru, sans demander de signe sur la promesse d'un fils",
+    "w": [
+     "Parce qu'il a offert un sacrifice, sans demander de récompense",
+     "Parce qu'il a quitté sa maison, sans demander de route",
+     "Parce qu'il a prié pour Sodome, sans demander de pardon"
+    ],
+    "ref": "15:6",
+    "proof": [
+     "לא שאל לו אות"
+    ],
+    "x": "Rachi sur Genèse 15:6 : pour cette promesse, il ne demanda pas de signe ; mais pour la possession du pays, il demanda : « à quoi saurai-je ? »."
    }
   ]
  }

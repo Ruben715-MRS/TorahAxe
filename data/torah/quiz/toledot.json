@@ -72,6 +72,77 @@
      "au centuple"
     ],
     "x": "Tant le Seigneur le bénissait."
+   },
+   {
+    "q": "Quel métier Ésaü exerce-t-il en grandissant, et où vit Jacob ?",
+    "a": "Ésaü est un habile chasseur ; Jacob vit sous la tente",
+    "w": [
+     "Ésaü est un berger ; Jacob cultive la terre",
+     "Ésaü est un guerrier ; Jacob est un scribe",
+     "Ésaü est un marchand ; Jacob est un pêcheur"
+    ],
+    "ref": "25:27",
+    "proof": [
+     "habile chasseur",
+     "vécut sous la tente"
+    ],
+    "x": "Jacob est un homme inoffensif."
+   },
+   {
+    "q": "Que dit le Seigneur à Isaac, au moment de la famine ?",
+    "a": "De ne pas descendre en Égypte, mais de fixer sa demeure dans le pays qu'il lui désignera",
+    "w": [
+     "De descendre en Égypte, comme Abraham",
+     "De retourner à Harân, chez la famille de Rébecca",
+     "De partir vers Moriah, pour offrir un sacrifice"
+    ],
+    "ref": "26:2",
+    "proof": [
+     "Ne descends pas en Egypte"
+    ],
+    "x": "Isaac alla chez Abimélec, roi des Philistins, à Gherar."
+   },
+   {
+    "q": "Que fait Isaac des puits creusés du temps d'Abraham, comblés par les Philistins ?",
+    "a": "Il se remet à les creuser",
+    "w": [
+     "Il les laisse à sec, par prudence",
+     "Il les vend aux Philistins, pour avoir la paix",
+     "Il en creuse de nouveaux loin de là"
+    ],
+    "ref": "26:18",
+    "proof": [
+     "Isaac se remit à creuser les puits"
+    ],
+    "x": "Les Philistins les avaient comblés après la mort d'Abraham."
+   },
+   {
+    "q": "À quel peuple appartiennent les deux femmes qu'Ésaü prend à quarante ans ?",
+    "a": "Aux Héthéens",
+    "w": [
+     "Aux Cananéens",
+     "Aux Philistins",
+     "Aux Égyptiens"
+    ],
+    "ref": "26:34",
+    "proof": [
+     "Héthéen"
+    ],
+    "x": "Elles se nomment Judith et Bâsemath."
+   },
+   {
+    "q": "Qu'arrive-t-il à la vue d'Isaac, devenu vieux ?",
+    "a": "Elle s'obscurcit",
+    "w": [
+     "Elle s'améliore miraculeusement",
+     "Elle reste claire jusqu'à la fin",
+     "Elle disparaît d'un coup, un soir"
+    ],
+    "ref": "27:1",
+    "proof": [
+     "sa vue s'obscurcit"
+    ],
+    "x": "Il appelle Ésaü, son fils aîné."
    }
   ],
   "2": [
@@ -169,6 +240,76 @@
      "Abimélec, roi des Philistins"
     ],
     "x": "Le Seigneur lui dit de ne pas descendre en Égypte."
+   },
+   {
+    "q": "Pourquoi Isaac implore-t-il l'Éternel au sujet de sa femme ?",
+    "a": "Parce qu'elle était stérile",
+    "w": [
+     "Parce qu'elle était malade",
+     "Parce qu'elle était étrangère",
+     "Parce qu'elle était âgée"
+    ],
+    "ref": "25:21",
+    "proof": [
+     "elle était stérile"
+    ],
+    "x": "L'Éternel accueille sa prière et Rébecca devient enceinte."
+   },
+   {
+    "q": "Que répond Ésaü à Jacob qui lui demande son droit d'aînesse ?",
+    "a": "« Je marche à la mort ; à quoi me sert le droit d'aînesse ? »",
+    "w": [
+     "« Je suis l'aîné ; ce droit m'appartient pour toujours »",
+     "« Je suis fatigué ; reprends-le contre un repas »",
+     "« Je suis chasseur ; je n'ai pas besoin de ce droit »"
+    ],
+    "ref": "25:32",
+    "proof": [
+     "Je marche à la mort"
+    ],
+    "x": "Jacob lui demande de le jurer dès à présent."
+   },
+   {
+    "q": "Que sont les femmes d'Ésaü pour Isaac et Rébecca ?",
+    "a": "Une amère affliction",
+    "w": [
+     "Une grande joie",
+     "Une grande fierté",
+     "Une source de querelles"
+    ],
+    "ref": "26:35",
+    "proof": [
+     "amère affliction"
+    ],
+    "x": "Ésaü les avait prises à quarante ans."
+   },
+   {
+    "q": "Que fait cuire Jacob, quand Ésaü revient des champs fatigué ?",
+    "a": "Un potage",
+    "w": [
+     "Du gibier",
+     "Des gâteaux",
+     "Un bélier"
+    ],
+    "ref": "25:29",
+    "proof": [
+     "potage"
+    ],
+    "x": "Ésaü lui demande de ce mets rouge."
+   },
+   {
+    "q": "Que fait Ésaü après avoir mangé et bu, selon la Torah ?",
+    "a": "Il se lève et s'en va, dédaignant le droit d'aînesse",
+    "w": [
+     "Il se lave et se couche, remerciant son frère",
+     "Il pleure et supplie, regrettant sa vente",
+     "Il jure et menace, voulant tuer Jacob"
+    ],
+    "ref": "25:34",
+    "proof": [
+     "se leva et ressortit"
+    ],
+    "x": "Jacob lui avait servi du pain et un plat de lentilles."
    }
   ],
   "3": [
@@ -241,6 +382,76 @@
      "שבזה עבודתו של מקום"
     ],
     "x": "Rachi sur Genèse 25:34 : l'Écriture témoigne de sa méchanceté : il a méprisé le service de Dieu."
+   },
+   {
+    "q": "Selon Rachi, où Rébecca « alla consulter l'Éternel » ?",
+    "a": "À l'école de Sem",
+    "w": [
+     "Dans la tente d'Abraham",
+     "Sur l'autel de Beer Shava",
+     "Dans la tente de Sara"
+    ],
+    "ref": "25:22",
+    "proof": [
+     "בית מדרשו של שם"
+    ],
+    "x": "Rachi sur Genèse 25:22 : elle alla à l'école de Sem, afin qu'il lui dise ce qu'il adviendra d'elle."
+   },
+   {
+    "q": "Selon Rachi, que montre « la main de Jacob tenait le talon d'Ésaü » ?",
+    "a": "Que le règne d'Ésaü ne s'achèvera que lorsque Jacob viendra le lui prendre",
+    "w": [
+     "Que Jacob était plus faible qu'Ésaü",
+     "Que Jacob était né le premier",
+     "Que Jacob devait suivre Ésaü partout"
+    ],
+    "ref": "25:26",
+    "proof": [
+     "סימן שאין זה מספיק לגמר מלכותו"
+    ],
+    "x": "Rachi sur Genèse 25:26 : un signe que la royauté d'Ésaü ne sera pas terminée jusqu'à ce que celle de Jacob la lui prenne."
+   },
+   {
+    "q": "Selon Rachi, qui donna à Jacob son nom ?",
+    "a": "Dieu, ou son père selon une autre explication, à cause du talon",
+    "w": [
+     "Sa mère seule, en l'enfantant",
+     "Ésaü, en le voyant naître",
+     "Abraham, en le bénissant"
+    ],
+    "ref": "25:26",
+    "proof": [
+     "הקב\"ה"
+    ],
+    "x": "Rachi sur Genèse 25:26 : « il l'appela Jacob » : Dieu ; ou son père, à cause de la prise du talon."
+   },
+   {
+    "q": "Selon Rachi, que signifie « laisse-moi avaler » (hal'itheni) ?",
+    "a": "Que j'ouvre la bouche et qu'on y verse beaucoup",
+    "w": [
+     "Que je goûte un peu de ce mets",
+     "Que je mange lentement, en silence",
+     "Que je prenne ce mets à la main"
+    ],
+    "ref": "25:30",
+    "proof": [
+     "אפתח פי ושפך הרבה"
+    ],
+    "x": "Rachi sur Genèse 25:30 : j'ouvrirai la bouche et l'on versera beaucoup dedans, comme on engraisse un chameau."
+   },
+   {
+    "q": "Selon Rachi, que veut dire Rébecca par « s'il en est ainsi, pourquoi suis-je ? » ?",
+    "a": "Que la douleur de la grossesse est grande",
+    "w": [
+     "Que la naissance est proche",
+     "Que la maladie la menace",
+     "Que son mari est absent"
+    ],
+    "ref": "25:22",
+    "proof": [
+     "גדול צער העבור"
+    ],
+    "x": "Rachi sur Genèse 25:22 : grande est la douleur de la grossesse ; elle désire et prie pour la grossesse, et se demande pourquoi elle a voulu cela."
    }
   ]
  }

@@ -109,6 +109,88 @@
      "n’ira point"
     ],
     "x": "« Mon fils n'ira point avec vous ; car son frère n'est plus et lui seul reste encore. »"
+   },
+   {
+    "q": "Que répond Joseph à Pharaon, qui dit qu'il sait interpréter les songes ?",
+    "a": "Que ce n'est pas lui, mais Dieu, qui apaisera Pharaon",
+    "w": [
+     "Que c'est lui, par la sagesse reçue de son père",
+     "Que c'est un prêtre, par les rites d'Égypte",
+     "Que c'est le fleuve, par ses crues et ses baisses"
+    ],
+    "ref": "41:16",
+    "proof": [
+     "Ce n'est pas moi, c'est Dieu"
+    ],
+    "x": "Il répond avec humilité."
+   },
+   {
+    "q": "Quel titre Pharaon donne-t-il à Joseph, en lui confiant le pays ?",
+    "a": "Chef de sa maison, dont tout le peuple suivra la parole",
+    "w": [
+     "Chef de son armée, dont tous les soldats suivront l'ordre",
+     "Chef de ses prêtres, dont tous les mages suivront la loi",
+     "Chef de ses scribes, dont tous les juges suivront l'avis"
+    ],
+    "ref": "41:40",
+    "proof": [
+     "chef de ma maison"
+    ],
+    "x": "Pharaon n'a au-dessus de lui que le trône."
+   },
+   {
+    "q": "Quel nom Joseph donne-t-il à son second fils ?",
+    "a": {
+     "t": "Éphraïm",
+     "he": "אֶפְרַיִם"
+    },
+    "w": [
+     {
+      "t": "Manassé",
+      "he": "מְנַשֶּׁה"
+     },
+     {
+      "t": "Benjamin",
+      "he": "בִנְיָמִן"
+     },
+     {
+      "t": "Ruben",
+      "he": "רְאוּבֵן"
+     }
+    ],
+    "ref": "41:52",
+    "proof": [
+     "Éphraïm"
+    ],
+    "x": "« Car Dieu m'a fait fructifier dans le pays de ma misère. »"
+   },
+   {
+    "q": "Que propose Ruben à Jacob, pour qu'il lui confie Benjamin ?",
+    "a": "Que Jacob fasse mourir ses deux fils s'il ne le ramène pas",
+    "w": [
+     "Que Jacob garde Siméon à sa place s'il ne revient pas",
+     "Que Jacob lui retire son droit d'aînesse s'il échoue",
+     "Que Jacob envoie Juda avec lui s'il a peur"
+    ],
+    "ref": "42:37",
+    "proof": [
+     "Fais mourir mes deux fils"
+    ],
+    "x": "Il dit : « Confie-le à mes mains. »"
+   },
+   {
+    "q": "Que voit Pharaon au début de son songe, après deux années ?",
+    "a": "Il se tient debout au bord du fleuve",
+    "w": [
+     "Il marche dans un jardin au bord de la mer",
+     "Il dort sous un arbre au bord du désert",
+     "Il monte sur son char au bord de la route"
+    ],
+    "ref": "41:1",
+    "proof": [
+     "debout au bord du fleuve"
+    ],
+    "x": "Sept vaches grasses en sortent."
    }
   ],
   "2": [
@@ -183,6 +265,76 @@
      "sac du plus jeune"
     ],
     "x": "« Ma coupe, la coupe d'argent, tu la mettras à l'entrée du sac du plus jeune, avec le prix de son blé. »"
+   },
+   {
+    "q": "Quelle part du territoire d'Égypte Joseph propose-t-il d'imposer pendant les sept années d'abondance ?",
+    "a": "Un cinquième",
+    "w": [
+     "Un dixième",
+     "Un tiers",
+     "La moitié"
+    ],
+    "ref": "41:34",
+    "proof": [
+     "d'un cinquième"
+    ],
+    "x": "Il propose aussi d'établir des commissaires dans le pays."
+   },
+   {
+    "q": "À quoi Joseph compare-t-il les amas de blé qu'il fait, au point qu'on cesse de les compter ?",
+    "a": "Au sable de la mer",
+    "w": [
+     "Aux étoiles du ciel",
+     "Aux gouttes de la pluie",
+     "À la poussière du désert"
+    ],
+    "ref": "41:49",
+    "proof": [
+     "comme le sable de la mer"
+    ],
+    "x": "Car c'était incalculable."
+   },
+   {
+    "q": "Que disent les frères de Joseph de leur famille, quand il les accuse d'être des espions ?",
+    "a": "Qu'ils sont douze frères nés d'un même père, en Canaan",
+    "w": [
+     "Qu'ils sont dix frères sans père, en Égypte",
+     "Qu'ils sont sept frères nés d'un même père, en Gherar",
+     "Qu'ils sont onze frères nés de la même mère, à Harân"
+    ],
+    "ref": "42:13",
+    "proof": [
+     "douze frères"
+    ],
+    "x": "Le plus jeune est avec leur père, et un autre n'est plus."
+   },
+   {
+    "q": "Combien de frères Joseph propose-t-il de garder prisonniers, tandis que les autres rapportent du blé ?",
+    "a": "Un seul",
+    "w": [
+     "Deux",
+     "Trois",
+     "Cinq"
+    ],
+    "ref": "42:19",
+    "proof": [
+     "qu'un seul d'entre vous soit détenu"
+    ],
+    "x": "Ils devaient apporter ensuite leur plus jeune frère."
+   },
+   {
+    "q": "Que dit Jacob à ses fils, en voyant qu'il y avait vente de blé en Égypte ?",
+    "a": "« Pourquoi vous entre-regardez-vous ? »",
+    "w": [
+     "« Pourquoi vous attardez-vous au puits ? »",
+     "« Pourquoi vous plaignez-vous de la faim ? »",
+     "« Pourquoi vous disputez-vous à voix haute ? »"
+    ],
+    "ref": "42:1",
+    "proof": [
+     "Pourquoi vous entre regarder"
+    ],
+    "x": "Il les envoie en acheter."
    }
   ],
   "3": [
@@ -259,6 +411,76 @@
      "והאכילו"
     ],
     "x": "Rachi sur Genèse 42:24 : il ne l'enchaîna que sous leurs yeux ; dès qu'ils furent partis, il le fit sortir, le nourrit et le fit boire."
+   },
+   {
+    "q": "Selon Rachi, pourquoi le Nil est-il appelé « yeor » ?",
+    "a": "Parce que seul le Nil est ainsi nommé, tous les canaux d'Égypte étant faits de main d'homme",
+    "w": [
+     "Parce que le Nil coule du nord au sud",
+     "Parce que le Nil est le plus long des fleuves",
+     "Parce que le Nil déborde chaque printemps"
+    ],
+    "ref": "41:1",
+    "proof": [
+     "נילוס"
+    ],
+    "x": "Rachi sur Genèse 41:1 : les autres fleuves ne sont pas appelés ainsi, sauf le Nil, parce que tout le pays est creusé de canaux par la main de l'homme."
+   },
+   {
+    "q": "Selon Rachi, que signifie « il n'y avait personne pour les interpréter à Pharaon » ?",
+    "a": "Ils l'interprétaient, mais leur interprétation n'entrait pas dans son oreille",
+    "w": [
+     "Ils ne pouvaient absolument pas l'interpréter",
+     "Ils craignaient de lui dire la vérité",
+     "Ils n'avaient pas le temps de l'interpréter"
+    ],
+    "ref": "41:8",
+    "proof": [
+     "פותרים היו אותם"
+    ],
+    "x": "Rachi sur Genèse 41:8 : ils les interprétaient, mais pas pour Pharaon : leur voix n'entrait pas dans son oreille."
+   },
+   {
+    "q": "Selon Rachi, qu'est-ce que « le second char » dans lequel Joseph monte ?",
+    "a": "Celui qui suit le char de Pharaon, juste à côté du sien",
+    "w": [
+     "Celui qui précède le char de Pharaon",
+     "Celui qui porte les trésors de Pharaon",
+     "Celui qui appartient aux gardes du pays"
+    ],
+    "ref": "41:43",
+    "proof": [
+     "השניה למרכבתו"
+    ],
+    "x": "Rachi sur Genèse 41:43 : le second après son char, qui marche à côté du sien."
+   },
+   {
+    "q": "Selon Rachi, pourquoi Joseph se détourne-t-il de ses frères pour pleurer ?",
+    "a": "Pour qu'ils ne le voient pas pleurer",
+    "w": [
+     "Pour cacher sa colère",
+     "Pour parler en secret à l'interprète",
+     "Pour prier Dieu"
+    ],
+    "ref": "42:24",
+    "proof": [
+     "שלא יראוהו בוכה"
+    ],
+    "x": "Rachi sur Genèse 42:24 : il s'éloigna d'eux, pour qu'ils ne le voient pas pleurer."
+   },
+   {
+    "q": "Selon Rachi, pourquoi Joseph fit-il attacher Siméon « sous leurs yeux » seulement ?",
+    "a": "Car après leur départ, il le libéra, le nourrit et lui donna à boire",
+    "w": [
+     "Car il le garda enchaîné jusqu'à leur retour",
+     "Car il le fit mettre à mort en secret",
+     "Car il le vendit comme esclave"
+    ],
+    "ref": "42:24",
+    "proof": [
+     "לא אסרו אלא לעיניהם"
+    ],
+    "x": "Rachi sur Genèse 42:24 : il ne le lia que devant eux ; quand ils furent partis, on le fit sortir, on lui donna à manger et à boire."
    }
   ]
  }

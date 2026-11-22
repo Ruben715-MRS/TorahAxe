@@ -122,6 +122,78 @@
      "Éfrath"
     ],
     "x": "Rachel mourut et fut ensevelie sur le chemin d'Éfrath, qui est Bethléem."
+   },
+   {
+    "q": "Comment Ésaü accueille-t-il Jacob, quand ils se retrouvent ?",
+    "a": "Il court à sa rencontre, l'embrasse, se jette à son cou, et ils pleurent",
+    "w": [
+     "Il le regarde en silence, puis lui tend la main sans un mot",
+     "Il l'attaque avec ses hommes, puis se calme en le voyant",
+     "Il lui remet un présent, puis s'en va vers Séir sans le saluer"
+    ],
+    "ref": "33:4",
+    "proof": [
+     "courut à sa rencontre",
+     "l'embrassa"
+    ],
+    "x": "Ils pleurèrent ensemble."
+   },
+   {
+    "q": "Que dit le Seigneur à Jacob de faire à Béthel ?",
+    "a": "D'y séjourner et d'y élever un autel au Dieu qui lui est apparu",
+    "w": [
+     "D'y bâtir une maison et d'y habiter avec Esaü",
+     "D'y creuser un puits et d'y planter une vigne",
+     "D'y offrir la dîme et d'y consacrer son fils aîné"
+    ],
+    "ref": "35:1",
+    "proof": [
+     "Béthel",
+     "autel"
+    ],
+    "x": "Il lui rappelle l'apparition lors de sa fuite devant Ésaü."
+   },
+   {
+    "q": "Quel âge Isaac avait-il à sa mort ?",
+    "a": "Cent quatre-vingts ans",
+    "w": [
+     "Cent vingt ans",
+     "Cent soixante-quinze ans",
+     "Cent quarante-sept ans"
+    ],
+    "ref": "35:28",
+    "proof": [
+     "cent quatre vingts ans"
+    ],
+    "x": "Ésaü et Jacob l'ensevelissent."
+   },
+   {
+    "q": "Que répondent les fils de Jacob à Hamor et à Sichem qui demandent Dina ?",
+    "a": "Qu'ils ne peuvent donner leur sœur à un homme incirconcis, ce serait un déshonneur",
+    "w": [
+     "Qu'ils ne peuvent la donner sans l'accord de Laban",
+     "Qu'ils ne peuvent la donner avant sept ans de service",
+     "Qu'ils ne peuvent la donner qu'à un homme de leur tribu"
+    ],
+    "ref": "34:14",
+    "proof": [
+     "incirconcis"
+    ],
+    "x": "Ils posent la condition de la circoncision de tous les mâles."
+   },
+   {
+    "q": "Que remettent à Jacob les gens de sa maison, avant de monter à Béthel ?",
+    "a": "Tous les dieux étrangers et les joyaux de leurs oreilles",
+    "w": [
+     "Tous les troupeaux et les tentes du camp",
+     "Tous les cadeaux et les parfums de Sichem",
+     "Toutes les armes et les boucliers du butin"
+    ],
+    "ref": "35:4",
+    "proof": [
+     "dieux étrangers"
+    ],
+    "x": "Jacob les enfouit sous le térébinthe, près de Sichem."
    }
   ],
   "2": [
@@ -196,6 +268,100 @@
      "cent kesita"
     ],
     "x": "Il l'acquit de la main des enfants de Hamor, père de Sichem, pour cent kesita."
+   },
+   {
+    "q": "Combien de chamelles laitières, avec leurs petits, Jacob prépare-t-il parmi le présent pour Ésaü ?",
+    "a": "Trente",
+    "w": [
+     "Vingt",
+     "Quarante",
+     "Dix"
+    ],
+    "ref": "32:16",
+    "proof": [
+     "trente chamelles laitières"
+    ],
+    "x": "Il y ajoute quarante vaches, dix taureaux, vingt ânesses et dix ânes."
+   },
+   {
+    "q": "Combien d'enfants Jacob a-t-il alors, en passant le gué de Jaboc la nuit ?",
+    "a": "Onze enfants",
+    "w": [
+     "Douze enfants",
+     "Dix enfants",
+     "Sept enfants"
+    ],
+    "ref": "32:23",
+    "proof": [
+     "onze enfants"
+    ],
+    "x": "Il passe aussi avec ses deux femmes et ses deux servantes."
+   },
+   {
+    "q": "Comment est appelé l'endroit où Débora, nourrice de Rébecca, est enterrée ?",
+    "a": "Le Chêne des Pleurs",
+    "w": [
+     "Le Chêne de Mamré",
+     "Le Térébinthe de Sichem",
+     "La Colline de Béthel"
+    ],
+    "ref": "35:8",
+    "proof": [
+     "Chêne des Pleurs"
+    ],
+    "x": "Elle est enterrée au-dessous de Béthel."
+   },
+   {
+    "q": "Qui, parmi les fils de Jacob, cohabite avec Bilha, concubine de son père ?",
+    "a": {
+     "t": "Ruben",
+     "he": "רְאוּבֵן"
+    },
+    "w": [
+     {
+      "t": "Siméon",
+      "he": "שִׁמְעוֹן"
+     },
+     {
+      "t": "Lévi",
+      "he": "לֵוִי"
+     },
+     {
+      "t": "Juda",
+      "he": "יְהוּדָה"
+     }
+    ],
+    "ref": "35:22",
+    "proof": [
+     "Ruben alla cohabiter avec Bilha"
+    ],
+    "x": "Israël en fut informé."
+   },
+   {
+    "q": "Sur quelle montagne Ésaü se fixe-t-il, selon la Torah ?",
+    "a": {
+     "t": "Séir",
+     "he": "שְׂעִיר"
+    },
+    "w": [
+     {
+      "t": "Hermon",
+      "he": "חֶרְמוֹן"
+     },
+     {
+      "t": "Garizim",
+      "he": "גְּרִזִים"
+     },
+     {
+      "t": "Nébo",
+      "he": "נְבוֹ"
+     }
+    ],
+    "ref": "36:8",
+    "proof": [
+     "montagne de Séir"
+    ],
+    "x": "Ésaü, c'est Édom."
    }
   ],
   "3": [
@@ -271,6 +437,76 @@
      "בנגב"
     ],
     "x": "Rachi sur Genèse 35:18 : Benjamin est le seul né en terre de Canaan, qui se trouve au sud (« la droite ») quand on vient d'Aram-Naharayim."
+   },
+   {
+    "q": "Selon Rachi, que signifie « avec mon bâton seul j'ai passé ce Jourdain » ?",
+    "a": "Que Jacob n'avait que son bâton, ou qu'il l'avait jeté dans le Jourdain et qu'il s'était fendu",
+    "w": [
+     "Que Jacob avait fait fortune grâce à son bâton",
+     "Que Jacob avait traversé à gué, sans bateau",
+     "Que Jacob avait demandé l'aide de Laban"
+    ],
+    "ref": "32:11",
+    "proof": [
+     "מקלי"
+    ],
+    "x": "Rachi sur Genèse 32:11 : je n'avais ni argent, ni or, ni bétail, mais mon bâton seul ; une autre explication : il jeta son bâton dans le Jourdain et le fleuve se fendit."
+   },
+   {
+    "q": "Selon Rachi, pourquoi le mot « il l'embrassa » (vayishakehou) est-il pointé de points au-dessus ?",
+    "a": "Certains disent qu'il ne l'a pas embrassé de tout son cœur, d'autres que son cœur s'est ému",
+    "w": [
+     "Parce que le mot est répété dans le texte",
+     "Parce que le mot manque d'une lettre",
+     "Parce que le mot est une prière"
+    ],
+    "ref": "33:4",
+    "proof": [
+     "נקוד עליו"
+    ],
+    "x": "Rachi sur Genèse 33:4 : le mot est pointé ; certains y voient qu'il n'embrassa pas de tout son cœur ; rabbi Simon bar Yohaï dit : c'est une règle connue qu'Ésaü hait Jacob, mais alors sa compassion s'émut."
+   },
+   {
+    "q": "Selon Rachi, que veut dire « avec ruse » (bemirmah) à propos des fils de Jacob ?",
+    "a": "Avec sagesse",
+    "w": [
+     "Avec violence",
+     "Avec colère",
+     "Avec un mensonge de leur père"
+    ],
+    "ref": "34:13",
+    "proof": [
+     "בחכמה"
+    ],
+    "x": "Rachi sur Genèse 34:13 : avec sagesse ; l'Écriture ajoute que ce n'était pas une ruse, car il avait souillé leur sœur Dina."
+   },
+   {
+    "q": "Selon Rachi, pourquoi Dieu dit-il à Jacob « monte à Béthel » ?",
+    "a": "Parce qu'il était puni d'avoir retardé son vœu, et la faute de sa fille lui est venue",
+    "w": [
+     "Parce qu'il devait y retrouver Ésaü",
+     "Parce qu'il devait y bâtir sa maison",
+     "Parce qu'il devait y enterrer Rachel"
+    ],
+    "ref": "35:1",
+    "proof": [
+     "לפי שאחרת בדרך נענשת"
+    ],
+    "x": "Rachi sur Genèse 35:1 : parce que tu as été puni de t'être attardé en chemin : cela t'est venu par ta fille."
+   },
+   {
+    "q": "Selon Rachi, pourquoi Débora est-elle mentionnée dans la maison de Jacob ?",
+    "a": "Parce que Rébecca l'avait envoyée à Padan-Aram pour dire à Jacob de revenir",
+    "w": [
+     "Parce que Débora était la nourrice des fils de Jacob",
+     "Parce que Débora était la femme de Jacob",
+     "Parce que Débora était une prophétesse de Béthel"
+    ],
+    "ref": "35:8",
+    "proof": [
+     "שלחה דבורה אצלו לפדן ארם"
+    ],
+    "x": "Rachi sur Genèse 35:8 : Rébecca avait dit : « j'enverrai te chercher » ; elle envoya Débora à Padan-Aram, et elle mourut en chemin."
    }
   ]
  }

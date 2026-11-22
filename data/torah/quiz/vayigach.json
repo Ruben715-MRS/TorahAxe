@@ -96,6 +96,76 @@
      "Gessen"
     ],
     "x": "« Qu'ils habitent la terre de Gessen. »"
+   },
+   {
+    "q": "Que propose Juda à Joseph, pour que Benjamin reparte ?",
+    "a": "De rester esclave à sa place",
+    "w": [
+     "De donner tout son argent",
+     "De livrer ses fils en otage",
+     "De revenir sous sept jours"
+    ],
+    "ref": "44:33",
+    "proof": [
+     "reste esclave de mon seigneur"
+    ],
+    "x": "Il ne supporte pas de voir le malheur de son père."
+   },
+   {
+    "q": "Que dit Joseph à ses frères, sur la raison de sa venue en Égypte ?",
+    "a": "Que ce n'est pas eux, mais Dieu, qui l'a fait venir",
+    "w": [
+     "Que c'est Pharaon, par un songe",
+     "Que c'est sa propre ruse, par ses conseils",
+     "Que c'est le hasard, par une caravane"
+    ],
+    "ref": "45:8",
+    "proof": [
+     "ce n'est pas vous qui m'avez fait venir"
+    ],
+    "x": "Dieu l'a fait devenir le père de Pharaon."
+   },
+   {
+    "q": "Que fait Joseph à Benjamin, quand il se fait connaître ?",
+    "a": "Il se jette à son cou et pleure",
+    "w": [
+     "Il lui offre sa robe et le bénit",
+     "Il lui dit un mot et le renvoie",
+     "Il le prend à part et le tait"
+    ],
+    "ref": "45:14",
+    "proof": [
+     "se jeta au cou de Benjamin"
+    ],
+    "x": "Benjamin pleure aussi dans ses bras."
+   },
+   {
+    "q": "Que promet Dieu à Jacob, au sujet de sa mort, en Égypte ?",
+    "a": "Que Joseph lui fermera les yeux",
+    "w": [
+     "Que Benjamin l'enterrera à Hébron",
+     "Que Juda dira les paroles funèbres",
+     "Que Ruben pleurera sur son tombeau"
+    ],
+    "ref": "46:4",
+    "proof": [
+     "Joseph qui te fermera les yeux"
+    ],
+    "x": "Dieu lui dit : « Moi-même, je descendrai avec toi en Égypte. »"
+   },
+   {
+    "q": "Que répondent les frères de Joseph à Pharaon, sur leurs occupations ?",
+    "a": "Qu'ils sont une famille de bergers",
+    "w": [
+     "Qu'ils sont une famille de marchands",
+     "Qu'ils sont une famille de laboureurs",
+     "Qu'ils sont une famille de soldats"
+    ],
+    "ref": "47:3",
+    "proof": [
+     "famille de berger"
+    ],
+    "x": "Ils demandent à habiter la terre de Gessen."
    }
   ],
   "2": [
@@ -183,6 +253,88 @@
      "cinquième"
     ],
     "x": "Les quatre autres parts leur servent à ensemencer les champs et à nourrir leurs familles."
+   },
+   {
+    "q": "Combien d'ânes chargés de produits d'Égypte Joseph envoie-t-il à son père ?",
+    "a": "Dix ânes et dix ânesses",
+    "w": [
+     "Cinq ânes et cinq ânesses",
+     "Vingt ânes et dix ânesses",
+     "Sept ânes et sept ânesses"
+    ],
+    "ref": "45:23",
+    "proof": [
+     "dix ânes chargés"
+    ],
+    "x": "Les ânesses portent du blé, du pain et des vivres."
+   },
+   {
+    "q": "Combien d'années de famine reste-t-il encore, selon Joseph ?",
+    "a": "Cinq années",
+    "w": [
+     "Sept années",
+     "Deux années",
+     "Dix années"
+    ],
+    "ref": "45:11",
+    "proof": [
+     "cinq années encore"
+    ],
+    "x": "Il promet à sa famille de la nourrir à Gessen."
+   },
+   {
+    "q": "Combien de personnes comptent les fils de Rachel, nés à Jacob ?",
+    "a": "Quatorze en tout",
+    "w": [
+     "Seize en tout",
+     "Sept en tout",
+     "Douze en tout"
+    ],
+    "ref": "46:22",
+    "proof": [
+     "en tout, quatorze"
+    ],
+    "x": "Ce sont Joseph, Benjamin et leurs fils."
+   },
+   {
+    "q": "Combien de personnes comptent les fils de Bilha, la servante de Rachel ?",
+    "a": "Sept en tout",
+    "w": [
+     "Seize en tout",
+     "Quatorze en tout",
+     "Trois en tout"
+    ],
+    "ref": "46:25",
+    "proof": [
+     "en tout, sept"
+    ],
+    "x": "Laban l'avait donnée à Rachel sa fille."
+   },
+   {
+    "q": "Qui sont les deux fils de Rachel, épouse de Jacob ?",
+    "a": {
+     "t": "Joseph et Benjamin",
+     "he": "יוֹסֵף"
+    },
+    "w": [
+     {
+      "t": "Ruben et Siméon",
+      "he": "רְאוּבֵן"
+     },
+     {
+      "t": "Dan et Nephtali",
+      "he": "דָן"
+     },
+     {
+      "t": "Gad et Asher",
+      "he": "גָד"
+     }
+    ],
+    "ref": "46:19",
+    "proof": [
+     "Joseph et Benjamin"
+    ],
+    "x": "Rachel est l'épouse préférée de Jacob."
    }
   ],
   "3": [
@@ -258,6 +410,76 @@
      "קורא את שמע"
     ],
     "x": "Rachi sur Genèse 46:29 : Jacob ne tomba pas sur le cou de Joseph et ne l'embrassa pas : nos Sages disent qu'il lisait le Chéma."
+   },
+   {
+    "q": "Selon Rachi, que signifie « tu es comme Pharaon » dans les paroles de Juda ?",
+    "a": "Qu'à la fin Joseph sera frappé de lèpre, comme Pharaon",
+    "w": [
+     "Que Joseph est aussi puissant que le roi",
+     "Que Joseph sera aussi cruel que le roi",
+     "Que Joseph recevra la couronne du roi"
+    ],
+    "ref": "44:18",
+    "proof": [
+     "סופך ללקות עליו בצרעת"
+    ],
+    "x": "Rachi sur Genèse 44:18 : selon le sens simple, tu es aussi grand que le roi ; autrement, tu seras frappé de lèpre comme Pharaon à cause de Sara."
+   },
+   {
+    "q": "Selon Rachi, que montre Joseph à ses frères pour les convaincre qu'il est bien Joseph ?",
+    "a": "Qu'il est circoncis comme eux, et qu'il parle la langue sainte",
+    "w": [
+     "Qu'il porte la robe de leur père",
+     "Qu'il connaît les détails de leur famille",
+     "Qu'il a la même voix que Jacob"
+    ],
+    "ref": "45:12",
+    "proof": [
+     "מהול ככם"
+    ],
+    "x": "Rachi sur Genèse 45:12 : par mon honneur, et parce que je suis circoncis comme vous ; et aussi parce que c'est ma bouche qui vous parle en hébreu."
+   },
+   {
+    "q": "Selon Rachi, pourquoi Jacob offre-t-il des sacrifices au Dieu d'Isaac et non d'Abraham ?",
+    "a": "Parce qu'on doit plus d'honneur à son père qu'à son grand-père",
+    "w": [
+     "Parce qu'Abraham n'était pas son père",
+     "Parce qu'Isaac avait bâti l'autel de Beer Shava",
+     "Parce qu'Isaac était l'ami de Dieu"
+    ],
+    "ref": "46:1",
+    "proof": [
+     "חיב אדם בכבוד אביו"
+    ],
+    "x": "Rachi sur Genèse 46:1 : on doit plus d'honneur à son père qu'à son grand-père ; c'est pourquoi il est écrit Isaac et non Abraham."
+   },
+   {
+    "q": "Selon Rachi, pourquoi Jacob était-il tourmenté de descendre en Égypte ?",
+    "a": "Parce qu'il souffrait de devoir quitter la terre d'Israël",
+    "w": [
+     "Parce qu'il craignait la colère de Pharaon",
+     "Parce qu'il craignait la mort de Benjamin",
+     "Parce qu'il craignait la faim en chemin"
+    ],
+    "ref": "46:3",
+    "proof": [
+     "מצר על שנזקק לצאת לחוצה לארץ"
+    ],
+    "x": "Rachi sur Genèse 46:3 : il souffrait d'avoir à sortir hors du pays d'Israël."
+   },
+   {
+    "q": "Selon Rachi, que signifie « les années de mes pérégrinations » dans les paroles de Jacob à Pharaon ?",
+    "a": "Les années où j'ai vécu en étranger",
+    "w": [
+     "Les années où j'ai servi Laban",
+     "Les années où j'ai pleuré Joseph",
+     "Les années où j'ai habité à Hébron"
+    ],
+    "ref": "47:9",
+    "proof": [
+     "ימי גרותי"
+    ],
+    "x": "Rachi sur Genèse 47:9 : les jours de mon séjour d'étranger : toute ma vie, j'ai été étranger dans le pays."
    }
   ]
  }

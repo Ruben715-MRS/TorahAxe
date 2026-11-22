@@ -96,6 +96,76 @@
      "un frère nommé Laban"
     ],
     "x": "Rébecca est fille de Bathuel, fils de Milka."
+   },
+   {
+    "q": "Où Sara meurt-elle, dans le pays de Canaan ?",
+    "a": "À Kiryath-Arba, qui est Hébron",
+    "w": [
+     "À Beer Shava, dans le désert",
+     "À Mamré, près de Sichem",
+     "À Gherar, chez Abimélec"
+    ],
+    "ref": "23:2",
+    "proof": [
+     "Kiryath-Arba, qui est Hébron"
+    ],
+    "x": "Abraham y vient pour dire sur Sara les paroles funèbres et pour la pleurer."
+   },
+   {
+    "q": "Où Abraham demande-t-il à son serviteur de chercher une épouse pour Isaac ?",
+    "a": "Dans son pays et son lieu natal, pas parmi les Cananéennes",
+    "w": [
+     "Parmi les filles des Philistins, voisins de Gherar",
+     "Parmi les filles des Égyptiens, voisins du Nil",
+     "Parmi les filles de Heth, vendeurs du caveau"
+    ],
+    "ref": "24:4",
+    "proof": [
+     "aller dans mon pays et dans mon lieu natal"
+    ],
+    "x": "Il le fait jurer par l'Éternel, Dieu du ciel et de la terre."
+   },
+   {
+    "q": "Que fait Rébecca en apercevant Isaac et en apprenant que c'est le maître du serviteur ?",
+    "a": "Elle prend son voile et s'en couvre",
+    "w": [
+     "Elle se prosterne devant lui",
+     "Elle court à sa rencontre",
+     "Elle quitte la caravane"
+    ],
+    "ref": "24:65",
+    "proof": [
+     "voile"
+    ],
+    "x": "Elle se jette d'abord à bas du chameau."
+   },
+   {
+    "q": "Où Isaac conduit-il Rébecca, avant de la prendre pour femme ?",
+    "a": "Dans la tente de Sara, sa mère",
+    "w": [
+     "Dans la tente d'Abraham, son père",
+     "Dans la maison de Laban, son frère",
+     "Dans la grotte de Makpéla, près d'Hébron"
+    ],
+    "ref": "24:67",
+    "proof": [
+     "tente de Sara sa mère"
+    ],
+    "x": "Il l'aima et se consola d'avoir perdu sa mère."
+   },
+   {
+    "q": "Qui inhume Abraham dans le caveau de Makpéla ?",
+    "a": "Isaac et Ismaël, ses fils",
+    "w": [
+     "Isaac et Jacob, ses fils",
+     "Ismaël et Ésaü, ses petits-fils",
+     "Isaac seul, son fils"
+    ],
+    "ref": "25:9",
+    "proof": [
+     "Isaac et Ismaël, ses fils"
+    ],
+    "x": "C'est dans le domaine d'Efrôn, fils de Çohar, Héthéen."
    }
   ],
   "2": [
@@ -180,6 +250,88 @@
      "méditation"
     ],
     "x": "En levant les yeux, il vit que des chameaux s'avançaient."
+   },
+   {
+    "q": "Comment le serviteur doit-il prêter serment à Abraham ?",
+    "a": "En mettant sa main sous la hanche d'Abraham",
+    "w": [
+     "En levant la main vers le ciel",
+     "En posant la main sur le front d'Abraham",
+     "En touchant l'autel de pierre"
+    ],
+    "ref": "24:2",
+    "proof": [
+     "main sous ma hanche"
+    ],
+    "x": "Abraham l'adjure par l'Éternel, Dieu du ciel et de la terre."
+   },
+   {
+    "q": "De qui Rébecca est-elle la fille ?",
+    "a": {
+     "t": "Bathuel",
+     "he": "בְּתוּאֵל"
+    },
+    "w": [
+     {
+      "t": "Nahor",
+      "he": "נָחוֹר"
+     },
+     {
+      "t": "Laban",
+      "he": "לָבָן"
+     },
+     {
+      "t": "Abraham",
+      "he": "אַבְרָהָם"
+     }
+    ],
+    "ref": "24:15",
+    "proof": [
+     "fille de Bathuel"
+    ],
+    "x": "Bathuel est fils de Milka, épouse de Nahor."
+   },
+   {
+    "q": "Que dit la Torah de la mort d'Abraham ?",
+    "a": "Il mourut dans une heureuse vieillesse, âgé et satisfait, et rejoignit ses pères",
+    "w": [
+     "Il mourut à la fin de la famine, aux côtés de Sara",
+     "Il mourut dans la tente de Rébecca, entouré d'Isaac",
+     "Il mourut dans la plaine de Mamré, loin de ses fils"
+    ],
+    "ref": "25:8",
+    "proof": [
+     "heureuse vieillesse"
+    ],
+    "x": "Il fut inhumé dans le caveau de Makpéla."
+   },
+   {
+    "q": "Où se trouve le caveau de Makpéla, dans le champ d'Éfron ?",
+    "a": "Au bout de son champ, en face de Mamré",
+    "w": [
+     "Au centre de sa vigne, en face de Hébron",
+     "Au pied d'une colline, en face de Sichem",
+     "Au bord d'une source, en face de Beer Shava"
+    ],
+    "ref": "23:9",
+    "proof": [
+     "bout de son champ"
+    ],
+    "x": "Abraham demande à l'acheter pour argent comptant."
+   },
+   {
+    "q": "Combien de sicles pèsent les deux bracelets offerts par le serviteur à Rébecca ?",
+    "a": "Dix sicles d'or",
+    "w": [
+     "Cinq sicles d'or",
+     "Vingt sicles d'or",
+     "Dix sicles d'argent"
+    ],
+    "ref": "24:22",
+    "proof": [
+     "dix sicles d'or"
+    ],
+    "x": "Il lui offre aussi une boucle en or du poids d'un béka."
    }
   ],
   "3": [
@@ -253,6 +405,76 @@
      "נר דלוק מערב שבת לערב שבת"
     ],
     "x": "Rachi sur Genèse 24:67 : tant que Sara vivait, une lumière était allumée d'un vendredi soir au suivant, la pâte était bénie et une nuée était attachée à la tente ; à sa mort ces signes cessèrent ; avec Rébecca, ils revinrent."
+   },
+   {
+    "q": "Selon Rachi, pourquoi la mort de Sara est-elle placée juste après le sacrifice d'Isaac ?",
+    "a": "Parce qu'à la nouvelle que son fils était presque égorgé, son âme s'envola",
+    "w": [
+     "Parce que Sara était morte avant le sacrifice",
+     "Parce que Sara avait refusé le départ d'Isaac",
+     "Parce que Sara avait demandé à mourir"
+    ],
+    "ref": "23:2",
+    "proof": [
+     "בשורת העקדה"
+    ],
+    "x": "Rachi sur Genèse 23:2 : par la nouvelle de l'Akeda, que son fils avait été destiné à l'immolation et presque égorgé, son âme s'envola et elle mourut."
+   },
+   {
+    "q": "Selon Rachi, d'où Abraham vint-il pour pleurer Sara à Hébron ?",
+    "a": "De Beer Shava",
+    "w": [
+     "De Mamré",
+     "De Harân",
+     "De Gherar"
+    ],
+    "ref": "23:2",
+    "proof": [
+     "מבאר שבע"
+    ],
+    "x": "Rachi sur Genèse 23:2 : « Abraham vint » : de Beer Shava."
+   },
+   {
+    "q": "Selon Rachi, pourquoi le serviteur jure-t-il en tenant la hanche d'Abraham ?",
+    "a": "Parce que celui qui jure tient un objet de mitsva, et la circoncision fut sa première mitsva",
+    "w": [
+     "Parce que la hanche est le siège de la force",
+     "Parce que la hanche est l'endroit de la blessure",
+     "Parce que la hanche est la place du serviteur"
+    ],
+    "ref": "24:2",
+    "proof": [
+     "המילה היתה מצוה ראשונה"
+    ],
+    "x": "Rachi sur Genèse 24:2 : le jureur doit tenir un objet de mitsva, comme un rouleau de Torah ou des tefillin ; la circoncision fut la première mitsva d'Abraham."
+   },
+   {
+    "q": "Selon Rachi, que signifie « à ceci je saurai » dans la demande du serviteur ?",
+    "a": "Un langage de supplication : fais-moi connaître par là",
+    "w": [
+     "Un langage d'ordre : donne-moi un signe",
+     "Un langage de doute : montre-moi ta force",
+     "Un langage de remerciement : je te loue"
+    ],
+    "ref": "24:14",
+    "proof": [
+     "לשון תחנה"
+    ],
+    "x": "Rachi sur Genèse 24:14 : « ubah eda » est un langage de supplication : fais-le moi connaître par elle."
+   },
+   {
+    "q": "Selon Rachi, que montre « il se consola après sa mère » ?",
+    "a": "Que tant que sa mère vit, l'homme lui est attaché ; après sa mort, il est consolé par sa femme",
+    "w": [
+     "Que l'homme doit pleurer sa mère un an",
+     "Que l'homme doit honorer sa mère plus que sa femme",
+     "Que l'homme doit épouser une femme semblable à sa mère"
+    ],
+    "ref": "24:67",
+    "proof": [
+     "דרך ארץ"
+    ],
+    "x": "Rachi sur Genèse 24:67 : tant que sa mère est vivante, l'homme est attaché à elle ; quand elle meurt, il se console avec sa femme."
    }
   ]
  }

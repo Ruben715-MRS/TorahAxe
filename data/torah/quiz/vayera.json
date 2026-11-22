@@ -72,6 +72,100 @@
      "âgé de cent ans"
     ],
     "x": "Abraham nomma le fils qui venait de lui naître Isaac."
+   },
+   {
+    "q": "Quel nom la fille aînée de Loth donne-t-elle à son fils ?",
+    "a": {
+     "t": "Moab",
+     "he": "מוֹאָב"
+    },
+    "w": [
+     {
+      "t": "Édom",
+      "he": "אֱדוֹם"
+     },
+     {
+      "t": "Ismaël",
+      "he": "יִשְׁמָעֵאל"
+     },
+     {
+      "t": "Isaac",
+      "he": "יִצְחָק"
+     }
+    ],
+    "ref": "19:37",
+    "proof": [
+     "elle appela Moab"
+    ],
+    "x": "Ce fut le père des Moabites."
+   },
+   {
+    "q": "Que trouve Abraham, les cornes embarrassées dans un buisson, à la place d'Isaac ?",
+    "a": "Un bélier",
+    "w": [
+     "Un agneau",
+     "Un chevreau",
+     "Un taureau"
+    ],
+    "ref": "22:13",
+    "proof": [
+     "un bélier"
+    ],
+    "x": "Abraham l'offre en holocauste à la place de son fils."
+   },
+   {
+    "q": "Comment le Seigneur avertit-il Abimélec de ne pas toucher à Sara ?",
+    "a": "Dans un songe nocturne",
+    "w": [
+     "Par un ange sur la route",
+     "Par un prophète à la porte",
+     "Par une maladie dans sa maison"
+    ],
+    "ref": "20:3",
+    "proof": [
+     "songe nocturne"
+    ],
+    "x": "Il lui dit : « Tu vas mourir, à cause de cette femme. »"
+   },
+   {
+    "q": "Quel nom Abraham donne-t-il au fils qui vient de lui naître de Sara ?",
+    "a": {
+     "t": "Isaac",
+     "he": "יִצְחָק"
+    },
+    "w": [
+     {
+      "t": "Ismaël",
+      "he": "יִשְׁמָעֵאל"
+     },
+     {
+      "t": "Moab",
+      "he": "מוֹאָב"
+     },
+     {
+      "t": "Édom",
+      "he": "אֱדוֹם"
+     }
+    ],
+    "ref": "21:3",
+    "proof": [
+     "Isaac"
+    ],
+    "x": "Il avait cent ans à sa naissance."
+   },
+   {
+    "q": "Quelle viande Abraham fait-il préparer pour les trois visiteurs ?",
+    "a": "Un veau tendre et gras",
+    "w": [
+     "Un agneau de lait et du gibier",
+     "Un bœuf entier et des gâteaux",
+     "Un chevreau et un bélier"
+    ],
+    "ref": "18:7",
+    "proof": [
+     "veau tendre et gras"
+    ],
+    "x": "Il court au troupeau et le donne au serviteur."
    }
   ],
   "2": [
@@ -168,6 +262,76 @@
      "terre de Moria"
     ],
     "x": "Sur une montagne que Dieu lui désignera."
+   },
+   {
+    "q": "Combien de mesures de farine de pur froment Abraham demande-t-il à Sara de pétrir ?",
+    "a": "Trois mesures",
+    "w": [
+     "Une mesure",
+     "Sept mesures",
+     "Dix mesures"
+    ],
+    "ref": "18:6",
+    "proof": [
+     "trois mesures de farine"
+    ],
+    "x": "Elle en fait des gâteaux."
+   },
+   {
+    "q": "Combien de justes Abraham propose-t-il d'abord, pour sauver la ville ?",
+    "a": "Cinquante justes",
+    "w": [
+     "Quarante-cinq justes",
+     "Trente justes",
+     "Vingt justes"
+    ],
+    "ref": "18:24",
+    "proof": [
+     "cinquante justes"
+    ],
+    "x": "Il descend ensuite progressivement jusqu'à dix."
+   },
+   {
+    "q": "Quand les deux envoyés arrivent-ils à Sodome, où Loth est assis à la porte ?",
+    "a": "Le soir",
+    "w": [
+     "Le matin",
+     "À midi",
+     "À minuit"
+    ],
+    "ref": "19:1",
+    "proof": [
+     "le soir"
+    ],
+    "x": "Loth se lève à leur rencontre et se prosterne."
+   },
+   {
+    "q": "Que voit Sara faire au fils d'Agar l'Égyptienne, avant de demander son renvoi ?",
+    "a": "Il se livre à des railleries",
+    "w": [
+     "Il pille les troupeaux d'Isaac",
+     "Il jette des pierres sur la tente",
+     "Il refuse d'obéir à Abraham"
+    ],
+    "ref": "21:9",
+    "proof": [
+     "railleries"
+    ],
+    "x": "Elle dit : « Le fils de cette esclave n'héritera point avec mon fils. »"
+   },
+   {
+    "q": "Que fait Dieu pour sauver Agar et son fils dans le désert ?",
+    "a": "Il lui dessille les yeux et elle aperçoit une source",
+    "w": [
+     "Il lui envoie un nuage chargé de pluie",
+     "Il lui montre une caravane de passage",
+     "Il lui apporte du pain par un oiseau"
+    ],
+    "ref": "21:19",
+    "proof": [
+     "aperçu une source"
+    ],
+    "x": "Elle emplit l'outre d'eau et donne à boire à l'enfant."
    }
   ],
   "3": [
@@ -240,6 +404,76 @@
      "אל תעש בו מום"
     ],
     "x": "Rachi sur Genèse 22:12 : « ne l'égorge pas » ; Abraham dit : « donc je suis venu pour rien ? Je ferai une blessure, un peu de sang » ; Dieu répond : « ne lui fais aucun mal »."
+   },
+   {
+    "q": "Selon Rachi, pourquoi Abraham prépare-t-il trois veaux pour ses invités ?",
+    "a": "Pour leur faire manger trois langues avec de la moutarde",
+    "w": [
+     "Pour nourrir tous les gens de sa maison",
+     "Pour offrir un sacrifice à Dieu",
+     "Pour que les restes servent à la famille"
+    ],
+    "ref": "18:7",
+    "proof": [
+     "ג' פרים"
+    ],
+    "x": "Rachi sur Genèse 18:7 : il y avait trois veaux, pour leur faire manger trois langues avec de la moutarde."
+   },
+   {
+    "q": "Selon Rachi, qui est « le garçon » à qui Abraham donne le veau à préparer ?",
+    "a": "Ismaël, pour l'éduquer aux mitsvot",
+    "w": [
+     "Éliézer, pour le récompenser de son service",
+     "Isaac, pour le préparer à l'hospitalité",
+     "Lot, pour qu'il participe au repas"
+    ],
+    "ref": "18:7",
+    "proof": [
+     "זה ישמעאל"
+    ],
+    "x": "Rachi sur Genèse 18:7 : c'est Ismaël, pour l'initier aux mitsvot."
+   },
+   {
+    "q": "Selon Rachi, que signifie « Dieu m'a donné de quoi rire » (tsehok asa li Elohim) ?",
+    "a": "Que beaucoup de stériles ont été visitées avec elle et se réjouiront",
+    "w": [
+     "Que Sara se moquera des nations",
+     "Que Dieu rira des ennemis d'Israël",
+     "Que Sara oubliera ses peines passées"
+    ],
+    "ref": "21:6",
+    "proof": [
+     "הרבה עקרות נפקדו"
+    ],
+    "x": "Rachi sur Genèse 21:6 : beaucoup de stériles furent visitées avec elle, beaucoup de malades guéris, beaucoup de prières exaucées, et il y eut grande joie dans le monde."
+   },
+   {
+    "q": "Selon Rachi, que signifie « après ces événements » avant l'épreuve d'Abraham ?",
+    "a": "Après les paroles de l'accusateur, qui disait qu'Abraham n'avait rien offert à Dieu",
+    "w": [
+     "Après la naissance d'Isaac, au jour de son sevrage",
+     "Après la mort de Sara, à Kiryath-Arba",
+     "Après le renvoi d'Agar, dans le désert"
+    ],
+    "ref": "22:1",
+    "proof": [
+     "אחר דבריו של שטן"
+    ],
+    "x": "Rachi sur Genèse 22:1 : certains disent : après les paroles de Satan, qui accusait : de tout le repas qu'Abraham a fait, il n'a rien offert devant toi."
+   },
+   {
+    "q": "Selon Rachi, pourquoi Dieu dit-il « ton fils, ton unique, que tu aimes » en trois étapes ?",
+    "a": "Pour ne pas troubler Abraham d'un coup et lui donner plus de récompense pour chaque mot",
+    "w": [
+     "Pour qu'Abraham comprenne lequel de ses deux fils",
+     "Pour qu'Abraham pleure trois fois",
+     "Pour qu'Abraham refuse l'ordre"
+    ],
+    "ref": "22:2",
+    "proof": [
+     "שני בנים יש לי"
+    ],
+    "x": "Rachi sur Genèse 22:2 : « J'ai deux fils. » « Ton unique. » « Chacun est l'unique de sa mère. » « Que tu aimes. » « J'aime les deux. » « Isaac. » Pour ne pas le troubler d'un coup."
    }
   ]
  }
