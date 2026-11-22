@@ -1278,6 +1278,39 @@ function sdGuestBlock() {
     return fold;
 }
 
+// --- Les « Haraḥaman » des occasions : le marié et la mariée, la Brit Mila (Birkat haMazon séfarade) ----------------------------------------
+// Texte du Consistoire (« En présence d'un 'Hatan », « Lors d'une Brit Mila »). Chaque bloc s'ouvre tout seul quand la case correspondante du Zimoun est cochée.
+const SD_OCCASIONS = [
+    { key: 'wed', label: 'Mariage : bénédiction du marié et de la mariée', first: 'הָרַחֲמָן הוּא יְבָרֵךְ…',
+      paras: [
+        ['<b>הָרַחֲמָן</b> הוּא יְבָרֵךְ אֶת הֶחָתָן וְהַכַּלָּה, בְּבָנִים זְכָרִים שֶׁל קַיָּמָא, לַעֲבוֹדָתוֹ יִתְבָּרַךְ:', 'Que le Miséricordieux bénisse le marié et la mariée, par des fils qui perpétueront la lignée, pour Son service, béni soit-Il.'],
+        ['<b>הָרַחֲמָן</b> הוּא יְבָרֵךְ אֶת כָּל הַמְסֻבִּין בַּשֻּׁלְחָן הַזֶּה, וְיִתֵּן לָנוּ הַקָּדוֹשׁ בָּרוּךְ הוּא, כָּל מִשְׁאֲלוֹת לִבֵּנוּ לְטוֹבָה:', 'Que le Miséricordieux bénisse tous ceux qui sont attablés à cette table, et que le Saint, béni soit-Il, nous accorde pour le bien tous les désirs de notre cœur.']
+      ] },
+    { key: 'brit', label: 'Brit Mila : bénédictions du repas de circoncision', first: 'הָרַחֲמָן הוּא יְבָרֵךְ…',
+      paras: [
+        ['<b>הָרַחֲמָן</b> הוּא יְבָרֵךְ אֶת בַּעַל הַבַּיִת הַזֶּה, אֲבִי הַבֵּן, הוּא וְאִשְׁתּוֹ הַיּוֹלֶדֶת, מֵעַתָּה וְעַד עוֹלָם:', 'Que le Miséricordieux bénisse le maître de cette maison, père de l\'enfant, lui et son épouse qui vient d\'accoucher, dès maintenant et à jamais.'],
+        ['<b>הָרַחֲמָן</b> הוּא יְבָרֵךְ אֶת הַיֶּלֶד הַנּוֹלָד, וּכְשֵׁם שֶׁזָּכָה לַמִּילָה, כָּךְ יִזְכֶּה לְהִכָּנֵס לַתּוֹרָה וְלַחֻפָּה וּלְמִצְוֹת וּלְמַעֲשִׂים טוֹבִים, וְכֵן יְהִי רָצוֹן וְנֹאמַר אָמֵן:', 'Que le Miséricordieux bénisse l\'enfant qui vient de naître : de même qu\'il a mérité la circoncision, qu\'il mérite d\'entrer dans la Torah, sous la ‘Houpa, aux commandements et aux bonnes actions ; qu\'il en soit ainsi, et disons Amen.'],
+        ['<b>הָרַחֲמָן</b> הוּא יְבָרֵךְ אֶת מַעֲלַת הַסַּנְדָּק וְהַמּוֹהֵל וּשְׁאָר הַמִּשְׁתַּדְּלִים בַּמִּצְוָה, הֵם וְכָל אֲשֶׁר לָהֶם:', 'Que le Miséricordieux bénisse le sandak, le mohel et ceux qui s\'emploient à cette mitsva, eux et tout ce qui leur appartient.']
+      ] }
+];
+function sdOccasionBlock(o) {
+    const fold = sdEl('details', 'sd-fold sd-occasion');
+    fold.open = sdPrefs.zim !== 1 && (o.key === 'wed' ? !!sdPrefs.zimWed : !!(sdPrefs.zimWho || {}).brit);
+    const sum = sdEl('summary');
+    sum.appendChild(sdEl('span', 'sd-fold-lab', o.label));
+    const he = sdEl('span', 'sd-fold-he', o.first);
+    he.lang = 'he'; he.dir = 'rtl';
+    sum.appendChild(he);
+    fold.appendChild(sum);
+    o.paras.forEach(([html, fr]) => sdGuestPara(html, fr, fold));
+    return fold;
+}
+function sdOccasionBlocks() {
+    const frag = document.createDocumentFragment();
+    SD_OCCASIONS.forEach(o => frag.appendChild(sdOccasionBlock(o)));
+    return frag;
+}
+
 function sdSwitch(label, on, onToggle) {
     const row = sdEl('div', 'sd-opt');
     row.appendChild(sdEl('span', '', label));
@@ -2214,7 +2247,7 @@ const SD_ZIM_WHO = {
     pere:    { fr: 'Mon père ou mon beau-père', he: 'בִּרְשׁוּת אָבִי מוֹרִי' },
     bh:      { fr: 'Le maître de maison (je suis invité)', he: 'בִּרְשׁוּת בַּעַל הַבַּיִת', excl: 'bhf' },
     bhf:     { fr: 'La maîtresse de maison (je suis invité)', he: 'בִּרְשׁוּת בַּעֲלַת הַבַּיִת', excl: 'bh' },
-    brit:    { fr: 'Le père du bébé (Brit Mila)', he: 'בִּרְשׁוּת אֲבִי הַבֵּן' },
+    brit:    { fr: 'Brit Mila : le père du bébé (ouvre les bénédictions du repas)', he: 'בִּרְשׁוּת אֲבִי הַבֵּן' },
     simha:   { fr: 'Celui qui fête sa Bar Mitsva', he: 'בִּרְשׁוּת בַּעַל הַשִּׂמְחָה' }
 };
 function sdZimounWho() {
@@ -2285,7 +2318,7 @@ function sdZimounControls(withForm) {
         box1.checked = !!sdPrefs.zimWed;
         box1.onchange = () => { sdPrefs.zimWed = box1.checked; sdSavePrefs(); sdRerender(); };
         lab.appendChild(box1);
-        lab.appendChild(sdEl('span', '', 'Mariage (ou Chéva Berakhot des sept jours qui suivent)'));
+        lab.appendChild(sdEl('span', '', 'Mariage (ou Chéva Berakhot des sept jours qui suivent) : ouvre la bénédiction du marié'));
         box.appendChild(lab);
     }
     if (withForm && sdPrefs.zim !== 1) {
@@ -2614,7 +2647,7 @@ function sdRenderSection(section) {
             headFor(i, i); out.appendChild(seg(i)); hatAfter(i, i); flushEnd();
             const sh = sdPrefs.fr ? null : sdShortHat(section.id, bares[i]);
             if (sh) { const hp = sdEl('p', 'sd-hat', '[… ' + sh + '.]'); hp.lang = 'fr'; out.appendChild(hp); }
-            if (section.id === 'birkat-hamazon' && /^הרחמן הוא יטע תורתו/.test(bares[i])) out.appendChild(sdGuestBlock());
+            if (section.id === 'birkat-hamazon' && /^הרחמן הוא יטע תורתו/.test(bares[i])) { out.appendChild(sdGuestBlock()); out.appendChild(sdOccasionBlocks()); }
             if (section.id === 'chacharit-tora' && /אשר בחר בנו מכל העמים/.test(bares[i])) out.appendChild(sdReadingButton());
             i++; continue;
         }
