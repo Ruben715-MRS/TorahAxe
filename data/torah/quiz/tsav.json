@@ -72,6 +72,76 @@
      "les lava avec de l'eau"
     ],
     "x": "Moïse les fait approcher, puis les lave avant de revêtir Aaron."
+   },
+   {
+    "q": "Que revêt le pontife avant d'enlever la cendre de l'autel ?",
+    "a": "Son habit de lin, sur un caleçon de lin",
+    "w": [
+     "Sa tiare d'or, sur une robe d'azur",
+     "Son pectoral, sur une tunique de laine",
+     "Son manteau de pourpre, sur une écharpe"
+    ],
+    "ref": "6:3",
+    "proof": [
+     "habit de lin"
+    ],
+    "x": "Il dépose la cendre à côté de l'autel."
+   },
+   {
+    "q": "Que fait le pontife du bois, chaque matin, sur l'autel ?",
+    "a": "Il y allume du bois et arrange l'holocauste",
+    "w": [
+     "Il y pose du bois et y verse de l'huile",
+     "Il y éteint le bois et y enlève la cendre",
+     "Il y compte le bois et y met du sel"
+    ],
+    "ref": "6:5",
+    "proof": [
+     "allumera du bois chaque matin"
+    ],
+    "x": "Il y fait aussi fumer les graisses du rémunératoire."
+   },
+   {
+    "q": "Que doit-on faire de l'oblation d'Aaron et de ses fils au jour de l'onction ?",
+    "a": "La consumer entièrement",
+    "w": [
+     "La manger au parvis",
+     "La partager avec le peuple",
+     "La garder pour le lendemain"
+    ],
+    "ref": "6:15",
+    "proof": [
+     "entièrement consumée"
+    ],
+    "x": "C'est un tribut invariable offert à l'Éternel."
+   },
+   {
+    "q": "Quand doit-on manger la chair du sacrifice rémunératoire de reconnaissance ?",
+    "a": "Le jour même de l'offrande, sans en laisser pour le lendemain",
+    "w": [
+     "Le lendemain de l'offrande, sans en manger le jour même",
+     "Le troisième jour de l'offrande, sans en laisser avant",
+     "La semaine de l'offrande, sans en jeter aucune part"
+    ],
+    "ref": "7:15",
+    "proof": [
+     "mangée le jour même"
+    ],
+    "x": "On n'en laissera rien pour le lendemain."
+   },
+   {
+    "q": "Que ne doit-on pas manger du bœuf, de la brebis et de la chèvre ?",
+    "a": "Le suif",
+    "w": [
+     "Le foie",
+     "Le cœur",
+     "La langue"
+    ],
+    "ref": "7:23",
+    "proof": [
+     "suif de bœuf, de brebis et de chèvre"
+    ],
+    "x": "« Vous n'en devez point manger. »"
    }
   ],
   "2": [
@@ -145,6 +215,76 @@
      "sept fois"
     ],
     "x": "Il oint ensuite l'autel, tous ses ustensiles, la cuve et son support."
+   },
+   {
+    "q": "Où est-il mangé, le surplus de l'oblation, selon Moïse ?",
+    "a": "En lieu saint, dans le parvis de la Tente d'assignation",
+    "w": [
+     "Dans la tente d'Aaron, à l'ombre de l'autel",
+     "Au pied de la montagne, près des anciens",
+     "Hors du camp, dans un lieu pur"
+    ],
+    "ref": "6:9",
+    "proof": [
+     "parvis de la Tente d'assignation"
+    ],
+    "x": "On le mange sous forme d'azymes."
+   },
+   {
+    "q": "Qui consomme l'expiatoire, dans le parvis, en lieu saint ?",
+    "a": "Le pontife expiateur",
+    "w": [
+     "Le peuple repentant",
+     "Les anciens assemblés",
+     "Les Lévites présents"
+    ],
+    "ref": "6:19",
+    "proof": [
+     "pontife expiateur"
+    ],
+    "x": "On ne mange pas un expiatoire dont le sang a été introduit dans la Tente."
+   },
+   {
+    "q": "Où immole-t-on le délictif ?",
+    "a": "À l'endroit où l'on immole l'holocauste",
+    "w": [
+     "À l'entrée du camp, loin de l'autel",
+     "Derrière le voile, près de l'arche",
+     "Dans le parvis, près de la cuve"
+    ],
+    "ref": "7:2",
+    "proof": [
+     "l'endroit où l'on doit immoler l'holocauste"
+    ],
+    "x": "On asperge de son sang le tour de l'autel."
+   },
+   {
+    "q": "Que pose le pontife sur la poitrine, pour opérer le balancement ?",
+    "a": "La graisse",
+    "w": [
+     "Le sang",
+     "Le pain",
+     "L'huile"
+    ],
+    "ref": "7:30",
+    "proof": [
+     "la graisse, qu'il posera sur la poitrine"
+    ],
+    "x": "Il le fait devant l'Éternel."
+   },
+   {
+    "q": "Qu'ajoute Moïse au pectoral, en vêtant Aaron ?",
+    "a": "Les ourîm et les toummîm",
+    "w": [
+     "Les anneaux et les chaînettes",
+     "Les pierres et les clochettes",
+     "Les grenades et les fleurs"
+    ],
+    "ref": "8:8",
+    "proof": [
+     "ourîm et les toummim"
+    ],
+    "x": "Il pose sur lui le pectoral."
    }
   ],
   "3": [
@@ -220,6 +360,76 @@
      "דם דגים וחגבים"
     ],
     "x": "Rachi sur Lévitique 7:26 : « d'oiseau ou de bête » exclut le sang des poissons et des sauterelles."
+   },
+   {
+    "q": "Selon Rachi, que signifie « son habit de mesure » (middo vad) ?",
+    "a": "Qu'il doit être à sa mesure, ni trop grand ni trop petit",
+    "w": [
+     "Qu'il doit être à sa couleur, ni trop clair ni trop foncé",
+     "Qu'il doit être à son rang, ni trop riche ni trop pauvre",
+     "Qu'il doit être à son goût, ni trop long ni trop court"
+    ],
+    "ref": "6:3",
+    "proof": [
+     "שתהא כמדתו"
+    ],
+    "x": "Rachi sur Lévitique 6:3 : pourquoi « middo » ? Pour qu'il soit à sa mesure."
+   },
+   {
+    "q": "Selon Rachi, que signifie que « le pontife revêtira son habit sur sa chair » ?",
+    "a": "Qu'aucun objet ne s'interpose entre l'habit et le corps",
+    "w": [
+     "Qu'aucun vêtement ne s'ajoute au-dessus de l'habit",
+     "Qu'aucune tache ne salisse la blancheur de l'habit",
+     "Qu'aucun ornement ne dépasse la longueur de l'habit"
+    ],
+    "ref": "6:3",
+    "proof": [
+     "שלא יהא דבר חוצץ"
+    ],
+    "x": "Rachi sur Lévitique 6:3 : « sur sa chair » : rien ne s'interpose entre les deux."
+   },
+   {
+    "q": "Selon Rachi, où se tient « devant l'Éternel » dans l'offrande de l'oblation ?",
+    "a": "À l'ouest, du côté de la Tente d'assignation",
+    "w": [
+     "À l'est, du côté de l'entrée du camp",
+     "Au nord, du côté du parvis",
+     "Au sud, du côté de la rampe"
+    ],
+    "ref": "6:7",
+    "proof": [
+     "הוא מערב"
+    ],
+    "x": "Rachi sur Lévitique 6:7 : « devant l'Éternel » : c'est l'ouest, côté de la Tente d'assignation."
+   },
+   {
+    "q": "Selon Rachi, combien de sortes de pain accompagnent le sacrifice de reconnaissance ?",
+    "a": "Quatre : trois de matsa et une de pain levé",
+    "w": [
+     "Trois : deux de matsa et une de pain levé",
+     "Quatre : deux de matsa et deux de pain levé",
+     "Cinq : quatre de matsa et une de pain levé"
+    ],
+    "ref": "7:12",
+    "proof": [
+     "ארבעה מיני לחם"
+    ],
+    "x": "Rachi sur Lévitique 7:12 : quatre sortes de pain : gâteaux, galettes et pain gras, trois sortes de matsa, et du pain levé."
+   },
+   {
+    "q": "Selon Rachi, que prélève-t-on de chaque espèce de pain, pour le prêtre qui sert ?",
+    "a": "Un pain de chaque espèce, le reste étant mangé par les propriétaires",
+    "w": [
+     "Deux pains de chaque espèce, le reste étant brûlé par les prêtres",
+     "Un pain de la première espèce, le reste étant offert par les Lévites",
+     "La moitié de chaque espèce, le reste étant donné par les pauvres"
+    ],
+    "ref": "7:14",
+    "proof": [
+     "לחם אחד מכל מין ומין"
+    ],
+    "x": "Rachi sur Lévitique 7:14 : un pain de chaque espèce est prélevé pour le prêtre qui fait le service ; le reste est mangé par les propriétaires."
    }
   ]
  }

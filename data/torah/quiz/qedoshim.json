@@ -73,6 +73,76 @@
      "N'insulte pas un sourd"
     ],
     "x": "On ne place pas non plus d'obstacle sur le chemin d'un aveugle."
+   },
+   {
+    "q": "Que ne doit-on pas fabriquer, selon la Torah, et vers quoi ne doit-on pas se tourner ?",
+    "a": "Des dieux de métal, et les idoles",
+    "w": [
+     "Des tables de pierre, et les astres",
+     "Des statues de bois, et les rois",
+     "Des cloches de cuivre, et les anges"
+    ],
+    "ref": "19:4",
+    "proof": [
+     "dieux de métal"
+    ],
+    "x": "« Je suis l'Éternel votre Dieu. »"
+   },
+   {
+    "q": "À qui doit-on abandonner les grappillages et les grains épars de sa vigne ?",
+    "a": "Au pauvre et à l'étranger",
+    "w": [
+     "Au prêtre et au Lévite",
+     "Au voisin et à l'ami",
+     "À l'orphelin et au juge"
+    ],
+    "ref": "19:10",
+    "proof": [
+     "au pauvre et à l'étranger"
+    ],
+    "x": "« Je suis l'Éternel votre Dieu. »"
+   },
+   {
+    "q": "Que ne doit-on pas garder par-devers soi jusqu'au lendemain ?",
+    "a": "Le salaire du journalier",
+    "w": [
+     "Le pain du voisin",
+     "Le gage du pauvre",
+     "Le bétail de l'étranger"
+    ],
+    "ref": "19:13",
+    "proof": [
+     "salaire du journalier"
+    ],
+    "x": "Il ne faut commettre ni extorsion ni rapine."
+   },
+   {
+    "q": "Que doit-on faire de son prochain qui a failli, pour ne pas haïr son frère en son cœur ?",
+    "a": "Le reprendre",
+    "w": [
+     "Le fuir",
+     "Le punir",
+     "Le plaindre"
+    ],
+    "ref": "19:17",
+    "proof": [
+     "reprends ton prochain"
+    ],
+    "x": "Ainsi on n'assume pas de péché à cause de lui."
+   },
+   {
+    "q": "Que la Torah interdit-elle de s'imprimer sur la peau, à cause d'un mort ?",
+    "a": "Un tatouage",
+    "w": [
+     "Un bijou",
+     "Un parfum",
+     "Une couleur"
+    ],
+    "ref": "19:28",
+    "proof": [
+     "tatouage"
+    ],
+    "x": "Elle interdit aussi de se tailler la chair."
    }
   ],
   "2": [
@@ -147,6 +217,76 @@
      "Lève-toi à l'aspect d'une tête blanche"
     ],
     "x": "« Crains ton Dieu ! Je suis l'Éternel. »"
+   },
+   {
+    "q": "Que doit être le jugement, d'après la Torah, entre le faible et le puissant ?",
+    "a": "Impartial : ni ménagement au faible, ni faveur au puissant",
+    "w": [
+     "Rigoureux : plus sévère pour le faible, moins pour le puissant",
+     "Indulgent : plus doux pour le faible, plus ferme pour le puissant",
+     "Rapide : plus bref pour le faible, plus long pour le puissant"
+    ],
+    "ref": "19:15",
+    "proof": [
+     "ni ménagement au faible, ni faveur au puissant"
+    ],
+    "x": "« Juge ton semblable avec impartialité. »"
+   },
+   {
+    "q": "Comment doit-on considérer le fruit d'un arbre fruitier planté, durant trois années ?",
+    "a": "Comme une excroissance, interdite",
+    "w": [
+     "Comme une offrande, consacrée",
+     "Comme une dîme, réservée",
+     "Comme un don, partagé"
+    ],
+    "ref": "19:23",
+    "proof": [
+     "excroissance"
+    ],
+    "x": "Ce fruit est interdit pendant trois années."
+   },
+   {
+    "q": "Que doit-on éviter, selon la Torah, à propos des repas et du sang ?",
+    "a": "De faire des repas près du sang",
+    "w": [
+     "De faire des repas sans sel",
+     "De faire des repas sans prière",
+     "De faire des repas sans pain"
+    ],
+    "ref": "19:26",
+    "proof": [
+     "repas près du sang"
+    ],
+    "x": "Elle interdit aussi la divination et les présages."
+   },
+   {
+    "q": "Quelle est la peine pour celui qui maudit son père ou sa mère ?",
+    "a": "La mort",
+    "w": [
+     "L'exil",
+     "L'amende",
+     "Le fouet"
+    ],
+    "ref": "20:9",
+    "proof": [
+     "doit être mis à mort"
+    ],
+    "x": "Il a mérité son supplice."
+   },
+   {
+    "q": "Que dit l'Éternel aux Israélites, parce qu'il les a séparés des peuples ?",
+    "a": "Qu'ils soient saints pour lui, car il est saint",
+    "w": [
+     "Qu'ils soient nombreux pour lui, car il est grand",
+     "Qu'ils soient fidèles pour lui, car il est juste",
+     "Qu'ils soient forts pour lui, car il est roi"
+    ],
+    "ref": "20:26",
+    "proof": [
+     "Soyez saints pour moi"
+    ],
+    "x": "Il les a séparés d'avec les peuples pour qu'ils soient à lui."
    }
   ],
   "3": [
@@ -220,6 +360,76 @@
      "טובע בנהר"
     ],
     "x": "Rachi sur Lévitique 19:16 : ne vois pas sa mort si tu peux le sauver, comme celui qui se noie dans le fleuve ou que des fauves ou des brigands attaquent."
+   },
+   {
+    "q": "Selon Rachi, pourquoi la Torah met-elle ici la mère avant le père dans « craignez chacun sa mère et son père » ?",
+    "a": "Parce qu'il est connu que le fils craint plus son père que sa mère",
+    "w": [
+     "Parce qu'il est connu que le fils aime plus sa mère que son père",
+     "Parce qu'il est connu que le fils écoute plus sa mère que son père",
+     "Parce qu'il est connu que le fils imite plus sa mère que son père"
+    ],
+    "ref": "19:3",
+    "proof": [
+     "הבן ירא את אביו יותר מאמו"
+    ],
+    "x": "Rachi sur Lévitique 19:3 : il a placé la mère avant le père, car il est connu que le fils craint plus son père ; ailleurs il place le père, pour l'honneur."
+   },
+   {
+    "q": "Selon Rachi, que montre la proximité du Chabbat et de la crainte des parents ?",
+    "a": "Que, même si un père dit de profaner le Chabbat, on ne l'écoute pas",
+    "w": [
+     "Que, même si un père dit de profaner le Chabbat, on le suit par respect",
+     "Que, même si un père dit de profaner le Chabbat, on le reprend avec douceur",
+     "Que, même si un père dit de profaner le Chabbat, on le prie de réfléchir"
+    ],
+    "ref": "19:3",
+    "proof": [
+     "חלל את השבת"
+    ],
+    "x": "Rachi sur Lévitique 19:3 : il a placé le Chabbat à côté de la crainte du père : même si ton père te dit de profaner le Chabbat, ne l'écoute pas."
+   },
+   {
+    "q": "Selon Rachi, que signifie « tu ne finiras pas le coin de ton champ » ?",
+    "a": "Qu'on laisse un coin (péa) à la fin de son champ",
+    "w": [
+     "Qu'on laisse un sillon à la fin de son champ",
+     "Qu'on laisse un arbre à la fin de son champ",
+     "Qu'on laisse un puits à la fin de son champ"
+    ],
+    "ref": "19:9",
+    "proof": [
+     "שיניח פאה בסוף שדהו"
+    ],
+    "x": "Rachi sur Lévitique 19:9 : il laissera le coin à la fin de son champ."
+   },
+   {
+    "q": "Selon Rachi, que signifie « ne profère pas de péché à son sujet » ?",
+    "a": "Ne le fais pas pâlir en public",
+    "w": [
+     "Ne le fais pas rire en public",
+     "Ne le fais pas parler en public",
+     "Ne le fais pas pleurer en public"
+    ],
+    "ref": "19:17",
+    "proof": [
+     "לא תלבין את פניו ברבים"
+    ],
+    "x": "Rachi sur Lévitique 19:17 : ne fais pas pâlir son visage en public."
+   },
+   {
+    "q": "Selon Rachi, que veut dire « séparés des peuples pour être à moi » ?",
+    "a": "Que, si vous vous séparez d'eux, vous êtes à moi ; sinon, vous êtes à Nabuchodonosor",
+    "w": [
+     "Que, si vous vous rapprochez d'eux, vous êtes à moi ; sinon, vous êtes à Pharaon",
+     "Que, si vous vous cachez d'eux, vous êtes à moi ; sinon, vous êtes à Amalek",
+     "Que, si vous les combattez, vous êtes à moi ; sinon, vous êtes à Esaü"
+    ],
+    "ref": "20:26",
+    "proof": [
+     "הרי אתם שלי"
+    ],
+    "x": "Rachi sur Lévitique 20:26 : si vous êtes séparés d'eux, vous êtes à moi ; sinon, vous êtes à Nabuchodonosor et à ses semblables."
    }
   ]
  }

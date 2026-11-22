@@ -72,6 +72,77 @@
      "travail d'un esclave"
     ],
     "x": "Il se vend, mais ne doit pas être traité en esclave."
+   },
+   {
+    "q": "Pendant combien d'années ensemence-t-on son champ et travaille-t-on sa vigne ?",
+    "a": "Six années",
+    "w": [
+     "Cinq années",
+     "Sept années",
+     "Quarante-neuf années"
+    ],
+    "ref": "25:3",
+    "proof": [
+     "Six années tu ensemenceras"
+    ],
+    "x": "On en recueille le produit."
+   },
+   {
+    "q": "Que dit la Torah de l'année du jubilé, quant au produit du champ ?",
+    "a": "Qu'elle est sainte, et qu'on en mange le produit à même le champ",
+    "w": [
+     "Qu'elle est libre, et qu'on en vend le produit au marché",
+     "Qu'elle est longue, et qu'on en garde le produit au grenier",
+     "Qu'elle est rare, et qu'on en offre le produit au sanctuaire"
+    ],
+    "ref": "25:12",
+    "proof": [
+     "chose sainte",
+     "à même le champ"
+    ],
+    "x": "Cette année est le jubilé."
+   },
+   {
+    "q": "Où demeurera-t-on en sécurité, si l'on exécute les édits et pratique les lois ?",
+    "a": "Dans le pays",
+    "w": [
+     "Dans le désert",
+     "Dans la ville",
+     "Dans la tente"
+    ],
+    "ref": "25:18",
+    "proof": [
+     "demeurerez dans le pays en sécurité"
+    ],
+    "x": "Il faut observer et pratiquer les lois de l'Éternel."
+   },
+   {
+    "q": "Que doit-on faire d'un frère qui vient à déchoir, dont la fortune chancelle ?",
+    "a": "Le soutenir, fût-il étranger et nouveau venu",
+    "w": [
+     "Le renvoyer, fût-il frère et ancien voisin",
+     "Le juger, fût-il riche et ancien maître",
+     "Le vendre, fût-il pauvre et ancien débiteur"
+    ],
+    "ref": "25:35",
+    "proof": [
+     "soutiens-le"
+    ],
+    "x": "Il doit vivre avec toi."
+   },
+   {
+    "q": "De qui les enfants d'Israël sont-ils les esclaves, selon l'Éternel ?",
+    "a": "De lui-même, qui les a fait sortir d'Égypte",
+    "w": [
+     "De Pharaon, qui les a fait entrer en Égypte",
+     "De Moïse, qui les a fait monter au Sinaï",
+     "Du pays, qui les a fait naître en Canaan"
+    ],
+    "ref": "25:42",
+    "proof": [
+     "mes esclaves"
+    ],
+    "x": "Ils ne doivent pas être vendus à la façon des esclaves."
    }
   ],
   "2": [
@@ -148,6 +219,76 @@
      "résiliée par le Jubilé"
     ],
     "x": "Car les maisons des villes des Lévites sont leur propriété parmi les enfants d'Israël."
+   },
+   {
+    "q": "En tenant compte de quoi fait-on un achat à son prochain, près du jubilé ?",
+    "a": "Des années écoulées depuis le jubilé",
+    "w": [
+     "Des mois restant avant l'hiver",
+     "Des jours restant avant la fête",
+     "Des fils restant dans la maison"
+    ],
+    "ref": "25:15",
+    "proof": [
+     "années écoulées depuis le Jubilé"
+    ],
+    "x": "On tient compte aussi des années de récolte."
+   },
+   {
+    "q": "Que doit-on accorder sur les terres, dans tout le pays que l'on possédera ?",
+    "a": "Le droit de rachat",
+    "w": [
+     "Le droit d'asile",
+     "Le droit de passage",
+     "Le droit de pâture"
+    ],
+    "ref": "25:24",
+    "proof": [
+     "droit de rachat"
+    ],
+    "x": "Cela vaut pour tout le pays."
+   },
+   {
+    "q": "Parmi qui peut-on acheter des esclaves, outre les nations ?",
+    "a": "Parmi les enfants des étrangers établis chez soi",
+    "w": [
+     "Parmi les enfants des Lévites établis chez soi",
+     "Parmi les enfants des anciens établis chez soi",
+     "Parmi les enfants des juges établis chez soi"
+    ],
+    "ref": "25:45",
+    "proof": [
+     "enfants des étrangers"
+    ],
+    "x": "Ils pourront devenir une propriété."
+   },
+   {
+    "q": "Qui rachète un frère qui s'est vendu ?",
+    "a": "L'un de ses frères",
+    "w": [
+     "Un juge du peuple",
+     "Un prêtre du sanctuaire",
+     "Un ancien de la ville"
+    ],
+    "ref": "25:48",
+    "proof": [
+     "l'un de ses frères donc le rachètera"
+    ],
+    "x": "Le droit de rachat existe pour lui."
+   },
+   {
+    "q": "Quand sort libre celui qui n'a pas été racheté ?",
+    "a": "À l'époque du jubilé, avec ses enfants",
+    "w": [
+     "À l'époque de la sixième année, avec ses frères",
+     "À l'époque de la sortie d'Égypte, avec ses biens",
+     "À l'époque du nouvel an, avec ses voisins"
+    ],
+    "ref": "25:54",
+    "proof": [
+     "époque du jubilé"
+    ],
+    "x": "Il sort libre lui et ses enfants avec lui."
    }
   ],
   "3": [
@@ -222,6 +363,76 @@
      "נאמן לשלם שכר"
     ],
     "x": "Rachi sur Lévitique 26:2 : « je suis l'Éternel » : fidèle pour payer le salaire."
+   },
+   {
+    "q": "Selon Rachi, quelle tromperie interdit « ne vous trompez pas l'un l'autre » en matière d'argent ?",
+    "a": "La tromperie sur le prix d'une vente",
+    "w": [
+     "La tromperie sur le poids d'un or",
+     "La tromperie sur le nom d'un acheteur",
+     "La tromperie sur le jour d'un marché"
+    ],
+    "ref": "25:14",
+    "proof": [
+     "אונאת ממון"
+    ],
+    "x": "Rachi sur Lévitique 25:14 : c'est la tromperie en argent."
+   },
+   {
+    "q": "Selon Rachi, que signifie « ne vous trompez pas » dans « ne vous trompez pas l'un l'autre » du verset 17 ?",
+    "a": "La tromperie par la parole : on ne doit pas peiner son prochain, ni lui donner un mauvais conseil",
+    "w": [
+     "La tromperie par le prix : on ne doit pas surfaire son prochain, ni lui rendre un faux compte",
+     "La tromperie par la mesure : on ne doit pas rogner son prochain, ni lui vendre un faux poids",
+     "La tromperie par le serment : on ne doit pas jurer à son prochain, ni lui livrer un faux témoin"
+    ],
+    "ref": "25:17",
+    "proof": [
+     "אונאת דברים"
+    ],
+    "x": "Rachi sur Lévitique 25:17 : il avertit ici de la tromperie en paroles : qu'on ne peine pas son prochain et qu'on ne lui donne pas un conseil qui ne lui convient pas."
+   },
+   {
+    "q": "Selon Rachi, que signifie « la terre ne sera pas vendue à perpétuité » ?",
+    "a": "Une vente définitive, interdite à jamais",
+    "w": [
+     "Une vente provisoire, permise à jamais",
+     "Une vente partagée, interdite aux pauvres",
+     "Une vente publique, permise aux voisins"
+    ],
+    "ref": "25:23",
+    "proof": [
+     "למכירה פסוקה עולמית"
+    ],
+    "x": "Rachi sur Lévitique 25:23 : « litsmitout » : une vente ferme, éternelle."
+   },
+   {
+    "q": "Selon Rachi, que veut dire « car ils sont mes esclaves » ?",
+    "a": "Que mon acte de propriété sur eux précède le tien",
+    "w": [
+     "Que mon acte de propriété sur eux suit le tien",
+     "Que mon acte de propriété sur eux égale le tien",
+     "Que mon acte de propriété sur eux manque au tien"
+    ],
+    "ref": "25:42",
+    "proof": [
+     "שטרי קודם"
+    ],
+    "x": "Rachi sur Lévitique 25:42 : mon titre vient avant le tien."
+   },
+   {
+    "q": "Selon Rachi, comment ne doit-on pas vendre un esclave hébreu ?",
+    "a": "Par une annonce publique : « ici il y a un esclave à vendre »",
+    "w": [
+     "Par un contrat privé : « ici il y a un esclave à acheter »",
+     "Par une vente discrète : « ici il y a un esclave à louer »",
+     "Par un gage secret : « ici il y a un esclave à garder »"
+    ],
+    "ref": "25:42",
+    "proof": [
+     "בהכרזה"
+    ],
+    "x": "Rachi sur Lévitique 25:42 : on ne le vend pas à la criée, et on ne le met pas sur la pierre de vente."
    }
   ]
  }

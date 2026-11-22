@@ -85,6 +85,76 @@
      "nageoires et d'écailles"
     ],
     "x": "Tout ce qui, dans les eaux, en est privé est une abomination."
+   },
+   {
+    "q": "Que fait Moïse avec Aaron, en entrant dans la Tente d'assignation puis en ressortant ?",
+    "a": "Ils bénissent le peuple, et la gloire du Seigneur se manifeste",
+    "w": [
+     "Ils offrent un sacrifice, et le feu du Seigneur se manifeste",
+     "Ils chantent un cantique, et la voix du Seigneur se manifeste",
+     "Ils comptent le peuple, et l'ange du Seigneur se manifeste"
+    ],
+    "ref": "9:23",
+    "proof": [
+     "bénirent le peuple"
+    ],
+    "x": "La gloire du Seigneur se manifeste au peuple entier."
+   },
+   {
+    "q": "Que dit l'Éternel de ceux qui l'approchent, selon Moïse après la mort de Nadab et Abihou ?",
+    "a": "Qu'il veut être sanctifié par eux, et glorifié à la face de tout le peuple",
+    "w": [
+     "Qu'il veut être servi par eux, et loué à la face de tout le camp",
+     "Qu'il veut être craint par eux, et obéi à la face de toute la terre",
+     "Qu'il veut être aimé par eux, et prié à la face de tous les anciens"
+    ],
+    "ref": "10:3",
+    "proof": [
+     "Je veux être sanctifié par ceux qui m'approchent"
+    ],
+    "x": "Et Aaron garda le silence."
+   },
+   {
+    "q": "Qu'est-il arrivé au bouc expiatoire, dont Moïse fit des recherches ?",
+    "a": "On l'avait brûlé",
+    "w": [
+     "On l'avait perdu",
+     "On l'avait mangé",
+     "On l'avait enterré"
+    ],
+    "ref": "10:16",
+    "proof": [
+     "on l'avait brûlé"
+    ],
+    "x": "Moïse s'irrita contre Éléazar et Ithamar."
+   },
+   {
+    "q": "Parmi les oiseaux, lequel la Torah range-t-elle parmi ceux qu'on ne mange pas ?",
+    "a": "L'aigle",
+    "w": [
+     "La colombe",
+     "La caille",
+     "Le pigeon"
+    ],
+    "ref": "11:13",
+    "proof": [
+     "l'aigle, l'orfraie"
+    ],
+    "x": "Ils sont abominables."
+   },
+   {
+    "q": "Que dit la Torah de l'insecte ailé qui marche sur quatre pieds ?",
+    "a": "Qu'il est une abomination",
+    "w": [
+     "Qu'il est permis aux pauvres",
+     "Qu'il est réservé aux prêtres",
+     "Qu'il est offert en sacrifice"
+    ],
+    "ref": "11:20",
+    "proof": [
+     "abomination"
+    ],
+    "x": "On peut néanmoins manger l'arbé, le solam, le hargol et le hagab."
    }
   ],
   "2": [
@@ -169,6 +239,76 @@
      "ni vin ni liqueur forte"
     ],
     "x": "Afin qu'ils ne meurent pas : règle perpétuelle pour toutes les générations."
+   },
+   {
+    "q": "Quel animal les enfants d'Israël prennent-ils pour l'holocauste, âgé d'un an, avec l'agneau ?",
+    "a": "Un veau",
+    "w": [
+     "Un taureau",
+     "Un bélier",
+     "Un bouc"
+    ],
+    "ref": "9:3",
+    "proof": [
+     "un veau et un agneau âgés d'un an"
+    ],
+    "x": "Ils prennent aussi un bouc pour l'expiatoire."
+   },
+   {
+    "q": "Que doit-on faire de la part d'oblation qui reste des combustions du Seigneur ?",
+    "a": "La manger en pains azymes à côté de l'autel",
+    "w": [
+     "La brûler hors du camp, sans la goûter",
+     "La partager entre tous les anciens du peuple",
+     "La déposer dans l'arche, sous le voile"
+    ],
+    "ref": "10:12",
+    "proof": [
+     "mangez-la en pains azymes"
+    ],
+    "x": "Elle est éminemment sainte."
+   },
+   {
+    "q": "Quels reptiles sont impurs, parmi ceux qui se traînent sur la terre ?",
+    "a": "La taupe, le rat et le lézard",
+    "w": [
+     "Le lion, le loup et l'ours",
+     "Le bœuf, la brebis et la chèvre",
+     "Le cerf, le daim et le bouquetin"
+    ],
+    "ref": "11:29",
+    "proof": [
+     "la taupe, le rat, le lézard"
+    ],
+    "x": "Ils sont impurs selon leurs espèces."
+   },
+   {
+    "q": "Que devient un objet sur lequel il tombe quelque chose après la mort d'un reptile impur ?",
+    "a": "Il devient impur",
+    "w": [
+     "Il devient saint",
+     "Il devient muet",
+     "Il devient lourd"
+    ],
+    "ref": "11:32",
+    "proof": [
+     "deviendrait impur"
+    ],
+    "x": "Ustensile de bois, vêtement, peau ou sac : il doit être passé dans l'eau."
+   },
+   {
+    "q": "Pourquoi Dieu rappelle-t-il aux Israélites qu'ils doivent se sanctifier ?",
+    "a": "Parce qu'il est saint",
+    "w": [
+     "Parce qu'il est puissant",
+     "Parce qu'il est juste",
+     "Parce qu'il est ancien"
+    ],
+    "ref": "11:44",
+    "proof": [
+     "parce que je suis saint"
+    ],
+    "x": "Il ne faut pas contaminer ses personnes par les reptiles."
    }
   ],
   "3": [
@@ -242,6 +382,76 @@
      "נמלה לוקה חמש"
     ],
     "x": "Rachi sur Lévitique 11:44 : celui qui mange un ver reçoit quatre séries, une fourmi cinq, une guêpe six."
+   },
+   {
+    "q": "Selon Rachi, quelle bénédiction Aaron prononce-t-il en bénissant le peuple ?",
+    "a": "La bénédiction des prêtres : « Que l'Éternel te bénisse... »",
+    "w": [
+     "La bénédiction du Chabbat : « Que l'Éternel te sanctifie... »",
+     "La bénédiction des pères : « Que l'Éternel te garde... »",
+     "La bénédiction du jour : « Que l'Éternel te conduise... »"
+    ],
+    "ref": "9:22",
+    "proof": [
+     "ברכת כהנים"
+    ],
+    "x": "Rachi sur Lévitique 9:22 : la bénédiction des prêtres : « Que l'Éternel te bénisse », « fasse rayonner », « tourne sa face »."
+   },
+   {
+    "q": "Selon Rachi, pourquoi Moïse s'irrite-t-il contre Éléazar et Ithamar ?",
+    "a": "Il soupçonne qu'ils ont brûlé le bouc au lieu de le manger, car Aaron et eux étaient en deuil",
+    "w": [
+     "Il soupçonne qu'ils ont mangé le bouc hors du lieu saint, car Aaron et eux étaient en retard",
+     "Il soupçonne qu'ils ont perdu le bouc dans le camp, car Aaron et eux étaient affaiblis",
+     "Il soupçonne qu'ils ont vendu le bouc au peuple, car Aaron et eux étaient pressés"
+    ],
+    "ref": "10:19",
+    "proof": [
+     "אנינות"
+    ],
+    "x": "Rachi sur Lévitique 10:19 : il leur dit : peut-être avez-vous offert le sang étant en deuil, un endeuillé qui sert profane le service."
+   },
+   {
+    "q": "Selon Rachi, que signifie « voici l'animal » (zot hahaya) à propos des animaux purs ?",
+    "a": "Que Moïse tenait l'animal et le montrait aux Israélites : celui-ci, mangez ; celui-ci, non",
+    "w": [
+     "Que Moïse écrivait le nom de l'animal et le lisait aux Israélites : celui-ci, offrez ; celui-ci, non",
+     "Que Moïse comptait les animaux et les comparait aux Israélites : ceux-ci, gardez ; ceux-ci, non",
+     "Que Moïse plaçait l'animal et le présentait aux Israélites : celui-ci, vendez ; celui-ci, non"
+    ],
+    "ref": "11:2",
+    "proof": [
+     "משה אוחז בחיה"
+    ],
+    "x": "Rachi sur Lévitique 11:2 : Moïse tenait l'animal et le montrait aux Israélites : celui-ci, vous le mangerez ; celui-ci, non."
+   },
+   {
+    "q": "Selon Rachi, que sont les « nageoires » (snapir) d'un poisson ?",
+    "a": "Ce avec quoi il nage",
+    "w": [
+     "Ce avec quoi il respire",
+     "Ce avec quoi il se nourrit",
+     "Ce avec quoi il se cache"
+    ],
+    "ref": "11:9",
+    "proof": [
+     "ששט בהם"
+    ],
+    "x": "Rachi sur Lévitique 11:9 : ses nageoires sont ce avec quoi il nage ; les écailles sont les plaques fixées sur lui."
+   },
+   {
+    "q": "Selon Rachi, pourquoi Dieu dit-il « celui qui vous fait monter » (hamaaleh) d'Égypte ?",
+    "a": "Pour que vous acceptiez mes commandements, je vous ai fait monter",
+    "w": [
+     "Pour que vous soyez nombreux, je vous ai fait monter",
+     "Pour que vous soyez libres, je vous ai fait monter",
+     "Pour que vous soyez riches, je vous ai fait monter"
+    ],
+    "ref": "11:45",
+    "proof": [
+     "על מנת שתקבלו מצותי"
+    ],
+    "x": "Rachi sur Lévitique 11:45 : à la condition que vous acceptiez mes commandements, je vous ai fait monter."
    }
   ]
  }

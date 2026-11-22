@@ -73,6 +73,76 @@
      "passeront sous la verge"
     ],
     "x": "Le dixième animal est consacré à l'Éternel."
+   },
+   {
+    "q": "Jusqu'à quand se prolonge le battage des grains, si Israël suit les lois de Dieu ?",
+    "a": "Jusqu'à la vendange",
+    "w": [
+     "Jusqu'à la moisson",
+     "Jusqu'à la fête",
+     "Jusqu'à la pluie"
+    ],
+    "ref": "26:5",
+    "proof": [
+     "jusqu'à la vendange"
+    ],
+    "x": "La vendange durera jusqu'aux semailles."
+   },
+   {
+    "q": "Que fait l'Éternel disparaître du pays, en faisant régner la paix ?",
+    "a": "Les animaux nuisibles",
+    "w": [
+     "Les ennemis proches",
+     "Les pierres du chemin",
+     "Les eaux amères"
+    ],
+    "ref": "26:6",
+    "proof": [
+     "animaux nuisibles"
+    ],
+    "x": "Le glaive ne traversera point le territoire."
+   },
+   {
+    "q": "Que dit l'Éternel de son esprit, une fois sa résidence fixée au milieu d'Israël ?",
+    "a": "Qu'il ne se lassera point d'être avec lui",
+    "w": [
+     "Qu'il ne se fâchera plus contre lui",
+     "Qu'il ne s'éloignera jamais loin de lui",
+     "Qu'il ne parlera pas seul avec lui"
+    ],
+    "ref": "26:11",
+    "proof": [
+     "ne se lassera point"
+    ],
+    "x": "« Je fixerai ma résidence au milieu de vous. »"
+   },
+   {
+    "q": "Que fait l'Éternel de la terre, si Israël ne l'écoute pas ?",
+    "a": "Il la désole, au point que ses ennemis en sont stupéfaits",
+    "w": [
+     "Il la partage, au point que ses voisins en sont heureux",
+     "Il la cache, au point que ses habitants en sont perdus",
+     "Il la sèche, au point que ses prêtres en sont affligés"
+    ],
+    "ref": "26:32",
+    "proof": [
+     "je désolerai cette terre"
+    ],
+    "x": "Les ennemis qui l'occuperont en seront stupéfaits."
+   },
+   {
+    "q": "À qui appartient toute dîme de la terre, prélevée sur la semence ou sur le fruit ?",
+    "a": "À l'Éternel",
+    "w": [
+     "Au pontife",
+     "Au pauvre",
+     "Au roi"
+    ],
+    "ref": "27:30",
+    "proof": [
+     "appartient à l'Éternel"
+    ],
+    "x": "Elle lui est consacrée."
    }
   ],
   "2": [
@@ -145,6 +215,76 @@
      "un cinquième en sus"
     ],
     "x": "C'est la règle du rachat."
+   },
+   {
+    "q": "Quelle est la valeur d'un garçon de cinq à vingt ans ?",
+    "a": "Vingt sicles",
+    "w": [
+     "Dix sicles",
+     "Cinq sicles",
+     "Trente sicles"
+    ],
+    "ref": "27:5",
+    "proof": [
+     "pour le sexe masculin, de vingt sicles"
+    ],
+    "x": "Pour une fille du même âge, elle est de dix sicles."
+   },
+   {
+    "q": "Quelle est la valeur d'un garçon d'un mois à cinq ans ?",
+    "a": "Cinq sicles d'argent",
+    "w": [
+     "Trois sicles d'argent",
+     "Dix sicles d'argent",
+     "Vingt sicles d'argent"
+    ],
+    "ref": "27:6",
+    "proof": [
+     "cinq sicles d'argent"
+    ],
+    "x": "Pour une fille du même âge, elle est de trois sicles."
+   },
+   {
+    "q": "Que fait la terre pendant la désolation, pour ce qu'elle n'a pas chômé ?",
+    "a": "Elle chôme, pour les années sabbatiques non observées",
+    "w": [
+     "Elle fleurit, pour les années fertiles observées",
+     "Elle pleure, pour les années tristes subies",
+     "Elle dort, pour les années froides passées"
+    ],
+    "ref": "26:35",
+    "proof": [
+     "elle chômera"
+    ],
+    "x": "Elle chôme pour ce qu'elle n'aura pas chômé quand on l'habitait."
+   },
+   {
+    "q": "Que devient un animal consacré, si on le remplace par un autre ?",
+    "a": "L'animal et son remplaçant sont tous deux saints",
+    "w": [
+     "L'animal est profane et son remplaçant est saint",
+     "L'animal est saint et son remplaçant est profane",
+     "L'animal est vendu et son remplaçant est offert"
+    ],
+    "ref": "27:10",
+    "proof": [
+     "également saints"
+    ],
+    "x": "On ne peut ni le changer ni le remplacer."
+   },
+   {
+    "q": "Que dit l'Éternel des peuples, même quand Israël sera dans le pays de ses ennemis ?",
+    "a": "Qu'il ne l'aura ni dédaigné ni repoussé au point de l'anéantir",
+    "w": [
+     "Qu'il ne l'aura ni oublié ni maudit au point de le bannir",
+     "Qu'il ne l'aura ni puni ni jugé au point de le chasser",
+     "Qu'il ne l'aura ni enfermé ni protégé au point de le garder"
+    ],
+    "ref": "26:44",
+    "proof": [
+     "ni dédaignés ni repoussés"
+    ],
+    "x": "Il ne dissout pas son alliance avec eux."
    }
   ],
   "3": [
@@ -218,6 +358,76 @@
      "ערבון"
     ],
     "x": "Rachi sur Lévitique 26:42 : cinq fois « Yaakov » est écrit plein, et cinq fois « Élie » est écrit défectif : Jacob a pris une lettre du nom d'Élie en gage, qu'il viendra annoncer la délivrance de ses fils."
+   },
+   {
+    "q": "Selon Rachi, que signifie « je me tournerai vers vous » (ufanitti) ?",
+    "a": "Que Dieu se détournera de toutes ses occupations pour payer leur salaire",
+    "w": [
+     "Que Dieu se retirera de tous ses travaux pour juger leur faute",
+     "Que Dieu se lèvera de tous ses trônes pour bénir leur terre",
+     "Que Dieu se cachera de toutes ses armées pour pardonner leur crime"
+    ],
+    "ref": "26:9",
+    "proof": [
+     "אפנה מכל עסקי"
+    ],
+    "x": "Rachi sur Lévitique 26:9 : je me détournerai de toutes mes affaires pour payer votre salaire."
+   },
+   {
+    "q": "Selon Rachi, que veut dire « la tête haute » (komemiyyout) ?",
+    "a": "Debout, la taille droite",
+    "w": [
+     "Le front baissé",
+     "Le dos courbé",
+     "Les mains levées"
+    ],
+    "ref": "26:13",
+    "proof": [
+     "בקומה זקופה"
+    ],
+    "x": "Rachi sur Lévitique 26:13 : le corps dressé."
+   },
+   {
+    "q": "Selon Rachi, que désigne « l'orgueil de votre force » que Dieu brisera ?",
+    "a": "Le Temple",
+    "w": [
+     "La ville",
+     "L'armée",
+     "Le roi"
+    ],
+    "ref": "26:19",
+    "proof": [
+     "זה בית המקדש"
+    ],
+    "x": "Rachi sur Lévitique 26:19 : c'est le Temple, comme il est dit : « je profane mon sanctuaire, l'orgueil de votre force »."
+   },
+   {
+    "q": "Selon Rachi, que signifie « le bruit d'une feuille qui tombe » ?",
+    "a": "Le vent la pousse contre une autre feuille, qui crépite",
+    "w": [
+     "Le vent la déchire dans le ciel, qui hurle",
+     "Le vent la jette dans le puits, qui résonne",
+     "Le vent la cache dans l'herbe, qui frémit"
+    ],
+    "ref": "26:36",
+    "proof": [
+     "עלה נדף"
+    ],
+    "x": "Rachi sur Lévitique 26:36 : le vent la pousse et la heurte contre une autre feuille, qui crépite et fait du bruit."
+   },
+   {
+    "q": "Selon Rachi, que veut dire « je ne les dédaignerai pas pour les anéantir » ?",
+    "a": "Même si je leur fais ces châtiments en terre ennemie, je ne les rejetterai pas",
+    "w": [
+     "Même si je les récompense dans ces années en terre promise, je ne les rappellerai pas",
+     "Même si je les juge dans ces procès en terre étrangère, je ne les oublierai pas",
+     "Même si je les compte dans ces fêtes en terre sainte, je ne les oublierai pas"
+    ],
+    "ref": "26:44",
+    "proof": [
+     "לא אמאסם לכלתם"
+    ],
+    "x": "Rachi sur Lévitique 26:44 : même si je leur fais cette punition que j'ai annoncée, quand ils sont en terre ennemie, je ne les rejetterai pas pour les anéantir."
    }
   ]
  }

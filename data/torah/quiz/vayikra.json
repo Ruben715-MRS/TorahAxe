@@ -72,6 +72,76 @@
      "levain ni de miel"
     ],
     "x": "Quelque oblation que l'on offre à l'Éternel, elle ne doit pas être fermentée."
+   },
+   {
+    "q": "Comment le pontife traite-t-il l'oiseau offert en holocauste ?",
+    "a": "Il l'ouvre du côté des ailes, sans les détacher",
+    "w": [
+     "Il le coupe en quatre, avec les ailes",
+     "Il le plume entièrement, sans les ailes",
+     "Il le laisse entier, avec les ailes"
+    ],
+    "ref": "1:17",
+    "proof": [
+     "ouvrira l'oiseau du côté des ailes"
+    ],
+    "x": "Il le fait ensuite fumer sur l'autel."
+   },
+   {
+    "q": "Sous quelle forme offre-t-on l'oblation des prémices ?",
+    "a": "En épis torréfiés au feu, réduits en gruau pur",
+    "w": [
+     "En pains levés, cuits au four, sans sel",
+     "En gâteaux de miel, mêlés à l'huile pure",
+     "En grains crus, jetés sur les braises"
+    ],
+    "ref": "2:14",
+    "proof": [
+     "épis torréfiés au feu"
+    ],
+    "x": "C'est l'oblation de tes prémices."
+   },
+   {
+    "q": "Que doit-on s'abstenir de manger, selon la loi perpétuelle ?",
+    "a": "Toute graisse et tout sang",
+    "w": [
+     "Toute chair et tout lait",
+     "Tout pain et tout vin",
+     "Tout fruit et toute huile"
+    ],
+    "ref": "3:17",
+    "proof": [
+     "toute graisse et tout sang"
+    ],
+    "x": "Dans toutes les demeures, pour toutes les générations."
+   },
+   {
+    "q": "Que doit offrir le pontife-oint qui a péché, pour le péché commis ?",
+    "a": "Un jeune taureau sans défaut",
+    "w": [
+     "Une chèvre sans défaut",
+     "Un bélier sans défaut",
+     "Un agneau sans défaut"
+    ],
+    "ref": "4:3",
+    "proof": [
+     "jeune taureau sans défaut"
+    ],
+    "x": "Il l'offre au détriment du peuple."
+   },
+   {
+    "q": "Que doit ajouter celui qui nie un objet sous un faux serment, en payant ?",
+    "a": "Le cinquième",
+    "w": [
+     "Le dixième",
+     "Le tiers",
+     "La moitié"
+    ],
+    "ref": "5:24",
+    "proof": [
+     "ajoutera le cinquième"
+    ],
+    "x": "Il remet le tout à qui il appartient, le jour de sa réparation."
    }
   ],
   "2": [
@@ -145,6 +215,76 @@
      "point d'huile"
     ],
     "x": "Il n'y emploiera point d'huile et n'y mettra point d'encens, car c'est un expiatoire."
+   },
+   {
+    "q": "Que prescrit la Torah sur le sexe de l'animal du sacrifice rémunératoire tiré du gros bétail ?",
+    "a": "Un mâle ou une femelle, sans défaut",
+    "w": [
+     "Un mâle seulement, sans défaut",
+     "Une femelle seulement, sans défaut",
+     "Un mâle de deux ans, sans défaut"
+    ],
+    "ref": "3:1",
+    "proof": [
+     "mâle ou une femelle"
+    ],
+    "x": "Il doit la présenter sans défaut."
+   },
+   {
+    "q": "À qui revient le surplus de l'oblation ?",
+    "a": "À Aaron et à ses fils",
+    "w": [
+     "Aux Lévites et aux anciens",
+     "Au peuple et au pontife",
+     "Aux pauvres et aux étrangers"
+    ],
+    "ref": "2:3",
+    "proof": [
+     "surplus de l'oblation sera pour Aaron et ses fils"
+    ],
+    "x": "C'est une portion éminemment sainte."
+   },
+   {
+    "q": "Que lave-t-on dans l'eau, avant de faire fumer l'holocauste ?",
+    "a": "Les intestins et les jambes",
+    "w": [
+     "La tête et la graisse",
+     "La peau et les cornes",
+     "Le foie et les rognons"
+    ],
+    "ref": "1:9",
+    "proof": [
+     "lavera dans l'eau les intestins et les jambes"
+    ],
+    "x": "Le pontife fait ensuite fumer le tout sur l'autel."
+   },
+   {
+    "q": "Que devient celui qui, adjuré par serment, ne déclare pas ce dont il est témoin ?",
+    "a": "Il se trouve chargé d'une faute",
+    "w": [
+     "Il est quitte, car il n'a rien fait",
+     "Il est banni, car il a menti en public",
+     "Il est gracié, car il n'a rien su"
+    ],
+    "ref": "5:1",
+    "proof": [
+     "chargée d'une faute"
+    ],
+    "x": "Il a pourtant vu le fait ou en a connaissance."
+   },
+   {
+    "q": "Que nie celui qui commet une faute grave envers son prochain, selon la Torah ?",
+    "a": "Un dépôt, une valeur remise ou un objet ravi",
+    "w": [
+     "Un salaire, une dette payée ou un héritage reçu",
+     "Un témoin, une preuve donnée ou un serment fait",
+     "Un champ, une maison achetée ou un bétail vendu"
+    ],
+    "ref": "5:21",
+    "proof": [
+     "un dépôt"
+    ],
+    "x": "Il détient aussi quelque chose à son prochain."
    }
   ],
   "3": [
@@ -219,6 +359,76 @@
      "אשרי הדור"
     ],
     "x": "Rachi sur Lévitique 4:22 : heureuse la génération dont le prince se soucie d'expier une faute commise par inadvertance : combien plus se repent-il de ses fautes volontaires."
+   },
+   {
+    "q": "Selon Rachi, que signifie « odeur agréable » (reah nihoah) à propos de l'holocauste ?",
+    "a": "Un contentement pour Dieu : j'ai dit, et ma volonté a été faite",
+    "w": [
+     "Une joie pour l'autel : j'ai donné, et ma part a été reçue",
+     "Un parfum pour le prêtre : j'ai offert, et mon don a été brûlé",
+     "Une paix pour le peuple : j'ai pardonné, et ma colère a cessé"
+    ],
+    "ref": "1:9",
+    "proof": [
+     "נחת רוח לפני"
+    ],
+    "x": "Rachi sur Lévitique 1:9 : « nihoah » : un contentement devant moi : j'ai dit, et ma volonté s'est faite."
+   },
+   {
+    "q": "Selon Rachi, pourquoi appelle-t-on « chélamim » le sacrifice rémunératoire ?",
+    "a": "Parce qu'il met la paix dans le monde, entre l'autel, les prêtres et ceux qui l'offrent",
+    "w": [
+     "Parce qu'il met la richesse dans la maison, entre les frères, les voisins et les prêtres",
+     "Parce qu'il met la lumière dans le sanctuaire, entre les prêtres, les Lévites et le peuple",
+     "Parce qu'il met la santé dans le camp, entre les hommes, les femmes et les enfants"
+    ],
+    "ref": "3:1",
+    "proof": [
+     "שלום למזבח ולכהנים ולבעלים"
+    ],
+    "x": "Rachi sur Lévitique 3:1 : « chélamim » : ils introduisent la paix dans le monde ; ou : la paix pour l'autel, les prêtres et les propriétaires."
+   },
+   {
+    "q": "Selon Rachi, pour quelle faute l'offrande du péché (hatat) est-elle apportée ?",
+    "a": "Pour une chose dont l'acte volontaire entraîne l'extermination",
+    "w": [
+     "Pour une chose dont l'acte volontaire entraîne la lapidation",
+     "Pour une chose dont l'acte volontaire entraîne l'amende",
+     "Pour une chose dont l'acte volontaire entraîne la prison"
+    ],
+    "ref": "4:2",
+    "proof": [
+     "שזדונו לאו וכרת"
+    ],
+    "x": "Rachi sur Lévitique 4:2 : nos maîtres ont expliqué : on n'apporte de hatat que pour une faute dont l'acte volontaire est un interdit et passible de retranchement."
+   },
+   {
+    "q": "Selon Rachi, qui est « l'assemblée d'Israël » qui commet une erreur ?",
+    "a": "Le Sanhédrin",
+    "w": [
+     "Les anciens des tribus",
+     "Le grand prêtre",
+     "Le roi et ses ministres"
+    ],
+    "ref": "4:13",
+    "proof": [
+     "סנהדרין"
+    ],
+    "x": "Rachi sur Lévitique 4:13 : « adat Israël » : ce sont les membres du Sanhédrin."
+   },
+   {
+    "q": "Selon Rachi, que signifie « eïl » (bélier) du sacrifice de délit ?",
+    "a": "Un animal robuste, âgé de deux ans",
+    "w": [
+     "Un animal tendre, âgé d'un an",
+     "Un animal blanc, âgé de trois ans",
+     "Un animal gras, âgé de six mois"
+    ],
+    "ref": "5:15",
+    "proof": [
+     "בן שתי שנים"
+    ],
+    "x": "Rachi sur Lévitique 5:15 : « eïl » est un langage de dureté : un animal de deux ans."
    }
   ]
  }

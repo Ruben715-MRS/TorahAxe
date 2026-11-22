@@ -72,6 +72,78 @@
      "Impur"
     ],
     "x": "Il s'enveloppe aussi jusqu'à la moustache."
+   },
+   {
+    "q": "Que prend la femme dont les moyens ne permettent pas d'offrir un agneau ?",
+    "a": "Deux tourterelles ou deux jeunes colombes",
+    "w": [
+     "Deux agneaux ou deux jeunes chevreaux",
+     "Deux béliers ou deux jeunes taureaux",
+     "Deux perdrix ou deux jeunes cailles"
+    ],
+    "ref": "12:8",
+    "proof": [
+     "deux tourterelles ou deux jeunes colombes"
+    ],
+    "x": "L'une pour l'holocauste, l'autre pour l'expiatoire."
+   },
+   {
+    "q": "Où peut apparaître la plaie teigneuse, chez un homme ou une femme ?",
+    "a": "À la tête ou au menton",
+    "w": [
+     "Aux mains ou aux pieds",
+     "Au dos ou au ventre",
+     "Aux yeux ou aux oreilles"
+    ],
+    "ref": "13:29",
+    "proof": [
+     "à la tête ou au menton"
+    ],
+    "x": "Le pontife l'examine selon les règles."
+   },
+   {
+    "q": "Que dit la Torah de taches d'un blanc obscur sur la peau ?",
+    "a": "C'est un exanthème : la personne est pure",
+    "w": [
+     "C'est une lèpre : la personne est impure",
+     "C'est une brûlure : la personne est isolée",
+     "C'est une cicatrice : la personne est guérie"
+    ],
+    "ref": "13:39",
+    "proof": [
+     "exanthème"
+    ],
+    "x": "Le pontife examine les taches de la peau du corps."
+   },
+   {
+    "q": "Dans quelles matières l'altération lépreuse peut-elle apparaître, d'après la Torah ?",
+    "a": "Dans la laine, le lin ou la peau",
+    "w": [
+     "Dans le bois, la pierre ou le fer",
+     "Dans le sel, l'huile ou le vin",
+     "Dans la paille, le roseau ou la cire"
+    ],
+    "ref": "13:47-48",
+    "proof": [
+     "laine ou étoffe de lin",
+     "peau"
+    ],
+    "x": "Elle peut toucher la chaîne ou la trame."
+   },
+   {
+    "q": "Que fait le pontife d'une étoffe où la plaie n'a pas grandi ?",
+    "a": "Il la fait laver, puis enfermer sept jours",
+    "w": [
+     "Il la fait brûler, puis enterrer hors du camp",
+     "Il la fait battre, puis exposer au soleil",
+     "Il la fait couper, puis recoudre à neuf"
+    ],
+    "ref": "13:54",
+    "proof": [
+     "lave la partie altérée",
+     "sept jours"
+    ],
+    "x": "Il ordonne ensuite de l'examiner de nouveau."
    }
   ],
   "2": [
@@ -144,6 +216,76 @@
      "déclarera pur"
     ],
     "x": "Il lave alors ses vêtements et devient pur."
+   },
+   {
+    "q": "À qui présente-t-on celui qui a sur la peau une tumeur, une dartre ou une tache ?",
+    "a": "À Aaron le pontife ou à l'un de ses fils pontifes",
+    "w": [
+     "À Moïse ou à l'un des anciens",
+     "À Josué ou à l'un des Lévites",
+     "À Éléazar ou à l'un des juges"
+    ],
+    "ref": "13:2",
+    "proof": [
+     "Aaron le pontife"
+    ],
+    "x": "Elle peut dégénérer en affection lépreuse."
+   },
+   {
+    "q": "Quel jour le pontife visite-t-il la teigne, après l'avoir séquestrée ?",
+    "a": "Le septième jour",
+    "w": [
+     "Le troisième jour",
+     "Le huitième jour",
+     "Le quatorzième jour"
+    ],
+    "ref": "13:34",
+    "proof": [
+     "au septième jour"
+    ],
+    "x": "Si elle ne s'est pas étendue, la personne lave ses vêtements."
+   },
+   {
+    "q": "Que devient une plaie blanche-vermeille sur la tête chauve ?",
+    "a": "Une lèpre qui se développe",
+    "w": [
+     "Une brûlure qui se guérit",
+     "Une cicatrice qui se ferme",
+     "Un ulcère qui se vide"
+    ],
+    "ref": "13:42",
+    "proof": [
+     "c'est une lèpre qui se développe"
+    ],
+    "x": "Elle apparaît sur le derrière ou le devant de la tête."
+   },
+   {
+    "q": "Quelle couleur de la partie attaquée indique une plaie de lèpre dans l'étoffe ?",
+    "a": "Vert ou rouge foncé",
+    "w": [
+     "Noir ou gris foncé",
+     "Jaune ou blanc clair",
+     "Bleu ou violet foncé"
+    ],
+    "ref": "13:49",
+    "proof": [
+     "vert ou d'un rouge foncé"
+    ],
+    "x": "Il faut la montrer au pontife."
+   },
+   {
+    "q": "Que doit-on faire de l'objet où la plaie reparaît après lavage ?",
+    "a": "Le brûler, car c'est une recrudescence",
+    "w": [
+     "Le laver encore, car c'est une trace",
+     "L'enterrer, car c'est une impureté",
+     "Le vendre, car c'est un défaut"
+    ],
+    "ref": "13:57",
+    "proof": [
+     "tu dois le brûler"
+    ],
+    "x": "La plaie reparaît dans l'étoffe, la chaîne ou la trame."
    }
   ],
   "3": [
@@ -216,6 +358,76 @@
      "ויפרשו ממנו"
     ],
     "x": "Rachi sur Lévitique 13:45 : il annonce qu'il est impur, afin que les gens se séparent de lui."
+   },
+   {
+    "q": "Selon Rachi, quelle offrande est apportée avant l'autre, de l'holocauste et de l'expiatoire ?",
+    "a": "L'expiatoire d'abord, bien que le texte nomme l'holocauste en premier",
+    "w": [
+     "L'holocauste d'abord, comme l'ordre du texte",
+     "Les deux ensemble, comme l'ordre du prêtre",
+     "Aucune des deux, si la femme est pauvre"
+    ],
+    "ref": "12:8",
+    "proof": [
+     "חטאת קודם לעולה"
+    ],
+    "x": "Rachi sur Lévitique 12:8 : le texte place l'holocauste d'abord pour la lecture, mais pour l'offrande, l'expiatoire précède l'holocauste."
+   },
+   {
+    "q": "Selon Rachi, que dit le pontife à celui dont le poil est devenu blanc dans la plaie ?",
+    "a": "« Tu es impur », car le poil blanc est un signe d'impureté par décret de la Torah",
+    "w": [
+     "« Tu es pur », car le poil blanc est un signe de guérison par décret de la Torah",
+     "« Tu es malade », car le poil blanc est un signe de faiblesse par décret du pontife",
+     "« Tu es seul », car le poil blanc est un signe d'isolement par décret du camp"
+    ],
+    "ref": "13:3",
+    "proof": [
+     "יאמר לו טמא אתה"
+    ],
+    "x": "Rachi sur Lévitique 13:3 : il lui dit : « tu es impur » ; car le poil blanc est un signe d'impureté, c'est un décret de l'Écriture."
+   },
+   {
+    "q": "Selon Rachi, que signifie « plus profonde que la peau » dans la plaie ?",
+    "a": "Toute apparence blanche est profonde, comme le soleil paraît plus profond que l'ombre",
+    "w": [
+     "Toute apparence rouge est profonde, comme le feu paraît plus profond que la cendre",
+     "Toute apparence noire est profonde, comme la nuit paraît plus profonde que le jour",
+     "Toute apparence claire est profonde, comme l'eau paraît plus profonde que la terre"
+    ],
+    "ref": "13:3",
+    "proof": [
+     "כמראה חמה עמקה מן הצל"
+    ],
+    "x": "Rachi sur Lévitique 13:3 : toute apparence blanche est profonde, comme l'aspect du soleil est plus profond que l'ombre."
+   },
+   {
+    "q": "Selon Rachi, que signifie « il le séquestrera » (vehisgir) ?",
+    "a": "Il l'enfermera dans une maison, où il ne sera pas vu jusqu'à la fin de la semaine",
+    "w": [
+     "Il l'enverra hors du camp, où il sera vu jusqu'à la fin du mois",
+     "Il le gardera chez lui, où il sera servi jusqu'à la fin du jour",
+     "Il le conduira au sanctuaire, où il sera lavé jusqu'à la fin de l'an"
+    ],
+    "ref": "13:4",
+    "proof": [
+     "יסגירנו בבית אחד"
+    ],
+    "x": "Rachi sur Lévitique 13:4 : il le fermera dans une maison et on ne le verra pas jusqu'à la fin de la semaine, afin que les signes parlent."
+   },
+   {
+    "q": "Selon Rachi, que montre « il le déclarera impur, impur » (tamé yetamenou) à propos de la plaie à la tête ?",
+    "a": "Qu'il s'applique à toutes les autres plaies aussi",
+    "w": [
+     "Qu'il s'applique à la teigne seulement",
+     "Qu'il s'applique à la lèpre seulement",
+     "Qu'il s'applique à la tumeur seulement"
+    ],
+    "ref": "13:44",
+    "proof": [
+     "טמא יטמאנו"
+    ],
+    "x": "Rachi sur Lévitique 13:44 : on pourrait ne viser que la teigne ; « il le déclarera impur, impur » inclut toutes les autres plaies."
    }
   ]
  }

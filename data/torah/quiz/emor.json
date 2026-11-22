@@ -73,6 +73,76 @@
      "lapide"
     ],
     "x": "Ceux qui l'ont entendu imposent leurs mains sur sa tête."
+   },
+   {
+    "q": "Que dit la Torah d'un animal qui aurait un défaut, destiné au sacrifice ?",
+    "a": "Qu'on ne doit pas l'offrir : il ne sera pas agréé",
+    "w": [
+     "Qu'on doit l'offrir : il sera agréé en dernier",
+     "Qu'on doit le vendre : il sera racheté au sanctuaire",
+     "Qu'on doit le garder : il sera offert plus tard"
+    ],
+    "ref": "22:20",
+    "proof": [
+     "ne l'offrez point"
+    ],
+    "x": "Tout animal défectueux est écarté de l'autel."
+   },
+   {
+    "q": "Que ne doit-on pas égorger le même jour, parmi le gros et le menu bétail ?",
+    "a": "L'animal avec son petit",
+    "w": [
+     "Deux animaux de la même espèce",
+     "Un mâle avec une femelle",
+     "Un animal avec sa mère et sa sœur"
+    ],
+    "ref": "22:28",
+    "proof": [
+     "avec son petit le même jour"
+    ],
+    "x": "Cette règle vaut pour le gros comme pour le menu bétail."
+   },
+   {
+    "q": "Que ne doit-on pas faire de son saint nom, selon l'Éternel ?",
+    "a": "Le déshonorer",
+    "w": [
+     "L'écrire",
+     "L'oublier",
+     "Le cacher"
+    ],
+    "ref": "22:32",
+    "proof": [
+     "Ne déshonorez point mon saint nom"
+    ],
+    "x": "Afin qu'il soit sanctifié au milieu des enfants d'Israël."
+   },
+   {
+    "q": "Que fait-on pendant six jours, avant le septième jour de repos solennel ?",
+    "a": "On se livre au travail",
+    "w": [
+     "On se livre à la prière",
+     "On se livre à l'étude",
+     "On se livre au jeûne"
+    ],
+    "ref": "23:3",
+    "proof": [
+     "six jours on se livrera au travail"
+    ],
+    "x": "Le septième jour est le Sabbat de l'Éternel."
+   },
+   {
+    "q": "Que doivent faire les Israélites le dixième jour du septième mois, jour des Expiations ?",
+    "a": "Mortifier leurs personnes",
+    "w": [
+     "Dresser des tentes",
+     "Sonner du cor",
+     "Offrir la gerbe"
+    ],
+    "ref": "23:27",
+    "proof": [
+     "mortifierez vos personnes"
+    ],
+    "x": "Il y a convocation sainte."
    }
   ],
   "2": [
@@ -159,6 +229,76 @@
      "Chelomith"
     ],
     "x": "Elle est fille de Dibri."
+   },
+   {
+    "q": "Pourquoi le prêtre doit-il être tenu pour saint ?",
+    "a": "Parce que c'est lui qui offre le pain de son Dieu",
+    "w": [
+     "Parce que c'est lui qui juge les procès de son peuple",
+     "Parce que c'est lui qui garde les tables de son maître",
+     "Parce que c'est lui qui compte les années de son roi"
+    ],
+    "ref": "21:8",
+    "proof": [
+     "offre le pain de ton Dieu"
+    ],
+    "x": "Il est saint parce que l'Éternel est saint."
+   },
+   {
+    "q": "Que ne doit pas faire le grand prêtre, qui porte le sacre de l'huile d'onction ?",
+    "a": "Quitter le sanctuaire",
+    "w": [
+     "Entrer dans le sanctuaire",
+     "Offrir un sacrifice",
+     "Porter la tiare"
+    ],
+    "ref": "21:12",
+    "proof": [
+     "ne quittera point le sanctuaire"
+    ],
+    "x": "Il ne doit pas ravaler le sanctuaire de son Dieu."
+   },
+   {
+    "q": "Que ne fait-on pas le premier jour de la fête des Azymes, selon la convocation sainte ?",
+    "a": "Aucune œuvre servile",
+    "w": [
+     "Aucune prière",
+     "Aucun repas",
+     "Aucun voyage"
+    ],
+    "ref": "23:7",
+    "proof": [
+     "aucune œuvre servile"
+    ],
+    "x": "Il y a pour vous convocation sainte."
+   },
+   {
+    "q": "Quand fête-t-on la fête du Seigneur qui dure sept jours, après la récolte ?",
+    "a": "Le quinzième jour du septième mois",
+    "w": [
+     "Le dixième jour du septième mois",
+     "Le premier jour du septième mois",
+     "Le quinzième jour du premier mois"
+    ],
+    "ref": "23:39",
+    "proof": [
+     "quinzième jour du septième mois"
+    ],
+    "x": "Le premier jour, il y a chômage."
+   },
+   {
+    "q": "Que met-on sur chaque rangée des pains de proposition ?",
+    "a": "De l'encens pur, en mémorial",
+    "w": [
+     "De l'huile pure, en mémorial",
+     "Du sel pur, en mémorial",
+     "Du miel pur, en mémorial"
+    ],
+    "ref": "24:7",
+    "proof": [
+     "encens pur"
+    ],
+    "x": "Il est brûlé en l'honneur de l'Éternel."
    }
   ],
   "3": [
@@ -232,6 +372,76 @@
      "דברנית"
     ],
     "x": "Rachi sur Lévitique 24:11 : elle bavardait, saluait tout le monde (« chalom aleikh ») et parlait avec chacun ; c'est pourquoi elle a failli."
+   },
+   {
+    "q": "Selon Rachi, que précise « fils d'Aaron » pour les prêtres concernés par l'interdit ?",
+    "a": "Les fils, et non les filles d'Aaron",
+    "w": [
+     "Les filles, et non les fils d'Aaron",
+     "Les fils et les filles d'Aaron",
+     "Les petits-fils, et non les fils d'Aaron"
+    ],
+    "ref": "21:1",
+    "proof": [
+     "ולא בנות אהרן"
+    ],
+    "x": "Rachi sur Lévitique 21:1 : « fils d'Aaron » : et non les filles d'Aaron."
+   },
+   {
+    "q": "Selon Rachi, que montre « et je serai sanctifié » dans « ne profanez pas mon saint nom » ?",
+    "a": "Qu'il faut se livrer à la mort plutôt que de transgresser",
+    "w": [
+     "Qu'il faut se cacher plutôt que de transgresser",
+     "Qu'il faut jeûner plutôt que de transgresser",
+     "Qu'il faut fuir plutôt que de transgresser"
+    ],
+    "ref": "22:32",
+    "proof": [
+     "מסר עצמך וקדש שמי"
+    ],
+    "x": "Rachi sur Lévitique 22:32 : livre-toi et sanctifie mon nom : on se livre pour mourir plutôt que de transgresser."
+   },
+   {
+    "q": "Selon Rachi, pourquoi la Torah dit-elle « les fêtes de l'Éternel » ?",
+    "a": "Pour que les Israélites les enseignent, en intercalant l'année pour les exilés montant en pèlerinage",
+    "w": [
+     "Pour que les Israélites les chantent, en sonnant du cor pour les voyageurs partant en pèlerinage",
+     "Pour que les Israélites les oublient, en reposant l'année pour les captifs revenant en pèlerinage",
+     "Pour que les Israélites les cachent, en comptant l'année pour les étrangers venant en pèlerinage"
+    ],
+    "ref": "23:2",
+    "proof": [
+     "שמעברים את השנה"
+    ],
+    "x": "Rachi sur Lévitique 23:2 : il a fait des fêtes pour qu'Israël s'y instruise, et que l'on intercale l'année pour les exilés qui montent en pèlerinage."
+   },
+   {
+    "q": "Selon Rachi, que montre « sept semaines complètes » pour le compte de l'ômer ?",
+    "a": "Qu'on commence à compter dès le soir",
+    "w": [
+     "Qu'on commence à compter dès l'aube",
+     "Qu'on commence à compter dès midi",
+     "Qu'on commence à compter dès le lendemain"
+    ],
+    "ref": "23:15",
+    "proof": [
+     "מתחיל ומונה מבערב"
+    ],
+    "x": "Rachi sur Lévitique 23:15 : qu'on compte à partir du soir, car sinon elles ne seraient pas complètes."
+   },
+   {
+    "q": "Selon Rachi, que signifient « rameaux d'arbre touffu » parmi les quatre espèces ?",
+    "a": "Le myrte, aux rameaux tressés comme des cordes",
+    "w": [
+     "Le saule, aux rameaux pendants comme des cordes",
+     "Le palmier, aux rameaux ouverts comme des cordes",
+     "L'olivier, aux rameaux serrés comme des cordes"
+    ],
+    "ref": "23:40",
+    "proof": [
+     "וזהו הדס"
+    ],
+    "x": "Rachi sur Lévitique 23:40 : un arbre dont les rameaux sont tressés comme des cordes : c'est le myrte."
    }
   ]
  }

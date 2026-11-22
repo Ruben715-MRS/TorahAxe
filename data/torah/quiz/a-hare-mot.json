@@ -85,6 +85,77 @@
      "principe vital de la chair gît dans le sang"
     ],
     "x": "C'est pourquoi Dieu l'a accordé sur l'autel pour procurer l'expiation."
+   },
+   {
+    "q": "Pour qui Aaron offre-t-il d'abord le taureau expiatoire ?",
+    "a": "Pour lui-même et pour sa maison",
+    "w": [
+     "Pour le peuple et pour les Lévites",
+     "Pour l'autel et pour le voile",
+     "Pour ses fils et pour les anciens"
+    ],
+    "ref": "16:6",
+    "proof": [
+     "pour lui-même et pour sa maison"
+    ],
+    "x": "Il l'amène pour obtenir grâce."
+   },
+   {
+    "q": "Comment Aaron doit-il traiter le bouc que le sort aura désigné pour l'Éternel ?",
+    "a": "Comme expiatoire",
+    "w": [
+     "Comme holocauste",
+     "Comme oblation",
+     "Comme rémunératoire"
+    ],
+    "ref": "16:9",
+    "proof": [
+     "comme expiatoire"
+    ],
+    "x": "L'autre bouc est envoyé à Azazel."
+   },
+   {
+    "q": "Que fait Aaron de son corps, avant de revêtir son costume et d'offrir les holocaustes ?",
+    "a": "Il le baigne dans l'eau, en lieu saint",
+    "w": [
+     "Il l'oint d'huile, en lieu pur",
+     "Il le frotte de sel, en lieu clos",
+     "Il le couvre de lin, en lieu voilé"
+    ],
+    "ref": "16:24",
+    "proof": [
+     "baignera son corps dans l'eau"
+    ],
+    "x": "Il fait ensuite propitiation pour lui-même et pour le peuple."
+   },
+   {
+    "q": "Que promet la Torah, le jour des expiations, à ceux pour lesquels on fait propitiation ?",
+    "a": "Qu'ils seront purs de tous leurs péchés devant l'Éternel",
+    "w": [
+     "Qu'ils seront libres de tous leurs vœux devant l'Éternel",
+     "Qu'ils seront nombreux de toutes leurs tribus devant l'Éternel",
+     "Qu'ils seront saints de tous leurs sabbats devant l'Éternel"
+    ],
+    "ref": "16:30",
+    "proof": [
+     "purs de tous vos péchés"
+    ],
+    "x": "On fait propitiation pour les purifier."
+   },
+   {
+    "q": "Que doit-on respecter dans sa conduite, au lieu des pratiques d'Égypte et de Canaan ?",
+    "a": "Les statuts et les lois de l'Éternel",
+    "w": [
+     "Les coutumes et les usages des anciens",
+     "Les maximes et les avis des voisins",
+     "Les traditions et les rites des pères"
+    ],
+    "ref": "18:4",
+    "proof": [
+     "mes statuts",
+     "mes lois"
+    ],
+    "x": "« C'est moi, l'Éternel, qui suis votre Dieu. »"
    }
   ],
   "2": [
@@ -159,6 +230,76 @@
      "encourir la mort"
     ],
     "x": "Dieu se manifeste dans un nuage, au-dessus du propitiatoire."
+   },
+   {
+    "q": "Où Aaron porte-t-il le sang du bouc expiatoire du peuple ?",
+    "a": "Dans l'enceinte du voile",
+    "w": [
+     "Sur la porte du parvis",
+     "Au pied de l'autel de cuivre",
+     "Devant l'entrée du camp"
+    ],
+    "ref": "16:15",
+    "proof": [
+     "enceinte du voile"
+    ],
+    "x": "Il en fait aspersion comme pour le sang du taureau."
+   },
+   {
+    "q": "Que fait-on du taureau et du bouc dont le sang a été introduit dans le sanctuaire ?",
+    "a": "On les transporte hors du camp et on les consume par le feu",
+    "w": [
+     "On les mange au parvis et on les offre aux prêtres",
+     "On les enterre dans le camp et on les couvre de terre",
+     "On les lave dans l'eau et on les offre sur l'autel"
+    ],
+    "ref": "16:27",
+    "proof": [
+     "hors du camp"
+    ],
+    "x": "On y brûle leur peau, leur chair et leur fiente."
+   },
+   {
+    "q": "Combien de fois par an relève-t-on les enfants d'Israël de tous leurs péchés ?",
+    "a": "Une fois",
+    "w": [
+     "Deux fois",
+     "Trois fois",
+     "Sept fois"
+    ],
+    "ref": "16:34",
+    "proof": [
+     "une fois l'année"
+    ],
+    "x": "C'est un statut perpétuel."
+   },
+   {
+    "q": "Que dit l'Éternel du principe vital de toute créature ?",
+    "a": "Qu'il est son sang, qui est dans son corps",
+    "w": [
+     "Qu'il est son souffle, qui est dans ses narines",
+     "Qu'il est son cœur, qui est dans sa poitrine",
+     "Qu'il est sa graisse, qui est dans ses entrailles"
+    ],
+    "ref": "17:14",
+    "proof": [
+     "son sang qui est dans son corps"
+    ],
+    "x": "Aussi a-t-il dit de ne manger le sang d'aucune créature."
+   },
+   {
+    "q": "Que fait-on avec une femme isolée par son impureté ?",
+    "a": "On n'approche pas d'elle",
+    "w": [
+     "On l'envoie hors du camp",
+     "On l'enferme dans sa tente",
+     "On l'écarte de ses enfants"
+    ],
+    "ref": "18:19",
+    "proof": [
+     "n'approche point d'elle"
+    ],
+    "x": "On ne découvre pas sa nudité."
    }
   ],
   "3": [
@@ -231,6 +372,76 @@
      "לעולם הבא"
     ],
     "x": "Rachi sur Lévitique 18:5 : « il vivra par eux » : dans le monde futur ; car si l'on disait « dans ce monde », ne meurt-il pas à la fin ?"
+   },
+   {
+    "q": "Selon Rachi, comment tire-t-on au sort pour les deux boucs ?",
+    "a": "On les place l'un à droite et l'autre à gauche, et l'on tire deux sorts d'une urne",
+    "w": [
+     "On les place l'un à l'est et l'autre à l'ouest, et l'on tire trois sorts du sol",
+     "On les place l'un au nord et l'autre au sud, et l'on tire quatre sorts d'un sac",
+     "On les place l'un devant et l'autre derrière, et l'on tire un sort d'une coupe"
+    ],
+    "ref": "16:8",
+    "proof": [
+     "מעמיד אחד לימין ואחד לשמאל"
+    ],
+    "x": "Rachi sur Lévitique 16:8 : il place l'un à sa droite et l'autre à sa gauche, met les deux mains dans l'urne et prend un sort de chaque main."
+   },
+   {
+    "q": "Selon Rachi, que veut dire « le sang sera compté comme celui qui a versé le sang » ?",
+    "a": "Il est tenu comme celui qui verse le sang d'un homme passible de mort",
+    "w": [
+     "Il est tenu comme celui qui verse le sang d'un animal passible de vol",
+     "Il est tenu comme celui qui verse le sang d'un voisin passible d'amende",
+     "Il est tenu comme celui qui verse le sang d'un étranger passible d'exil"
+    ],
+    "ref": "17:4",
+    "proof": [
+     "כשופך דם האדם שמתחיב בנפשו"
+    ],
+    "x": "Rachi sur Lévitique 17:4 : « le sang sera réputé » : comme celui qui verse le sang d'un homme passible de mort."
+   },
+   {
+    "q": "Selon Rachi, que sont « leurs statuts » (hukoteihem) qu'on ne doit pas suivre ?",
+    "a": "Leurs usages codifiés, comme les théâtres et les stades",
+    "w": [
+     "Leurs prières codifiées, comme les temples et les autels",
+     "Leurs fêtes codifiées, comme les marchés et les foires",
+     "Leurs armées codifiées, comme les camps et les forts"
+    ],
+    "ref": "18:3",
+    "proof": [
+     "טרטיאות ואצטדיאות"
+    ],
+    "x": "Rachi sur Lévitique 18:3 : ce sont leurs coutumes, des choses gravées chez eux, comme les théâtres et les stades."
+   },
+   {
+    "q": "Selon Rachi, que sont les « statuts » (hukim) que l'on observe ?",
+    "a": "Des décrets du Roi, auxquels le penchant au mal et les nations répondent par des objections",
+    "w": [
+     "Des conseils du roi, auxquels le penchant au bien et les justes répondent par des louanges",
+     "Des jugements du juge, auxquels le penchant au mal et les voleurs répondent par des ruses",
+     "Des rites du prêtre, auxquels le penchant au bien et les sages répondent par des chants"
+    ],
+    "ref": "18:4",
+    "proof": [
+     "גזרת המלך"
+    ],
+    "x": "Rachi sur Lévitique 18:4 : ce sont des décrets du Roi, auxquels le mauvais penchant et les nations objectent, comme le porc, le chaatnez, la purification par les eaux de l'expiation."
+   },
+   {
+    "q": "Selon Rachi, que veut dire « je suis l'Éternel » à la fin du verset ?",
+    "a": "Qu'il est fidèle pour payer le salaire",
+    "w": [
+     "Qu'il est puissant pour envoyer la punition",
+     "Qu'il est présent pour entendre la prière",
+     "Qu'il est unique pour donner la loi"
+    ],
+    "ref": "18:5",
+    "proof": [
+     "נאמן לשלם שכר"
+    ],
+    "x": "Rachi sur Lévitique 18:5 : fidèle pour payer le salaire."
    }
   ]
  }

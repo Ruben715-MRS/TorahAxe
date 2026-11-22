@@ -72,6 +72,76 @@
      "un agneau comme délictif"
     ],
     "x": "Il prend aussi un dixième de fleur de farine pour l'oblation, et un log d'huile."
+   },
+   {
+    "q": "Au-dessus de quoi le pontife égorge-t-il l'un des oiseaux, pour purifier le lépreux ?",
+    "a": "Au-dessus d'un vaisseau d'argile, sur de l'eau vive",
+    "w": [
+     "Au-dessus d'un bassin de cuivre, sur du sel pilé",
+     "Au-dessus d'une coupe d'or, sur du vin pur",
+     "Au-dessus de l'autel du camp, sur du feu vif"
+    ],
+    "ref": "14:5",
+    "proof": [
+     "vaisseau d'argile, sur de l'eau vive"
+    ],
+    "x": "Il ordonne de l'égorger ainsi."
+   },
+   {
+    "q": "Où met-on du sang du délictif, sur celui qui se purifie ?",
+    "a": "Sur le lobe de l'oreille droite, le pouce droit et l'orteil droit",
+    "w": [
+     "Sur le front, la poitrine et l'épaule gauche",
+     "Sur la tête, la barbe et le talon droit",
+     "Sur le cœur, la main gauche et le pied gauche"
+    ],
+    "ref": "14:14",
+    "proof": [
+     "lobe de l'oreille droite"
+    ],
+    "x": "C'est le sang du délictif."
+   },
+   {
+    "q": "Où lâche-t-on l'oiseau vivant, pour purifier la maison ?",
+    "a": "Hors de la ville, dans la campagne",
+    "w": [
+     "Dans la cour, près de la porte",
+     "Sur le toit, près de la cheminée",
+     "Au centre, près de la place"
+    ],
+    "ref": "14:53",
+    "proof": [
+     "hors de la ville, dans la campagne"
+    ],
+    "x": "Ainsi la maison devient pure."
+   },
+   {
+    "q": "Combien de jours celui qui est délivré de sa gonorrhée compte-t-il depuis son rétablissement ?",
+    "a": "Sept jours",
+    "w": [
+     "Trois jours",
+     "Quatorze jours",
+     "Quarante jours"
+    ],
+    "ref": "15:13",
+    "proof": [
+     "sept jours depuis son rétablissement"
+    ],
+    "x": "Puis il lave ses vêtements et baigne son corps dans une eau vive."
+   },
+   {
+    "q": "Que se procure celui qui est pur de sa gonorrhée, au huitième jour ?",
+    "a": "Deux tourterelles ou deux jeunes colombes",
+    "w": [
+     "Deux agneaux ou deux jeunes chevreaux",
+     "Deux béliers ou deux jeunes taureaux",
+     "Deux perdrix ou deux jeunes cailles"
+    ],
+    "ref": "15:14",
+    "proof": [
+     "deux tourterelles ou deux jeunes colombes"
+    ],
+    "x": "Il se présente devant l'Éternel, à l'entrée de la Tente d'assignation."
    }
   ],
   "2": [
@@ -145,6 +215,77 @@
      "index droit"
     ],
     "x": "L'huile est prise de la main gauche du pontife."
+   },
+   {
+    "q": "Que prend le lépreux le huitième jour, comme offrande ?",
+    "a": "Deux agneaux sans défaut et une brebis d'un an",
+    "w": [
+     "Deux béliers sans défaut et une génisse de deux ans",
+     "Deux taureaux sans défaut et une chèvre d'un an",
+     "Deux boucs sans défaut et une colombe de trois ans"
+    ],
+    "ref": "14:10",
+    "proof": [
+     "deux agneaux sans défaut"
+    ],
+    "x": "Il ajoute trois dixièmes de fleur de farine."
+   },
+   {
+    "q": "Que prend le pontife pour purifier la maison atteinte ?",
+    "a": "Deux oiseaux, du bois de cèdre, de l'écarlate et de l'hysope",
+    "w": [
+     "Un oiseau, du bois de chittîm, de l'azur et du sel",
+     "Deux colombes, du bois d'olivier, de la pourpre et de l'huile",
+     "Un agneau, du bois de cèdre, de l'écarlate et du miel"
+    ],
+    "ref": "14:49",
+    "proof": [
+     "deux oiseaux",
+     "bois de cèdre"
+    ],
+    "x": "Il égorge l'un des oiseaux au-dessus d'un vase d'argile."
+   },
+   {
+    "q": "Que fait-on à une maison dont la plaie est apparue, avant de la recrépir ?",
+    "a": "On remplace les pierres altérées par d'autres pierres",
+    "w": [
+     "On efface les pierres altérées par de la chaux",
+     "On peint les pierres altérées avec du sang",
+     "On recouvre les pierres altérées de peaux"
+    ],
+    "ref": "14:42",
+    "proof": [
+     "d'autres pierres"
+    ],
+    "x": "On prend aussi d'autre mortier."
+   },
+   {
+    "q": "Que dit la Torah de l'écoulement de celui qui est affligé de gonorrhée ?",
+    "a": "Qu'il est impur",
+    "w": [
+     "Qu'il est pur",
+     "Qu'il est saint",
+     "Qu'il est léger"
+    ],
+    "ref": "15:2",
+    "proof": [
+     "son écoulement est impur"
+    ],
+    "x": "La Torah parle de quiconque en est affligé."
+   },
+   {
+    "q": "Que doit faire celui qui a laissé échapper de la matière séminale ?",
+    "a": "Baigner tout son corps dans l'eau, et être souillé jusqu'au soir",
+    "w": [
+     "Laver ses vêtements dans l'huile, et être souillé jusqu'au matin",
+     "Frotter son corps avec du sel, et être souillé jusqu'à la nuit",
+     "Se couper les cheveux, et être souillé jusqu'à la fête"
+    ],
+    "ref": "15:16",
+    "proof": [
+     "tout son corps"
+    ],
+    "x": "Il reste souillé jusqu'au soir."
    }
   ],
   "3": [
@@ -218,6 +359,76 @@
      "מטמוניות של זהב"
     ],
     "x": "Rachi sur Lévitique 14:34 : c'est une bonne nouvelle : les Amorites avaient caché des trésors d'or dans les murs de leurs maisons ; en démolissant la maison, on les trouve."
+   },
+   {
+    "q": "Selon Rachi, que signifie que le lépreux « habite hors de sa tente » après sa purification ?",
+    "a": "Qu'il lui est interdit d'avoir des relations conjugales",
+    "w": [
+     "Qu'il lui est interdit de manger avec sa famille",
+     "Qu'il lui est interdit de prier au sanctuaire",
+     "Qu'il lui est interdit de porter ses habits"
+    ],
+    "ref": "14:8",
+    "proof": [
+     "אסור בתשמיש המטה"
+    ],
+    "x": "Rachi sur Lévitique 14:8 : cela enseigne qu'il lui est interdit de partager sa couche."
+   },
+   {
+    "q": "Selon Rachi, que signifient les « trois dixièmes » de farine du lépreux ?",
+    "a": "Qu'ils sont pour les libations de ses trois agneaux",
+    "w": [
+     "Qu'ils sont pour les oblations de ses trois prêtres",
+     "Qu'ils sont pour les gâteaux de ses trois jours",
+     "Qu'ils sont pour les offrandes de ses trois oiseaux"
+    ],
+    "ref": "14:10",
+    "proof": [
+     "לנסכי שלושה כבשים"
+    ],
+    "x": "Rachi sur Lévitique 14:10 : ce sont les libations de ces trois agneaux : l'expiatoire et le délictif du lépreux demandent des libations."
+   },
+   {
+    "q": "Selon Rachi, pourquoi la Torah dit-elle « de sa chair » (mibsaro) à propos de l'écoulement ?",
+    "a": "Pour exclure l'écoulement qui ne vient pas de toute sa chair",
+    "w": [
+     "Pour inclure l'écoulement qui vient de tout son corps",
+     "Pour exclure l'écoulement qui vient d'une blessure",
+     "Pour inclure l'écoulement qui vient de la bouche"
+    ],
+    "ref": "15:2",
+    "proof": [
+     "מבשרו"
+    ],
+    "x": "Rachi sur Lévitique 15:2 : « de sa chair » et non de toute sa chair : on exclut certains cas."
+   },
+   {
+    "q": "Selon Rachi, pourquoi la femme devient-elle impure par les relations conjugales ?",
+    "a": "C'est un décret du Roi, sans raison liée au contact",
+    "w": [
+     "C'est une punition du Roi, avec une raison liée au péché",
+     "C'est une habitude du peuple, sans décret",
+     "C'est un conseil du pontife, avec raison pratique"
+    ],
+    "ref": "15:18",
+    "proof": [
+     "גזרת מלך"
+    ],
+    "x": "Rachi sur Lévitique 15:18 : c'est un décret du Roi que la femme devienne impure par la relation."
+   },
+   {
+    "q": "Selon Rachi, combien de jours sont « plusieurs jours » dans le flux sanguin de la femme ?",
+    "a": "Trois jours",
+    "w": [
+     "Sept jours",
+     "Deux jours",
+     "Quarante jours"
+    ],
+    "ref": "15:25",
+    "proof": [
+     "שלשה ימים"
+    ],
+    "x": "Rachi sur Lévitique 15:25 : « jours nombreux » : trois jours."
    }
   ]
  }
