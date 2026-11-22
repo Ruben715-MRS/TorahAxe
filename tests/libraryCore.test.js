@@ -46,3 +46,12 @@ test('ordre alphabétique : sans accent ni article, une lettre par œuvre, toute
     const sum = L.letters().reduce((n, l) => n + L.alphabetical(l).length, 0);
     assert.strictEqual(sum, L.WORKS.length);
 });
+
+test('frise : l\'année de la frise, l\'étiquette « ~ » pour une vie d\'auteur, l\'ordre chronologique', () => {
+    assert.strictEqual(L.yearLabel(L.byId('tanya')), '1796');
+    assert.strictEqual(L.yearLabel(L.byId('kli_yakar')), '~' + Math.round((1550 + 1619) / 2));
+    assert.strictEqual(L.yearLabel(L.byId('beer_yitshak')), '~1864');
+    const order = L.chronological();
+    assert.strictEqual(order.length, L.WORKS.length);
+    for (let i = 1; i < order.length; i++) assert.ok(L.year(order[i - 1]) <= L.year(order[i]), order[i].id);
+});

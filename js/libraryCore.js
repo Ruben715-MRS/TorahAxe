@@ -291,8 +291,8 @@
     function worksOf(authorId) { return WORKS.filter(function (x) { return x.authorId === authorId; }); }
     // La période : l'année de rédaction ; pour une œuvre datée par la vie de son auteur (life), le milieu de cette vie.
     function eraOf(work) {
-        var year = work.life ? Math.round((work.from + work.to) / 2) : work.from;
-        for (var i = 0; i < ERAS.length; i++) if (year <= ERAS[i].to) return ERAS[i].id;
+        var y = work.life ? Math.round((work.from + work.to) / 2) : work.from;
+        for (var i = 0; i < ERAS.length; i++) if (y <= ERAS[i].to) return ERAS[i].id;
         return ERAS[ERAS.length - 1].id;
     }
     function ofEra(era) { return WORKS.filter(function (x) { return eraOf(x) === era; }); }
@@ -324,6 +324,17 @@
         WORKS.forEach(function (x) { seen[initial(x)] = true; });
         return Object.keys(seen).sort();
     }
+    // L'année qui place l'œuvre sur la frise : l'année de rédaction ; pour une œuvre datée par la vie de son auteur, le milieu de cette vie (ou l'année de la mort si on ne
+    // connaît que celle-ci). L'étiquette de la frise ajoute « ~ » quand ce n'est pas une année de rédaction.
+    function year(work) {
+        if (work.life === 'died') return work.to;
+        return work.life ? Math.round((work.from + work.to) / 2) : work.from;
+    }
+    function yearLabel(work) { return (work.life ? '~' : '') + year(work); }
+    // Les œuvres de la plus ancienne à la plus récente (selon year).
+    function chronological(list) {
+        return (list || WORKS).slice().sort(function (a, b) { return year(a) - year(b) || a.to - b.to; });
+    }
     // « vers 1565 », « 200–220 », « 1796–1797 ».
     function dating(work) {
         if (work.life === 'contemp') return 'auteur contemporain';
@@ -333,5 +344,5 @@
         return (work.approx ? 'vers ' : '') + span;
     }
 
-    return { GENRES: GENRES, ERAS: ERAS, WORKS: WORKS, byId: byId, ofGenre: ofGenre, worksOf: worksOf, eraOf: eraOf, ofEra: ofEra, search: search, dating: dating, sortKey: sortKey, initial: initial, alphabetical: alphabetical, letters: letters };
+    return { GENRES: GENRES, ERAS: ERAS, WORKS: WORKS, byId: byId, ofGenre: ofGenre, worksOf: worksOf, eraOf: eraOf, ofEra: ofEra, search: search, dating: dating, year: year, yearLabel: yearLabel, chronological: chronological, sortKey: sortKey, initial: initial, alphabetical: alphabetical, letters: letters };
 }));

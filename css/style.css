@@ -17355,14 +17355,56 @@ body[data-view-profile="religieux"] .league-btn {
 :root[data-theme="dark"] .phys-mastery.is-weak { color: #fbbf24; }
 
 /* --- Bibliothèque juive --- */
+/* Une couleur par genre (bande des rangées, point de la frise, étagère) ; le nom du genre est toujours écrit à côté. */
+.lib-g-michna { --lib-c: #8b5e34; } .lib-g-talmud { --lib-c: #c2410c; } .lib-g-midrash { --lib-c: #ca8a04; } .lib-g-gueonim { --lib-c: #57534e; }
+.lib-g-halakha { --lib-c: #15803d; } .lib-g-commentaire { --lib-c: #2563eb; } .lib-g-philosophie { --lib-c: #4f46e5; } .lib-g-moussar { --lib-c: #0e7490; }
+.lib-g-kabbale { --lib-c: #7e22ce; } .lib-g-hassidout { --lib-c: #be185d; } .lib-g-reference { --lib-c: #6b7280; }
+:root[data-theme="dark"] .lib-g-michna { --lib-c: #d6a26b; } :root[data-theme="dark"] .lib-g-talmud { --lib-c: #fb923c; } :root[data-theme="dark"] .lib-g-midrash { --lib-c: #facc15; }
+:root[data-theme="dark"] .lib-g-gueonim { --lib-c: #a8a29e; } :root[data-theme="dark"] .lib-g-halakha { --lib-c: #4ade80; } :root[data-theme="dark"] .lib-g-commentaire { --lib-c: #7ea2ff; }
+:root[data-theme="dark"] .lib-g-philosophie { --lib-c: #a5b4fc; } :root[data-theme="dark"] .lib-g-moussar { --lib-c: #5fd0da; } :root[data-theme="dark"] .lib-g-kabbale { --lib-c: #d8b4fe; }
+:root[data-theme="dark"] .lib-g-hassidout { --lib-c: #f9a8d4; } :root[data-theme="dark"] .lib-g-reference { --lib-c: #9ca3af; }
+
 .lib-list { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
-.lib-item { border: 1px solid var(--border, #cbd5e1); border-radius: 10px; background: var(--card-bg, #fff); overflow: hidden; }
-.lib-item.is-open { border-color: #4f46e5; }
+.lib-item { border: 1px solid var(--border, #cbd5e1); border-left: 5px solid var(--lib-c, #94a3b8); border-radius: 10px; background: var(--card-bg, #fff); overflow: hidden; }
+.lib-item.is-open { border-color: var(--lib-c, #4f46e5); }
 .lib-head { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: 100%; padding: 8px 12px; background: none; border: 0; text-align: left; font: inherit; color: inherit; cursor: pointer; }
-.lib-names { display: flex; justify-content: space-between; gap: 8px; width: 100%; align-items: baseline; }
+.lib-names { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0 8px; width: 100%; align-items: baseline; }
+.lib-names .lib-he { margin-left: auto; }
 .lib-he { font-family: 'Frank Ruhl Libre', 'SBL Hebrew', serif; font-size: 1.05em; opacity: 0.85; }
 .lib-body { padding: 0 12px 10px; }
 .lib-trad { font-style: italic; }
+.lib-facts { display: grid; grid-template-columns: auto 1fr; gap: 3px 12px; margin: 6px 0 8px; font-size: 0.85em; }
+.lib-facts dt { opacity: 0.65; } .lib-facts dd { margin: 0; font-weight: 500; }
+.lib-pill, .lib-count-pill { display: inline-block; font-size: 0.8em; font-weight: 600; padding: 1px 8px; border-radius: 999px; color: var(--lib-c); border: 1px solid var(--lib-c); font-variant-numeric: tabular-nums; }
+
+/* La frise : l'axe est à gauche, les titres et les intitulés de période commencent à sa droite. */
+.lib-timeline { position: relative; display: flex; flex-direction: column; gap: 8px; padding-left: 62px; }
+.lib-timeline::before { content: ""; position: absolute; left: 46px; top: 4px; bottom: 4px; width: 2px; background: var(--border, #cbd5e1); }
+.lib-era { margin: 10px 0 0; font-size: 0.95em; font-weight: 700; }
+.lib-step { position: relative; }
+.lib-dot { position: absolute; left: -22px; top: 14px; width: 12px; height: 12px; border-radius: 50%; background: var(--lib-c); border: 2px solid var(--card-bg, #fff); box-shadow: 0 0 0 1px var(--border, #cbd5e1); }
+.lib-year { position: absolute; left: -62px; top: 12px; width: 34px; text-align: right; font-size: 0.7em; opacity: 0.7; font-variant-numeric: tabular-nums; }
+
+/* Les étagères (par genre) et les auteurs */
+.lib-shelf, .lib-author { border: 1px solid var(--border, #cbd5e1); border-left: 5px solid var(--lib-c); border-radius: 12px; background: var(--card-bg, #fff); overflow: hidden; }
+.lib-shelf-head, .lib-author-head { display: flex; align-items: center; gap: 10px; width: 100%; padding: 10px 12px; background: none; border: 0; font: inherit; color: inherit; text-align: left; cursor: pointer; }
+.lib-shelf-name { flex: 1; min-width: 0; }
+.lib-preview { display: flex; flex-wrap: wrap; gap: 5px; padding: 0 12px 10px; }
+.lib-preview-item { font-size: 0.75em; border: 1px solid var(--border, #cbd5e1); border-radius: 6px; padding: 2px 7px; }
+.lib-preview-item.is-more { border-style: dashed; opacity: 0.7; }
+.lib-shelf-rows { display: flex; flex-direction: column; gap: 6px; padding: 0 8px 8px; }
+.lib-avatar { flex: none; width: 38px; height: 38px; border-radius: 50%; border: 2px solid var(--lib-c); color: var(--lib-c); display: grid; place-items: center; font-weight: 700; font-size: 0.8em; }
+.lib-author-names { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.lib-author-names .tool-small { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* A–Z et Auteurs : la liste et son index */
+.lib-with-rail { display: grid; grid-template-columns: minmax(0, 1fr) 20px; gap: 6px; align-items: start; }
+.lib-col { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.lib-letter { margin: 12px 2px 2px; font-size: 1.05em; font-weight: 700; color: #4f46e5; border-bottom: 1px solid var(--border, #cbd5e1); scroll-margin-top: 8px; }
+:root[data-theme="dark"] .lib-letter { color: #a5b4fc; }
+.lib-rail { position: sticky; top: 12px; display: flex; flex-direction: column; align-items: center; max-height: 80vh; overflow: hidden; }
+.lib-rail-letter { background: none; border: 0; padding: 1px 0; width: 20px; font: inherit; font-size: 0.68em; font-weight: 700; color: #4f46e5; cursor: pointer; line-height: 1.35; }
+:root[data-theme="dark"] .lib-rail-letter { color: #a5b4fc; }
 
 /* === Zmanim (écran de l'Atelier, js/app/zmanim.js) : une carte « ciel » en tête, puis les horaires par moment de la journée ===
    Fond marine et or du design « Tailored Executive » (ui/tailored_executive/DESIGN.md) ; les autres surfaces suivent le thème (jetons). */
@@ -18739,4 +18781,6 @@ button.autoscroll-mode { height: 48px; padding: 0 12px; border: 1px dashed var(-
 :root[data-theme="dark"] .mes-badge-opinion, :root[data-theme="dark"] .mes-verdict[data-verdict="presume"] { background: #78350f; color: #fef3c7; }
 :root[data-theme="dark"] .mes-badge-tradition { background: #312e81; color: #e0e7ff; }
 :root[data-theme="dark"] .mes-verdict[data-verdict="not"] { background: #7f1d1d; color: #fee2e2; }
-.lib-letter { margin: 12px 2px 2px; font-size: 1.05em; font-weight: 700; color: #4f46e5; border-bottom: 1px solid var(--border, #cbd5e1); }
+/* Bibliothèque : les quatre modes de classement tiennent sur une ligne */
+#tool-lib-modes { flex-wrap: nowrap; gap: 6px; }
+#tool-lib-modes .tool-history-chip { padding-inline: 11px; flex: 0 1 auto; white-space: nowrap; }
