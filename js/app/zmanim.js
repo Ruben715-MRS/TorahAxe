@@ -42,6 +42,8 @@ const ZM_LABEL = {
 };
 // Les usages de chaque horaire : de quoi il marque le début (zm_ub_<id>) et la fin (zm_ue_<id>), d'après la fiche de calcul de Zmanim Diffusion.
 // Un horaire absent d'une liste n'a pas de ligne correspondante ; « tam » n'a qu'une remarque (zm_use_tam).
+// Les horaires dont le sous-titre ferait double emploi avec « Début de » / « Fin de » : on ne garde que ces lignes (la formule y est reprise).
+const ZM_NO_DESC = ['misheyakir', 'shema', 'tefila', 'guedola', 'ketana'];
 const ZM_USE_BEGIN = ['shema_night', 'alot', 'misheyakir', 'netz', 'guedola', 'ketana', 'plag', 'shkia', 'tzeit', 'chatzot_layla'];
 const ZM_USE_END = ['fast_end', 'alot', 'netz', 'shema', 'tefila', 'chatzot', 'shkia', 'tzeit', 'chatzot_layla'];
 // Les libellés en hébreu (bouton « A / א »). Les noms sont ceux de la tradition ; ils ne passent pas par i18n (l'hébreu n'est pas traduit).
@@ -1003,7 +1005,7 @@ function zmTimesList(body, z, state) {
             });
             r.appendChild(times);
             if (!zmHe) {
-                r.appendChild(zmEl('em', 'zm-r-desc', t('tools.zm_d_' + ZM_LABEL[row[0]])));
+                if (!ZM_NO_DESC.includes(ZM_LABEL[row[0]])) r.appendChild(zmEl('em', 'zm-r-desc', t('tools.zm_d_' + ZM_LABEL[row[0]])));
                 const use = zmUseEl(ZM_LABEL[row[0]], state.show);
                 if (use) r.appendChild(use);
                 r.setAttribute('aria-expanded', zmExplain ? 'true' : 'false');
