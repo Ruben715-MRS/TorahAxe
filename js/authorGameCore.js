@@ -9,7 +9,7 @@
 // Trois séries : tout, les Richonim (1040-1500), les 'Aharonim (depuis 1500). (Avant 1040, trop peu d'œuvres ont un auteur unique et connu pour faire une série à part.)
 // La mécanique de partie (questions, score, suite, jeu à plusieurs) est celle de js/quizCore.js.
 //
-// SEULS DES CAS SANS DISCUSSION. La Bibliothèque garde toutes les nuances (école, anonyme, attribution traditionnelle) ; le jeu, lui, n'interroge que :
+// SEULS DES CAS SANS DISCUSSION. Les œuvres du complément de la Bibliothèque (bib : true), datées par la vie de leur auteur, ne sont jamais posées. La Bibliothèque garde toutes les nuances (école, anonyme, attribution traditionnelle) ; le jeu, lui, n'interroge que :
 //  - pour « qui a écrit ? » et « lequel a écrit ? » : les œuvres d'un auteur unique et connu (celles de AUTHORS ci-dessous), sans attribution traditionnelle qui diffère des historiens
 //    (le Zohar, le Séfer HaHinoukh, le Bahir… sont exclus), et dont le titre ne contient pas le nom de l'auteur (« Commentaire de Rachi » n'est pas une question) ;
 //  - pour « quelle époque ? » : les œuvres datées sur moins de soixante ans, tout entières dans une époque et à trente ans au moins d'une frontière entre deux époques ;
@@ -114,16 +114,16 @@
     }
 
     // Une œuvre dont on peut demander l'auteur : auteur unique et connu, pas d'attribution traditionnelle à part, titre qui ne donne pas la réponse.
-    function authorAsked(work) { return !!AUTHORS[work.authorId] && !work.trad && !EXCLUDED[work.id] && !leaks(work); }
+    function authorAsked(work) { return !work.bib && !!AUTHORS[work.authorId] && !work.trad && !EXCLUDED[work.id] && !leaks(work); }
 
     // Une œuvre dont on peut demander l'époque : datée sur moins de soixante ans, tout entière dans une époque, loin des frontières.
     function eraAsked(work) {
-        if (work.trad || EXCLUDED[work.id] || work.to - work.from > MAX_SPAN || eraIndex(work.from) !== eraIndex(work.to)) return false;
+        if (work.bib || work.trad || EXCLUDED[work.id] || work.to - work.from > MAX_SPAN || eraIndex(work.from) !== eraIndex(work.to)) return false;
         return BOUNDARIES.every(function (b) { return Math.abs(work.from - b) >= BOUNDARY_MARGIN && Math.abs(work.to - b) >= BOUNDARY_MARGIN; });
     }
 
     // Une œuvre que l'on peut classer dans le temps : datée sur moins de soixante ans, sans attribution discutée.
-    function dateAsked(work) { return !work.trad && !EXCLUDED[work.id] && work.to - work.from <= MAX_SPAN; }
+    function dateAsked(work) { return !work.bib && !work.trad && !EXCLUDED[work.id] && work.to - work.from <= MAX_SPAN; }
 
     function inSection(work, section) { return (SECTION_ERAS[section] || SECTION_ERAS.all).indexOf(Library.eraOf(work)) >= 0; }
 

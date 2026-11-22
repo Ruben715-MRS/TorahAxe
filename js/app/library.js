@@ -112,10 +112,12 @@ function libItem(x) {
     head.setAttribute('aria-expanded', open ? 'true' : 'false');
     const names = libNode('span', 'lib-names');
     names.appendChild(libNode('strong', 'lib-fr', x.fr));
-    const he = libNode('span', 'lib-he', x.he);
-    he.setAttribute('lang', 'he');
-    he.setAttribute('dir', 'rtl');
-    names.appendChild(he);
+    if (x.he) {
+        const he = libNode('span', 'lib-he', x.he);
+        he.setAttribute('lang', 'he');
+        he.setAttribute('dir', 'rtl');
+        names.appendChild(he);
+    }
     head.appendChild(names);
     head.appendChild(libNode('span', 'tool-small lib-meta', x.author + ' · ' + LibraryCore.dating(x)));
     head.onclick = () => { libSelected = open ? '' : x.id; libRender(); };
