@@ -28,15 +28,14 @@ test('Hanouka : rien hors de la fête, ni si le réglage est coupé', () => {
 });
 
 // --- Plag Magen Avraham, début de la Chéma du soir, fin des jeûnes ------------------------------------------------------------------------------
-test('rappel personnalisé : plag Magen Avraham et Chéma du soir sont proposés, avec leur horaire', () => {
+test('rappel personnalisé : plag Magen Avraham et fin du jeûne sont proposés, avec leur horaire', () => {
     const R = require('../js/zmanimReminderCore.js');
     const Z = require('../js/zmanimCore.js');
-    ['plagMa', 'shemaNight', 'fastEnd'].forEach(k => assert.ok(R.CUSTOM_KEYS.includes(k), k));
+    ['plagMa', 'fastEnd'].forEach(k => assert.ok(R.CUSTOM_KEYS.includes(k), k));
     const place = Z.normalizePlace({ name: 'Marseille', lat: 43.2965, lon: 5.3698, elevation: 0, tz: 'Europe/Paris' });
     const from = Date.parse('2026-06-10T00:30:00+02:00');
-    const items = R.plan({ on: true, candles: { on: false }, omer: { on: false }, hanouka: { on: false }, days: [0, 1, 2, 3, 4, 5, 6], custom: { plagMa: 10, shemaNight: 0 } }, place, {}, from, 1, false);
+    const items = R.plan({ on: true, candles: { on: false }, omer: { on: false }, hanouka: { on: false }, days: [0, 1, 2, 3, 4, 5, 6], custom: { plagMa: 10 } }, place, {}, from, 1, false);
     assert.ok(items.some(x => x.key === 'plagMa'));
-    assert.ok(items.some(x => x.key === 'shemaNight'));
     const z = Z.zmanim(place, 2026, 6, 10, {});
     assert.strictEqual(items.find(x => x.key === 'plagMa').time, Z.rounded(z, 'plagMa'));
 });

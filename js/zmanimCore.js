@@ -234,7 +234,7 @@
         if (o.misheyakir === 'alot6') out.misheyakir = alot === null || seaRise === null || seaSet === null ? null : alot + 6 * (seaSet - seaRise) / 12 / 60;   // 6 minutes zmaniyot après l'aube
         else out.misheyakir = solarEvent(place, y, m, d, -misheyakirDeg, true);
         out.tzeit = at(place, y, m, d, starsRule, false, seaRise, seaSet);
-        // Début de la Chéma du soir : trois petites étoiles dispersées, 7,083° (fixe, comme sur la fiche Zmanim Diffusion).
+        // Début de la Chéma du soir : trois petites étoiles dispersées, 7,083° (fixe, comme sur la fiche Zmanim Diffusion). Même heure que `tzeit` au réglage par défaut.
         out.shemaNight = solarEvent(place, y, m, d, -7.083, false);
         // Fin des jeûnes dérabanan (sauf Kippour) : 20 minutes zmaniyot après le coucher.
         out.fastEnd = at(place, y, m, d, { zm: 20 }, false, seaRise, seaSet);
