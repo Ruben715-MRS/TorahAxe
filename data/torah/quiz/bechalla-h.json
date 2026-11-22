@@ -85,6 +85,77 @@
      "manne"
     ],
     "x": "Elle ressemblait à de la graine de coriandre, était blanche et avait la saveur d'un beignet au miel."
+   },
+   {
+    "q": "Que deviennent les eaux de la mer, quand les enfants d'Israël y entrent ?",
+    "a": "Elles se dressent en muraille à leur droite et à leur gauche",
+    "w": [
+     "Elles se retirent au loin, à l'est et à l'ouest",
+     "Elles se changent en glace, au nord et au sud",
+     "Elles se couvrent de brume, à l'aube et au soir"
+    ],
+    "ref": "14:22",
+    "proof": [
+     "eaux se dressant en muraille"
+    ],
+    "x": "Ils entrent dans son lit desséché."
+   },
+   {
+    "q": "Comment le cantique appelle-t-il l'Éternel ?",
+    "a": "Le maître des batailles",
+    "w": [
+     "Le roi des armées",
+     "Le juge des nations",
+     "Le berger d'Israël"
+    ],
+    "ref": "15:3",
+    "proof": [
+     "maître des batailles"
+    ],
+    "x": "« Éternel est son nom ! »"
+   },
+   {
+    "q": "Que dit le peuple à Moïse, à Mara, devant les eaux amères ?",
+    "a": "« Que boirons-nous ? »",
+    "w": [
+     "« Que mangerons-nous ? »",
+     "« Où irons-nous ? »",
+     "« Qui nous guidera ? »"
+    ],
+    "ref": "15:24",
+    "proof": [
+     "Que boirons-nous"
+    ],
+    "x": "Le peuple murmura contre Moïse."
+   },
+   {
+    "q": "Où Moïse dit-il à Aaron de déposer un ômer de manne ?",
+    "a": "Dans une urne, devant l'Éternel",
+    "w": [
+     "Dans l'arche, sous le propitiatoire",
+     "Dans la tente, derrière le voile",
+     "Dans un sac, près de l'autel"
+    ],
+    "ref": "16:33",
+    "proof": [
+     "urne",
+     "plein ômer de manne"
+    ],
+    "x": "C'est pour le souvenir des générations."
+   },
+   {
+    "q": "Que dit le cantique de la durée du règne de l'Éternel ?",
+    "a": "Qu'il régnera à tout jamais",
+    "w": [
+     "Qu'il régnera sept générations",
+     "Qu'il régnera mille années",
+     "Qu'il régnera jusqu'au jubilé"
+    ],
+    "ref": "15:18",
+    "proof": [
+     "régnera à tout jamais"
+    ],
+    "x": "C'est la dernière parole du cantique de la mer."
    }
   ],
   "2": [
@@ -160,6 +231,76 @@
      "quarante ans"
     ],
     "x": "Ils en mangèrent jusqu'à leur arrivée en pays habité, jusqu'aux confins du pays de Canaan."
+   },
+   {
+    "q": "L'ômer de manne correspond à quelle partie de l'éfa ?",
+    "a": "Au dixième",
+    "w": [
+     "Au tiers",
+     "À la moitié",
+     "Au centième"
+    ],
+    "ref": "16:36",
+    "proof": [
+     "dixième partie de l'êpha"
+    ],
+    "x": "Moïse précise cette mesure pour les générations."
+   },
+   {
+    "q": "Que fait l'Éternel aux chars des Égyptiens, quand il les confond dans la mer ?",
+    "a": "Il détache leurs roues, qui avancent pesamment",
+    "w": [
+     "Il brise leurs essieux, qui s'enfoncent vite",
+     "Il brûle leurs bois, qui s'éteignent bientôt",
+     "Il couvre leurs chevaux, qui s'arrêtent net"
+    ],
+    "ref": "14:25",
+    "proof": [
+     "détacha les roues"
+    ],
+    "x": "L'Égyptien s'écrie : « Fuyons devant Israël ! »"
+   },
+   {
+    "q": "Que trouvent ceux du peuple qui sortent à la récolte le septième jour ?",
+    "a": "Rien",
+    "w": [
+     "Peu de manne",
+     "Beaucoup de caille",
+     "Un reste de la veille"
+    ],
+    "ref": "16:27",
+    "proof": [
+     "ne trouvèrent rien"
+    ],
+    "x": "Le peuple chôma le septième jour."
+   },
+   {
+    "q": "Quels chefs tremblent, dans le cantique, devant le peuple de l'Éternel ?",
+    "a": "Les chefs d'Édom",
+    "w": [
+     "Les chefs d'Amalec",
+     "Les chefs d'Ammon",
+     "Les chefs de Madian"
+    ],
+    "ref": "15:15",
+    "proof": [
+     "chefs d'Édom"
+    ],
+    "x": "Les vaillants de Moab sont saisis de terreur."
+   },
+   {
+    "q": "Que promet l'Éternel au peuple, après avoir entendu ses murmures ?",
+    "a": "De la viande vers le soir, du pain au matin",
+    "w": [
+     "Du pain vers le soir, de la viande au matin",
+     "De la manne vers le soir, de l'eau au matin",
+     "Du poisson vers le soir, du lait au matin"
+    ],
+    "ref": "16:12",
+    "proof": [
+     "soir vous mangerez de la viande"
+    ],
+    "x": "Ils reconnaîtront que lui, l'Éternel, est leur Dieu."
    }
   ],
   "3": [
@@ -236,6 +377,76 @@
      "מזינים"
     ],
     "x": "Rachi sur Exode 13:18 : « hamouchim » veut dire « pourvus de vivres »."
+   },
+   {
+    "q": "Selon Rachi, que montre « ils crièrent » vers l'Éternel, à la mer ?",
+    "a": "Qu'ils saisirent le métier de leurs pères, la prière",
+    "w": [
+     "Qu'ils saisirent les armes de leurs pères, la guerre",
+     "Qu'ils saisirent la voix de leurs pères, le chant",
+     "Qu'ils saisirent les biens de leurs pères, la terre"
+    ],
+    "ref": "14:10",
+    "proof": [
+     "תפשו אמנות אבותם"
+    ],
+    "x": "Rachi sur Exode 14:10 : ils saisirent le métier de leurs pères : Abraham, Isaac, Jacob prièrent."
+   },
+   {
+    "q": "Selon Rachi, quel est « le vent d'est » qui ouvrit la mer ?",
+    "a": "Le plus fort des vents, celui par lequel Dieu punit les méchants",
+    "w": [
+     "Le plus doux des vents, celui par lequel Dieu bénit les justes",
+     "Le plus froid des vents, celui par lequel Dieu gèle les eaux",
+     "Le plus chaud des vents, celui par lequel Dieu sèche les terres"
+    ],
+    "ref": "14:21",
+    "proof": [
+     "הרוח שהקב\"ה נפרע בה מן הרשעים"
+    ],
+    "x": "Rachi sur Exode 14:21 : le vent d'est, le plus fort des vents : celui avec lequel Dieu punit les méchants."
+   },
+   {
+    "q": "Selon Rachi, que montrent le cheval et son cavalier jetés dans la mer ?",
+    "a": "Qu'ils étaient liés l'un à l'autre, et que les eaux les montaient et les descendaient ensemble",
+    "w": [
+     "Qu'ils étaient séparés l'un de l'autre, et que les eaux les emportaient chacun",
+     "Qu'ils étaient enlacés l'un à l'autre, et que les eaux les noyaient sans bruit",
+     "Qu'ils étaient lourds l'un pour l'autre, et que les eaux les portaient au rivage"
+    ],
+    "ref": "15:1",
+    "proof": [
+     "שניהם קשורים זה בזה"
+    ],
+    "x": "Rachi sur Exode 15:1 : ils étaient attachés l'un à l'autre ; les eaux les remontaient et les faisaient descendre au fond sans qu'ils se séparent."
+   },
+   {
+    "q": "Selon Rachi, que reçurent les Israélites à Mara, avant de continuer ?",
+    "a": "Quelques sections de la Torah : le Chabbat, la vache rousse et les lois civiles",
+    "w": [
+     "Quelques sections de la Loi : la circoncision, la Pâque et l'huile d'onction",
+     "Quelques sections de la Loi : les dîmes, les fêtes et les vœux",
+     "Quelques sections de la Loi : le sanctuaire, les prêtres et les sacrifices"
+    ],
+    "ref": "15:25",
+    "proof": [
+     "שבת ופרה אדמה ודינין"
+    ],
+    "x": "Rachi sur Exode 15:25 : à Mara, il leur donna quelques sections de la Torah pour s'y occuper : le Chabbat, la vache rousse et les lois civiles."
+   },
+   {
+    "q": "Selon Rachi, que signifie « Joseph fit jurer les fils d'Israël » (hashbea hishbia) ?",
+    "a": "Qu'il les fit jurer de faire jurer leurs fils",
+    "w": [
+     "Qu'il les fit jurer de faire jurer leurs frères",
+     "Qu'il les fit jurer de faire jurer Pharaon",
+     "Qu'il les fit jurer de faire jurer Moïse"
+    ],
+    "ref": "13:19",
+    "proof": [
+     "השביעם שישביעו לבניהם"
+    ],
+    "x": "Rachi sur Exode 13:19 : il fit jurer les fils d'Israël, pour qu'ils fassent jurer leurs fils."
    }
   ]
  }

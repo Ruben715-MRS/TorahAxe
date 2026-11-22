@@ -73,6 +73,77 @@
      "étrangers en Égypte"
     ],
     "x": "« Tu ne contristeras point l'étranger ni ne le molesteras ; car vous-mêmes avez été étrangers en Égypte. »"
+   },
+   {
+    "q": "Quelle est la peine de celui qui enlève un homme et le vend, pris sur le fait ?",
+    "a": "Il est mis à mort",
+    "w": [
+     "Il est banni du camp",
+     "Il est mis aux fers",
+     "Il paie le double"
+    ],
+    "ref": "21:16",
+    "proof": [
+     "sera mis à mort"
+    ],
+    "x": "C'est la loi de l'enlèvement d'un homme."
+   },
+   {
+    "q": "Qui la Torah interdit-elle d'humilier, dans les lois sociales ?",
+    "a": "La veuve et l'orphelin",
+    "w": [
+     "Le riche et le puissant",
+     "Le sage et le juge",
+     "Le prêtre et le Lévite"
+    ],
+    "ref": "22:21",
+    "proof": [
+     "veuve ni l'orphelin"
+    ],
+    "x": "« N'humiliez jamais la veuve ni l'orphelin. »"
+   },
+   {
+    "q": "Que fait-on d'un bœuf qui heurte un homme ou une femme à mort ?",
+    "a": "On le lapide, sans manger sa chair",
+    "w": [
+     "On le vend, sans garder le prix",
+     "On l'abat, en mangeant sa chair",
+     "On le chasse, sans le toucher"
+    ],
+    "ref": "21:28",
+    "proof": [
+     "bœuf doit être lapidé"
+    ],
+    "x": "Son propriétaire est quitte."
+   },
+   {
+    "q": "Pendant combien de jours mange-t-on des pains azymes, à la fête des Azymes ?",
+    "a": "Sept jours",
+    "w": [
+     "Trois jours",
+     "Huit jours",
+     "Quarante jours"
+    ],
+    "ref": "23:15",
+    "proof": [
+     "sept jours tu mangeras des pains azymes"
+    ],
+    "x": "« Ainsi que je te l'ai ordonné. »"
+   },
+   {
+    "q": "Qui la Torah interdit-elle d'outrager ou de maudire, dans le peuple ?",
+    "a": "L'autorité suprême et le chef du peuple",
+    "w": [
+     "Le voisin et l'ami du peuple",
+     "Le prêtre et le Lévite du peuple",
+     "Le juge et le témoin du peuple"
+    ],
+    "ref": "22:27",
+    "proof": [
+     "autorité suprême",
+     "chef de ton peuple"
+    ],
+    "x": "Elle l'interdit en même temps."
    }
   ],
   "2": [
@@ -148,6 +219,76 @@
      "saphir"
     ],
     "x": "Ils contemplèrent la Divinité d'Israël."
+   },
+   {
+    "q": "Combien de pièces de gros bétail celui qui vole et égorge un bœuf doit-il payer ?",
+    "a": "Cinq pièces",
+    "w": [
+     "Quatre pièces",
+     "Deux pièces",
+     "Sept pièces"
+    ],
+    "ref": "21:37",
+    "proof": [
+     "cinq pièces de gros bétail"
+    ],
+    "x": "Il donne quatre pièces de menu bétail pour une brebis."
+   },
+   {
+    "q": "Que doit payer le voleur, si l'objet volé est retrouvé intact entre ses mains ?",
+    "a": "Le double",
+    "w": [
+     "Le triple",
+     "Le quart",
+     "Le tiers"
+    ],
+    "ref": "22:3",
+    "proof": [
+     "paiera le double"
+    ],
+    "x": "Il s'agit d'un bœuf, d'un âne ou d'une brebis."
+   },
+   {
+    "q": "Que paie l'auteur d'une blessure, quand le blessé se relève et sort appuyé sur son bâton ?",
+    "a": "Le chômage et les frais de guérison",
+    "w": [
+     "Le double de la blessure et une amende",
+     "Le prix du bâton et un sacrifice",
+     "L'entretien de la famille pendant un an"
+    ],
+    "ref": "21:19",
+    "proof": [
+     "chômage et les frais de la guérison"
+    ],
+    "x": "Il est absous de la peine."
+   },
+   {
+    "q": "Que doit-on faire avec le pauvre à qui on prête de l'argent ?",
+    "a": "Ne pas se comporter comme un créancier, ni exiger d'intérêts",
+    "w": [
+     "Lui demander un gage et des intérêts légers",
+     "Lui demander un témoin et un billet signé",
+     "Lui demander une garantie et un délai court"
+    ],
+    "ref": "22:24",
+    "proof": [
+     "comme un créancier"
+    ],
+    "x": "Il s'agit du pauvre « qui est avec toi »."
+   },
+   {
+    "q": "Qui se repose le septième jour, selon la loi du chômage ?",
+    "a": "Ton bœuf et ton âne, le fils de ton esclave et l'étranger",
+    "w": [
+     "Ton fils et ta fille, le fils de ton voisin et l'étranger",
+     "Ton prêtre et ton juge, le fils de ton frère et l'étranger",
+     "Ton troupeau et ton champ, le fils de ton ami et l'étranger"
+    ],
+    "ref": "23:12",
+    "proof": [
+     "ton bœuf et ton âne se reposent"
+    ],
+    "x": "Six jours durant, tu t'occuperas de tes travaux."
    }
   ],
   "3": [
@@ -224,6 +365,77 @@
      "במרה"
     ],
     "x": "Rachi sur Exode 24:7 : le livre de l'alliance : de la Genèse au don de la Torah, avec les commandements donnés à Mara."
+   },
+   {
+    "q": "Selon Rachi, que signifie « Dieu lui a fait rencontrer » (ana leyado) dans la loi du meurtre involontaire ?",
+    "a": "Que Dieu l'a mis à sa portée, sans guet-apens",
+    "w": [
+     "Que Dieu l'a chassé loin de lui, avec guet-apens",
+     "Que Dieu l'a pardonné devant lui, sans témoin",
+     "Que Dieu l'a puni par sa main, avec guet-apens"
+    ],
+    "ref": "21:13",
+    "proof": [
+     "זמן לידו"
+    ],
+    "x": "Rachi sur Exode 21:13 : « ana » est un langage de préparation : Dieu l'a mis à sa portée."
+   },
+   {
+    "q": "Selon Rachi, que paie celui qui fait avorter une femme enceinte, dans une rixe ?",
+    "a": "Le prix des enfants, fixé selon la valeur de la femme",
+    "w": [
+     "Le prix des enfants, fixé selon la valeur du bœuf",
+     "Le prix de la rixe, fixé selon la valeur du champ",
+     "Le prix de la peine, fixé selon la valeur du juge"
+    ],
+    "ref": "21:22",
+    "proof": [
+     "דמי ולדות"
+    ],
+    "x": "Rachi sur Exode 21:22 : il paie à son mari le prix des enfants : on estime combien elle valait à la vente avec sa grossesse."
+   },
+   {
+    "q": "Selon Rachi, qui passe en premier dans la charité, d'après « mon peuple » ?",
+    "a": "Le pauvre de ta ville avant le pauvre d'une autre ville",
+    "w": [
+     "Le riche de ta ville avant le riche d'une autre ville",
+     "Le voisin de ta ville avant le voisin d'une autre ville",
+     "Le parent de ta ville avant le parent d'une autre ville"
+    ],
+    "ref": "22:24",
+    "proof": [
+     "עניי עירך",
+     "קודמין"
+    ],
+    "x": "Rachi sur Exode 22:24 : mon peuple avant l'étranger, le pauvre avant le riche, les pauvres de ta famille et de ta ville avant les autres."
+   },
+   {
+    "q": "Selon Rachi, que signifie « tu l'aideras à le décharger » (azov taazov imo) ?",
+    "a": "Aider à décharger le fardeau de l'animal",
+    "w": [
+     "Aider à charger le fardeau de l'animal",
+     "Aider à vendre le fardeau de l'animal",
+     "Aider à garder le fardeau de l'animal"
+    ],
+    "ref": "23:5",
+    "proof": [
+     "לפרק המשא"
+    ],
+    "x": "Rachi sur Exode 23:5 : « azov » est un langage d'aide : décharger le fardeau."
+   },
+   {
+    "q": "Selon Rachi, que devient le sage qui prend un pot-de-vin ?",
+    "a": "Son esprit se trouble, son étude s'oublie et ses yeux s'obscurcissent",
+    "w": [
+     "Son esprit se renforce, son étude grandit et ses yeux s'éclairent",
+     "Son esprit se repose, son étude se tait et ses yeux se ferment",
+     "Son esprit s'enrichit, son étude passe et ses yeux se lassent"
+    ],
+    "ref": "23:8",
+    "proof": [
+     "יעור פקחים"
+    ],
+    "x": "Rachi sur Exode 23:8 : même un sage en Torah qui prend un pot-de-vin finit par voir son esprit troublé, son étude oubliée, et la lumière de ses yeux s'éteindre."
    }
   ]
  }

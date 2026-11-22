@@ -96,6 +96,88 @@
      "Jocabed"
     ],
     "x": "Amram choisit Jocabed, sa tante, pour épouse ; elle lui enfanta Aaron et Moïse."
+   },
+   {
+    "q": "Que prennent Moïse et Aaron pour provoquer l'éruption sur les hommes et les bêtes ?",
+    "a": "Une poignée de suie de fournaise",
+    "w": [
+     "Une poignée de cendres de l'autel",
+     "Une poignée de sable du désert",
+     "Une poignée de sel de la mer"
+    ],
+    "ref": "9:8",
+    "proof": [
+     "poignée de suie de fournaise"
+    ],
+    "x": "Moïse la lance vers le ciel, devant Pharaon."
+   },
+   {
+    "q": "Comment l'Éternel décrit-il le cœur de Pharaon ?",
+    "a": "Opiniâtre : il refuse de laisser partir le peuple",
+    "w": [
+     "Faible : il hésite à laisser partir le peuple",
+     "Ouvert : il consent à laisser partir le peuple",
+     "Fermé : il ignore la demande du peuple"
+    ],
+    "ref": "7:14",
+    "proof": [
+     "opiniâtre"
+    ],
+    "x": "Dieu lui envoie Moïse au bord du fleuve."
+   },
+   {
+    "q": "Quelle est l'épouse d'Aaron, fille d'Amminadab et sœur de Nahchôn ?",
+    "a": {
+     "t": "Élichéba",
+     "he": "אֱלִישֶׁבַע"
+    },
+    "w": [
+     {
+      "t": "Séphora",
+      "he": "צִפֹּרָה"
+     },
+     {
+      "t": "Rébecca",
+      "he": "רִבְקָה"
+     },
+     {
+      "t": "Léa",
+      "he": "לֵאָה"
+     }
+    ],
+    "ref": "6:23",
+    "proof": [
+     "Élichéba, fille d'Amminadab"
+    ],
+    "x": "Elle lui enfante Nadab, Abihou, Éléazar et Ithamar."
+   },
+   {
+    "q": "Que dit Moïse à Pharaon pour qu'il sache que nul n'égale l'Éternel ?",
+    "a": "« Soit fait selon ta parole »",
+    "w": [
+     "« Soit fait selon ma parole »",
+     "« Soit fait selon la parole d'Aaron »",
+     "« Soit fait selon le vœu du peuple »"
+    ],
+    "ref": "8:6",
+    "proof": [
+     "Soit fait selon ta parole"
+    ],
+    "x": "Pharaon avait dit : « Dès demain. »"
+   },
+   {
+    "q": "Que dit Pharaon après la plaie des animaux malfaisants, sur le lieu où sacrifier ?",
+    "a": "Qu'ils peuvent partir dans le désert, mais pas trop loin",
+    "w": [
+     "Qu'ils peuvent sacrifier ici, mais sans le peuple",
+     "Qu'ils peuvent sacrifier ici, mais sans bétail",
+     "Qu'ils peuvent partir au Sinaï, mais sans femmes"
+    ],
+    "ref": "8:24",
+    "proof": [
+     "dans le désert"
+    ],
+    "x": "Il demande qu'ils prient pour lui."
    }
   ],
   "2": [
@@ -169,6 +251,76 @@
      "périrent"
     ],
     "x": "Le Seigneur agit selon la parole de Moïse : les grenouilles périrent dans les maisons, dans les fermes et dans les champs."
+   },
+   {
+    "q": "Qui Pharaon fait-il venir, pour imiter les prodiges de Moïse et d'Aaron ?",
+    "a": "Les experts et les magiciens",
+    "w": [
+     "Les prêtres et les généraux",
+     "Les scribes et les juges",
+     "Les anciens et les chefs"
+    ],
+    "ref": "7:11",
+    "proof": [
+     "experts et les magiciens"
+    ],
+    "x": "Les devins d'Égypte font de même par leurs prestiges."
+   },
+   {
+    "q": "Que font les devins, devant la plaie des grenouilles ?",
+    "a": "Ils en font autant",
+    "w": [
+     "Ils les chassent par leurs prières",
+     "Ils les cachent par leurs filets",
+     "Ils les mangent par leurs rites"
+    ],
+    "ref": "8:3",
+    "proof": [
+     "suscitèrent des grenouilles"
+    ],
+    "x": "Pharaon n'en est pas ému."
+   },
+   {
+    "q": "Pourquoi les devins ne peuvent-ils lutter contre Moïse, après la plaie de l'éruption ?",
+    "a": "Parce que l'éruption les frappait",
+    "w": [
+     "Parce que Moïse était trop éloigné",
+     "Parce que Pharaon les avait renvoyés",
+     "Parce que le fleuve les avait emportés"
+    ],
+    "ref": "9:11",
+    "proof": [
+     "l'éruption car elle les avait frappés"
+    ],
+    "x": "Ils sont couverts d'ulcères, comme tous les Égyptiens."
+   },
+   {
+    "q": "Qui doit parler à Pharaon pour qu'il renvoie les Israélites, selon l'ordre de Dieu ?",
+    "a": "Aaron, frère de Moïse",
+    "w": [
+     "Moïse seul, sans son frère",
+     "Josué, serviteur de Moïse",
+     "Amram, père de Moïse"
+    ],
+    "ref": "7:2",
+    "proof": [
+     "Aaron, ton frère, parlera à Pharaon"
+    ],
+    "x": "Moïse dit tout ce que Dieu lui ordonne."
+   },
+   {
+    "q": "De quoi Dieu se souvient-il, en entendant les gémissements des enfants d'Israël ?",
+    "a": "De son alliance",
+    "w": [
+     "De sa colère",
+     "De sa justice",
+     "De son nom"
+    ],
+    "ref": "6:5",
+    "proof": [
+     "je me suis souvenu"
+    ],
+    "x": "Ils sont asservis par les Égyptiens."
    }
   ],
   "3": [
@@ -246,6 +398,76 @@
      "הבטחתים"
     ],
     "x": "Rachi sur Exode 6:3 : ils ne l'ont pas connu par sa qualité de vérité, lui qui est fidèle à sa parole : il leur avait promis et n'avait pas encore accompli."
+   },
+   {
+    "q": "Selon Rachi, pourquoi Dieu « parla » (et non « dit ») à Moïse au début de la paracha ?",
+    "a": "Avec rigueur, à cause de sa plainte",
+    "w": [
+     "Avec joie, à cause de son obéissance",
+     "Avec douceur, à cause de sa prière",
+     "Avec tristesse, à cause de son départ"
+    ],
+    "ref": "6:2",
+    "proof": [
+     "על שהקשה לדבר"
+    ],
+    "x": "Rachi sur Exode 6:2 : il lui parla en jugement, pour avoir durci ses paroles : « pourquoi as-tu fait du mal à ce peuple »."
+   },
+   {
+    "q": "Selon Rachi, que signifie « ils n'écoutèrent pas Moïse, par abattement » ?",
+    "a": "Qu'ils refusèrent toute consolation",
+    "w": [
+     "Qu'ils n'acceptèrent pas de loi, et avaient le cœur dur",
+     "Qu'ils n'acceptèrent pas de chef, et avaient la voix faible",
+     "Qu'ils n'acceptèrent pas de signe, et avaient la vue basse"
+    ],
+    "ref": "6:9",
+    "proof": [
+     "לא קבלו תנחומין"
+    ],
+    "x": "Rachi sur Exode 6:9 : ils n'acceptèrent pas de consolation ; qui est oppressé a le souffle et la respiration courts."
+   },
+   {
+    "q": "Selon Rachi, que veut dire « j'endurcirai le cœur de Pharaon » ?",
+    "a": "Qu'il valait mieux l'endurcir, puisqu'il s'est révolté",
+    "w": [
+     "Que Dieu change le cœur de Pharaon, sans sa volonté",
+     "Que Dieu punit Pharaon, pour sa cruauté",
+     "Que Dieu éprouve Pharaon, avant de le pardonner"
+    ],
+    "ref": "7:3",
+    "proof": [
+     "טוב שיתקשה לבו"
+    ],
+    "x": "Rachi sur Exode 7:3 : puisqu'il s'est révolté contre moi et qu'il est clair qu'il ne se repentira pas de tout cœur, il vaut mieux que son cœur s'endurcisse."
+   },
+   {
+    "q": "Selon Rachi, pourquoi le fleuve n'est-il pas frappé par Moïse, mais par Aaron ?",
+    "a": "Parce que le fleuve l'avait protégé enfant",
+    "w": [
+     "Parce que Moïse n'avait pas de verge",
+     "Parce que Moïse était trop faible",
+     "Parce que Moïse devait rester en retrait"
+    ],
+    "ref": "7:19",
+    "proof": [
+     "הגן היאור על משה"
+    ],
+    "x": "Rachi sur Exode 7:19 : puisque le fleuve avait protégé Moïse quand il y avait été jeté, il ne fut pas frappé par lui, ni par le sang ni par les grenouilles."
+   },
+   {
+    "q": "Selon Rachi, que signifie « le doigt de Dieu » dit par les devins ?",
+    "a": "Que cette plaie ne vient pas de la magie, mais de Dieu",
+    "w": [
+     "Que cette plaie vient de la lune, et non de Dieu",
+     "Que cette plaie vient du fleuve, et non de Dieu",
+     "Que cette plaie vient d'Aaron, et non de Dieu"
+    ],
+    "ref": "8:15",
+    "proof": [
+     "מכה זו אינה על ידי כשפים"
+    ],
+    "x": "Rachi sur Exode 8:15 : cette plaie n'est pas par la magie, mais du Tout-Puissant."
    }
   ]
  }

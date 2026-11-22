@@ -72,6 +72,76 @@
      "au nombre de sept"
     ],
     "x": "Le candélabre est fait d'un seul lingot d'or pur, avec six branches."
+   },
+   {
+    "q": "Combien de chérubins d'or le propitiatoire porte-t-il, ressortant de ses extrémités ?",
+    "a": "Deux",
+    "w": [
+     "Un seul",
+     "Quatre",
+     "Sept"
+    ],
+    "ref": "25:18",
+    "proof": [
+     "deux chérubins d'or"
+    ],
+    "x": "Ils sont fabriqués tout d'une pièce avec lui."
+   },
+   {
+    "q": "Comment est fait le candélabre d'or pur ?",
+    "a": "Tout d'une pièce, de son pied à ses fleurs",
+    "w": [
+     "En trois parties, jointes par des anneaux",
+     "En sept parties, soudées par de l'argent",
+     "En deux moitiés, fixées par des crochets"
+    ],
+    "ref": "25:31",
+    "proof": [
+     "tout d'une pièce"
+    ],
+    "x": "Ses calices, ses boutons et ses fleurs font corps avec lui."
+   },
+   {
+    "q": "De quoi est damassé le voile qui sépare le sanctuaire du Saint des saints ?",
+    "a": "De chérubins",
+    "w": [
+     "De grenades",
+     "De palmiers",
+     "De lions"
+    ],
+    "ref": "26:31",
+    "proof": [
+     "damassant de chérubins"
+    ],
+    "x": "Il est fait d'azur, de pourpre, d'écarlate et de lin retors."
+   },
+   {
+    "q": "Que sculpte-t-on aux quatre angles de l'autel, de façon à faire corps avec lui ?",
+    "a": "Ses cornes",
+    "w": [
+     "Ses anneaux",
+     "Ses pieds",
+     "Ses barres"
+    ],
+    "ref": "27:2",
+    "proof": [
+     "ses cornes aux quatre angles"
+    ],
+    "x": "On le revêt de cuivre."
+   },
+   {
+    "q": "Combien d'anneaux d'or moule-t-on pour l'arche, placés à ses angles ?",
+    "a": "Quatre",
+    "w": [
+     "Deux",
+     "Six",
+     "Huit"
+    ],
+    "ref": "25:12",
+    "proof": [
+     "quatre anneaux d'or"
+    ],
+    "x": "Deux d'un côté, deux du côté opposé."
    }
   ],
   "2": [
@@ -146,6 +216,77 @@
      "trois coudées de hauteur"
     ],
     "x": "Il est carré, de cinq coudées de longueur et de cinq coudées de largeur."
+   },
+   {
+    "q": "Quelles sont les dimensions de la table de bois de chittîm ?",
+    "a": "Deux coudées de long et une coudée et demie de haut",
+    "w": [
+     "Trois coudées de long et deux coudées de haut",
+     "Deux coudées de long et une coudée de haut",
+     "Une coudée de long et une coudée et demie de haut"
+    ],
+    "ref": "25:23",
+    "proof": [
+     "deux coudées",
+     "une coudée et demie"
+    ],
+    "x": "Elle est recouverte d'or pur."
+   },
+   {
+    "q": "Combien de tapis de poil de chèvre sert-on de pavillon au tabernacle ?",
+    "a": "Onze",
+    "w": [
+     "Dix",
+     "Douze",
+     "Quinze"
+    ],
+    "ref": "26:7",
+    "proof": [
+     "au nombre de onze"
+    ],
+    "x": "Chacun a trente coudées de long."
+   },
+   {
+    "q": "Quelles peaux couvrent le pavillon, au-dessus des tapis ?",
+    "a": "Des peaux de bélier teintes en rouge, puis de tahach",
+    "w": [
+     "Des peaux de bœuf teintes en noir, puis de lion",
+     "Des peaux de chèvre teintes en bleu, puis d'agneau",
+     "Des peaux de bélier teintes en blanc, puis de cerf"
+    ],
+    "ref": "26:14",
+    "proof": [
+     "peaux de bélier teintes en rouge"
+    ],
+    "x": "La couverture supérieure est en peaux de tahach."
+   },
+   {
+    "q": "Quelle est la longueur des toiles du parvis, côté sud ?",
+    "a": "Cent coudées",
+    "w": [
+     "Cinquante coudées",
+     "Vingt coudées",
+     "Trente coudées"
+    ],
+    "ref": "27:9",
+    "proof": [
+     "cent coudées de longueur"
+    ],
+    "x": "Elles sont en lin retors."
+   },
+   {
+    "q": "Quelle est la largeur du rideau de la porte du parvis ?",
+    "a": "Vingt coudées",
+    "w": [
+     "Dix coudées",
+     "Cinquante coudées",
+     "Cent coudées"
+    ],
+    "ref": "27:16",
+    "proof": [
+     "rideau de vingt coudées"
+    ],
+    "x": "Il est brodé d'azur, de pourpre, d'écarlate et de lin retors."
    }
   ],
   "3": [
@@ -219,6 +360,76 @@
      "מנורה של אש"
     ],
     "x": "Rachi sur Exode 25:40 : Moïse eut du mal avec l'ouvrage du candélabre, jusqu'à ce que Dieu lui en montre un de feu."
+   },
+   {
+    "q": "Selon Rachi, quel métal ne fut pas donné par don volontaire pour le tabernacle ?",
+    "a": "L'argent, donné en part égale : un demi-sicle",
+    "w": [
+     "L'or, donné en part égale : un sicle",
+     "Le cuivre, donné en part égale : un béka",
+     "Le fer, donné en part égale : un ghéra"
+    ],
+    "ref": "25:3",
+    "proof": [
+     "חוץ מן הכסף שבא בשוה"
+    ],
+    "x": "Rachi sur Exode 25:3 : tous vinrent par don volontaire, chacun selon son cœur, sauf l'argent, donné à parts égales : un demi-sicle."
+   },
+   {
+    "q": "Selon Rachi, d'où venait le bois de chittîm dans le désert ?",
+    "a": "De Jacob, qui prévit qu'Israël construirait un tabernacle, et planta des cèdres en Égypte",
+    "w": [
+     "De Noé, qui prévit qu'Israël construirait une arche, et prit des cèdres du Liban",
+     "D'Abraham, qui prévit qu'Israël construirait un autel, et planta des tamaris à Beer Shava",
+     "De Joseph, qui prévit qu'Israël construirait un palais, et acheta des cèdres en Égypte"
+    ],
+    "ref": "25:5",
+    "proof": [
+     "יעקב אבינו צפה"
+    ],
+    "x": "Rachi sur Exode 25:5 : Jacob prévit par l'esprit saint qu'Israël bâtirait un tabernacle dans le désert : il fit planter des cèdres en Égypte et ordonna de les emporter."
+   },
+   {
+    "q": "Selon Rachi, combien d'arches Betsalel fit-il ?",
+    "a": "Trois : deux d'or et une de bois",
+    "w": [
+     "Deux : une d'or et une de bois",
+     "Trois : deux de bois et une d'or",
+     "Quatre : deux d'or et deux de bois"
+    ],
+    "ref": "25:11",
+    "proof": [
+     "שלשה ארונות עשה בצלאל"
+    ],
+    "x": "Rachi sur Exode 25:11 : Betsalel fit trois arches : deux d'or et une de bois, emboîtées l'une dans l'autre."
+   },
+   {
+    "q": "Selon Rachi, que veut dire « je te donnerai rendez-vous là » (venoadeti) ?",
+    "a": "Que Dieu fixera un lieu de rendez-vous pour lui parler",
+    "w": [
+     "Que Dieu fixera un temps de repos pour l'arche",
+     "Que Dieu fixera un jour de fête pour le peuple",
+     "Que Dieu fixera un nom nouveau pour Moïse"
+    ],
+    "ref": "25:22",
+    "proof": [
+     "אקבע למועד"
+    ],
+    "x": "Rachi sur Exode 25:22 : quand je te fixerai un rendez-vous pour te parler, c'est là que j'établirai ce lieu."
+   },
+   {
+    "q": "Selon Rachi, que fit Dieu quand Moïse eut du mal à faire le candélabre ?",
+    "a": "Il lui dit de jeter le lingot au feu, et le candélabre se fit tout seul",
+    "w": [
+     "Il lui dit de poser le lingot à terre, et le candélabre se fit en songe",
+     "Il lui dit de verser le lingot dans l'eau, et le candélabre se fit en une nuit",
+     "Il lui dit d'enterrer le lingot, et le candélabre se fit à l'aube"
+    ],
+    "ref": "25:31",
+    "proof": [
+     "השלך את הככר לאור"
+    ],
+    "x": "Rachi sur Exode 25:31 : « il sera fait » de lui-même : Dieu dit à Moïse : jette le lingot au feu, il se fera de lui-même."
    }
   ]
  }

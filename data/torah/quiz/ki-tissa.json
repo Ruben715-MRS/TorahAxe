@@ -85,6 +85,76 @@
      "couvrit son visage d'un voile"
     ],
     "x": "Sa peau était devenue rayonnante lorsque Dieu lui avait parlé."
+   },
+   {
+    "q": "Que dit l'Éternel que le Sabbat est entre lui et les enfants d'Israël ?",
+    "a": "Un symbole pour toutes leurs générations",
+    "w": [
+     "Un devoir pour toutes leurs tribus",
+     "Un repos pour tous leurs troupeaux",
+     "Un jour pour toutes leurs prières"
+    ],
+    "ref": "31:13",
+    "proof": [
+     "symbole de moi à vous"
+    ],
+    "x": "Il leur dit de garder ses sabbats."
+   },
+   {
+    "q": "Que font les Israélites dès le lendemain, après avoir fait le veau ?",
+    "a": "Ils offrent des holocaustes, mangent, boivent et se réjouissent",
+    "w": [
+     "Ils offrent des encens, jeûnent, prient et pleurent",
+     "Ils offrent des gerbes, dansent, chantent et dorment",
+     "Ils offrent des agneaux, bénissent, lisent et partent"
+    ],
+    "ref": "32:6",
+    "proof": [
+     "offrir des holocaustes"
+    ],
+    "x": "Ils amènent aussi des victimes rémunératoires."
+   },
+   {
+    "q": "Que dit Moïse à la porte du camp, pour rallier ceux qui sont fidèles ?",
+    "a": "« Qui aime l'Éternel me suive ! »",
+    "w": [
+     "« Qui craint l'Éternel me suive ! »",
+     "« Qui sert l'Éternel me suive ! »",
+     "« Qui loue l'Éternel me suive ! »"
+    ],
+    "ref": "32:26",
+    "proof": [
+     "Qui aime l'Éternel me suive"
+    ],
+    "x": "Tous les Lévites se groupent autour de lui."
+   },
+   {
+    "q": "Comment l'Éternel s'entretenait-il avec Moïse dans la Tente d'assignation ?",
+    "a": "Face à face, comme un homme avec un autre",
+    "w": [
+     "De loin, comme un roi avec un serviteur",
+     "Par songes, comme un père avec un enfant",
+     "Par nuée, comme un maître avec un élève"
+    ],
+    "ref": "33:11",
+    "proof": [
+     "face à face"
+    ],
+    "x": "Josué, fils de Noun, son serviteur, ne quittait pas la tente."
+   },
+   {
+    "q": "Que Dieu demande-t-il à Moïse de tailler pour renouveler les tables ?",
+    "a": "Deux tables de pierre semblables aux précédentes",
+    "w": [
+     "Deux tables de bois semblables aux précédentes",
+     "Trois tables de pierre semblables aux précédentes",
+     "Deux tables d'or semblables aux précédentes"
+    ],
+    "ref": "34:1",
+    "proof": [
+     "deux tables de pierre"
+    ],
+    "x": "Dieu y gravera les paroles des premières tables."
    }
   ],
   "2": [
@@ -157,6 +227,77 @@
      "cavité du roc"
     ],
     "x": "Dieu retire ensuite sa main : Moïse le voit par derrière, mais sa face ne peut être vue."
+   },
+   {
+    "q": "Que peut-on mettre dans l'huile d'onction sainte, selon la recette de l'Éternel ?",
+    "a": "Du cinnamone, du jonc aromatique et de la casse",
+    "w": [
+     "Du safran, du cèdre et du laurier",
+     "De la menthe, du sel et du miel",
+     "Du thym, de la rose et du nard"
+    ],
+    "ref": "30:23-24",
+    "proof": [
+     "cinnamone odorant",
+     "casse"
+    ],
+    "x": "On y joint de la myrrhe franche et un hîn d'huile d'olive."
+   },
+   {
+    "q": "Que dit Dieu de la nature des tables, et de leur écriture ?",
+    "a": "Elles étaient l'ouvrage de Dieu, et l'écriture, divine",
+    "w": [
+     "Elles étaient l'ouvrage de Moïse, et l'écriture, humaine",
+     "Elles étaient l'ouvrage d'Aaron, et l'écriture, sacrée",
+     "Elles étaient l'ouvrage d'un ange, et l'écriture, nouvelle"
+    ],
+    "ref": "32:16",
+    "proof": [
+     "ouvrage de Dieu"
+    ],
+    "x": "Les caractères sont des caractères divins."
+   },
+   {
+    "q": "Que Moïse dresse-t-il hors du camp, loin de son enceinte, en l'appelant Tente d'assignation ?",
+    "a": "Sa tente",
+    "w": [
+     "Un autel",
+     "Un pavillon",
+     "Un mur"
+    ],
+    "ref": "33:7",
+    "proof": [
+     "prit sa tente"
+    ],
+    "x": "Tout homme ayant à consulter le Seigneur s'y rend."
+   },
+   {
+    "q": "Que dit l'Éternel des prodiges qu'il fera, en renouvelant le pacte ?",
+    "a": "Qu'aucun pays ni nation n'en a connu de tels",
+    "w": [
+     "Que tous les pays et nations en ont connu de tels",
+     "Que seul Israël en a connu de tels avant",
+     "Que quelques pays et nations en ont connu"
+    ],
+    "ref": "34:10",
+    "proof": [
+     "n'ont encore été opérés dans aucun pays"
+    ],
+    "x": "Il renouvelle le pacte à la face de tout le peuple."
+   },
+   {
+    "q": "Qu'apporte-t-on à la maison de l'Éternel, parmi les produits de la terre ?",
+    "a": "Les prémices nouvelles de la terre",
+    "w": [
+     "Les premiers-nés du bétail",
+     "Les dîmes de la récolte",
+     "Les offrandes de la fête"
+    ],
+    "ref": "34:26",
+    "proof": [
+     "prémices nouvelles de ta terre"
+    ],
+    "x": "La Torah interdit aussi de cuire un chevreau dans le lait de sa mère."
    }
   ],
   "3": [
@@ -230,6 +371,76 @@
      "קשר של תפלין"
     ],
     "x": "Rachi sur Exode 33:23 : il lui montra le nœud des tefillin (traité Bérakhot)."
+   },
+   {
+    "q": "Selon Rachi, que signifie « quand tu relèveras la tête » (ki tissa) des enfants d'Israël ?",
+    "a": "Quand tu voudras recevoir leur total, ne les compte pas par tête, mais par demi-sicles",
+    "w": [
+     "Quand tu voudras recevoir leur don, ne les compte pas par famille, mais par tribu",
+     "Quand tu voudras recevoir leur serment, ne les compte pas par clan, mais par lot",
+     "Quand tu voudras recevoir leur tribut, ne les compte pas par jour, mais par mois"
+    ],
+    "ref": "30:12",
+    "proof": [
+     "אל תמנם לגלגלת"
+    ],
+    "x": "Rachi sur Exode 30:12 : quand tu voudras connaître leur nombre, ne les compte pas par tête, mais qu'ils donnent chacun un demi-sicle."
+   },
+   {
+    "q": "Selon Rachi, pourquoi le décompte attire-t-il le mauvais œil ?",
+    "a": "Parce que le compte livre à l'œil du malheur : la peste vint du temps de David",
+    "w": [
+     "Parce que le compte attire la colère des juges : la guerre vint du temps de David",
+     "Parce que le compte attire la jalousie des voisins : la famine vint du temps de David",
+     "Parce que le compte attire la curiosité des rois : la mort vint du temps de David"
+    ],
+    "ref": "30:12",
+    "proof": [
+     "המנין שולט בו עין הרע"
+    ],
+    "x": "Rachi sur Exode 30:12 : le dénombrement attire le mauvais œil, et la peste vient sur eux, comme au temps de David."
+   },
+   {
+    "q": "Selon Rachi, que montre « et toi, parle aux enfants d'Israël » à propos du Chabbat ?",
+    "a": "Que, même pressé par l'ouvrage du tabernacle, on ne repousse pas le Chabbat",
+    "w": [
+     "Que, même pressé par l'ouvrage du tabernacle, on repousse le Chabbat",
+     "Que, même pressé par l'ouvrage du tabernacle, on honore la fête",
+     "Que, même pressé par l'ouvrage du tabernacle, on compte les jours"
+    ],
+    "ref": "31:13",
+    "proof": [
+     "שבת אל תדחה מפניה"
+    ],
+    "x": "Rachi sur Exode 31:13 : même si vous êtes pressés dans l'ouvrage, le Chabbat ne doit pas être repoussé."
+   },
+   {
+    "q": "Selon Rachi, que veut dire « va, descends » (lekh red) dit à Moïse ?",
+    "a": "Que Dieu ne lui avait donné sa grandeur qu'à cause d'Israël",
+    "w": [
+     "Que Dieu ne lui avait donné sa tente qu'à cause d'Aaron",
+     "Que Dieu ne lui avait donné sa verge qu'à cause d'Israël",
+     "Que Dieu ne lui avait donné sa mission qu'à cause d'Aaron"
+    ],
+    "ref": "32:7",
+    "proof": [
+     "לא נתתי לך גדלה אלא בשבילם"
+    ],
+    "x": "Rachi sur Exode 32:7 : descends de ta grandeur : je ne t'ai donné de grandeur qu'à cause d'eux."
+   },
+   {
+    "q": "Selon Rachi, que signifie « ADONAÏ, ADONAÏ » dans les treize attributs ?",
+    "a": "Deux attributs de miséricorde : l'un avant la faute, l'autre après le repentir",
+    "w": [
+     "Deux attributs de rigueur : l'un avant la faute, l'autre après le jugement",
+     "Deux attributs de justice : l'un avant le procès, l'autre après le verdict",
+     "Deux attributs de grandeur : l'un avant la création, l'autre après le déluge"
+    ],
+    "ref": "34:6",
+    "proof": [
+     "מדת רחמים היא"
+    ],
+    "x": "Rachi sur Exode 34:6 : c'est l'attribut de miséricorde : une fois avant qu'il ait fauté, et une fois après qu'il a fauté et s'est repenti."
    }
   ]
  }

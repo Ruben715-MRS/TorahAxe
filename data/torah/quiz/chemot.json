@@ -109,6 +109,89 @@
      "serpent"
     ],
     "x": "Moïse jeta le bâton à terre : il devint un serpent, et Moïse s'enfuit devant lui."
+   },
+   {
+    "q": "Quel ordre Pharaon donne-t-il à tout son peuple au sujet des nouveau-nés mâles ?",
+    "a": "Les jeter dans le fleuve, en laissant vivre les filles",
+    "w": [
+     "Les enfermer dans un camp, en laissant vivre les filles",
+     "Les vendre aux marchands, en laissant vivre les filles",
+     "Les envoyer au désert, en laissant vivre les filles"
+    ],
+    "ref": "1:22",
+    "proof": [
+     "jetez-le dans le fleuve"
+    ],
+    "x": "Tout mâle nouveau-né doit y être jeté."
+   },
+   {
+    "q": "Dans quoi la mère de Moïse place-t-elle l'enfant, quand elle ne peut plus le cacher ?",
+    "a": "Dans un berceau de jonc enduit de bitume et de poix",
+    "w": [
+     "Dans un panier d'osier enduit de cire et de miel",
+     "Dans une jarre d'argile enduite de plâtre et de sel",
+     "Dans une barque de bois enduite de cire et d'huile"
+    ],
+    "ref": "2:3",
+    "proof": [
+     "berceau de jonc"
+    ],
+    "x": "Elle le dépose parmi les roseaux, au bord du fleuve."
+   },
+   {
+    "q": "Qui Moïse épouse-t-il, fille du prêtre de Madian ?",
+    "a": {
+     "t": "Séphora",
+     "he": "צִפֹּרָה"
+    },
+    "w": [
+     {
+      "t": "Léa",
+      "he": "לֵאָה"
+     },
+     {
+      "t": "Rachel",
+      "he": "רָחֵל"
+     },
+     {
+      "t": "Rébecca",
+      "he": "רִבְקָה"
+     }
+    ],
+    "ref": "2:21",
+    "proof": [
+     "Séphora, sa fille"
+    ],
+    "x": "Moïse consent à demeurer avec cet homme."
+   },
+   {
+    "q": "Que devient la main de Moïse quand il la remet dans son sein, puis la retire ?",
+    "a": "Elle est lépreuse, blanche comme la neige",
+    "w": [
+     "Elle est brûlée, noire comme la suie",
+     "Elle est enflée, rouge comme le sang",
+     "Elle est paralysée, sèche comme le bois"
+    ],
+    "ref": "4:6",
+    "proof": [
+     "lépreuse"
+    ],
+    "x": "Le Seigneur lui donne ce signe."
+   },
+   {
+    "q": "Quelle consigne Pharaon donne-t-il à propos de la paille pour les briques ?",
+    "a": "Qu'on ne leur en fournisse plus : ils iront la chercher eux-mêmes",
+    "w": [
+     "Qu'on leur en donne la moitié : ils chercheront le reste",
+     "Qu'on la leur fournisse au prix de l'argent",
+     "Qu'on la leur fournisse sans compter le matin"
+    ],
+    "ref": "5:7",
+    "proof": [
+     "ne fournirez plus",
+     "de la paille"
+    ],
+    "x": "Les briques ne doivent pas diminuer."
    }
   ],
   "2": [
@@ -181,6 +264,76 @@
      "retiré des eaux"
     ],
     "x": "Elle lui donna le nom de Moïse, disant : « Parce que je l'ai retiré des eaux. »"
+   },
+   {
+    "q": "Comment Dieu appelle-t-il Israël, devant Pharaon ?",
+    "a": "Son premier-né",
+    "w": [
+     "Son héritier",
+     "Son serviteur",
+     "Son berger"
+    ],
+    "ref": "4:22",
+    "proof": [
+     "premier-né de mes fils"
+    ],
+    "x": "Moïse doit le dire à Pharaon."
+   },
+   {
+    "q": "À quelle distance les Hébreux veulent-ils aller dans le désert pour sacrifier ?",
+    "a": "À trois journées de chemin",
+    "w": [
+     "À sept journées de chemin",
+     "À une journée de chemin",
+     "À douze journées de chemin"
+    ],
+    "ref": "5:3",
+    "proof": [
+     "trois journées de chemin"
+    ],
+    "x": "Autrement, disent-ils, la peste ou le glaive les frappera."
+   },
+   {
+    "q": "Que dit Dieu à Moïse, en Madian, pour qu'il retourne en Égypte ?",
+    "a": "Que sont morts tous ceux qui en voulaient à sa vie",
+    "w": [
+     "Que sont partis tous ceux qui gardaient les troupeaux",
+     "Que sont libérés tous ceux qui servaient Pharaon",
+     "Que sont oubliés tous ceux qui l'avaient connu"
+    ],
+    "ref": "4:19",
+    "proof": [
+     "tous ceux-là sont morts"
+    ],
+    "x": "« Va, retourne en Égypte. »"
+   },
+   {
+    "q": "De quel pays Dieu promet-il de faire monter Israël, vers le territoire du Cananéen, du Héthéen et de l'Amorréen ?",
+    "a": "Du servage de l'Égypte",
+    "w": [
+     "Du désert de Madian",
+     "Du mont Horeb",
+     "Du pays de Gessen"
+    ],
+    "ref": "3:17",
+    "proof": [
+     "servage de l'Égypte"
+    ],
+    "x": "Il parle aussi du Phérézéen, du Hévéen et du Jébuséen."
+   },
+   {
+    "q": "Avec qui l'Éternel se ressouvient-il de son alliance, en entendant les soupirs d'Israël ?",
+    "a": "Avec Abraham, Isaac et Jacob",
+    "w": [
+     "Avec Noé, Abraham et Isaac",
+     "Avec Adam, Noé et Abraham",
+     "Avec Isaac, Jacob et Joseph"
+    ],
+    "ref": "2:24",
+    "proof": [
+     "alliance avec Abraham, avec Isaac, avec Jacob"
+    ],
+    "x": "Le Seigneur entendit leurs soupirs."
    }
   ],
   "3": [
@@ -255,6 +408,76 @@
      "במספר"
     ],
     "x": "Rachi sur Exode 1:1 : Dieu les compte encore, par amour, comme les étoiles qu'il fait sortir par nombre et appelle toutes par leur nom."
+   },
+   {
+    "q": "Selon Rachi, que signifie « plus on les opprimait, plus ils se multipliaient » ?",
+    "a": "Que l'Esprit saint dit « ainsi il multipliera » en réponse à leur « qu'il ne multiplie pas »",
+    "w": [
+     "Que l'Esprit saint dit « ainsi il souffrira » en réponse à leur « qu'il se taise »",
+     "Que l'Esprit saint dit « ainsi il protégera » en réponse à leur « qu'il parte »",
+     "Que l'Esprit saint dit « ainsi il règnera » en réponse à leur « qu'il tombe »"
+    ],
+    "ref": "1:12",
+    "proof": [
+     "רוח הקדש אומרת כן"
+    ],
+    "x": "Rachi sur Exode 1:12 : l'Esprit saint dit « ainsi il multipliera » : vous dites « de peur qu'il ne multiplie », et moi je dis « ainsi il multipliera »."
+   },
+   {
+    "q": "Selon Rachi, que signifie la répétition « Moïse grandit » ?",
+    "a": "La première fois pour la taille, la seconde pour la grandeur, quand Pharaon le nomma sur sa maison",
+    "w": [
+     "La première fois pour la sagesse, la seconde pour la richesse",
+     "La première fois pour l'âge, la seconde pour le titre de prince d'Israël",
+     "La première fois pour la force, la seconde pour la foi"
+    ],
+    "ref": "2:11",
+    "proof": [
+     "הראשון לקומה והשני לגדלה"
+    ],
+    "x": "Rachi sur Exode 2:11 : le premier pour la taille, le second pour la grandeur : Pharaon l'avait nommé sur sa maison."
+   },
+   {
+    "q": "Selon Rachi, que montre « me tueras-tu ? » dit à Moïse par l'Hébreu ?",
+    "a": "Que Moïse avait tué l'Égyptien par le Nom explicite",
+    "w": [
+     "Que Moïse avait tué l'Égyptien par l'épée",
+     "Que Moïse avait tué l'Égyptien par la ruse",
+     "Que Moïse avait tué l'Égyptien par surprise"
+    ],
+    "ref": "2:14",
+    "proof": [
+     "בשם המפרש"
+    ],
+    "x": "Rachi sur Exode 2:14 : de là on apprend qu'il l'avait tué par le Nom explicite."
+   },
+   {
+    "q": "Selon Rachi, que signifie « Je serai celui que je serai » ?",
+    "a": "Que Dieu sera avec Israël dans cette détresse, comme dans les servitudes des autres royaumes",
+    "w": [
+     "Que Dieu est le premier et le dernier, sans changement",
+     "Que Dieu est caché et révélé, sans commencement",
+     "Que Dieu est un et unique, sans partage"
+    ],
+    "ref": "3:14",
+    "proof": [
+     "אהיה עמם בצרה"
+    ],
+    "x": "Rachi sur Exode 3:14 : je serai avec eux dans cette détresse comme je serai avec eux dans leur asservissement par les autres royaumes."
+   },
+   {
+    "q": "Selon Rachi, pourquoi un ange cherchait-il à faire mourir Moïse en chemin, à l'auberge ?",
+    "a": "Parce qu'il n'avait pas circoncis son fils Éliézer, et qu'il avait tardé",
+    "w": [
+     "Parce qu'il avait refusé la mission, et qu'il avait désobéi",
+     "Parce qu'il avait frappé l'Égyptien, et qu'il avait caché le fait",
+     "Parce qu'il avait quitté Madian, et qu'il avait emporté la verge"
+    ],
+    "ref": "4:24",
+    "proof": [
+     "לא מל את אליעזר בנו"
+    ],
+    "x": "Rachi sur Exode 4:24 : parce qu'il n'avait pas circoncis son fils Éliézer, et fut puni de mort pour sa négligence."
    }
   ]
  }

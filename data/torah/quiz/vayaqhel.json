@@ -84,6 +84,88 @@
      "Pendant six jours"
     ],
     "x": "Le septième jour est un chômage absolu en l'honneur de l'Éternel."
+   },
+   {
+    "q": "Qui exécute l'arche en bois de chittîm ?",
+    "a": {
+     "t": "Beçalêl",
+     "he": "בְּצַלְאֵל"
+    },
+    "w": [
+     {
+      "t": "Oholiab",
+      "he": "אָהֳלִיאָב"
+     },
+     {
+      "t": "Aaron",
+      "he": "אַהֲרֹן"
+     },
+     {
+      "t": "Josué",
+      "he": "יְהוֹשֻׁעַ"
+     }
+    ],
+    "ref": "37:1",
+    "proof": [
+     "Beçalel exécuta l'arche"
+    ],
+    "x": "Elle a deux coudées et demie de long."
+   },
+   {
+    "q": "Comment Beçalêl exécute-t-il le candélabre d'or pur ?",
+    "a": "Tout d'une pièce, avec sa base et son fût",
+    "w": [
+     "En sept pièces, avec ses lampes et ses mèches",
+     "En deux moitiés, avec ses branches et son pied",
+     "En trois étages, avec ses calices et ses fleurs"
+    ],
+    "ref": "37:17",
+    "proof": [
+     "tout d'une pièce"
+    ],
+    "x": "Ses calices, ses boutons et ses fleurs faisaient corps avec lui."
+   },
+   {
+    "q": "En quel bois est fait l'autel de l'holocauste, recouvert de cuivre ?",
+    "a": "En bois de chittîm",
+    "w": [
+     "En bois de cèdre",
+     "En bois d'olivier",
+     "En bois d'amandier"
+    ],
+    "ref": "38:1",
+    "proof": [
+     "bois de chittîm"
+    ],
+    "x": "Il est carré, de cinq coudées sur cinq."
+   },
+   {
+    "q": "Qui vient apporter le tribut du Seigneur pour l'œuvre de la Tente d'assignation ?",
+    "a": "Tous les hommes au cœur élevé, aux sentiments généreux",
+    "w": [
+     "Tous les hommes forts, aux bras vigoureux",
+     "Tous les hommes riches, aux troupeaux nombreux",
+     "Tous les hommes âgés, aux cheveux blancs"
+    ],
+    "ref": "35:21",
+    "proof": [
+     "cœur élevé"
+    ],
+    "x": "Ils apportent le tribut du Seigneur."
+   },
+   {
+    "q": "Avec quoi fabrique-t-on la cuve de cuivre et son support ?",
+    "a": "Avec les miroirs des femmes",
+    "w": [
+     "Avec les anneaux des hommes",
+     "Avec les bassins des Lévites",
+     "Avec les armes des chefs"
+    ],
+    "ref": "38:8",
+    "proof": [
+     "miroirs des femmes"
+    ],
+    "x": "Elles s'étaient attroupées à l'entrée de la Tente d'assignation."
    }
   ],
   "2": [
@@ -180,6 +262,77 @@
      "suffirent et par delà"
     ],
     "x": "Le peuple n'a plus besoin d'en apporter."
+   },
+   {
+    "q": "Quelles sont les dimensions de la table que Beçalêl fait en bois de chittîm ?",
+    "a": "Deux coudées de long, une de large, une et demie de haut",
+    "w": [
+     "Trois coudées de long, une de large, deux de haut",
+     "Deux coudées de long, deux de large, une de haut",
+     "Une coudée de long, une de large, une et demie de haut"
+    ],
+    "ref": "37:10",
+    "proof": [
+     "deux coudées formaient sa longueur"
+    ],
+    "x": "Elle est en bois de chittîm."
+   },
+   {
+    "q": "Quelles sont les dimensions de l'autel du parfum, en bois de chittîm ?",
+    "a": "Une coudée de long, une de large, deux de haut",
+    "w": [
+     "Deux coudées de long, une de large, une de haut",
+     "Une coudée de long, deux de large, deux de haut",
+     "Trois coudées de long, trois de large, deux de haut"
+    ],
+    "ref": "37:25",
+    "proof": [
+     "long d'une coudée",
+     "haut de deux coudées"
+    ],
+    "x": "Il est carré, et ses cornes font corps avec lui."
+   },
+   {
+    "q": "Combien de coudées de longueur et de largeur l'autel de l'holocauste a-t-il ?",
+    "a": "Cinq coudées sur cinq",
+    "w": [
+     "Trois coudées sur trois",
+     "Sept coudées sur sept",
+     "Dix coudées sur dix"
+    ],
+    "ref": "38:1",
+    "proof": [
+     "cinq coudées furent sa longueur"
+    ],
+    "x": "Il est carré, de trois coudées de haut."
+   },
+   {
+    "q": "Combien de tapis, composés par les plus habiles ouvriers, forment l'enceinte ?",
+    "a": "Dix tapis",
+    "w": [
+     "Sept tapis",
+     "Douze tapis",
+     "Onze tapis"
+    ],
+    "ref": "36:8",
+    "proof": [
+     "dix tapis de l'enceinte"
+    ],
+    "x": "Ils sont en lin retors, azur, pourpre et écarlate."
+   },
+   {
+    "q": "De quoi la sainte œuvre est-elle à l'origine, selon ce que les ouvriers emportent de devant Moïse ?",
+    "a": "De l'offrande présentée par les Israélites",
+    "w": [
+     "Du travail commandé par les Lévites",
+     "Du butin rapporté par les soldats",
+     "Du produit vendu par les marchands"
+    ],
+    "ref": "36:3",
+    "proof": [
+     "toute l'offrande présentée par les Israélites"
+    ],
+    "x": "Ils l'emportent pour l'exécution de la sainte œuvre."
    }
   ],
   "3": [
@@ -253,6 +406,76 @@
      "משלימין"
     ],
     "x": "Rachi sur Exode 35:27 : les chefs dirent : que le peuple donne ce qu'il donne, et ce qui manquera, nous le compléterons."
+   },
+   {
+    "q": "Selon Rachi, pourquoi est-on appelé « généreux de cœur » (nediv lev) ?",
+    "a": "Parce que son cœur le porte à donner",
+    "w": [
+     "Parce que son cœur le pousse à prendre",
+     "Parce que son cœur le garde de donner",
+     "Parce que son cœur le retient de prendre"
+    ],
+    "ref": "35:5",
+    "proof": [
+     "שלבו נודבו"
+    ],
+    "x": "Rachi sur Exode 35:5 : parce que son cœur l'a poussé, il est appelé généreux de cœur."
+   },
+   {
+    "q": "Selon Rachi, pourquoi l'ouvrage est-il appelé du nom de Beçalêl : « Beçalêl exécuta » ?",
+    "a": "Parce qu'il y donna sa vie plus que les autres sages",
+    "w": [
+     "Parce qu'il y donna sa richesse plus que les autres chefs",
+     "Parce qu'il y donna son temps plus que les autres prêtres",
+     "Parce qu'il y donna sa force plus que les autres ouvriers"
+    ],
+    "ref": "37:1",
+    "proof": [
+     "נתן נפשו על המלאכה"
+    ],
+    "x": "Rachi sur Exode 37:1 : parce qu'il s'est donné à l'ouvrage plus que les autres sages, l'ouvrage porte son nom."
+   },
+   {
+    "q": "Selon Rachi, que dit Dieu à Moïse qui rejetait les miroirs des femmes ?",
+    "a": "« Accepte-les, car elles me sont plus chères que tout »",
+    "w": [
+     "« Refuse-les, car elles me sont moins chères que tout »",
+     "« Brûle-les, car elles me sont étrangères à tout »",
+     "« Cache-les, car elles me sont inutiles à tout »"
+    ],
+    "ref": "38:8",
+    "proof": [
+     "קבל, כי אלו חביבין עלי מן הכל"
+    ],
+    "x": "Rachi sur Exode 38:8 : Moïse les rejetait car elles servaient au mauvais penchant ; Dieu lui dit : accepte, car elles m'ont donné des armées en Égypte."
+   },
+   {
+    "q": "Selon Rachi, que désigne « koumaz » parmi les bijoux d'or des femmes ?",
+    "a": "Un objet d'or porté à un endroit intime",
+    "w": [
+     "Un objet d'or porté au bras",
+     "Un objet d'or porté au cou",
+     "Un objet d'or porté à l'oreille"
+    ],
+    "ref": "35:22",
+    "proof": [
+     "כלי זהב הוא נתון כנגד אותו מקום לאשה"
+    ],
+    "x": "Rachi sur Exode 35:22 : un objet d'or porté par la femme à cet endroit ; nos maîtres l'expliquent comme « ici le lieu de la débauche »."
+   },
+   {
+    "q": "Selon Rachi, que signifie « en face des toiles du parvis » (leumat kalei hahatser) ?",
+    "a": "À la mesure des toiles du parvis",
+    "w": [
+     "Au nombre des toiles du parvis",
+     "Au poids des toiles du parvis",
+     "À la couleur des toiles du parvis"
+    ],
+    "ref": "38:18",
+    "proof": [
+     "כמדת קלעי החצר"
+    ],
+    "x": "Rachi sur Exode 38:18 : selon la mesure des toiles du parvis."
    }
   ]
  }

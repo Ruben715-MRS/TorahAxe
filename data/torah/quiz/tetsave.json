@@ -84,6 +84,76 @@
      "jeune taureau et deux béliers"
     ],
     "x": "On apporte aussi des pains azymes, des gâteaux azymes et des galettes azymes, de la plus pure farine."
+   },
+   {
+    "q": "Combien de pierres de choham porte l'éphod, sur lesquelles on grave les noms des fils d'Israël ?",
+    "a": "Deux",
+    "w": [
+     "Une",
+     "Quatre",
+     "Douze"
+    ],
+    "ref": "28:9",
+    "proof": [
+     "deux pierres de choham"
+    ],
+    "x": "Elles sont fixées aux épaulières de l'éphod."
+   },
+   {
+    "q": "De quel matériau est la tunique à mailles du prêtre ?",
+    "a": "De lin",
+    "w": [
+     "De laine",
+     "De poil de chèvre",
+     "De cuir"
+    ],
+    "ref": "28:39",
+    "proof": [
+     "tunique à mailles de lin"
+    ],
+    "x": "La tiare et l'écharpe sont aussi de lin."
+   },
+   {
+    "q": "Où conduit-on Aaron et ses fils, pour les faire baigner, avant de les vêtir ?",
+    "a": "À l'entrée de la Tente d'assignation",
+    "w": [
+     "Au pied de l'autel de cuivre",
+     "Devant le voile du sanctuaire",
+     "À l'entrée du parvis du camp"
+    ],
+    "ref": "29:4",
+    "proof": [
+     "entrée de la Tente d'assignation"
+    ],
+    "x": "Moïse les lave avec de l'eau."
+   },
+   {
+    "q": "Que verse Moïse sur la tête d'Aaron, en lui donnant l'onction ?",
+    "a": "L'huile d'onction",
+    "w": [
+     "Le sang du taureau",
+     "L'eau de la cuve",
+     "Le vin de la libation"
+    ],
+    "ref": "29:7",
+    "proof": [
+     "huile d'onction"
+    ],
+    "x": "Il lui donne ainsi l'onction."
+   },
+   {
+    "q": "En quel bois est fait l'autel de la combustion des parfums ?",
+    "a": "En bois de chittîm",
+    "w": [
+     "En bois de cèdre",
+     "En bois d'olivier",
+     "En bois de tahach"
+    ],
+    "ref": "30:1",
+    "proof": [
+     "bois de chittîm"
+    ],
+    "x": "Il sert à la combustion des parfums."
    }
   ],
   "2": [
@@ -158,6 +228,76 @@
      "lampes"
     ],
     "x": "L'autel des parfums est fait en bois de chittîm."
+   },
+   {
+    "q": "Où Aaron porte-t-il les noms des enfants d'Israël, quand il entre dans le sanctuaire ?",
+    "a": "Sur son cœur, sur le pectoral du jugement",
+    "w": [
+     "Sur sa tête, sur la tiare de lin",
+     "Sur son front, sur la plaque d'or",
+     "Sur son bras, sur l'écharpe brodée"
+    ],
+    "ref": "28:29",
+    "proof": [
+     "sur son cœur"
+    ],
+    "x": "C'est une commémoration perpétuelle devant le Seigneur."
+   },
+   {
+    "q": "Qu'est-ce qui est entremêlé aux grenades au bord de la robe de l'éphod ?",
+    "a": "Des clochettes d'or",
+    "w": [
+     "Des anneaux d'argent",
+     "Des chaînettes de cuivre",
+     "Des fleurs de lin"
+    ],
+    "ref": "28:33",
+    "proof": [
+     "clochettes d'or entremêlées"
+    ],
+    "x": "Les grenades sont d'azur, de pourpre et d'écarlate."
+   },
+   {
+    "q": "Où applique-t-on le sang du taureau de la consécration, avec le doigt ?",
+    "a": "Sur les cornes de l'autel",
+    "w": [
+     "Sur le seuil de la Tente",
+     "Sur les poteaux du parvis",
+     "Sur le voile du sanctuaire"
+    ],
+    "ref": "29:12",
+    "proof": [
+     "cornes de l'autel"
+    ],
+    "x": "Le reste du sang est répandu dans le réceptacle de l'autel."
+   },
+   {
+    "q": "Quand offre-t-on le second agneau de l'holocauste perpétuel ?",
+    "a": "Vers le soir",
+    "w": [
+     "Au matin",
+     "À midi",
+     "À minuit"
+    ],
+    "ref": "29:41",
+    "proof": [
+     "vers le soir"
+    ],
+    "x": "On y joint une oblation et une libation semblables à celles du matin."
+   },
+   {
+    "q": "Combien de fois par an Aaron purifie-t-il les cornes de l'autel des parfums ?",
+    "a": "Une fois",
+    "w": [
+     "Deux fois",
+     "Sept fois",
+     "Douze fois"
+    ],
+    "ref": "30:10",
+    "proof": [
+     "une fois l'année"
+    ],
+    "x": "Il le fait avec le sang des victimes expiatoires."
    }
   ],
   "3": [
@@ -233,6 +373,76 @@
      "מעשה העגל"
     ],
     "x": "Rachi sur Exode 29:1 : un taureau, pour réparer l'affaire du veau, qui est un jeune taureau."
+   },
+   {
+    "q": "Selon Rachi, quand Moïse fait-il approcher Aaron et ses fils pour le sacerdoce ?",
+    "a": "Après avoir terminé l'ouvrage du tabernacle",
+    "w": [
+     "Avant de commencer l'ouvrage du tabernacle",
+     "Pendant les travaux de l'ouvrage du tabernacle",
+     "Longtemps après l'ouvrage du tabernacle"
+    ],
+    "ref": "28:1",
+    "proof": [
+     "לאחר שתגמר מלאכת המשכן"
+    ],
+    "x": "Rachi sur Exode 28:1 : une fois l'ouvrage du tabernacle achevé."
+   },
+   {
+    "q": "Selon Rachi, combien de sortes de fils composent chaque fil de l'éphod ?",
+    "a": "Cinq, l'or étant tressé avec les autres",
+    "w": [
+     "Trois, la laine étant tressée avec le lin",
+     "Quatre, l'argent étant tressé avec la soie",
+     "Sept, l'azur étant tressé avec la pourpre"
+    ],
+    "ref": "28:6",
+    "proof": [
+     "חמשת מינים"
+    ],
+    "x": "Rachi sur Exode 28:6 : ces cinq espèces sont tressées dans chaque fil ; on étirait l'or en feuilles et on le coupait en fils."
+   },
+   {
+    "q": "Selon Rachi, pourquoi appelle-t-on « mil'ouïm » (remplissages) les pierres du pectoral ?",
+    "a": "Parce que les pierres remplissent les creux des sertissures",
+    "w": [
+     "Parce que les pierres remplissent les yeux des prêtres",
+     "Parce que les pierres remplissent les mains des Lévites",
+     "Parce que les pierres remplissent les noms des tribus"
+    ],
+    "ref": "28:17",
+    "proof": [
+     "ממלאות גמות המשבצות"
+    ],
+    "x": "Rachi sur Exode 28:17 : « mil'ouïm » : parce que les pierres remplissent les creux des sertissures qui leur sont préparées."
+   },
+   {
+    "q": "Selon Rachi, que signifie « remplir leur main » (milouï yadam) ?",
+    "a": "Un langage d'inauguration : celui qui entre dans une charge pour s'y consacrer",
+    "w": [
+     "Un langage de partage : celui qui reçoit une part pour la manger",
+     "Un langage de récompense : celui qui reçoit un prix pour son travail",
+     "Un langage de purification : celui qui lave sa main pour le service"
+    ],
+    "ref": "28:41",
+    "proof": [
+     "לשון חנוך"
+    ],
+    "x": "Rachi sur Exode 28:41 : tout « remplissage des mains » est un langage d'initiation : quand on entre dans une fonction pour s'y fortifier."
+   },
+   {
+    "q": "Selon Rachi, quel est le jour où Aaron purifie l'autel des parfums « une fois par an » ?",
+    "a": "Le jour des expiations, Yom Kippour",
+    "w": [
+     "Le jour de Pessah, la Pâque",
+     "Le jour de Chavouot, la fête des semaines",
+     "Le jour de Roch Hachana, le nouvel an"
+    ],
+    "ref": "30:10",
+    "proof": [
+     "ביום הכפורים"
+    ],
+    "x": "Rachi sur Exode 30:10 : c'est le jour des expiations, comme il est écrit au livre du Lévitique."
    }
   ]
  }

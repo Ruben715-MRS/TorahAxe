@@ -73,6 +73,76 @@
      "quatre cent trente ans"
     ],
     "x": "Au bout de quatre cent trente ans, précisément le même jour, toutes les milices du Seigneur sortirent du pays d'Égypte."
+   },
+   {
+    "q": "Que fait le vent d'ouest soufflant avec violence, après la plaie des sauterelles ?",
+    "a": "Il les emporte et les noie dans la mer des Joncs",
+    "w": [
+     "Il les chasse vers le désert du sud",
+     "Il les disperse sur les montagnes",
+     "Il les pousse dans le fleuve du Nil"
+    ],
+    "ref": "10:19",
+    "proof": [
+     "noya dans la mer des joncs"
+    ],
+    "x": "Il ne reste plus une sauterelle."
+   },
+   {
+    "q": "Que doit demander chacun à son voisin, avant de quitter l'Égypte ?",
+    "a": "Des vases d'argent et des vases d'or",
+    "w": [
+     "Des vêtements de lin et des manteaux",
+     "Des sacs de blé et des cruches d'huile",
+     "Des troupeaux de brebis et des tentes"
+    ],
+    "ref": "11:2",
+    "proof": [
+     "vases d'argent et des vases d'or"
+    ],
+    "x": "Dieu demande à Moïse de le faire entendre au peuple."
+   },
+   {
+    "q": "Où met-on le sang de l'agneau pascal sur les maisons ?",
+    "a": "Sur les deux poteaux et sur le linteau",
+    "w": [
+     "Sur le seuil et sur le toit",
+     "Sur le mur et sur la fenêtre",
+     "Sur la porte et sur la cour"
+    ],
+    "ref": "12:7",
+    "proof": [
+     "deux poteaux et le linteau"
+    ],
+    "x": "On le teint aux maisons où l'on mange l'agneau."
+   },
+   {
+    "q": "Que fait le peuple de sa pâte, en quittant l'Égypte ?",
+    "a": "Il l'emporte non encore levée",
+    "w": [
+     "Il la jette dans le fleuve",
+     "Il la laisse sécher au soleil",
+     "Il la cuit avant le départ"
+    ],
+    "ref": "12:34",
+    "proof": [
+     "pâte non encore levée"
+    ],
+    "x": "Il emporte aussi ses sébiles sur l'épaule."
+   },
+   {
+    "q": "Que dit Pharaon à Moïse, la nuit où périssent les premiers-nés ?",
+    "a": "« Allez ! Partez du milieu de mon peuple »",
+    "w": [
+     "« Restez ! Priez pour moi et mon peuple »",
+     "« Revenez ! Sacrifiez ici dans le pays »",
+     "« Attendez ! Partez après le lever du jour »"
+    ],
+    "ref": "12:31",
+    "proof": [
+     "Partez du milieu de mon peuple"
+    ],
+    "x": "Il convoque Moïse et Aaron la nuit même."
    }
   ],
   "2": [
@@ -149,6 +219,76 @@
      "azymes"
     ],
     "x": "Sept jours durant, on mange des azymes ; le levain doit disparaître des maisons."
+   },
+   {
+    "q": "Que dit Pharaon à Moïse, à la fin de la plaie des ténèbres ?",
+    "a": "Qu'il ne reparaisse plus à sa vue, sous peine de mort",
+    "w": [
+     "Qu'il revienne le lendemain, pour sa réponse",
+     "Qu'il emmène le peuple, sans les troupeaux",
+     "Qu'il prie pour lui, afin de sa guérison"
+    ],
+    "ref": "10:28",
+    "proof": [
+     "Sors de devant moi"
+    ],
+    "x": "Le jour où il verra son visage, il mourra."
+   },
+   {
+    "q": "Que doit faire un ménage trop peu nombreux pour manger un agneau ?",
+    "a": "S'associer avec son plus proche voisin",
+    "w": [
+     "Manger seul un morceau",
+     "Acheter un agneau plus petit",
+     "Attendre un jour de plus"
+    ],
+    "ref": "12:4",
+    "proof": [
+     "s'associera avec son voisin"
+    ],
+    "x": "On compte selon le nombre des personnes."
+   },
+   {
+    "q": "Que ne doit-on pas faire aux os de l'agneau pascal ?",
+    "a": "En rompre un seul",
+    "w": [
+     "Les jeter au feu",
+     "Les donner aux chiens",
+     "Les laver à l'eau"
+    ],
+    "ref": "12:46",
+    "proof": [
+     "n'en romprez pas un seul os"
+    ],
+    "x": "Il est consommé dans une même maison."
+   },
+   {
+    "q": "Qui ne mange pas de l'agneau pascal, selon la règle donnée à Moïse et à Aaron ?",
+    "a": "Nul étranger",
+    "w": [
+     "Nul serviteur",
+     "Nulle femme",
+     "Nul enfant"
+    ],
+    "ref": "12:43",
+    "proof": [
+     "Nul étranger n'en mangera"
+    ],
+    "x": "Ceci est la règle de l'agneau pascal."
+   },
+   {
+    "q": "Dans quel mois, selon Moïse, les Israélites partent-ils d'Égypte ?",
+    "a": "Dans le mois de la germination",
+    "w": [
+     "Dans le mois des moissons",
+     "Dans le mois des pluies",
+     "Dans le mois des fruits"
+    ],
+    "ref": "13:4",
+    "proof": [
+     "mois de la germination"
+    ],
+    "x": "« C'est aujourd'hui que vous partez. »"
    }
   ],
   "3": [
@@ -226,6 +366,76 @@
      "אגדה"
     ],
     "x": "Rachi sur Exode 12:22 : trois tiges sont appelées une botte."
+   },
+   {
+    "q": "Selon Rachi, que signifie « je me suis joué » (hitalalti) des Égyptiens ?",
+    "a": "Que Dieu s'est moqué d'eux",
+    "w": [
+     "Que Dieu s'est caché d'eux",
+     "Que Dieu s'est battu contre eux",
+     "Que Dieu s'est souvenu d'eux"
+    ],
+    "ref": "10:2",
+    "proof": [
+     "שחקתי"
+    ],
+    "x": "Rachi sur Exode 10:2 : « hitalalti » : je me suis moqué."
+   },
+   {
+    "q": "Selon Rachi, pourquoi l'agneau pascal est-il pris quatre jours avant d'être immolé ?",
+    "a": "Pour l'examiner : il faut le contrôler quatre jours avant l'immolation",
+    "w": [
+     "Pour le nourrir : il faut l'engraisser quatre jours",
+     "Pour le bénir : il faut le consacrer quatre jours",
+     "Pour le garder : il faut le surveiller quatre jours"
+    ],
+    "ref": "12:6",
+    "proof": [
+     "בקור ממום ארבעה ימים"
+    ],
+    "x": "Rachi sur Exode 12:6 : « mishmeret » est un langage d'examen : il doit être contrôlé pour ses défauts quatre jours avant l'immolation."
+   },
+   {
+    "q": "Selon Rachi, pourquoi la pâque est-elle ainsi appelée ?",
+    "a": "Parce que Dieu a passé par-dessus les maisons d'Israël, entre celles des Égyptiens",
+    "w": [
+     "Parce que Dieu a passé le fleuve, entre les mains des Égyptiens",
+     "Parce que Dieu a passé la nuit, entre les murs des Égyptiens",
+     "Parce que Dieu a passé le peuple, entre les eaux des Égyptiens"
+    ],
+    "ref": "12:11",
+    "proof": [
+     "הדלוג והפסיחה"
+    ],
+    "x": "Rachi sur Exode 12:11 : le sacrifice est appelé pessah à cause de l'enjambée : Dieu sautait les maisons d'Israël entre celles des Égyptiens."
+   },
+   {
+    "q": "Selon Rachi, à quelle main met-on les tefillin, d'après « sur ta main » ?",
+    "a": "À la main gauche, la plus faible",
+    "w": [
+     "À la main droite, la plus forte",
+     "À la main gauche, la plus forte",
+     "À la main droite, la plus faible"
+    ],
+    "ref": "13:9",
+    "proof": [
+     "יד שמאל"
+    ],
+    "x": "Rachi sur Exode 13:9 : sur la main gauche ; c'est pourquoi le mot est écrit « yadkha » avec un « heh » : la main faible."
+   },
+   {
+    "q": "Selon Rachi, que montre l'expression « en ce jour même » à propos de la sortie d'Égypte ?",
+    "a": "Que, dès la fin du délai, Dieu ne les retint pas un instant",
+    "w": [
+     "Que, dès la fin du délai, Pharaon les renvoya sans attendre",
+     "Que, dès la fin du délai, Moïse réunit tout le peuple",
+     "Que, dès la fin du délai, la nuit se changea en jour"
+    ],
+    "ref": "12:41",
+    "proof": [
+     "לא עכבן המקום כהרף עין"
+    ],
+    "x": "Rachi sur Exode 12:41 : quand la fin arriva, Dieu ne les retint pas même le temps d'un clin d'œil : le quinze Nissan, à la mi-journée."
    }
   ]
  }

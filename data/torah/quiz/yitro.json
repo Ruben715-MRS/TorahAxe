@@ -109,6 +109,76 @@
      "éclairs"
     ],
     "x": "Tout le peuple, dans le camp, trembla."
+   },
+   {
+    "q": "Comment Dieu dit-il avoir porté les Israélites, depuis l'Égypte jusqu'à lui ?",
+    "a": "Sur l'aile des aigles",
+    "w": [
+     "Sur les ailes du vent",
+     "Sur l'épaule des anges",
+     "Sur le dos des lions"
+    ],
+    "ref": "19:4",
+    "proof": [
+     "sur l'aile des aigles"
+    ],
+    "x": "Il les a rapprochés de lui."
+   },
+   {
+    "q": "Que dit la première des dix paroles prononcées à propos des autres dieux ?",
+    "a": "« Tu n'auras point d'autre dieu que moi »",
+    "w": [
+     "« Tu ne feras point d'autre dieu que moi »",
+     "« Tu ne serviras point d'autre dieu que moi »",
+     "« Tu n'invoqueras point d'autre dieu que moi »"
+    ],
+    "ref": "20:3",
+    "proof": [
+     "Tu n'auras point d'autre dieu que moi"
+    ],
+    "x": "Elle suit la déclaration : « Je suis l'Éternel, ton Dieu. »"
+   },
+   {
+    "q": "Que promet la Torah à celui qui honore son père et sa mère ?",
+    "a": "Que ses jours se prolongent sur la terre",
+    "w": [
+     "Que ses biens se multiplient dans sa maison",
+     "Que ses fils grandissent dans la sagesse",
+     "Que ses fautes soient pardonnées en tout temps"
+    ],
+    "ref": "20:12",
+    "proof": [
+     "Honore ton père et ta mère"
+    ],
+    "x": "C'est sur la terre que l'Éternel lui accordera."
+   },
+   {
+    "q": "De quoi doit être fait l'autel que Dieu demande de lui construire ?",
+    "a": "De terre",
+    "w": [
+     "De pierre taillée",
+     "De bois de chittîm",
+     "De cuivre poli"
+    ],
+    "ref": "20:21",
+    "proof": [
+     "autel de terre"
+    ],
+    "x": "On y sacrifie holocaustes et victimes rémunératoires."
+   },
+   {
+    "q": "Combien de temps Moïse siège-t-il pour juger, le peuple se tenant debout autour de lui ?",
+    "a": "Du matin jusqu'au soir",
+    "w": [
+     "Du matin jusqu'à midi",
+     "De midi jusqu'au soir",
+     "Du soir jusqu'au matin"
+    ],
+    "ref": "18:13",
+    "proof": [
+     "du matin jusqu'au soir"
+    ],
+    "x": "C'est le lendemain de l'arrivée de Jéthro."
    }
   ],
   "2": [
@@ -184,6 +254,77 @@
      "six jours"
     ],
     "x": "Il s'est reposé le septième jour ; c'est pourquoi l'Éternel a béni le jour du sabbat et l'a sanctifié."
+   },
+   {
+    "q": "Comment Moïse accueille-t-il son beau-père Jéthro ?",
+    "a": "Il va au-devant de lui, se prosterne et l'embrasse",
+    "w": [
+     "Il l'attend à la tente, le salue et l'invite",
+     "Il l'envoie chercher, le bénit et le sert",
+     "Il le reçoit au camp, le loue et l'écoute"
+    ],
+    "ref": "18:7",
+    "proof": [
+     "se prosterna",
+     "l'embrassa"
+    ],
+    "x": "Ils s'informent mutuellement de leur bien-être, puis entrent dans la tente."
+   },
+   {
+    "q": "Jusqu'à quelle génération l'Éternel étend-il sa bienveillance, pour ceux qui l'aiment ?",
+    "a": "Jusqu'à la millième",
+    "w": [
+     "Jusqu'à la septième",
+     "Jusqu'à la centième",
+     "Jusqu'à la dixième"
+    ],
+    "ref": "20:6",
+    "proof": [
+     "à la millième"
+    ],
+    "x": "Ceux qui l'aiment gardent ses commandements."
+   },
+   {
+    "q": "Que fait le son du cor, au pied de la montagne ?",
+    "a": "Il va redoublant d'intensité",
+    "w": [
+     "Il s'éteint peu à peu",
+     "Il change de ton chaque fois",
+     "Il se tait avant l'aube"
+    ],
+    "ref": "19:19",
+    "proof": [
+     "redoublant d'intensité"
+    ],
+    "x": "Moïse parlait et la voix divine lui répondait."
+   },
+   {
+    "q": "Que doit-on faire à celui qui touche la montagne, ou à la bête qui la touche ?",
+    "a": "Le lapider ou le percer de flèches, sans y porter la main",
+    "w": [
+     "Le chasser du camp, sans le toucher",
+     "L'enfermer sous la garde, sans l'entendre",
+     "Le laisser au désert, sans lui donner à boire"
+    ],
+    "ref": "19:13",
+    "proof": [
+     "le lapider ou le percer de flèches"
+    ],
+    "x": "Homme ou bête, il cesserait de vivre."
+   },
+   {
+    "q": "Qui reste éloigné, tandis que Moïse s'approche de la brume où est le Seigneur ?",
+    "a": "Le peuple",
+    "w": [
+     "Les anciens",
+     "Les prêtres",
+     "Les enfants"
+    ],
+    "ref": "20:18",
+    "proof": [
+     "Le peuple resta éloigné"
+    ],
+    "x": "Le peuple avait vu les tonnerres et entendu le cor."
    }
   ],
   "3": [
@@ -261,6 +402,76 @@
      "לשבת"
     ],
     "x": "Rachi sur Exode 20:8 : on pense toujours au Chabbat ; si un bel objet se présente, on le garde pour le Chabbat."
+   },
+   {
+    "q": "Selon Rachi, que dit Jéthro à Moïse pour qu'il vienne à sa rencontre ?",
+    "a": "Que, s'il ne sort pas pour lui, il sorte pour sa femme et ses fils",
+    "w": [
+     "Que, s'il ne sort pas pour lui, il envoie Aaron au camp",
+     "Que, s'il ne sort pas pour lui, il lui fasse un signe de loin",
+     "Que, s'il ne sort pas pour lui, il lui prépare une tente"
+    ],
+    "ref": "18:6",
+    "proof": [
+     "אם אין אתה יוצא בגיני"
+    ],
+    "x": "Rachi sur Exode 18:6 : si tu ne sors pas pour moi, sors pour ta femme ; si tu ne sors pas pour ta femme, sors pour tes deux fils."
+   },
+   {
+    "q": "Selon Rachi, que signifie « Jéthro se réjouit » (vayichad) de tout le bien ?",
+    "a": "Selon le sens simple, il se réjouit ; selon l'autre explication, sa chair se hérissa de peine pour la perte des Égyptiens",
+    "w": [
+     "Selon le sens simple, il s'étonna ; selon l'autre explication, son cœur se brisa de peine pour sa fille",
+     "Selon le sens simple, il loua ; selon l'autre explication, ses yeux pleurèrent de peine pour Pharaon",
+     "Selon le sens simple, il pria ; selon l'autre explication, ses mains tremblèrent de peine pour Moïse"
+    ],
+    "ref": "18:9",
+    "proof": [
+     "נעשה בשרו חדודין"
+    ],
+    "x": "Rachi sur Exode 18:9 : il se réjouit ; ou bien sa chair se couvrit de piqûres, de peine pour la perte de l'Égypte."
+   },
+   {
+    "q": "Selon Rachi, quand Jéthro vint-il, d'après « le lendemain » ?",
+    "a": "Au lendemain de Yom Kippour, le lendemain de la descente de la montagne",
+    "w": [
+     "Au lendemain de Chavouot, le lendemain du don de la Torah",
+     "Au lendemain de la Pâque, le lendemain de la sortie d'Égypte",
+     "Au lendemain du Chabbat, le lendemain de l'arrivée de la manne"
+    ],
+    "ref": "18:13",
+    "proof": [
+     "מוצאי יום הכפורים"
+    ],
+    "x": "Rachi sur Exode 18:13 : c'était la fin de Yom Kippour : le lendemain de la descente de Moïse de la montagne."
+   },
+   {
+    "q": "Selon Rachi, que signifient « ennemis du gain injuste » à propos des juges ?",
+    "a": "Qu'ils détestent leur propre argent dans un jugement",
+    "w": [
+     "Qu'ils haïssent l'argent des autres dans une affaire",
+     "Qu'ils méprisent l'argent des riches dans un procès",
+     "Qu'ils refusent l'argent du peuple dans un tribunal"
+    ],
+    "ref": "18:21",
+    "proof": [
+     "שונאין את ממונם בדין"
+    ],
+    "x": "Rachi sur Exode 18:21 : ils haïssent leur argent en jugement : un jugement qui retire de l'argent à quelqu'un n'est pas un jugement."
+   },
+   {
+    "q": "Selon Rachi, que signifie qu'Israël campa « comme un seul homme, d'un seul cœur » ?",
+    "a": "Que cette halte-là fut sans murmure ni querelle, contrairement aux autres",
+    "w": [
+     "Que cette halte-là fut sans pluie ni vent, contrairement aux autres",
+     "Que cette halte-là fut sans soif ni faim, contrairement aux autres",
+     "Que cette halte-là fut sans peur ni danger, contrairement aux autres"
+    ],
+    "ref": "19:2",
+    "proof": [
+     "כאיש אחד בלב אחד"
+    ],
+    "x": "Rachi sur Exode 19:2 : comme un seul homme, d'un seul cœur ; les autres campements furent avec des murmures et des querelles."
    }
   ]
  }

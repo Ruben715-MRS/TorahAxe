@@ -84,6 +84,76 @@
      "Moïse les bénit"
     ],
     "x": "Tout a été fait comme le Seigneur l'avait prescrit."
+   },
+   {
+    "q": "Que fait la nuée, quand le tabernacle est dressé ?",
+    "a": "Elle enveloppe la Tente d'assignation",
+    "w": [
+     "Elle monte vers le ciel, loin du camp",
+     "Elle descend sur la montagne du Sinaï",
+     "Elle se divise en trois colonnes"
+    ],
+    "ref": "40:34",
+    "proof": [
+     "nuée enveloppa la Tente d'assignation"
+    ],
+    "x": "La majesté du Seigneur remplit le Tabernacle."
+   },
+   {
+    "q": "Comment les Israélites ont-ils accompli toute la tâche du tabernacle ?",
+    "a": "Exactement comme le Seigneur l'avait commandé à Moïse",
+    "w": [
+     "À peu près comme le Seigneur l'avait commandé à Aaron",
+     "Mieux que le Seigneur ne l'avait commandé à Moïse",
+     "Moins que le Seigneur ne l'avait commandé à Aaron"
+    ],
+    "ref": "39:42",
+    "proof": [
+     "Exactement comme le Seigneur l'avait commandé"
+    ],
+    "x": "Moïse examine tout le travail."
+   },
+   {
+    "q": "Que dépose Moïse dans l'arche, avant d'y appliquer les barres ?",
+    "a": "Le Statut",
+    "w": [
+     "Le candélabre",
+     "Les pains",
+     "L'huile d'onction"
+    ],
+    "ref": "40:20",
+    "proof": [
+     "prit ensuite le Statut qu'il déposa dans l'arche"
+    ],
+    "x": "Il place ensuite le propitiatoire par-dessus."
+   },
+   {
+    "q": "Que font les Israélites quand la nuée se retire de dessus le tabernacle ?",
+    "a": "Ils quittent leur station",
+    "w": [
+     "Ils dressent leurs tentes",
+     "Ils prient dans le camp",
+     "Ils comptent leurs troupeaux"
+    ],
+    "ref": "40:36",
+    "proof": [
+     "quittaient constamment leur station"
+    ],
+    "x": "Tant qu'elle ne se retire pas, ils ne décampent point."
+   },
+   {
+    "q": "Que reçoit le tabernacle, une fois dressé, par l'onction de Moïse ?",
+    "a": "La sainteté : il devient chose sacrée",
+    "w": [
+     "La gloire : il devient visible aux nations",
+     "La force : il devient solide pour le voyage",
+     "La paix : il devient calme pour le peuple"
+    ],
+    "ref": "40:9",
+    "proof": [
+     "chose sacrée"
+    ],
+    "x": "Moïse oint le tabernacle et tout son contenu."
    }
   ],
   "2": [
@@ -157,6 +227,76 @@
      "la nuée reposait au sommet"
     ],
     "x": "La nuée enveloppe la Tente et la majesté du Seigneur remplit le Tabernacle."
+   },
+   {
+    "q": "Que fait-on des cent kikkar d'argent, produit du dénombrement ?",
+    "a": "On fond les socles du sanctuaire et du voile",
+    "w": [
+     "On fond les barres de l'arche et de la table",
+     "On fond les anneaux de l'autel et des piliers",
+     "On fond les plaques de la cuve et du parvis"
+    ],
+    "ref": "38:27",
+    "proof": [
+     "cent kikkar d'argent servirent à fondre les socles"
+    ],
+    "x": "Un kikkar par socle."
+   },
+   {
+    "q": "Que fait-on des mille sept cent soixante-quinze sicles d'argent ?",
+    "a": "Les crochets des piliers, la garniture des chapiteaux et leurs tringles",
+    "w": [
+     "Les socles du sanctuaire, les bases du voile et leurs pieds",
+     "Les anneaux de l'arche, les barres de la table et leurs cordons",
+     "Les plaques du parvis, les rideaux de la porte et leurs franges"
+    ],
+    "ref": "38:28",
+    "proof": [
+     "crochets des piliers"
+    ],
+    "x": "Ils servent à garnir les piliers."
+   },
+   {
+    "q": "Où Moïse place-t-il la table dans la Tente d'assignation ?",
+    "a": "Vers le flanc nord du tabernacle, en dehors du voile",
+    "w": [
+     "Vers le flanc sud du tabernacle, en dehors du voile",
+     "Vers le flanc ouest du tabernacle, derrière le voile",
+     "Vers le flanc est du tabernacle, devant l'autel"
+    ],
+    "ref": "40:22",
+    "proof": [
+     "flanc nord"
+    ],
+    "x": "Il y dispose l'appareil des pains devant le Seigneur."
+   },
+   {
+    "q": "Où Moïse pose-t-il le candélabre dans la Tente d'assignation ?",
+    "a": "Au flanc méridional, en face de la table",
+    "w": [
+     "Au flanc septentrional, en face du voile",
+     "Au flanc occidental, en face de l'autel",
+     "Au flanc oriental, en face de la cuve"
+    ],
+    "ref": "40:24",
+    "proof": [
+     "flanc méridional"
+    ],
+    "x": "Il allume les lampes devant le Seigneur."
+   },
+   {
+    "q": "Que doivent faire Moïse, Aaron et ses fils à la cuve de cuivre ?",
+    "a": "S'y laver les mains et les pieds",
+    "w": [
+     "S'y baigner le corps entier",
+     "S'y laver la tête et le visage",
+     "S'y plonger les vêtements"
+    ],
+    "ref": "40:31",
+    "proof": [
+     "laver les mains et les pieds"
+    ],
+    "x": "Ils le font en entrant dans la Tente ou en s'approchant de l'autel."
    }
   ],
   "3": [
@@ -229,6 +369,76 @@
      "שתשרה שכינה"
     ],
     "x": "Rachi sur Exode 39:43 : « que la présence divine réside dans l'œuvre de vos mains ; que la grâce de l'Éternel notre Dieu soit sur nous »."
+   },
+   {
+    "q": "Selon Rachi, que contient « ceci est le compte du tabernacle » (eleh pekoudei) ?",
+    "a": "Tous les poids des dons du tabernacle : argent, or et cuivre, et tous ses objets",
+    "w": [
+     "Tous les noms des artisans du tabernacle : Juda, Dan et Lévi",
+     "Tous les plans des pièces du tabernacle : tapis, solives et voiles",
+     "Tous les rites des services du tabernacle : holocauste, oblation et libation"
+    ],
+    "ref": "38:21",
+    "proof": [
+     "נמנו כל משקלי נדבת המשכן"
+    ],
+    "x": "Rachi sur Exode 38:21 : dans cette section sont comptés tous les poids du don du tabernacle, en argent, en or et en cuivre, et tous ses objets."
+   },
+   {
+    "q": "Selon Rachi, qui est « Ithamar », cité à la tête du service des Lévites ?",
+    "a": "Celui qui avait la charge de remettre à chaque maison paternelle son service",
+    "w": [
+     "Celui qui avait la charge de fondre à chaque maison paternelle son argent",
+     "Celui qui avait la charge de peser à chaque maison paternelle son butin",
+     "Celui qui avait la charge de compter à chaque maison paternelle ses fils"
+    ],
+    "ref": "38:21",
+    "proof": [
+     "פקיד עליהם למסר לכל בית אב"
+    ],
+    "x": "Rachi sur Exode 38:21 : il était chargé de remettre à chaque maison paternelle le service qui lui incombait."
+   },
+   {
+    "q": "Selon Rachi, que sont les « vêtements de service » d'azur, de pourpre et d'écarlate ?",
+    "a": "Des étoffes qui couvraient les objets sacrés, quand on levait le camp",
+    "w": [
+     "Des vêtements qui habillaient les prêtres, quand on offrait un sacrifice",
+     "Des étoffes qui couvraient l'arche, quand on dressait le tabernacle",
+     "Des vêtements qui habillaient les Lévites, quand on chantait un psaume"
+    ],
+    "ref": "39:1",
+    "proof": [
+     "בגדים שמכסים בהם כלי הקדש"
+    ],
+    "x": "Rachi sur Exode 39:1 : le lin retors n'est pas cité ici : ce ne sont pas des vêtements de prêtre, mais des étoffes pour couvrir les objets sacrés lors des départs."
+   },
+   {
+    "q": "Selon Rachi, que signifie « tu couvriras l'arche » (vesakota) ?",
+    "a": "Un langage de protection : le voile faisait écran",
+    "w": [
+     "Un langage de décoration : le voile faisait ornement",
+     "Un langage de lumière : le voile faisait éclat",
+     "Un langage de silence : le voile faisait cloison"
+    ],
+    "ref": "40:3",
+    "proof": [
+     "לשון הגנה"
+    ],
+    "x": "Rachi sur Exode 40:3 : un langage de protection, car c'était une cloison."
+   },
+   {
+    "q": "Selon Rachi, pourquoi Moïse ne pouvait-il pas entrer dans la Tente tant que la nuée y reposait ?",
+    "a": "Parce que la nuée reposait sur elle ; quand elle se retirait, il entrait et Dieu lui parlait",
+    "w": [
+     "Parce que la nuée rendait la Tente brûlante ; quand elle s'apaisait, il entrait et priait",
+     "Parce que la nuée cachait la Tente ; quand elle se levait, il entrait et dormait",
+     "Parce que la nuée bloquait la Tente ; quand elle passait, il entrait et attendait"
+    ],
+    "ref": "40:35",
+    "proof": [
+     "כי שכן עליו הענן"
+    ],
+    "x": "Rachi sur Exode 40:35 : tant que la nuée était sur elle, il ne pouvait entrer ; quand elle se retirait, il entrait et Dieu lui parlait."
    }
   ]
  }
