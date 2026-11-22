@@ -187,7 +187,7 @@ function mknFillPlanSheet(box, id) {
 
 function mknSelect(id) {
     mknSelected = id;
-    document.querySelectorAll('#tool-mkn-body .mkn-item').forEach(g => g.classList.toggle('is-selected', g.dataset.id === id));
+    document.querySelectorAll('#tool-mkn-body .mkn-item, #tool-mkn-body .mkn-table tr[data-id]').forEach(g => g.classList.toggle('is-selected', g.dataset.id === id));
     document.querySelectorAll('#tool-mkn-body .mkn-legend-btn').forEach(b => b.setAttribute('aria-pressed', b.dataset.id === id ? 'true' : 'false'));
     const sheet = toolEl('tool-mkn-sheet');
     if (sheet) mknFillPlanSheet(sheet, id);
@@ -383,7 +383,8 @@ function mknTable(parent, caption, heads, rows) {
     table.appendChild(thead);
     const tbody = mknEl('tbody');
     rows.forEach(r => {
-        const tr = mknEl('tr', r.cls);
+        const tr = mknEl('tr', (r.cls || '') + (r.id && r.id === mknSelected ? ' is-selected' : ''));
+        if (r.id) tr.dataset.id = r.id;
         if (r.span) {
             const th = mknEl('th', 'mkn-table-group', r.span);
             th.colSpan = heads.length;
@@ -411,7 +412,7 @@ function mknCampTables(panel) {
     const rows = [];
     T.camps.forEach(c => {
         rows.push({ span: t('tools.mkn_camp_' + c.side) + ' · ' + t('tools.mkn_ct_banner', { head: M.tribe(c.head).fr }) });
-        c.tribes.forEach(tr => rows.push({ cells: [tr.fr, mknFmtInt(tr.nb1), mknFmtInt(tr.nb26), mknSigned(tr.nb26 - tr.nb1)] }));
+        c.tribes.forEach(tr => rows.push({ id: tr.id, cells: [tr.fr, mknFmtInt(tr.nb1), mknFmtInt(tr.nb26), mknSigned(tr.nb26 - tr.nb1)] }));
         rows.push({ cls: 'mkn-table-sub', cells: [t('tools.mkn_ct_camp_total'), mknFmtInt(c.nb1), mknFmtInt(c.nb26), mknSigned(c.diff)] });
     });
     rows.push({ cls: 'mkn-table-total', cells: [t('tools.mkn_ct_total'), mknFmtInt(T.total.nb1), mknFmtInt(T.total.nb26), mknSigned(T.total.diff)] });
@@ -421,7 +422,7 @@ function mknCampTables(panel) {
     mknPara(panel, t('tools.mkn_ct_note'));
 
     const L = M.levitesTable();
-    const lrows = L.families.map(f => ({ cells: [f.fr, mknFmtInt(f.month), mknFmtInt(f.work)] }));
+    const lrows = L.families.map(f => ({ id: f.id, cells: [f.fr, mknFmtInt(f.month), mknFmtInt(f.work)] }));
     lrows.push({ cls: 'mkn-table-total', cells: [t('tools.mkn_ct_total'), mknFmtInt(L.month), mknFmtInt(L.work)] });
     mknTable(panel, t('tools.mkn_lt_title'), [t('tools.mkn_lt_family'), t('tools.mkn_lt_month'), t('tools.mkn_lt_work')], lrows);
 
