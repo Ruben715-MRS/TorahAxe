@@ -1,8 +1,8 @@
 # Construit data/torah/special-readings.json : les lectures spéciales de l'année (Torah, maftir, haftara) et leur découpage en montées.
 #
 # Deux sources, qui se contrôlent l'une l'autre :
-#  - les RÉFÉRENCES (quoi lire à chaque occasion) sont celles du tableau « Lecture de la Torah, du Maftir et des Haftarot spéciales » d'un
-#    ouvrage de référence (Houmach en français, calendrier de la Diaspora) : elles sont recopiées ci-dessous, dans SPECIAL ;
+#  - les RÉFÉRENCES (quoi lire à chaque occasion) sont celles du tableau « Lecture de la Torah, du Maftir et des Haftarot spéciales » du
+#    Houmach Artscroll, édition Edmond J. Safra (calendrier de la Diaspora) : elles sont recopiées ci-dessous, dans SPECIAL ;
 #  - les MONTÉES (le découpage de chaque lecture) viennent du paquet npm @hebcal/leyning (licence BSD-2-Clause), fichier
 #    dist/esm/holiday-readings.json.js, lu comme une donnée JSON (aucun code du paquet n'est exécuté).
 # Le script s'arrête si les montées de Hebcal ne recouvrent pas exactement la lecture du livre (aucun verset en trop ou en moins).
@@ -203,6 +203,26 @@ SPECIAL = [
 ]
 RH_NOTE = "Si ce Chabbat tombe un Roch 'Hodech, on divise la paracha en six montées, puis la septième est Nombres 28:9-15 (note 4 du livre)."
 
+# Le nom hébreu de chaque moment, avec le jour quand le nom français le précise (א׳ = 1er jour…).
+HE = {
+    'roch-hodech': 'ראש חודש', 'chabbat-erev-rh': 'שבת מברכין', 'chabbat-rh': 'שבת ראש חודש',
+    'rh-1': 'ראש השנה – יום א׳', 'rh-2': 'ראש השנה – יום ב׳', 'guedalia': 'צום גדליה',
+    'kippour-cha': 'יום כיפור – שחרית', 'kippour-min': 'יום כיפור – מנחה',
+    'souccot-1': 'סוכות – יום א׳', 'souccot-2': 'סוכות – יום ב׳',
+    'souccot-hm-1': 'חול המועד סוכות – יום א׳', 'souccot-hm-2': 'חול המועד סוכות – יום ב׳',
+    'souccot-hm-3': 'חול המועד סוכות – יום ג׳', 'souccot-hm-4': 'חול המועד סוכות – יום ד׳',
+    'souccot-chabbat-hm': 'שבת חול המועד סוכות', 'hochaana-rabba': 'הושענא רבה', 'chemini-atseret': 'שמיני עצרת', 'simhat-torah': 'שמחת תורה',
+    'hanouca-1': 'חנוכה – יום א׳', 'hanouca-2': 'חנוכה – יום ב׳', 'hanouca-3': 'חנוכה – יום ג׳', 'hanouca-4': 'חנוכה – יום ד׳', 'hanouca-5': 'חנוכה – יום ה׳',
+    'hanouca-6': 'חנוכה – יום ו׳ (ראש חודש)', 'hanouca-7': 'חנוכה – יום ז׳', 'hanouca-7-rh': 'חנוכה – יום ז׳ (ראש חודש)', 'hanouca-8': 'חנוכה – יום ח׳',
+    'chabbat-hanouca-1': 'שבת חנוכה (א׳)', 'chabbat-hanouca-2': 'שבת חנוכה (ב׳)', 'dix-tevet': 'עשרה בטבת',
+    'chekalim': 'פרשת שקלים', 'zakhor': 'פרשת זכור', 'esther': 'תענית אסתר', 'pourim': 'פורים', 'para': 'פרשת פרה', 'hahodech': 'פרשת החודש', 'chabbat-hagadol': 'שבת הגדול',
+    'pessah-1': 'פסח – יום א׳', 'pessah-2': 'פסח – יום ב׳',
+    'pessah-hm-1': 'חול המועד פסח – יום א׳', 'pessah-hm-2': 'חול המועד פסח – יום ב׳', 'pessah-hm-3': 'חול המועד פסח – יום ג׳', 'pessah-hm-4': 'חול המועד פסח – יום ד׳',
+    'pessah-chabbat-hm': 'שבת חול המועד פסח', 'pessah-7': 'שביעי של פסח', 'pessah-8': 'אחרון של פסח (בחול)', 'pessah-8-chabbat': 'אחרון של פסח (בשבת)',
+    'chavouot-1': 'שבועות – יום א׳', 'chavouot-2': 'שבועות – יום ב׳ (בחול)', 'chavouot-2-chabbat': 'שבועות – יום ב׳ (בשבת)',
+    'tamouz-17': 'י״ז בתמוז', 'ticha-beav-cha': 'תשעה באב – שחרית', 'ticha-beav-min': 'תשעה באב – מנחה',
+}
+
 GROUPS = [
     {'id': 'rh', 'fr': "Roch 'Hodech", 'he': 'ראש חודש'},
     {'id': 'tichri', 'fr': 'Tichri : Roch Hachana, Kippour, Souccot', 'short': 'Tichri', 'he': 'תשרי'},
@@ -257,7 +277,7 @@ def check_cover(block, where):
 
 out_items = []
 for it in SPECIAL:
-    o = {'id': it['id'], 'g': it['g'], 'fr': it['fr'], 'he': it['he']}
+    o = {'id': it['id'], 'g': it['g'], 'fr': it['fr'], 'he': HE[it['id']]}
     if 'torah_text' in it: o['torahText'] = it['torah_text']
     if 'torah' in it:
         o['torah'] = []
@@ -275,7 +295,7 @@ for it in SPECIAL:
 
 ids = [o['id'] for o in out_items]
 assert len(ids) == len(set(ids)), 'identifiants en double'
-data = {'v': 1, 'source': "Références : tableau des lectures spéciales d'un Houmach de référence (Diaspora) ; montées : Hebcal, @hebcal/leyning (BSD-2-Clause)",
+data = {'v': 1, 'source': "Références : tableau des lectures spéciales du Houmach Artscroll, édition Edmond J. Safra (Diaspora) ; montées : Hebcal, @hebcal/leyning (BSD-2-Clause)",
         'groups': GROUPS, 'items': out_items}
 json.dump(data, open('data/torah/special-readings.json', 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
 print('ok', len(out_items), 'occasions')

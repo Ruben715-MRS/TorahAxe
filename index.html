@@ -309,6 +309,10 @@
         <h2 class="header-title" data-i18n="tools.lect_title">Lectures spéciales</h2>
         <p class="modes-header-subtitle" data-i18n="tools.lect_intro">La Torah, le maftir et la haftara des fêtes, des jeûnes et des Chabbatot spéciaux, selon l'usage de la Diaspora. Touchez une lecture de la Torah ou un maftir pour la lire.</p>
         <div class="tool-panel kor-panel">
+            <div class="gen-lang spr-lang" role="group" aria-label="Langue des mots et des références" data-i18n-attr="aria-label:tools.lect_lang_aria">
+                <button type="button" class="gen-lang-btn" id="lect-lang-fr" aria-pressed="true" lang="fr" onclick="sprSetLang('fr')">A</button>
+                <button type="button" class="gen-lang-btn" id="lect-lang-he" aria-pressed="false" lang="he" onclick="sprSetLang('he')">א</button>
+            </div>
             <div class="tool-history-chips" id="tool-lect-tabs" role="group" aria-label="Choisir une période" data-i18n-attr="aria-label:tools.lect_tabs_aria"></div>
             <p class="tool-msg" id="tool-lect-msg" role="status"></p>
             <div id="tool-lect-body" class="kor-body"></div>

@@ -20,6 +20,8 @@
         'Numbers': { id: 'nombres', part: null, fr: 'Nombres' },
         'Deuteronomy': { id: 'deuteronome', part: null, fr: 'Deutéronome' },
         'Joshua': { id: 'josue', part: null, fr: 'Josué' },
+        'Jonah': { id: 'douze', part: 'Jonas', fr: 'Jonas' },
+        'Habakkuk': { id: 'douze', part: 'Habacuc', fr: 'Habacuc' },
         'Judges': { id: 'juges', part: null, fr: 'Juges' },
         'I Samuel': { id: 'samuel', part: 'I Samuel', fr: '1 Samuel' },
         'II Samuel': { id: 'samuel', part: 'II Samuel', fr: '2 Samuel' },

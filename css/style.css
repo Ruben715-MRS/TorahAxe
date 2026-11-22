@@ -18693,3 +18693,6 @@ button.autoscroll-mode { height: 48px; padding: 0 12px; border: 1px dashed var(-
 /* Dans une grille de trois tuiles, une dernière tuile seule prend toute la largeur au lieu de rester seule dans un coin. */
 .home-tiles.c3 .home-tile:last-child:nth-child(3n+1) { grid-column: 1 / -1; }
 #tool-lect-msg:empty { display: none; }
+.spr-lang { margin-bottom: 10px; }
+.spr-ref.is-he { font-family: var(--home-heb, 'HX Frank', serif); font-size: 17px; }
+.spr-lang { width: fit-content; margin-left: auto; }

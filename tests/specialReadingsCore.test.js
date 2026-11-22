@@ -182,3 +182,33 @@ test('concordance avec les lectures de semaine déjà dans l\'application (weekd
     same(weekday.special.purim, 'pourim');
     same(weekday.special.tishaBav, 'ticha-beav-cha');
 });
+
+test('hébreu : chiffres, livres et références', () => {
+    assert.deepStrictEqual([1, 15, 16, 21, 34, 12].map(C.numeral), ['א', 'טו', 'טז', 'כא', 'לד', 'יב']);
+    assert.strictEqual(C.refLabelHe([4, 29, 12, 29, 16]), 'במדבר כט:יב-טז');
+    assert.strictEqual(C.rangesLabelHe([[5, 33, 1, 34, 12]]), 'דברים לג:א-לד:יב');
+    assert.strictEqual(C.rangesLabelHe([[2, 32, 11, 32, 14], [2, 34, 1, 34, 10]]), 'שמות לב:יא-יד ; לד:א-י');
+});
+
+test('chaque moment a un nom hébreu propre (le jour est distingué)', () => {
+    const names = data.items.map(i => i.he);
+    assert.strictEqual(new Set(names).size, names.length - names.filter((n, i) => names.indexOf(n) !== i).length);
+    assert.notStrictEqual(byId['rh-1'].he, byId['rh-2'].he);
+    assert.notStrictEqual(byId['hanouca-1'].he, byId['hanouca-8'].he);
+});
+
+test('haftarot : chaque référence se lit et existe dans le Tanakh de l\'application', () => {
+    const H = require('../js/haftarotCore.js');
+    data.items.forEach(it => it.haftara.forEach(text => {
+        const p = C.parseHaftara(text);
+        assert.ok(p, it.id + ' : ' + text);
+        const info = H.parseRef(p.ref);
+        assert.ok(info, text + ' : livre inconnu du Tanakh');
+        const book = require('../data/tanakh/' + info.id + '.json');
+        const first = info.part && book.parts ? book.parts.find(x => x.fr === info.part).first : 0;
+        const segs = H.segments(p.ref, first, book.chapters.map(c => c.length));
+        segs.forEach(s => { assert.ok(book.chapters[s.c], text); assert.ok(s.to <= book.chapters[s.c].length && s.from < s.to, text); });
+    }));
+    assert.deepStrictEqual(C.haftaraRefs(['Jérémie 31:1-19'])[0], ['Jeremiah', '31:2', '31:20']);
+    assert.strictEqual(C.haftaraLabel(['Michée 7:18-20'], true), 'מיכה ז:יח-כ');
+});

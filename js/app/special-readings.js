@@ -2,7 +2,7 @@
 // === LECTURES SPÉCIALES (écran de l'onglet Explorer, « Lois et pratique ») ===
 // =========================================================================
 // Toutes les lectures spéciales de l'année : la Torah, le maftir et la haftara des fêtes, des jeûnes, de Roch 'Hodech, de Hanouca et des Chabbatot spéciaux, selon
-// l'usage de la Diaspora. Les références sont celles d'un Houmach de référence ; les montées viennent de Hebcal (data/torah/special-readings.json, construit par
+// l'usage de la Diaspora. Les références sont celles du Houmach Artscroll, édition Edmond J. Safra ; les montées viennent de Hebcal (data/torah/special-readings.json, construit par
 // scripts/build_special_readings.py). Toucher une référence de Torah ou de maftir ouvre une feuille à trois choix : le Tikkoun (le rouleau, js/app/torah-reader.js),
 // le Tanakh (le texte, la traduction et les commentaires, js/app/tanakh.js) ou les montées (le texte découpé montée par montée). La haftara n'est qu'un texte.
 // Les calculs (étiquettes, numéros de montées) sont dans js/specialReadingsCore.js (testé). Tout passe par textContent, jamais par du HTML.
@@ -11,6 +11,17 @@ const SPR_SCREEN = 'screen-tool-readings';
 let sprData = null;          // data/torah/special-readings.json, une fois chargé
 let sprGroup = 'all';        // la période choisie dans les boutons du haut
 let sprSheetEl = null;       // la feuille ouverte
+let sprLang = (() => { try { return localStorage.getItem('torahaxe_readings_lang') === 'he' ? 'he' : 'fr'; } catch (e) { return 'fr'; } })();   // « A » (français) ou « א » (mots et références en hébreu)
+const SPR_HE_LABELS = { torah: 'תורה', maftir: 'מפטיר', haftara: 'הפטרה', weekTorah: 'פרשת השבוע', weekMaftir: 'מפטיר הפרשה' };
+
+function sprSetLang(lang) {
+    sprLang = lang === 'he' ? 'he' : 'fr';
+    try { localStorage.setItem('torahaxe_readings_lang', sprLang); } catch (e) { /* sans importance */ }
+    if (sprData) sprRender();
+}
+function sprHeMode() { return sprLang === 'he'; }
+// Un mot de l'écran (Torah, Maftir, Haftara…) dans la langue choisie.
+function sprWord(key, frText) { return sprHeMode() ? SPR_HE_LABELS[key] : frText; }
 const sprBookCache = {};     // data/tanakh/<livre>.json, par numéro de livre (1 à 5)
 const SPR_BOOK_IDS = ['genesis', 'exode', 'levitique', 'nombres', 'deuteronome'];
 
@@ -56,6 +67,7 @@ function toolSpecialReadingsInit() {
 
 function sprRender() {
     sprRenderTabs();
+    ['fr', 'he'].forEach(l => { const b = toolEl('lect-lang-' + l); if (b) b.setAttribute('aria-pressed', String(sprLang === l)); });
     const body = toolEl('tool-lect-body');
     toolClear(body);
     sprData.groups.forEach(group => {
@@ -96,43 +108,59 @@ function sprCard(item) {
     head.appendChild(sprHebrew('span', item.he, 'spr-he'));
     card.appendChild(head);
 
+    const he = sprHeMode();
+    const rangesText = (ranges) => (he ? C.rangesLabelHe(ranges) : C.rangesLabel(ranges));
     const torah = sprEl('div', 'spr-refs');
-    if (item.torahText) torah.appendChild(sprEl('span', 'spr-text', item.torahText));
-    (item.torah || []).forEach((block, i) => torah.appendChild(sprRef(C.rangesLabel(block.r), () => sprMenu(item, { kind: 'torah', ranges: block.r, block: i }))));
-    sprRow(card, t('tools.lect_torah'), torah);
+    if (item.torahText) torah.appendChild(sprText(he ? SPR_HE_LABELS.weekTorah : item.torahText));
+    (item.torah || []).forEach((block, i) => torah.appendChild(sprRef(rangesText(block.r), () => sprMenu(item, { kind: 'torah', ranges: block.r, block: i }))));
+    sprRow(card, sprWord('torah', t('tools.lect_torah')), torah);
 
     if (item.maftirText) {
-        sprRow(card, t('tools.lect_maftir'), sprEl('span', 'spr-text', item.maftirText));
+        sprRow(card, sprWord('maftir', t('tools.lect_maftir')), sprText(he ? SPR_HE_LABELS.weekMaftir : item.maftirText));
     } else if (item.maftir && item.maftir.length) {
         const maftir = sprEl('div', item.maftir.length > 1 ? 'spr-options' : 'spr-refs');
         item.maftir.forEach(m => {
             const open = () => sprMenu(item, { kind: 'maftir', ranges: [m.r], label: m.lab });
-            if (!m.lab) { maftir.appendChild(sprRef(C.refLabel(m.r), open)); return; }
+            if (!m.lab) { maftir.appendChild(sprRef(rangesText([m.r]), open)); return; }
             const line = sprEl('div', 'spr-option');
             line.appendChild(sprEl('span', 'spr-option-lab', m.lab));
-            line.appendChild(sprRef(C.refLabel(m.r), open));
+            line.appendChild(sprRef(rangesText([m.r]), open));
             maftir.appendChild(line);
         });
-        sprRow(card, t('tools.lect_maftir'), maftir);
+        sprRow(card, sprWord('maftir', t('tools.lect_maftir')), maftir);
     }
 
-    if (item.haftara && item.haftara.length) sprRow(card, t('tools.lect_haftara'), sprEl('span', 'spr-text', item.haftara.join(' ; ')));
+    if (item.haftara && item.haftara.length) {
+        const haftara = sprEl('div', 'spr-refs');
+        // Une haftara se lit en chantant, d'une façon propre : elle ne mène qu'au Tanakh.
+        haftara.appendChild(sprRef(C.haftaraLabel(item.haftara, he), () => tanakhOpenHaftaraFrom({ refs: C.haftaraRefs(item.haftara), title: item.fr, rite: '' }, SPR_SCREEN), true));
+        sprRow(card, sprWord('haftara', t('tools.lect_haftara')), haftara);
+    }
     (item.notes || []).forEach(note => card.appendChild(sprEl('p', 'spr-note', note)));
     return card;
 }
 
+function sprText(text) {
+    const el = sprEl('span', 'spr-text', text);
+    if (sprHeMode()) { el.lang = 'he'; el.dir = 'rtl'; }
+    return el;
+}
+
 function sprRow(card, label, content) {
     const row = sprEl('div', 'spr-row');
-    row.appendChild(sprEl('span', 'spr-label', label));
+    const lab = sprEl('span', 'spr-label', label);
+    if (sprHeMode()) { lab.lang = 'he'; lab.dir = 'rtl'; }
+    row.appendChild(lab);
     row.appendChild(content);
     card.appendChild(row);
 }
 
 // Une référence qu'on peut toucher.
-function sprRef(label, onclick) {
+function sprRef(label, onclick, direct) {
     const b = sprEl('button', 'spr-ref', label);
     b.type = 'button';
-    b.setAttribute('aria-haspopup', 'dialog');
+    if (!direct) b.setAttribute('aria-haspopup', 'dialog');
+    if (sprHeMode()) { b.lang = 'he'; b.dir = 'rtl'; b.classList.add('is-he'); }
     b.onclick = onclick;
     return b;
 }
