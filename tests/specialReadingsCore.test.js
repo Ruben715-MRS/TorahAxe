@@ -212,3 +212,10 @@ test('haftarot : chaque référence se lit et existe dans le Tanakh de l\'applic
     assert.deepStrictEqual(C.haftaraRefs(['Jérémie 31:1-19'])[0], ['Jeremiah', '31:1', '31:19']);
     assert.strictEqual(C.haftaraLabel(['Michée 7:18-20'], true), 'מיכה ז:יח-כ');
 });
+
+test('Chabbat Hanouca (I) : la septième montée de Roch \'Hodech est une plage valide', () => {
+    const e = byId['chabbat-hanouca-1'].extra;
+    assert.strictEqual(e.length, 1);
+    assert.strictEqual(C.refLabel(e[0].r), 'Nombres 28:9-15');
+    indices(e[0].r);
+});

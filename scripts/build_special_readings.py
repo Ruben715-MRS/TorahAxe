@@ -136,6 +136,7 @@ SPECIAL = [
                 {'r': 'Nbr 7:30-35', 'lab': '4e jour'}, {'r': 'Nbr 7:36-41', 'lab': '5e jour'}, {'r': 'Nbr 7:42-47', 'lab': '6e jour'},
                 {'r': 'Nbr 7:48-53', 'lab': '7e jour'}],
      'haftara': ['Zacharie 2:14-4:7'],
+     'extra': [{'lab': "7e montée si Roch 'Hodech", 'he': "עלייה שביעית (ראש חודש)", 'r': 'Nbr 28:9-15'}],
      'notes': ["Le maftir est celui du jour de Hanouca où tombe le Chabbat (note 3 du livre).",
                "On sort deux Sifré Torah. Dans le premier, sept personnes sont appelées pour la paracha de la semaine ; le maftir lit dans le second les offrandes des Nessiim propres au jour, puis il dit le Kadich abrégé et lit la haftara. S'il y a deux Chabbat de Hanouca, on lit au premier la haftara « Roni vessim'hi » (Zacharie 2) et au second « Vaya'ass 'hiram » (Rois I 7).",
                "Si Roch 'Hodech Tévet tombe ce Chabbat (6e jour, ou 7e quand Kislev a 30 jours) : on sort trois Sifré Torah. Dans le premier, six personnes sont appelées pour la paracha, sans Kadich abrégé (si l'on en a appelé plus de six, on le dit). Le septième lit dans le second le passage des sacrifices de Chabbat et de Roch 'Hodech (Nombres 28:9-15), puis dit le Kadich abrégé. Le maftir lit dans le troisième les Nessiim du jour (6e jour : Nombres 7:42-47 ; 7e jour : Nombres 7:48-53), puis il dit le Kadich abrégé et lit la haftara « Roni vessim'hi ». On a l'habitude de lire aussi le premier et le dernier verset de la haftara de Chabbat Roch 'Hodech, « Hachamayim kissi » (Isaïe 66:1 et 66:23)."]},
@@ -291,6 +292,7 @@ for it in SPECIAL:
     if it.get('maftir'):
         o['maftir'] = [{'r': rng(m['r'])} | ({'lab': m['lab']} if m.get('lab') else {}) for m in it['maftir']]
     if 'maftir_text' in it: o['maftirText'] = it['maftir_text']
+    if it.get('extra'): o['extra'] = [{'r': rng(e['r']), 'lab': e['lab'], 'he': e['he']} for e in it['extra']]
     o['haftara'] = it.get('haftara', [])
     notes = [RH_NOTE if n == 'RH_NOTE' else n for n in it.get('notes', [])]
     if notes: o['notes'] = notes

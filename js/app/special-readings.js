@@ -185,6 +185,15 @@ function sprCard(item) {
         haftara.appendChild(sprRef(C.haftaraLabel(item.haftara, he), () => tanakhOpenHaftaraFrom({ refs: C.haftaraRefs(item.haftara), title: item.fr, rite: '' }, SPR_SCREEN), true));
         sprRow(card, sprWord('haftara', t('tools.lect_haftara')), haftara);
     }
+    // Une lecture en plus, certains jours (la septième montée d'un Chabbat qui tombe à Roch 'Hodech).
+    (item.extra || []).forEach(e => {
+        const line = sprEl('div', 'spr-option' + (he ? ' is-he' : ''));
+        const lab = sprEl('span', 'spr-option-lab spr-extra-lab', he ? e.he : e.lab);
+        if (he) { lab.lang = 'he'; lab.dir = 'rtl'; }
+        line.appendChild(lab);
+        line.appendChild(sprRef(rangesText([e.r]), () => sprMenu(item, { kind: 'extra', ranges: [e.r], label: e.lab })));
+        card.appendChild(line);
+    });
     (item.notes || []).forEach(note => card.appendChild(sprEl('p', 'spr-note', note)));
     return card;
 }
@@ -272,7 +281,7 @@ function sprMenu(item, target) {
     const label = C.rangesLabel(target.ranges);
     const first = target.ranges[0];
     sprSheet(label, (body) => {
-        const who = item.fr + (target.kind === 'maftir' ? ' · ' + t('tools.lect_maftir') + (target.label ? ' (' + target.label + ')' : '') : '');
+        const who = item.fr + (target.kind === 'maftir' ? ' · ' + t('tools.lect_maftir') + (target.label ? ' (' + target.label + ')' : '') : target.kind === 'extra' ? ' · ' + target.label : '');
         body.appendChild(sprEl('p', 'sd-sheet-note', who));
         const rows = sprEl('div', 'home-rows');
         rows.appendChild(sprChoice('תיקון', t('tools.lect_tikkoun'), t('tools.lect_tikkoun_desc'), () => {
@@ -292,6 +301,7 @@ function sprMenu(item, target) {
 function sprAliyotList(item, target, shabbat) {
     const C = SpecialReadingsCore;
     if (target.kind === 'maftir') return [{ title: t('tools.lect_maftir'), range: target.ranges[0] }];
+    if (target.kind === 'extra') return [{ title: target.label, range: target.ranges[0] }];
     const block = item.torah[target.block];
     return C.aliyot(block, shabbat, C.baseOf(item, target.block, shabbat)).map(a => ({
         title: block.lab || (a.n === 1 ? '1re' : a.n + 'e') + ' ' + t('tools.lect_aliyah') + (a.n <= 3 ? ' · ' + a.name : '') + (a.repeat ? ' ' + t('tools.lect_repeat') : ''),
