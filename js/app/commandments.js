@@ -91,7 +91,10 @@ function renderCommandments() {
     also.className = 'tool-history-chips';
     also.setAttribute('role', 'group');
     also.setAttribute('aria-label', cmdText('cmd_see_also'));
-    [['tanakh', '📘'], ['library', '📚'], ['transmission', '🔗']].forEach(([tool, icon]) => {
+    // Les principes de foi 12 et 13 (le Machiah, la résurrection) ont leur écran.
+    const seeAlso = [['tanakh', '📘'], ['library', '📚'], ['transmission', '🔗']];
+    if (set.id === 'principes') seeAlso.push(['messiah', '👑']);
+    seeAlso.forEach(([tool, icon]) => {
         const chip = document.createElement('button');
         chip.type = 'button';
         chip.className = 'tool-history-chip';

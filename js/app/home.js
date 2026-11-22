@@ -24,6 +24,7 @@ const HOME_ENTRIES = {
     talmud: { he: 'תלמוד', fr: 'Talmud', desc: 'Les 37 traités de la Guémara en araméen vocalisé, avec Rachi et Tossafot', kw: 'guemara gemara talmud bavli babylone berakhot daf amoud araméen', run: homeTool('talmud') },
     torahReader: { he: 'תיקון', fr: 'Tikkoun', desc: 'Le rouleau de la Torah, paracha après paracha', kw: 'torah rouleau paracha tikkun sefer', run: homeTool('torahReader') },
     commandments: { he: 'מצוות', fr: 'Mitsvot', desc: 'La Torah, la Michna et les 613 commandements, avec leurs sources', kw: 'commandements 613 décalogue noah avot', run: homeTool('commandments') },
+    messiah: { he: 'משיח', fr: 'Machiah', desc: 'Qui est-il, comment le reconnaître, les étapes de sa venue, la résurrection des morts', kw: 'messie machiah mashiach moshiach messianique rambam melakhim gog magog elie eliyahou résurrection techiyat hametim monde à venir olam haba treize principes foi david temple rédemption guéoula', run: homeTool('messiah') },
     library: { he: 'ספרים', fr: 'Bibliothèque', desc: 'Qui a écrit quoi, quand et où : Michna, Talmud, Midrach, Kabbale', kw: 'livres auteurs talmud midrach', run: homeTool('library') },
     lexicon: { he: 'עברית', fr: 'Hébreu', desc: '2 000 mots de la Bible, dans les deux sens, avec leur racine', kw: 'dictionnaire français hébreu vocabulaire racine', run: homeTool('lexicon') },
     gemara: { he: 'ארמית', fr: 'Araméen', desc: 'Le vocabulaire de la Guémara, ses abréviations et ses sages', kw: 'dictionnaire guemara talmud vocabulaire', run: homeTool('gemara') },
@@ -67,7 +68,7 @@ GamesCatalog.GAMES.forEach(game => {
 const HOME_LAYOUT = {
     etude: [
         { title: 'Textes', as: 'tiles', cols: 2, ids: ['torahReader', 'tanakh', 'michna', 'talmud'] },
-        { title: 'Autour des textes', as: 'rows', ids: ['commandments', 'library', 'lexicon', 'gemara', 'gematria'] }
+        { title: 'Autour des textes', as: 'rows', ids: ['commandments', 'messiah', 'library', 'lexicon', 'gemara', 'gematria'] }
     ],
     explorer: [
         { title: 'Maîtres et lignées', as: 'tiles', cols: 3, ids: ['genealogy', 'transmission', 'hassidout'] },

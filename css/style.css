@@ -18713,3 +18713,21 @@ button.autoscroll-mode { height: 48px; padding: 0 12px; border: 1px dashed var(-
 .spr-merged .spr-option.is-he { direction: rtl; }
 .spr-merged .spr-option-lab { width: 7.5em; padding-top: 10px; }
 .spr-extra-lab { width: 8.5em; padding-top: 0; }
+
+/* Le Machiah et la résurrection (js/app/messiah.js). Réutilise les briques « kor- » ; ici, les badges de niveau et les étapes. */
+.mes-badge { font-weight: 700; }
+.mes-badge-consensus { background: #dcfce7; color: #14532d; }
+.mes-badge-opinion { background: #fef3c7; color: #78350f; }
+.mes-badge-tradition { background: #e0e7ff; color: #312e81; }
+.mes-steps { gap: 8px; }
+.mes-step-sum { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
+.mes-step-n { flex: none; width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--surface-2); border: 1px solid var(--border-soft); font-size: 13px; font-weight: 700; }
+.mes-step-title { flex: 1 1 140px; min-width: 0; }
+.mes-verdict { margin: 0; font-weight: 700; color: var(--text-dark); }
+.mes-verdict[data-verdict="certain"] { background: #dcfce7; color: #14532d; }
+.mes-verdict[data-verdict="presume"] { background: #fef3c7; color: #78350f; }
+.mes-verdict[data-verdict="not"] { background: #fee2e2; color: #7f1d1d; }
+:root[data-theme="dark"] .mes-badge-consensus, :root[data-theme="dark"] .mes-verdict[data-verdict="certain"] { background: #14532d; color: #dcfce7; }
+:root[data-theme="dark"] .mes-badge-opinion, :root[data-theme="dark"] .mes-verdict[data-verdict="presume"] { background: #78350f; color: #fef3c7; }
+:root[data-theme="dark"] .mes-badge-tradition { background: #312e81; color: #e0e7ff; }
+:root[data-theme="dark"] .mes-verdict[data-verdict="not"] { background: #7f1d1d; color: #fee2e2; }
