@@ -85,6 +85,76 @@
      "Nahchôn"
     ],
     "x": "Il est fils d'Amminadab, de la tribu de Juda."
+   },
+   {
+    "q": "Que fait l'abstème rasé de sa chevelure consacrée, à l'entrée de la tente d'assignation ?",
+    "a": "Il la jette sur le feu qui est sous le sacrifice",
+    "w": [
+     "Il la garde dans une urne, sous l'autel",
+     "Il l'enterre dans le camp, sous un arbre",
+     "Il la dépose au sanctuaire, sous le voile"
+    ],
+    "ref": "6:18",
+    "proof": [
+     "jettera sur le feu"
+    ],
+    "x": "Il le fait à la fin de son vœu."
+   },
+   {
+    "q": "Que souhaite la bénédiction des prêtres, pour la face de l'Éternel ?",
+    "a": "Qu'elle rayonne sur toi",
+    "w": [
+     "Qu'elle se cache de toi",
+     "Qu'elle te suive partout",
+     "Qu'elle te garde le soir"
+    ],
+    "ref": "6:25",
+    "proof": [
+     "fasse rayonner sa face"
+    ],
+    "x": "Que l'Éternel te soit bienveillant."
+   },
+   {
+    "q": "Que souhaite la dernière bénédiction des prêtres ?",
+    "a": "Que l'Éternel dirige son regard vers toi et t'accorde la paix",
+    "w": [
+     "Que l'Éternel ouvre sa main sur toi et te donne la force",
+     "Que l'Éternel ôte sa colère de toi et te rende la joie",
+     "Que l'Éternel garde son nom près de toi et t'envoie la vie"
+    ],
+    "ref": "6:26",
+    "proof": [
+     "t'accorde la paix"
+    ],
+    "x": "C'est la fin de la bénédiction des prêtres."
+   },
+   {
+    "q": "Que présentent les phylarques comme holocauste, au premier jour, en plus du taureau ?",
+    "a": "Un bélier et un agneau d'un an",
+    "w": [
+     "Un bouc et un chevreau d'un an",
+     "Un agneau et un veau de trois ans",
+     "Une colombe et une tourterelle"
+    ],
+    "ref": "7:15",
+    "proof": [
+     "un bélier, un agneau d'un an"
+    ],
+    "x": "Ils offrent un jeune taureau, un bélier, un agneau d'un an."
+   },
+   {
+    "q": "Que se passe-t-il quand Moïse entre dans la tente d'assignation pour que Dieu lui parle ?",
+    "a": "Il entend la voix s'adresser à lui de dessus le propitiatoire",
+    "w": [
+     "Il voit la nuée descendre sur le candélabre",
+     "Il sent la terre trembler sous l'autel d'or",
+     "Il reçoit la parole par la bouche d'Aaron"
+    ],
+    "ref": "7:89",
+    "proof": [
+     "propitiatoire"
+    ],
+    "x": "La voix vient d'entre les deux chérubins."
    }
   ],
   "2": [
@@ -158,6 +228,76 @@
      "un bélier, sans défaut, pour rémunératoire"
     ],
     "x": "Il apporte aussi un agneau d'un an pour l'holocauste et une brebis d'un an pour l'expiatoire."
+   },
+   {
+    "q": "Combien de voitures et de taureaux Moïse donne-t-il aux enfants de Gerson ?",
+    "a": "Deux voitures et quatre taureaux",
+    "w": [
+     "Quatre voitures et huit taureaux",
+     "Deux voitures et huit taureaux",
+     "Quatre voitures et quatre taureaux"
+    ],
+    "ref": "7:7",
+    "proof": [
+     "deux voitures et quatre taureaux"
+    ],
+    "x": "Eu égard à leur tâche."
+   },
+   {
+    "q": "Combien de voitures et de taureaux donne-t-il aux enfants de Merari ?",
+    "a": "Quatre voitures et huit taureaux",
+    "w": [
+     "Deux voitures et quatre taureaux",
+     "Six voitures et douze taureaux",
+     "Quatre voitures et quatre taureaux"
+    ],
+    "ref": "7:8",
+    "proof": [
+     "quatre autres voitures et les huit autres taureaux"
+    ],
+    "x": "Leur tâche est dirigée par Ithamar."
+   },
+   {
+    "q": "Qui dirige la surveillance des familles de Gerson, dans la tente d'assignation ?",
+    "a": "Ithamar, fils d'Aaron le pontife",
+    "w": [
+     "Éléazar, fils d'Aaron le pontife",
+     "Nadab, fils d'Aaron le pontife",
+     "Hour, fils de Caleb le pontife"
+    ],
+    "ref": "4:28",
+    "proof": [
+     "Ithamar, fils d'Aaron"
+    ],
+    "x": "Telle est la tâche des familles de Gerson."
+   },
+   {
+    "q": "Combien de coupes d'or composent le présent dédicatoire de l'autel, offert par les phylarques ?",
+    "a": "Douze coupes d'or",
+    "w": [
+     "Sept coupes d'or",
+     "Vingt-quatre coupes d'or",
+     "Dix coupes d'or"
+    ],
+    "ref": "7:84",
+    "proof": [
+     "douze coupes d'or"
+    ],
+    "x": "Ils offrent aussi douze écuelles et douze bassins d'argent."
+   },
+   {
+    "q": "Quel est le total de l'or des douze coupes pleines de parfum ?",
+    "a": "Cent vingt sicles",
+    "w": [
+     "Cent sicles",
+     "Mille sicles",
+     "Soixante-dix sicles"
+    ],
+    "ref": "7:86",
+    "proof": [
+     "cent vingt sicles"
+    ],
+    "x": "Chaque coupe pèse dix sicles, au poids du sanctuaire."
    }
   ],
   "3": [
@@ -232,6 +372,76 @@
      "מכסות"
     ],
     "x": "Rachi sur Nombres 7:3 : « tsav » signifie qui couvre ; ce sont des chariots couverts."
+   },
+   {
+    "q": "Selon Rachi, que montre la répétition de la section du voleur et du faux serment ici ?",
+    "a": "Que la section est répétée pour deux choses nouvelles : la confession et le principal avec un cinquième",
+    "w": [
+     "Que la section est répétée pour deux choses connues : l'offrande et le serment",
+     "Que la section est répétée pour deux choses rares : le jeûne et la prière",
+     "Que la section est répétée pour deux choses graves : la mort et l'exil"
+    ],
+    "ref": "5:6",
+    "proof": [
+     "שנתחדשו בה"
+    ],
+    "x": "Rachi sur Nombres 5:6 : la section du voleur et du faux serment est répétée ici pour deux innovations : la confession, et le principal avec le cinquième."
+   },
+   {
+    "q": "Selon Rachi, pourquoi l'oblation de la femme soupçonnée est-elle d'orge ?",
+    "a": "Parce qu'elle a agi comme une bête, et son offrande est une nourriture de bête",
+    "w": [
+     "Parce qu'elle a agi comme une pauvre, et son offrande est une nourriture de pauvre",
+     "Parce qu'elle a agi comme une étrangère, et son offrande est une nourriture d'étrangère",
+     "Parce qu'elle a agi comme une servante, et son offrande est une nourriture de servante"
+    ],
+    "ref": "5:15",
+    "proof": [
+     "עשתה מעשה בהמה"
+    ],
+    "x": "Rachi sur Nombres 5:15 : l'orge et non le froment : elle a fait un acte de bête, son offrande est nourriture de bête."
+   },
+   {
+    "q": "Selon Rachi, pourquoi le pontife découvre-t-il la tête de la femme soupçonnée ?",
+    "a": "Pour l'humilier : pour les filles d'Israël, tête découverte est une honte",
+    "w": [
+     "Pour la nourrir : pour les filles d'Israël, tête découverte est une joie",
+     "Pour la purifier : pour les filles d'Israël, tête découverte est un signe",
+     "Pour la bénir : pour les filles d'Israël, tête découverte est un honneur"
+    ],
+    "ref": "5:18",
+    "proof": [
+     "גלוי הראש גנאי להן"
+    ],
+    "x": "Rachi sur Nombres 5:18 : il défait la tresse de ses cheveux pour l'humilier : pour les filles d'Israël, la tête découverte est une honte."
+   },
+   {
+    "q": "Selon Rachi, pourquoi les eaux sont-elles dites « amères » (hamerim) ?",
+    "a": "À cause de leur fin : elles seront amères pour la femme",
+    "w": [
+     "À cause de leur goût : elles seront amères pour la bouche",
+     "À cause de leur source : elles seront amères pour la terre",
+     "À cause de leur couleur : elles seront amères pour l'œil"
+    ],
+    "ref": "5:18",
+    "proof": [
+     "על שם סופן"
+    ],
+    "x": "Rachi sur Nombres 5:18 : à cause de leur fin : elles lui seront amères."
+   },
+   {
+    "q": "Selon Rachi, que veut dire « le jour où il l'oignit » pour les offrandes des phylarques ?",
+    "a": "Que le jour même où l'autel fut oint, ils l'offrirent",
+    "w": [
+     "Que le lendemain du jour où l'autel fut oint, ils l'offrirent",
+     "Que la veille du jour où l'autel fut oint, ils l'offrirent",
+     "Que la semaine après le jour où l'autel fut oint, ils l'offrirent"
+    ],
+    "ref": "7:84",
+    "proof": [
+     "בו ביום שנמשח הקריב"
+    ],
+    "x": "Rachi sur Nombres 7:84 : le jour même de l'onction, ils offrirent."
    }
   ]
  }

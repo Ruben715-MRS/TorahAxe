@@ -85,6 +85,76 @@
      "vit solitaire"
     ],
     "x": "Balaam le voit du haut des collines."
+   },
+   {
+    "q": "Que voit Balaam sur la route, quand le Seigneur lui dessille les yeux ?",
+    "a": "L'ange du Seigneur, l'épée nue à la main",
+    "w": [
+     "Une colonne de feu, la verge dressée",
+     "Un lion sur le chemin, la gueule ouverte",
+     "Un nuage de fumée, la voix éclatante"
+    ],
+    "ref": "22:31",
+    "proof": [
+     "épée nue"
+    ],
+    "x": "Il s'incline et se prosterne sur sa face."
+   },
+   {
+    "q": "Que dit Balaam à Balak : « comment maudirais-je celui que Dieu n'a point maudit » ?",
+    "a": "Qu'il ne peut pas maudire Israël",
+    "w": [
+     "Qu'il peut bénir Israël moyennant paiement",
+     "Qu'il doit refuser Balak devant le peuple",
+     "Qu'il veut attendre le jour de la fête"
+    ],
+    "ref": "23:8",
+    "proof": [
+     "Comment maudirais-je celui que Dieu n'a point maudit"
+    ],
+    "x": "Comment menacerait-il, quand l'Éternel est sans colère ?"
+   },
+   {
+    "q": "Où Balak conduit-il Balaam la deuxième fois, où dressent-ils sept autels ?",
+    "a": "Au plateau de Çofîm, sur la crête du Pisga",
+    "w": [
+     "Aux hauteurs de Baal, sur la crête du Hermon",
+     "Au désert de Cîn, sur la crête du Nébo",
+     "À la plaine de Moab, sur la crête du Hor"
+    ],
+    "ref": "23:14",
+    "proof": [
+     "plateau de Çofîm"
+    ],
+    "x": "Ils offrent un taureau et un bélier sur chaque autel."
+   },
+   {
+    "q": "Qu'est-ce qui s'empare de Balaam, quand il voit les tribus d'Israël déployées ?",
+    "a": "L'esprit divin",
+    "w": [
+     "La peur de Balak",
+     "La voix de l'ânesse",
+     "L'ordre du roi"
+    ],
+    "ref": "24:2",
+    "proof": [
+     "l'esprit divin s'empara de lui"
+    ],
+    "x": "Il porte ses regards sur le camp."
+   },
+   {
+    "q": "Où Balak conduit-il Balaam, le matin, la première fois, d'où il voit les dernières lignes du peuple ?",
+    "a": "Sur les hauteurs de Baal",
+    "w": [
+     "Sur les hauteurs de Moab",
+     "Sur les hauteurs de Séir",
+     "Sur les hauteurs de Madian"
+    ],
+    "ref": "22:41",
+    "proof": [
+     "hauteurs de Baal"
+    ],
+    "x": "Il voit jusqu'à l'extrémité du peuple."
    }
   ],
   "2": [
@@ -169,6 +239,76 @@
      "je dois le faire"
     ],
     "x": "« Ne t'avais-je pas fait cette déclaration ? »"
+   },
+   {
+    "q": "Avec quoi les anciens de Moab et de Madian arrivent-ils chez Balaam ?",
+    "a": "Avec les honoraires de la divination",
+    "w": [
+     "Avec les chameaux de Balak",
+     "Avec la lettre du roi",
+     "Avec les armes de leurs chefs"
+    ],
+    "ref": "22:7",
+    "proof": [
+     "honoraires de la divination"
+    ],
+    "x": "Ils transmettent les paroles de Balak."
+   },
+   {
+    "q": "Que dit Balaam aux officiers de Balak le matin, après la nuit de réflexion ?",
+    "a": "« Retournez dans votre pays, car l'Éternel n'a pas voulu me permettre de partir »",
+    "w": [
+     "« Restez dans ce pays, car l'Éternel n'a pas encore voulu me répondre »",
+     "« Partez devant moi, car l'Éternel n'a pas voulu me laisser avec vous »",
+     "« Attendez ici ce soir, car l'Éternel n'a pas voulu me parler ce jour »"
+    ],
+    "ref": "22:13",
+    "proof": [
+     "Retournez dans votre pays"
+    ],
+    "x": "Il s'était levé le matin."
+   },
+   {
+    "q": "Que dit Balaam de sa mission, dans sa deuxième déclaration ?",
+    "a": "Qu'il a reçu mission de bénir, et ne peut le dédire",
+    "w": [
+     "Qu'il a reçu mission de maudire, et ne peut le taire",
+     "Qu'il a reçu mission de partir, et ne peut le cacher",
+     "Qu'il a reçu mission de prier, et ne peut le dire"
+    ],
+    "ref": "23:20",
+    "proof": [
+     "j'ai reçu mission de bénir"
+    ],
+    "x": "Il a béni, il ne peut le dédire."
+   },
+   {
+    "q": "À quel animal Balaam compare-t-il l'élan d'Israël, qui dévore les peuples ?",
+    "a": "Au réêm",
+    "w": [
+     "Au lion",
+     "À l'aigle",
+     "Au loup"
+    ],
+    "ref": "24:8",
+    "proof": [
+     "réêm"
+    ],
+    "x": "Quand Dieu l'a fait sortir de l'Égypte."
+   },
+   {
+    "q": "Que dit Balak à Balaam, en lui reprochant de ne pas être venu ?",
+    "a": "« Ne t'avais-je pas appelé par un premier message ? »",
+    "w": [
+     "« Ne t'avais-je pas annoncé par un seul prophète ? »",
+     "« Ne t'avais-je pas envoyé par un grand cortège ? »",
+     "« Ne t'avais-je pas commandé par un fort décret ? »"
+    ],
+    "ref": "22:37",
+    "proof": [
+     "Ne t'avais-je pas appelé"
+    ],
+    "x": "Il lui demande pourquoi il n'est pas venu."
    }
   ],
   "3": [
@@ -241,6 +381,76 @@
      "זה דוד"
     ],
     "x": "Rachi sur Nombres 24:17 : c'est David, dont il est dit : « il les coucha à terre et les mesura avec deux cordes pour en faire mourir »."
+   },
+   {
+    "q": "Selon Rachi, que répond Dieu à Balaam qui voulait maudire Israël depuis sa propre place ?",
+    "a": "« Ce peuple est béni » : on ne maudit pas, comme on dit à la guêpe : ni ton miel ni ton dard",
+    "w": [
+     "« Ce peuple est faible » : on ne maudit pas, comme on dit à l'abeille : ni ta cire ni ton essaim",
+     "« Ce peuple est saint » : on ne maudit pas, comme on dit au lion : ni ta force ni ta griffe",
+     "« Ce peuple est nombreux » : on ne maudit pas, comme on dit au loup : ni ta faim ni ta dent"
+    ],
+    "ref": "22:12",
+    "proof": [
+     "לצרעה לא מדבשך ולא מעקצך"
+    ],
+    "x": "Rachi sur Nombres 22:12 : « maudis-les de chez toi » ; « ne maudis pas le peuple » ; « alors bénis-les » ; « ils n'ont pas besoin de ta bénédiction : il est béni » ; comme on dit à la guêpe : ni ton miel ni ton dard."
+   },
+   {
+    "q": "Selon Rachi, que signifie « du sommet des rochers je le vois » ?",
+    "a": "Que Balaam voit leurs origines, solides comme les rochers, par les pères et les mères",
+    "w": [
+     "Que Balaam voit leur avenir, brillant comme les astres, par les rois et les prêtres",
+     "Que Balaam voit leur nombre, immense comme le sable, par les tribus et les familles",
+     "Que Balaam voit leur force, grande comme les montagnes, par les chefs et les juges"
+    ],
+    "ref": "23:9",
+    "proof": [
+     "כצורים וגבעות"
+    ],
+    "x": "Rachi sur Nombres 23:9 : je regarde leurs débuts et leurs racines : je les vois solides et forts comme les rochers et les collines, par les pères et les mères."
+   },
+   {
+    "q": "Selon Rachi, que signifie « Il n'aperçoit point d'iniquité en Jacob » ?",
+    "a": "Que Dieu ne scrute pas leurs fautes de près",
+    "w": [
+     "Que Dieu ne punit pas leurs fautes du tout",
+     "Que Dieu ne connaît pas leurs fautes en détail",
+     "Que Dieu ne cache pas leurs fautes à tous"
+    ],
+    "ref": "23:21",
+    "proof": [
+     "אינו מדקדק אחריהם"
+    ],
+    "x": "Rachi sur Nombres 23:21 : quand ils transgressent ses paroles, il ne les surveille pas de près pour examiner leurs iniquités."
+   },
+   {
+    "q": "Selon Rachi, que signifie « l'amitié d'un roi le protège » (terouat melekh bo) ?",
+    "a": "Un langage d'affection : la Présence de leur roi est au milieu d'eux",
+    "w": [
+     "Un langage de crainte : l'armée de leur roi est autour d'eux",
+     "Un langage de fête : la musique de leur roi est parmi eux",
+     "Un langage de guerre : le glaive de leur roi est sur eux"
+    ],
+    "ref": "23:21",
+    "proof": [
+     "לשון חבה ורעות"
+    ],
+    "x": "Rachi sur Nombres 23:21 : un langage d'amour et d'amitié : la Présence de leur Roi est parmi eux."
+   },
+   {
+    "q": "Selon Rachi, pourquoi Balaam dit-il « qu'elles sont belles tes tentes » ?",
+    "a": "Parce qu'il voit que leurs entrées ne se font pas face",
+    "w": [
+     "Parce qu'il voit que leurs toits sont décorés d'or",
+     "Parce qu'il voit que leurs murs sont couverts de tapis",
+     "Parce qu'il voit que leurs portes sont ornées de fleurs"
+    ],
+    "ref": "24:5",
+    "proof": [
+     "פתחיהם שאינן מכונין"
+    ],
+    "x": "Rachi sur Nombres 24:5 : il voit que leurs portes ne sont pas alignées en face les unes des autres : nul ne regarde chez son voisin."
    }
   ]
  }

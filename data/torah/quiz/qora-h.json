@@ -85,6 +85,76 @@
      "revêtira l'autel"
     ],
     "x": "Ils sont devenus saints parce qu'ils ont été présentés devant le Seigneur."
+   },
+   {
+    "q": "Que devient le groupe des deux cent cinquante hommes qui avaient offert l'encens ?",
+    "a": "Un feu s'élance de devant le Seigneur et les consume",
+    "w": [
+     "Un vent se lève de devant le Seigneur et les disperse",
+     "Une nuée descend de devant le Seigneur et les cache",
+     "Une pluie tombe de devant le Seigneur et les noie"
+    ],
+    "ref": "16:35",
+    "proof": [
+     "feu s'élança"
+    ],
+    "x": "Les deux cent cinquante avaient apporté l'encens."
+   },
+   {
+    "q": "Que dit toute la communauté, le lendemain, en murmurant contre Moïse et Aaron ?",
+    "a": "« C'est vous qui avez tué le peuple de l'Éternel ! »",
+    "w": [
+     "« C'est vous qui avez trompé le peuple de l'Éternel ! »",
+     "« C'est vous qui avez vendu le peuple de l'Éternel ! »",
+     "« C'est vous qui avez chassé le peuple de l'Éternel ! »"
+    ],
+    "ref": "17:6",
+    "proof": [
+     "C'est vous qui avez tué le peuple"
+    ],
+    "x": "Ils murmurent contre eux le lendemain."
+   },
+   {
+    "q": "Qu'arrive-t-il à la verge de l'homme que l'Éternel aura élu ?",
+    "a": "Elle fleurit",
+    "w": [
+     "Elle verdit",
+     "Elle plie",
+     "Elle brille"
+    ],
+    "ref": "17:20",
+    "proof": [
+     "sa verge fleurira"
+    ],
+    "x": "Ainsi Dieu mettra fin aux murmures."
+   },
+   {
+    "q": "Que reçoit le prêtre, parmi les prémices offertes au Seigneur ?",
+    "a": "Le meilleur de l'huile, du vin et du blé",
+    "w": [
+     "Le premier du bétail, des brebis et des chèvres",
+     "Le dixième du lait, du miel et des figues",
+     "La moitié du pain, du sel et de la farine"
+    ],
+    "ref": "18:12",
+    "proof": [
+     "meilleur de l'huile"
+    ],
+    "x": "Dieu les lui donne."
+   },
+   {
+    "q": "Qu'est-il interdit aux enfants d'Israël de faire, désormais, selon l'Éternel ?",
+    "a": "S'approcher de la tente d'assignation",
+    "w": [
+     "Se compter dans le désert",
+     "Porter la verge d'Aaron",
+     "Prononcer le nom de Coré"
+    ],
+    "ref": "18:22",
+    "proof": [
+     "n'approchent plus de la tente d'assignation"
+    ],
+    "x": "Ils se chargeraient d'un péché mortel."
    }
   ],
   "2": [
@@ -158,6 +228,76 @@
      "devant le statut"
     ],
     "x": "Ce signe fait cesser leurs murmures."
+   },
+   {
+    "q": "Combien d'encensoirs Moïse demande-t-il aux révoltés d'apporter devant le Seigneur ?",
+    "a": "Deux cent cinquante, un par homme",
+    "w": [
+     "Cent vingt, un pour deux hommes",
+     "Soixante-dix, un par ancien",
+     "Douze, un par tribu"
+    ],
+    "ref": "16:17",
+    "proof": [
+     "deux cent cinquante encensoirs"
+    ],
+    "x": "Moïse et Aaron apportent aussi chacun le leur."
+   },
+   {
+    "q": "Que reproche Moïse aux fils de Lévi, déjà approchés de l'Éternel ?",
+    "a": "De réclamer encore le sacerdoce",
+    "w": [
+     "De refuser encore le service",
+     "De quitter encore le camp",
+     "D'oublier encore le sabbat"
+    ],
+    "ref": "16:10",
+    "proof": [
+     "vous réclamez encore le sacerdoce"
+    ],
+    "x": "Il leur dit que Dieu les a approchés de lui."
+   },
+   {
+    "q": "Quand cesse la mortalité, selon le texte, qui frappait le peuple ?",
+    "a": "Quand Aaron retourne vers Moïse à l'entrée de la tente",
+    "w": [
+     "Quand Moïse revient vers Aaron au pied de la montagne",
+     "Quand Éléazar monte vers Moïse sur le rocher",
+     "Quand le peuple quitte Aaron à la porte du camp"
+    ],
+    "ref": "17:15",
+    "proof": [
+     "la mortalité eut cessé"
+    ],
+    "x": "Aaron retourne auprès de Moïse."
+   },
+   {
+    "q": "Qui doit retirer les encensoirs du milieu de l'embrasement et en disperser le feu au loin ?",
+    "a": "Éléazar, fils d'Aaron le pontife",
+    "w": [
+     "Ithamar, fils d'Aaron le pontife",
+     "Aaron, frère de Moïse le pontife",
+     "Josué, fils de Noun le serviteur"
+    ],
+    "ref": "17:2",
+    "proof": [
+     "Eléazar, fils d'Aaron"
+    ],
+    "x": "Car les encensoirs sont devenus saints."
+   },
+   {
+    "q": "À quoi l'impôt des Lévites est-il comparé, selon l'Éternel ?",
+    "a": "Au blé prélevé de la grange et à la liqueur prélevée du pressoir",
+    "w": [
+     "Au pain cuit du four et au vin versé du cellier",
+     "Au lait tiré du troupeau et au miel pris du rocher",
+     "À l'huile pressée de l'olive et au grain moulu du moulin"
+    ],
+    "ref": "18:27",
+    "proof": [
+     "blé prélevé de la grange"
+    ],
+    "x": "C'est la dîme de la dîme."
    }
   ],
   "3": [
@@ -230,6 +370,76 @@
      "שאינו מסריח לעולם"
     ],
     "x": "Rachi sur Nombres 18:19 : comme l'alliance conclue avec le sel, qui ne se gâte jamais."
+   },
+   {
+    "q": "Selon Rachi, que veut dire Moïse en disant « c'en est assez pour vous, fils de Lévi » ?",
+    "a": "Que c'est une grande chose que vous avez prise en vous opposant à Dieu",
+    "w": [
+     "Que c'est une petite chose que vous avez reçue en vous soumettant à Dieu",
+     "Que c'est une longue chose que vous avez faite en vous reposant en Dieu",
+     "Que c'est une rare chose que vous avez obtenue en vous séparant de Dieu"
+    ],
+    "ref": "16:7",
+    "proof": [
+     "דבר גדול נטלתם"
+    ],
+    "x": "Rachi sur Nombres 16:7 : une grande chose vous avez prise sur vous, de vous opposer à Dieu."
+   },
+   {
+    "q": "Selon Rachi, comment Coré a-t-il persuadé les tribus pendant la nuit ?",
+    "a": "Par des paroles de moquerie : « croyez-vous que je ne m'oppose que pour moi ? »",
+    "w": [
+     "Par des paroles de prière : « croyez-vous que je ne prie que pour moi ? »",
+     "Par des paroles de menace : « croyez-vous que je ne parle que pour moi ? »",
+     "Par des paroles de louange : « croyez-vous que je ne loue que pour moi ? »"
+    ],
+    "ref": "16:19",
+    "proof": [
+     "בדברי לצנות"
+    ],
+    "x": "Rachi sur Nombres 16:19 : par des paroles de moquerie : toute la nuit, il alla vers les tribus pour les persuader."
+   },
+   {
+    "q": "Selon Rachi, que signifie « qu'il ne soit pas comme Coré » ?",
+    "a": "Pour que personne ne se comporte comme Coré dans la querelle",
+    "w": [
+     "Pour que personne ne naisse comme Coré dans la tribu",
+     "Pour que personne ne parle comme Coré dans le camp",
+     "Pour que personne ne meure comme Coré dans la terre"
+    ],
+    "ref": "17:5",
+    "proof": [
+     "כדי שלא יהיה כקרח"
+    ],
+    "x": "Rachi sur Nombres 17:5 : afin qu'il ne soit pas comme Coré."
+   },
+   {
+    "q": "Selon Rachi, que signifie « tsits » dans la verge d'Aaron ?",
+    "a": "Le fruit qui se forme quand la fleur tombe",
+    "w": [
+     "La fleur qui s'ouvre quand le bouton éclôt",
+     "Le bourgeon qui paraît quand la branche pousse",
+     "La feuille qui tombe quand le vent souffle"
+    ],
+    "ref": "17:23",
+    "proof": [
+     "חנטת הפרי"
+    ],
+    "x": "Rachi sur Nombres 17:23 : « tsits » : la formation du fruit quand la fleur tombe."
+   },
+   {
+    "q": "Selon Rachi, que signifie « je te l'ai donné pour l'onction » (lemashkha) ?",
+    "a": "Pour la grandeur",
+    "w": [
+     "Pour la joie",
+     "Pour la paix",
+     "Pour la force"
+    ],
+    "ref": "18:8",
+    "proof": [
+     "לגדלה"
+    ],
+    "x": "Rachi sur Nombres 18:8 : « lemashkha » : pour la grandeur."
    }
   ]
  }

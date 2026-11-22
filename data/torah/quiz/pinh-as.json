@@ -96,6 +96,76 @@
      "deux par jour"
     ],
     "x": "L'un est offert le matin, l'autre vers le soir."
+   },
+   {
+    "q": "Que dit l'Éternel à Moïse d'annoncer à Phinéas ?",
+    "a": "Qu'il lui accorde son alliance amicale",
+    "w": [
+     "Qu'il lui donne une terre à Sichem",
+     "Qu'il lui confie le commandement de l'armée",
+     "Qu'il lui promet un fils prophète"
+    ],
+    "ref": "25:12",
+    "proof": [
+     "alliance amicale"
+    ],
+    "x": "Phinéas avait détourné la colère de Dieu."
+   },
+   {
+    "q": "Devant qui Josué doit-il se présenter, pour que soit interrogé l'oracle des Ourîm ?",
+    "a": "Devant le pontife Éléazar",
+    "w": [
+     "Devant le pontife Aaron",
+     "Devant le prophète Moïse",
+     "Devant le chef Caleb"
+    ],
+    "ref": "27:21",
+    "proof": [
+     "pontife Eléazar"
+    ],
+    "x": "C'est à sa voix qu'ils partiront, à sa voix qu'ils rentreront."
+   },
+   {
+    "q": "Combien d'agneaux d'un an offre-t-on, le jour du sabbat, en plus de l'holocauste perpétuel ?",
+    "a": "Deux agneaux",
+    "w": [
+     "Un agneau",
+     "Quatre agneaux",
+     "Sept agneaux"
+    ],
+    "ref": "28:9",
+    "proof": [
+     "deux agneaux d'un an sans défaut"
+    ],
+    "x": "On y joint deux dixièmes de fleur de farine pétrie à l'huile."
+   },
+   {
+    "q": "Quel jour du premier mois la Pâque est-elle offerte à l'Éternel ?",
+    "a": "Le quatorzième jour",
+    "w": [
+     "Le premier jour",
+     "Le quinzième jour",
+     "Le septième jour"
+    ],
+    "ref": "28:16",
+    "proof": [
+     "quatorzième jour de ce mois"
+    ],
+    "x": "Le quinzième jour, c'est fête."
+   },
+   {
+    "q": "De quelle faction les filles de Celofhad disent-elles que leur père ne faisait pas partie ?",
+    "a": "De celle de Coré, liguée contre le Seigneur",
+    "w": [
+     "De celle de Balaam, liguée contre le Seigneur",
+     "De celle de Zimri, liguée contre le Seigneur",
+     "De celle de Dathan, liguée contre le Seigneur"
+    ],
+    "ref": "27:3",
+    "proof": [
+     "faction de Coré"
+    ],
+    "x": "Il est mort pour son péché, sans fils."
    }
   ],
   "2": [
@@ -192,6 +262,76 @@
      "jour du son du Chofar"
     ],
     "x": "Il y a convocation sainte : on ne fait aucune œuvre servile."
+   },
+   {
+    "q": "Que se passe-t-il pour Coré et son parti, selon le dénombrement ?",
+    "a": "La terre les engloutit, pendant qu'un feu consume les deux cent cinquante hommes",
+    "w": [
+     "Un feu les engloutit, pendant que la terre consume les deux cent cinquante hommes",
+     "Un vent les emporte, pendant que la pluie consume les deux cent cinquante hommes",
+     "Une nuée les cache, pendant que le feu consume les deux cent cinquante hommes"
+    ],
+    "ref": "26:10",
+    "proof": [
+     "la terre ouvrit son sein"
+    ],
+    "x": "Ils ont été frappés pour l'exemple."
+   },
+   {
+    "q": "Où meurent Er et Onân, fils de Juda ?",
+    "a": "Dans le pays de Canaan",
+    "w": [
+     "Dans le pays d'Égypte",
+     "Dans le pays de Moab",
+     "Dans le désert de Pharan"
+    ],
+    "ref": "26:19",
+    "proof": [
+     "moururent dans le pays de Canaan"
+    ],
+    "x": "Ils sont les fils de Juda."
+   },
+   {
+    "q": "Quelle part du pays donne-t-on aux tribus les plus nombreuses ?",
+    "a": "Une plus grande part, selon le chiffre de leur population",
+    "w": [
+     "Une part égale, selon le tirage de leur sort",
+     "Une plus petite part, selon le rang de leur âge",
+     "Une part double, selon la voix de leur chef"
+    ],
+    "ref": "26:54",
+    "proof": [
+     "plus grande part"
+    ],
+    "x": "Aux moins nombreux, une part inférieure."
+   },
+   {
+    "q": "Que demandent les filles de Celofhad à Moïse ?",
+    "a": "Une propriété parmi les frères de leur père",
+    "w": [
+     "Une tente parmi les enfants de leur père",
+     "Un nom parmi les anciens de leur père",
+     "Un chef parmi les fils de leur père"
+    ],
+    "ref": "27:4",
+    "proof": [
+     "propriété parmi les frères de notre père"
+    ],
+    "x": "Leur père est mort sans fils."
+   },
+   {
+    "q": "Que doit-on offrir en plus de l'holocauste perpétuel, en l'honneur de l'Éternel ?",
+    "a": "Un bouc pour expiatoire",
+    "w": [
+     "Un agneau pour rémunératoire",
+     "Un taureau pour holocauste",
+     "Une brebis pour oblation"
+    ],
+    "ref": "28:15",
+    "proof": [
+     "bouc pour expiatoire"
+    ],
+    "x": "Il s'ajoute aussi à sa libation."
    }
   ],
   "3": [
@@ -264,6 +404,76 @@
      "מעמדות"
     ],
     "x": "Rachi sur Nombres 28:2 : « vous veillerez » : que des prêtres, des Lévites et des Israélites se tiennent présents auprès de lui ; de là les « maamadot » ont été institués."
+   },
+   {
+    "q": "Selon Rachi, que signifie « mon alliance de paix » ?",
+    "a": "Que Dieu lui montre sa reconnaissance, comme celui qui remercie qui lui fait du bien",
+    "w": [
+     "Que Dieu lui prête son aide, comme celui qui protège qui l'implore",
+     "Que Dieu lui offre sa terre, comme celui qui donne à qui l'a servi",
+     "Que Dieu lui confie son nom, comme celui qui livre à qui l'a aimé"
+    ],
+    "ref": "25:12",
+    "proof": [
+     "כאדם המחזיק טובה"
+    ],
+    "x": "Rachi sur Nombres 25:12 : qu'il soit pour lui une alliance de paix : comme un homme qui remercie celui qui lui a fait du bien, Dieu lui annonce ses bienveillances."
+   },
+   {
+    "q": "Selon Rachi, que montre « Moïse présenta leur cause » ?",
+    "a": "Qu'une règle lui échappa, par punition pour s'être attribué une couronne",
+    "w": [
+     "Qu'une règle lui fut rappelée, par récompense pour avoir enseigné les juges",
+     "Qu'une règle lui fut cachée, par ordre pour avoir voulu parler à Dieu",
+     "Qu'une règle lui fut reprochée, par crainte pour avoir parlé trop haut"
+    ],
+    "ref": "27:5",
+    "proof": [
+     "נתעלמה הלכה ממנו"
+    ],
+    "x": "Rachi sur Nombres 27:5 : la règle lui échappa : il fut puni pour s'être attribué une couronne en disant : « la chose qui sera trop difficile pour vous, apportez-la-moi »."
+   },
+   {
+    "q": "Selon Rachi, que dit Dieu à Moïse qui demandait que ses fils héritent de sa grandeur ?",
+    "a": "Que Josué mérite la récompense de son service, car il n'a jamais quitté la tente",
+    "w": [
+     "Que Caleb mérite la récompense de sa foi, car il n'a jamais quitté Hébron",
+     "Que Betsalel mérite la récompense de son art, car il n'a jamais quitté l'atelier",
+     "Que Hour mérite la récompense de son zèle, car il n'a jamais quitté le camp"
+    ],
+    "ref": "27:16",
+    "proof": [
+     "כדאי הוא יהושע"
+    ],
+    "x": "Rachi sur Nombres 27:16 : « il ne n'a pas été ainsi dans ma pensée : Josué mérite de recevoir la récompense de son service, car il n'a jamais quitté ta tente »."
+   },
+   {
+    "q": "Selon Rachi, que signifie « pose ta main sur lui » à propos de Josué ?",
+    "a": "Donne-lui un interprète qui explique de ton vivant, pour que nul ne dise : il ne pouvait lever la tête du temps de Moïse",
+    "w": [
+     "Donne-lui un scribe qui écrive de ton vivant, pour que nul ne dise : il ne pouvait écrire du temps de Moïse",
+     "Donne-lui un garde qui veille de ton vivant, pour que nul ne dise : il ne pouvait marcher du temps de Moïse",
+     "Donne-lui un juge qui tranche de ton vivant, pour que nul ne dise : il ne pouvait parler du temps de Moïse"
+    ],
+    "ref": "27:18",
+    "proof": [
+     "תן לו מתרגמן שידרש בחייך"
+    ],
+    "x": "Rachi sur Nombres 27:18 : donne-lui un interprète qui enseigne de ton vivant, afin qu'on ne dise pas de lui qu'il n'osait pas lever la tête du temps de Moïse."
+   },
+   {
+    "q": "Selon Rachi, que raconte la parabole de la fille de roi à propos de « ordonne aux enfants d'Israël » ?",
+    "a": "Qu'une fille de roi mourante confie ses enfants à son mari ; ainsi Dieu dit : ordonne mes enfants",
+    "w": [
+     "Qu'une fille de roi gisante demande son pain à son mari ; ainsi Dieu dit : donne mes enfants",
+     "Qu'une fille de roi voyageuse confie ses clés à son mari ; ainsi Dieu dit : garde mes enfants",
+     "Qu'une fille de roi malade appelle ses frères à son mari ; ainsi Dieu dit : cherche mes enfants"
+    ],
+    "ref": "28:2",
+    "proof": [
+     "משל לבת מלך"
+    ],
+    "x": "Rachi sur Nombres 28:2 : Dieu dit : « tu me demandes pour mes enfants, ordonne-leur à moi » : comme une fille de roi qui quitte le monde et confie ses enfants à son mari."
    }
   ]
  }

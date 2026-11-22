@@ -96,6 +96,76 @@
      "colère divine"
     ],
     "x": "Les Lévites ont la garde du tabernacle du statut."
+   },
+   {
+    "q": "Que devient le profane qui approcherait du tabernacle, quand les Lévites l'ont dressé ?",
+    "a": "Il est frappé de mort",
+    "w": [
+     "Il est chassé du camp",
+     "Il est compté parmi eux",
+     "Il est puni d'une amende"
+    ],
+    "ref": "1:51",
+    "proof": [
+     "frappé de mort"
+    ],
+    "x": "Ce sont les Lévites qui démontent et dressent le tabernacle."
+   },
+   {
+    "q": "En échange de quoi Dieu prend-il les Lévites parmi les enfants d'Israël ?",
+    "a": "De tous les premiers-nés",
+    "w": [
+     "De tous les prêtres",
+     "De toutes les tribus",
+     "De tous les anciens"
+    ],
+    "ref": "3:12",
+    "proof": [
+     "en échange de tous les premiers-nés"
+    ],
+    "x": "« Les Lévites sont donc à moi. »"
+   },
+   {
+    "q": "Qu'arrive-t-il à Nadab et Abihou, dans le désert de Sinaï ?",
+    "a": "Ils meurent devant le Seigneur sans enfants, pour un feu profane",
+    "w": [
+     "Ils se querellent devant le peuple, sans pardon, pour une idole",
+     "Ils partent devant le camp, sans retour, pour une guerre",
+     "Ils prient devant l'autel, sans repos, pour une faute"
+    ],
+    "ref": "3:4",
+    "proof": [
+     "Nadab et Abihou moururent"
+    ],
+    "x": "Éléazar et Ithamar exercent le sacerdoce."
+   },
+   {
+    "q": "Avec quoi Aaron et ses fils couvrent-ils l'arche du statut, au départ du camp ?",
+    "a": "Avec le voile protecteur",
+    "w": [
+     "Avec la peau de tahach",
+     "Avec la nappe d'azur",
+     "Avec la toile de lin"
+    ],
+    "ref": "4:5",
+    "proof": [
+     "voile protecteur"
+    ],
+    "x": "Ils le détachent pour en couvrir l'arche."
+   },
+   {
+    "q": "Où s'avance la tente d'assignation, parmi les camps, quand on se met en marche ?",
+    "a": "Au centre des camps, avec le camp des Lévites",
+    "w": [
+     "En tête des camps, avec le camp de Juda",
+     "À la fin des camps, avec le camp de Dan",
+     "À l'écart des camps, avec le camp d'Éphraïm"
+    ],
+    "ref": "2:17",
+    "proof": [
+     "au centre des camps"
+    ],
+    "x": "On marche chacun à son poste, suivant sa bannière."
    }
   ],
   "2": [
@@ -181,6 +251,76 @@
      "Eléazar, fils d'Aaron"
     ],
     "x": "Il est fils d'Aaron, le pontife."
+   },
+   {
+    "q": "Combien d'hommes compte la légion de la tribu d'Issachar ?",
+    "a": "Cinquante-quatre mille quatre cents",
+    "w": [
+     "Soixante-quatre mille trois cents",
+     "Cinquante-sept mille quatre cents",
+     "Cinquante-trois mille quatre cents"
+    ],
+    "ref": "2:5-6",
+    "proof": [
+     "cinquante-quatre mille quatre cents"
+    ],
+    "x": "Son phylarque est Nethanel, fils de Çouar."
+   },
+   {
+    "q": "Combien d'hommes compte la légion de la tribu de Dan ?",
+    "a": "Soixante-deux mille sept cents",
+    "w": [
+     "Soixante-quatre mille trois cents",
+     "Cinquante-quatre mille sept cents",
+     "Soixante-deux mille trois cents"
+    ],
+    "ref": "2:25-26",
+    "proof": [
+     "soixante-deux mille sept cents"
+    ],
+    "x": "Son phylarque est Ahïézer, fils d'Ammichaddaï."
+   },
+   {
+    "q": "Combien d'hommes compte la légion de la tribu de Nephtali ?",
+    "a": "Cinquante-trois mille quatre cents",
+    "w": [
+     "Cinquante-quatre mille quatre cents",
+     "Cinquante-trois mille six cents",
+     "Quarante-trois mille quatre cents"
+    ],
+    "ref": "2:29-30",
+    "proof": [
+     "cinquante-trois mille quatre cents"
+    ],
+    "x": "Son phylarque est Ahira, fils d'Enân."
+   },
+   {
+    "q": "Quel est le total des mâles gersonites, depuis l'âge d'un mois ?",
+    "a": "Sept mille cinq cents",
+    "w": [
+     "Huit mille six cents",
+     "Six mille deux cents",
+     "Vingt-deux mille"
+    ],
+    "ref": "3:22",
+    "proof": [
+     "sept mille cinq cents"
+    ],
+    "x": "Ils sont recensés par familles."
+   },
+   {
+    "q": "Combien de sicles reçoit Moïse des premiers-nés, pour le rachat de la portion excédante ?",
+    "a": "Mille trois cent soixante-cinq sicles",
+    "w": [
+     "Mille deux cent soixante-cinq sicles",
+     "Mille trois cent cinquante sicles",
+     "Deux mille trois cents sicles"
+    ],
+    "ref": "3:50",
+    "proof": [
+     "mille trois cent soixante-cinq sicles"
+    ],
+    "x": "Au poids du sanctuaire."
    }
   ],
   "3": [
@@ -254,6 +394,76 @@
      "טוב לצדיק טוב לשכנו"
     ],
     "x": "Rachi sur Nombres 3:38 : bon pour le juste, bon pour son voisin : elles étaient voisines de Moïse qui étudiait la Torah, et sont devenues grandes en Torah."
+   },
+   {
+    "q": "Selon Rachi, que signifie « par tête » (legulgolotam) dans le recensement ?",
+    "a": "Par les sicles : un demi-sicle par tête",
+    "w": [
+     "Par les noms : une ligne par tête",
+     "Par les fils : un fils par tête",
+     "Par les tentes : une tente par tête"
+    ],
+    "ref": "1:2",
+    "proof": [
+     "ע\"י שקלים"
+    ],
+    "x": "Rachi sur Nombres 1:2 : par l'intermédiaire de sicles : un béka par tête."
+   },
+   {
+    "q": "Selon Rachi, de quelle tribu est celui dont le père est d'une tribu et la mère d'une autre ?",
+    "a": "De la tribu de son père",
+    "w": [
+     "De la tribu de sa mère",
+     "De la tribu de son oncle",
+     "De la tribu de son maître"
+    ],
+    "ref": "1:2",
+    "proof": [
+     "יקום על שבט אביו"
+    ],
+    "x": "Rachi sur Nombres 1:2 : celui dont le père est d'une tribu et la mère d'une autre se place sous la tribu de son père."
+   },
+   {
+    "q": "Selon Rachi, combien de tribus forment chaque bannière, d'après l'ordre du livre ?",
+    "a": "Trois tribus",
+    "w": [
+     "Deux tribus",
+     "Quatre tribus",
+     "Six tribus"
+    ],
+    "ref": "1:52",
+    "proof": [
+     "שלשה שבטים לכל דגל"
+    ],
+    "x": "Rachi sur Nombres 1:52 : comme les bannières sont ordonnées dans ce livre : trois tribus à chaque bannière."
+   },
+   {
+    "q": "Selon Rachi, quand la tente d'assignation se met-elle en marche ?",
+    "a": "Après les deux premières bannières",
+    "w": [
+     "Avant la première bannière",
+     "Après la dernière bannière",
+     "Entre la troisième et la quatrième"
+    ],
+    "ref": "2:17",
+    "proof": [
+     "לאחר שני דגלים"
+    ],
+    "x": "Rachi sur Nombres 2:17 : après ces deux bannières."
+   },
+   {
+    "q": "Selon Rachi, quelles sont les personnes aptes à porter le tabernacle ?",
+    "a": "Celles de trente à cinquante ans",
+    "w": [
+     "Celles de vingt à quarante ans",
+     "Celles de vingt-cinq à soixante ans",
+     "Celles de quarante à soixante ans"
+    ],
+    "ref": "4:2",
+    "proof": [
+     "מבן שלשים ועד בן חמשים שנה"
+    ],
+    "x": "Rachi sur Nombres 4:2 : ceux qui sont aptes au service de charge, de trente à cinquante ans ; moins de trente ans, la force n'est pas complète."
    }
   ]
  }

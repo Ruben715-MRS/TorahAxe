@@ -97,6 +97,76 @@
      "sept jours hors du camp"
     ],
     "x": "Ils se purifient le troisième et le septième jour."
+   },
+   {
+    "q": "Qui les Israélites tuent-ils, après avoir livré bataille à Madian ?",
+    "a": "Tous les mâles",
+    "w": [
+     "Tous les chefs",
+     "Tous les guerriers",
+     "Tous les anciens"
+    ],
+    "ref": "31:7",
+    "proof": [
+     "tuèrent tous les mâles"
+    ],
+    "x": "Ils agissent comme l'Éternel l'avait ordonné à Moïse."
+   },
+   {
+    "q": "Qu'emmènent les Israélites de Madian, avec les bêtes de somme et les troupeaux ?",
+    "a": "Les femmes de Madian et leurs enfants, prisonniers",
+    "w": [
+     "Les chefs de Madian et leurs armes, prisonniers",
+     "Les prêtres de Madian et leurs idoles, prisonniers",
+     "Les rois de Madian et leurs chars, prisonniers"
+    ],
+    "ref": "31:9",
+    "proof": [
+     "femmes de Madian"
+    ],
+    "x": "Ils prennent aussi tous leurs biens."
+   },
+   {
+    "q": "Contre qui Moïse se met-il en colère, au retour de l'expédition ?",
+    "a": "Contre les officiers de l'armée, chiliarques et centurions",
+    "w": [
+     "Contre les anciens du peuple, juges et scribes",
+     "Contre les prêtres du camp, Lévites et gardes",
+     "Contre les chefs des tribus, princes et phylarques"
+    ],
+    "ref": "31:14",
+    "proof": [
+     "officiers de l'armée"
+    ],
+    "x": "Ils revenaient de l'expédition de guerre."
+   },
+   {
+    "q": "Quel jour doit-on laver ses vêtements, pour devenir pur avant de rentrer au camp ?",
+    "a": "Le septième jour",
+    "w": [
+     "Le troisième jour",
+     "Le premier jour",
+     "Le huitième jour"
+    ],
+    "ref": "31:24",
+    "proof": [
+     "septième jour"
+    ],
+    "x": "Après quoi on peut rentrer au camp."
+   },
+   {
+    "q": "Que demandent Ruben et Gad à Moïse, en disant « ne nous fais point passer le Jourdain » ?",
+    "a": "Que ce pays leur soit donné en propriété",
+    "w": [
+     "Que ce pays leur soit prêté pour un temps",
+     "Que ce pays leur soit partagé avec d'autres",
+     "Que ce pays leur soit loué pour une année"
+    ],
+    "ref": "32:5",
+    "proof": [
+     "donné en propriété"
+    ],
+    "x": "Ils disent avoir trouvé faveur à ses yeux."
    }
   ],
   "2": [
@@ -170,6 +240,76 @@
      "villes pour nos familles"
     ],
     "x": "Ils veulent que ce pays soit donné en propriété à leurs serviteurs, sans passer le Jourdain."
+   },
+   {
+    "q": "Combien de pièces de gros bétail compte-t-on parmi la part du peuple de la capture ?",
+    "a": "Trente-six mille",
+    "w": [
+     "Soixante-quinze mille",
+     "Trente mille cinq cents",
+     "Soixante et un mille"
+    ],
+    "ref": "31:44",
+    "proof": [
+     "trente-six mille"
+    ],
+    "x": "C'est la part du peuple dans la capture."
+   },
+   {
+    "q": "À qui les Israélites ont-ils été entraînés à trahir l'Éternel, selon Moïse ?",
+    "a": "À Baal-Peor, sur l'instigation de Balaam",
+    "w": [
+     "À Astarté, sur l'instigation de Balak",
+     "À Dagon, sur l'instigation de Sihôn",
+     "À Camôs, sur l'instigation d'Og"
+    ],
+    "ref": "31:16",
+    "proof": [
+     "Baal-Peor"
+    ],
+    "x": "La mort a sévi dans la communauté."
+   },
+   {
+    "q": "À qui donne-t-on le prélèvement pris sur la moitié des gens de guerre ?",
+    "a": "Au pontife Éléazar",
+    "w": [
+     "À Moïse, le chef",
+     "À Josué, le serviteur",
+     "À Caleb, l'ancien"
+    ],
+    "ref": "31:29",
+    "proof": [
+     "pontife Eléazar"
+    ],
+    "x": "C'est un prélèvement du Seigneur."
+   },
+   {
+    "q": "Comment Ruben et Gad doivent-ils marcher devant l'Éternel, selon Moïse ?",
+    "a": "Équipés pour la guerre",
+    "w": [
+     "Désarmés pour la paix",
+     "Vêtus pour la fête",
+     "Chargés pour le voyage"
+    ],
+    "ref": "32:20",
+    "proof": [
+     "équipés pour la guerre"
+    ],
+    "x": "C'est la condition posée par Moïse."
+   },
+   {
+    "q": "Que dit la Torah d'un vœu fait par une jeune fille dans la maison de son père, si son père la désavoue ?",
+    "a": "Tous ses vœux sont nuls",
+    "w": [
+     "Tous ses vœux sont valables",
+     "Tous ses vœux sont doublés",
+     "Tous ses vœux sont reportés"
+    ],
+    "ref": "30:6",
+    "proof": [
+     "seront nuls"
+    ],
+    "x": "Le Seigneur lui pardonnera."
    }
   ],
   "3": [
@@ -242,6 +382,76 @@
      "חסים היו על ממונם"
     ],
     "x": "Rachi sur Nombres 32:16 : ils tenaient plus à leurs biens qu'à leurs fils et filles ; Moïse leur dit : faites de l'essentiel l'essentiel, et du secondaire le secondaire."
+   },
+   {
+    "q": "Selon Rachi, que signifie « il ne profanera pas sa parole » ?",
+    "a": "Qu'il ne fera pas de sa parole une chose profane",
+    "w": [
+     "Qu'il ne fera pas de sa parole une chose sainte",
+     "Qu'il ne fera pas de sa parole une chose secrète",
+     "Qu'il ne fera pas de sa parole une chose légère"
+    ],
+    "ref": "30:3",
+    "proof": [
+     "לא יעשה דברו חלין"
+    ],
+    "x": "Rachi sur Nombres 30:3 : comme « ne profane pas sa parole » : qu'il ne la rende pas profane."
+   },
+   {
+    "q": "Selon Rachi, que conseilla Balaam aux Moabites pour faire tomber Israël ?",
+    "a": "De les faire pécher avec leurs filles, car leur Dieu hait l'immoralité",
+    "w": [
+     "De les faire jeûner avec leurs prêtres, car leur Dieu aime la faim",
+     "De les faire marcher avec leurs armées, car leur Dieu craint la guerre",
+     "De les faire jurer avec leurs rois, car leur Dieu veut l'alliance"
+    ],
+    "ref": "31:16",
+    "proof": [
+     "באו ואשיאכם עצה"
+    ],
+    "x": "Rachi sur Nombres 31:16 : il leur dit : même si vous les attaquez, vous ne pourrez rien contre eux ; venez, je vous conseille : leur Dieu hait l'immoralité."
+   },
+   {
+    "q": "Selon Rachi, comment rend-on propres les ustensiles qui servent par le feu ?",
+    "a": "On les épure par le feu : comme leur usage",
+    "w": [
+     "On les lave dans l'eau, comme leur usage",
+     "On les frotte avec du sel, comme leur usage",
+     "On les couvre de poussière, comme leur usage"
+    ],
+    "ref": "31:23",
+    "proof": [
+     "כדרך תשמישו הגעלתו"
+    ],
+    "x": "Rachi sur Nombres 31:23 : on rend chaque ustensile selon son usage : celui qui sert avec de l'eau chaude, par de l'eau chaude ; celui qui sert au rôtissage, par le feu."
+   },
+   {
+    "q": "Selon Rachi, que signifie « vous le ferez passer par l'eau » pour les objets qui ne vont pas au feu ?",
+    "a": "On les plonge seulement dans l'eau : cela suffit, surtout pour les ustensiles de métal",
+    "w": [
+     "On les passe seulement au feu : cela suffit, surtout pour les ustensiles de bois",
+     "On les frotte seulement au sable : cela suffit, surtout pour les ustensiles d'argile",
+     "On les cache seulement sous terre : cela suffit, surtout pour les ustensiles de pierre"
+    ],
+    "ref": "31:23",
+    "proof": [
+     "מטבילן ודיו"
+    ],
+    "x": "Rachi sur Nombres 31:23 : on les trempe seulement, et cela suffit ; et surtout pour des ustensiles de métal."
+   },
+   {
+    "q": "Selon Rachi, que sont les « bracelets de cheville » (etsada) offerts par les officiers ?",
+    "a": "Des bracelets pour le pied",
+    "w": [
+     "Des bracelets pour la main",
+     "Des boucles pour l'oreille",
+     "Des bagues pour le doigt"
+    ],
+    "ref": "31:50",
+    "proof": [
+     "צמידים של רגל"
+    ],
+    "x": "Rachi sur Nombres 31:50 : « etsada » : des bracelets de pied ; « tsamid » : de la main."
    }
   ]
  }

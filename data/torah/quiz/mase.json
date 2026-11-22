@@ -73,6 +73,88 @@
      "témoin unique"
     ],
     "x": "C'est sur une déclaration de témoins qu'on fait mourir l'assassin."
+   },
+   {
+    "q": "Que Moïse inscrit-il, sur l'ordre de l'Éternel, au début de la paracha ?",
+    "a": "Les départs et les stations des enfants d'Israël",
+    "w": [
+     "Les noms et les familles des enfants d'Israël",
+     "Les lois et les statuts des enfants d'Israël",
+     "Les chefs et les tribus des enfants d'Israël"
+    ],
+    "ref": "33:2",
+    "proof": [
+     "départs et leurs stations"
+    ],
+    "x": "Voici leurs stations et leurs départs."
+   },
+   {
+    "q": "Que trouvent les Israélites à Élim, après être partis de Mara ?",
+    "a": "Douze sources d'eau et soixante-dix palmiers",
+    "w": [
+     "Sept puits d'eau et douze figuiers",
+     "Douze rivières d'eau et soixante-dix oliviers",
+     "Soixante-dix sources d'eau et douze palmiers"
+    ],
+    "ref": "33:9",
+    "proof": [
+     "douze sources d'eau et soixante-dix palmiers"
+    ],
+    "x": "Ils s'y campent."
+   },
+   {
+    "q": "Que doit-on anéantir quand on aura chassé les habitants du pays ?",
+    "a": "Leurs symboles, leurs idoles de métal et leurs hauts-lieux",
+    "w": [
+     "Leurs maisons, leurs champs et leurs villes",
+     "Leurs armes, leurs chars et leurs forts",
+     "Leurs écrits, leurs lois et leurs coutumes"
+    ],
+    "ref": "33:52",
+    "proof": [
+     "leurs idoles de métal"
+    ],
+    "x": "Il faut ruiner tous leurs hauts-lieux."
+   },
+   {
+    "q": "Quel explorateur est nommé pour la tribu de Juda, parmi ceux qui partageront le pays ?",
+    "a": {
+     "t": "Caleb",
+     "he": "כָּלֵב"
+    },
+    "w": [
+     {
+      "t": "Josué",
+      "he": "יְהוֹשֻׁעַ"
+     },
+     {
+      "t": "Éléazar",
+      "he": "אֶלְעָזָר"
+     },
+     {
+      "t": "Aaron",
+      "he": "אַהֲרֹן"
+     }
+    ],
+    "ref": "34:19",
+    "proof": [
+     "Caleb, fils de Yefounné"
+    ],
+    "x": "Il est fils de Yefounné."
+   },
+   {
+    "q": "Que dit la Torah du meurtrier qui a frappé avec un instrument de fer, et la victime est morte ?",
+    "a": "C'est un assassin, qui doit être mis à mort",
+    "w": [
+     "C'est un imprudent, qui doit être exilé",
+     "C'est un fautif, qui doit être puni",
+     "C'est un témoin, qui doit être entendu"
+    ],
+    "ref": "35:16",
+    "proof": [
+     "assassin"
+    ],
+    "x": "Il s'agit d'un meurtre volontaire."
    }
   ],
   "2": [
@@ -157,6 +239,76 @@
      "roi d'Arad"
     ],
     "x": "Il apprend l'arrivée des enfants d'Israël."
+   },
+   {
+    "q": "Que seront les habitants épargnés, si Israël ne les dépossède pas ?",
+    "a": "Des épines dans les yeux et des aiguillons aux flancs",
+    "w": [
+     "Des alliés dans les guerres et des frères aux fêtes",
+     "Des juges dans les villes et des maîtres aux champs",
+     "Des serviteurs dans les maisons et des gardes aux portes"
+    ],
+    "ref": "33:55",
+    "proof": [
+     "épines dans vos yeux"
+    ],
+    "x": "Ils vexeront Israël dans le pays."
+   },
+   {
+    "q": "Où aboutit la limite du pays, en descendant le long du Jourdain ?",
+    "a": "À la mer Salée",
+    "w": [
+     "À la grande mer",
+     "À la mer de Kinnéreth",
+     "À la mer des Joncs"
+    ],
+    "ref": "34:12",
+    "proof": [
+     "aboutir à la mer Salée"
+    ],
+    "x": "Tel est le territoire, avec ses limites."
+   },
+   {
+    "q": "À quoi serviront les banlieues des villes données aux Lévites ?",
+    "a": "À leur bétail, à leurs biens et à tous les besoins de leur vie",
+    "w": [
+     "À leurs fêtes, à leurs offrandes et à tous les rites de leur culte",
+     "À leurs tentes, à leurs armes et à tous les travaux de leur guerre",
+     "À leurs écoles, à leurs livres et à tous les enseignements de leur loi"
+    ],
+    "ref": "35:3",
+    "proof": [
+     "pour leur bétail"
+    ],
+    "x": "Les villes servent à l'habitation."
+   },
+   {
+    "q": "Que dit la Torah de la terre où le sang a coulé ?",
+    "a": "Qu'elle ne peut être lavée que par le sang de celui qui l'a versé",
+    "w": [
+     "Qu'elle ne peut être labourée que par la main de celui qui l'a vendue",
+     "Qu'elle ne peut être habitée que par les enfants de celui qui l'a perdue",
+     "Qu'elle ne peut être rachetée que par l'argent de celui qui l'a volée"
+    ],
+    "ref": "35:33",
+    "proof": [
+     "le sang est une souillure pour la terre"
+    ],
+    "x": "On ne souille pas le pays où l'on demeure."
+   },
+   {
+    "q": "Avec qui se marient les filles de Celofhad, comme l'Éternel l'avait ordonné ?",
+    "a": "Avec les fils de leurs oncles",
+    "w": [
+     "Avec les fils de leurs frères",
+     "Avec les fils de leurs voisins",
+     "Avec les fils de leurs juges"
+    ],
+    "ref": "36:11",
+    "proof": [
+     "fils de leurs oncles"
+    ],
+    "x": "Elles agissent comme l'Éternel l'avait ordonné à Moïse."
    }
   ],
   "3": [
@@ -229,6 +381,76 @@
      "להשרות שכינה"
     ],
     "x": "Rachi sur Nombres 35:25 : le grand prêtre est là pour faire résider la Présence en Israël et pour prolonger leurs jours ; le meurtrier raccourcit la vie : il ne mérite pas de paraître devant lui."
+   },
+   {
+    "q": "Selon Rachi, que signifie « les Égyptiens enterraient » (mekabrim) leurs premiers-nés ?",
+    "a": "Qu'ils étaient accaparés par leur deuil",
+    "w": [
+     "Qu'ils étaient occupés par leur fête",
+     "Qu'ils étaient réjouis par leur victoire",
+     "Qu'ils étaient cachés par leur honte"
+    ],
+    "ref": "33:4",
+    "proof": [
+     "טרודים באבלם"
+    ],
+    "x": "Rachi sur Nombres 33:4 : ils étaient absorbés par leur deuil."
+   },
+   {
+    "q": "Selon Rachi, que signifie « vous les dépossèderez » (vehorashtem) ?",
+    "a": "Vous les chasserez",
+    "w": [
+     "Vous les vendrez",
+     "Vous les compterez",
+     "Vous les nourrirez"
+    ],
+    "ref": "33:52",
+    "proof": [
+     "וגרשתם"
+    ],
+    "x": "Rachi sur Nombres 33:52 : et vous les chasserez."
+   },
+   {
+    "q": "Selon Rachi, que signifie « vous choisirez » (vehikrītem) les villes d'asile ?",
+    "a": "Un langage de préparation : vous les préparerez",
+    "w": [
+     "Un langage de pardon : vous les accorderez",
+     "Un langage de justice : vous les jugerez",
+     "Un langage de fête : vous les célébrerez"
+    ],
+    "ref": "35:11",
+    "proof": [
+     "לשון הזמנה"
+    ],
+    "x": "Rachi sur Nombres 35:11 : « hikrah » est un langage de préparation."
+   },
+   {
+    "q": "Selon Rachi, pourquoi le meurtrier reste-t-il en exil jusqu'à la mort du grand prêtre ?",
+    "a": "Parce que le grand prêtre prolonge les jours, et que le meurtrier les raccourcit",
+    "w": [
+     "Parce que le grand prêtre juge les causes, et que le meurtrier les complique",
+     "Parce que le grand prêtre guérit les maux, et que le meurtrier les aggrave",
+     "Parce que le grand prêtre garde les villes, et que le meurtrier les trouble"
+    ],
+    "ref": "35:25",
+    "proof": [
+     "להאריך ימיהם"
+    ],
+    "x": "Rachi sur Nombres 35:25 : le grand prêtre vient pour faire résider la Présence en Israël et prolonger leurs jours ; le meurtrier vient la retirer."
+   },
+   {
+    "q": "Selon Rachi, qui est « toute fille héritière » dans la loi du mariage ?",
+    "a": "Celle dont le père n'avait pas de fils",
+    "w": [
+     "Celle dont le père avait plusieurs fils",
+     "Celle dont le père n'avait pas de terre",
+     "Celle dont le père n'avait pas de frère"
+    ],
+    "ref": "36:8",
+    "proof": [
+     "שלא היה בן לאביה"
+    ],
+    "x": "Rachi sur Nombres 36:8 : celle dont le père n'avait pas de fils."
    }
   ]
  }

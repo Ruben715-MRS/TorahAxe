@@ -96,6 +96,76 @@
      "cordon d'azur"
     ],
     "x": "Les enfants d'Israël se font des franges aux coins de leurs vêtements."
+   },
+   {
+    "q": "Que dit le peuple, après le rapport des explorateurs, sur le retour ?",
+    "a": "Qu'il vaut mieux retourner en Égypte",
+    "w": [
+     "Qu'il vaut mieux attendre au désert",
+     "Qu'il vaut mieux partir vers Édom",
+     "Qu'il vaut mieux construire un autel"
+    ],
+    "ref": "14:3",
+    "proof": [
+     "retourner en Égypte"
+    ],
+    "x": "Il craint de périr par le glaive."
+   },
+   {
+    "q": "Que disent Josué et Caleb du pays qu'ils ont parcouru ?",
+    "a": "Qu'il est bon, il est excellent",
+    "w": [
+     "Qu'il est grand, il est vide",
+     "Qu'il est riche, il est lointain",
+     "Qu'il est sec, il est dangereux"
+    ],
+    "ref": "14:7",
+    "proof": [
+     "bon, il est excellent"
+    ],
+    "x": "Ils parlent à toute la communauté."
+   },
+   {
+    "q": "Que dit l'Éternel de ceux qui l'ont outragé, quant au pays qu'il a promis ?",
+    "a": "Qu'ils ne le verront point",
+    "w": [
+     "Qu'ils le verront de loin",
+     "Qu'ils le recevront plus tard",
+     "Qu'ils le partageront avec d'autres"
+    ],
+    "ref": "14:23",
+    "proof": [
+     "ne le verront point"
+    ],
+    "x": "Il l'avait promis à leurs aïeux."
+   },
+   {
+    "q": "Qui Dieu fera-t-il entrer dans le pays dont le peuple n'a point voulu ?",
+    "a": "Leurs enfants, dont ils disaient qu'ils seraient ravis",
+    "w": [
+     "Leurs frères, dont ils disaient qu'ils seraient vendus",
+     "Leurs chefs, dont ils disaient qu'ils seraient morts",
+     "Leurs femmes, dont ils disaient qu'ils seraient perdues"
+    ],
+    "ref": "14:31",
+    "proof": [
+     "Vos enfants aussi"
+    ],
+    "x": "Ils connaîtront ce pays que leurs pères ont méprisé."
+   },
+   {
+    "q": "Que dit-on, selon la tentative des Israélites de monter au pays, sur le chemin ?",
+    "a": "Que l'Amalécite et le Cananéen y sont",
+    "w": [
+     "Que l'Égyptien et le Philistin y sont",
+     "Que le Moabite et l'Édomite y sont",
+     "Que l'Amorréen et le Jébuséen y sont"
+    ],
+    "ref": "14:43",
+    "proof": [
+     "l'Amalécite et le Cananéen"
+    ],
+    "x": "L'Éternel ne sera point avec eux."
    }
   ],
   "2": [
@@ -168,6 +238,76 @@
      "gâteau en tribut"
     ],
     "x": "Ce prélèvement se fait à l'instar du tribut de la grange."
+   },
+   {
+    "q": "Quels descendants de géants les explorateurs disent-ils avoir vus ?",
+    "a": "Les descendants d'Anak",
+    "w": [
+     "Les descendants d'Amalek",
+     "Les descendants de Cham",
+     "Les descendants de Madian"
+    ],
+    "ref": "13:28",
+    "proof": [
+     "descendants d'Anak"
+    ],
+    "x": "Les villes sont fortifiées et très grandes."
+   },
+   {
+    "q": "Que dit l'Éternel à Moïse, pour la lenteur du peuple à croire ?",
+    "a": "« Quand cessera ce peuple de m'outrager ? »",
+    "w": [
+     "« Quand cessera ce peuple de me quitter ? »",
+     "« Quand cessera ce peuple de me craindre ? »",
+     "« Quand cessera ce peuple de me prier ? »"
+    ],
+    "ref": "14:11",
+    "proof": [
+     "Quand cessera ce peuple de m'outrager"
+    ],
+    "x": "Il parle des prodiges opérés au milieu de lui."
+   },
+   {
+    "q": "Quelle libation offre-t-on avec le veau, selon la loi des sacrifices ?",
+    "a": "Un demi-hîn de vin",
+    "w": [
+     "Un tiers de hîn de vin",
+     "Un hîn d'huile",
+     "Un quart de hîn d'eau"
+    ],
+    "ref": "15:10",
+    "proof": [
+     "demi-hîn de vin"
+    ],
+    "x": "C'est un sacrifice d'odeur agréable."
+   },
+   {
+    "q": "Que dit la Torah de celui qui agit de propos délibéré ?",
+    "a": "Qu'il outrage le Seigneur et sera retranché de son peuple",
+    "w": [
+     "Qu'il offense le prêtre et sera exilé de son camp",
+     "Qu'il oublie la loi et sera repris de son frère",
+     "Qu'il trompe le juge et sera puni de son maître"
+    ],
+    "ref": "15:30",
+    "proof": [
+     "outrage le Seigneur"
+    ],
+    "x": "Il s'agit d'un national ou d'un étranger."
+   },
+   {
+    "q": "Comment réagit le peuple quand Moïse rapporte les paroles de Dieu sur leur sort ?",
+    "a": "Il s'afflige fort",
+    "w": [
+     "Il se réjouit fort",
+     "Il se moque fort",
+     "Il se tait fort"
+    ],
+    "ref": "14:39",
+    "proof": [
+     "s'en affligea fort"
+    ],
+    "x": "Moïse les rapporte à tous les enfants d'Israël."
    }
   ],
   "3": [
@@ -240,6 +380,76 @@
      "שמונה חוטין וחמשה קשרים"
     ],
     "x": "Rachi sur Nombres 15:39 : la valeur numérique de tsitsit est six cents, plus huit fils et cinq nœuds : cela fait 613."
+   },
+   {
+    "q": "Selon Rachi, que veut dire Caleb en disant « montons, montons » : Moïse a-t-il pu les faire monter ?",
+    "a": "Même au ciel, s'il disait de faire des échelles, nous réussirions",
+    "w": [
+     "Même au désert, s'il disait de faire des routes, nous avancerions",
+     "Même en mer, s'il disait de faire des barques, nous passerions",
+     "Même au sommet, s'il disait de faire des murs, nous bâtirions"
+    ],
+    "ref": "13:30",
+    "proof": [
+     "אפלו בשמים"
+    ],
+    "x": "Rachi sur Nombres 13:30 : même au ciel, s'il disait « faites des échelles et montez », nous réussirions en tout."
+   },
+   {
+    "q": "Selon Rachi, comment Caleb a-t-il réduit le peuple au silence ?",
+    "a": "En disant : « n'est-ce que cela que le fils d'Amram nous a fait ? »",
+    "w": [
+     "En disant : « n'est-ce que cela que le roi d'Égypte nous a fait ? »",
+     "En disant : « n'est-ce que cela que le fils de Noun nous a promis ? »",
+     "En disant : « n'est-ce que cela que le père de Moïse nous a laissé ? »"
+    ],
+    "ref": "13:30",
+    "proof": [
+     "וכי זו בלבד עשה לנו בן עמרם"
+    ],
+    "x": "Rachi sur Nombres 13:30 : ils crurent qu'il allait parler contre Moïse, et se turent ; alors il dit : « montons »."
+   },
+   {
+    "q": "Selon Rachi, que signifie « jusqu'à quand » (ad anah) dit à Moïse ?",
+    "a": "Jusqu'où",
+    "w": [
+     "Jusqu'à demain",
+     "Jusqu'à la nuit",
+     "Jusqu'à la fin"
+    ],
+    "ref": "14:11",
+    "proof": [
+     "עד היכן"
+    ],
+    "x": "Rachi sur Nombres 14:11 : jusqu'où."
+   },
+   {
+    "q": "Selon Rachi, pourquoi Dieu décréta-t-il quarante années, et non moins ?",
+    "a": "Pour qu'aucun des morts n'ait moins de soixante ans, les plus jeunes ayant vingt ans",
+    "w": [
+     "Pour qu'aucun des morts n'ait moins de quatre-vingts ans, les plus jeunes ayant quarante ans",
+     "Pour qu'aucun des morts n'ait moins de cent ans, les plus jeunes ayant soixante ans",
+     "Pour qu'aucun des morts n'ait moins de trente ans, les plus jeunes ayant dix ans"
+    ],
+    "ref": "14:33",
+    "proof": [
+     "לא מת אחד מהם פחות מבן ששים"
+    ],
+    "x": "Rachi sur Nombres 14:33 : nul n'est mort avant soixante ans ; quarante ans amènent ceux de vingt ans à soixante."
+   },
+   {
+    "q": "Selon Rachi, à quoi correspond le fil d'azur sur les franges ?",
+    "a": "À la couleur du ciel, qui rappelle le trône de gloire",
+    "w": [
+     "À la couleur de la mer, qui rappelle la sortie d'Égypte",
+     "À la couleur du feu, qui rappelle le Sinaï",
+     "À la couleur de la pierre, qui rappelle les tables"
+    ],
+    "ref": "15:41",
+    "proof": [
+     "צבע התכלת"
+    ],
+    "x": "Rachi sur Nombres 15:41 : le bleu ressemble au firmament au moment de l'obscurité."
    }
   ]
  }

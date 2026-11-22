@@ -72,6 +72,77 @@
      "sept jours"
     ],
     "x": "Le peuple ne repart que lorsque Miryam est réintégrée."
+   },
+   {
+    "q": "Combien de jeunes taureaux les Lévites prennent-ils pour leur purification, avec leur oblation ?",
+    "a": "Deux : l'un expiatoire, l'autre holocauste",
+    "w": [
+     "Un seul : expiatoire et holocauste ensemble",
+     "Trois : deux expiatoires et un holocauste",
+     "Sept : un pour chaque Lévite en chef"
+    ],
+    "ref": "8:8",
+    "proof": [
+     "jeune taureau"
+    ],
+    "x": "Les Lévites appuient leurs mains sur leur tête."
+   },
+   {
+    "q": "À quoi ressemblait la nuée du soir, au-dessus du tabernacle ?",
+    "a": "À un météore de feu, jusqu'au matin",
+    "w": [
+     "À un nuage de brume, jusqu'au matin",
+     "À un arc de lumière, jusqu'au matin",
+     "À une colonne de fumée, jusqu'au matin"
+    ],
+    "ref": "9:15",
+    "proof": [
+     "météore de feu"
+    ],
+    "x": "Le jour où l'on eut érigé le tabernacle, la nuée le couvrit."
+   },
+   {
+    "q": "Que font les enfants d'Israël, chaque fois que la nuée s'élève de dessus la tente ?",
+    "a": "Ils lèvent le camp",
+    "w": [
+     "Ils dressent le camp",
+     "Ils comptent le camp",
+     "Ils prient dans le camp"
+    ],
+    "ref": "9:17",
+    "proof": [
+     "levaient le camp"
+    ],
+    "x": "Ils s'arrêtent là où se fixe la nuée."
+   },
+   {
+    "q": "Que disait Moïse, quand l'arche partait ?",
+    "a": "« Lève-toi, Éternel ! que tes ennemis soient dissipés »",
+    "w": [
+     "« Marche, Éternel ! que tes ennemis soient confondus »",
+     "« Réponds, Éternel ! que tes ennemis soient écrasés »",
+     "« Garde-nous, Éternel ! que tes ennemis soient chassés »"
+    ],
+    "ref": "10:35",
+    "proof": [
+     "Lève-toi, Éternel"
+    ],
+    "x": "« Que tes adversaires fuient de devant ta face ! »"
+   },
+   {
+    "q": "De quoi le peuple se souvient-il, avec nostalgie, quand il réclame de la viande ?",
+    "a": "Du poisson, des concombres, des melons, des poireaux, des oignons et de l'ail",
+    "w": [
+     "Du pain, du vin, de l'huile, du miel, des figues et des dattes",
+     "Des gâteaux, des raisins, des grenades, des olives, du lait et du blé",
+     "Du mouton, des lentilles, des fèves, des noix, du sel et du beurre"
+    ],
+    "ref": "11:5",
+    "proof": [
+     "poisson",
+     "concombres"
+    ],
+    "x": "Il rappelle ce qu'il mangeait pour rien en Égypte."
    }
   ],
   "2": [
@@ -156,6 +227,78 @@
      "deux coudées"
     ],
     "x": "Un vent les suscite du côté de la mer, dans un rayon d'une journée de part et d'autre."
+   },
+   {
+    "q": "Comment l'Éternel se manifeste-t-il au prophète ordinaire, selon ses paroles à Miryam et Aaron ?",
+    "a": "Par une vision, et en songe",
+    "w": [
+     "Par une voix, et en nuée",
+     "Par un ange, et en feu",
+     "Par un livre, et en signe"
+    ],
+    "ref": "12:6",
+    "proof": [
+     "vision",
+     "en songe"
+    ],
+    "x": "Moïse est traité à part."
+   },
+   {
+    "q": "Comment l'Éternel parle-t-il à Moïse, selon sa réponse ?",
+    "a": "Face à face, dans une claire apparition et sans énigmes",
+    "w": [
+     "De loin, dans une nuée épaisse et avec énigmes",
+     "Par un songe, dans une vision brève et avec symboles",
+     "Par un ange, dans un feu éclatant et avec paroles"
+    ],
+    "ref": "12:8",
+    "proof": [
+     "face à face",
+     "sans énigmes"
+    ],
+    "x": "C'est l'image de Dieu même qu'il contemple."
+   },
+   {
+    "q": "Que dit Moïse, quand Josué lui demande d'interdire à Eldad et Médad de prophétiser ?",
+    "a": "« Plût au Ciel que tout le peuple fût prophète ! »",
+    "w": [
+     "« Plût au Ciel que tout le peuple se taise ! »",
+     "« Plût au Ciel que tout le peuple soit roi ! »",
+     "« Plût au Ciel que tout le peuple soit prêtre ! »"
+    ],
+    "ref": "11:29",
+    "proof": [
+     "tout le peuple de Dieu se composât de prophètes"
+    ],
+    "x": "« Que l'Éternel fit reposer son esprit sur eux ! »"
+   },
+   {
+    "q": "Combien d'hommes composent le peuple, selon Moïse, qui doutait de pouvoir leur donner de la viande ?",
+    "a": "Six cent mille voyageurs",
+    "w": [
+     "Trois cent mille voyageurs",
+     "Un million de voyageurs",
+     "Soixante-dix mille voyageurs"
+    ],
+    "ref": "11:21",
+    "proof": [
+     "Six cent mille voyageurs"
+    ],
+    "x": "Il dit qu'on ne peut leur donner de la viande pour un mois entier."
+   },
+   {
+    "q": "Que demande Moïse à Dieu pour Miryam frappée de lèpre ?",
+    "a": "« Seigneur, oh ! Guéris-la, de grâce ! »",
+    "w": [
+     "« Seigneur, oh ! Pardonne-la, de grâce ! »",
+     "« Seigneur, oh ! Éloigne-la, de grâce ! »",
+     "« Seigneur, oh ! Éclaire-la, de grâce ! »"
+    ],
+    "ref": "12:13",
+    "proof": [
+     "Guéris-la"
+    ],
+    "x": "Il implore l'Éternel."
    }
   ],
   "3": [
@@ -230,6 +373,76 @@
      "המצרע חשוב כמת"
     ],
     "x": "Rachi sur Nombres 12:12 : le lépreux est considéré comme un mort ; comme le mort, il rend impur par l'entrée sous son toit."
+   },
+   {
+    "q": "Selon Rachi, que signifie « quand tu feras monter » (behaalotekha) les lampes ?",
+    "a": "Qu'on doit allumer jusqu'à ce que la flamme monte d'elle-même",
+    "w": [
+     "Qu'on doit étendre jusqu'à ce que la mèche brûle d'elle-même",
+     "Qu'on doit chanter jusqu'à ce que la lumière paraisse d'elle-même",
+     "Qu'on doit prier jusqu'à ce que l'huile coule d'elle-même"
+    ],
+    "ref": "8:2",
+    "proof": [
+     "שתהא שלהבת עולה מאליה"
+    ],
+    "x": "Rachi sur Nombres 8:2 : un langage de montée : il faut allumer jusqu'à ce que la flamme monte d'elle-même."
+   },
+   {
+    "q": "Selon Rachi, comment sont disposées les sept lampes ?",
+    "a": "Les mèches des six lampes latérales se tournent vers la lampe du milieu",
+    "w": [
+     "Les mèches des six lampes latérales se tournent vers l'extérieur, vers le peuple",
+     "Les mèches des six lampes latérales se tournent vers le haut, vers le ciel",
+     "Les mèches des six lampes latérales se tournent vers le bas, vers la terre"
+    ],
+    "ref": "8:2",
+    "proof": [
+     "למול האמצעי"
+    ],
+    "x": "Rachi sur Nombres 8:2 : trois à l'est tournées vers celle du milieu, trois à l'ouest de même, pour qu'on ne dise pas qu'il en avait besoin pour sa lumière."
+   },
+   {
+    "q": "Selon Rachi, que signifient les signes que Dieu a placés devant et derrière le passage « quand l'arche partait » ?",
+    "a": "Que ce passage n'est pas à sa place",
+    "w": [
+     "Que ce passage est le plus important",
+     "Que ce passage est le plus ancien",
+     "Que ce passage est le plus court"
+    ],
+    "ref": "10:35",
+    "proof": [
+     "אין זה מקומו"
+    ],
+    "x": "Rachi sur Nombres 10:35 : il a fait des signes devant et derrière, pour dire que ce n'est pas sa place."
+   },
+   {
+    "q": "Selon Rachi, que veut dire « êtes-vous jaloux pour moi » (hamekanne atah li) ?",
+    "a": "Es-tu jaloux à ma place, par zèle pour moi",
+    "w": [
+     "Es-tu jaloux de ma place, par envie de moi",
+     "Es-tu jaloux de mon rang, par peur de moi",
+     "Es-tu jaloux de ma gloire, par haine de moi"
+    ],
+    "ref": "11:29",
+    "proof": [
+     "המקנא אתה לי"
+    ],
+    "x": "Rachi sur Nombres 11:29 : est-ce que tu es zélé pour moi ? « li » signifie à ma place."
+   },
+   {
+    "q": "Selon Rachi, que signifie « mon serviteur Moïse » (beavdi bemoshe) ?",
+    "a": "Que, même sans être Moïse, il est mon serviteur : vous deviez le craindre",
+    "w": [
+     "Que, même sans être mon serviteur, il est Moïse : vous deviez l'aimer",
+     "Que, même sans être Moïse, il est mon prophète : vous deviez le suivre",
+     "Que, même sans être mon serviteur, il est votre frère : vous deviez l'écouter"
+    ],
+    "ref": "12:8",
+    "proof": [
+     "בעבדי אע\"פ שאינו משה"
+    ],
+    "x": "Rachi sur Nombres 12:8 : même s'il n'était pas Moïse, vous deviez le craindre, parce qu'il est mon serviteur."
    }
   ]
  }

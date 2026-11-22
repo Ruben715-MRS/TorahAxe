@@ -85,6 +85,76 @@
      "perche"
     ],
     "x": "Quiconque lève les yeux vers lui est sauvé."
+   },
+   {
+    "q": "Où un homme pur dépose-t-il les cendres de la vache ?",
+    "a": "Hors du camp, en lieu pur",
+    "w": [
+     "Dans le camp, près de l'autel",
+     "Dans le parvis, près de la cuve",
+     "Sous le voile, près de l'arche"
+    ],
+    "ref": "19:9",
+    "proof": [
+     "hors du camp, en lieu pur"
+    ],
+    "x": "Elles restent en dépôt pour la communauté."
+   },
+   {
+    "q": "Combien de jours est impur celui qui touche le cadavre d'un être humain ?",
+    "a": "Sept jours",
+    "w": [
+     "Trois jours",
+     "Un jour",
+     "Quarante jours"
+    ],
+    "ref": "19:11",
+    "proof": [
+     "impur durant sept jours"
+    ],
+    "x": "Il se purifie avec les cendres."
+   },
+   {
+    "q": "Avec quoi mêle-t-on les cendres du purificatoire, pour purifier l'impur ?",
+    "a": "Avec de l'eau vive dans un vase",
+    "w": [
+     "Avec de l'huile pure dans une urne",
+     "Avec du sang frais dans une coupe",
+     "Avec du vin vieux dans un flacon"
+    ],
+    "ref": "19:17",
+    "proof": [
+     "eau vive dans un vase"
+    ],
+    "x": "On prend des cendres provenant de la combustion du purificatoire."
+   },
+   {
+    "q": "Que manque-t-il à la communauté au début du chapitre 20, qui l'ameute contre Moïse et Aaron ?",
+    "a": "L'eau",
+    "w": [
+     "Le pain",
+     "La viande",
+     "Le sel"
+    ],
+    "ref": "20:2",
+    "proof": [
+     "manqua d'eau"
+    ],
+    "x": "Elle s'ameute contre eux."
+   },
+   {
+    "q": "Combien de jours la maison d'Israël pleure-t-elle Aaron ?",
+    "a": "Trente jours",
+    "w": [
+     "Sept jours",
+     "Quarante jours",
+     "Douze jours"
+    ],
+    "ref": "20:29",
+    "proof": [
+     "trente jours"
+    ],
+    "x": "Tout le peuple voit qu'il a cessé de vivre."
    }
   ],
   "2": [
@@ -181,6 +251,76 @@
      "depuis l'Arnon jusqu'au Jaboc"
     ],
     "x": "Il le passe au fil de l'épée, jusqu'aux possessions des Ammonites."
+   },
+   {
+    "q": "Que dit le peuple du pays où Moïse l'a amené, pour se plaindre ?",
+    "a": "Qu'il n'est pas un pays de culture : ni figuiers, ni vignes, ni grenadiers, ni eau",
+    "w": [
+     "Qu'il est un pays de pierres : ni villes, ni routes, ni tentes, ni pain",
+     "Qu'il est un pays de sable : ni arbres, ni sources, ni bétail, ni sel",
+     "Qu'il est un pays de montagnes : ni champs, ni puits, ni fleuves, ni huile"
+    ],
+    "ref": "20:5",
+    "proof": [
+     "ni figuiers, ni vignes"
+    ],
+    "x": "Il se plaint du « méchant pays »."
+   },
+   {
+    "q": "Qu'arrive-t-il quand Édom refuse à Israël la permission de traverser son territoire ?",
+    "a": "Israël prend une autre direction",
+    "w": [
+     "Israël attaque Édom avec ses légions",
+     "Israël attend au désert plusieurs jours",
+     "Israël retourne vers l'Égypte en secret"
+    ],
+    "ref": "20:21",
+    "proof": [
+     "Israël prit une autre direction"
+    ],
+    "x": "Édom refuse."
+   },
+   {
+    "q": "Sur quel mont Moïse fait-il monter Aaron et Éléazar ?",
+    "a": "Le mont Hor",
+    "w": [
+     "Le mont Nébo",
+     "Le mont Sinaï",
+     "Le mont Garizim"
+    ],
+    "ref": "20:25",
+    "proof": [
+     "mont Hor"
+    ],
+    "x": "Moïse dépouille Aaron de son costume pour en revêtir Éléazar."
+   },
+   {
+    "q": "Quel nom reçoit le lieu où Israël frappe d'anathème les villes cananéennes ?",
+    "a": "Horma",
+    "w": [
+     "Hesbon",
+     "Pisga",
+     "Arnon"
+    ],
+    "ref": "21:3",
+    "proof": [
+     "nom de Horma"
+    ],
+    "x": "L'Éternel écoute la voix d'Israël."
+   },
+   {
+    "q": "Que dit le peuple à Moïse après les serpents, pour demander qu'ils soient éloignés ?",
+    "a": "« Nous avons péché ; intercède auprès de l'Éternel »",
+    "w": [
+     "« Nous avons trahi ; délivre-nous auprès de Pharaon »",
+     "« Nous avons failli ; parle-nous auprès du peuple »",
+     "« Nous avons erré ; sauve-nous auprès d'Aaron »"
+    ],
+    "ref": "21:7",
+    "proof": [
+     "Nous avons péché"
+    ],
+    "x": "Ils parlent contre l'Éternel et contre Moïse."
    }
   ],
   "3": [
@@ -253,6 +393,76 @@
      "נחש שלקה על הוצאת דבה"
     ],
     "x": "Rachi sur Nombres 21:6 : que vienne le serpent, qui fut puni pour avoir médit, et qu'il punisse ceux qui médisent."
+   },
+   {
+    "q": "Selon Rachi, en combien de parts divise-t-on les cendres de la vache rousse ?",
+    "a": "En trois : le mont des Oliviers, la garde des prêtres et l'enceinte",
+    "w": [
+     "En deux : le mont Hor et la garde des Lévites",
+     "En quatre : le Sinaï, le camp, la tente et le parvis",
+     "En sept : une par tribu aînée du peuple"
+    ],
+    "ref": "19:9",
+    "proof": [
+     "לשלשה חלקים"
+    ],
+    "x": "Rachi sur Nombres 19:9 : on les divise en trois : une part sur le mont de l'Onction, une répartie entre les gardes, une dans l'enceinte."
+   },
+   {
+    "q": "Selon Rachi, que montre le manque d'eau à la mort de Miryam ?",
+    "a": "Que, pendant quarante ans, le puits était donné par le mérite de Miryam",
+    "w": [
+     "Que, pendant quarante ans, la manne était donnée par le mérite de Miryam",
+     "Que, pendant quarante ans, la nuée était donnée par le mérite de Miryam",
+     "Que, pendant quarante ans, la pluie était donnée par le mérite de Miryam"
+    ],
+    "ref": "20:2",
+    "proof": [
+     "הבאר בזכות מרים"
+    ],
+    "x": "Rachi sur Nombres 20:2 : pendant les quarante ans, ils eurent le puits par le mérite de Miryam."
+   },
+   {
+    "q": "Selon Rachi, qui est « le roi cananéen d'Arad » qui attaque Israël ?",
+    "a": "Amalek, qui a changé sa langue pour parler comme Canaan",
+    "w": [
+     "Édom, qui a changé son nom pour se dire Israël",
+     "Moab, qui a changé sa foi pour servir Baal",
+     "Madian, qui a changé sa route pour gagner le sud"
+    ],
+    "ref": "21:1",
+    "proof": [
+     "עמלק"
+    ],
+    "x": "Rachi sur Nombres 21:1 : c'est Amalek, qui habite le Néguev, et qui a changé sa langue pour parler comme Canaan."
+   },
+   {
+    "q": "Selon Rachi, que montre « contre Dieu et contre Moïse » dans la plainte du peuple ?",
+    "a": "Qu'ils ont comparé le serviteur à son maître",
+    "w": [
+     "Qu'ils ont séparé le maître de son serviteur",
+     "Qu'ils ont honoré le maître plus que son serviteur",
+     "Qu'ils ont oublié le maître et son serviteur"
+    ],
+    "ref": "21:5",
+    "proof": [
+     "השוו עבד לקונו"
+    ],
+    "x": "Rachi sur Nombres 21:5 : ils ont mis le serviteur sur le même plan que son maître."
+   },
+   {
+    "q": "Selon Rachi, qui sont « les princes » qui ont creusé le puits ?",
+    "a": "Moïse et Aaron",
+    "w": [
+     "Josué et Caleb",
+     "Éléazar et Ithamar",
+     "Nahchôn et Nethanel"
+    ],
+    "ref": "21:18",
+    "proof": [
+     "משה ואהרן"
+    ],
+    "x": "Rachi sur Nombres 21:18 : « le puits que les princes ont creusé » : Moïse et Aaron."
    }
   ]
  }
