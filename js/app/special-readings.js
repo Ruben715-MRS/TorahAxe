@@ -147,7 +147,7 @@ function sprText(text) {
 }
 
 function sprRow(card, label, content) {
-    const row = sprEl('div', 'spr-row');
+    const row = sprEl('div', 'spr-row' + (sprHeMode() ? ' is-he' : ''));
     const lab = sprEl('span', 'spr-label', label);
     if (sprHeMode()) { lab.lang = 'he'; lab.dir = 'rtl'; }
     row.appendChild(lab);
