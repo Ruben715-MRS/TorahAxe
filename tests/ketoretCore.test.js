@@ -31,10 +31,6 @@ test('byWeight : du plus lourd au plus léger, identifiants uniques', () => {
     assert.strictEqual(K.spice('nope'), null);
 });
 
-test('ordre de grandeur : de l\'ordre de 150 kg', () => {
-    assert.strictEqual(K.approxTotalKg(), 150);
-});
-
 test('contenu : chaque fiche porte un texte et une source, les avis sont signalés', () => {
     K.SPICES.forEach(s => { assert.ok(s.he && s.fr && s.identification, s.id); });
     K.SERVICE.concat(K.MEANINGS, K.ADDITIVES).forEach(x => { assert.ok(x.id && x.fr && x.text, x.id); });

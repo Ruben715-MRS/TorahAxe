@@ -4,7 +4,7 @@
 // La composition (Pitoum haQétoret), son service au Temple, ses sens, et sa place dans la prière d'aujourd'hui. Le texte biblique est Exode 30:34-38
 // (quatre aromates nommés) ; les onze aromates et leurs poids viennent de la baraïta citée dans Kéritot 6a (reprise dans la prière), et le Rambam
 // (Lois des ustensiles du Temple, chapitre 2) les codifie. L'identification de plusieurs aromates est discutée : elle est signalée comme telle, jamais
-// tranchée. Le poids du maneh est discuté aussi : l'application ne donne que le nombre de maneh et un ordre de grandeur.
+// tranchée. Le poids du maneh est discuté aussi : l'application ne donne que le nombre de maneh, sans conversion.
 // Contenu écrit à la main en français seulement : **à relire par une personne compétente**. Testé dans tests/ketoretCore.test.js.
 
 (function (root, factory) {
@@ -26,7 +26,7 @@
         { id: 'levona', he: 'הלבונה', fr: 'Lévona', torah: 'לְבֹנָה זַכָּה', maneh: 70, debated: false,
             identification: "L'encens proprement dit (oliban, en latin tus), une résine blanche. La Torah dit « pur » (zakka) : l'encens que l'on met aussi sur le pain de proposition (Lévitique 24:7)." },
         { id: 'mor', he: 'מור', fr: 'Mor', maneh: 16, debated: true,
-            identification: "La myrrhe, selon l'identification courante ; le Rambam a un autre avis sur la nature de cet aromate. L'identification est discutée." },
+            identification: "Myrrhe selon l'identification courante, musc selon le Rambam. Identification discutée." },
         { id: 'ketsia', he: 'קציעה', fr: 'Ketsi\'a', maneh: 16, debated: true,
             identification: "Une écorce aromatique que l'on rend par « casse » (cassia), citée dans le Psaume 45:9. L'identification est discutée." },
         { id: 'shibolet', he: 'שבלת נרד', fr: 'Chiboulèt nèrd', maneh: 16, debated: true,
@@ -50,7 +50,6 @@
     var KIPPUR_EXTRA = 3;      // les trois autres maneh : les poignées du grand prêtre à Yom Kippour (Lévitique 16:12)
     var TOTAL_MANEH = DAYS + KIPPUR_EXTRA;
     var DAILY_MANEH = 1;       // un maneh par jour
-    var MANEH_APPROX_KG = 0.4; // ordre de grandeur seulement : le poids du maneh dépend de l'avis ; sert à dire « de l'ordre de 150 kg »
 
     function totalManeh() {
         return SPICES.reduce(function (sum, s) { return sum + s.maneh; }, 0);
@@ -63,9 +62,6 @@
     // La quantité d'un aromate pour un jour ordinaire (un maneh pour la composition entière, la moitié le matin et le soir).
     function dailyShare(spice) { return spice.maneh / TOTAL_MANEH * DAILY_MANEH; }
 
-    // Un ordre de grandeur en kilos de toute la composition (arrondi aux dizaines : le maneh est discuté).
-    function approxTotalKg() { return Math.round(totalManeh() * MANEH_APPROX_KG / 10) * 10; }
-
     // --- Ce qui s'ajoute aux aromates (Kéritot 6a) ------------------------------------------------------------------------------
     var ADDITIVES = [
         { id: 'karshina', he: 'בורית כרשינה', fr: "Lessive de carchina", amount: '9 kav',
@@ -77,7 +73,7 @@
         { id: 'maale', he: 'מעלה עשן', fr: "Ma'alé 'achan", amount: 'une petite quantité',
             text: "Une herbe dont on ne connaît plus le nom : elle fait monter la fumée droite. Elle était, selon la tradition, connue de la seule famille Avtinas, qui refusa de la transmettre (Yoma 38a)." },
         { id: 'jordan', he: 'כיפת הירדן', fr: 'Kipat haYarden', amount: 'une petite quantité', opinion: 'Rabbi Natan',
-            text: "Selon Rabbi Natan seulement : une plante du Jourdain, ajoutée au mélange. L'identification est discutée." }
+            text: "Selon Rabbi Natan seulement, un ingrédient de plus, non compté dans les 368 maneh. Plante des bords du Jourdain selon Rachi ; ambre gris selon le Rambam. Identification discutée." }
     ];
 
     // Les règles qui protègent la composition (Kéritot 6a-6b).
@@ -129,9 +125,9 @@
     // `siddur` : l'identifiant de la section du siddour de l'application (data/siddur) ; null quand l'application n'a pas cette section dans ce rite.
     var TODAY = [
         { id: 'sefarade', fr: 'Séfarade', text: "Le matin, à la fin de la prière de chaque jour ; le Chabbat et à Roch 'Hodech, dans le Moussaf. Beaucoup de communautés le disent aussi le soir.", siddur: ['chacharit-ketoret'] },
-        { id: 'ashkenaz', fr: 'Achkénaze', text: "Dans le passage des offrandes (Korbanot) qui ouvre la prière du matin, et à la fin de la prière de Chabbat et des fêtes.", siddur: null }
+        { id: 'ashkenaz', fr: 'Achkénaze', text: "Dans les Korbanot du matin en semaine, et après le Moussaf le Chabbat et les fêtes.", siddur: null }
     ];
-    var TODAY_NOTE = "Les coutumes varient d'une communauté à l'autre : suivez la vôtre. La tradition rapporte que lire ce texte avec attention a une grande force ; on le lit à voix haute et lentement.";
+    var TODAY_NOTE = "Les usages particuliers des différentes communautés ne sont pas détaillés ici : suivez le vôtre. La tradition rapporte que lire ce texte avec attention a une grande force ; on le lit à voix haute et lentement.";
     // --- Les chiffres clés ---------------------------------------------------------------------------
     var SUMMARY = {
         total: TOTAL_MANEH,
@@ -156,7 +152,7 @@
         SPICES: SPICES, TORAH_SPICES: TORAH_SPICES, SAGES_SPICES: SAGES_SPICES, ADDITIVES: ADDITIVES, RULES: RULES, SERVICE: SERVICE, KIPPUR: KIPPUR,
         MEANINGS: MEANINGS, TODAY: TODAY, TODAY_NOTE: TODAY_NOTE, SUMMARY: SUMMARY,
         DAYS: DAYS, KIPPUR_EXTRA: KIPPUR_EXTRA, TOTAL_MANEH: TOTAL_MANEH,
-        totalManeh: totalManeh, torahManeh: torahManeh, share: share, dailyShare: dailyShare, approxTotalKg: approxTotalKg,
+        totalManeh: totalManeh, torahManeh: torahManeh, share: share, dailyShare: dailyShare, 
         spice: spice, byWeight: byWeight
     };
 }));

@@ -935,7 +935,7 @@ function mknKetoretSpices(K) {
     panel.appendChild(list);
     panel.appendChild(sheet);
     mknFillSheet(sheet, null);
-    mknPara(panel, t('tools.mkn_ket_total', { total: K.TOTAL_MANEH, days: K.DAYS, extra: K.KIPPUR_EXTRA, kg: K.approxTotalKg() }));
+    mknPara(panel, t('tools.mkn_ket_total', { total: K.TOTAL_MANEH, days: K.DAYS, extra: K.KIPPUR_EXTRA }));
     return panel;
 }
 

@@ -2873,7 +2873,7 @@
     "mkn_ket_spice_torah": "Nommé dans la Torah (Exode 30:34) : {word}",
     "mkn_ket_spice_sages": "Ajouté par la tradition orale (Kéritot 6a)",
     "mkn_ket_spice_debated": "Son identification est discutée : la fiche donne l'avis courant, pas une certitude.",
-    "mkn_ket_total": "Au total : {total} maneh. {days} (un par jour de l'année solaire, la moitié le matin et la moitié le soir) et {extra} de plus pour les poignées du grand prêtre à Yom Kippour. Le poids du maneh est discuté : comptez de l'ordre de {kg} kg en tout.",
+    "mkn_ket_total": "Au total : {total} maneh. {days} (un par jour de l'année solaire, la moitié le matin et la moitié le soir) et {extra} de plus pour les poignées du grand prêtre à Yom Kippour. Le poids exact est discuté : il dépend de l'estimation retenue pour le maneh.",
     "mkn_ket_prep_title": "La préparation",
     "mkn_ket_prep_intro": "Au-delà des aromates, la baraïta ajoute plusieurs ingrédients (Kéritot 6a) et des règles qui protègent la composition.",
     "mkn_ket_service_title": "Le service",
