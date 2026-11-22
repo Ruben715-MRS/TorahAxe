@@ -125,3 +125,17 @@ test('plag Magen Avraham et fin des jeûnes : null quand la nuit n\'existe pas (
     assert.strictEqual(z.plagMa, null);
     assert.strictEqual(z.fastEnd, null);
 });
+
+DAYS.forEach(([y, m, d]) => {
+    test('Chéma du soir (7,083°), ' + y + '-' + m + '-' + d + ' : égale à la sortie des étoiles par défaut, plus tardive avec le profil Rav Ovadia', () => {
+        const posen = Z.zmanim(JLM, y, m, d, {});
+        assert.strictEqual(Z.rounded(posen, 'shemaNight'), Z.rounded(posen, 'tzeit'));
+        const ov = Z.zmanim(JLM, y, m, d, Z.applyProfile({}, 'ovadia'));
+        assert.ok(Z.rounded(ov, 'shemaNight') > Z.rounded(ov, 'tzeit'), '13,5 min. zmaniyot < 7,083° sous l\'horizon à Jérusalem');
+    });
+});
+
+test('Chéma du soir : null sans nuit (été à Tromsø)', () => {
+    const tromso = { name: 'Tromsø', lat: 69.65, lon: 18.96, elevation: 0, tz: 'Europe/Oslo' };
+    assert.strictEqual(Z.zmanim(tromso, 2026, 6, 21, {}).shemaNight, null);
+});
