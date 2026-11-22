@@ -143,9 +143,18 @@ function sdBetweenShkiaAndTzeit() {
 function sdFetchJson(url) {
     return fetch(url).then(res => { if (!res.ok) throw new Error('http ' + res.status); return res.json(); });
 }
+// Les titres du siddour, vocalisés (data/siddur/titles-niqqud.json : titre sans voyelles → titre vocalisé). Facultatif : sans ce fichier, les titres restent comme dans la source.
+let sdTitles = {};
+function sdTitleNiqqud(he) {
+    const k = String(he).replace(/\s+/g, ' ').trim();
+    if (sdTitles[k]) return sdTitles[k];
+    if (k.indexOf('›') >= 0) return k.split('›').map(p => sdTitles[p.trim()] || p.trim()).join(' › ');
+    return he;
+}
 function sdLoadIndex() {
     if (sdIndex) return Promise.resolve(sdIndex);
     const base = sdBase();
+    sdFetchJson(SD_DATA + 'titles-niqqud.json').then(m => { sdTitles = m || {}; }).catch(() => {});
     return sdFetchJson(base + 'index.json').then(index => { sdIndex = index; sdIndexBase = base; sdFromSefarade = new Set(); index.groups.forEach(g => g.sections.forEach(x => { if (x.from) sdFromSefarade.add(x.id); })); sdApplyRite(); return index; });
 }
 function sdLoadSection(id) {
@@ -490,7 +499,7 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && sdSheetE
 function sdRowButton(info, onclick, extra) {
     const b = sdEl('button', 'home-row');
     b.type = 'button';
-    const he = sdEl('span', 'he', info.he);
+    const he = sdEl('span', 'he', sdTitleNiqqud(info.he));
     he.lang = 'he'; he.dir = 'rtl';
     const text = sdEl('span');
     text.appendChild(sdEl('span', 'fr', info.title));
@@ -930,7 +939,7 @@ function sdBindScroll() {
     sdScrollBound = true;
 }
 
-function sdShortHe(he) { return String(he).split('›').pop().trim(); }
+function sdShortHe(he) { return sdTitleNiqqud(String(he).split('›').pop().trim()); }
 
 // La barre du lecteur : le texte en cours (titre et rang dans la prière) et le filet de progression.
 function sdUpdateReadBar() {
@@ -1520,7 +1529,7 @@ function sdRenderReader(body) {
         toolClear(content);
         if (sdShabbatNote) content.appendChild(sdEl('p', 'sd-fr-note', sdShabbatNote));
         if (sdPrefs.fr) content.appendChild(sdEl('p', 'sd-fr-note', t('tools.sd_fr_note')));
-        sections.forEach(section => content.appendChild(sdRenderSection(section)));
+        sections.forEach(section => { const sec = sdRenderSection(section); sdVowelTitles(sec); content.appendChild(sec); });
         sdAddNav(wrap);
         sdAddInterFab(wrap);
         if (!bar.querySelector('.sd-parts')) { const tabs = sdPartsNav(); if (tabs) bar.insertBefore(tabs, bar.querySelector('.sd-read-prog')); }
@@ -2544,6 +2553,26 @@ function sdMcTable(trees) {
     return box;
 }
 
+// Les intertitres du texte (<h4 class="sd-title">) : leurs mots sont remplacés un à un par leur forme vocalisée, sans toucher à la mise en forme.
+function sdVowelTitles(root) {
+    root.querySelectorAll('h4.sd-title').forEach(h => {
+        const full = h.textContent.replace(/\s+/g, ' ').trim();
+        if (!full || SD_HAS_NIQQUD.test(full)) return;
+        const v = sdTitleNiqqud(full);
+        if (v === full) return;
+        const words = v.split(' ');
+        if (words.length !== full.split(' ').length) return;
+        let n = 0;
+        const walker = document.createTreeWalker(h, NodeFilter.SHOW_TEXT);
+        const nodes = [];
+        while (walker.nextNode()) nodes.push(walker.currentNode);
+        nodes.forEach(tn => {
+            const out = tn.data.replace(/\S+/g, () => words[n++] || '');
+            sdOrigText.set(tn, out);
+            tn.data = sdText(out);
+        });
+    });
+}
 function sdRenderSection(section) {
     const box = sdEl('section', 'sd-section-box');
     box.id = 'sd-sec-' + section.id;
