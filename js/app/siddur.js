@@ -1445,14 +1445,40 @@ function sdOpenDisplay() {
         const heRub = sdSwitch('Consignes en hébreu (comme le livre)', sdPrefs.heRub, (on) => { sdPrefs.heRub = on; sdSavePrefs(); sdRerender(); });
         heRub.querySelector('button').id = 'sd-herub';
         body.appendChild(heRub);
-        // « Masquer » et « Tout afficher » s'excluent : en activer un désactive l'autre (avant, « Tout afficher » l'emportait sans le dire).
-        const sdSwitchOff = (id) => { const b = document.getElementById(id); if (b) { b.classList.remove('is-on'); b.setAttribute('aria-checked', 'false'); } };
-        const hide = sdSwitch('Masquer les passages « pas aujourd\'hui »', sdPrefs.hideOff, (on) => { sdPrefs.hideOff = on; if (on) { sdPrefs.all = false; sdSwitchOff('sd-all'); } sdSavePrefs(); sdRerender(); });
-        hide.querySelector('button').id = 'sd-hideoff';
-        body.appendChild(hide);
-        const all = sdSwitch('Tout afficher, sans estomper', sdPrefs.all, (on) => { sdPrefs.all = on; if (on) { sdPrefs.hideOff = false; sdSwitchOff('sd-hideoff'); } sdSavePrefs(); sdRerender(); });
-        all.querySelector('button').id = 'sd-all';
-        body.appendChild(all);
+        // Les passages « pas aujourd'hui » (variantes d'un autre jour) : une seule bande de trois choix, au lieu de deux interrupteurs qui se contredisaient.
+        // Les réglages gardent leurs deux champs : « masqués » = hideOff, « affichés » = all, « estompés » (par défaut) = ni l'un ni l'autre.
+        const OFF_MODES = [
+            ['hide', 'Masqués', 'Seul le texte d\'aujourd\'hui est montré.'],
+            ['fade', 'Estompés', 'Les passages d\'un autre jour sont estompés, ou repliés sur une ligne qu\'on peut ouvrir.'],
+            ['all', 'Affichés', 'Tout est affiché, comme dans le livre, sans estomper.']
+        ];
+        const offMode = () => sdPrefs.all ? 'all' : sdPrefs.hideOff ? 'hide' : 'fade';
+        body.appendChild(sdEl('h4', 'sd-sheet-sub', 'Passages « pas aujourd\'hui »'));
+        const offBand = sdEl('div', 'ben-rites');
+        offBand.id = 'sd-off-modes';
+        offBand.setAttribute('role', 'group');
+        offBand.setAttribute('aria-label', 'Passages « pas aujourd\'hui »');
+        const offHint = sdEl('p', 'sd-opt-hint');
+        offHint.style.margin = '6px 4px 0';
+        const showHint = () => { offHint.textContent = OFF_MODES.find(m => m[0] === offMode())[2]; };
+        OFF_MODES.forEach(([id, label]) => {
+            const b = sdEl('button', 'ben-rite', label);
+            b.type = 'button';
+            b.dataset.mode = id;
+            b.setAttribute('aria-pressed', id === offMode() ? 'true' : 'false');
+            b.onclick = () => {
+                sdPrefs.all = id === 'all';
+                sdPrefs.hideOff = id === 'hide';
+                Array.prototype.forEach.call(offBand.children, el => el.setAttribute('aria-pressed', el === b ? 'true' : 'false'));
+                showHint();
+                sdSavePrefs();
+                sdRerender();
+            };
+            offBand.appendChild(b);
+        });
+        showHint();
+        body.appendChild(offBand);
+        body.appendChild(offHint);
 
         body.appendChild(sdEl('h4', 'sd-sheet-sub', 'Police'));
         const fonts = sdEl('div', 'home-rows');
