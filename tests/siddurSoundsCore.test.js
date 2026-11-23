@@ -9,8 +9,9 @@ const joined = (t) => S.split(t).map(x => typeof x === 'string' ? x : x.s).join(
 test('daguèch dur : תִּפֹּל (« tippol ») : le second pé, pas le tav du début de mot', () => {
     assert.strictEqual(bold('תִּפֹּל'), 'פ:dagesh');
 });
-test('daguèch dur : dans une lettre autre que בגדכפת, toujours', () => {
-    assert.strictEqual(bold('הַמַּיִם'), 'מ:dagesh');
+test('daguèch dur : dans une lettre autre que בגדכפת, toujours (hors article)', () => {
+    assert.strictEqual(bold('הִנָּשֵׂא'), 'נ:dagesh');
+    assert.strictEqual(bold('וַיִּקְרָא'), 'י:dagesh');
 });
 test('daguèch léger (début de mot, ou après un chéva) : pas de marque', () => {
     assert.strictEqual(bold('בָּרוּךְ'), '');
@@ -75,4 +76,21 @@ test('l\'alef muet après un \'holam ne cache pas la voyelle longue (תֹּאמ�
 test('kamats devant un chéva FINAL : ce n\'est pas un gros kamats (מִקְדָּשָׁךְ)', () => {
     assert.strictEqual(bold('מִקְדָּשָׁךְ'), '');
     assert.strictEqual(bold('קָדְשְׁךָ'), 'ק:katan ש:na');
+});
+
+// --- Écarts relevés sur les pages du Maguen Avot (gros losanges = sons particuliers) ---
+test('le daguèch après l\'article (ou l\'article contracté) n\'est pas en gras : הַתּוֹעִים, הַשִּׁירָה, הַזֹּאת, בַּיָּם', () => {
+    ['הַתּוֹעִים', 'הַשִּׁירָה', 'הַזֹּאת', 'בַּיָּם', 'הַמַּיִם'].forEach(w => assert.strictEqual(bold(w), '', w));
+    assert.strictEqual(bold('וְהַבָּאִים'), 'ו:na');
+});
+test('le « ה » final avec mappiq n\'est pas un daguèch dur : אֱלוֹהַּ, לָהּ, שְׁמֵהּ', () => {
+    assert.strictEqual(bold('אֱלוֹהַּ'), '');
+    assert.strictEqual(bold('לָהּ'), '');
+    assert.strictEqual(bold('שְׁמֵהּ'), 'ש:na');
+});
+test('même lettre en gras que le Maguen Avot : שֶׁבְּרָאָנוּ, לִבֵּנוּ, וְחַיֵּי, וְרֹכְבוֹ', () => {
+    assert.strictEqual(bold('שֶׁבְּרָאָנוּ'), 'ב:dagesh');
+    assert.strictEqual(bold('לִבֵּנוּ'), 'ב:dagesh');
+    assert.strictEqual(bold('וְחַיֵּי'), 'ו:na י:dagesh');
+    assert.strictEqual(bold('וְרֹכְבוֹ'), 'ו:na כ:na');
 });

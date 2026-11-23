@@ -11,7 +11,8 @@
 //
 // PRUDENCE : le texte du siddour ne note pas le kamats katan (pas de ׇ). Reconnaître chaque son demande de la grammaire (syllabes, accent tonique) que le texte
 // ne donne pas : ici on ne marque que ce qui est SÛR, et on laisse le doute sans marque plutôt que d'en mettre une fausse.
-//   daguèch dur : toujours sûr (daguèch dans une lettre autre que בגדכפת, ou dans une de בגדכפת après une voyelle).
+//   daguèch dur : daguèch dans une lettre autre que בגדכפת, ou dans une de בגדכפת après une voyelle ; SAUF après l'article (הַתּוֹעִים) ou l'article contracté (בַּיָּם), et pour le
+//                 mappiq du « ה » final (אֱלוֹהַּ, לָהּ) : le Maguen Avot ne les met pas en gras (relevé sur ses pages : les signes en gras y sont des losanges).
 //   chéva na    : sûr au début du mot, sous une lettre à daguèch dur, sous la première de deux lettres identiques, en second de deux chévas de suite (au milieu du mot),
 //                 et après une voyelle longue sûre (tséré, 'holam, chourouk, 'hirik male, kamats avec méteg) SAUF dans ces cas, où le chéva est muet :
 //                 · après le « וּ » (et) du début du mot : וּשְׁבוּעָתוֹ « ouchvou'ato », וּבְרָכָה « ouvrakha » (le Maguen Avot ne le met pas en gras) ;
@@ -28,7 +29,7 @@
     if (typeof module === 'object' && module.exports) module.exports = factory();
     else root.SiddurSounds = factory();
 }(typeof self !== 'undefined' ? self : this, function () {
-    var SHVA = 0x5B0, HATAF_KAMATS = 0x5B3, HIRIQ = 0x5B4, TSERE = 0x5B5, KAMATS = 0x5B8, HOLAM = 0x5B9, HOLAM_HASER = 0x5BA, KUBUTZ = 0x5BB, METEG = 0x5BD, DAGESH = 0x5BC, KAMATS_KATAN = 0x5C7;
+    var PATAH = 0x5B7, SHVA = 0x5B0, HATAF_KAMATS = 0x5B3, HIRIQ = 0x5B4, TSERE = 0x5B5, KAMATS = 0x5B8, HOLAM = 0x5B9, HOLAM_HASER = 0x5BA, KUBUTZ = 0x5BB, METEG = 0x5BD, DAGESH = 0x5BC, KAMATS_KATAN = 0x5C7;
     var BGDKPT = 'בגדכפת';
     var WORD = /[א-ת][֑-ׇ]*(?:[א-ת][֑-ׇ]*)*/g;
 
@@ -83,7 +84,15 @@
         if (v === KAMATS && has(p, METEG)) return true;
         return false;
     }
-    function isMappiq(cl, last) { return last && (cl.c === 'ה' || cl.c === 'א') && has(cl, DAGESH) && !vowelOf(cl); }
+    // Le « ה » final avec daguèch est un mappiq (on l'entend : אֱלוֹהַּ, לָהּ, שְׁמֵהּ), pas un daguèch dur.
+    function isMappiq(cl, last) { return last && cl.c === 'ה' && has(cl, DAGESH); }
+    // Le daguèch qui suit l'article (הַתּוֹעִים, הַשִּׁירָה, הַזֹּאת) ou l'article contracté (בַּיָּם, לַמִּשְׁפָּט) : le Maguen Avot ne le met pas en gras (on ne double pas la lettre).
+    function afterArticle(cls, i) {
+        var p = cls[i - 1];
+        if (!p || vowelOf(p) !== PATAH || cls.length < 3) return false;
+        if (p.c === 'ה') return i === 1 || (i === 2 && 'וכלבמש'.indexOf(cls[0].c) >= 0);      // הַ, וְהַ, בְּהַ… (l'article précédé d'une particule)
+        return i === 1 && 'בכל'.indexOf(p.c) >= 0;                                            // בַּ, כַּ, לַ : l'article contracté avec la particule
+    }
 
     // Les lettres à mettre en gras dans un mot : [{ i, n, k }]. `maqafAfter` : le mot est suivi d'un maqaf (« כָּל־ »).
     function marksOf(word, maqafAfter) {
@@ -99,7 +108,7 @@
             var cl = cls[i], v = vowelOf(cl), kind = null;
             if (isMaterVav(cl)) continue;
             // 1. le daguèch dur
-            if (has(cl, DAGESH) && !isMappiq(cl, i === last)) {
+            if (has(cl, DAGESH) && !isMappiq(cl, i === last) && !afterArticle(cls, i)) {
                 if (BGDKPT.indexOf(cl.c) < 0) kind = 'dagesh';
                 else if (i > 0) {
                     var pv = vowelOf(cls[i - 1]);
