@@ -103,8 +103,9 @@ function ritRender(body) {
     const label = document.createElement('div');
     label.className = 'settings-label';
     label.textContent = t('dates.rite_label');
+    // Même bande que le rite des Bénédictions et des Périodes (.ben-rites) : c'est le même réglage, il a le même aspect partout.
     const seg = document.createElement('div');
-    seg.className = 'segmented';
+    seg.className = 'ben-rites';
     seg.setAttribute('role', 'group');
     seg.setAttribute('aria-label', t('dates.rite_label'));
     Object.keys(RITE_NAMES).forEach(function (id) {
@@ -112,7 +113,7 @@ function ritRender(body) {
         b.type = 'button';
         b.textContent = t(RITE_NAMES[id]);
         const on = riteGet() === id;
-        b.className = on ? 'active' : '';
+        b.className = 'ben-rite';
         b.setAttribute('aria-pressed', on ? 'true' : 'false');
         b.onclick = function () { riteSet(id); };
         seg.appendChild(b);

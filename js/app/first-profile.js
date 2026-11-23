@@ -83,15 +83,15 @@ function profileNode(tag, className, text) {
 function profileChoices(label, options, current, onPick) {
     const wrap = profileNode('div', 'settings-group');
     wrap.appendChild(profileNode('div', 'settings-label', label));
-    const seg = profileNode('div', 'segmented');
+    const seg = profileNode('div', 'ben-rites' + (options.length === 2 ? ' seg-2' : ''));      // la bande du guide des Bénédictions (css/style.css)
     seg.setAttribute('role', 'group');
     seg.setAttribute('aria-label', label);
     options.forEach(o => {
-        const b = profileNode('button', o.id === current ? 'active' : '', o.label);
+        const b = profileNode('button', 'ben-rite', o.label);
         b.type = 'button';
         b.setAttribute('aria-pressed', o.id === current ? 'true' : 'false');
         b.onclick = () => {
-            Array.prototype.forEach.call(seg.children, el => { const on = el === b; el.className = on ? 'active' : ''; el.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+            Array.prototype.forEach.call(seg.children, el => el.setAttribute('aria-pressed', el === b ? 'true' : 'false'));
             onPick(o.id);
         };
         seg.appendChild(b);
