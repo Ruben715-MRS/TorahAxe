@@ -50,3 +50,29 @@ test('split : le texte recollé est identique, avec ou sans voyelles', () => {
     assert.strictEqual(joined('בראשית'), 'בראשית');
     assert.deepStrictEqual(S.split('בראשית ברא'), ['בראשית ברא']);
 });
+
+// --- Les erreurs relevées en comparant avec le Maguen Avot (וּשְׁבוּעָתוֹ) ---
+test('« וּ » (et) en tête de mot : son chéva n\'est pas marqué (וּשְׁבוּעָתוֹ, וּבְרָכָה, וּשְׁמוֹ)', () => {
+    assert.strictEqual(bold('וּשְׁבוּעָתוֹ'), '');
+    assert.strictEqual(bold('וּבְרָכָה'), '');
+    assert.strictEqual(bold('וּשְׁמוֹ'), '');
+    assert.strictEqual(bold('וּבְבִנְיַן'), 'ב:na');           // deux lettres identiques : « ouvévinian »
+});
+test('mot à suffixe d\'une lettre : le chéva après la voyelle longue n\'est pas marqué', () => {
+    assert.strictEqual(bold('טוּבְךָ'), '');
+    assert.strictEqual(bold('מַלְכוּתְךָ'), '');
+    assert.strictEqual(bold('עִירְךָ'), '');
+    assert.strictEqual(bold('יְמִינְךָ'), 'י:na');             // seul le chéva du début est marqué
+});
+test('araméen et forme en « ָה » : rien (le chéva y est muet ou douteux)', () => {
+    assert.strictEqual(bold('קוּדְשָׁא'), '');
+    assert.strictEqual(bold('רָחִיצְנָא'), '');
+    assert.strictEqual(bold('נֵלְכָה'), '');
+});
+test('l\'alef muet après un \'holam ne cache pas la voyelle longue (תֹּאמְרוּ)', () => {
+    assert.strictEqual(bold('תֹּאמְרוּ'), 'מ:na');
+});
+test('kamats devant un chéva FINAL : ce n\'est pas un gros kamats (מִקְדָּשָׁךְ)', () => {
+    assert.strictEqual(bold('מִקְדָּשָׁךְ'), '');
+    assert.strictEqual(bold('קָדְשְׁךָ'), 'ק:katan ש:na');
+});

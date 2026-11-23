@@ -13,8 +13,13 @@
 // ne donne pas : ici on ne marque que ce qui est SÛR, et on laisse le doute sans marque plutôt que d'en mettre une fausse.
 //   daguèch dur : toujours sûr (daguèch dans une lettre autre que בגדכפת, ou dans une de בגדכפת après une voyelle).
 //   chéva na    : sûr au début du mot, sous une lettre à daguèch dur, sous la première de deux lettres identiques, en second de deux chévas de suite (au milieu du mot),
-//                 et après une voyelle longue sûre (tséré, 'holam, chourouk, 'hirik male, kamats avec méteg) quand une autre voyelle suit.
-//   gros kamats : sûr devant un 'hataf kamats (צָהֳרַיִם), devant ׇ (kamats katan noté), et pour les mots de CHAMETS_KATAN (liste écrite à la main) ainsi que « כָּל » joint par un maqaf.
+//                 et après une voyelle longue sûre (tséré, 'holam, chourouk, 'hirik male, kamats avec méteg) SAUF dans ces cas, où le chéva est muet :
+//                 · après le « וּ » (et) du début du mot : וּשְׁבוּעָתוֹ « ouchvou'ato », וּבְרָכָה « ouvrakha » (le Maguen Avot ne le met pas en gras) ;
+//                 · devant un suffixe d'une lettre : טוּבְךָ « touvkha », יְמִינְךָ, מַלְכוּתְךָ, עִירְךָ (l'accent reste sur la voyelle longue) ;
+//                 · en araméen (קוּדְשָׁא, שְׁכִינְתָּא, רָחִיצְנָא, וּפוּרְקַן, צְלוֹתְהוֹן… : terminaisons ָא, הוֹן, ֵהּ, ַן) ;
+//                 · dans une forme en « ָה » à l'accent sur l'avant-dernière syllabe (נֵלְכָה).
+//   gros kamats : sûr devant un 'hataf kamats (צָהֳרַיִם), devant ׇ (kamats katan noté), et pour les mots de CHAMETS_KATAN (liste écrite à la main) quand le chéva ferme la syllabe
+//                 au milieu du mot (pas קָדְשָׁךְ, dont le chéva est final), ainsi que « כָּל » joint par un maqaf.
 //   Un kamats suivi d'un chéva, hors de cette liste, reste SANS marque : « חָכְמָה » (gros kamats) et « הָלְכוּ » (kamats ordinaire, chéva na) s'écrivent pareil.
 // Contenu de grammaire écrit à la main : **à relire par une personne compétente** (et la liste ci-dessous à compléter).
 // Testé dans tests/siddurSoundsCore.test.js. Écran : js/app/siddur.js.
@@ -28,11 +33,13 @@
     var WORD = /[א-ת][֑-ׇ]*(?:[א-ת][֑-ׇ]*)*/g;
 
     // Les mots à gros kamats : consonnes seules (sans voyelles), avec leurs préfixes ובהלכמש et quelques terminaisons admis. Liste de départ, à compléter.
-    var CHAMETS_KATAN = ['חכמה', 'חכמת', 'חכמתי', 'חכמתו', 'חכמתך', 'חכמתם', 'קדשו', 'קדשך', 'קדשי', 'קדשם', 'קדשכם', 'קדשנו', 'קדשה', 'ארחו', 'ארחך', 'ארחי', 'שרשו', 'שרשי', 'חפני', 'עזו', 'עזך', 'עזי', 'עזנו', 'ענו'];
+    var CHAMETS_KATAN = ['חכמה', 'חכמת', 'חכמתי', 'חכמתו', 'חכמתך', 'חכמתם', 'קדשו', 'קדשך', 'קדשי', 'קדשם', 'קדשכם', 'קדשנו', 'קדשה', 'ארחו', 'ארחך', 'ארחי', 'שרשו', 'שרשי', 'חפני', 'עזו', 'עזך', 'עזי', 'עזנו'];
     var KATAN_RE = new RegExp('^[ובהלכמש]{0,3}(?:' + CHAMETS_KATAN.join('|') + ')(?:ך|ם|ן|נו|כם|ה)?$');
     // Les mots dont on ne marque rien : le Nom divin (on lit Adonaï, pas ce qui est écrit).
     var SKIP = /^[ובהלכמש]{0,3}יהוה$/;
 
+    // kamats/patah (\u05B7\u05B8) + alef/yod ; « הוֹן » ; « ֵהּ » (tséré, hé avec mappiq) ; patah/kamats + noun final
+    var ARAMAIC_END = /(?:[\u05B7\u05B8][\u0591-\u05C7]*[\u05D0\u05D9]|\u05D4\u05D5\u05B9\u05DF|\u05B5\u05BC?\u05D4\u05BC|[\u05B7\u05B8][\u0591-\u05C7]*\u05DF)$/;
     function strip(s) { return s.replace(/[֑-ׇ]/g, ''); }
 
     // Un mot → ses lettres : { c: la lettre, m: ses signes (codes), i: sa place dans le mot, n: sa longueur }.
@@ -65,8 +72,12 @@
     function longBefore(cls, i) {
         var p = cls[i - 1];
         if (!p) return false;
+        // « וּ » (et) en tête de mot : le chéva qui suit ne se prononce pas (וּשְׁמוֹר : « ouchmor », וּבְרָכָה : « ouvrakha »), malgré la voyelle longue.
+        if (i === 1 && isMaterVav(p) && !has(p, HOLAM)) return false;
         if (isMaterVav(p)) return true;
         if (isMaterYod(p, cls[i - 2])) return true;
+        // א muet après une voyelle longue (תֹּאמְרוּ : le tav a le 'holam, l'alef ne porte rien) : c'est la voyelle d'avant qui compte
+        if (p.c === 'א' && !vowelOf(p) && cls[i - 2]) { var pv = vowelOf(cls[i - 2]); if (pv === HOLAM || pv === TSERE) return true; }
         var v = vowelOf(p);
         if (v === TSERE || v === HOLAM || v === HOLAM_HASER) return true;
         if (v === KAMATS && has(p, METEG)) return true;
@@ -81,6 +92,9 @@
         var skeleton = strip(word);
         var katanWord = KATAN_RE.test(skeleton);
         var last = cls.length - 1;
+        // L'araméen (Kaddich, Zohar) : après une voyelle longue le chéva y est muet (קוּדְשָׁא « koudcha », שְׁכִינְתָּא « chékhinta », רָחִיצְנָא), contrairement à l'hébreu.
+        // On le reconnaît à ses terminaisons (ָא, הוֹן, ֵהּ, ַן) ; en cas de doute on ne marque rien.
+        var aramaic = ARAMAIC_END.test(word);
         for (var i = 0; i <= last; i++) {
             var cl = cls[i], v = vowelOf(cl), kind = null;
             if (isMaterVav(cl)) continue;
@@ -97,24 +111,27 @@
             if (!kind && v === KAMATS) {
                 var nx = cls[i + 1];
                 if (nx && has(nx, HATAF_KAMATS)) kind = 'katan';
-                else if (nx && has(nx, SHVA) && katanWord) kind = 'katan';
+                else if (nx && has(nx, SHVA) && katanWord && i + 1 < last) kind = 'katan';
                 else if (skeleton === 'כל' && maqafAfter && i === 0) kind = 'katan';
             }
             // 3. le chéva na
             if (!kind && v === SHVA && i < last) {
-                var na = false;
-                if (i === 0) na = true;                                                     // début de mot
-                else if (has(cl, DAGESH) && BGDKPT.indexOf(cl.c) < 0) na = true;           // lettre à daguèch dur
-                else if (has(cl, DAGESH) && i > 0 && vowelOf(cls[i - 1]) && vowelOf(cls[i - 1]) !== SHVA) na = true;
-                else if (cls[i + 1] && cls[i + 1].c === cl.c) na = true;                    // première de deux lettres identiques : הַלְלוּ
-                else if (vowelOf(cls[i - 1]) === SHVA) na = true;                           // second de deux chévas de suite
-                else if (longBefore(cls, i)) {
-                    // après une voyelle longue sûre, à condition qu'une autre voyelle suive (sinon le chéva est muet)
-                    for (var j = i + 1; j <= last; j++) { var vj = vowelOf(cls[j]); if ((vj && vj !== SHVA) || isMaterVav(cls[j])) { na = true; break; } }
+                var na = false, why = '';
+                if (i === 0) { na = true; why = 'debut'; }                                  // début de mot
+                else if (has(cl, DAGESH) && BGDKPT.indexOf(cl.c) < 0) { na = true; why = 'dagesh'; }
+                else if (has(cl, DAGESH) && i > 0 && vowelOf(cls[i - 1]) && vowelOf(cls[i - 1]) !== SHVA) { na = true; why = 'dagesh'; }
+                else if (cls[i + 1] && cls[i + 1].c === cl.c) { na = true; why = 'double'; }  // première de deux lettres identiques : הַלְלוּ
+                else if (vowelOf(cls[i - 1]) === SHVA) { na = true; why = 'deux'; }          // second de deux chévas de suite
+                else if (!aramaic && longBefore(cls, i)) {
+                    // après une voyelle longue sûre, à condition qu'au moins deux lettres suivent (sinon c'est un mot à suffixe : טוּבְךָ « touvkha »,
+                    // יְמִינְךָ « yéminkha », מַלְכוּתְךָ : l'accent reste sur la voyelle longue et le chéva est muet) et qu'une voyelle y soit
+                    // (une forme en « ָה » à l'accent sur l'avant-dernière syllabe — נֵלְכָה, אֵלְכָה — reste sans marque : on ne sait pas si le chéva est muet.)
+                    var cohort = last - i === 2 && cls[last].c === 'ה' && !vowelOf(cls[last]) && vowelOf(cls[last - 1]) === KAMATS;
+                    for (var j = i + 1; !cohort && last - i >= 2 && j <= last; j++) { var vj = vowelOf(cls[j]); if ((vj && vj !== SHVA) || isMaterVav(cls[j])) { na = true; why = 'long'; break; } }
                 }
-                if (na) kind = 'na';
+                if (na) { kind = 'na'; }
             }
-            if (kind) out.push({ i: cl.i, n: cl.n, k: kind });
+            if (kind) out.push({ i: cl.i, n: cl.n, k: kind, why: kind === 'na' ? why : kind });
         }
         return out;
     }
