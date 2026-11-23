@@ -73,6 +73,7 @@ function sdLoadPrefs() {
         if (typeof p.jx === 'boolean') sdPrefs.jx = p.jx;
         if (typeof p.fab === 'boolean') sdPrefs.fab = p.fab;
         if (typeof p.hideOff === 'boolean') sdPrefs.hideOff = p.hideOff;
+        if (sdPrefs.all && sdPrefs.hideOff) sdPrefs.hideOff = false;      // les deux étaient enregistrés : « Tout afficher » l'emportait déjà
         if (p.guest && typeof p.guest === 'object') sdPrefs.guest = p.guest;
         if (p.zim === 1 || p.zim === 3 || p.zim === 10) sdPrefs.zim = p.zim;
         if (p.zimForm === 'a' || p.zimForm === 'b') sdPrefs.zimForm = p.zimForm;
@@ -1444,10 +1445,12 @@ function sdOpenDisplay() {
         const heRub = sdSwitch('Consignes en hébreu (comme le livre)', sdPrefs.heRub, (on) => { sdPrefs.heRub = on; sdSavePrefs(); sdRerender(); });
         heRub.querySelector('button').id = 'sd-herub';
         body.appendChild(heRub);
-        const hide = sdSwitch('Masquer les passages « pas aujourd\'hui »', sdPrefs.hideOff, (on) => { sdPrefs.hideOff = on; sdSavePrefs(); sdRerender(); });
+        // « Masquer » et « Tout afficher » s'excluent : en activer un désactive l'autre (avant, « Tout afficher » l'emportait sans le dire).
+        const sdSwitchOff = (id) => { const b = document.getElementById(id); if (b) { b.classList.remove('is-on'); b.setAttribute('aria-checked', 'false'); } };
+        const hide = sdSwitch('Masquer les passages « pas aujourd\'hui »', sdPrefs.hideOff, (on) => { sdPrefs.hideOff = on; if (on) { sdPrefs.all = false; sdSwitchOff('sd-all'); } sdSavePrefs(); sdRerender(); });
         hide.querySelector('button').id = 'sd-hideoff';
         body.appendChild(hide);
-        const all = sdSwitch('Tout afficher, sans estomper', sdPrefs.all, (on) => { sdPrefs.all = on; sdSavePrefs(); sdRerender(); });
+        const all = sdSwitch('Tout afficher, sans estomper', sdPrefs.all, (on) => { sdPrefs.all = on; if (on) { sdPrefs.hideOff = false; sdSwitchOff('sd-hideoff'); } sdSavePrefs(); sdRerender(); });
         all.querySelector('button').id = 'sd-all';
         body.appendChild(all);
 
