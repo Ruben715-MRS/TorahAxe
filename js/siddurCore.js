@@ -62,6 +62,7 @@
     // vaut pour l'une OU l'autre (« בראש חודש ובחול המועד » : Roch 'Hodesh ou 'Hol haMoed). L'ordre compte : le plus précis d'abord.
     var ATOMS = [
         ['aseret', /עשרת ימי תשובה|בעשי ?ת(\s|$)|^עשי ת/],
+        ['hoshanaRabba', /הושענא רבה|הושענה רבה/],
         ['roshHashana', /בראש השנה|^ברה ש$/],
         ['moadim', /^במועדים/],
         ['rc', /בראש (חדש|חודש)|בליל ראש (חדש|חודש)|(^|\s)[בל]ר ?ח(\s|$)/],
@@ -122,7 +123,7 @@
         if (atoms.indexOf('chPesach') !== -1 || atoms.indexOf('chSukkot') !== -1) atoms = atoms.filter(function (x) { return x !== 'ch'; });
         for (var si = 0; si < SHABBAT_ATOMS.length; si++) if (SHABBAT_ATOMS[si][1].test(r.head)) { atoms = [SHABBAT_ATOMS[si][0]]; break; }
         if (!atoms.length) return null;
-        return { atoms: atoms, endsWithColon: r.endsWithColon, hasBody: r.hasBody, insert: /(אומר|אומרים|מוסיפים|מוסיף) כאן/.test(r.head), psalm: /מזמור זה/.test(r.head) };
+        return { atoms: atoms, endsWithColon: r.endsWithColon, hasBody: r.hasBody, insert: /(אומר|אומרים|מוסיפים|מוסיף) כאן/.test(r.head), psalm: /מזמור זה/.test(r.head), says: /ואומרים$/.test(r.head) };
     }
 
     // « été / hiver » : la même consigne sert à deux choses (Machiv haRouah / Morid hatal, et Barekh alénou / Barekhénou). Le corps du texte les distingue.
@@ -201,7 +202,7 @@
             var tree = trees[i];
             var text = plain(tree);
             var cond = onlySmall(tree) && !/[֑-ׇ]/.test(text) ? conditionOf(text) : null;
-            if (!cond || !(cond.endsWithColon || cond.insert || cond.psalm) || cond.hasBody) { i++; continue; }
+            if (!cond || !(cond.endsWithColon || cond.insert || cond.psalm || cond.says) || cond.hasBody) { i++; continue; }
             var from = i + 1;
             if (from >= segments.length) { i++; continue; }
             var next = trees[from];
@@ -273,6 +274,7 @@
         var flags = {
             dewWinter: dewWinter, dewSummer: !dewWinter, barechWinter: barechWinter, barechSummer: !barechWinter,
             aseret: h.month === 'Tishri' && h.day <= 10,
+            hoshanaRabba: h.month === 'Tishri' && h.day === 21,
             rc: h.day === 1 || h.day === 30,
             roshHashana: roshHashana, moadim: pesach || sukkot || shavuot || shemini, chPesach: chPesach, chSukkot: chSukkot, ch: chPesach || chSukkot,
             shemini: shemini, pesach: pesach, shavuot: shavuot, sukkot: sukkot, yomTov: yomTov,

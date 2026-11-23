@@ -274,3 +274,18 @@ test('Jours de Moussaf : Chabbat, fête, Roch \'Hodesh, \'Hol haMoed (Migdol / M
     assert.strictEqual(flags(2026, 10, 1).musafDay, true);           // 'Hol haMoed Souccot
     assert.strictEqual(S.evaluate(['yomTov', 'musafDay', 'shabbat'], S.contextFor(CY.gregorianToFixed(2026, 11, 18), false)), 'off');
 });
+
+test('Hodou : « יְהֹוָה הוּא הָאֱלֹהִים » (dix jours de pénitence et Hochana Rabba) est un bloc, « pas aujourd\'hui » les autres jours', () => {
+    const d = JSON.parse(fs.readFileSync(__dirname + '/../data/siddur/chacharit-hodou.json', 'utf8'));
+    const g = S.groups(d.segments).filter(x => x.header === 6);
+    assert.strictEqual(g.length, 1);
+    assert.deepStrictEqual([g[0].from, g[0].to], [7, 7]);              // seule cette phrase : « עומדים ואומרים » (segment 8) suit sans en faire partie
+    assert.deepStrictEqual(g[0].atoms, ['aseret', 'hoshanaRabba']);
+    const on = (y, m, day) => S.evaluate(g[0].atoms, S.contextFor(CY.gregorianToFixed(y, m, day), false));
+    assert.strictEqual(on(2026, 9, 14), 'on');        // 3 Tichri
+    assert.strictEqual(on(2026, 9, 21), 'on');        // 10 Tichri (Yom Kippour)
+    assert.strictEqual(on(2026, 10, 2), 'on');        // 21 Tichri : Hochana Rabba
+    assert.strictEqual(on(2026, 9, 22), 'off');       // 11 Tichri
+    assert.strictEqual(on(2026, 10, 1), 'off');       // 20 Tichri
+    assert.strictEqual(on(2026, 11, 23), 'off');      // un jour ordinaire
+});
