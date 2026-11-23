@@ -1363,7 +1363,8 @@ function sdApplyNiqqud() {
 
 // Les sons particuliers en gras (js/siddurSoundsCore.js) : la lettre entière (avec ses voyelles) passe dans un <span class="sd-snd">. Fait après le rendu,
 // sur les nœuds de texte hébreux vocalisés (pas la traduction, les consignes, le Nom divin) ; un changement du réglage redessine la lecture (sdRerender).
-const SD_SOUND_SKIP = '.sd-fr-seg, .sd-fr-note, .sd-rub, .sd-small-rub, .sd-jx-f, .sd-name, [lang="fr"]';
+// Pas de [lang="fr"] ici : <html lang="fr"> est un ancêtre de tout, `closest` écartait alors tout le texte. Le français n'a pas de voyelles hébraïques de toute façon.
+const SD_SOUND_SKIP = '.sd-fr-seg, .sd-fr-note, .sd-rub, .sd-small-rub, .sd-jx-f, .sd-name';
 function sdMarkSounds(root) {
     if (!sdPrefs.sounds || !sdPrefs.niqqud || typeof SiddurSounds === 'undefined') return;
     const nodes = [];
