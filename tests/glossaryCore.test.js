@@ -103,3 +103,18 @@ test('Catégories : la terre et l\'agriculture sont à part de l\'alimentation',
     ['cacherout', 'casher', 'chehita', 'halav-basar', 'hala'].forEach(id => assert.strictEqual(G.get(id).cat, 'alimentation', id));
     assert.ok(tools.glossary_cat_terre);
 });
+
+test('Extension : Zimoun, Érets Israël et les nouvelles catégories', () => {
+    assert.ok(G.ENTRIES.length >= 400, 'au moins 400 entrées, il y en a ' + G.ENTRIES.length);
+    ['zimmun', 'zimoun', 'Zimoun'].forEach(q => assert.strictEqual(G.search(q)[0].id, 'zimoun', q));
+    ['erets israel', 'eretz yisrael', 'Eretz Israel', 'ארץ ישראל'].forEach(q => assert.strictEqual(G.search(q)[0].id, 'erets-israel', q));
+    assert.strictEqual(G.get('zimoun').cat, 'priere');
+    assert.strictEqual(G.get('erets-israel').cat, 'terre');
+    assert.strictEqual(G.get('ashkenaze').cat, 'communautes');
+    assert.strictEqual(G.get('machiah').cat, 'croyances');
+    assert.strictEqual(G.get('beit-hamikdash').cat, 'temple');
+    ['communautes', 'croyances', 'temple'].forEach(c => assert.ok(tools['glossary_cat_' + c], c));
+    // Le mois et la fête voisine se renvoient l'un à l'autre.
+    assert.ok(G.related('av').some(e => e.id === 'tichabeav'));
+    assert.ok(G.get('chiva-assar-betamouz').see.includes('tamouz'));
+});

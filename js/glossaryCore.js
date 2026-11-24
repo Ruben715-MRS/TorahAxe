@@ -19,8 +19,8 @@
     // « Commandements et principes »). Le libellé du bouton est dans ui/fr.json : tools.glossary_go_<outil>[_<onglet>].
     var GO_TARGETS = [
         'siddur', 'zmanim', 'hebrewCalendar', 'periods', 'foodlaws', 'benedictions', 'tanakh', 'michna', 'talmud', 'torahReader', 'specialReadings',
-        'statuts', 'tsaraat', 'kotel', 'mishkan', 'hassidout', 'transmission', 'gematria', 'lexicon',
-        'commandments:peines', 'commandments:mitzvot', 'commandments:shabbat', 'commandments:femmes', 'commandments:pratiques'
+        'statuts', 'tsaraat', 'kotel', 'mishkan', 'hassidout', 'transmission', 'gematria', 'lexicon', 'biblical', 'korbanot', 'messiah',
+        'commandments:peines', 'commandments:mitzvot', 'commandments:shabbat', 'commandments:femmes', 'commandments:pratiques', 'commandments:principes'
     ];
 
     // Pour chercher sans se soucier de l'orthographe : sans accents, sans majuscules, sans apostrophes ni tirets ; l'hébreu sans voyelles.
