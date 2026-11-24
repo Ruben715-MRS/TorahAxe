@@ -517,6 +517,10 @@
     m('yotham_gideon', 'Yotham (fils de Gédéon)', 'יותם', 'gideon');
     // Jephté, fils de Galaad (Juges 11).
     m('jephte', 'Jephté', 'יפתח', 'gilead');
+    // Yaïr le Galaadite, juge vingt-deux ans (Juges 10:3-5). Ce n'est pas Yaïr l'ancêtre de Mardochée ('jair'). Sa généalogie n'est pas donnée : lien en pointillés sous Galaad.
+    m('jair_juge', 'Yaïr le Galaadite', 'יאיר הגלעדי', 'gilead', { far: true });
+    // Tola le juge, « fils de Pouah, fils de Dodo, d'Issakhar » (Juges 10:1-2) : une autre personne que Tola fils d'Issakhar ('tola', Genèse 46:13). Dodo n'a pas de carte : lien en pointillés sous Pouva.
+    m('tola_juge', 'Tola (le juge)', 'תולע בן פואה', 'pouva', { far: true });
 
     // Othniel, neveu de Caleb (Juges 3:9 ; 1 Chroniques 4:13-15).
     m('kenaz_caleb', 'Kénaz', 'קנז', 'calev');
@@ -1001,7 +1005,7 @@
     // du livre (les Juges, puis les Rois) ; pour les prophètes, celui des livres du Tanakh. Ceux que le texte ne rattache à aucune famille ne sont pas
     // dans l'arbre : ils sont nommés dans la note de chaque liste (ui/fr.json, `genealogy_role_note_*`).
     var ROLES = {
-        judges: ['othniel', 'ehud', 'deborah', 'barak', 'gideon', 'abimelech_gideon', 'tola', 'jair', 'jephte', 'ibzan', 'elon_zebulon', 'abdon', 'samson', 'eli', 'samuel'],
+        judges: ['othniel', 'ehud', 'deborah', 'barak', 'gideon', 'abimelech_gideon', 'tola_juge', 'jair_juge', 'jephte', 'ibzan', 'elon_zebulon', 'abdon', 'samson', 'eli', 'samuel'],
         united: ['saul_roi', 'david', 'salomon'],
         judah: ['rehoboam', 'abijam', 'asa_roi', 'josaphat', 'joram_roi', 'achazia', 'athalie', 'joas', 'amatsia', 'azaria', 'jotham_roi', 'achaz', 'ezechias',
             'manasse_roi', 'amon_roi', 'josias', 'shallum_josias', 'jehoiakim', 'jeconiah', 'zedekiah'],
