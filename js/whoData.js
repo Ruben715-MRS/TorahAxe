@@ -124,13 +124,13 @@
             'J’ai jalousé mon jeune successeur après ses victoires.',
             'J’ai consulté une nécromancienne à En-Dor avant ma dernière bataille.'] },
         { id: 'david', fr: 'David', he: 'דוד', sex: 'm', grp: 'rois', aliases: [], clues: [
-            'J’ai régné 40 ans.',
+            'J’ai régné sept ans à Hébron, puis trente-trois ans à Jérusalem.',
             'J’étais le plus jeune des huit fils de Jessé.',
             'J’ai vaincu un géant avec une pierre et une fronde.',
             'J’ai dû fuir devant le roi que j’avais pourtant servi en jouant de la harpe.',
             'Je suis le père de Salomon, et on me doit de nombreux psaumes.'] },
         { id: 'salomon', fr: 'Salomon', he: 'שלמה', sex: 'm', grp: 'rois', aliases: ['Chlomo'], clues: [
-            'J’ai régné 40 ans.',
+            'Je suis monté sur le trône alors que mon frère aîné Adoniyahou se proclamait roi à ma place.',
             'Ma mère s’appelle Bath-Schéba.',
             'J’ai demandé à Dieu un cœur qui comprend, plutôt que la richesse.',
             'Deux femmes se disputaient un enfant : j’ai proposé de le couper en deux.',

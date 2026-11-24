@@ -109,11 +109,22 @@
         return { clues: clues, bioClues: Math.min(2, bio.length) };
     }
 
+    // Les siècles d'une période (« fin du Iᵉʳ – début du IIᵉ siècle », « Iᵉʳ siècle av. J.-C. », « v. 50 – v. 135 ») : négatifs avant l'ère commune.
+    var ROMAN = { I: 1, II: 2, III: 3, IV: 4, V: 5, VI: 6 };
+    function centuriesOf(period) {
+        var out = [], text = String(period || ''), m, re = /\b(I|II|III|IV|V|VI)(?:ᵉʳ|ᵉ)(?:\s+siècle)?(\s+av\.)?/g;
+        while ((m = re.exec(text))) out.push(m[2] ? -ROMAN[m[1]] : ROMAN[m[1]]);
+        var y, ry = /v\.\s*(\d+)/g;
+        while ((y = ry.exec(text))) out.push(Math.ceil(Number(y[1]) / 100));
+        return out;
+    }
+
     function buildSages() {
         var out = [];
         Gemara.SAGES.forEach(function (s) {
             if (s.fame < 2) return;
-            var person = { id: 's:' + s.name, fr: s.name, he: s.he, sex: FEMALE_SAGES[s.name] ? 'f' : 'm', grp: s.grp, aliases: s.aliases || [], section: 'sages' };
+            var person = { id: 's:' + s.name, fr: s.name, he: s.he, sex: FEMALE_SAGES[s.name] ? 'f' : 'm', grp: s.grp, aliases: s.aliases || [], section: 'sages',
+                           centuries: centuriesOf(s.period), relatives: s.masters.concat(s.disciples) };
             var built = sageClues(s, person);
             if (built.bioClues < 1 || built.clues.length < MIN_CLUES) return;       // pas de fiche qui désigne le sage sans le nommer : on ne le pose pas
             person.clues = built.clues.slice(0, MAX_CLUES);
@@ -129,11 +140,26 @@
     function people(section) { return PEOPLE.filter(function (p) { return section === 'all' || SECTIONS.indexOf(section) < 0 || p.section === section; }); }
 
     // --- Les questions ---------------------------------------------------------------------------------------------------------------------------
-    // Trois fausses réponses : de la même section, du même sexe si la section en a assez, la moitié du même groupe ; jamais la bonne réponse.
+    // Un indice vrai de deux personnages à la fois ne départage rien : chaque indice ne doit convenir qu'à UNE des quatre propositions.
+    function sharesClue(a, b) { return a.clues.some(function (c) { return b.clues.indexOf(c) >= 0; }); }
+    // Pour les sages, l'époque (premier indice), la période, les maîtres et les disciples doivent aussi écarter chaque fausse réponse :
+    // pas de sage de la même époque, d'un siècle qui se recoupe, ni avec un maître ou un disciple en commun.
+    function clashes(a, b) {
+        if (sharesClue(a, b)) return true;
+        if (a.section !== 'sages') return false;
+        return a.grp === b.grp
+            || a.centuries.some(function (c) { return b.centuries.indexOf(c) >= 0; })
+            || a.relatives.some(function (n) { return b.relatives.indexOf(n) >= 0; });
+    }
+
+    // Trois fausses réponses : de la même section, du même sexe si la section en a assez, jamais la bonne réponse, et aucune à laquelle un indice de la bonne réponse conviendrait.
+    // Dans la Bible, la moitié vient du même groupe (de la même famille) ; chez les sages, jamais du même groupe : le premier indice est l'époque.
     function distractors(person, rng) {
-        var pool = PEOPLE.filter(function (p) { return p.section === person.section && p.id !== person.id; });
+        var peers = PEOPLE.filter(function (p) { return p.section === person.section && p.id !== person.id; });
+        var pool = peers.filter(function (p) { return !clashes(person, p); });
+        if (pool.length < Quiz.CHOICES - 1) pool = peers.filter(function (p) { return !sharesClue(person, p); });   // jamais le cas avec les données actuelles
         var sameSex = pool.filter(function (p) { return p.sex === person.sex; });
-        if (sameSex.length >= 3) pool = sameSex;
+        if (sameSex.length >= Quiz.CHOICES - 1) pool = sameSex;
         var sameGrp = Quiz.shuffle(pool.filter(function (p) { return p.grp === person.grp; }), rng).slice(0, 2);
         var others = Quiz.shuffle(pool.filter(function (p) { return sameGrp.indexOf(p) < 0; }), rng);
         return sameGrp.concat(others).slice(0, Quiz.CHOICES - 1);
@@ -197,7 +223,7 @@
 
     return {
         ROUNDS: ROUNDS, START_POINTS: START_POINTS, HINT_COST: HINT_COST, WRONG_COST: WRONG_COST, MAX_CLUES: MAX_CLUES, MIN_CLUES: MIN_CLUES, SECTIONS: SECTIONS,
-        PEOPLE: PEOPLE, people: people, namesOf: namesOf, mentions: mentions, mentionsPerson: mentionsPerson, normalize: normalize, sentences: sentences, makeQuestion: makeQuestion, pick: pick,
+        PEOPLE: PEOPLE, people: people, clashes: clashes, namesOf: namesOf, mentions: mentions, mentionsPerson: mentionsPerson, normalize: normalize, sentences: sentences, makeQuestion: makeQuestion, pick: pick,
         createGame: createGame, question: question, shownClues: shownClues, hint: hint, guess: guess, next: next
     };
 }));

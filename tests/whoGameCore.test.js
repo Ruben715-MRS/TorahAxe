@@ -168,3 +168,19 @@ test('une partie parfaite : 500 points', () => {
     while (!g.over) { W.guess(g, W.question(g).answer); W.next(g); }
     assert.strictEqual(g.score, 500);
 });
+
+test('chaque indice ne convient qu\'à une seule des quatre propositions : aucune fausse réponse ne partage un indice, une époque, un siècle ou un maître avec la bonne', () => {
+    for (let seed = 1; seed <= 20; seed++) {
+        const rng = seeded(seed);
+        W.PEOPLE.forEach(p => {
+            const q = W.makeQuestion(p, rng);
+            assert.strictEqual(new Set(q.options.map(o => o.id)).size, 4, p.fr + ' : quatre propositions distinctes');
+            q.options.forEach(o => {
+                if (o.id === p.id) return;
+                const other = person(o.id);
+                assert.ok(!W.clashes(p, other), p.fr + ' / ' + other.fr + ' : un indice convient aux deux');
+                if (p.section === 'sages') assert.notStrictEqual(other.grp, p.grp, p.fr + ' / ' + other.fr + ' : même époque, le premier indice ne départage pas');
+            });
+        });
+    }
+});
