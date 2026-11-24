@@ -18836,3 +18836,12 @@ button.autoscroll-mode { height: 48px; padding: 0 12px; border: 1px dashed var(-
 .glo-rel { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; }
 .glo-rel > .tool-small { font-weight: 700; }
 .glo-go { align-self: flex-start; }
+
+/* Les 613 : la sanction sous le verset, la légende repliée */
+.cmd-613-list .cmd-sanction { margin-top: 2px; }
+.cmd-sanction-q { font-style: italic; }
+.cmd-sanction-legend { margin: 6px 0; }
+.cmd-sanction-legend summary { cursor: pointer; font-weight: 700; padding: 6px 0; }
+.cmd-sanction-list { margin: 6px 0; font-size: 13px; line-height: 1.4; }
+.cmd-sanction-list dt { font-weight: 700; margin-top: 8px; }
+.cmd-sanction-list dd { margin: 2px 0 0; color: var(--muted-text); }

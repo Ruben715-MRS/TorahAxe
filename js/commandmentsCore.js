@@ -17,6 +17,7 @@
     'use strict';
 
     var DATA = typeof module === 'object' && typeof module.exports === 'object' ? require('./commandments613Data.js') : Commandments613Data;
+    var SANCTIONS = typeof module === 'object' && typeof module.exports === 'object' ? require('./commandmentsSanctionsData.js') : CommandmentsSanctionsData;
 
     // Treize éléments, identifiants préfixés : f1…f13, i1…i13, m1…m13.
     function range13(prefix) {
@@ -245,7 +246,7 @@
         var out = [];
         kindsOf(kind).forEach(function (k) {
             LISTS613[k].data.forEach(function (entry, i) {
-                out.push({ kind: k, n: i + 1, text: entry[0], ref: entry[1], group: groupOf(k, i + 1) });
+                out.push({ kind: k, n: i + 1, text: entry[0], ref: entry[1], group: groupOf(k, i + 1), sanction: sanctionOf(k, i + 1) });
             });
         });
         return out;
@@ -266,13 +267,61 @@
         return String(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/['’`\-]/g, '');
     }
 
-    // Les commandements d'une liste qui répondent à une recherche : par mots (tous doivent s'y trouver), dans l'énoncé, le verset ou le numéro.
-    function search613(kind, query) {
-        var all = list613(kind);
+    // --- La sanction de chaque commandement (js/commandmentsSanctionsData.js) ------------------------------------------------------------------
+
+    // Les codes de sanction, dans l'ordre de la légende ; les libellés sont dans ui/fr.json (tools.cmd_sanction_<code>, et cmd_sanction_help_<code>).
+    var SANCTION_CODES = ['S', 'B', 'H', 'N', 'K', 'C', 'M', 'P', 'A', 'Z', '0a', '0b', '0g', 'E'];
+
+    // Les mots qu'on peut taper pour trouver un code (la recherche les ajoute au texte du commandement).
+    var SANCTION_WORDS = {
+        S: 'lapidation sequila', B: 'bucher serefa', H: 'decapitation hereg', N: 'strangulation henek', K: 'karet retranchement',
+        C: 'mort par le ciel mita bidei chamayim', M: 'malkout malkot coups flagellation', P: 'reparation paiement argent',
+        A: 'acham culpabilite reparation', Z: 'faux temoin', '0a': 'sans coups sans acte', '0b': 'sans coups reparable commandement positif',
+        '0g': 'sans peine tribunal roi peuple', E: 'aucune peine'
+    };
+
+    // Les regroupements du filtre « sanction » : un commandement y entre s'il a au moins un des codes.
+    var SANCTION_FILTERS = [
+        { id: 'death', codes: ['S', 'B', 'H', 'N'] },
+        { id: 'karet', codes: ['K'] },
+        { id: 'ciel', codes: ['C'] },
+        { id: 'malkout', codes: ['M'] },
+        { id: 'argent', codes: ['P', 'A', 'Z'] },
+        { id: 'sans', codes: ['0a', '0b', '0g'] },
+        { id: 'aucune', codes: ['E'] }
+    ];
+
+    // La sanction du commandement numéro n de la liste « pos » ou « neg » : { codes: ['S', 'K'], uncertain: false }. Un « ? » dans les données la marque moins sûre.
+    // Les positifs n'ont aucune peine fixée (« E »), sauf les quatre cas de karet. Hors des listes : null.
+    function sanctionOf(kind, n) {
+        var token;
+        if (kind === 'neg') token = SANCTIONS.NEGATIVE[n - 1];
+        else if (kind === 'pos') token = n >= 1 && n <= DATA.POSITIVE.length ? (SANCTIONS.POSITIVE[n] || 'E') : undefined;
+        if (!token) return null;
+        var uncertain = token.charAt(token.length - 1) === '?';
+        if (uncertain) token = token.slice(0, -1);
+        return { codes: token.split('+'), uncertain: uncertain };
+    }
+
+    // Le filtre demandé (identifiant de SANCTION_FILTERS, ou 'all') laisse-t-il passer ce commandement ?
+    function matchesSanction(c, filterId) {
+        if (!filterId || filterId === 'all') return true;
+        for (var i = 0; i < SANCTION_FILTERS.length; i++) {
+            if (SANCTION_FILTERS[i].id !== filterId) continue;
+            return !!c.sanction && c.sanction.codes.some(function (code) { return SANCTION_FILTERS[i].codes.indexOf(code) >= 0; });
+        }
+        return true;
+    }
+
+    // Les commandements d'une liste qui répondent à une recherche : par mots (tous doivent s'y trouver), dans l'énoncé, le verset, le numéro ou les mots de la
+    // sanction (« karet », « malkout »…) ; et, si on en donne un, le filtre de sanction.
+    function search613(kind, query, sanctionFilter) {
+        var all = list613(kind).filter(function (c) { return matchesSanction(c, sanctionFilter); });
         var words = normalize(query).split(/\s+/).filter(Boolean);
         if (!words.length) return all;
         return all.filter(function (c) {
-            var hay = normalize(c.text + ' ' + c.ref + ' ' + c.n);
+            var sanctionWords = c.sanction ? c.sanction.codes.map(function (code) { return SANCTION_WORDS[code] || ''; }).join(' ') : '';
+            var hay = normalize(c.text + ' ' + c.ref + ' ' + c.n + ' ' + sanctionWords);
             return words.every(function (w) { return hay.indexOf(w) >= 0; });
         });
     }
@@ -280,6 +329,7 @@
     return {
         SETS: SETS, LISTS613: LISTS613, KARET_CASES: KARET_CASES,
         getSet: getSet, itemsOf: itemsOf, itemKey: itemKey, fieldsOf: fieldsOf, neighbor: neighbor,
-        kindsOf: kindsOf, list613: list613, groupOf: groupOf, search613: search613, normalize: normalize
+        kindsOf: kindsOf, list613: list613, groupOf: groupOf, search613: search613, normalize: normalize,
+        SANCTION_CODES: SANCTION_CODES, SANCTION_FILTERS: SANCTION_FILTERS, sanctionOf: sanctionOf, matchesSanction: matchesSanction
     };
 });

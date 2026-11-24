@@ -9,6 +9,8 @@
 let commandmentsSet = 'noah';
 let commandments613Kind = 'all';
 let commandments613Query = '';
+// Le filtre par sanction des 613 : 'all', ou un regroupement de CommandmentsCore.SANCTION_FILTERS (peines de mort, karet, malkout…).
+let commandments613Sanction = 'all';
 // Le bouton « A / א » (comme sur la généalogie) : les noms hébreux en transcription (« A », par défaut) ou en lettres hébraïques (« א »).
 let commandmentsLang = 'fr';
 try { if (localStorage.getItem('commandmentsLang') === 'he') commandmentsLang = 'he'; } catch (e) { /* stockage indisponible : « A » */ }
@@ -241,11 +243,25 @@ function render613(body, set) {
     search.setAttribute('aria-label', cmdText('cmd_mitzvot_search_label'));
     search.oninput = () => { commandments613Query = search.value; update613(); };
 
+    // Le filtre par sanction : une liste déroulante, avec « toutes » en tête.
+    const sanction = document.createElement('select');
+    sanction.id = 'tool-commandments-sanction';
+    sanction.className = 'tool-input';
+    sanction.setAttribute('aria-label', cmdText('cmd_sanction_filter_label'));
+    ['all'].concat(CommandmentsCore.SANCTION_FILTERS.map(f => f.id)).forEach(id => {
+        const option = document.createElement('option');
+        option.value = id;
+        option.textContent = cmdText('cmd_sanction_filter_' + id);
+        option.selected = id === commandments613Sanction;
+        sanction.appendChild(option);
+    });
+    sanction.onchange = () => { commandments613Sanction = sanction.value; update613(); };
+
     const count = document.createElement('p');
     count.className = 'tool-small';
     count.id = 'tool-commandments-count';
     count.setAttribute('role', 'status');
-    intro.append(kinds, lead, theme, search, count);
+    intro.append(kinds, lead, theme, sanction, search, count, sanctionLegend());
     body.appendChild(intro);
 
     const host = document.createElement('div');
@@ -263,7 +279,7 @@ function update613() {
     const kinds = CommandmentsCore.kindsOf(kind);
     toolEl('tool-commandments-kind-lead').textContent = cmdText('cmd_mitzvot_' + kind + '_lead');
     const total = CommandmentsCore.list613(kind).length;
-    const found = CommandmentsCore.search613(kind, commandments613Query);
+    const found = CommandmentsCore.search613(kind, commandments613Query, commandments613Sanction);
     toolEl('tool-commandments-count').textContent = !found.length ? cmdText('cmd_mitzvot_none')
         : found.length === 1 ? t('tools.cmd_mitzvot_count_one', { total: total })
             : t('tools.cmd_mitzvot_count', { shown: found.length, total: total });
@@ -320,7 +336,7 @@ function update613() {
                 const label = document.createElement('span');
                 label.textContent = cmdText('commandments_source') + ' : ';
                 r.append(label, document.createTextNode(c.ref));
-                li.append(name, r);
+                li.append(name, r, sanctionLine(c.sanction));
                 list.appendChild(li);
             });
             section.appendChild(list);
@@ -328,6 +344,57 @@ function update613() {
         });
         if (kinds.length > 1 && outer.children.length) theme.appendChild(outer);
     });
+}
+
+// La ligne « Sanction : lapidation · karet » d'un commandement des 613 ; « (à vérifier) » quand le classement est moins sûr.
+function sanctionLine(sanction) {
+    const p = document.createElement('p');
+    p.className = 'cmd-ref cmd-sanction';
+    if (!sanction) return p;
+    const label = document.createElement('span');
+    label.textContent = cmdText('cmd_sanction_label') + ' : ';
+    p.append(label, document.createTextNode(sanction.codes.map(code => cmdText('cmd_sanction_' + code)).join(' · ')));
+    if (sanction.uncertain) {
+        const q = document.createElement('em');
+        q.className = 'cmd-sanction-q';
+        q.textContent = ' (' + cmdText('cmd_sanction_uncertain') + ')';
+        p.appendChild(q);
+    }
+    return p;
+}
+
+// La légende des sanctions, repliée : ce que veut dire chaque code, et un renvoi vers l'onglet Punitions.
+function sanctionLegend() {
+    const details = document.createElement('details');
+    details.className = 'cmd-sanction-legend';
+    const summary = document.createElement('summary');
+    summary.textContent = cmdText('cmd_sanction_legend');
+    details.appendChild(summary);
+    const intro = document.createElement('p');
+    intro.className = 'tool-small';
+    intro.textContent = cmdText('cmd_sanction_legend_intro');
+    details.appendChild(intro);
+    const list = document.createElement('dl');
+    list.className = 'cmd-sanction-list';
+    CommandmentsCore.SANCTION_CODES.forEach(code => {
+        const dt = document.createElement('dt');
+        dt.textContent = cmdText('cmd_sanction_' + code);
+        const dd = document.createElement('dd');
+        dd.textContent = cmdText('cmd_sanction_help_' + code);
+        list.append(dt, dd);
+    });
+    details.appendChild(list);
+    const note = document.createElement('p');
+    note.className = 'tool-small';
+    note.textContent = cmdText('cmd_sanction_note');
+    details.appendChild(note);
+    const see = document.createElement('button');
+    see.type = 'button';
+    see.className = 'tool-history-chip';
+    see.textContent = cmdText('cmd_sanction_legend_see') + ' ›';
+    see.onclick = () => toolCommandmentsPick('peines');
+    details.appendChild(see);
+    return details;
 }
 
 // Un menu déroulant par thème, pour une liste faite de petites sous-listes : on y va directement, sans cacher les autres.
