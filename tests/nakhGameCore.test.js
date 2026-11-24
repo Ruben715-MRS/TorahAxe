@@ -186,7 +186,7 @@ test('shownVerses : le verset tiré, puis les suivants, le chapitre suivant comp
     });
 });
 
-test('texte des versets : sur tout le Nakh, aucun verset ne garde de marque de la source ; seuls Josué 21:36-37 n\'ont pas de traduction', () => {
+test('texte des versets : sur tout le Nakh, aucun verset ne garde de marque de la source, et tous ont une traduction française', () => {
     const noFrench = [];
     R.BOOKS.forEach((b, i) => {
         for (let n = 0; n < b.total; n++) {
@@ -197,8 +197,9 @@ test('texte des versets : sur tout le Nakh, aucun verset ne garde de marque de l
             if (!v.fr.trim()) noFrench.push(v.ref);
         }
     });
-    // La Bible du Rabbinat omet ces deux versets : le jeu les montre en hébreu seul (l'écran n'affiche pas de ligne vide).
-    assert.deepStrictEqual(noFrench, ['Josué 21:36', 'Josué 21:37']);
+    // La Bible du Rabbinat omet Josué 21:36-37 (villes lévitiques de Ruben) : leur traduction a été ajoutée dans data/tanakh/josue.json, si bien que
+    // tous les versets du Nakh en ont une. (Un verset sans traduction s'afficherait en hébreu seul : l'écran n'affiche pas de ligne vide.)
+    assert.deepStrictEqual(noFrench, []);
 });
 
 // --- Le mode « Livre et chapitre » -------------------------------------------------------------------------------------------------------------------
