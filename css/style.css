@@ -18829,3 +18829,11 @@ button.autoscroll-mode { height: 48px; padding: 0 12px; border: 1px dashed var(-
 /* En sombre, la case active prend le bleu des contrôles segmentés des réglages (sinon elle se fond dans la bande). */
 :root[data-theme="dark"] .ben-rite[aria-pressed="true"] { background: #2F5BC4; color: #fff; }
 .lib-modes .ben-rite { padding-inline: 2px; white-space: nowrap; }
+
+/* « Dans quel livre du Nakh ? » : le sélecteur de chapitre (le reste réutilise les classes de « Dans quelle paracha ? ») */
+.nakhgame-chapter { display: flex; flex-direction: column; gap: 10px; margin: 10px 0 12px; }
+.nakhgame-chapter-value { margin: 0; text-align: center; font-size: 20px; font-weight: 700; color: var(--text-dark); }
+.nakhgame-chapter-row { display: flex; align-items: center; gap: 8px; }
+.nakhgame-chapter-row input[type="range"] { flex: 1; min-width: 0; }
+.nakhgame-chapter-row .tool-history-chip { min-width: 44px; min-height: 44px; }
+#nakhgame-hint { width: 100%; margin-bottom: 14px; }
