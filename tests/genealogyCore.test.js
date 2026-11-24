@@ -119,3 +119,21 @@ test('juges : chacun est une personne de l\'arbre, distincte de son homonyme', (
     assert.strictEqual(G.byId('tola_juge').father, 'issakhar');
     assert.strictEqual(G.byId('elon_juge').father, 'zebulon');
 });
+
+test('notices : conventions typographiques (apostrophes, espaces insécables, mots doublés)', () => {
+    Object.keys(BIOS.bios).forEach(id => {
+        const t = BIOS.bios[id].t;
+        assert.ok(!t.includes("'"), id + ' : apostrophe droite, utiliser ’');
+        assert.ok(!/ [;:»!?]/.test(t) && !/«[^\u00a0]/.test(t), id + ' : espace insécable manquante autour de ; : « »');
+        assert.ok(!/(^|[^\p{L}])(\p{L}{2,}) \2(?![\p{L}])/iu.test(t), id + ' : mot doublé');
+        assert.ok(!/\s{2,}/.test(t) && t === t.trim(), id + ' : espaces en trop');
+        assert.ok(/[.!?»)]$/.test(t), id + ' : la notice ne finit pas par une ponctuation');
+    });
+});
+
+test('notices : la tradition est introduite par « selon » ou « d\'après » et nommée', () => {
+    Object.keys(BIOS.bios).forEach(id => {
+        const t = BIOS.bios[id].t;
+        if (/\b(Talmud|Midrash|Rachi|Michna|Haggadah)\b/.test(t)) assert.ok(/\b(Selon|selon|D’après|d’après|La Haggadah|Les Psaumes|Dans la tradition juive)\b/.test(t), id + ' : tradition sans « selon »');
+    });
+});
