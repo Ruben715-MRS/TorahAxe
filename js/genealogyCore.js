@@ -1035,6 +1035,11 @@
         c.color = 'hsl(' + ((i * 360 / CATEGORY_DEFS.length + 8) % 360).toFixed(0) + ', 62%, 46%)';
         return c;
     });
+    // Les courtes notices (data/genealogie-bios.json) : { t: le texte, ref: le(s) verset(s) } pour une personne, ou null quand le texte biblique n'en dit rien.
+    function bioOf(data, id) {
+        var b = data && data.bios && Object.prototype.hasOwnProperty.call(data.bios, id) ? data.bios[id] : null;
+        return b && b.t ? b : null;
+    }
     function category(id) { return CATEGORIES.filter(function (c) { return c.id === id; })[0] || null; }
 
     return {
@@ -1042,6 +1047,6 @@
         PEOPLE: PEOPLE, byId: function (id) { return BY[id] || null; }, childrenOf: childrenOf, ancestorsOf: ancestorsOf,
         descendantsCount: descendantsCount, parentsIds: parentsIds, layout: layout, normalize: normalize, search: search,
         spousesOf: spousesOf, inTree: inTree, anchorOf: anchorOf, childrenAll: childrenAll, siblingsOf: siblingsOf, lineageOf: lineageOf,
-        generationOf: generationOf, outline: outline, compactLayout: compactLayout
+        generationOf: generationOf, bioOf: bioOf, outline: outline, compactLayout: compactLayout
     };
 }));

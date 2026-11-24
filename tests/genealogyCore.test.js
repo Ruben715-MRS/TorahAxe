@@ -83,3 +83,29 @@ test('arbre compact : replier Adam ne laisse qu\'Adam', () => {
     assert.strictEqual(L.width, 100);
     assert.strictEqual(L.rows, 1);
 });
+
+// --- Les notices (data/genealogie-bios.json) ---------------------------------------------------------------------------------------
+const BIOS = JSON.parse(require('node:fs').readFileSync(require('node:path').resolve(__dirname, '..', 'data', 'genealogie-bios.json'), 'utf8'));
+
+test('notices : chaque clé est une personne de l\'arbre, avec texte et référence', () => {
+    Object.keys(BIOS.bios).forEach(id => {
+        assert.ok(G.byId(id), 'personne inconnue : ' + id);
+        assert.ok(BIOS.bios[id].t && BIOS.bios[id].ref, 'texte ou référence manquant : ' + id);
+    });
+});
+
+test('notices : une à trois phrases, sans se limiter à la filiation', () => {
+    Object.keys(BIOS.bios).forEach(id => {
+        const t = BIOS.bios[id].t;
+        const sentences = t.split(/[.!?](?:\s|$)/).filter(x => x.trim()).length;
+        assert.ok(sentences >= 1 && sentences <= 3, id + ' : ' + sentences + ' phrases');
+        assert.ok(t.length >= 40, id + ' : notice trop courte, une simple filiation ne justifie pas une notice');
+    });
+});
+
+test('bioOf : renvoie la notice, ou null sans notice', () => {
+    assert.strictEqual(G.bioOf(BIOS, 'noe').ref, 'Gn 6:9 – 9:29');
+    assert.strictEqual(G.bioOf(BIOS, 'irad'), null);
+    assert.strictEqual(G.bioOf(BIOS, 'constructor'), null);
+    assert.strictEqual(G.bioOf(null, 'noe'), null);
+});

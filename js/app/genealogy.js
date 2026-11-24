@@ -631,6 +631,13 @@ function genFamilySection(title, count) {
     return sec;
 }
 
+// Les notices, lues une seule fois (data/genealogie-bios.json).
+let genBiosPromise = null;
+function genLoadBios() {
+    if (!genBiosPromise) genBiosPromise = fetch('data/genealogie-bios.json').then(r => r.json()).catch(() => { genBiosPromise = null; return null; });
+    return genBiosPromise;
+}
+
 function genRenderFamily() {
     const box = document.getElementById('gen-family');
     while (box.firstChild) box.removeChild(box.firstChild);
@@ -708,6 +715,15 @@ function genRenderFamily() {
     if (p.nation) tags.appendChild(genEl('span', 'gen-fam-tag', t('tools.genealogy_nation', { n: p.nation })));
     if (p.ex) tags.appendChild(genEl('span', 'gen-fam-tag', t('tools.genealogy_ex')));
     if (tags.childNodes.length) main.appendChild(tags);
+    // La notice (1 à 3 phrases) : chargée à la demande, absente quand le texte biblique ne dit rien de la personne.
+    const bioBox = genEl('div', 'gen-fam-bio');
+    main.appendChild(bioBox);
+    genLoadBios().then(data => {
+        const b = GenealogyCore.bioOf(data, id);
+        if (!b || !bioBox.isConnected || (genFocus || 'adam') !== id) return;
+        bioBox.appendChild(genEl('p', 'gen-fam-bio-text', b.t));
+        if (b.ref) bioBox.appendChild(genEl('p', 'gen-fam-bio-ref', b.ref));
+    }).catch(() => {});
     // Situer dans la chronologie, quand la frise connaît la personne.
     const actions = genEl('div', 'gen-fam-actions');
     main.appendChild(actions);
