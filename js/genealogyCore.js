@@ -673,6 +673,11 @@
     m('ibzan', 'Ibtsan', 'איבצן', 'juda', { far: true });
     m('abdon', 'Abdon', 'עבדון', 'ephraim', { far: true });
     m('eglon', 'Églon', 'עגלון', 'moav', { far: true });
+    // Les juges Yaïr, Tola et Élon (Juges 10:1-5 ; 12:11-12) ne sont pas les personnes du même nom de Genèse 46 ou d'Esther 2 : le texte ne donne pas leur
+    // ascendance complète, ils sont rattachés par un lien en pointillés à la maison dont il les dit (Galaad, Issakhar, Zabulon), comme Ibtsan ou Abdon.
+    m('jair_juge', 'Yaïr (le juge)', 'יאיר הגלעדי', 'gilead', { far: true });
+    m('tola_juge', 'Tola (le juge)', 'תולע בן פואה', 'issakhar', { far: true });
+    m('elon_juge', 'Élon (le juge)', 'אילון הזבולוני', 'zebulon', { far: true });
 
     // Les hommes de David : Benaya, fils de Yehoyada (de la lignée d'Aaron), Ahitophel, Houshaï, Barzillaï, et le prophète Nathan.
     m('jehoiada', 'Yehoyada', 'יהוידע', 'aaron', { far: true });
@@ -1001,7 +1006,7 @@
     // du livre (les Juges, puis les Rois) ; pour les prophètes, celui des livres du Tanakh. Ceux que le texte ne rattache à aucune famille ne sont pas
     // dans l'arbre : ils sont nommés dans la note de chaque liste (ui/fr.json, `genealogy_role_note_*`).
     var ROLES = {
-        judges: ['othniel', 'ehud', 'deborah', 'barak', 'gideon', 'abimelech_gideon', 'tola', 'jair', 'jephte', 'ibzan', 'elon_zebulon', 'abdon', 'samson', 'eli', 'samuel'],
+        judges: ['othniel', 'ehud', 'deborah', 'barak', 'gideon', 'abimelech_gideon', 'tola_juge', 'jair_juge', 'jephte', 'ibzan', 'elon_juge', 'abdon', 'samson', 'eli', 'samuel'],
         united: ['saul_roi', 'david', 'salomon'],
         judah: ['rehoboam', 'abijam', 'asa_roi', 'josaphat', 'joram_roi', 'achazia', 'athalie', 'joas', 'amatsia', 'azaria', 'jotham_roi', 'achaz', 'ezechias',
             'manasse_roi', 'amon_roi', 'josias', 'shallum_josias', 'jehoiakim', 'jeconiah', 'zedekiah'],

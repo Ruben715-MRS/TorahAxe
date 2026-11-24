@@ -109,3 +109,13 @@ test('bioOf : renvoie la notice, ou null sans notice', () => {
     assert.strictEqual(G.bioOf(BIOS, 'constructor'), null);
     assert.strictEqual(G.bioOf(null, 'noe'), null);
 });
+
+test('juges : chacun est une personne de l\'arbre, distincte de son homonyme', () => {
+    G.ROLES.judges.forEach(id => assert.ok(G.byId(id), 'juge inconnu : ' + id));
+    // Yaïr, Tola et Élon sont des juges (Juges 10 et 12), pas les personnes du même nom de Genèse 46 ou d'Esther 2.
+    ['jair', 'tola', 'elon_zebulon'].forEach(id => assert.ok(!G.ROLES.judges.includes(id), id + ' n\'est pas le juge'));
+    assert.deepStrictEqual(G.lineageOf('mordechai').includes('jair_juge'), false);
+    assert.strictEqual(G.byId('jair_juge').father, 'gilead');
+    assert.strictEqual(G.byId('tola_juge').father, 'issakhar');
+    assert.strictEqual(G.byId('elon_juge').father, 'zebulon');
+});
