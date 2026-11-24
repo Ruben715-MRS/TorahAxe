@@ -116,7 +116,7 @@ test('juges : chacun est une personne de l\'arbre, distincte de son homonyme', (
     ['jair', 'tola', 'elon_zebulon'].forEach(id => assert.ok(!G.ROLES.judges.includes(id), id + ' n\'est pas le juge'));
     assert.deepStrictEqual(G.lineageOf('mordechai').includes('jair_juge'), false);
     assert.strictEqual(G.byId('jair_juge').father, 'gilead');
-    assert.strictEqual(G.byId('tola_juge').father, 'issakhar');
+    assert.strictEqual(G.byId('tola_juge').father, 'pouva');
     assert.strictEqual(G.byId('elon_juge').father, 'zebulon');
 });
 

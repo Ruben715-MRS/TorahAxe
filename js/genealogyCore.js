@@ -517,6 +517,10 @@
     m('yotham_gideon', 'Yotham (fils de Gédéon)', 'יותם', 'gideon');
     // Jephté, fils de Galaad (Juges 11).
     m('jephte', 'Jephté', 'יפתח', 'gilead');
+    // Yaïr le Galaadite, juge vingt-deux ans (Juges 10:3-5). Ce n'est pas Yaïr l'ancêtre de Mardochée ('jair'). Sa généalogie n'est pas donnée : lien en pointillés sous Galaad.
+    m('jair_juge', 'Yaïr le Galaadite', 'יאיר הגלעדי', 'gilead', { far: true });
+    // Tola le juge, « fils de Pouah, fils de Dodo, d'Issakhar » (Juges 10:1-2) : une autre personne que Tola fils d'Issakhar ('tola', Genèse 46:13). Dodo n'a pas de carte : lien en pointillés sous Pouva.
+    m('tola_juge', 'Tola (le juge)', 'תולע בן פואה', 'pouva', { far: true });
 
     // Othniel, neveu de Caleb (Juges 3:9 ; 1 Chroniques 4:13-15).
     m('kenaz_caleb', 'Kénaz', 'קנז', 'calev');
@@ -673,10 +677,8 @@
     m('ibzan', 'Ibtsan', 'איבצן', 'juda', { far: true });
     m('abdon', 'Abdon', 'עבדון', 'ephraim', { far: true });
     m('eglon', 'Églon', 'עגלון', 'moav', { far: true });
-    // Les juges Yaïr, Tola et Élon (Juges 10:1-5 ; 12:11-12) ne sont pas les personnes du même nom de Genèse 46 ou d'Esther 2 : le texte ne donne pas leur
-    // ascendance complète, ils sont rattachés par un lien en pointillés à la maison dont il les dit (Galaad, Issakhar, Zabulon), comme Ibtsan ou Abdon.
-    m('jair_juge', 'Yaïr (le juge)', 'יאיר הגלעדי', 'gilead', { far: true });
-    m('tola_juge', 'Tola (le juge)', 'תולע בן פואה', 'issakhar', { far: true });
+    // Élon le juge (Juges 12:11-12), Zabulonite, n'est pas Élon fils de Zabulon (Genèse 46:14) : le texte ne donne pas son ascendance, il est rattaché à Zabulon par
+    // un lien en pointillés (comme Yaïr et Tola plus haut, Ibtsan ou Abdon).
     m('elon_juge', 'Élon (le juge)', 'אילון הזבולוני', 'zebulon', { far: true });
 
     // Les hommes de David : Benaya, fils de Yehoyada (de la lignée d'Aaron), Ahitophel, Houshaï, Barzillaï, et le prophète Nathan.
