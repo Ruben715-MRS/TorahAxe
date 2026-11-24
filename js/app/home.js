@@ -27,6 +27,7 @@ const HOME_ENTRIES = {
     messiah: { he: 'משיח', fr: 'Machiah', desc: 'Qui est-il, comment le reconnaître, les étapes de sa venue, la résurrection des morts', kw: 'messie machiah mashiach moshiach messianique rambam melakhim gog magog elie eliyahou résurrection techiyat hametim monde à venir olam haba treize principes foi david temple rédemption guéoula', run: homeTool('messiah') },
     library: { he: 'ספרים', fr: 'Bibliothèque', desc: 'Qui a écrit quoi, quand et où : Michna, Talmud, Midrach, Kabbale', kw: 'livres auteurs talmud midrach', run: homeTool('library') },
     lexicon: { he: 'עברית', fr: 'Hébreu', desc: '2 000 mots de la Bible, dans les deux sens, avec leur racine', kw: 'dictionnaire français hébreu vocabulaire racine', run: homeTool('lexicon') },
+    glossary: { he: 'מילון', fr: 'Glossaire', desc: 'Chabbat, rabbin, Hallel, karet… : près de 300 mots de la vie juive, avec leurs liens vers l\'app', kw: 'glossaire lexique vocabulaire mots définition termes vie juive chabbat rabbin hallel kaddich cacherout', run: homeTool('glossary') },
     gemara: { he: 'ארמית', fr: 'Araméen', desc: 'Le vocabulaire de la Guémara, ses abréviations et ses sages', kw: 'dictionnaire guemara talmud vocabulaire', run: homeTool('gemara') },
     gematria: { he: 'גימטריה', fr: 'Guématria', desc: 'La valeur des lettres d\'un mot, en quatre modes de calcul', kw: 'valeur lettres nombres', run: homeTool('gematria') },
     genealogy: { he: 'תולדות', fr: 'Généalogie', desc: 'D\'Adam aux rois et aux prophètes, dans un seul arbre', kw: 'arbre adam abraham rois juges prophètes nations', run: homeTool('genealogy') },
@@ -68,7 +69,7 @@ GamesCatalog.GAMES.forEach(game => {
 const HOME_LAYOUT = {
     etude: [
         { title: 'Textes', as: 'tiles', cols: 2, ids: ['torahReader', 'tanakh', 'michna', 'talmud'] },
-        { title: 'Autour des textes', as: 'rows', ids: ['commandments', 'messiah', 'library', 'lexicon', 'gemara', 'gematria'] }
+        { title: 'Autour des textes', as: 'rows', ids: ['commandments', 'messiah', 'library', 'glossary', 'lexicon', 'gemara', 'gematria'] }
     ],
     explorer: [
         { title: 'Maîtres et lignées', as: 'tiles', cols: 3, ids: ['genealogy', 'transmission', 'hassidout'] },

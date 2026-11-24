@@ -484,6 +484,25 @@
         </div>
     </div>
 
+<div id="screen-tool-glossary" class="list-screen hidden">
+        <button class="back-btn" onclick="toolBack('glossary')" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title" data-i18n="tools.glossary_title">Glossaire de la vie juive</h2>
+        <p class="modes-header-subtitle" data-i18n="tools.glossary_intro">Tapez un mot sous l'écriture qui vous vient : « shabbat », « shabbos » et « Chabbat » mènent au même mot. On cherche aussi en hébreu, ou dans les définitions.</p>
+        <div class="tool-panel">
+            <div class="tool-field">
+                <label for="tool-glossary-input" data-i18n="tools.glossary_label">Un mot de la vie juive</label>
+                <input type="text" id="tool-glossary-input" class="tool-input" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Chabbat, Hallel, שבת…" data-i18n-attr="placeholder:tools.glossary_placeholder" oninput="toolGlossaryUpdate()">
+            </div>
+            <select id="tool-glossary-cats" class="tool-input gemara-cats" aria-label="Filtrer par catégorie" data-i18n-attr="aria-label:tools.glossary_cats_aria" onchange="toolGlossaryCat(this.value)"></select>
+            <button type="button" class="tool-history-chip lex-index-btn" id="tool-glossary-index-btn" aria-expanded="false" aria-controls="tool-glossary-index" onclick="toolGlossaryIndexToggle()"><span id="tool-glossary-index-btn-label" data-i18n="tools.glossary_index_btn">Index alphabétique</span><span class="lex-chevron" aria-hidden="true">▾</span></button>
+            <div class="lex-index hidden" id="tool-glossary-index" role="group" aria-label="Index alphabétique : choisir une initiale" data-i18n-attr="aria-label:tools.glossary_index_aria"></div>
+            <p class="tool-msg" id="tool-glossary-msg" role="status"></p>
+            <div class="lex-list" id="tool-glossary-list"></div>
+            <button type="button" class="btn hidden" id="tool-glossary-more" onclick="toolGlossaryMore()"></button>
+            <p class="tool-small" data-i18n="tools.glossary_caveat">Définitions courtes, à titre d'information. Les usages varient d'une communauté à l'autre ; pour une question pratique, on s'adresse à un rabbin.</p>
+        </div>
+    </div>
+
 <div id="screen-tool-lexicon" class="list-screen hidden">
         <button class="back-btn" onclick="toolBack('lexicon')" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
         <h2 class="header-title" data-i18n="tools.lexicon_title">Dictionnaire français – hébreu</h2>
@@ -856,6 +875,9 @@
     <script src="js/lexiconForms.js"></script>
     <script src="js/lexiconCore.js"></script>
     <script src="js/app/lexicon.js"></script>
+    <script src="js/glossaryData.js"></script>
+    <script src="js/glossaryCore.js"></script>
+    <script src="js/app/glossary.js"></script>
     <script src="js/gemaraData.js"></script>
     <script src="js/gemaraCore.js"></script>
     <script src="js/app/gemara.js"></script>

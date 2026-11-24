@@ -18829,3 +18829,10 @@ button.autoscroll-mode { height: 48px; padding: 0 12px; border: 1px dashed var(-
 /* En sombre, la case active prend le bleu des contrôles segmentés des réglages (sinon elle se fond dans la bande). */
 :root[data-theme="dark"] .ben-rite[aria-pressed="true"] { background: #2F5BC4; color: #fff; }
 .lib-modes .ben-rite { padding-inline: 2px; white-space: nowrap; }
+
+/* Glossaire de la vie juive : la catégorie sous le nom (étiquette discrète), les autres écritures, et les renvois */
+.glo-cat { flex-basis: 100%; margin: 0; font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--muted-text); }
+.glo-aliases { margin: 0; }
+.glo-rel { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; }
+.glo-rel > .tool-small { font-weight: 700; }
+.glo-go { align-self: flex-start; }
