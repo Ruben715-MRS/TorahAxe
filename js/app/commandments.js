@@ -386,6 +386,17 @@ function commandmentItem(setId, itemId, hebrew, showRef = true) {
     text.textContent = cmdText(key('text'));
     li.appendChild(text);
 
+    // Les conditions de la peine (témoins, avertissement…), quand l'élément en a.
+    const cond = t(key('cond'));
+    if (cond && cond !== key('cond')) {
+        const c = document.createElement('p');
+        c.className = 'cmd-ref';
+        const clabel = document.createElement('span');
+        clabel.textContent = cmdText('commandments_cond') + ' : ';
+        c.append(clabel, document.createTextNode(cond));
+        li.appendChild(c);
+    }
+
     const ref = showRef && cmdText(key('ref'));
     if (ref) {
         const r = document.createElement('p');

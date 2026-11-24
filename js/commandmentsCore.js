@@ -1,7 +1,7 @@
 // =========================================================================
 // === TORAHAXE — COMMANDEMENTS BIBLIQUES (données, sans DOM) ===
 // =========================================================================
-// Quatre listes, présentées selon la tradition juive et rabbinique, dans cet ordre : les sept lois de Noé (pour toute l'humanité), les dix
+// Listes présentées selon la tradition juive et rabbinique, dont, dans cet ordre : les sept lois de Noé (pour toute l'humanité), les dix
 // commandements (le Décalogue), les trente-neuf travaux interdits le Chabbat, et les 613 commandements selon le décompte du Rambam (Maïmonide),
 // classés en positifs (248) et négatifs (365).
 //
@@ -73,6 +73,27 @@
         },
         // Les 613 : pas d'éléments ici, ils viennent de js/commandments613Data.js (voir LISTS613).
         { id: 'mitzvot', icon: '📜', count: 613, kind: 'list613', groups: [] },
+        // Les punitions : les garanties qui entourent le jugement, les quatre peines de mort (Sanhédrin 7:1), la malkout, le karet (les 36 cas de Kritout 1:1),
+        // la mort par le Ciel, l'exil, les réparations, les sacrifices expiatoires et les sanctions rabbiniques. Peines qui ne sont plus appliquées : étude, pas droit en vigueur.
+        {
+            id: 'peines',
+            icon: '⚖️',
+            count: 39,
+            themeMenu: true,
+            restartPerGroup: true,
+            groups: [
+                { id: 'garde', items: ['temoins', 'avertissement', 'tribunal', 'aveu'] },
+                { id: 'mort', items: ['sekila', 'serefa', 'hereg', 'henek'] },
+                { id: 'malkout', items: ['coups', 'fautes', 'mesure', 'frere'] },
+                { id: 'karet', items: ['sens'] },
+                { id: 'karet36', items: ['arayot', 'foi', 'shabbat', 'hametz', 'kippour', 'alliance', 'pur', 'aliments', 'dehors', 'huile'] },
+                { id: 'ciel', items: ['ciel_sens', 'ciel_cas'] },
+                { id: 'exil', items: ['refuge', 'villes', 'goel'] },
+                { id: 'reparations', items: ['double', 'quatre', 'edim', 'dommages', 'amendes'] },
+                { id: 'expiation', items: ['hatat', 'acham', 'oleh'] },
+                { id: 'rabbinique', items: ['nidoui', 'herem', 'mardout'] }
+            ]
+        },
         // Mitsvot pratiques : trois petites listes, chacune un thème (d'où le menu déroulant par thème).
         {
             id: 'pratiques',
@@ -121,6 +142,9 @@
             ]
         },
     ];
+
+    // Le nombre de cas de karet que couvre chaque élément du groupe « karet36 » : la première Michna de Kritout en compte trente-six.
+    var KARET_CASES = { arayot: 14, foi: 5, shabbat: 1, hametz: 1, kippour: 2, alliance: 2, pur: 2, aliments: 4, dehors: 2, huile: 3 };
 
     // Les 613 commandements : deux listes, les positifs (de 1 à 248) et les négatifs (de 1 à 365), regroupées par thème. Chaque regroupement
     // couvre une plage de numéros ; les plages se suivent sans trou. Le titre de chaque regroupement est dans ui/fr.json :
@@ -254,7 +278,7 @@
     }
 
     return {
-        SETS: SETS, LISTS613: LISTS613,
+        SETS: SETS, LISTS613: LISTS613, KARET_CASES: KARET_CASES,
         getSet: getSet, itemsOf: itemsOf, itemKey: itemKey, fieldsOf: fieldsOf, neighbor: neighbor,
         kindsOf: kindsOf, list613: list613, groupOf: groupOf, search613: search613, normalize: normalize
     };
