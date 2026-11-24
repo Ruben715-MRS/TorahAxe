@@ -97,3 +97,9 @@ test('Renvois et liens', () => {
     // Les punitions du glossaire renvoient à l'onglet Punitions.
     ['karet', 'malkout', 'arba-mitot', 'hatraa', 'herem', 'nidoui'].forEach(id => assert.strictEqual(G.get(id).go, 'commandments:peines', id));
 });
+
+test('Catégories : la terre et l\'agriculture sont à part de l\'alimentation', () => {
+    ['chemita', 'yovel', 'kilaim', 'chaatnez', 'orla', 'terouma', 'maasser', 'hafrachat-hala'].forEach(id => assert.strictEqual(G.get(id).cat, 'terre', id));
+    ['cacherout', 'casher', 'chehita', 'halav-basar', 'hala'].forEach(id => assert.strictEqual(G.get(id).cat, 'alimentation', id));
+    assert.ok(tools.glossary_cat_terre);
+});

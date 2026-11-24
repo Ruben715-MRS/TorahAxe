@@ -2,7 +2,7 @@
 // === TORAHAXE — GLOSSAIRE DE LA VIE JUIVE (données) ===
 // =========================================================================
 // Le contenu de l'écran « Glossaire » : les mots que l'on entend dans la vie juive de tous les jours (Chabbat, rabbin, Hallel, kaddich, cacherout…),
-// rangés en dix catégories, avec une définition courte, les autres façons de les écrire, des renvois vers les mots voisins et, quand l'app a un écran
+// rangés en onze catégories, avec une définition courte, les autres façons de les écrire, des renvois vers les mots voisins et, quand l'app a un écran
 // qui s'y rapporte, un lien vers cet écran. Ce n'est pas le dictionnaire de la Bible (js/lexiconData.js) : ici, des mots d'usage, pas des mots de verset.
 // La recherche et les contrôles sont dans js/glossaryCore.js (testé dans tests/glossaryCore.test.js), l'écran dans js/app/glossary.js.
 //
@@ -45,8 +45,6 @@
 "techoum|תחום שבת|Téhoum Chabbat|limite de chabbat,2000 coudees|La limite de déplacement du Chabbat : environ 2 000 coudées (près d'un kilomètre) au-delà de la ville où l'on se trouve au début du jour, selon les Sages.|erouv,chabbat",
 "erouv|עירוב|Érouv|eruv,erouv hatserot|Un enclos symbolique (fil, poteaux) qui fait d'une ville ou d'une cour un seul domaine privé, pour permettre de porter des objets le Chabbat.|melakha,chabbat",
 "omer|עומר|Omer|sefirat haomer,comptage de l'omer|Les 49 jours que l'on compte, chaque soir avec une bénédiction, entre le deuxième jour de Pessa'h et Chavouot.|pessah,chavouot,lag-baomer|periods",
-"chemita|שמיטה|Chémita|shemita,annee sabbatique,septieme annee|L'année sabbatique : tous les sept ans, la terre d'Israël se repose, et les dettes sont remises.|yovel|",
-"yovel|יובל|Yovel|jubile|Le jubilé : la cinquantième année, après sept cycles sabbatiques, où les terres reviennent à leurs familles et les esclaves hébreux sont libérés. Il n'est pas observé aujourd'hui.|chemita|",
 
 '# fetes',
 "roch-hachana|ראש השנה|Roch Hachana|rosh hashana,rosh hashanah,roch hachanah,nouvel an|Le Nouvel An juif (1er et 2 Tichri) : jour du jugement et du souvenir. On sonne le chofar, on mange des aliments symboliques (pomme au miel) et l'on prie longuement.|chofar,yamim-noraim,tachlikh|hebrewCalendar",
@@ -271,12 +269,16 @@
 "hechsher|הכשר|Hechsher|hechsher,hekhsher,certification,label casher|Le certificat de cacherout d'un organisme rabbinique, apposé sur un produit.|cacherout,machguiah|",
 "machguiah|משגיח|Machguia'h|mashgiach,mashguiach,superviseur|Le superviseur de cacherout, qui surveille la préparation de la nourriture dans un restaurant ou une usine.|hechsher,cacherout|",
 "hala|חלה|'Hala|challah,halla,hallah,pain tresse|Le pain tressé du Chabbat. Le même mot désigne la part de pâte que l'on prélève quand on pétrit une grande quantité de farine.|hafrachat-hala,chabbat|",
-"hafrachat-hala|הפרשת חלה|Hafrachat 'hala|separation de la hala,prelevement de la hala|Le prélèvement d'une part de pâte quand on pétrit une grande quantité de farine (environ 1,6 kg), avec une bénédiction. C'est une mitsva que la tradition confie particulièrement aux femmes.|hala|commandments:femmes",
-"terouma|תרומה|Térouma|truma,teruma,prelevement|Le prélèvement sur la récolte de la terre d'Israël, destiné au cohen. Un produit dont on n'a pas séparé la térouma ne se mange pas.|maasser,cohen|",
-"maasser|מעשר|Maasser|maaser,maasser,dime|La dîme : le dixième de la récolte donné aux Lévites ou aux pauvres, ou, par extension, le dixième de ses revenus (maasser kessafim) donné à la tsédaka.|tsedaka,terouma|",
-"orla|ערלה|Orla|orlah|L'interdit de manger les fruits d'un arbre pendant ses trois premières années.||",
+
+'# terre',
+"chemita|שמיטה|Chémita|shemita,annee sabbatique,septieme annee|L'année sabbatique : tous les sept ans, la terre d'Israël se repose, et les dettes sont remises.|yovel|",
+"yovel|יובל|Yovel|jubile|Le jubilé : la cinquantième année, après sept cycles sabbatiques, où les terres reviennent à leurs familles et les esclaves hébreux sont libérés. Il n'est pas observé aujourd'hui.|chemita|",
 "kilaim|כלאים|Kilaïm|kilayim,kilaim,melanges interdits|Les mélanges interdits : de semences, d'animaux et de tissus (laine et lin).|chaatnez|",
 "chaatnez|שעטנז|Chaatnez|shatnez,shaatnez|Le mélange de laine et de lin dans un vêtement, interdit (Deutéronome 22:11). On le fait contrôler par des laboratoires spécialisés.|kilaim|",
+"orla|ערלה|Orla|orlah|L'interdit de manger les fruits d'un arbre pendant ses trois premières années.||",
+"terouma|תרומה|Térouma|truma,teruma,prelevement|Le prélèvement sur la récolte de la terre d'Israël, destiné au cohen. Un produit dont on n'a pas séparé la térouma ne se mange pas.|maasser,cohen|",
+"maasser|מעשר|Maasser|maaser,maasser,dime|La dîme : le dixième de la récolte donné aux Lévites ou aux pauvres, ou, par extension, le dixième de ses revenus (maasser kessafim) donné à la tsédaka.|tsedaka,terouma|",
+"hafrachat-hala|הפרשת חלה|Hafrachat 'hala|separation de la hala,prelevement de la hala|Le prélèvement d'une part de pâte quand on pétrit une grande quantité de farine (environ 1,6 kg), avec une bénédiction. C'est une mitsva que la tradition confie particulièrement aux femmes.|hala|commandments:femmes",
 
 '# cycle',
 "brit-mila|ברית מילה|Brit mila|brit milah,bris,circoncision,berit mila|« Alliance de la circoncision » : le huitième jour après sa naissance, le garçon est circoncis par un mohel et reçoit son nom hébreu. Elle a lieu même le Chabbat ; elle est reportée si la santé de l'enfant l'exige.|mohel,sandak,pidyon-haben|",
@@ -316,7 +318,7 @@
     ].join('\n');
 
     // L'ordre des catégories, tel que dans le texte ci-dessus (les libellés sont dans ui/fr.json : tools.glossary_cat_<id>).
-    var CATEGORIES = ['temps', 'fetes', 'priere', 'objets', 'personnes', 'etude', 'loi', 'alimentation', 'cycle', 'purete'];
+    var CATEGORIES = ['temps', 'fetes', 'priere', 'objets', 'personnes', 'etude', 'loi', 'alimentation', 'terre', 'cycle', 'purete'];
 
     function list(s) { return s ? s.split(',').map(function (x) { return x.trim(); }).filter(Boolean) : []; }
 
