@@ -138,10 +138,12 @@ const QuizUI = (function () {
             btn.setAttribute('aria-pressed', item.id === current ? 'true' : 'false');
             btn.appendChild(document.createTextNode(item.label));
             if (item.he) {
+                // Le nom hébreu passe sous le nom latin (même présentation que les parachiot), au lieu de s'accoler à lui.
+                btn.classList.add('has-he');
                 const he = document.createElement('span');
                 he.className = 'he';
                 he.lang = 'he'; he.dir = 'rtl';
-                he.textContent = ' ' + item.he;
+                he.textContent = item.he;
                 btn.appendChild(he);
             }
             btn.onclick = () => onPick(item.id);

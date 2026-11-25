@@ -233,7 +233,8 @@ function versegameResolve(guessed) {
     note.textContent = '';
     note.classList.add('hidden');
     const next = document.getElementById('parashagame-next');
-    next.textContent = t(g.index + 1 >= g.questions.length ? 'parashagame.finish' : 'parashagame.next');
+    const nextKey = g.cfg === VerseGameCore.CONTENT_CFG ? 'parashagame.next_content' : 'parashagame.next';
+    next.textContent = t(g.index + 1 >= g.questions.length ? 'parashagame.finish' : nextKey);
     document.getElementById('parashagame-feedback').classList.remove('hidden');
     next.focus();
 }

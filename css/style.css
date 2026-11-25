@@ -16561,6 +16561,11 @@ body[data-view-profile="religieux"] .league-btn {
 .trgame-he { text-align: center; margin: 0 0 14px; font-size: 18px; }
 .lexgame-actions { display: flex; flex-wrap: wrap; gap: 8px; }
 .lex-train-btn { align-self: flex-start; }
+/* « Dans quelle paracha ? » et « Dans quel livre du Nakh ? » : la fiche après la réponse, titre et texte espacés, boutons aérés. */
+#parashagame-feedback strong, #nakhgame-feedback strong { display: block; margin-bottom: 6px; }
+#parashagame-feedback p, #nakhgame-feedback p { margin: 0 0 12px; }
+#parashagame-feedback .lexgame-actions, #nakhgame-feedback .lexgame-actions { margin-top: 14px; gap: 12px; }
+#parashagame-feedback .lexgame-actions .btn, #nakhgame-feedback .lexgame-actions .btn { padding: 14px 26px; }
 
 /* « Mots essentiels » : le bilan de départ, la barre de progression, le compteur du dictionnaire */
 .lexgame-setup { display: flex; flex-direction: column; align-items: center; gap: 12px; width: 100%; max-width: 520px; text-align: center; }
@@ -16575,6 +16580,9 @@ body[data-view-profile="religieux"] .league-btn {
 /* Une réponse en deux écritures : le nom latin, puis le nom hébreu en dessous, plus discret ; dans une rangée de boutons (livres), à la suite. */
 .lexgame-option .he { display: block; margin-top: 2px; font-size: 15px; font-weight: 400; color: var(--muted-text); }
 .tool-history-chip .he { font-size: 0.95em; font-weight: 400; color: var(--muted-text); }
+/* Un bouton avec un nom hébreu (les livres du Tanakh) : le français, puis l'hébreu dessous, centrés. */
+.tool-history-chip.has-he { display: inline-flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; line-height: 1.25; padding: 6px 16px; }
+.tool-history-chip.has-he .he { display: block; font-size: 14px; }
 #screen-mitsvagame .lexgame-word.mitsvagame-text { font-size: 22px; line-height: 1.35; margin-bottom: 14px; }   /* l'énoncé d'un commandement : une phrase, pas un mot */
 
 /* « Dans quelle paracha ? » : les versets montrés (le premier, puis un de plus par indice), les points en jeu, puis le choix du livre et de la paracha. */

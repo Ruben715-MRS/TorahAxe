@@ -7896,6 +7896,7 @@
     "wrong_try": "Ce n'est pas {name} : −{cost} points.",
     "answer_is": "C'était la paracha {fr} ({he}), dans le livre {book}. Le premier verset était {ref}.",
     "next": "Verset suivant",
+    "next_content": "Résumé suivant",
     "finish": "Voir le score",
     "found": "{found} bonnes réponses sur {total} : {score} points.",
     "read": "Lire la paracha",
