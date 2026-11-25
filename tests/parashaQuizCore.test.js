@@ -16,7 +16,7 @@ test('départ : les questions du niveau choisi seulement, six au plus, jamais pl
         assert.strictEqual(g.level, level);
         assert.strictEqual(g.questions.length, Math.min(6, P.poolOf(DATA, level).length));
         g.questions.forEach(q => assert.strictEqual(q.level, level));
-        assert.strictEqual(g.maxScore, g.questions.length * level * 100);
+        assert.strictEqual(g.maxScore, Math.round(g.questions.length * level * 100 * (1 + P.BONUS)), 'classé : le maximum possible, avec le bonus de rapidité');
     });
     assert.strictEqual(game(9, 1).level, 1, 'niveau inconnu : le niveau 1');
     const small = { parasha: 'X', levels: { 1: DATA.levels['1'].slice(0, 2), 2: [], 3: [] } };
@@ -114,4 +114,118 @@ test('à plusieurs : une question volée ratée ne se vole pas une seconde fois 
     P.next(g);
     assert.strictEqual(g.over, true);
     Quiz.setPendingPlayers(null);
+});
+
+// --- Classé : chronomètre et bonus de rapidité -------------------------------------------------------------------------------------------------
+
+test('classé : le temps par question dépend du niveau (30, 45, 60 s), et la partie est chronométrée', () => {
+    assert.strictEqual(P.limitOf(1), 30000);
+    assert.strictEqual(P.limitOf(2), 45000);
+    assert.strictEqual(P.limitOf(3), 60000);
+    [1, 2, 3].forEach(level => {
+        const g = game(level, 5);
+        assert.strictEqual(g.mode, P.CLASSE);
+        assert.strictEqual(g.timed, true);
+        assert.strictEqual(g.limitMs, P.limitOf(level));
+    });
+});
+
+test('bonus : une réponse immédiate rapporte 50 % de plus que le niveau, une réponse à l\'instant limite les points du niveau', () => {
+    [1, 2, 3].forEach(level => {
+        const base = P.pointsOf(level);
+        assert.strictEqual(P.bonusOf(level, P.limitOf(level)), Math.round(base * 1.5));
+        assert.strictEqual(P.bonusOf(level, 0), base, 'le plancher : les points du niveau restent acquis');
+        assert.strictEqual(P.bonusOf(level, null), base, 'sans temps connu : les points du niveau');
+        assert.strictEqual(P.bonusOf(level, P.limitOf(level) * 2), Math.round(base * 1.5), 'pas plus que le bonus maximum');
+        const half = P.bonusOf(level, P.limitOf(level) / 2);
+        assert.ok(half > base && half < Math.round(base * 1.5), 'le bonus décroît avec le temps');
+    });
+});
+
+test('classé : la bonne réponse rapporte les points selon le temps restant, jamais moins que le niveau', () => {
+    const g = game(2, 8);
+    assert.deepStrictEqual(P.answer(g, P.question(g).answer, P.limitOf(2)), ['right']);
+    assert.strictEqual(g.score, Math.round(200 * 1.5));
+    assert.strictEqual(g.results[0].points, Math.round(200 * 1.5));
+    P.next(g);
+    assert.deepStrictEqual(P.answer(g, P.question(g).answer, 0), ['right']);
+    assert.strictEqual(g.score, Math.round(200 * 1.5) + 200);
+    assert.strictEqual(g.found, 2);
+});
+
+test('classé : un temps écoulé est une mauvaise réponse, sans point ; à plusieurs, la question est volée', () => {
+    const solo = game(1, 9);
+    assert.deepStrictEqual(P.timeout(solo), ['timeout']);
+    assert.strictEqual(solo.resolved, 'wrong');
+    assert.strictEqual(solo.results[0].timeout, true);
+    assert.strictEqual(solo.score, 0);
+    assert.deepStrictEqual(P.timeout(solo), [], 'pas deux fois sur la même question');
+    assert.deepStrictEqual(P.answer(solo, 0), [], 'une question expirée ne se répond plus');
+
+    Quiz.setPendingPlayers(['Anna', 'Ben']);
+    const multi = game(1, 10, 6);
+    const original = P.question(multi);
+    P.timeout(multi);
+    const stolen = multi.questions[1];
+    assert.ok(stolen.steal);
+    assert.strictEqual(stolen.q, original.q);
+    assert.strictEqual(stolen.options.length, original.options.length, 'un temps écoulé ne retire aucune proposition');
+    Quiz.setPendingPlayers(null);
+});
+
+// --- Entraînement : tentatives illimitées, sans chrono ni score ------------------------------------------------------------------------------
+
+const practice = (level, seed) => P.createGame({ data: DATA, level: level, mode: P.PRACTICE, rng: seeded(seed || 1) });
+
+test('entraînement : toutes les questions du niveau, sans chrono, sans score ni maximum', () => {
+    [1, 2, 3].forEach(level => {
+        const g = practice(level, 3);
+        assert.strictEqual(g.practice, true);
+        assert.strictEqual(g.timed, false);
+        assert.strictEqual(g.limitMs, null);
+        assert.strictEqual(g.questions.length, P.poolOf(DATA, level).length);
+        assert.strictEqual(g.maxScore, 0);
+    });
+});
+
+test('entraînement : une mauvaise réponse retire la proposition, on réessaie jusqu\'à la bonne ; la bonne résout la question', () => {
+    const g = practice(1, 4);
+    const q = P.question(g);
+    const picked = (q.answer + 1) % q.options.length;
+    assert.deepStrictEqual(P.tryAnswer(g, picked), ['wrong']);
+    assert.strictEqual(g.resolved, null, 'une erreur ne résout pas la question');
+    assert.deepStrictEqual(P.tryAnswer(g, picked), [], 'une proposition déjà essayée ne compte pas deux fois');
+    assert.deepStrictEqual(P.answer(g, picked), [], 'answer suit les mêmes règles qu\'en entraînement : une proposition déjà essayée ne compte pas');
+    assert.deepStrictEqual(P.tryAnswer(g, q.answer), ['right']);
+    assert.strictEqual(g.resolved, 'right');
+    assert.strictEqual(g.score, 0, 'pas de points en entraînement');
+    assert.strictEqual(g.found, 0, 'trouvée après une erreur : pas une bonne réponse du premier coup');
+    assert.strictEqual(g.results[0].attempts, 1);
+});
+
+test('entraînement : « trouvées du premier coup » compte les bonnes réponses sans erreur, et les essais repartent à zéro', () => {
+    const g = practice(2, 5);
+    P.tryAnswer(g, P.question(g).answer);
+    assert.strictEqual(g.found, 1);
+    P.next(g);
+    const q = P.question(g);
+    P.tryAnswer(g, (q.answer + 1) % q.options.length);
+    P.tryAnswer(g, q.answer);
+    P.next(g);
+    assert.strictEqual(g.found, 1);
+    assert.strictEqual(g.attempts, 0);
+    assert.deepStrictEqual(g.tried, []);
+});
+
+test('entraînement : jamais à plusieurs, même si une partie à plusieurs était annoncée ; la fin donne « over »', () => {
+    Quiz.setPendingPlayers(['Anna', 'Ben']);
+    const g = practice(1, 6);
+    assert.strictEqual(g.multi, undefined, 'pas de joueurs rattachés');
+    assert.strictEqual(Quiz.roundsFor(6), 6, 'l\'annonce a été annulée');
+    while (!g.over) {
+        P.tryAnswer(g, P.question(g).answer);
+        P.next(g);
+    }
+    assert.strictEqual(g.over, true);
+    assert.strictEqual(g.found, g.questions.length);
 });

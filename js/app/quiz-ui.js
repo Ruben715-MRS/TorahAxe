@@ -19,6 +19,11 @@ const QuizUI = (function () {
 
     // « Question 3 sur 10 — 200 points ».
     function status(p, g) {
+        if (g.practice) {
+            // L'entraînement n'a pas de score : on compte les bonnes réponses du premier coup.
+            $(p + '-status').textContent = t(p + '.practice_status', { n: g.index + 1, total: g.questions.length, found: g.found });
+            return;
+        }
         if (g.multi) {
             $(p + '-status').textContent = t('multi.status', { name: QuizCore.currentPlayer(g).name, n: g.index + 1, total: g.questions.length });
             if (!g.resolved && g.multi.gated !== g.index) gateShow(p, g);
@@ -127,8 +132,9 @@ const QuizUI = (function () {
     }
 
     // Une rangée de boutons (sections) : `items` = [{ id, label, he? }], `current` l'identifiant choisi, `onPick(id)` ; `he` : le nom en lettres hébraïques, après le nom latin.
-    function chips(p, items, current, onPick) {
-        const holder = $(p + '-sections');
+    // `where` : le suffixe de l'élément qui reçoit les boutons (`-sections` par défaut ; `-modes` pour une seconde rangée).
+    function chips(p, items, current, onPick, where) {
+        const holder = $(p + '-' + (where || 'sections'));
         toolClear(holder);
         items.forEach(item => {
             const btn = document.createElement('button');
@@ -154,12 +160,16 @@ const QuizUI = (function () {
     // La barre de temps des jeux chronométrés (`-timer`, `-timer-fill`, `-time` ; clé de traduction `.time_left`) : un seul chronomètre à la fois. À zéro, `onExpire()`
     // est appelé une fois. Si l'écran `screenId` est quitté sans passer par « Retour » (un lien de l'accueil), le chronomètre s'arrête de lui-même.
     let timerId = null;
+    let timerDeadline = null;  // l'heure (ms) où le chrono en cours arrive à zéro ; null hors chrono
     let heldTimer = null;      // un chrono en attente du joueur (à plusieurs)
     let gate = null;           // l'écran « passez le téléphone »
     function timerStop() {
         heldTimer = null;
+        timerDeadline = null;
         if (timerId) { clearInterval(timerId); timerId = null; }
     }
+    // Le temps restant du chrono en cours, en ms (0 au plus), ou null si aucun chrono ne tourne (il n'est pas démarré, arrêté ou absent).
+    function timerLeft() { return timerDeadline === null ? null : Math.max(0, timerDeadline - Date.now()); }
     function timerHide(p) {
         $(p + '-timer').classList.add('hidden');
         $(p + '-time').classList.add('hidden');
@@ -182,6 +192,7 @@ const QuizUI = (function () {
         // À plusieurs, le chrono ne part pas tant que le téléphone n'est pas dans les mains du joueur (voir gateShow).
         if (gate && !gate.classList.contains('hidden')) { heldTimer = [p, ms, screenId, onExpire]; return; }
         const deadline = Date.now() + ms;
+        timerDeadline = deadline;
         timerId = setInterval(() => {
             if ($(screenId).classList.contains('hidden')) { timerStop(); return; }
             const left = deadline - Date.now();
@@ -344,5 +355,5 @@ const QuizUI = (function () {
         again.onclick = () => multiStartWith(p, multiLast[p] || g.multi.players.map(pl => pl.name));
     }
 
-    return { multiMount: multiMount, multiStartWith: multiStartWith, phase: phase, status: status, options: options, resolve: resolve, word: word, finish: finish, progress: progress, chips: chips, timerStart: timerStart, timerStop: timerStop, timerHide: timerHide, loadPrefs: loadPrefs, savePrefs: savePrefs };
+    return { multiMount: multiMount, multiStartWith: multiStartWith, phase: phase, status: status, options: options, resolve: resolve, word: word, finish: finish, progress: progress, chips: chips, timerStart: timerStart, timerStop: timerStop, timerHide: timerHide, timerLeft: timerLeft, loadPrefs: loadPrefs, savePrefs: savePrefs };
 })();
