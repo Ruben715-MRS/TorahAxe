@@ -99,8 +99,8 @@ PLACES = {
 PLACE_OF = {}
 def put(key, *rows):
     for r in rows: PLACE_OF[r] = key
-put('hebron', 0, 1, 2, 4, 5, 6); put('rachel', 3); put('david', 10); put('jerusalem', 11, 15, 21, 101, 104, 116, 117, 120, 122, 124, 132, 133, 134, 137, 162, 163, 164, 167, 171, 177)
-put('nabi_samwil', 12); put('ezechiel', 17); put('tiberiade', 22, 25, 27, 32, 37, 38, 61, 125); put('meron', 26); put('beit_shearim', 31)
+put('hebron', 0, 1, 2, 4, 5, 6); put('rachel', 3); put('david', 10); put('jerusalem', 11, 15, 101, 104, 116, 117, 120, 122, 124, 132, 133, 134, 137, 162, 163, 164, 167, 171, 177)
+put('nabi_samwil', 12); put('ezechiel', 17); put('tiberiade', 22, 25, 27, 32, 37, 38, 61, 125); put('meron', 20, 21, 26); put('beit_shearim', 31)
 put('soura', 35, 41, 43, 52, 53); put('nehardea', 36); put('pumbedita', 39, 44, 45, 46, 50, 51, 54); put('mehoza', 40); put('narash', 47)
 put('troyes', 55); put('ramerupt', 56, 57); put('lucena', 59, 60); put('barcelone', 63, 65); put('seville', 64); put('tolede', 66, 67, 73)
 put('perpignan', 68); put('narbonne', 69); put('nuremberg', 76); put('worms', 77); put('mayence', 78); put('safed', 79, 80, 82, 83, 84, 86, 87)

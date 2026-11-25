@@ -135,3 +135,21 @@ test('le fond de carte mondial : des terres, sans frontières', () => {
     const polys = land.features.flatMap(f => (f.geometry.type === 'Polygon' ? [f.geometry.coordinates] : f.geometry.coordinates));
     polys.forEach(poly => poly.forEach(ring => ring.forEach((pt, i) => { if (i) assert.ok(Math.abs(pt[0] - ring[i - 1][0]) <= 180, 'arête trop longue'); })));
 });
+
+test('Hillel et Chammaï reposent à Méron (tradition), avec le Rachbi', () => {
+    ['Hillel HaZaken', 'Chammaï HaZaken'].forEach(n => {
+        const e = E.find(x => x.fr.indexOf(n) === 0);
+        assert.equal(e.place.key, 'meron', n);
+        assert.equal(e.status, 'tradition', n);
+    });
+    assert.equal(K.groups(E).find(g => g.key === 'meron').entries.length, 3);
+});
+
+test('les frontières actuelles : des lignes seules, aucune arête qui fait le tour du monde', () => {
+    ['../data/world-borders.json', '../data/levant-borders.json'].forEach(f => {
+        const g = require(f);
+        const lines = g.features.flatMap(x => (x.geometry.type === 'LineString' ? [x.geometry.coordinates] : x.geometry.coordinates));
+        assert.ok(lines.length >= 5, f);
+        lines.forEach(l => l.forEach((pt, i) => { assert.ok(Math.abs(pt[0]) <= 180 && Math.abs(pt[1]) <= 90, f); if (i) assert.ok(Math.abs(pt[0] - l[i - 1][0]) <= 180, f + ' : arête trop longue'); }));
+    });
+});

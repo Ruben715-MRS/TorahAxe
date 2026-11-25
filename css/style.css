@@ -18875,3 +18875,5 @@ button.autoscroll-mode { height: 48px; padding: 0 12px; border: 1px dashed var(-
 .kev-card-title { margin: 0 0 4px; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 12px; font-size: 18px; color: var(--text-dark); }
 .kev-precision { opacity: 0.8; }
 :root[data-theme="dark"] .kev-item.is-selected { border-color: var(--text-dark); }
+.kev-check { display: flex; align-items: center; gap: 8px; margin: 6px 0; font-size: 14px; font-weight: 600; color: var(--text-dark); cursor: pointer; min-height: 32px; }
+.kev-check input { width: 18px; height: 18px; flex: none; }

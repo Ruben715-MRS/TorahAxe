@@ -7,6 +7,7 @@
 // multiple ou vague restent dans la liste, sans point. Les données : data/kevarim/kevarim.json (js/kevarimCore.js, testé). Tout passe par textContent.
 // Contenu historique et religieux (statuts des tombeaux, traditions) : à relire par une personne compétente.
 
+const KEV_BORDERS_KEY = 'kevarimBorders';
 const KEV_LAND = { light: '#e6dcc3', dark: '#3a3428' };
 const KEV_VIEWS = {
     world: { bounds: [[-82, 24], [52, 58]] },
@@ -17,6 +18,9 @@ let kevEntries = null;          // data/kevarim/kevarim.json (ses entrées), cha
 let kevPromise = null;
 let kevLand = null;
 let kevLandPromise = null;
+let kevBorders = false;         // « Frontières actuelles » cochée (réglage gardé sur l'appareil)
+let kevBordersData = null;      // { world, levant } : data/world-borders.json et data/levant-borders.json
+let kevBordersPromise = null;
 let kevMap = null;
 let kevMapReady = false;
 let kevFilters = { status: 'all', era: 'all', rite: 'all' };
@@ -44,6 +48,18 @@ function kevLoad() {
     return kevPromise;
 }
 
+// Les frontières actuelles (lignes seules) : le monde en 1:110 m, le Levant en 1:50 m par-dessus quand on zoome. Chargées à la première case cochée.
+function kevLoadBorders() {
+    if (kevBordersData) return Promise.resolve(true);
+    if (!kevBordersPromise) {
+        const get = url => fetch(url).then(r => { if (!r.ok) throw new Error(url); return r.json(); });
+        kevBordersPromise = Promise.all([get('data/world-borders.json'), get('data/levant-borders.json')])
+            .then(a => { kevBordersData = { world: a[0], levant: a[1] }; return true; })
+            .catch(() => { kevBordersPromise = null; return false; });
+    }
+    return kevBordersPromise;
+}
+
 function kevLoadLand() {
     if (kevLand) return Promise.resolve(true);
     if (!kevLandPromise) {
@@ -64,6 +80,9 @@ function openKevarim(from, id) {
 function toolKevarimInit() {
     kevFilters = { status: 'all', era: 'all', rite: 'all' };
     kevView = 'world';
+    try { kevBorders = localStorage.getItem(KEV_BORDERS_KEY) === '1'; } catch (e) { kevBorders = false; }
+    const box = toolEl('tool-kev-borders');
+    if (box) box.checked = kevBorders;
     kevSelectedId = '';
     kevSelectedKey = '';
     const input = toolEl('tool-kev-search');
@@ -304,11 +323,19 @@ function kevEnsureMap() {
             map.addLayer({ id: 'levant-seams', type: 'line', source: 'levant', paint: { 'line-color': KEV_LAND[theme], 'line-width': 1.4 } });
         }
         map.addLayer({ id: 'land-line', type: 'line', source: 'land', paint: { 'line-color': theme === 'dark' ? '#6b6250' : '#bfae86', 'line-width': 0.6 } });
+        // Les frontières (cachées tant que la case n'est pas cochée) : sous les points. Le monde jusqu'au zoom 4,5, le Levant plus fin au-delà.
+        const bcolor = theme === 'dark' ? '#d9cfae' : '#7a6a43';
+        const vis = kevBorders ? 'visible' : 'none';
+        map.addSource('borders-world', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
+        map.addSource('borders-levant', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
+        map.addLayer({ id: 'borders-world', type: 'line', source: 'borders-world', maxzoom: 4.5, layout: { visibility: vis }, paint: { 'line-color': bcolor, 'line-width': 0.9, 'line-opacity': 0.8, 'line-dasharray': [3, 2] } });
+        map.addLayer({ id: 'borders-levant', type: 'line', source: 'borders-levant', minzoom: 4.5, layout: { visibility: vis }, paint: { 'line-color': bcolor, 'line-width': 1.3, 'line-opacity': 0.85, 'line-dasharray': [3, 2] } });
         map.addSource('kev', { type: 'geojson', data: KevarimCore.geojson(kevFiltered()) });
         map.addLayer({ id: 'kev-halo', type: 'circle', source: 'kev', paint: { 'circle-radius': ['step', ['get', 'n'], 7, 2, 9, 4, 11], 'circle-color': '#ffffff', 'circle-opacity': 0.9 } });
         map.addLayer({ id: 'kev-dot', type: 'circle', source: 'kev', paint: { 'circle-radius': ['step', ['get', 'n'], 5, 2, 7, 4, 9], 'circle-color': ['get', 'color'] } });
         map.addLayer({ id: 'kev-selected', type: 'circle', source: 'kev', filter: ['==', ['get', 'key'], ''], paint: { 'circle-radius': 13, 'circle-color': 'rgba(0,0,0,0)', 'circle-stroke-color': theme === 'dark' ? '#f3e7cf' : '#141d23', 'circle-stroke-width': 2.5 } });
         kevMapReady = true;
+        kevApplyBorders();
         map.on('click', 'kev-dot', ev => {
             const f = ev.features && ev.features[0];
             if (!f) return;
@@ -338,4 +365,25 @@ function kevUpdateMap(list) {
 
 function kevFitView() {
     if (kevMapReady && kevMap) kevMap.fitBounds(KEV_VIEWS[kevView].bounds, { padding: 12, duration: 600 });
+}
+
+// La case « Frontières actuelles » : charge les lignes au premier affichage, puis montre ou cache les deux couches.
+function kevToggleBorders(on) {
+    kevBorders = !!on;
+    try { localStorage.setItem(KEV_BORDERS_KEY, kevBorders ? '1' : '0'); } catch (e) { /* stockage indisponible : réglage non gardé */ }
+    kevApplyBorders();
+}
+
+function kevApplyBorders() {
+    if (!kevMapReady || !kevMap) return;
+    const apply = () => {
+        ['borders-world', 'borders-levant'].forEach(id => kevMap.setLayoutProperty(id, 'visibility', kevBorders ? 'visible' : 'none'));
+    };
+    if (!kevBorders) { apply(); return; }
+    kevLoadBorders().then(ok => {
+        if (!ok) { toolEl('tool-kev-status').textContent = t('tools.countries_error'); return; }
+        kevMap.getSource('borders-world').setData(kevBordersData.world);
+        kevMap.getSource('borders-levant').setData(kevBordersData.levant);
+        apply();
+    });
 }
