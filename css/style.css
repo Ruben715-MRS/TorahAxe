@@ -18856,3 +18856,22 @@ button.autoscroll-mode { height: 48px; padding: 0 12px; border: 1px dashed var(-
 .nakhgame-chapter-row input[type="range"] { flex: 1; min-width: 0; }
 .nakhgame-chapter-row .tool-history-chip { min-width: 44px; min-height: 44px; }
 #nakhgame-hint { width: 100%; margin-bottom: 14px; }
+
+/* Tombeaux des maîtres : le planisphère, la liste et la fiche (l'habillage des pastilles de la bibliothèque, .lib-pill et .lib-facts, sert aussi ici) */
+.kev-map { height: min(54vh, 440px); min-height: 280px; margin-top: 8px; }
+#tool-kev-filters { display: grid; gap: 4px; }
+.kev-chip-status { --kev-c: var(--border-soft); border-color: var(--kev-c); }
+.kev-chip-status[aria-pressed="true"] { background: var(--kev-c); color: #fff; }
+.kev-list { display: grid; gap: 6px; margin-top: 12px; }
+.kev-item { display: flex; flex-direction: column; gap: 4px; width: 100%; text-align: left; padding: 10px 12px; border-radius: 12px; border: 1px solid var(--border-soft); background: var(--surface); color: var(--text-dark); cursor: pointer; font: inherit; }
+.kev-item:hover { background: var(--surface-2); }
+.kev-item.is-selected { border-color: var(--text-dark); background: var(--surface-2); }
+.kev-names { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 12px; }
+.kev-fr { font-weight: 700; }
+.kev-he { font-family: 'Frank Ruhl Libre', 'David Libre', serif; font-size: 1.05em; opacity: 0.85; }
+.kev-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; }
+.kev-pill { display: inline-block; font-size: 0.75em; font-weight: 600; padding: 1px 8px; border-radius: 999px; color: var(--kev-c); border: 1px solid var(--kev-c); }
+.kev-card { margin-top: 10px; padding: 12px 14px; border-radius: 14px; border: 1px solid var(--border-soft); background: var(--surface); }
+.kev-card-title { margin: 0 0 4px; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 12px; font-size: 18px; color: var(--text-dark); }
+.kev-precision { opacity: 0.8; }
+:root[data-theme="dark"] .kev-item.is-selected { border-color: var(--text-dark); }

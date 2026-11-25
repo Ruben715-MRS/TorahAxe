@@ -33,7 +33,12 @@ function widgetLoadData() {
     const jobs = [];
     if (!widgetParashot) jobs.push(widgetFetchJson('data/torah/parashot.json').then(d => { widgetParashot = d && d.parashot ? d.parashot : null; }));
     if (!widgetHaftarot) jobs.push(widgetFetchJson('data/torah/haftarot.json').then(d => { widgetHaftarot = d; }));
-    if (!widgetHilloulot) jobs.push(widgetFetchJson('data/hilloulot/hilloulot.json').then(d => { widgetHilloulot = d && Array.isArray(d.entries) ? d.entries : null; }));
+    // hilloulot.json (dates vérifiées), complété des maîtres du fichier des tombeaux qui ont un jour et un mois précis (js/kevarimCore.js).
+    if (!widgetHilloulot) jobs.push(Promise.all([widgetFetchJson('data/hilloulot/hilloulot.json'), widgetFetchJson('data/kevarim/kevarim.json')]).then(([d, k]) => {
+        const base = d && Array.isArray(d.entries) ? d.entries : null;
+        const extra = k && Array.isArray(k.entries) && typeof KevarimCore !== 'undefined' ? KevarimCore.hilloulot(k.entries) : [];
+        widgetHilloulot = base ? base.concat(extra) : (extra.length ? extra : null);
+    }));
     return Promise.all(jobs);
 }
 

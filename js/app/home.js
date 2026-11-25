@@ -26,6 +26,7 @@ const HOME_ENTRIES = {
     commandments: { he: 'מצוות', fr: 'Mitsvot', desc: 'La Torah, la Michna et les 613 commandements, avec leurs sources', kw: 'commandements 613 décalogue noah avot', run: homeTool('commandments') },
     messiah: { he: 'משיח', fr: 'Machiah', desc: 'Qui est-il, comment le reconnaître, les étapes de sa venue, la résurrection des morts', kw: 'messie machiah mashiach moshiach messianique rambam melakhim gog magog elie eliyahou résurrection techiyat hametim monde à venir olam haba treize principes foi david temple rédemption guéoula', run: homeTool('messiah') },
     library: { he: 'ספרים', fr: 'Bibliothèque', desc: 'Qui a écrit quoi, quand et où : Michna, Talmud, Midrach, Kabbale', kw: 'livres auteurs talmud midrach', run: homeTool('library') },
+    kevarim: { he: 'קברים', fr: 'Tombeaux', desc: 'Les kevarim et hilloulot de 179 grands maîtres, sur un planisphère', kw: 'tombeau tombe kever kevarim hilloula tsadik tsadikim carte pèlerinage cimetière', run: homeTool('kevarim') },
     lexicon: { he: 'עברית', fr: 'Hébreu', desc: '2 000 mots de la Bible, dans les deux sens, avec leur racine', kw: 'dictionnaire français hébreu vocabulaire racine', run: homeTool('lexicon') },
     glossary: { he: 'מילון', fr: 'Glossaire', desc: 'Chabbat, rabbin, Hallel, karet… : plus de 400 mots de la vie juive, avec leurs liens vers l\'app', kw: 'glossaire lexique vocabulaire mots définition termes vie juive chabbat rabbin hallel kaddich cacherout zimoun erets israel', run: homeTool('glossary') },
     gemara: { he: 'ארמית', fr: 'Araméen', desc: 'Le vocabulaire de la Guémara, ses abréviations et ses sages', kw: 'dictionnaire guemara talmud vocabulaire', run: homeTool('gemara') },
@@ -72,7 +73,7 @@ const HOME_LAYOUT = {
         { title: 'Autour des textes', as: 'rows', ids: ['commandments', 'messiah', 'library', 'glossary', 'lexicon', 'gemara', 'gematria'] }
     ],
     explorer: [
-        { title: 'Maîtres et lignées', as: 'tiles', cols: 3, ids: ['genealogy', 'transmission', 'hassidout'] },
+        { title: 'Maîtres et lignées', as: 'tiles', cols: 2, ids: ['genealogy', 'transmission', 'hassidout', 'kevarim'] },
         { title: 'Lieux et temps', as: 'tiles', cols: 2, ids: ['chronologie', 'biblical', 'mishkan', 'hebrewCalendar'] },
         { title: 'Lois et pratique', as: 'tiles', cols: 3, ids: ['korbanot', 'tsaraat', 'statuts', 'foodlaws', 'benedictions', 'periods', 'specialReadings', 'measures', 'kotel', 'personalDates'] },
         { promo: 'tools' }
@@ -522,9 +523,12 @@ function homeLoadParasha() {
 function homeLoadHilloulot() {
     if (homeHil || homeHilLoading) return;
     homeHilLoading = true;
+    // Les maîtres de data/hilloulot/hilloulot.json (dates vérifiées), puis ceux du fichier des tombeaux qui ont un jour et un mois précis et n'y figurent pas.
     fetch('data/hilloulot/hilloulot.json').then(r => (r.ok ? r.json() : null)).then(json => {
         if (json && Array.isArray(json.entries)) { homeHil = json.entries; if (homeVisible() && homeTab === 'today') homeRender(true); }
-    }).catch(() => { /* sans hilloulot : le reste fonctionne */ }).then(() => { homeHilLoading = false; });
+    }).catch(() => { /* sans hilloulot : le reste fonctionne */ }).then(() => (typeof kevLoad === 'function' ? kevLoad() : null)).then(list => {
+        if (list) { homeHil = (homeHil || []).concat(KevarimCore.hilloulot(list)); if (homeVisible() && homeTab === 'today') homeRender(true); }
+    }).catch(() => { /* idem */ }).then(() => { homeHilLoading = false; });
 }
 
 // Ouvre la liste des 613 à la mitsva donnée : on déplie ses ancêtres repliables, on la montre et on la fait clignoter un instant.
@@ -569,8 +573,8 @@ function homeInfoCard(label, value, detail, onclick) {
 function homeHilItem(e) {
     const item = hEl('div', 'zm-hil-item');
     item.appendChild(hEl('strong', '', e.fr));
-    const meta = e.kind === 'tradition' ? t('tools.zm_hil_tradition') : t('tools.zm_hil_year', { heb: e.year, greg: e.gregYear });
-    item.appendChild(hEl('small', e.kind === 'tradition' ? 'zm-hil-tradition' : '', meta));
+    const meta = e.kind === 'tradition' || !e.year ? t('tools.zm_hil_tradition') : t('tools.zm_hil_year', { heb: e.year, greg: e.gregYear });
+    item.appendChild(hEl('small', e.kind === 'tradition' || !e.year ? 'zm-hil-tradition' : '', meta));
     item.appendChild(hEl('span', 'zm-hil-bio', e.bio));
     return item;
 }

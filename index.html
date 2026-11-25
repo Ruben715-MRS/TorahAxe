@@ -243,6 +243,23 @@
         </div>
     </div>
 
+<div id="screen-tool-kevarim" class="list-screen hidden">
+        <button class="back-btn" onclick="toolBack('kevarim')" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
+        <h2 class="header-title" data-i18n="tools.kevarim_title">Tombeaux des maîtres</h2>
+        <p class="modes-header-subtitle" data-i18n="tools.kevarim_intro">Les tombeaux (kevarim) de 179 grands maîtres, de tous les rites et de tous les pays. Touchez un point ou un nom pour sa fiche.</p>
+        <div class="tool-panel">
+            <input type="search" id="tool-kev-search" class="tool-input" autocomplete="off" placeholder="Chercher un maître, une ville, un livre" aria-label="Chercher un maître, une ville, un livre" data-i18n-attr="placeholder:tools.kevarim_search;aria-label:tools.kevarim_search">
+            <div id="tool-kev-filters"></div>
+            <div class="tool-history-chips" id="tool-kev-views" role="group" aria-label="Choisir une vue" data-i18n-attr="aria-label:tools.kevarim_views_aria"></div>
+            <p class="tool-msg" id="tool-kev-status" role="status"></p>
+            <p class="tool-small" id="tool-kev-count" aria-live="polite"></p>
+            <div id="tool-kev-map" class="tool-countries-map kev-map" role="application" aria-label="Planisphère des tombeaux des grands maîtres" data-i18n-attr="aria-label:tools.kevarim_map_label"></div>
+            <p class="tool-small tool-countries-credit" data-i18n="tools.kevarim_credit">Fond de carte : Natural Earth (domaine public).</p>
+            <div class="tool-result tool-countries-fiche" id="tool-kev-fiche" role="region" aria-live="polite" aria-label="Fiche du maître" data-i18n-attr="aria-label:tools.kevarim_fiche_label"></div>
+            <div id="tool-kev-list" class="kev-list"></div>
+        </div>
+    </div>
+
 <div id="screen-tool-chronologie" class="list-screen gen-screen chr-screen hidden">
         <button class="back-btn" onclick="toolBack('chronologie')" aria-label="Retour" data-i18n-attr="aria-label:nav.back">‹</button>
         <h2 class="header-title sr-only" data-i18n="tools.chronologie_title">Chronologie</h2>
@@ -820,6 +837,8 @@
     <script src="js/libraryCore.js"></script>
     <script src="js/app/transmission.js"></script>
     <script src="js/app/library.js"></script>
+    <script src="js/kevarimCore.js"></script>
+    <script src="js/app/kevarim.js"></script>
     <script src="js/measuresCore.js"></script>
     <script src="js/app/biblical-measures.js"></script>
     <script src="js/app/hebrew-calendar.js"></script>

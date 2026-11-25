@@ -328,6 +328,17 @@ function libItem(x) {
             b.onclick = () => libOpenAuthor(who);
             actions.appendChild(b);
         }
+        // « Tombeau et hilloula » : la fiche du maître sur la carte des tombeaux (quand il y figure).
+        if (x.authorId && typeof KevarimCore !== 'undefined' && typeof kevLoad === 'function') {
+            kevLoad().then(list => {
+                const kever = list ? KevarimCore.forAuthor(list, x.authorId) : null;
+                if (!kever || !body.isConnected) return;
+                const b = libNode('button', 'btn', '🕯️ ' + t('tools.library_open_kever', { name: kever.fr.replace(/\s*\(.*$/, '') }));
+                b.type = 'button';
+                b.onclick = () => openKevarim('screen-tool-library', kever.id);
+                actions.appendChild(b);
+            });
+        }
         card.appendChild(body);
         // « Situer dans la chronologie » : la période où l'œuvre a été écrite.
         if (typeof ChronologieCore !== 'undefined' && typeof chrLoadModel === 'function') {
