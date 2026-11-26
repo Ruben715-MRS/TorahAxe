@@ -211,5 +211,5 @@ test('le décès : date civile suivie de l\'année juive ; julienne avant 1582 ;
     assert.equal(K.deathLabel(find(/Hazon Ish/)), '24 octobre 1953 (5714)');
     assert.equal(K.deathLabel(find(/Rambam/)), '13 décembre 1204 julien (4965)');
     assert.equal(K.deathLabel(find(/Yehochoua/)), '26 Nissan (tradition)', 'pas de date civile sans année');
-    assert.equal(K.deathLabel(find(/Ketav Sofer/)), '19 Tevet (1871)', 'Tévet : deux années juives possibles, on ne tranche pas');
+    assert.equal(K.deathLabel(find(/Ketav Sofer/)), '31 décembre 1871 (5632)');
 });
