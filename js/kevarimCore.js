@@ -90,6 +90,42 @@
         });
     }
 
+    // Le calendrier (js/calendarYearCore.js) : global dans la page, require() sous Node.
+    var CAL = typeof CalendarYearCore !== 'undefined' ? CalendarYearCore : (typeof require === 'function' ? require('./calendarYearCore.js') : null);
+    var MONTHS_FR = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
+
+    // La date du décès en calendrier civil, suivie de l'année juive entre parenthèses : « 24 octobre 1953 (5714) ».
+    // Le jour de la hilloula est le jour du décès ; l'année juive est celle dont la date tombe dans l'année civile donnée.
+    // Null quand il manque le jour, le mois ou l'année civile.
+    function civilDeathDate(e) {
+        var h = e.hilloula;
+        if (!CAL || !h || !h.gregYear || !h.month || !h.day) return null;
+        var g = h.gregYear;
+        // L'année juive : celle donnée, sinon celle qui fait tomber la date dans l'année civile. Un Tévet peut tomber sur deux
+        // années juives pour la même année civile (décembre ou janvier) : sans année donnée, on ne tranche pas.
+        var candidates = h.year ? [h.year] : [g + 3760, g + 3761];
+        var found = [];
+        candidates.forEach(function (hy) {
+            var c = CAL.fixedToGregorian(CAL.hebrewToFixed(hy, h.month, h.day));
+            if (c.year === g) found.push(hy);
+        });
+        if (found.length !== 1) return null;
+        var hy = found[0];
+        var civil = CAL.fixedToGregorian(CAL.hebrewToFixed(hy, h.month, h.day));
+        // Avant la réforme grégorienne (1582), le tableur donne la date julienne : on retranche l'écart (5 à 7 jours au Moyen Âge).
+        if (civil.year < 1582) {
+            var gap = Math.floor(civil.year / 100) - Math.floor(civil.year / 400) - 2;
+            var j = new Date(Date.UTC(civil.year, civil.month - 1, civil.day) - gap * 86400000);
+            return j.getUTCDate() + ' ' + MONTHS_FR[j.getUTCMonth()] + ' ' + j.getUTCFullYear() + ' julien (' + hy + ')';
+        }
+        return civil.day + ' ' + MONTHS_FR[civil.month - 1] + ' ' + g + ' (' + hy + ')';
+    }
+
+    // Ce qui s'affiche pour le décès : la date civile quand on la calcule, sinon la date telle que donnée dans le tableur.
+    function deathLabel(e) {
+        return civilDeathDate(e) || e.dateText || '';
+    }
+
     // Les trois ordres de la liste. Les entrées sans la donnée voulue vont à la fin, dans l'ordre alphabétique.
     var SORTS = [
         { id: 'alpha', fr: 'Alphabétique' },
@@ -216,6 +252,6 @@
     return {
         STATUSES: STATUSES, ERAS: ERAS, RITES: RITES, PRECISIONS: PRECISIONS, MONTH_FR: MONTH_FR,
         statusOf: statusOf, statusRank: statusRank, normalize: normalize, byId: byId, forAuthor: forAuthor, hilloulaLabel: hilloulaLabel,
-        filter: filter, sortBy: sortBy, SORTS: SORTS, deathYear: deathYear, hebKey: hebKey, count: count, groups: groups, geojson: geojson, hilloulot: hilloulot, precisionLabel: precisionLabel
+        filter: filter, sortBy: sortBy, SORTS: SORTS, deathYear: deathYear, hebKey: hebKey, civilDeathDate: civilDeathDate, deathLabel: deathLabel, count: count, groups: groups, geojson: geojson, hilloulot: hilloulot, precisionLabel: precisionLabel
     };
 }));

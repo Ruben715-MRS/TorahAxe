@@ -205,3 +205,11 @@ test('l\'année du décès se lit dans les formes du tableur', () => {
     assert.equal(y('Tradition'), null);
     assert.equal(K.deathYear({ dateText: 'x', hilloula: { gregYear: 1204 } }), 1204, 'l\'année de la hilloula prime');
 });
+
+test('le décès : date civile suivie de l\'année juive ; julienne avant 1582 ; sans calcul, la date du tableur', () => {
+    const find = re => E.find(e => re.test(e.fr));
+    assert.equal(K.deathLabel(find(/Hazon Ish/)), '24 octobre 1953 (5714)');
+    assert.equal(K.deathLabel(find(/Rambam/)), '13 décembre 1204 julien (4965)');
+    assert.equal(K.deathLabel(find(/Yehochoua/)), '26 Nissan (tradition)', 'pas de date civile sans année');
+    assert.equal(K.deathLabel(find(/Ketav Sofer/)), '19 Tevet (1871)', 'Tévet : deux années juives possibles, on ne tranche pas');
+});

@@ -176,7 +176,7 @@ def parse_years(text):
     t = clean(text)
     heb = re.search(r'\b(5\d{3})\b', t)
     t2 = re.sub(r'\b\d{3,4}\s*av\. J\.-C\.', '', t)
-    greg = [int(y) for y in re.findall(r'\b(1\d{3}|20\d{2})\b', t2) if 1000 <= int(y) <= 2100]
+    greg = [int(y) for y in re.findall(r'\b([5-9]\d{2}|1\d{3}|20\d{2})\b', t2) if 500 <= int(y) <= 2100]
     return (int(heb.group(1)) if heb else None, greg[-1] if greg else None)
 
 def status_of(col5):

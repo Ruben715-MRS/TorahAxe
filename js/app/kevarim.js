@@ -276,7 +276,7 @@ function kevRenderFiche(list) {
     const dl = kevNode('dl', 'lib-facts');
     const hl = K.hilloulaLabel(e);
     kevFact(dl, t('tools.kevarim_f_hilloula'), hl ? hl + (e.hilloula.kind === 'tradition' ? ' · ' + t('tools.zm_hil_tradition') : '') : t('tools.kevarim_no_hilloula'));
-    kevFact(dl, t('tools.kevarim_f_death'), e.dateText);
+    kevFact(dl, t('tools.kevarim_f_death'), KevarimCore.deathLabel(e));
     kevFact(dl, t('tools.kevarim_f_tomb'), e.tombText);
     kevFact(dl, t('tools.kevarim_f_status'), e.statusText);
     kevFact(dl, t('tools.kevarim_f_born'), e.born);
