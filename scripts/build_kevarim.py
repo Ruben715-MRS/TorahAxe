@@ -103,7 +103,7 @@ PLACES = {
     'mosul': ('Mossoul (Irak)', 36.3489, 43.1577, 'ville'),
     'shush': ('Suse (Iran)', 32.1906, 48.2528, 'ville'),
     'hamadan': ('Hamadan (Iran)', 34.7983, 48.5150, 'ville'),
-    'kifl_haris': ('Kfar Cheres / Kifl Haris (Shomron, près d\'Ariel)', 32.1167, 35.1833, 'ville'),
+    'kifl_haris': ('Kfar Cheres / Kifl Haris (Shomron, près d\'Ariel)', 32.1186, 35.1570, 'ville'),
     'nizhyn': ('Nizhyn (Niezhin, Ukraine)', 51.0500, 31.8833, 'ville'),
 }
 
