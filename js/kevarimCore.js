@@ -1,7 +1,7 @@
 // =========================================================================
 // === LES TOMBEAUX (KEVARIM) DES GRANDS MAÎTRES (DONNÉES ET RÈGLES, outil de la boîte à outils) ===
 // =========================================================================
-// Les 179 hilloulot majeures du judaïsme orthodoxe (de la Bible à nos jours, tous rites, tous pays) avec leur tombeau, placées sur un planisphère.
+// Les 194 hilloulot majeures du judaïsme orthodoxe (de la Bible à nos jours, tous rites, tous pays) avec leur tombeau, placées sur un planisphère.
 // Pur, sans DOM : testé dans tests/kevarimCore.test.js. Les données viennent de data/kevarim/kevarim.json (généré par scripts/build_kevarim.py
 // d'après le fichier de Ruben, scripts/sources/hiloulot-majeures.xlsx).
 //
