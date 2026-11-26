@@ -18403,9 +18403,9 @@ body:has(#screen-recit:not(.hidden))::after {
 .ben-tr { font-style: italic; }
 .ben-texts { margin-top: 4px; }
 .ben-source { margin-top: 4px; }
-.ben-rites { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; padding: 4px; border: 1px solid var(--border-soft); border-radius: 14px; background: var(--surface-2); }
-.ben-rite { min-height: 40px; padding: 6px 4px; border: 0; border-radius: 10px; background: transparent; font: inherit; font-size: 14px; font-weight: 600; color: var(--text-dark); cursor: pointer; }
-.ben-rite[aria-pressed="true"] { background: var(--surface); box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18); font-weight: 800; }
+.ben-rites { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; padding: 4px; border: 1px solid var(--border-soft); border-radius: 14px; background: var(--selected-tint); }
+.ben-rite { min-height: 40px; padding: 9px 4px; border: 0; border-radius: 11px; background: transparent; font: inherit; font-size: 14px; font-weight: 700; color: var(--text-dark); cursor: pointer; }
+.ben-rite[aria-pressed="true"] { background: var(--surface); box-shadow: 0 1px 4px rgba(0, 0, 0, 0.14); font-weight: 700; }
 .ben-rite-info { margin: 0; }
 .ben-halakha { margin: 12px 0; padding: 10px 12px; border: 1px solid var(--border-soft); border-radius: 12px; }
 .ben-halakha-title { cursor: pointer; font-weight: 600; font-size: 15px; }
