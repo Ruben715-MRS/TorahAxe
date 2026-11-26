@@ -156,7 +156,7 @@ HIL_OF = {
     26: 'rachbi', 156: 'yisrael-salanter',
 }
 
-MONTHS = {'Nissan': 'Nisan', 'Iyar': 'Iyar', 'Sivan': 'Sivan', 'Tamouz': 'Tamuz', 'Av': 'Av', 'Eloul': 'Elul', 'Tichri': 'Tishri', "'Hechvan": 'Heshvan',
+MONTHS = {'Adar II': 'AdarII', 'Nissan': 'Nisan', 'Iyar': 'Iyar', 'Sivan': 'Sivan', 'Tamouz': 'Tamuz', 'Av': 'Av', 'Eloul': 'Elul', 'Tichri': 'Tishri', "'Hechvan": 'Heshvan',
           'Hechvan': 'Heshvan', 'Kislev': 'Kislev', 'Tevet': 'Tevet', 'Chevat': 'Shevat', 'Adar': 'Adar'}
 MONTH_RE = re.compile(r"(\d{1,2})\s+(" + '|'.join(re.escape(m) for m in MONTHS) + r")(?![\w'])")
 EXCLUDED = {131}   # Baba Baroukh : vivant (la note du tableur demande de ne pas l'inclure comme décédé)

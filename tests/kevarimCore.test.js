@@ -66,10 +66,10 @@ test('les hilloulot : seules les lignes avec un jour et un mois précis en ont u
         assert.ok(K.MONTH_FR[e.hilloula.month], 'mois : ' + e.id);
         assert.ok(e.hilloula.day >= 1 && e.hilloula.day <= 30, 'jour : ' + e.id);
     });
-    // Sans jour ni mois, pas de hilloula : Ibn Ezra (1164/1167), le Rema vu du seul tableur, etc.
-    assert.equal(E.find(e => /Ibn Ezra/.test(e.fr)).hilloula, null);
+    // Sans jour ni mois, pas de hilloula : le Rema vu du seul tableur, etc. (Ibn Ezra a un jour confirmé : 1 Adar.)
+    assert.equal(E.find(e => /Ibn Ezra/.test(e.fr)).hilloula.day, 1);
     assert.equal(E.find(e => /Rav Papa/.test(e.fr)).hilloula, null);
-    assert.equal(K.hilloulaLabel(E.find(e => /Ibn Ezra/.test(e.fr))), '');
+    assert.notEqual(K.hilloulaLabel(E.find(e => /Ibn Ezra/.test(e.fr))), '');
     assert.equal(K.hilloulaLabel(E.find(e => /Rambam/.test(e.fr))), '20 Tévet');
 });
 
