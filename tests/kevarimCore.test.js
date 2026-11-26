@@ -153,3 +153,17 @@ test('les frontières actuelles : des lignes seules, aucune arête qui fait le t
         lines.forEach(l => l.forEach((pt, i) => { assert.ok(Math.abs(pt[0]) <= 180 && Math.abs(pt[1]) <= 90, f); if (i) assert.ok(Math.abs(pt[0] - l[i - 1][0]) <= 180, f + ' : arête trop longue'); }));
     });
 });
+
+test('la liste : par époque (Bible d\'abord), puis par nom français, sans accents ni casse', () => {
+    const sorted = K.sortForList(DATA.entries);
+    assert.equal(sorted.length, DATA.entries.length);
+    const rank = {};
+    K.ERAS.forEach((era, i) => { rank[era.id] = i; });
+    for (let i = 1; i < sorted.length; i++) {
+        const a = sorted[i - 1], b = sorted[i];
+        assert.ok(rank[a.era] <= rank[b.era], a.fr + ' avant ' + b.fr);
+        if (a.era === b.era) assert.ok(K.normalize(a.fr).localeCompare(K.normalize(b.fr), 'fr') <= 0, a.fr + ' avant ' + b.fr);
+    }
+    assert.equal(sorted[0].era, 'biblique');
+    assert.equal(DATA.entries.length, sorted.length, 'la copie ne modifie pas la liste d\'origine');
+});

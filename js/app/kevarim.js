@@ -164,7 +164,7 @@ function kevRender() {
     const placed = list.filter(e => e.place).length;
     toolEl('tool-kev-count').textContent = t('tools.kevarim_count', { n: list.length, placed: placed });
     kevRenderViews();
-    kevRenderList(list);
+    kevRenderList(KevarimCore.sortForList(list));
     kevRenderFiche(list);
     kevUpdateMap(list);
 }

@@ -90,6 +90,17 @@
         });
     }
 
+    // L'ordre de la liste : par époque (de la Bible à nos jours, comme les filtres), puis par nom français, sans accents ni casse.
+    function sortForList(entries) {
+        var rank = {};
+        ERAS.forEach(function (era, i) { rank[era.id] = i; });
+        return entries.slice().sort(function (a, b) {
+            var d = (rank[a.era] == null ? ERAS.length : rank[a.era]) - (rank[b.era] == null ? ERAS.length : rank[b.era]);
+            if (d) return d;
+            return normalize(a.fr).localeCompare(normalize(b.fr), 'fr');
+        });
+    }
+
     function count(entries, key) {
         var out = {};
         entries.forEach(function (e) { out[e[key]] = (out[e[key]] || 0) + 1; });
@@ -141,6 +152,6 @@
     return {
         STATUSES: STATUSES, ERAS: ERAS, RITES: RITES, PRECISIONS: PRECISIONS, MONTH_FR: MONTH_FR,
         statusOf: statusOf, statusRank: statusRank, normalize: normalize, byId: byId, forAuthor: forAuthor, hilloulaLabel: hilloulaLabel,
-        filter: filter, count: count, groups: groups, geojson: geojson, hilloulot: hilloulot, precisionLabel: precisionLabel
+        filter: filter, sortForList: sortForList, count: count, groups: groups, geojson: geojson, hilloulot: hilloulot, precisionLabel: precisionLabel
     };
 }));
