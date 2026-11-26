@@ -105,6 +105,7 @@ PLACES = {
     'hamadan': ('Hamadan (Iran)', 34.7983, 48.5150, 'ville'),
     'kifl_haris': ('Kfar Cheres / Kifl Haris (Shomron, près d\'Ariel)', 32.1186, 35.1570, 'ville'),
     'nizhyn': ('Nizhyn (Niezhin, Ukraine)', 51.0500, 31.8833, 'ville'),
+    'hnativka': ('Hnativka (Ignatovka), près de Kiev (Ukraine)', 50.2000, 30.7000, 'region'),
 }
 
 # Ligne du tableur (à partir de 0, sans l'en-tête) -> clé de PLACES. Toute ligne absente n'a pas de point : plusieurs lieux, lieu vague ou inconnu.
@@ -127,7 +128,7 @@ put('bnei_brak', 161, 165, 166, 168); put('kovno', 169, 176); put('kamenitz', 17
 put('kairouan', 180); put('regensburg', 181); put('lublin', 182, 188); put('prague', 183); put('ostroh', 184); put('tiberiade', 185)
 put('volozhin', 186); put('posen', 187); put('dvinsk', 190); put('jerusalem', 189); put('mosul', 192); put('shush', 193); put('hamadan', 194)
 put('worms', 195); put('jerusalem', 196); put('nizhyn', 197); put('kifl_haris', 191)
-put('jerusalem', 198); put('tiberiade', 199)
+put('sanhedria', 198); put('hnativka', 199)
 # Les lignes 131 (maître vivant, exclu) ne figurent pas ici ; les indices de PLACE_OF suivent le tableur, 131 compris (décalage géré plus bas).
 
 # Ligne -> identifiant dans la chaîne de transmission (js/transmissionCore.js) ; vérifié par tests/kevarimCore.test.js.
