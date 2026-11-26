@@ -265,7 +265,8 @@ function kevRenderFiche(list) {
         : t('tools.kevarim_unplaced')));
     const actions = kevNode('div', 'lib-actions');
     card.appendChild(actions);
-    if (e.place && kevMapReady) {
+    // Le bouton ne sert qu'à recentrer : il n'apparaît que si le point est sorti de la vue de la carte.
+    if (e.place && kevMapReady && !kevMap.getBounds().contains([e.place.lon, e.place.lat])) {
         const b = kevNode('button', 'btn', t('tools.kevarim_see_map'));
         b.type = 'button';
         b.onclick = () => kevMap.flyTo({ center: [e.place.lon, e.place.lat], zoom: Math.max(kevMap.getZoom(), 6), duration: 700 });
@@ -350,6 +351,8 @@ function kevEnsureMap() {
         });
         map.on('mouseenter', 'kev-dot', () => { map.getCanvas().style.cursor = 'pointer'; });
         map.on('mouseleave', 'kev-dot', () => { map.getCanvas().style.cursor = ''; });
+        // Quand la carte bouge, le bouton « Voir sur la carte » suit : présent si le maître est sorti de la vue, absent sinon.
+        map.on('moveend', () => { if (kevSelectedId) kevRenderFiche(kevFiltered()); });
         kevUpdateMap(kevFiltered());
         kevRenderFiche(kevFiltered());
     });
