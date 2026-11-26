@@ -11,8 +11,8 @@ const DATA = require('../data/kevarim/kevarim.json');
 const HIL = require('../data/hilloulot/hilloulot.json').entries;
 const E = DATA.entries;
 
-test('le fichier : 197 maîtres, des identifiants uniques, aucun maître vivant', () => {
-    assert.equal(E.length, 197);
+test('le fichier : 199 maîtres, des identifiants uniques, aucun maître vivant', () => {
+    assert.equal(E.length, 199);
     assert.equal(new Set(E.map(e => e.id)).size, E.length);
     assert.ok(!E.some(e => /baba baroukh|baba baruch/i.test(e.fr)), 'Baba Baroukh est vivant : exclu');
     E.forEach(e => {

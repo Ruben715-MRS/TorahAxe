@@ -127,6 +127,7 @@ put('bnei_brak', 161, 165, 166, 168); put('kovno', 169, 176); put('kamenitz', 17
 put('kairouan', 180); put('regensburg', 181); put('lublin', 182, 188); put('prague', 183); put('ostroh', 184); put('tiberiade', 185)
 put('volozhin', 186); put('posen', 187); put('dvinsk', 190); put('jerusalem', 189); put('mosul', 192); put('shush', 193); put('hamadan', 194)
 put('worms', 195); put('jerusalem', 196); put('nizhyn', 197); put('kifl_haris', 191)
+put('jerusalem', 198); put('tiberiade', 199)
 # Les lignes 131 (maître vivant, exclu) ne figurent pas ici ; les indices de PLACE_OF suivent le tableur, 131 compris (décalage géré plus bas).
 
 # Ligne -> identifiant dans la chaîne de transmission (js/transmissionCore.js) ; vérifié par tests/kevarimCore.test.js.
@@ -235,7 +236,7 @@ def main():
              'place': {'key': PLACE_OF[i], 'name': p[0], 'lat': p[1], 'lon': p[2], 'precision': p[3]} if p else None,
              'tombText': tomb, 'status': st, 'statusText': status, 'bio': bio, 'groupText': group, 'era': era, 'rite': rite_of(group), 'born': born, 'works': works}
         entries.append(e)
-    out = {'v': 1, 'source': 'Fichier de Ruben (Hiloulot majeures, 198 lignes) ; points de la carte approximatifs ; dates de hilloula vérifiées contre data/hilloulot/hilloulot.json quand la personne y figure', 'entries': entries}
+    out = {'v': 1, 'source': 'Fichier de Ruben (Hiloulot majeures, 200 lignes) ; points de la carte approximatifs ; dates de hilloula vérifiées contre data/hilloulot/hilloulot.json quand la personne y figure', 'entries': entries}
     with open(OUT, 'w', encoding='utf-8') as f:
         json.dump(out, f, ensure_ascii=False, separators=(',', ':'))
     placed = sum(1 for e in entries if e['place'])
