@@ -103,6 +103,8 @@ PLACES = {
     'mosul': ('Mossoul (Irak)', 36.3489, 43.1577, 'ville'),
     'shush': ('Suse (Iran)', 32.1906, 48.2528, 'ville'),
     'hamadan': ('Hamadan (Iran)', 34.7983, 48.5150, 'ville'),
+    'kifl_haris': ('Kfar Cheres / Kifl Haris (Shomron, près d\'Ariel)', 32.1167, 35.1833, 'ville'),
+    'nizhyn': ('Nizhyn (Niezhin, Ukraine)', 51.0500, 31.8833, 'ville'),
 }
 
 # Ligne du tableur (à partir de 0, sans l'en-tête) -> clé de PLACES. Toute ligne absente n'a pas de point : plusieurs lieux, lieu vague ou inconnu.
@@ -121,9 +123,10 @@ put('bagdad', 113, 121); put('sanhedria', 114); put('oliviers', 115, 123, 136, 1
 put('meknes', 128); put('mogador', 129); put('le_caire', 135); put('marseille', 139); put('paris', 141, 144, 146, 147); put('vilnius', 149, 170)
 put('radin', 150, 173); put('cracovie', 152); put('lviv', 153); put('holesov', 154); put('novardok', 155); put('koenigsberg', 156); put('varsovie', 157)
 put('bnei_brak', 161, 165, 166, 168); put('kovno', 169, 176); put('kamenitz', 172); put('grodno', 174); put('dvinsk', 175); put('presbourg', 178, 179)
-# Ajouts (195 lignes) : maîtres et prophètes d'époques diverses. Les points sont ceux de la ville ; « non localisée » = centre de la ville.
+# Ajouts (198 lignes) : maîtres et prophètes d'époques diverses. Les points sont ceux de la ville ; « non localisée » = centre de la ville.
 put('kairouan', 180); put('regensburg', 181); put('lublin', 182, 188); put('prague', 183); put('ostroh', 184); put('tiberiade', 185)
 put('volozhin', 186); put('posen', 187); put('dvinsk', 190); put('jerusalem', 189); put('mosul', 192); put('shush', 193); put('hamadan', 194)
+put('worms', 195); put('jerusalem', 196); put('nizhyn', 197); put('kifl_haris', 191)
 # Les lignes 131 (maître vivant, exclu) ne figurent pas ici ; les indices de PLACE_OF suivent le tableur, 131 compris (décalage géré plus bas).
 
 # Ligne -> identifiant dans la chaîne de transmission (js/transmissionCore.js) ; vérifié par tests/kevarimCore.test.js.
@@ -146,7 +149,7 @@ AUTHOR_OF = {
 HIL_OF = {
     55: 'rashi', 61: 'rambam', 57: 'rabbenou-tam', 79: 'mechaber', 152: 'rema', 80: 'ari', 82: 'remak', 125: 'ramhal', 123: 'or-hahaim', 89: 'baal-chem-tov',
     90: 'maggid', 149: 'gaon-vilna', 126: 'chida', 94: 'levi-yitshak', 92: 'rabbi-nahman', 91: 'baal-hatanya', 178: 'hatam-sofer',
-    98: 'rabbi-menahem-mendel-kotzk', 99: 'gour', 113: 'ben-ish-haï', 150: 'haffetz-haim', 151: 'rav-kook', 107: 'rabbi-yossef-yitshak', 160: 'rav-feinstein',
+    197: 'amitsi', 98: 'rabbi-menahem-mendel-kotzk', 99: 'gour', 113: 'ben-ish-haï', 150: 'haffetz-haim', 151: 'rav-kook', 107: 'rabbi-yossef-yitshak', 160: 'rav-feinstein',
     111: 'baba-sali', 114: 'rav-ovadia', 106: 'rebbe', 7: 'moche', 8: 'aharon', 9: 'myriam', 12: 'shmouel', 10: 'david', 3: 'rachel', 27: 'rabbi-meir',
     26: 'rachbi', 156: 'yisrael-salanter',
 }
@@ -232,7 +235,7 @@ def main():
              'place': {'key': PLACE_OF[i], 'name': p[0], 'lat': p[1], 'lon': p[2], 'precision': p[3]} if p else None,
              'tombText': tomb, 'status': st, 'statusText': status, 'bio': bio, 'groupText': group, 'era': era, 'rite': rite_of(group), 'born': born, 'works': works}
         entries.append(e)
-    out = {'v': 1, 'source': 'Fichier de Ruben (Hiloulot majeures, 195 lignes) ; points de la carte approximatifs ; dates de hilloula vérifiées contre data/hilloulot/hilloulot.json quand la personne y figure', 'entries': entries}
+    out = {'v': 1, 'source': 'Fichier de Ruben (Hiloulot majeures, 198 lignes) ; points de la carte approximatifs ; dates de hilloula vérifiées contre data/hilloulot/hilloulot.json quand la personne y figure', 'entries': entries}
     with open(OUT, 'w', encoding='utf-8') as f:
         json.dump(out, f, ensure_ascii=False, separators=(',', ':'))
     placed = sum(1 for e in entries if e['place'])
