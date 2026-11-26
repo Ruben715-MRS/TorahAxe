@@ -1,7 +1,7 @@
 // =========================================================================
 // === LES TOMBEAUX DES GRANDS MAÎTRES (écran de la boîte à outils, onglet Explorer) ===
 // =========================================================================
-// Les 199 hilloulot majeures, tous rites et toutes époques, sur un planisphère MapLibre (sans frontières : seulement les terres), avec une liste, des filtres
+// Les 202 hilloulot majeures, tous rites et toutes époques, sur un planisphère MapLibre (sans frontières : seulement les terres), avec une liste, des filtres
 // (statut du tombeau, époque, rite), une recherche et une fiche par maître. Chaque fiche renvoie à la bibliothèque (ses œuvres) et à la chaîne de transmission.
 // Les points sont des REPÈRES (centre d'une ville, zone) et jamais l'emplacement exact d'une tombe : la fiche le dit. Les maîtres dont le lieu est inconnu,
 // multiple ou vague restent dans la liste, sans point. Les données : data/kevarim/kevarim.json (js/kevarimCore.js, testé). Tout passe par textContent.
