@@ -154,16 +154,54 @@ test('les frontières actuelles : des lignes seules, aucune arête qui fait le t
     });
 });
 
-test('la liste : par époque (Bible d\'abord), puis par nom français, sans accents ni casse', () => {
-    const sorted = K.sortForList(DATA.entries);
+test('le tri alphabétique suit l\'alphabet hébreu (lettres finales ramenées à leur forme de base)', () => {
+    const sorted = K.sortBy(DATA.entries, 'alpha');
     assert.equal(sorted.length, DATA.entries.length);
-    const rank = {};
-    K.ERAS.forEach((era, i) => { rank[era.id] = i; });
     for (let i = 1; i < sorted.length; i++) {
-        const a = sorted[i - 1], b = sorted[i];
-        assert.ok(rank[a.era] <= rank[b.era], a.fr + ' avant ' + b.fr);
-        if (a.era === b.era) assert.ok(K.normalize(a.fr).localeCompare(K.normalize(b.fr), 'fr') <= 0, a.fr + ' avant ' + b.fr);
+        const a = K.hebKey(sorted[i - 1].he), b = K.hebKey(sorted[i].he);
+        assert.ok(a <= b, sorted[i - 1].fr + ' avant ' + sorted[i].fr);
     }
-    assert.equal(sorted[0].era, 'biblique');
-    assert.equal(DATA.entries.length, sorted.length, 'la copie ne modifie pas la liste d\'origine');
+    assert.equal(K.hebKey('מלך'), K.hebKey('מלכ'), 'finale ם/ך ramenée à מ/כ');
+    assert.ok(K.hebKey('א') < K.hebKey('ב') && K.hebKey('ת') > K.hebKey('ש'));
+});
+
+test('le tri annuel part de Tichri : Tichri en premier, Elloul en dernier, sans date à la fin', () => {
+    const dated = K.sortBy(DATA.entries, 'annual').filter(e => e.hilloula);
+    assert.equal(dated[0].hilloula.month, 'Tishri');
+    assert.equal(dated[dated.length - 1].hilloula.month, 'Elul');
+    const order = ['Tishri', 'Heshvan', 'Kislev', 'Tevet', 'Shevat', 'Adar', 'AdarII', 'Nisan', 'Iyar', 'Sivan', 'Tamuz', 'Av', 'Elul'];
+    for (let i = 1; i < dated.length; i++) {
+        const a = dated[i - 1].hilloula, b = dated[i].hilloula;
+        assert.ok(order.indexOf(a.month) < order.indexOf(b.month) || (a.month === b.month && a.day <= b.day), dated[i - 1].fr + ' avant ' + dated[i].fr);
+    }
+    const all = K.sortBy(DATA.entries, 'annual');
+    const firstUndated = all.findIndex(e => !e.hilloula);
+    assert.ok(all.slice(firstUndated).every(e => !e.hilloula), 'les sans date sont à la fin');
+});
+
+test('le tri chronologique : année du décès croissante, sans année à la fin', () => {
+    const sorted = K.sortBy(DATA.entries, 'chrono');
+    let last = -Infinity, seenNull = false;
+    sorted.forEach(e => {
+        const y = K.deathYear(e);
+        if (y == null) { seenNull = true; return; }
+        assert.ok(!seenNull, e.fr + ' daté après une entrée sans année');
+        assert.ok(y >= last, e.fr);
+        last = y;
+    });
+});
+
+test('l\'année du décès se lit dans les formes du tableur', () => {
+    const y = t => K.deathYear({ dateText: t });
+    assert.equal(y('1 Tevet (tradition) / ~1638 av. J.-C.'), -1638);
+    assert.equal(y('~10 ap. J.-C. (tradition)'), 10);
+    assert.equal(y('10 Tichri ~135'), 135);
+    assert.equal(y('IIe s.'), 150);
+    assert.equal(y('Début IIe s.'), 110);
+    assert.equal(y('Fin XIIe s.'), 1190);
+    assert.equal(y('1164/1167'), 1167);
+    assert.equal(y('1174 approx.'), 1174);
+    assert.equal(y('15 Nissan (tradition)'), null, 'un jour et un mois ne sont pas une année');
+    assert.equal(y('Tradition'), null);
+    assert.equal(K.deathYear({ dateText: 'x', hilloula: { gregYear: 1204 } }), 1204, 'l\'année de la hilloula prime');
 });

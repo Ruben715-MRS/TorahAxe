@@ -90,15 +90,79 @@
         });
     }
 
-    // L'ordre de la liste : par époque (de la Bible à nos jours, comme les filtres), puis par nom français, sans accents ni casse.
-    function sortForList(entries) {
-        var rank = {};
-        ERAS.forEach(function (era, i) { rank[era.id] = i; });
-        return entries.slice().sort(function (a, b) {
-            var d = (rank[a.era] == null ? ERAS.length : rank[a.era]) - (rank[b.era] == null ? ERAS.length : rank[b.era]);
-            if (d) return d;
-            return normalize(a.fr).localeCompare(normalize(b.fr), 'fr');
-        });
+    // Les trois ordres de la liste. Les entrées sans la donnée voulue vont à la fin, dans l'ordre alphabétique.
+    var SORTS = [
+        { id: 'alpha', fr: 'Alphabétique' },
+        { id: 'annual', fr: 'Année civile juive' },
+        { id: 'chrono', fr: 'Chronologique' }
+    ];
+    // Ordre des mois à partir de Tichri (le 1er Tichri ouvre l'année civile juive ; Nissan, lui, ouvre l'année liturgique).
+    var YEAR_ORDER = { Tishri: 0, Heshvan: 1, Kislev: 2, Tevet: 3, Shevat: 4, Adar: 5, AdarI: 5, AdarII: 6, Nisan: 7, Iyar: 8, Sivan: 9, Tamuz: 10, Av: 11, Elul: 12 };
+    var FINALS = { 'ך': 'כ', 'ם': 'מ', 'ן': 'נ', 'ף': 'פ', 'ץ': 'צ' };
+    var ROMAN = { I: 1, V: 5, X: 10, L: 50, C: 100 };
+
+    // Le nom hébreu pour l'ordre alphabétique : sans points-voyelles ni signes, lettres finales ramenées à leur forme de base.
+    function hebKey(text) {
+        return String(text == null ? '' : text).replace(/[֑-ׇ]/g, '')
+            .replace(/[ךםןףץ]/g, function (c) { return FINALS[c]; })
+            .replace(/[^א-ת ]/g, '').trim();
+    }
+
+    function romanToInt(s) {
+        var t = 0;
+        for (var i = 0; i < s.length; i++) {
+            var v = ROMAN[s[i]], n = ROMAN[s[i + 1]];
+            t += n && n > v ? -v : v;
+        }
+        return t;
+    }
+
+    // L'année du décès, en année grégorienne (négative : avant notre ère), ou null quand le tableur ne permet pas de la dater.
+    // Approximative quand la date est un siècle ou « ~ » : on prend le milieu du siècle, ou la date donnée.
+    function deathYear(e) {
+        if (e.hilloula && e.hilloula.gregYear) return e.hilloula.gregYear;
+        var txt = String(e.dateText || ''), m;
+        var bce = /av\. J\.-C\./.test(txt);
+        if ((m = txt.match(/(Début |Fin )?([IVX]+)e(?:-[IVX]+e)? s\./))) {
+            var c = romanToInt(m[2]);
+            var y = m[1] === 'Début ' ? (c - 1) * 100 + 10 : m[1] === 'Fin ' ? c * 100 - 10 : (c - 1) * 100 + 50;
+            return bce ? -y : y;
+        }
+        if ((m = txt.match(/(\d{1,4})\s*av\. J\.-C\./))) return -Number(m[1]);
+        if ((m = txt.match(/(\d{1,4})\s*ap\. J\.-C\./))) return Number(m[1]);
+        if ((m = txt.match(/~\s?(\d{1,4})/))) return Number(m[1]);
+        var years = (txt.match(/\b\d{3,4}\b/g) || []).map(Number).filter(function (n) { return n <= 2100; });
+        return years.length ? years[years.length - 1] : null;
+    }
+
+    // Rang dans l'année civile juive : mois (depuis Tichri) puis jour ; null sans date de hilloula.
+    function annualKey(e) {
+        if (!e.hilloula || YEAR_ORDER[e.hilloula.month] == null) return null;
+        return YEAR_ORDER[e.hilloula.month] * 40 + (e.hilloula.day || 0);
+    }
+
+    function cmpNullLast(a, b) {
+        if (a == null && b == null) return 0;
+        if (a == null) return 1;
+        if (b == null) return -1;
+        return a < b ? -1 : a > b ? 1 : 0;
+    }
+
+    function byAlpha(a, b) {
+        var k = hebKey(a.he), l = hebKey(b.he);
+        return k < l ? -1 : k > l ? 1 : (a.fr < b.fr ? -1 : a.fr > b.fr ? 1 : 0);
+    }
+
+    function byAnnual(a, b) {
+        return cmpNullLast(annualKey(a), annualKey(b)) || byAlpha(a, b);
+    }
+
+    // Trie une copie de la liste : mode 'alpha' (alphabet hébreu), 'annual' (année civile juive), 'chrono' (année puis jour de décès).
+    function sortBy(entries, mode) {
+        var cmp = mode === 'annual' ? byAnnual
+            : mode === 'chrono' ? function (a, b) { return cmpNullLast(deathYear(a), deathYear(b)) || byAnnual(a, b); }
+            : byAlpha;
+        return entries.slice().sort(cmp);
     }
 
     function count(entries, key) {
@@ -152,6 +216,6 @@
     return {
         STATUSES: STATUSES, ERAS: ERAS, RITES: RITES, PRECISIONS: PRECISIONS, MONTH_FR: MONTH_FR,
         statusOf: statusOf, statusRank: statusRank, normalize: normalize, byId: byId, forAuthor: forAuthor, hilloulaLabel: hilloulaLabel,
-        filter: filter, sortForList: sortForList, count: count, groups: groups, geojson: geojson, hilloulot: hilloulot, precisionLabel: precisionLabel
+        filter: filter, sortBy: sortBy, SORTS: SORTS, deathYear: deathYear, hebKey: hebKey, count: count, groups: groups, geojson: geojson, hilloulot: hilloulot, precisionLabel: precisionLabel
     };
 }));

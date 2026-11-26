@@ -24,6 +24,8 @@ let kevBordersPromise = null;
 let kevMap = null;
 let kevMapReady = false;
 let kevFilters = { status: 'all', era: 'all', rite: 'all' };
+let kevSort = 'alpha';                // ordre de la liste : alpha, annual ou chrono (réglage gardé sur l'appareil)
+const KEV_SORT_KEY = 'kevarimSort';
 let kevView = 'world';
 let kevSelectedId = '';
 let kevSelectedKey = '';
@@ -81,6 +83,7 @@ function toolKevarimInit() {
     kevFilters = { status: 'all', era: 'all', rite: 'all' };
     kevView = 'world';
     try { kevBorders = localStorage.getItem(KEV_BORDERS_KEY) === '1'; } catch (e) { kevBorders = false; }
+    try { const saved = localStorage.getItem(KEV_SORT_KEY); if (saved && KevarimCore.SORTS.some(x => x.id === saved)) kevSort = saved; } catch (e) { /* réglage non gardé */ }
     const box = toolEl('tool-kev-borders');
     if (box) box.checked = kevBorders;
     kevSelectedId = '';
@@ -155,6 +158,19 @@ function kevRenderFilters(list) {
     row('status', K.STATUSES.map(s => ({ id: s.id, fr: t('tools.kevarim_status_' + s.id), color: s.color, n: cs[s.id] })), t('tools.kevarim_filter_status'));
     row('era', K.ERAS.map(s => ({ id: s.id, fr: t('tools.kevarim_era_' + s.id), n: ce[s.id] })), t('tools.kevarim_filter_era'));
     row('rite', K.RITES.map(s => ({ id: s.id, fr: t('tools.kevarim_rite_' + s.id), n: cr[s.id] })), t('tools.kevarim_filter_rite'));
+    // L'ordre de la liste : un choix unique (pas de désélection), gardé sur l'appareil.
+    const sortRow = kevNode('div', 'tool-history-chips is-scroll');
+    sortRow.setAttribute('role', 'group');
+    sortRow.setAttribute('aria-label', t('tools.kevarim_sort_label'));
+    K.SORTS.forEach(so => sortRow.appendChild(kevChip(t('tools.kevarim_sort_' + so.id), kevSort === so.id, () => kevSetSort(so.id), '')));
+    host.appendChild(sortRow);
+    if (kevSort === 'chrono') host.appendChild(kevNode('p', 'tool-small', t('tools.kevarim_sort_chrono_note')));
+}
+
+function kevSetSort(id) {
+    kevSort = id;
+    try { localStorage.setItem(KEV_SORT_KEY, id); } catch (e) { /* stockage indisponible : réglage non gardé */ }
+    kevRender();
 }
 
 function kevRender() {
@@ -164,7 +180,7 @@ function kevRender() {
     const placed = list.filter(e => e.place).length;
     toolEl('tool-kev-count').textContent = t('tools.kevarim_count', { n: list.length, placed: placed });
     kevRenderViews();
-    kevRenderList(KevarimCore.sortForList(list));
+    kevRenderList(KevarimCore.sortBy(list, kevSort));
     kevRenderFiche(list);
     kevUpdateMap(list);
 }
