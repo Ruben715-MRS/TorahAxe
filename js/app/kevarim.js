@@ -159,10 +159,17 @@ function kevRenderFilters(list) {
     row('era', K.ERAS.map(s => ({ id: s.id, fr: t('tools.kevarim_era_' + s.id), n: ce[s.id] })), t('tools.kevarim_filter_era'));
     row('rite', K.RITES.map(s => ({ id: s.id, fr: t('tools.kevarim_rite_' + s.id), n: cr[s.id] })), t('tools.kevarim_filter_rite'));
     // L'ordre de la liste : un choix unique (pas de désélection), gardé sur l'appareil.
-    const sortRow = kevNode('div', 'tool-history-chips is-scroll');
+    // Même habillage que la bande des rites (Séfarade / Ashkénaze / 'Habad) : classes .ben-rites et .ben-rite.
+    const sortRow = kevNode('div', 'ben-rites');
     sortRow.setAttribute('role', 'group');
     sortRow.setAttribute('aria-label', t('tools.kevarim_sort_label'));
-    K.SORTS.forEach(so => sortRow.appendChild(kevChip(t('tools.kevarim_sort_' + so.id), kevSort === so.id, () => kevSetSort(so.id), '')));
+    K.SORTS.forEach(so => {
+        const b = kevNode('button', 'ben-rite', t('tools.kevarim_sort_' + so.id));
+        b.type = 'button';
+        b.setAttribute('aria-pressed', kevSort === so.id ? 'true' : 'false');
+        b.onclick = () => kevSetSort(so.id);
+        sortRow.appendChild(b);
+    });
     host.appendChild(sortRow);
     if (kevSort === 'chrono') host.appendChild(kevNode('p', 'tool-small', t('tools.kevarim_sort_chrono_note')));
 }
